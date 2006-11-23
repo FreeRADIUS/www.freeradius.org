@@ -1,0 +1,199 @@
+
+
+     RADIUS Working Group                                     Bernard Aboba
+     INTERNET-DRAFT                                               Microsoft
+     Category: Standards Track
+     <draft-ietf-radius-mobileip-00.txt>
+     21 April 1998
+
+
+                        Support for Mobile IP in RADIUS
+
+
+     1.  Status of this Memo
+
+     This document is an Internet-Draft.  Internet-Drafts are working docu-
+     ments of the Internet Engineering Task Force (IETF),  its  areas,  and
+     its  working groups.  Note that other groups MAY also distribute work-
+     ing documents as Internet-Drafts.
+
+     Internet-Drafts are draft documents valid for a maximum of six  months
+     and  MAY  be updated, replaced, or obsoleted by other documents at any
+     time.  It is inappropriate to use Internet-Drafts as  reference  mate-
+     rial or to cite them other than as ``work in progress.''
+
+     To view the entire list of current Internet-Drafts, please check
+     the "1id-abstracts.txt" listing contained in the Internet-Drafts
+     Shadow Directories on ftp.is.co.za (Africa), ftp.nordu.net
+     (Northern Europe), ftp.nis.garr.it (Southern Europe), munnari.oz.au
+     (Pacific Rim), ftp.ietf.org (US East Coast), or ftp.isi.edu
+     (US West Coast).
+
+     The  distribution  of  this memo is unlimited.  It is filed as <draft-
+     ietf-radius-mobileip-00.txt>, and  expires October  1,  1998.   Please
+     send comments to the authors.
+
+
+     2.  Abstract
+
+     RFC  2002  describes  the  framework  for  Mobile  IP,  while RFC 2290
+     describes how a mobile node and a peer negotiate the  appropriate  use
+     of  Mobile  IP over a PPP link, through use of the IPCP IP Address and
+     Mobile-IPv4 Configuration Options. This document describes how  Mobile
+     IP is supported within RADIUS.
+
+
+     3.  Mobile-IP-Configuration attribute definition
+
+     Description
+
+        This  Attribute  describes  how a mobile node and NAS negotiate the
+        appropriate use of Mobile IP over a PPP link. It MAY be included in
+        Access-Accept or Accounting-Request packets.
+
+     A  summary  of  the  Mobile-IP-Configuration Attribute format is shown
+     below.  The fields are transmitted from left to right.
+
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2
+
+
+
+     Aboba                                                         [Page 1]
+
+
+
+
+
+
+     INTERNET-DRAFT                                           21 April 1998
+
+
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |      Type     |    Length     |         Address
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |        Address (cont)         |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+     Type
+
+        ? for Mobile-IP-Configuration
+
+     Length
+
+        6
+
+     Address
+
+        The Address field is four  octets.  When  included  in  an  Access-
+        Accept,  the Address field MUST contain the value 0xFFFFFFFF, indi-
+        cating that Mobile-IP is authorized. When included in  an  Account-
+        ing-Request,  the Address field is set to the Home Address supplied
+        by the mobile node.
+
+     Discussion
+
+        The purpose of the Mobile-IP-Configuration attribute is to  provide
+        the  NAS  with  the information needed to negotiate the appropriate
+        use of Mobile IP over a PPP Link, as described in RFC 2290 [2].
+
+        When a Mobile-IP-Configuration attribute is present, the absence of
+        a  Framed-IP-Address  attribute is interpreted as indicating that a
+        co-located care-of-address MUST NOT be assigned.  If  a  Framed-IP-
+        Address  attribute is included along with a Mobile-IP-Configuration
+        attribute, then a co-located care-of-address MAY be assigned by the
+        NAS.  A  co-located  care-of-address  may be assigned statically or
+        dynamically.
+
+        Since the mobile node may not always wish to do mobile  IP,  inclu-
+        sion  of  the Mobile-IP-configuration attribute does not imply that
+        the mobile node must use mobile IP. However,  when  the  Mobile-IP-
+        Configuration  attribute is omitted, use of Mobile IP is not autho-
+        rized, and MUST NOT be negotiated by the NAS.
+
+        If the mobile node prefers a co-located care-of-address, this  will
+        typically  be  indicated during PPP IPCP negotiation by setting the
+        IP Address option to zero, and the Mobile-IPv4 Configuration option
+        to  the  Home  Address.  If a foreign agent care-of-address is pre-
+        ferred, this will typically be indicated during PPP  IPCP  negotia-
+        tion  by  sending  only a Mobile-IPv4 Configuration option with the
+        Home Address.
+
+        As described in [2], if the NAS is not Mobile-IP capable or is  not
+        authorized  to  negotiate  Mobile  IP  (no  Mobile-IP-Configuration
+        attribute), then it will respond with a  Configure-Reject.  If  the
+        mobile node has requested a co-located care-of-address, and the NAS
+
+
+
+     Aboba                                                         [Page 2]
+
+
+
+
+
+
+     INTERNET-DRAFT                                           21 April 1998
+
+
+        can comply  (Framed-IP-Address  attribute  included  along  with  a
+        Mobile-IP-Configuration  attribute),  the  NAS will typically reply
+        with a Configure-NAK including an IP Address Option set to the  co-
+        located  care-of-address  or home address, depending on whether the
+        mobile node is attached via a foreign link or home link.
+
+        If the NAS only supports a foreign agent  care-of-address  (Mobile-
+        IP-Configuration  attribute but no Framed-IP-Address attribute), it
+        will typically reply with a Configure-NAK including an  IP  Address
+        Option  set  to  zero.   If the mobile node has requested a foreign
+        agent care-of-address, and the NAS can negotiate Mobile-IP (Mobile-
+        IP-Configuration  attribute included), then the NAS MUST reply with
+        a Mobile-IPv4 Configuration Option set to the  Home  Address  indi-
+        cated by the mobile node.
+
+        As  noted  in  [2],  the  NAS  need not know the mobile node's Home
+        Address beforehand in order to decide how to reply.  This  informa-
+        tion  is not useful because if the Home Address expected by the NAS
+        did not match that provided by the mobile node, there would  be  no
+        way  to correct the problem, since a Configure-NAK is undefined for
+        the Mobile-IPv4 Configuration Option in IPCP.
+
+
+     4.  Acknowledgements
+
+     Thanks to Jim Solomon of Motorola for useful discussions of this prob-
+     lem space.
+
+
+     5.  References
+
+     [1] C. Perkins. "IP Mobility Support." RFC 2002, IBM October 1996.
+
+     [2]  J.  Solomon,  S. Glass, "Mobile-IPv4 Configuration Option for PPP
+     IPCP." RFC 2290, Motorola, FTP Software, February 1998.
+
+
+     6.  Authors' Addresses
+
+     Bernard Aboba
+     Microsoft Corporation
+     One Microsoft Way
+     Redmond, WA 98052
+
+     Phone: 425-936-6605
+     EMail: bernarda@microsoft.com
+
+
+
+
+
+
+
+
+
+
+
+     Aboba                                                         [Page 3]
+
+
+

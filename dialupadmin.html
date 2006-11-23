@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- building the perfect RADIUS server</title>
+    <link type="text/css" rel="stylesheet" href="css/common.css" />
+  </head>
+
+  <body bgcolor="#ffffff">
+    <div class="toprow">
+      <a href="./"><img class="icon" src="freeradius.png" alt="FreeRADIUS" border="0" /></a> 
+      <span class="linkbar">// 
+        <a href="getting.html">download</a> // 
+        <a href="usage.html">installation</a> // 
+        <a href="development.html">development</a> //
+      </span>
+    </div>
+    <br />
+
+    <h1>Dialup Admin Administration interface</h1>
+
+    <p>The FreeRADIUS server comes including a powerfull web interface written
+    in PHP to administer radius users, called dialupadmin. Dialup Admin supports
+    users either in SQL (MySQL or PostgreSQL are supported) or in LDAP. Apart
+    from the web pages, it also includes a number of scripts to make
+    the administrator's life a lot easier.</p>
+
+    <h2>Web interface features</h2>
+
+    <p>The <a href="images/whole_dialupadmin.jpg">dialupadmin web interface</a>
+    supports the following features:</p>
+
+    <ul>
+      <li>Creating a new user from scratch, and storing the information in an
+      SQL or LDAP server, including personal user information</li>
+      <li>Main page for general user status overview (<a
+      href="images/show_user.jpg">screenshot</a>)</li>
+      <li>User radius settings administration (<a
+      href="images/edit_user.jpg">screenshot</a>)</li>
+      <li>User personal information administration (<a
+      href="images/user_info.jpg">screenshot</a>)</li>
+      <li>User accounting overview (<a
+	href="images/user_accounting.jpg">screenshot</a>)</li>
+      <li>User test page (<a href="images/user_test.jpg">screenshot</a>)</li>
+      <li>Find users facility (<a href="images/find_user.jpg">screenshot</a>)</li>
+      <li>Bad Users facility to keep a record of users creating problems</li>
+      <li>Accounting Report Generator (<a
+      href="images/accounting_report_generator.jpg">screenshot</a>)</li>
+      <li>Online finger facility (<a href="images/online_users.jpg">screenshot</a>)</li>
+      <li>Test radius server (uses the user test page framework)</li>
+      <li>Online Usage Statistics</li>
+      <li>Group Administration for SQL based users (<a
+      href="images/group_admin.jpg">screenshot</a>)</li>
+      <li>Administer sql based radius clients (<a
+      href="images/sql_clients.jpg">screenshot</a>)</li>
+    </ul>
+
+    <h2>Scripts included with dialupadmin</h2>
+
+    <p>Dialup Admin includes a number of perl scripts which provide enhanced
+    features for the radius server administrator:</p>
+
+    <ul>
+      <li>Script to log failed logins in the accounting database as soon as they are
+      logged in the radius log file.</li>
+      <li>Script to clean the accounting database of stale open sessions</li>
+      <li>Script to clean the accounting database from records older than
+      a specific number of days</li>
+      <li>Script to aggregate user accounting to per day, or per month rows
+      (one for each user) to ease statistics generation</li> 
+    </ul>
+
+    <p class="trailer">Copyright 2003, The FreeRADIUS Project<br />
+    Last modified on <span class="date">$Date: 2004/08/08 18:56:46 $</span><br>
+    Screenshots provided by Gary McKinney<br>
+    </p>
+  </body>
+</html>

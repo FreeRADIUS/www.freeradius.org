@@ -1,0 +1,295 @@
+
+
+
+
+
+RADIUS Working Group                                          Pat Calhoun
+INTERNET DRAFT                                           3Com Corporation
+Category: Internet Draft                                     Mark Beadles
+Title: draft-ietf-radius-acct-interim-01.txt       Compuserve Corporation
+Date: January 1998                                          Alex Ratcliff
+
+
+
+                                  RADIUS Accounting
+                         Interim Accounting Record Extension
+                       <draft-ietf-radius-acct-interim-01.txt>
+
+
+Status of this Memo
+
+   This document is an Internet-Draft.  Internet-Drafts are working  doc-
+   uments  of  the Internet Engineering Task Force (IETF), its areas, and
+   its working groups.  Note that other groups may also distribute  work-
+   ing documents as Internet-Drafts.
+
+   Internet-Drafts are draft documents valid for a maximum of six months.
+   Internet-Drafts  may  be  updated,  replaced,  or  obsoleted  by other
+   documents at any time.  It is not appropriate to use Internet-  Drafts
+   as  reference  material  or  to  cite them other than as a ``work- ing
+   draft'' or ``work in progress.''
+
+   To learn the current status of any Internet-Draft,  please  check  the
+   1id-abstracts.txt  listing  contained  in  the  Internet-Drafts Shadow
+   Directories on ds.internic.net,  nic.nordu.net,  ftp.nisc.sri.com,  or
+   munnari.oz.au.
+
+
+Abstract
+
+   The RADIUS Accounting document [1] defines a mechanism which  is  used
+   by  a  Network Access Server (NAS) to send accounting information to a
+   RADIUS server. The current protocol defines a Start and  Stop  record.
+   This  document  defines  an  interim  record which is used to make the
+   RADIUS accounting protocol more robust.
+
+
+1.0 Introduction
+
+   The current protocol defines a message which a NAS sends to the RADIUS
+   server when a session begins, and a message when the session ends. All
+   information which is necessary for the billing process  (i.e.  session
+   time,  number  of  bytes  transfered,  etc)  are only available in the
+   Accounting Stop message. Therefore if a NAS  becomes  unavailable  for
+   some  time  (i.e.  power  failure, reboot, network problem, etc...) it
+   becomes impossible  for  a  service  provider  to  bill  for  sessions
+
+
+Calhoun, Beadles, Ratcliff       expires July 1998               [Page 1]
+
+
+
+INTERNET DRAFT                                               January 1998
+
+
+   initiated on the NAS (this is especially  important  with  long  lived
+   sessions).
+
+   This document introduces a new accounting message which is  sent  from
+   NAS  to  the  RADIUS  server  which  is  called the interim accounting
+   message. This message is sent in  order  to  periodically  update  the
+   RADIUS server with information pertaining to a specific session.
+
+
+1.1 Specification of Requirements
+
+   In this document, several words are used to signify  the  requirements
+   of the specification.  These words are often capitalized.
+
+   MUST      This word, or the adjective "required", means that the
+             definition is an absolute requirement of the specification.
+
+   MUST NOT  This phrase means that the definition is an absolute
+             prohibition of the specification.
+
+   SHOULD    This word, or the adjective "recommended", means that there
+             may exist valid reasons in particular circumstances to
+             ignore this item, but the full implications must be
+             understood and carefully weighed before choosing a
+             different course.
+
+   MAY       This word, or the adjective "optional", means that this
+             item is one of an allowed set of alternatives.  An
+             implementation which does not include this option MUST be
+             prepared to interoperate with another implementation which
+             does include the option.
+
+
+2.0 Operation
+
+   When a user is authenticated, a RADIUS server issues an  Access-Accept
+   in  response  to  a successful Access-Request. If the server wishes to
+   receive interim accounting messages for the given user it must include
+   the  Acct-Interim-Interval  RADIUS  attribute  in  the  message, which
+   indicates the interval in seconds between interim messages.
+
+   It is also possible to statically configure an interim  value  on  the
+   NAS  itself. Note that a locally configured value on the NAS overrides
+   a value found in an Access-Accept.
+
+   This scheme does not break backward interoperability  since  a  RADIUS
+   server  not  supporting  this  extension  will  simply not add the new
+   Attribute. On the other hand, NAS' not supporting this extension  will
+   simply  ignore  the Attribute. This means that if a RADIUS Server uses
+   the interim extension for other purposes (i.e. resource management) it
+
+
+Calhoun, Beadles, Ratcliff       expires July 1998               [Page 2]
+
+
+
+INTERNET DRAFT                                               January 1998
+
+
+   MUST be aware of NAS' which do not support this extension.
+
+   Note that all information in an interim message  is  cumulative  (i.e.
+   number  of  packets  sent  is  the  total  since  the beginning of the
+   session, not since the last interim message).
+
+   It is envisioned that an Interim Accounting record would  contain  all
+   of  the  attributes  normally found in an Accounting Stop message with
+   the exception of the Acct-Term-Cause attribute.
+
+   Since all the information is cumulative, a NAS MUST ensure that only a
+   single generation of an interim Accounting message for a given session
+   is present in the retransmission queue at any given time.  This  means
+   that  the  NAS  MUST first delete any pending interim messages for the
+   given  session  (whose  information  is   now   obsolete)   from   the
+   retransmissions  before  issuing a new interim message. Note that this
+   event would only  occur  if  the  RADIUS  accounting  server  was  not
+   reachable.
+
+   A NAS MAY use a fudge factor to add a  random  delay  between  Interim
+   Accounting  messages  for  separate  sessions. This will ensure that a
+   cycle where all messages are sent at once  is  prevented  (this  could
+   occur  if  a primary link was recently restored and many dial-up users
+   were directed to the same NAS at once).
+
+   Although this extension allows control from a central  RADIUS  Server,
+   the authors wish to strongly caution against using low interval values
+   (i.e. less than 60 seconds). In a NAS with large  port  densities,  it
+   can  become  a  CPU  intensive  task  as  well  as  a waste of network
+   bandwidth.
+
+
+3.0 Attributes
+
+   This section defines the new RADIUS Attributes  necessary  to  support
+   the Interim Accounting extension.
+
+3.1 Acct-Status-Type
+
+   Description
+
+      This attribute indicates whether this Accounting-Request marks  the
+      beginning of the user service (Start) or the end (Stop).
+
+      It MAY be used by the client to mark the start of  accounting  (for
+      example,  upon booting) by specifying Accounting-On and to mark the
+      end of accounting (for example, just before a scheduled reboot)  by
+      specifying Accounting-Off.
+
+      Additionally this attribute MAY indicate an interim update.
+
+
+Calhoun, Beadles, Ratcliff       expires July 1998               [Page 3]
+
+
+
+INTERNET DRAFT                                               January 1998
+
+
+      A summary of the Acct-Status-Type attribute format is shown  below.
+      The fields are transmitted from left to right.
+
+        0                   1                   2                   3
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |     Type      |    Length     |             Value
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |          Value (cont)         |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Type
+
+      40 for Acct-Status-Type.
+
+   Length
+
+      6
+
+   Value
+
+      The Value field is four octets and can have one  of  the  following
+      values:
+
+         1      Start
+         2      Stop
+         3      Interim Update
+         7      Accounting-On
+         8      Accounting-Off
+
+
+3.2 Acct-Interim-Interval
+
+   Description
+
+      This attribute indicates the number of seconds between each interim
+      update  in  seconds  for this specific session. This value can only
+      appear in the Access-Accept RADIUS message.
+
+      A summary of the Acct-Interim-Interval attribute  format  is  shown
+      below. The fields are transmitted from left to right.
+
+        0                   1                   2                   3
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |     Type      |    Length     |             Value
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+       |          Value (cont)         |
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+
+Calhoun, Beadles, Ratcliff       expires July 1998               [Page 4]
+
+
+
+INTERNET DRAFT                                               January 1998
+
+
+   Type
+
+      85 for Acct-Interim-Interval.
+
+   Length
+
+      6
+
+   Value
+
+      The Value field contains the number of seconds between each interim
+      update to be sent from the NAS for this session. The value MUST NOT
+      be smaller than 60 and SHOULD NOT be less than 600.
+
+
+4.0 Contacts
+
+   Pat R. Calhoun
+   3Com Corporation
+   1800 Central Ave.
+   Mount Prospect, Il, 60056
+   pcalhoun@usr.com
+   (847) 342-6898
+
+   Mark A. Beadles,
+   Compuserve Corporation
+   CompuServe, Inc.
+   5000 Britton Rd.
+   Hilliard, OH, 43026
+   mbeadles@web.compuserve.com
+   (614) 723-1941
+
+   Alex Ratcliffe,
+   UUNET Technologies, Inc,
+   3060 Williams Drive,
+   Fairfax, VA, 22032
+   alexr@uu.net
+   (703) 206 5698
+
+
+  5.0 References
+
+   [1]   Rigney, C., "RADIUS Accounting", RFC 2139, April 1997.
+
+   [2]   Rigney, C., Rubens, A., Simpson, W., and Willens, S., "Remote
+         Authentication Dial In User Service (RADIUS)", RFC 2138,
+         April 1997.
+
+
+
+
+
+Calhoun, Beadles, Ratcliff       expires July 1998               [Page 5]
+

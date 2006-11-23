@@ -1,0 +1,56 @@
+
+body {
+	background-color: white;
+	color: #002;
+	padding: 3em;
+}
+
+a:link, a:active {
+	color: #048;
+}
+
+a:visited {
+	color: #002;
+}
+
+span.credit {
+	color: #008;
+}
+
+span.linkbar {
+//	margin-left: 2em;
+}
+
+span.date {
+	font-weight: bold;
+}
+a.icon {
+	border-style: none;
+}
+
+img.icon {
+	float: left;
+}
+
+pre.instructions {
+	margin-left: 2em;
+}
+
+dt {
+	font-weight: bold;
+}
+
+div.toprow {
+	vertical-align: middle;
+}
+
+p.trailer {
+	text-align: right;
+	font-style: italic;
+	margin-right: 4em;
+	border-top: solid black;
+}
+
+ul.news li {
+	margin-bottom: 10px;
+}

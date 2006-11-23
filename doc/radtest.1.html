@@ -1,0 +1,97 @@
+<HTML><HEAD><TITLE>Manpage of RADTEST</TITLE>
+</HEAD><BODY BGCOLOR=#ffffff>
+<H1>RADTEST</H1>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 24 February 2001<BR><A HREF="#index">Index</A>
+<A HREF="/">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+radtest - send packets to a RADIUS server, show reply
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>radtest</B>
+
+[<B>-d</B>
+
+<I>raddb_directory</I>]
+
+<I>user password radius-server nas-port-id secret</I>
+
+[<B>ppphint</B>]
+
+[<B>nasname</B>]
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>radtest</B> is a frontend to <B><A HREF="radclient.1.html">radclient</A></B>(1). It generates a
+list of attribute/value pairs based on the command line arguments,
+and feeds these into <B>radclient</B>. It's a fast and convenient
+way to test a radius server.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<P>
+<DL COMPACT>
+<DT>-d <I>raddb_directory</I><DD>
+The directory that contains the RADIUS dictionary files. Defaults to
+<I>/etc/raddb</I>.
+<P>
+<DT>user<DD>
+Username to send.
+<P>
+<DT>password<DD>
+Password of the user.
+<P>
+<DT>radius-server<DD>
+Hostname or IP address of the radius server. Optionally, you may specify a
+port by appending :port
+<P>
+<DT>nas-port-id<DD>
+The value of the NAS-Port-Id attribute. Is an integer between 0 and 2^31,
+and it really doesn't matter what you put here. <I>10</I> will do fine.
+<P>
+<DT>secret<DD>
+The shared secret for this client.
+<P>
+<DT>ppphint<DD>
+If you put an integer &gt; 0 here, radtest (or actually radclient) will
+add the attribute <I>Framed-Protocol = PPP</I> to the request packet.
+<P>
+<DT>nasname<DD>
+If present, this will be resolved to an IP address and added to
+the request packet as the <I>NAS-IP-Address</I> attribute. If you
+don't specify it, the local hostname of the system will be used.
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<A HREF="radiusd.8.html">radiusd</A>(8),
+<A HREF="radclient.1.html">radclient</A>(1).
+<A NAME="lbAG">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</A>.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/">man2html</A>,
+using the manual pages.<BR>
+Time: 22:43:21 GMT, June 03, 2002
+</BODY>
+</HTML>

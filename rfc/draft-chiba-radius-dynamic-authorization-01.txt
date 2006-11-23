@@ -1,0 +1,316 @@
+
+INTERNET-DRAFT                                          Murtaza S. Chiba
+Title:                                               Cisco Systems, Inc.
+draft-chiba-radius-dynamic-authorization-01.txt
+Expires July 2002                                          Gopal Dommety
+                                                     Cisco Systems, Inc.
+
+                                                             Mark Eklund
+                                                     Cisco Systems, Inc.
+
+                                                            David Mitton
+                                                  Circular Logic, UnLtd.
+                                                           February 2002
+
+
+                        Dynamic Authorization
+
+Status of this Memo
+   This document is an Internet-Draft and is in full conformance with
+   all provisions of Section 10 of RFC2026.  Distribution of this memo
+   is unlimited.
+
+   This document is an Internet-Draft.  Internet-Drafts are working
+   documents of the Internet Engineering Task Force (IETF), its areas,
+   and its working groups.  Note that other groups may also distribute
+   working documents as Internet-Drafts.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet- Drafts as reference
+   material or to cite them other than as ``work in progress.''
+
+     The list of current Internet-Drafts can be accessed at
+     http://www.ietf.org/1id-abstracts.html
+
+     The list of Internet-Draft Shadow Directories can be accessed at
+     http://www.ietf.org/shadow.html
+
+
+
+   To view the entire list of current Internet-Drafts, please check the
+   ``1id-abstracts.txt'' listing contained in the Internet-Drafts Shadow
+   Directories on ftp.is.co.za (Africa), ftp.nordu.net (Northern
+   Europe), ftp.nis.garr.it (Southern Europe), munnari.oz.au (Pacific
+   Rim), ftp.ietf.org (US East Coast), or ftp.isi.edu (US West Coast).
+
+
+Abstract
+   This document describes the current practices for dynamically
+   disconnecting and changing filters  applicable to a user session.
+   The protocol uses RADIUS messages to send the disconnect request,
+   but unlike RADIUS, the NAS in this case acts as a server and
+   listens on a UDP port for requests originating from a client.
+
+
+M. Chiba                      Expires July 2002                 [Page 1]
+
+Internet Draft          Dynamic Disconnect                 February 2002
+
+1.0 Specification of Requirements
+
+   In this document, several words are used to signify the requirements
+   of the specification.  These words are often capitalized.
+
+   MUST      This word, or the adjective "required", means that the
+             definition is an absolute requirement of the
+             specification.
+
+   MUST NOT  This phrase means that the definition is an absolute
+             prohibition of the specification.
+
+   SHOULD    This word, or the adjective "recommended", means that
+             there may exist valid reasons in particular circumstances
+             to ignore this item, but the full implications must be
+             understood and carefully weighed before choosing a
+             different course.
+
+   MAY       This word, or the adjective "optional", means that this
+             item is one of an allowed set of alternatives.  An
+             implementation which does not include this option MUST
+             be prepared to interoperate with another implementation
+             which does include the option.
+
+1.1 Introduction
+
+   The RADIUS protocol sends all the authorization information for a
+   particular user in the Access-Accept packet and there are no
+   further authorization exchanges between the NAS and the RADIUS
+   server for the entire duration of the user session.
+   To overcome this limitation, various vendors have implemented a
+   reverse RADIUS protocol in which the NAS listens on a port for
+   messages initiated from a client.  These messages currently belong
+   to two groups:
+
+   1) Disconnect messages, and
+   2) Change of Filters messages
+
+   The disconnect messages cause a user session to be terminated
+   immediately, whereas change of filter messages modify the applicable
+   packet filters for the user session.
+
+   The packet format consists of the fields: Code, Identifier, Length,
+   Authenticator and the Attributes in the Type, Length and Value (TLV)
+   formats.  All the fields hold the same meaning as those described in
+   RADIUS[1].  The Authenticator field is calculated as specified in [3]
+
+M. Chiba                      Expires July 2002                 [Page 2]
+
+Internet Draft          Dynamic Disconnect                 February 2002
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Code      |  Identifier   |            Length             |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   |                         Authenticator                         |
+   |                                                               |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |  Attributes ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-
+
+
+1.2 Current Practices
+   This draft outlines the details for Disconnect Requests and Change
+   of Filters Requests that are commonly implemented.
+
+1.2.1 Protocol Port Information
+   For either type of request (Disconnect, or Change of Filters), the
+   UDP port 1700 is used as the destination port.  For responses the
+   source and destination ports are reversed.
+
+1.2.2 Identification Attributes
+   A number of attributes are used to uniquely identify a user session
+   on the NAS and one, or more of these are present in either type of
+   requests (Disconnect or, Change of Filters).  The set of attributes
+   includes the following:
+
+   Username(1): This is the name of the user associated with the session
+   Acct-Session-Id(44): This is derived from a RADIUS Accounting-Start
+   Framed-IP-Address(8): This is the IP Address associated with the
+                         session
+
+   Note:The numbers in parenthesis denote the attribute number in [1].
+        The ability to use all/some of the identifiers to map to
+        unique/multiple session(s) is beyond the scope of this document.
+
+1.2.3 Disconnect-Request (DR)
+
+   The packet of disconnect is used to dynamically end a user session
+   on a NAS.  Current practices use the UPD port 1700 for sending
+   requests.  For responses the ports are reversed.
+   The request message contains one or more of the identification
+   attributes.
+
+
+M. Chiba                      Expires July 2002                 [Page 3]
+
+Internet Draft          Dynamic Disconnect                 February 2002
+
+
+    ----------     Disconnect-Request     ----------
+   |          |  <--------------------   |          |
+   |   NAS    |                          |  Client  |
+   |          |   Disconnect-Response    |          |
+   |          |   ---------------------> |          |
+    ----------                            ----------
+
+   Codes used:
+   40 - Disconnect-Request
+   41 - Disconnect-ACK
+   42 - Disconnect-NAK
+
+   A Disconnect Request is followed by a response of either,
+   Disconnect-Ack if the NAS successfully disconnects the user, or a
+   Disconnect-NAK if it was unable to disconnect the user.
+   A Disconnect-Ack MAY contain the attribute Acct-Terminate-Cause(49)
+   with the value set to 6 for Admin-Reset.
+
+1.2.4 Change of Filters (CoF)
+
+   The CoF request packets contain information for dynamically changing
+   filters of a user's session.  The filters can be of either ingress,
+   or egress kind and are in addition to the identification attributes.
+   The port used and packet format are the same as that for disconnect.
+   The following is the attribute sent in a request:
+
+   Filter-ID(11) - Indicates the name of a filter list to be applied
+                   for the session that maps to the identification
+                   attributes.
+
+
+     ----------      CoF Request           ----------
+    |          |  <--------------------   |          |
+    |   NAS    |                          |  Client  |
+    |          |     CoF Response         |          |
+    |          |   ---------------------> |          |
+     ----------                            ----------
+
+   Codes used:
+   43 - CoF-Request
+   44 - CoF-ACK
+   45 - CoF-NAK
+
+   A Change of Filter request is followed by a response of either,
+   CoF-Ack if the NAS is able to successfully change the filters
+   for the user's session and a CoF-NAK if it does not succeed.
+
+M. Chiba                      Expires July 2002                 [Page 4]
+
+Internet Draft          Dynamic Disconnect                 February 2002
+
+1.3 Security Considerations
+   To prevent modification of the packets, a 16 byte Authenticator
+   is calculated employing the same algorithm as the one used for
+   Accounting-Requests[3].
+   To prevent replay attacks it is recommended that the Acct-Session-ID
+   and Username combination be present in the disconnect requests.
+   Further, it is also recommended to include the Event-Timestamp(55)[4]
+   attribute to prevent replay attacks.
+   The protocol, in addition,  is susceptible to the same
+   vulnerabilities as RADIUS and it is recommended to use IPSec to
+   afford better security.
+
+
+1.4 Example Traces of current Disconnect Requests
+
+   Disconnect Request with Username:
+
+    0: xxxx xxxx xxxx xxxx xxxx 2801 001c 1b23    .B.....$.-(....#
+   16: 624c 3543 ceba 55f1 be55 a714 ca5e 0108    bL5C..U..U...^..
+   32: 6d63 6869 6261
+
+   Disconnect Request with Acct-Session-ID:
+
+    0: xxxx xxxx xxxx xxxx xxxx 2801 0018 ad0d    .B..... ~.(.....
+   16: 8e53 55b6 bd02 a0cb ace6 4e38 77bd 2c0a    .SU.......N8w.,.
+   32: 3930 3233 3435 3637                        90234567
+
+   Disconnect Request with Framed-IP-Address:
+
+    0: xxxx xxxx xxxx xxxx xxxx 2801 001a 0bda    .B....."2.(.....
+   16: 33fe 765b 05f0 fd9c c32a 2f6b 5182 0806    3.v[.....*/kQ...
+   32: 0a00 0203
+
+1.4 References
+
+   [1]   Rigney, C., Rubens, A., Simpson, W. and S. Willens, "Remote
+         Authentication Dial In User Service (RADIUS)", RFC 2865, June
+         2000.
+
+   [2]   Mitton, D., "Network Access Server Requirements:
+         Extended RADIUS Practices", RFC 2882, July 2000.
+
+   [3]   Rigney, C., "RADIUS Accounting", RFC 2866 June 2000.
+
+   [4]   Rigney, C., Willats W., Calhoun P., "RADIUS Extensions",
+         RFC 2869, June 2000
+
+M. Chiba                      Expires July 2002                 [Page 5]
+
+Internet Draft          Dynamic Disconnect                 February 2002
+
+1.5 Copyright
+
+   Copyright (C) The Internet Society (2000).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provide
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+1.6 Acknowledgements
+
+   Funding for the RFC Editor function is currently provided by the
+   Internet Society.
+
+1.7 Author's Address
+
+   Murtaza Chiba            Gopal Dommety         Mark Eklund
+   Cisco Systems, Inc.      Cisco Systems, Inc.   Cisco Systems, Inc.
+   170 West Tasman Dr.      170 West Tasman Dr.   170 West Tasman Dr.
+   San Jose, CA 95134       San Jose, CA 95134    San Jose, CA 95134
+
+   Tel: (408) 525-7198      Tel: (408) 525-1404   Tel: (865) 671-6255
+   mchiba@cisco.com         gdommety@cisco.com    meklund@cisco.com
+
+
+   David Mitton
+   Circular Logic UnLtd.
+   733 Turnpike Street #154
+   North Andover, MA 01845
+
+   Phone: 978 683-1814
+   Email: david@mitton.com
+

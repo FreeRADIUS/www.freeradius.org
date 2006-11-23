@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- usage and help</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<p>The FreeRADIUS server is very similar to Cistron's RADIUS server,
+because it's derived from it. We hope that you don't have any
+problems, but if you do, read the <a
+href="http://wiki.freeradius.org/index.php/FAQ">FAQ</a> first to see
+if it's happened to many other people. If you don't find the answer
+there, then ask the <em>freeradius-users</em> mailing list.</p>
+
+<h2>Getting the software</h2>
+
+<p>There are two ways of getting the server, and <a
+href="getting.html">both are described on our instruction
+page.</a></p>
+
+<h2>Installation</h2>
+
+<p>Here's the quick-and-dirty step-by-step guide.</p>
+
+<ul>
+  <li><a
+  href="ftp://ftp.freeradius.org/pub/radius/">Download</a> a
+  tarball</li>
+
+  <li>Extract it with gunzip and tar</li>
+
+  <li>Run <code>./configure</code> in the top directory, with
+  your chosen parameters</li>
+
+  <li>Run <code>make</code></li>
+
+  <li>As root, run <code>make install</code></li>
+
+  <li>Edit <code>etc/raddb/radiusd.conf</code> to suit your
+  needs.</li>
+</ul>
+
+<p>If you have any questions or problems, <em>please</em> read the
+following  files:</p>
+<ul>
+ <A HREF="radiusd/README">README</a><br>
+ <A HREF="radiusd/INSTALL">INSTALL</a><br>
+ <A HREF="radiusd/doc/README">doc/README</a><br>
+ <A HREF="radiusd/raddb/radiusd.conf.in">radiusd.conf</a><br>
+ Anything else in <A HREF="radiusd/doc/">doc/</a><br>
+</ul>
+
+Many of the modules are documented <em>only</em> in the comments
+in the <A HREF="radiusd/raddb/radiusd.conf.in">radiusd.conf</a>
+file, sorry.  If this is insufficient, feel free to submit changes
+or updates.
+
+<h2>Documentation</h2>
+
+<p>There's plenty of documentation in the <code>doc/</code>
+directory, but it is not complete as of yet.  We're working on it,
+but slowly.  As always, patches are welcome.</p>
+
+<p>Have we mentioned the <A
+HREF="http://www.amazon.com/exec/obidos/ASIN/0596003226/freeradiusorg-20">
+RADIUS book</a>?  It covers a number of topics which aren't in the
+FreeRADIUS documentation, including detailed descriptions of the
+RADIUS attributes.<p>
+
+<p>The RADIUS <A HREF="rfc/">RFC's</A> are available on-line.
+They are not meant for the average user, but they are the
+<em>definitive</em> reference for RADIUS.  Any RADIUS protocol
+questions can usually be answered by reading the RFC's.<p>
+
+<p>For a quick reference, the RADIUS <A
+HREF="rfc/attributes.html">attributes</a> are listed here.  The
+names in the list link to the definition of the attributes in the
+RFC's.  If you're looking for an attribute to do something, or
+want to know what an attribute does, then the <A
+HREF="rfc/attributes.html">attribute</a> list is the best place to
+start.</p>
+
+<p>There are additional attributes not defined in the RFC's.
+These are usually vendor-specific attributes, and there is little
+to no documentation available outside of the vendor, for those
+attributes.  The dictionary files (in the <code>share/</code>
+directory) which are distributed with FreeRADIUS list the names of
+many vendor-specific attributes, and often contain pointers to the
+vendor web site which documents those attributes.
+
+<h2><a id="help" name="help">Getting help</a></h2>
+
+<p>If you've read the documentation, and still aren't
+satisfied, you should consider joining the
+<em>freeradius-users</em> list.</p>
+
+<h3>mailing list</h3>
+
+<p>A lot of the users of FreeRADIUS are on the
+<em>freeradius-users</em> list, and it's an excellent source of
+advice and information. There's a list of <a
+href="list/users.html">rules one must follow</a> along with the
+instructions on how to join.</p>
+
+<p>There is a mailing list for developers too, but it's for
+programmers and documentation-writers only. Don't ask a ``how
+do I'' question there, as it'll be ignored or flamed. There's a
+user-list for a reason; use it.</p>
+
+<h3>reporting bugs</h3>
+
+<p>If you and the list think you've found a bug, please report
+it to the developers via the <a
+href="http://www.freeradius.org/list/users.html">mailing list.</a>
+Also, make sure that the version you're using is the most recently
+released version of FreeRADIUS, and that you don't have any local
+patches applied..</p>
+
+</div>
+
+<!--#include virtual="/footer.html" -->
+
+  </body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->

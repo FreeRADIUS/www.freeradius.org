@@ -1,0 +1,69 @@
+<HTML><HEAD><TITLE>Manpage of NASLIST</TITLE>
+</HEAD><BODY BGCOLOR=#ffffff>
+<H1>NASLIST</H1>
+Section: File Formats (5)<BR>Updated: 15 September 1997<BR><A HREF="#index">Index</A>
+<A HREF="/">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+naslist - RADIUS naslist file
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>naslist</I> file resides in the radius database directory,
+by default <I>/etc/raddb</I>. It contains a list of RADIUS network access
+servers (NASes).
+Every line starting with a hash sign
+('<B>#</B>')
+
+is treated as comment and ignored.
+<P>
+
+Each line of the file contains three white-space delimited fields.
+<DL COMPACT>
+<DT>client<DD>
+The NAS hostname. This may be a plain hostname, or a
+dotted-quad IP address.
+<DT>shortname<DD>
+This field is optional, and declares a short alias for the NAS.
+<DT>NAStype<DD>
+Type of NAS (terminalserver). This can be <I>livingston</I>, <I>cisco</I>,
+<I>portslave</I> or <I>other</I>. This is passed to the external <B>checklogin</B>
+program when it is called to detect double logins.
+</DL>
+<P>
+
+The
+<I>naslist</I>
+
+file is read by <B>radiusd</B> on startup only.
+<A NAME="lbAD">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/naslist</I>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="radiusd.8.html">radiusd</A></B>(8),
+
+<B><A HREF="clients.5.html">clients</A></B>(5)
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">FILES</A><DD>
+<DT><A HREF="#lbAE">SEE ALSO</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/">man2html</A>,
+using the manual pages.<BR>
+Time: 22:43:21 GMT, June 03, 2002
+</BODY>
+</HTML>

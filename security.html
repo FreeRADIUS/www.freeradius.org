@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- Security Contacts and notifications</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+
+<h1>Security Contact</h1>
+
+<p>The FreeRADIUS security contact is <A
+href="mailto:security@freeradius.org">security@freeradius.org</a>.
+All security related information or notifications should be sent to
+that address.  Security notifications may be signed with the pgp key
+<a href="pgp/aland@freeradius.org">aland@freeradius.org</a>
+
+<h2>Security of the RADIUS Protocol</h2>
+
+The <a href="related/papers.html">security papers</a> page lists some
+general issues with RADIUS security.</a>
+
+<h2>Vulnerability Notifications</h2>
+
+    <ul>
+      <!--  
+Scheme:  Make lines like 
+LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
+<li><span class="date">2003/01/30</span>v1.5 What went wrong...</li>
+and put in reverse-chronological order.
+       -->
+
+     <li><span class="date">2006.03.20</span> <a name="1.0.5">v1.0.5</a>, and <a name="1.1.0">v1.1.0</a> - A validation issue exists with the EAP-MSCHAPv2 module in all versions from 1.0.0 (where the module first appeared) to 1.1.0.  Insufficient input validation was being done in the EAP-MSCHAPv2 state machine.  A malicious attacker could manipulate their EAP-MSCHAPv2 client state machine to potentially convince the server to bypass authentication checks.  This bypassing could also result in the server crashing.  We recommend that administrators upgrade immediately.</li>
+ <br>
+
+     <li><span class="date">2005.09.09</span> <a name="1.0.3">v1.0.3</a>, <a name="1.0.4">v1.0.4</a> - Multiple issues exist with version 1.0.4, and all prior versions of the server.  Externally exploitable vulnerabilities exist only for sites that use the <tt>rlm_sqlcounter</tt> module.  Those sites may be vulnerable to SQL injection attacks, similar to the issues noted below.  All sites that have not deployed the <tt>rlm_sqlcounter</tt> module are not vulnerable to external exploits.  However, we still recommend that all sites upgrade to version 1.0.5.
+<p>
+The issues are:
+	<ul>
+	<li> SQL Injection attack in the <tt>rlm_sqlcounter</tt> module.</li>
+        <li> Buffer overflow in the <tt>rlm_sqlcounter</tt> module, that may cause a server crash.</li>
+	<li> Buffer overflow while expanding %t, that may cause a server crash.</li>
+	</ul>
+<p>
+These issues were found by Primoz Bratanic.  As the <tt>rlm_sqlcounter</tt> module is marked "experimental" in the server source, it is not enabled or configured in most sites.  As a result, we believe that the number of vulnerable sites is low.
+<p>
+Additional issues, not externally exploitable, were found by Suse.  A full response to their report is available <a href="security/20050909-response-to-suse.txt">here</a>.  A related post to the <tt>vendor-sec</tt> mailing list is found <a href="security/20050909-vendor-sec.txt">here</a>.
+</li>
+
+     <li><span class="date">2005.05.01</span> <a name="1.0.1">v1.0.1</a>, <a name="1.0.2">v1.0.2</a> - Two vulnerabilities in the SQL module exist in all versions prior to 1.0.3.  Sites not using the SQL module are not affected by this issue.  However, we still recommend that all sites upgrade to version 1.0.3.
+<p>
+The issues are:
+	<ul>
+	<li> Buffer overflow - A long string could overflow an internal buffer in the SQL module, and write two bytes of text [0-9a-f] past the end of the buffer.  The server may exit when this happens, resulting in a DoS attack.  Depending on the local configuration of the server, this may occur before a user is authenticated.  This vulnerability is externally exploitable, but can not result in the execution of arbitrary code.
+	</li>
+	<li> SQL injection attacks - The SQL module suffers from SQL injection attacks in the <tt>group_membership_query</tt>, <tt>simul_count_query</tt>, and <tt>simul_verify_query</tt> configuration entries.  The first query is exploitable if your site is configured to use the <tt>SQL-Group</tt> attribute in any module in the <tt>authorize</tt> section of <tt>radiusd.conf</tt>.  The last two queries are exploitable only if your site has user names that contain a single quote character (<tt>'</tt>).
+	</li>
+	</ul>
+      </li>
+      <p>
+
+      <li><span class="date">2004.09.14</span> <a name="1.0.0">v1.0.0</a> - Multiple external DoS attacks exist in the server.  These are related to the attacks below, in 0.9.2, but were not caught then.  The vulnerabilities are fixed in 1.0.1, and in all later versions of the server.  The vulnerabilities are not exploitable, but can be used to remotely crash the server.
+      </li>
+      <p>
+
+      <li><span class="date">2003.11.20</span> <a name="0.9.3">v0.9.3</a> - There is an externally exploitable root compromise in rlm_smb,
+through a stack overflow when a password greater than 128 bytes
+referenced by the module.  The module is not built or installed by
+default, so we have not released a 0.9.4.  This vulnerability is fixed
+in the CVS snapshots, and will be included in any later release of the server.
+      </li>
+      <p>
+
+      <li><span class="date">2003.10.15</span> <a
+name="0.9.2">v0.9.2</a> - Anyone who can send packets to the server
+can crash it by sending a Tunnel-Password attribute in an
+Access-Request packet.  This vulnerability is not otherwise
+exploitable.  We have released 0.9.3 to correct this vulnerability.
+      </li>
+      <p>
+
+      <li><span class="date">2002.07.26</span> <a name="0.7.0">v0.7.0</a> - The Kerberos module may grant access to a user whose Kerberos ticket cannot be verified against the server principal.  We have released 0.7.1 to correct this vulnerability.
+      </li>
+      <p>
+
+      <li><span class="date">2001.12.17</span> <a name="0.3">v0.3</a> - <A HREF="http://www.cert.org/advisories/CA-2002-06.html">CA-2002-06</A>.  Multiple vulnerabilities in multiple RADIUS implementations.  We have released 0.4 to correct these vulnerabilities.
+      </li>
+
+    </ul>
+
+</div>
+
+<!--#include virtual="/footer.html" -->
+</body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->

@@ -1,0 +1,22 @@
+Editor's note:  These minutes have note been edited.
+
+
+Minutes of the RADIUS IETF Working Group Session #1 held Monday March 4, 1996 at the 35th IETF in Los Angeles, CA. 
+
+Reported by Dave Nelson (d_nelson@irocz.lkg.dec.com) and Carl Rigney (cdr@livingston.com).
+
+First session dealt with draft-ietf-radius-radius-02.txt and draft-ietf-radius-accounting-02.txt, possible extensions dealt with in the second session. Attendance at one session or both was 95 (plus 45 via MBONE in the first session).
+
+
+Recent Interoperability Experience from 3/2-3 was summarized. 16 implementors participated with 9 servers (half based on Livingston's 1.16 reference implementation, half independent implementations) and 14 clients testing several forms of interoperation in a 9x14 matrix. Thanks were expressed to Glenn Zorn of Microsoft and Dave Nelson of Digital for their efforts in organizing and creating a test plan. Things went well, with no major problems discovered. It may be useful to hold another, bigger, interoperability test in six months or so, since some implementors weren't ready to test yet or weren't able to make it to this one given the short notice. Merit has volunteered to host the next one in Michigan if that is convenient. 
+
+The Keyed MD5 algorithm for hiding User-Passwords was discussed. The Security Area is reported as liking the scheme in Draft 02 much better than the method used in Draft 00, and will examine it in more depth. The issue of interoperability with the old method was raised but only one vendor reported deploying code based on the old method so there's no plan to support the obsolete method in the draft. Servers that want to be backwards compatible can try both methods, but that won't work with Proxies.
+
+A show of hands was asked for to identify implementors working on adding the Appletalk and LAT attributes; they had no problems to report.
+
+Various people had requests to clarify Draft 02 in a handful of places. The Document Editor will make the necessary updates and send Draft 03 of both RADIUS and RADIUS Accounting out for a two week Working Group last Call by the end of March and incorporate any changes from that, then RADIUS Draft 04 will be sent to the IESG to do a two-week IETF Last Call and to issue it as a Proposed Standard. RADIUS Accounting Draft 04 will be sent to the RFC editor in April to be issued as an informational RFC.
+
+There was a suggestion to use 0xFFFFFFFE instead of 0x0 in Login-TCP-Host to mean the NAS should assign a host for the user, but it was felt that there was no point in breaking existing implementations just to be tidy.
+
+It was pointed out that the RADIUS Accounting Draft has a conflict in what attributes are allowed in which types of packets. The Document Editor will add clarifying language pointing at The Table of Attributes as the definitive word.
+

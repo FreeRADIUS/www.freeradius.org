@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- Development</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>Instructions for Developers</h1>
+
+    <p>As the name suggests, FreeRADIUS is developed under the <a
+    href="http://www.gnu.org/copyleft/gpl.html#SEC1">GNU General
+    Public License.</a> We invite anyone to use and contribute code to
+    the project.  The following information should prove useful for
+    potential contributors.</p>
+
+    <h1><a id="cvs" name="cvs">Using CVS</a></h1>
+
+    <p>We use <a href="http://www.cyclic.com/">CVS</a> to
+    coordinate and manage our source code. Public anonymous access
+    to the repository can be obtained with the username <i>anoncvs</i>
+    and the password <i>anoncvs</i> by doing the following:</p>
+
+    <a
+    class="icon" href="http://www.cyclic.com/"><img class="icon"
+    src="cvssmaller.gif" alt="Source control by CVS"
+    align="LEFT" /></a>
+<pre class="instructions" title="CVS checkout procedure">
+  $ cvs -d :pserver:anoncvs@cvs.freeradius.org:/source login
+  CVS password: <em>anoncvs</em>
+
+  $ cvs -d :pserver:anoncvs@cvs.freeradius.org:/source checkout <em>module</em>
+
+</pre>
+
+    <p>where <em>module</em> is one of the following module
+    names:</p>
+
+    <dl>
+      <dt>radiusd</dt>
+
+      <dd>The FreeRADIUS server daemon.</dd>
+
+      <dt><a href="/pam_radius_auth/">pam_radius</a></dt>
+
+      <dd>A <a
+      href="http://www.kernel.org/pub/linux/libs/pam/">Pluggable
+      Authentication Module</a> that should work on Linux, FreeBSD,
+      and Solaris.<br />
+      </dd>
+
+      <dt><a href="/mod_auth_radius/">mod_auth_radius</a></dt>
+
+      <dd>An authentication module for the <a
+      href="http://www.apache.org/">Apache HTTP Server
+      Project.</a></dd>
+      
+    </dl>
+
+    <h2>Patches and contributions</h2>
+
+    <p>If you're considering submitting a patch, please read the
+    <code>doc/DIFFS</code> file in the server distribution for
+    instructions, and also the <a
+    href="http://bugs.freeradius.org">bug tracking system</a>.  While
+    patches can be mail to the lists, we prefer that they be submitted
+    also via the online bug system.</p>
+
+    <p>The FTP site contains some additional patches that are
+    specialized and haven't been applied to the tree.</p>
+
+    <ul>
+      <li>A <a
+      href="ftp://ftp.freeradius.org/pub/radius/contrib/">contributions</a>
+      section, with patches to the Cistron server for Ascend data
+      filters, SQL, and additional PAM functionality.</li>
+
+      <li>A <a
+      href="ftp://ftp.freeradius.org/pub/radius/utils/">utilities</a>
+      section which may help in porting FreeRADIUS to additional
+      platforms.</li>
+    </ul>
+
+    <h1>Development mailing list</h1>
+
+    <p>We encourage everyone who might contribute code to join the <a
+    href="list/devel.html">FreeRADIUS development list.</a> This list
+    is highly technical and isn't for most users of the server. For
+    normal discussion of the server and how to use it, there's a <a
+    href="list/users.html">FreeRADIUS user-list.</a> You should
+    <em>only</em> subscribe to the development list if you are
+    interested in writing software for the new server.</p>
+
+    <p>A CVS snapshot of the current development (possibly
+    unstable) version is placed weekly on the <a
+    href="ftp://ftp.freeradius.org/pub/radius/CVS-snapshots/">CVS-snapshots/</a>
+    sub-directory of the FTP site, but developers should use
+    CVS.</p>
+
+    <h2>Miscellaneous links</h2>
+
+    <p>RADIUS <a href="rfc/">RFC's</a> and drafts: The two most
+    important are <a href="rfc/rfc2865.html">RFC2865</a> and <a
+    href="rfc/rfc2866.html">RFC2866.</a> These are the new RFCs,
+    which replace the old ones, <a
+    href="rfc/rfc2138.txt">RFC2138</a> and <a
+    href="rfc/rfc2139.txt">RFC2139</a></p>
+
+    <p><a href="related/">Related</a> items: Other RADIUS servers,
+    and more RADIUS information.</p>
+
+    <p>There are mirrors of the FTP site. See the <a
+    href="mirrors.html">mirrors</a> web page for details.</p>
+
+</div>
+
+<!--#include virtual="/footer.html" -->
+
+</body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->

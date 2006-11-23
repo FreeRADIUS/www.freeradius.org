@@ -1,0 +1,301 @@
+<HTML><HEAD><TITLE>Manpage of USERS</TITLE>
+</HEAD><BODY BGCOLOR=#ffffff>
+<H1>USERS</H1>
+Section: FreeRADIUS user authorization file (5)<BR>Updated: 08 September 2001<BR><A HREF="#index">Index</A>
+<A HREF="/">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+users - user authorization file for the FreeRADIUS server
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <B>users</B> file resides in the RADIUS database directory, by
+default <B>/etc/raddb</B>.  It contains a series of configuration
+directives which are used by the <I>files</I> module to decide how to
+authorize and authenticate each user request.
+<P>
+Every line starting with a hash sign
+('<B>#</B>')
+
+is treated as comment and ignored.
+<P>
+
+Each entry of the file begins with a username, followed by a (possibly
+empty) list of check items, all on one line.  The next line begins
+with a tab, and a (possibly empty) list of reply items.  Each item in
+the check or reply item list is an attribute of the form <B>name =
+value</B>.  Multiple items may be placed on one line, in which case
+they must be seperated by commas.  The reply items may be specified
+over multiple lines, in which case each line must end with a comma,
+and the last line of the reply items must not end with a comma.
+<P>
+The check items are a list of attributes used to match the incoming
+request.  If the username matches, AND all of the check items match
+the incoming request, then the reply items are added to the list of
+attributes which will be used in the reply to that request.  This
+process is repeated for all of the entries in the users file.
+<P>
+If the incoming request matches NO entry, then the request is
+rejected.
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>CAVEATS</H2>
+
+The special username <B>DEFAULT</B> matches any usernames.
+<P>
+The entries are processed in order, from the top of the <B>users</B> file,
+on down.  If an entry contains the special item <B>Fall-Through =
+No</B> as a reply attribute, then the processing of the file stops, and
+no more entries are matched.  Any reply item list without any
+<B>Fall-Through</B> attribute is treated as though it included a
+<B>Fall-Through = No</B> attribute.
+<P>
+If an entry contains the special item <B>Fall-Through = Yes</B> as a
+reply attribute, then the processing proceeds to the next entry in
+order.
+<P>
+Care should be taken when using <B>Fall-Through</B>.  The server should
+be tested in debugging mode with a number of test requests, in order
+to verify that the configured entries behave as expected.
+<P>
+The special attribute <B>Auth-Type</B> is used to identify the
+authentication type to be used for that user.  See the
+<B>dictionary</B> file for a list of permitted values for the
+<B>Auth-Type</B> attribute.
+<P>
+Once the <B>users</B> file has been processed, the request is authenticated,
+using the method given by <B>Auth-Type</B>.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPERATORS</H2>
+
+Additional operators other than <B>=</B> may be used for the attributes in
+either the check item, or reply item list.  The following is a list of
+operators, and their meaning.
+<P>
+<DL COMPACT>
+<DT><B>Attribute = Value</B>
+
+<DD>
+Not allowed as a check item.
+<BR>
+
+As a reply item, it means &quot;add the item
+to the reply list, but only if there is no other item of the same
+attribute.&quot;
+<P>
+<DT><B>Attribute := Value</B>
+
+<DD>
+Always matches as a check item, and replaces in the configuration
+items any attribute of the same name.  If no attribute of that name
+appears in the request, then this attribute is added.
+<BR>
+
+As a reply item, it has an identical meaning, but for the reply items,
+instead of the request items.
+<P>
+<DT><B>Attribute == Value</B>
+
+<DD>
+As a check item, it matches if the named attribute is present in the
+request, AND has the given value.
+<BR>
+
+Not allowed as a reply item.
+<P>
+<DT><B>Attribute += Value</B>
+
+<DD>
+Always matches as a check item, and adds the current attribute with
+value to the list of configuration items.
+<BR>
+
+As a reply item, it has an identical meaning, but the attribute is
+added to the reply items.
+<P>
+<DT><B>Attribute != Value</B>
+
+<DD>
+As a check item, matches if the given attribute is in the request, AND
+does not have the given value.
+<BR>
+
+Not allowed as a reply item.
+<P>
+<DT><B>Attribute &gt; Value</B>
+
+<DD>
+As a check item, it matches if the request contains an attribute with
+a value greater than the one given.
+<BR>
+
+Not allowed as a reply item.
+<P>
+<DT><B>Attribute &gt;= Value</B>
+
+<DD>
+As a check item, it matches if the request contains an attribute with
+a value greater than, or equal to the one given.
+<BR>
+
+Not allowed as a reply item.
+<P>
+<DT><B>Attribute &lt; Value</B>
+
+<DD>
+As a check item, it matches if the request contains an attribute with
+a value less than the one given.
+<BR>
+
+Not allowed as a reply item.
+<P>
+<DT><B>Attribute &lt;= Value</B>
+
+<DD>
+As a check item, it matches if the request contains an attribute with
+a value less than, or equal to the one given.
+<BR>
+
+Not allowed as a reply item.
+<P>
+<DT><B>Attribute =~ Expression</B>
+
+<DD>
+As a check item, it matches if the request contains an attribute which
+matches the given regular expression.  This operator may only be
+applied to string attributes.
+<BR>
+
+Not allowed as a reply item.
+<P>
+<DT><B>Attribute !~ Expression</B>
+
+<DD>
+As a check item, it matches if the request contains an attribute which
+does not match the given regular expression.  This operator may only be
+applied to string attributes.
+<BR>
+
+Not allowed as a reply item.
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+<P>
+
+bob<TT>&nbsp;&nbsp;&nbsp;&nbsp;</TT>Auth-Type := Local, User-Password == &quot;bob&quot;<BR>
+<P>
+
+<DL COMPACT><DT><DD>
+Requests containing the User-Name attribute, with value &quot;bob&quot;, will be
+authenticated using the local password &quot;bob&quot;.  There are no reply
+items, so the reply will be empty.
+</DL>
+
+<P>
+
+DEFAULT<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Auth-Type := System<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Fall-Through = Yes<BR>
+<P>
+
+<DL COMPACT><DT><DD>
+For all users reaching this entry, perform authentication against the
+system.  Also, process any following entries which may match.
+</DL>
+
+<P>
+
+DEFAULT Service-Type==Framed-User, Framed-Protocol==PPP
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Service-Type = Framed-User,<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Framed-Protocol = PPP,<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Fall-Through = Yes<BR>
+<P>
+
+<DL COMPACT><DT><DD>
+If the request packet contains the attributes Service-Type and
+Framed-Protocol, with the given values, then include those attributes
+in the reply.
+<P>
+That is, give the user what they ask for.  This entry also shows how
+to specify multiple reply items.
+</DL>
+
+<P>
+See the <B>users</B> file supplied with the server for more examples
+and comments.
+<P>
+<A NAME="lbAG">&nbsp;</A>
+<H2>HINTS</H2>
+
+Run the server in debugging mode (<B>-X</B>), and use the
+<B>radclient</B> program to send it test packets which you think will
+match specific entries.  The server will print out which entries were
+matched for that request, so you can verify your expectations.  This
+should be the FIRST thing you do if you suspect problems with the
+file.
+<P>
+Care should be taken when writing entries for the <B>users</B> file.  It is
+easy to misconfigure the server so that requests are accepted when you
+wish to reject them.  The entries should be ordered, and the
+Fall-Through item should be used ONLY where it is required.
+<P>
+Entries rejecting certain requests should go at the top of the file,
+and should not have a Fall-Through item in their reply items.  Entries
+for specific users, who do not have a Fall-Through item, should come
+next.  Any DEFAULT entries should usually come last, except as fall-through
+entries that set reply attributes.
+<P>
+<A NAME="lbAH">&nbsp;</A>
+<H2>FILES</H2>
+
+/etc/raddb/users
+<A NAME="lbAI">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="radclient.1.html">radclient</A></B>(1),
+
+<B><A HREF="radiusd.8.html">radiusd</A></B>(8),
+
+<B><A HREF="dictionary.5.html">dictionary</A></B>(5),
+
+<B><A HREF="naslist.5.html">naslist</A></B>(5)
+
+<P>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+The FreeRADIUS team.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">CAVEATS</A><DD>
+<DT><A HREF="#lbAE">OPERATORS</A><DD>
+<DT><A HREF="#lbAF">EXAMPLES</A><DD>
+<DT><A HREF="#lbAG">HINTS</A><DD>
+<DT><A HREF="#lbAH">FILES</A><DD>
+<DT><A HREF="#lbAI">SEE ALSO</A><DD>
+<DT><A HREF="#lbAJ">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/">man2html</A>,
+using the manual pages.<BR>
+Time: 22:43:21 GMT, June 03, 2002
+</BODY>
+</HTML>

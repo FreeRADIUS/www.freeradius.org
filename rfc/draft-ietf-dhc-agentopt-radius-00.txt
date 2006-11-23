@@ -1,0 +1,392 @@
+
+
+Network Working Group                                           R. Droms
+Internet-Draft                                             J. Schnizlein
+Expires: August 15, 2002                                   Cisco Systems
+                                                       February 14, 2002
+
+
+   RADIUS Attributes Sub-option for the DHCP Relay Agent Information
+                                 Option
+                 draft-ietf-dhc-agentopt-radius-00.txt
+
+Status of this Memo
+
+   This document is an Internet-Draft and is in full conformance with
+   all provisions of Section 10 of RFC2026.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF), its areas, and its working groups.  Note that
+   other groups may also distribute working documents as Internet-
+   Drafts.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   The list of current Internet-Drafts can be accessed at
+   http://www.ietf.org/ietf/1id-abstracts.txt.
+
+   The list of Internet-Draft Shadow Directories can be accessed at
+   http://www.ietf.org/shadow.html.
+
+   This Internet-Draft will expire on August 15, 2002.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (2002).  All Rights Reserved.
+
+Abstract
+
+   A network access device may choose to authenticate the identity of a
+   device before granting that device access to the network.  The IEEE
+   802.1X protocol is an example of a mechanism for providing
+   authenticated layer 2 network access.  A network element using RADIUS
+   as an authentication authority will receive attributes from a RADIUS
+   server that may be used by a DHCP server in the selection of an IP
+   address for assignment to the device through its DHCP client.  The
+   RADIUS Attributes sub-option allows a network element to pass along
+   attributes for the user of a device received during RADIUS
+   authentication to a DHCP server.
+
+
+
+Droms & Schnizlein       Expires August 15, 2002                [Page 1]
+
+Internet-Draft        RADIUS Attributes Sub-Option         February 2002
+
+
+1. Introduction and Background
+
+   The RADIUS Attributes sub-option for the DHCP Relay Agent option
+   provides a way through which network elements can pass information
+   obtained through layer 2 authentication to a DHCP server.  IEEE
+   802.1X [2] is an example of a mechanism through which a device such
+   as a switch or a wireless LAN access point can authenticate the
+   identity of the user of a device before providing layer 2 network
+   access.  In 802.1X authenticated access, a device must first exchange
+   some authentication credentials with the network access device.  The
+   access device then supplies these credentials to a RADIUS server [3],
+   which either confirms or denies the identity of the user of the
+   device requesting network access.  The access device, based on the
+   reply of the RADIUS server, then allows or denies network access to
+   the requesting device.
+
+   Figure 1 summarizes the message exchange among the participants in
+   IEEE 802.1X authentication.
+
+
+
+         +-----------------+
+         |Device requesting|
+         | network access  |
+         +-----------------+
+          |         ^
+          |         |
+         (1) Request for access
+          |         |
+          |        (4) Access granted
+          v         |
+         +-----------------+
+         |  Access Device  |
+         |(802.1X and DHCP |
+         |   relay agent}  |
+         +-----------------+
+   	 |     ^
+   	 |     |
+   	(2) Request for authentication
+   	 |     |
+   	 |    (3) Authentication confirm/deny
+   	 v     |
+         +-----------------+
+         |     RADIUS      |
+         |     Service     |
+         +-----------------+
+
+   Figure 1
+
+
+
+Droms & Schnizlein       Expires August 15, 2002                [Page 2]
+
+Internet-Draft        RADIUS Attributes Sub-Option         February 2002
+
+
+   In the application described in this document, the access device acts
+   as an 802.1X authenticator and adds DHCP relay agent options to DHCP
+   messages.  During 802.1X authentication, the reply message from the
+   RADIUS server carries additional identification information as
+   attributes to the access device.  The access device stores these
+   attributes locally.  When the access device subsequently forwards
+   DHCP messages from the network device, the access device adds the
+   identification information in an RADIUS Attributes sub-option.  The
+   RADIUS Attributes sub-option is another suboption of the Relay Agent
+   Information option [5].
+
+   This document uses IEEE 802.1X as an example to motivate the use of
+   RADIUS by an access device.  The RADIUS Attributes sub-option
+   described in this document is not limited to use in conjunction with
+   IEEE 802.1X and can be used to carry RADIUS attributes obtained by
+   the relay agent for any reason.
+
+2. Terminology
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+   document are to be interpreted as described in RFC 2119 [1].
+
+2.1 General Terminology
+
+   Access device:  A network element providing network access to a host
+
+
+2.2 DHCP Terminology
+
+   The following terms are used as defined in RFC2131 and RFC3046: DHCP
+   relay agent, DHCP server, DHCP client.
+
+2.3 RADIUS Terminology
+
+   The following terms are used in conjunction with RADIUS:
+
+   RADIUS server:                           An entity that provides
+      RADIUS service through the exchange of RADIUS protocol messages
+
+   Attribute or attribute-value pair (AVP): Data value carried in a
+      RADIUS protocol message
+
+
+2.4 802.1X Terminology
+
+   The following terms are used as defined in the IEEE 802.1X protocol:
+   Authenticator, Supplicant.
+
+
+
+Droms & Schnizlein       Expires August 15, 2002                [Page 3]
+
+Internet-Draft        RADIUS Attributes Sub-Option         February 2002
+
+
+3. RADIUS Attributes sub-option format
+
+   The RADIUS Attributes Sub-option is a new sub-option for the DHCP
+   Relay Agent option.
+
+   The format of the RADIUS Attributes sub-option is:
+
+        SubOpt   Len     RADIUS attributes
+         code
+       +-------+-----+------+------+------+------+--...-+------+
+       |  TBD  |  N  |  b1  |  b2  |  b3  |  b4  |      |  bN  |
+       +-------+-----+------+------+------+------+--...-+------+
+
+   The RADIUS attributes are carried as attribute-value pairs (AVPs),
+   encoded according to the encoding rules in RFC 2865, in bytes
+   b1...bN.
+
+4. DHCP Relay Agent Behavior
+
+   When the DHCP relay agent receives a DHCP message from the client, it
+   MAY append a DHCP Relay Agent Information option containing the
+   RADIUS Attributes sub-option, along with any other sub-options it is
+   configured to supply.  The RADIUS Attributes sub-option MUST contain
+   the attributes recieved in response to the client's authentication
+   with the RADIUS service.  The DHCP relay agent MUST NOT add more than
+   one RADIUS Attributes sub-option in a message.
+
+   The relay agent SHOULD include the User-Name, Calling-Station-ID and
+   Class attributes in the RADIUS Attributes sub-option, and MAY include
+   other attributes.
+
+5. DHCP Server Behavior
+
+   When the DHCP server receives a message from an relay agent
+   containing a RADIUS Attributes sub-option, it extracts the contents
+   of the of the sub-option and uses that information in selecting
+   configuration parameters for the client.
+
+6. DHCP Client Behavior
+
+   The host need not make any special provision for the use of the
+   RADIUS Attributes sub-option.
+
+7. RADIUS Server Behavior
+
+   The RADIUS server MUST return the User-Name, Calling-Station-ID and
+   Class attributes to the access device, and MAY return other
+   attributes.
+
+
+
+Droms & Schnizlein       Expires August 15, 2002                [Page 4]
+
+Internet-Draft        RADIUS Attributes Sub-Option         February 2002
+
+
+8. Security Considerations
+
+   DHCP as currently defined provides no authentication or security
+   mechanisms.  Potential exposures to attack are discussed in section 7
+   of the DHCP protocol specification in RFC 2131.
+
+   The DHCP Relay Agent option depends on a trusted relationship between
+   the DHCP relay agent and the server, as described in section 5 of RFC
+   3046.  Because the RADIUS attributes are not encrypted or protected
+   against modification in any way, the contents can be spoofed or
+   modifed by hostile devices in an unsecured network.
+
+9. IANA Considerations
+
+   IANA has assigned the value of TBD for the DHCP Relay Agent
+   Information option sub-option code for this sub-option.  This
+   document does not define any new namespaces or other constants for
+   which IANA must maintain a registry.
+
+10. Terms of Use
+
+   Cisco has a pending patent which relates to the subject matter of
+   this Internet Draft.  If a standard relating to this subject matter
+   is adopted by IETF and any claims of any issued Cisco patents are
+   necessary for practicing this standard, any party will be able to
+   obtain a license from Cisco to use any such patent claims under
+   openly specified, reasonable, non-discriminatory terms to implement
+   and fully comply with the standard.
+
+References
+
+   [1]  Bradner, S., "Key words for use in RFCs to Indicate Requirement
+        Levels", BCP 14, RFC 2119, March 1997.
+
+   [2]  Institute of Electrical and Electronics Engineers, "Port based
+        Network Access Control", IEEE Standard 802.1X, March 2001.
+
+   [3]  Rigney, C., Willens, S., Rubens, A. and W. Simpson, "Remote
+        Authentication Dial In User Service (RADIUS)", RFC 2865, June
+        2000.
+
+   [4]  Droms, R., "Dynamic Host Configuration Protocol", RFC 2131,
+        March 1997.
+
+   [5]  Patrick, M., "DHCP Relay Agent Information Option", RFC 3046,
+        January 2001.
+
+
+
+
+
+Droms & Schnizlein       Expires August 15, 2002                [Page 5]
+
+Internet-Draft        RADIUS Attributes Sub-Option         February 2002
+
+
+Authors' Addresses
+
+   Ralph Droms
+   Cisco Systems
+   250 Apollo Drive
+   Chelmsford, MA  01824
+   USA
+
+   EMail: rdroms@cisco.com
+
+
+   John Schnizlein
+   Cisco Systems
+   9123 Loughran Road
+   Fort Washington, MD  20744
+   USA
+
+   EMail: jschnizl@cisco.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Droms & Schnizlein       Expires August 15, 2002                [Page 6]
+
+Internet-Draft        RADIUS Attributes Sub-Option         February 2002
+
+
+Full Copyright Statement
+
+   Copyright (C) The Internet Society (2002).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+Acknowledgement
+
+   Funding for the RFC Editor function is currently provided by the
+   Internet Society.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Droms & Schnizlein       Expires August 15, 2002                [Page 7]
+
