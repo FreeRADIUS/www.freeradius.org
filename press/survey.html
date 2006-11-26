@@ -26,8 +26,9 @@ In order to get the same data, have to go ask site administrators
 about their current deployments.</p>
 
 <p>The good news is that over 500 responses to the survey were
-received, with the results summarized below.</p>
+received, with the results as of November 2006 summarized below.<p>
 
+<a name="users"></a>
 <h2>Number of Users authenticated via FreeRADIUS</h2>
 
 <table border=0>
@@ -39,19 +40,20 @@ environments, or in small ISPs.  Over 90% of the sites have less than
 
 <p>The interesting data point, though, is that there are a small
 percentage of sites have over 10,000,000 (10 <b>MILLION</b>) users.
-When we add up the numbers, the total is almost 100,000,000 users who
-are authenticated via FreeRADIUS.  And that only includes the sites
-that filled out the survey!</p>
+When we add up the numbers, the total comes to about 100,000,000 users
+who are authenticated via FreeRADIUS.  And that number includes only
+the sites that filled out the survey!</p>
 
-<p>When we take into account the other results of the survey, our best
-estimate is that FreeRADIUS is responsible for authenticating
-somewhere between 25% and 50% of the users on the Internet.  The rest
-of the users are split into two roughly equal parts: Cisco ACS and
-Microsoft IAS (each with an equal share); and all of the other RADIUS
-servers combined.</p>
+<p>When we take into account the <a href="#others">other results</a>,
+our best estimate is that FreeRADIUS is responsible for authenticating
+at least one third of the users on the Internet.  The rest of the
+users are split into two roughly equal parts: Cisco ACS and Microsoft
+IAS (each with an equal share); and all of the other RADIUS servers
+combined.</p>
 
 </td><td valign="top">
 <table border=1 align="right">
+<caption># of Users</caption>
 <tr>
 <td>1 - 10</td>
 <td>14%</td>
@@ -88,39 +90,192 @@ servers combined.</p>
 </td></tr>
 </table>  <!-- float fixes -->
 
-<h2>foo</h2>
+<a name="servers"></a>
+<h2>How many RADIUS servers are at each site</h2>
 
 <table border=0>
 <tr><td valign="top" width="66%">
-foo bar
+
+<p>Not surprisingly, most sites have a very small number of servers.  A
+few sites (likely the biggest ones) have a large number of servers.</p>
+
+<p>It looks like most sites under 10000 users have one or two servers.
+As the number of users grows, so does the number of servers used.  A
+few sites have more than 50 servers, likely because they are placing
+servers at multiple locations.</p>
 
 </td><td valign="top">
-<table>
+<table border=1 align="right">
+<caption># of Servers</caption>
 <tr>
-<td></td>
-<td></td>
+<td>1 - 2</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>3-5</td>
+<td>19%</td>
+</tr>
+<tr>
+<td>6-10</td>
+<td>6%</td>
+</tr>
+<tr>
+<td>11-20</td>
+<td>2%</td>
+</tr>
+<tr>
+<td>21 or more</td>
+<td>< 2%</td>
 </tr>
 </table>
 </td></tr>
 </table> <!-- float fixes -->
 
-<h2>TEMPLATE</h2>
+<a name="databases"></a>
+<h2>Databases where user information is stored.</h2>
 
 <table border=0>
 <tr><td valign="top" width="66%">
-foo bar
+
+<p>Taken together the various SQL modules account for nearly 50% of
+deployments.  The only surprise is that Active Directory has such a
+low ranking, as it is the database used in most internal corporate
+(i.e. enterprise) environments.  The conclusion that we can reach from
+this is that the people filling out this survey are probably ISP's and
+resellers rather than enterprise IT administrators.</p>
+
+<p>Another conclusion is that if you have to store a few million users
+in a database, Active Directory probably isn't your first choice.</p>
 
 </td><td valign="top">
-<table>
+<table border=1 align="right">
+<caption>Databases used</caption>
 <tr>
-<td></td>
-<td></td>
+<td>MySQL</td>
+<td>32%</td>
+</tr>
+<tr>
+<td><code>users</code> file</td>
+<td>22%</td>
+</tr>
+<tr>
+<td>OpenLDAP</td>
+<td>15%</td>
+</tr>
+<tr>
+<td>Active Directory</td>
+<td>13%</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>8%</td>
+</tr>
+<tr>
+<td>Oracle</td>
+<td>5%</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>< 4%</td>
+</tr>
+</table>
+</td></tr>
+</table> <!-- float fixes -->
+
+<a name="protocols"></a>
+<h2>Authentication Protocols</h2>
+
+<table border=0>
+<tr><td valign="top" width="66%">
+
+<p>Most sites are using RADIUS for normal dial-in user authentication.
+e.g. Telephone dial-up, ADSL, etc.  The number of wireless deployments
+is large, though, at just over a third.  We expect that there will be
+more new wireless deployments in the future.</p>
+
+<p>While we haven't broken the numbers out here, PEAP, EAP-TLS, and
+EAP-TTLS all have about the same share of the wireless space.  That is
+an interesting statistic, because </p>
+
+</td><td valign="top">
+<table border=1 align="right">
+<caption>Authentication Protocols</caption>
+<tr>
+<td>PAP, etc.</td>
+<td>61%</td>
+</tr>
+<tr>
+<td>Wireless&nbsp;(EAP)</td>
+<td>35%</td>
+</tr>
+<tr>
+<td>Digest (VOIP)</td>
+<td>4%</td>
+</tr>
+</table>
+</td></tr>
+</table> <!-- float fixes -->
+
+<a name="others"></a>
+<h2>Other RADIUS Servers</h2>
+
+<table border=0>
+<tr><td valign="top" width="66%">
+
+<p>Not everyone uses FreeRADIUS, so we asked which other RADIUS
+servers sites have used in the past.<p>
+
+<p>As mentioned <a href="#users">above</a>, ACS and IAS have about an
+equal market share, and together account for about 50% of other
+servers.  Anther 40% is shared pretty much equally between a few
+well-known RADIUS servers.  The last 10% is a jumble of old servers
+(some <em>very</em> old), or servers targetting to niche markets.</p>
+
+<p>The numbers for Funk and Radiator are probably too low, because the
+survey was focussed on sites that have chosen to deploy Open Source.
+For the same reasons mentioned <a href="#databases">before</a>, we
+expect that enterprises who have chosen to use a commercial product
+have also not filled out the survey.</p>
+
+</td><td valign="top">
+<table border=1 align="right">
+<caption>Other servers</caption>
+<tr>
+<td>Cisco ACS</td>
+<td>24%</td>
+</tr>
+<tr>
+<td>Microsoft IAS</td>
+<td>23%</td>
+</tr>
+<tr>
+<td>Cistron</td>
+<td>12%</td>
+</tr>
+<tr>
+<td>Funk</td>
+<td>11%</td>
+</tr>
+<tr>
+<tr>
+<td>OpenRADIUS</td>
+<td>10%</td>
+</tr>
+<td>Radiator</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>10%</td>
 </tr>
 </table>
 </td></tr>
 </table> <!-- float fixes -->
 
 </div><!--content-->
+
+For questions about the survey, or for obtainign access to the raw
+data, please email <em>webmaster</em>.
 
 <!--#include virtual="/footer.html" -->
 
