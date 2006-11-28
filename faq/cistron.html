@@ -1,0 +1,1068 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<HTML>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Perl">
+   <title>FreeRADIUS FAQ</title>
+</head>
+<body>
+<PRE>
+Cistron RADIUS Frequently Asked Questions &amp; Answers
+$Revision: 1.55 $ -- August 2001
+
+maintained by Antonio Dias <A HREF="accdias at sst dot com dot br">accdias at sst dot com dot br</A>
+original work by Vladimir Ivaschenko <A HREF="hazard dot bsn at maks dot net">hazard dot bsn at maks dot net</A>
+with many questions answered by Alan DeKok <A HREF="aland at ox dot org">aland at ox dot org</A>
+
+This is the FAQ (Frequently Asked Questions) for the Cistron RADIUS Server
+(cistron-radiusd for short) development project. It contains both general and 
+technical information about Cistron RADIUS: project status, what it is and 
+what it does, how to obtain and configure and run it, and more. Please read 
+this FAQ carefully before you post questions about Radiusd to mailing list to 
+see if your question is already answered here first. 
+
+That is, PLEASE read the FAQ. Question 4.11, especially, is VERY important.
+
+This FAQ is posted monthly to the following mailing list: 
+
+	o  Cistron RADIUS Mailing List
+	   <A HREF="mailto:cistron-radius@lists.cistron.nl">cistron-radius@lists.cistron.nl</A>
+
+It is available at the following WWW pages:
+
+	o  FreeRADIUS Project official site
+	   <A HREF="http://www.freeradius.org/faq">http://www.freeradius.org/faq</A>
+
+
+<HR><P><H1>Section 1 - Overview</H1>
+
+	<A HREF="#1.1">1.1</A>	What is Cistron RADIUS and what is it supposed to do? 
+	<A HREF="#1.2">1.2</A>	How it differs from other radius servers?
+	<A HREF="#1.3">1.3</A>	On what platforms does it run?
+	<A HREF="#1.4">1.4</A>	Who uses Cistron RADIUS?
+
+<HR><P><H1>Section 2 - Where to get information</H1>
+
+	<A HREF="#2.1">2.1</A>	Is there a WWW site set up for Cistron RADIUS information? 
+	<A HREF="#2.2">2.2</A>	Is there a mailing list for Cistron RADIUS? 
+	<A HREF="#2.2.1">2.2.1</A>	Is there an archive of cistron-radius mailing list?
+	<A HREF="#2.3">2.3</A>	Is there a mailing list for FreeRADIUS? 
+	<A HREF="#2.3.1">2.3.1</A>	Is there an archive of freeradius-users mailing list?
+	<A HREF="#2.3">2.3</A>	Is there a mailing list for FreeRADIUS developers? 
+	<A HREF="#2.3.1">2.3.1</A>	Is there an archive of freeradius-devel mailing list?
+
+<HR><P><H1>Section 3 - How to Find, Install, Configure Cistron RADIUS</H1>
+
+	<A HREF="#3.1">3.1</A>	Where can I get Cistron RADIUS?
+	<A HREF="#3.1.1">3.1.1</A>	Are there RPM packages of Cistron RADIUS?
+	<A HREF="#3.2">3.2</A>	How do I install Cistron RADIUS?
+	<A HREF="#3.3">3.3</A>	Is there a way to bind Cistron RADIUS to a specific IP address?
+	<A HREF="#3.4">3.4</A>	Can I run Cistron RADIUS under daemontools control?
+
+<HR><P><H1>Section 4 - Common problems and their solutions</H1>
+
+	<A HREF="#4.1">4.1</A>	3Com/USR HiPerArc doesn't work.
+	<A HREF="#4.2">4.2</A>	Simultaneous-Use doesn't work.
+	<A HREF="#4.2.1">4.2.1</A>	3Com/USR HiPerArc Simultaneous-Use doesn't work.
+	<A HREF="#4.2.2">4.2.2</A>	Cisco Simultaneous-Use doesn't work.
+	<A HREF="#4.2.3">4.2.3</A>	Ascend MAX 4048 Simultaneous-Use doesn't work.
+	<A HREF="#4.3">4.3</A>	Where is the program to kick users offline using radius?
+	<A HREF="#4.4">4.4</A>	PAP Authentication works, but CHAP fails. Why?
+	<A HREF="#4.4.1">4.4.1</A>	But CHAP is more secure, isn't it?
+	<A HREF="#4.5">4.5</A>	Incoming Authentication-Request passwords are all garbage. Why?
+	<A HREF="#4.6">4.6</A>	What's with the commas in the raddb/users file?
+	<A HREF="#4.7">4.7</A>	The server is complaining about invalid user route-bps-asc1-1,
+		along with lots of others. Why?
+	<A HREF="#4.8">4.8</A>	The NAS seems to ignore the reply of the radius server. Why?
+	<A HREF="#4.9">4.9</A>	Why Cistron RADIUS is taking so long to start?
+	<A HREF="#4.10">4.10</A>	Why radwho is taking so long to show the users list?
+        4.11    What does "Error: Accounting: logout: .. " mean ?
+	<A HREF="#4.12">4.12</A>	It still doesn't work!
+	<A HREF="#4.13">4.13</A>	Debugging it yourself.
+
+<HR><P><H1>Section 5 - How do I .... ?</H1>
+
+	<A HREF="#5.1">5.1</A>	... send a message to PPP users?
+	<A HREF="#5.2">5.2</A>	... deny access to a specific user, or group of users?
+	<A HREF="#5.3">5.3</A>	... use Login-Time for groups, not for users?
+	<A HREF="#5.4">5.4</A>	... enable Cistron RADIUS to log accounting attribute type X?
+	<A HREF="#5.5">5.5</A>	... permit access to any user regardless of password?
+	<A HREF="#5.6">5.6</A>	... limit access to only POP3 and SMTP?
+	<A HREF="#5.7">5.7</A>	... use PAM with Cistron RADIUS?
+	<A HREF="#5.8">5.8</A>	... get radius to pick up changes in the raddb/users file?
+	<A HREF="#5.9">5.9</A>	... check the configuration before sending a HUP to the server?
+	<A HREF="#5.10">5.10</A>	... tell the user what to use for an IP netmask?
+
+<HR><P><H1>Section 6 - References</H1>
+
+<HR><P><H1>Section 7 - Acknowledgments</H1>
+
+	
+<HR><P><H1>Section 1 - Overview</H1>
+
+
+<HR><H2><A NAME="1.1">1.1</A>	What is Cistron RADIUS and what is it supposed to do? </H2>
+
+Cistron RADIUS Server or cistron-radiusd is a daemon for un*x operating
+systems which allows one to set up (guess what!) a radius protocol server, 
+which is usually used for authentication and accounting of dial-up users. 
+To use server, you also need a correctly setup client which will talk to it, 
+usually a terminal server or a PC with appropriate which emulates it 
+(PortSlave, radiusclient etc).
+
+Original author and current maintainer of Cistron RADIUS is Miquel van
+Smoorenburg <A HREF="miquels at cistron dot nl">miquels at cistron dot nl</A>.
+
+
+<HR><H2><A NAME="1.2">1.2</A>	How it differs from other radius servers?</H2>
+
+First of all, Cistron RADIUS is an open-source product, and has all the 
+benefits open-source provides.
+
+Also, it has many features not found in free servers and many commercial
+ones, like:
+
+	o  Access based on huntgroups
+	o  Multiple DEFAULT entries in raddb/users file
+	o  All users file entries can optionally "fall through"
+	o  Caches all config files in-memory
+	o  Keeps a list of logged in users (radutmp file)
+	o  "radwho" program can be installed as "fingerd"
+	o  Logs both UNIX wtmp file format and RADIUS detail logfiles
+	o  Supports Simultaneous-Use = X parameter. Yes, this means that you
+  	   can now prevent double logins!
+	o  Supports Vendor-Specific attributes, including USR non-standard
+	   ones.
+	o  Supports proxying
+	o  Supports the "Alive" packet
+	o  Exec-Program-Wait, allows you to set up an external program which
+	   is executed after authentication and outputs a list of A/V pairs
+	   which is then added to the reply.
+	o  Supports PAM
+
+More information is available in the documentation.
+
+
+<HR><H2><A NAME="1.3">1.3</A>	On what platforms does it run?</H2>
+
+There are reports of Cistron RADIUS running on Linux, FreeBSD, OpenBSD, 
+OSF/Unix, Solaris. Porting to other platforms should be easy.
+
+
+<HR><H2><A NAME="1.4">1.4</A>	Who uses Cistron RADIUS?</H2>
+
+Cistron RADIUS is used by many ISP worldwide and has proven to be a stable
+product. The final version of the server is 1.6.
+
+Development has since moved to the FreeRADIUS server.
+
+
+<HR><P><H1>Section 2 - Where to get information</H1>
+
+
+<HR><H2><A NAME="2.1">2.1</A>	Is there a WWW site set up for Cistron RADIUS information? </H2>
+
+Cistron RADIUS Server WWW site at 
+
+	<A HREF="http://www.radius.cistron.nl/">http://www.radius.cistron.nl/</A>
+
+The FreeRADIUS page is at 
+
+	<A HREF="http://www.freeradius.org">http://www.freeradius.org</A>
+	
+It contains the new server, documentation, and additional RADIUS programs.
+Note that this server is NOT ready for public use.
+
+
+<HR><H2><A NAME="2.2">2.2</A>	Is there a mailing list for Cistron RADIUS? </H2>
+
+Yes. It's a mailman list, meaning you can subscribe to it using your web
+browser. Simply go to <A HREF="http://lists.cistron.nl">http://lists.cistron.nl</A>, click on "cistron-radius" and
+follow the instructions.
+
+You can also use email to subscribe, mail to:
+
+	<A HREF="mailto:cistron-radius-request@lists.cistron.nl">cistron-radius-request@lists.cistron.nl</A>
+	
+with the following line in the message body:
+
+	subscribe cistron-radius
+    
+
+<H3><A NAME="2.2.1">2.2.1</A>	Is there an archive of cistron-radius mailing list?</H3>
+
+Yes, it is available at:
+
+	<A HREF="http://lists.cistron.nl/pipermail/cistron-radius/">http://lists.cistron.nl/pipermail/cistron-radius/</A>
+
+
+<HR><H2><A NAME="2.3">2.3</A>	Is there a mailing list for FreeRADIUS? </H2>
+
+Yes. It's a mailman list, meaning you can subscribe to it using your web 
+browser. Simply go to <A HREF="http://lists.cistron.nl">http://lists.cistron.nl</A>, click on "freeradius-users" and
+follow the instructions.
+
+You can also use email to subscribe, mail to:
+
+	<A HREF="mailto:freeradius-users-request@lists.cistron.nl">freeradius-users-request@lists.cistron.nl</A>
+	
+with the following line in the message body:
+
+	subscribe freeradius-users
+    
+
+<H3><A NAME="2.3.1">2.3.1</A>	Is there an archive of freeradius-users mailing list?</H3>
+
+Yes, it is available at:
+
+	<A HREF="http://lists.cistron.nl/pipermail/freeradius-users">http://lists.cistron.nl/pipermail/freeradius-users</A>
+
+
+<HR><H2><A NAME="2.4">2.4</A>	Is there a mailing list for FreeRADIUS development ? </H2>
+
+Yes. It's a mailman list, meaning you can subscribe to it using your web
+browser. Simply go to <A HREF="http://lists.cistron.nl">http://lists.cistron.nl</A>, click on "freeradius-devel" and
+follow the instructions.
+
+You can also use email to subscribe, mail to:
+
+	<A HREF="mailto:freeradius-devel-request@lists.cistron.nl">freeradius-devel-request@lists.cistron.nl</A>
+	
+with the following line in the message body:
+
+	subscribe freeradius-devel
+    
+
+<H3><A NAME="2.4.1">2.4.1</A>	Is there an archive of freeradius-devel mailing list?</H3>
+
+Yes, it is available at:
+
+	<A HREF="http://lists.cistron.nl/pipermail/freeradius-devel">http://lists.cistron.nl/pipermail/freeradius-devel</A>
+
+
+<HR><P><H1>Section 3 - How to Find, Install, Configure and Cistron RADIUS</H1>
+
+
+<HR><H2><A NAME="3.1">3.1</A>	Where can I get Cistron RADIUS?</H2>
+
+You can find it, along with some useful links and documentation, at official
+Cistron RADIUS WWW site at 
+
+	<A HREF="http://www.radius.cistron.nl/">http://www.radius.cistron.nl/</A>
+	
+Sources are available at 
+
+	<A HREF="ftp://ftp.cistron.nl/pub/people/miquels/radius/">ftp://ftp.cistron.nl/pub/people/miquels/radius/</A>
+
+
+<H3><A NAME="3.1.1">3.1.1</A>	Are there RPM packages of Cistron RADIUS?</H3>
+
+Yes. RPM and SRPM packages are provided by Mauricio Andrade 
+<A HREF="mandrade at mma dot com dot br">mandrade at mma dot com dot br</A> and can be found at:
+
+	<A HREF="ftp://ftp.mma.com.br/pub/cistron-radius-RPMS">ftp://ftp.mma.com.br/pub/cistron-radius-RPMS</A> 
+
+BaRT <A HREF="bart at vianet dot net dot au">bart at vianet dot net dot au</A> provide updated RPMS for version 1.6.1 at:
+
+	<A HREF="http://www.istnet.net.au/~bart/radius">http://www.istnet.net.au/~bart/radius</A>
+
+
+<HR><H2><A NAME="3.2">3.2</A>	How do I install Cistron RADIUS?</H2>
+
+	bash$ tar zxvf radiusd-cistron-[version].tar.gz
+	bash$ cd src
+
+copy the appropriate Makefile.xxx for your OS to Makefile
+
+	bash$ [vi|emacs|pico|whatever] Makefile
+	bash$ make
+	bash$ su - root
+	bash# make install
+
+And don't forget to read supplied documentation first.
+
+Also, you can get pre-compiled versions of Cistron RADIUS for different
+platforms, links are available at the official WWW site.
+
+
+<HR><H2><A NAME="3.3">3.3</A>	Is there a way to bind Cistron RADIUS to a specific IP address?</H2>
+
+Yes - see the manual page. You can specify an IP address to bind to with the
+-i ipaddr command line option.
+
+
+<HR><H2><A NAME="3.4">3.4</A>	Can I run Cistron RADIUS under daemontools control?</H2>
+
+Yes, you can. Assuming you already have daemontools installed, configured and
+running in your system (see <A HREF="http://cr.yp.to/daemontools.html">http://cr.yp.to/daemontools.html</A>), you will
+have to make two decisions: 
+
+	o 	The log account and group name (I use log.log in this example). 
+		Logging programs run under this account.group. If this 
+		account.group pair do not exist yet, create it now.
+
+	o 	The radiusd local service directory (I use /etc/radiusd in 
+		this example). This is where radiusd will store logs and a 
+		few configuration files. 
+
+Here are the steps I did (just once):
+
+	bash# groupadd log
+	bash# useradd -g log log
+	bash# mkdir /etc/radiusd
+	bash# mkdir /etc/radiusd/log
+	bash# mkdir /etc/radiusd/log/main
+	bash# chmod +t+s /etc/radiusd /etc/radiusd/log
+	bash# chown log.log /etc/radiusd/log/main
+
+The supervise program starts radiusd by running a shell script called "run"
+from /etc/radiusd. Here are the contents of /etc/radiusd/run:
+
+	bash# cd /etc/radiusd
+	bash# cat run
+	#!/bin/sh
+	exec 2&gt;&amp;1
+	exec /usr/sbin/radiusd -fyz -lstderr
+
+It is important to add -f and -l stderr to argument list of radiusd or svc
+and logging functions will not work properly.
+
+The logging feature is also started by a "run" script. This one is located in
+/etc/radiusd/log. Here are the contents of /etc/radiusd/log/run
+ 
+	bash# cd /etc/radiusd/log
+	bash# cat run
+	#!/bin/sh
+	exec setuidgid log multilog t ./main
+
+To make service starts do (just once):
+
+	bash# ln -sf /etc/radiusd /service
+
+Now you can send signals to radiusd using the svc program. Here are some 
+interesting ones:
+
+To hang-up it (reload config) do:
+	
+	bash# svc -h /service/radiusd
+
+To temporarly disable it (down) do:
+
+	bash# svc -d /service/radiusd
+
+To reenable it (up) do:
+
+	bash# svc -u /service/radius
+
+
+<HR><P><H1>Section 4 - Common problems and their solutions</H1>
+
+
+<HR><H2><A NAME="4.1">4.1</A>	3Com/USR HiPerArc doesn't work.</H2>
+
+I'm using a 3Com/USR HiPerArc and I keep getting this message on
+radius.log:
+
+| Mon Jul 26 15:18:54 1999: Error: Accounting: logout: entry for NAS
+| tc-if5 port 1 has wrong ID
+
+What should I do to get rid of these messages?
+
+You are using HiPer ARC 4.1.11, right? Version 4.1.11 has a problem
+reporting NAS-port numbers to Radius. Upgrade the firmware from
+
+	<A HREF="http://totalservice.usr.com">http://totalservice.usr.com</A>
+
+to at least 4.1.59. If you are in Europe you can telephone to 3Com Global
+Response Center (phone number: 800 879489), and tell them that you have
+bought it in the last 90 days. They will help you, step by step, to do the
+upgrade.
+
+
+<HR><H2><A NAME="4.2">4.2</A>	Simultaneous-Use doesn't work.</H2>
+
+Here is a check list:
+
+	1) Check that you added your NAS to raddb/naslist and selected correct
+   	   NAS type. Also check raddb/naspasswd.
+
+	2) Run radiusd -sx and see if it parses the Simultaneous-Use line.
+
+	3) Try to run radcheck.pl manually; maybe you may have a wrong version
+	    of perl, don't have cmu-snmp installed etc.
+
+The radius server calls the checkrad script when it thinks the user is already
+logged on on one or more other ports/terminal servers to verify that the user
+is indeed still online on that *other* port/server. If Simultaneous-Use &gt; 1,
+then it might be that checkrad is called several times to verify each existing
+session.
+
+This method successfully prevents a user from logging in multiple times across
+multiple NAS boxes.
+
+
+<H3><A NAME="4.2.1">4.2.1</A>	3Com/USR HiPerArc Simultaneous-Use doesn't work.</H3>
+
+by Robert Dalton <A HREF="support at accesswest dot com">support at accesswest dot com</A>
+
+Verify if you are using HiPerArc software version V4.2.32 release date
+09/09/99
+
+In order for simultaneous logins to be prevented reported port
+density must be set to 256  using the command :
+
+	set pbus reported_port_density 256
+
+Otherwise it changes the calculations of the SNMP object ID's.
+
+There is a bug in effected versions of checkrad namely the line under the
+subroutine "sub_usrhiper". The line that should be commented out is:
+
+	($login) = /^.*\"([^"]+)".*$/;
+
+
+<H3><A NAME="4.2.2">4.2.2</A>	Cisco Simultaneous-Use doesn't work.</H3>
+
+Q: I am getting the following in radius.log file:
+
+Thu Oct 21 10:59:01 1999: Error: Check-TS: timeout waiting for checkrad
+
+What's wrong?
+
+A: Verify if you have SNMP enabled on your CISCO router, check the 
+existence of the following line:
+
+	snmp-server community public RO 97
+
+where 97 is the access-list that specifies who gets access to the 
+SNMP info. You should also have a line like this:
+
+	access-list 97 permit A.B.C.D
+
+where A.B.C.D is the ip address of the host running the radius server.
+
+
+<H3><A NAME="4.2.3">4.2.3</A>	Ascend MAX 4048 Simultaneous-Use doesn't work.</H3>
+
+Q: I am getting the following in radius.log file:
+
+Thu Oct 21 10:59:01 1999: Error: Check-TS: timeout waiting for checkrad
+
+What's wrong?
+
+A: Verify that you have the MAX 4048 setup in your naslist as max40xx
+and that you have Finger turned on.
+
+	Ethernet-&gt;Mod Config-&gt;Finger=Yes
+
+
+<HR><H2><A NAME="4.3">4.3</A>	Where is the program to kick users offline using radius?</H2>
+
+It's impossible to do using radius, as radius doesn't do that.
+
+However, Jason Straight wrote a program called radkill, which does just that: 
+radkill is a TCL program for Cistron RADIUS users that monitors ISP users'
+online times and disconnects them if they are over their call limit. It also 
+monitors the number of users online and will disconnect the users with the 
+least time left to always keep lines open. It's very configurable for multiple 
+NAS setups.
+
+The source archive is available for download at
+
+	<A HREF="ftp://ftp.nmo.net/pub/radkill/radkill-latest.tar.gz">ftp://ftp.nmo.net/pub/radkill/radkill-latest.tar.gz</A>
+
+If that doesn't work, try using SNMP.
+
+
+<HR><H2><A NAME="4.4">4.4</A>	PAP authentication works but CHAP fails</H2>
+ 
+You're not using plaintext passwords in the raddb/users file.
+According to Miquel van Smoorenburg in message
+<A HREF="mailto:7pcrpn$qi$1@defiant.cistron.net">7pcrpn$qi$1@defiant.cistron.net</A> on cistron-radius:
+ 
+The CHAP protocol requires a plaintext password on the radius server side,
+for PAP it doesn't matter.
+ 
+So, if you're using CHAP, for each user entry you must use:
+
+	Auth-Type = Local, Password = "stealme"
+ 
+If you're using only PAP, you can get away with:
+
+	Auth-Type = System
+ 
+or anything else that tickles your fancy.
+
+
+4.4.1 But CHAP is more secure, isn't it?
+
+Not really.
+
+Q: Does Section 4.4 really mean I must leave a file lying around with
+   cleartext passwords for the more than 400 people who'll be using this
+   thing?
+
+A: Yes.
+
+So what do ISP with (tens of?) thousands of customers do?
+
+You have 2 choices:
+
+1. You allow CHAP and store all the passwords plaintext.
+   Advantage: passwords don't go cleartext over the phone line between
+   the user and the terminal server. Disadvantage: You have to
+   store the passwords in cleartext on the server.
+
+2. You don't allow CHAP, just PAP. Advantage: you don't store
+   cleartext passwords on your system. Disadvantage: passwords go
+   in cleartext over the phone line between the user and the terminal server.
+
+Now, people say CHAP is more secure. Now you decide which is more likely:
+
+- the phone line between the user and the terminal server gets sniffed
+  and a cracker (a GOOD one) intercepts just one password
+- your radius server is hacked into and a cracker gets ALL passwords
+  of ALL users.
+
+Right. Still think CHAP is more secure ? I thought so.
+
+This is a limitation of the CHAP protocol itself, not the RADIUS
+protocol. The CHAP protocol *requires* that you store the passwords in
+plain-text format.
+
+
+<HR><H2><A NAME="4.5">4.5</A>	Incoming Authentication-Request passwords are all garbage. Why?</H2>
+
+The shared secret is incorrect. This is a text string which is a "secret" (in
+the raddb/clients file) shared by both the NAS and the server. It is used to
+authenticate and to encrypt/decrypt packets.
+
+Run the server in debugging mode:
+
+	radiusd -xxyz -l stdout
+
+The first password you see will be in a RADIUS attribute: 
+
+	Password = "dsa2\2223jdfjs"'
+
+The second password will be in a log message, e.g.:
+
+	Login failed [user/password] ...
+
+If the text AFTER the slash is garbage then the shared secret is wrong. Delete
+it on BOTH the NAS and the raddb/clients file and re-enter it. Do NOT check to
+see if they are the same, as there may be hidden spaces or other characters.
+
+Another cause of garbage passwords being logged is the secret being too long.
+Certain NAS boxes have limitations on the length of the secret and don't
+complain about it. Cistron RADIUS is limited to 16 characters for the shared
+secret.
+
+
+<HR><H2><A NAME="4.6">4.6</A>	What's with the commas in the raddb/users file?</H2>
+
+Harry Hinteman <A HREF="Harry at staffassoc dot com">Harry at staffassoc dot com</A> wrote:
+&gt; Can anyone give me a quick lesson on what the commas do in the users file,
+&gt; and how you know when to use them and when you don't .
+
+Commas link lists of attributes together. The general format for a raddb/users
+file entry is:
+
+	name    Check-Item = Value, ..., Check-Item = Value
+		Reply-Item = Value,
+		.
+        	.
+        	.
+        	Reply-Item = Value
+
+Where the dots means repetition of attributes.
+
+The first line contains check-items ONLY. Commas go BETWEEN check-items. The
+first line ends WITHOUT a comma.
+
+The next number of lines are reply-items ONLY. Commas go BETWEEN reply-items.
+The last line of the reply-item list ends WITHOUT a comma.
+
+Check-items are used to match attributes in a request packet or to set server
+parameters. Reply-items are used to set attributes which are to go in the reply
+packet. So things like Simultaneous-Use go on the first line of a raddb/users
+file entry and Framed-IP-Address goes on any following line.
+
+
+<HR><H2><A NAME="4.7">4.7</A>	The server is complaining about invalid user route-bps-asc1-1,</H2>
+	along with lots of others. Why?
+
+Ascend decided to have the 4000 series NAS boxes retrieve much of their
+configuration from the RADIUS server. See:
+
+	<A HREF="http://www.freeradius.org/references/ascend-filter.html">http://www.freeradius.org/references/ascend-filter.html</A>
+
+
+<HR><H2><A NAME="4.8">4.8</A>	The NAS seems to ignore the reply of the radius server. Why?</H2>
+
+Symptom: you are seeing lots of duplicate requests in radius.log, yet users
+can not login, and/or you are seeing duplicated accounting messages (up to 50
+times the same accounting record as if the NAS doesn't realize you received the
+packet).
+
+Perhaps your server has multiple IP addresses, perhaps even multiple network
+cards. If a request comes in on IP address a.b.c.d but the server replies with
+as source IP address w.x.y.z most NAS won't accept the answer.
+
+The simplest solution is to modify the startup script and add the -i address
+option to the radiusd command line. This will bind the server to specifically
+that IP address. It will only listen to that address and replies will always go
+out with that address as the source address.
+
+<HR><H2><A NAME="4.9">4.9</A>	Why Cistron RADIUS is taking so long to start?</H2>
+
+This is generally caused by an incorrect named configuration. Check your named
+files and look for invalid entries. 
+
+Another file to investigate is raddb/naslist. All entries there must be
+resolved by a DNS query. 
+
+
+<HR><H2><A NAME="4.10">4.10</A>	Why radwho is taking so long to show users connected?</H2>
+
+See question 4.9
+
+<HR><H2><A NAME="4.11">4.11</A>	What does "Error: Accounting: logout: ..." mean?</H2>
+
+First, some background.
+
+The server keeps a session database of active sessions in the
+radutmp file. When a user logs in, the NAS sends a radius accounting
+start packet with info such as username, IP address and a unique
+session-id for this session. The server then adds this session to
+the list of active sessions.
+
+When the user logs out, the NAS sends a radius accounting stop message
+with mostly the same info as in the start packet and things like
+the total session-time. The server then deletes the session from the
+list of active sessions.
+
+This message:
+
+    Error: Accounting: logout: entry for NAS <A HREF="x">x</A> port &lt;y&gt; has wrong ID
+
+means that a radius stop record was received for a certain NAS and
+NAS-Port, but that the session-id in the session database (radutmp)
+didn't match up with the one in the accounting stop record.
+
+This messageL
+
+    Error: Accounting: logout: login entry for NAS <A HREF="x">x</A> port &lt;y&gt; not found
+
+means that a radius stop record was received for a session for which
+the server never saw a start record. This can happen for example when
+you delete the /var/log/radutmp file, or when it gets damaged.
+
+These messages are mostly harmless.
+
+
+<HR><H2><A NAME="4.12">4.12</A>	It still doesn't work!</H2>
+
+Stop right there.  Before going any further, be sure that you have
+included the following items in your request for help:
+
+	o  relevant portion from the raddb/users file
+	o  debugging output (using flags -xxyz -l stdout) from radiusd
+	o  output from radtest, when run on the same machine as radiusd
+
+Too many people post questions saying "something's wrong, how do I
+fix it?" with NO background information. This is worse than useless,
+it's annoying.
+
+Now that you have prepared all the information, post your question to the
+cistron-radius mailing list:
+
+	<A HREF="http://lists.cistron.nl/mailman/listinfo/cistron-radius">http://lists.cistron.nl/mailman/listinfo/cistron-radius</A>
+
+
+<HR><H2><A NAME="4.13">4.13</A>	Debugging it yourself.</H2>
+
+If you're REALLY interested in knowing how to debug the RADIUS server
+yourself, then the following steps will help you:
+
+1. Run the server in debugging mode
+
+	radiusd -sfxxyz -l stdout
+
+2. The server SHOULD print out:
+
+	Ready to process requests.
+
+If it doesn't, then it should print out an error message. Read it.
+
+If it takes a long time to start up, and THEN prints out the message, then your
+DNS is broken.  See Q 4.9
+
+
+3. Ensure that you have localhost in your raddb/clients file. Cistron RADIUS
+comes configured this way, so it should be there.
+
+4. Ensure you have a valid user in your raddb/users file. If everything else
+fails, go to the top of the file and add the following entry:
+
+	bob  	Password = "bob"
+		Reply-Message = "Hello, bob"
+
+5. Run the radtest program from the LOCAL machine, in another window. This will
+tell you if the server is alive and is answering requests.
+
+	radtest bob bob localhost 0 testing123
+
+6. Ensure that you see the Reply-Message above and that you do NOT see an
+"Access denied" message. If you get an Access-Accept message, this means that
+the server is running properly.
+
+7. Configure another machine as a RADIUS client and run radtest from that
+machine too. You SHOULD see the server receive the request and send a reply.
+	     
+If the server does NOT receive the request then the ports are confused. RADIUS
+historically uses 1645/UDP, where RFC 2138 and many new systems use the proper
+value of 1812/UDP. See /etc/services or use the -p option to specify a different
+port.
+
+Run tcpdump in another window on the RADIUS client machine. Use the command:
+
+	tcpdump udp
+
+Look CAREFULLY at the packets coming from the RADIUS server. Which address are
+they coming from? Which port?
+
+8. If authentication works from a different machine then you have the server
+set up correctly.
+
+9. Now you should use a more complicated configuration to see if the server
+receives and replies with the attributes you want. There is little information
+that can be offered here in the FAQ as your individual systems configuration can
+not be predicted.
+
+However, a few hints can help:
+
+1. ALWAYS test your configurations running the server in debugging mode
+
+	radiusd -xxyz -l stdout
+
+if you want to debug a problem. If you do not do so then DO NOT expect anyone
+else to be able to help you.
+
+2. Read RFC 2138 to see what the RADIUS attributes are and how they work.
+
+3. ALWAYS starts with a simple configuration in place of a more complicated one.
+You should not expect to be able to debug a complicated configuration entry by
+sending one packet, and looking at the trace.
+
+Make the configuration as simple as possible, EVEN IF it doesn't do exactly
+what you want. Then, repeatedly, try to authenticate and see if it works. If
+authentication succeeds, then you can gradually add more attributes to the
+configuration to get the entry you desire.
+
+
+<HR><P><H1>Section 5 - How do I ... ?</H1>
+
+
+<HR><H2><A NAME="5.1">5.1</A>	How do I send a message to PPP users?</H2>
+
+On Windows, the short answer is that you don't.
+
+RADIUS defines a Reply-Message attribute, which you can often use to
+send text messages in a RADIUS reply packet.  PPP has provisions for
+passing text messages back to the user.
+
+Unfortunately, Microsoft decided to ignore that part of the PPP
+protocol.  So you CAN send messages to Windows PPP users.  But Windows
+will throw the message away, and never show it to the user.
+
+If you don't like this behaviour, call Microsoft and complain.
+
+On the Mac side, the only dialer that shows up the server's message 
+is FreePPP <A HREF="http://www.rockstar.com">http://www.rockstar.com</A>.
+
+
+<HR><H2><A NAME="5.2">5.2</A>	How do I deny access to a specific user, or group of users?</H2>
+
+You need to use the Group check item to match a group. You also need to use the
+Auth-Type = Reject check item to deny them access. A short message explaining
+why they were rejected wouldn't hurt, so a Reply-Message reply attribute would
+be nice. This rule needs to match for all users, so it should be a DEFAULT
+entry. You want to apply it *instead* of any other authentication type, so it
+should be listed BEFORE any other entry which contains an Auth-Type. It doesn't
+need a Fall-Through, because you're not giving the user any permission to do any
+thing, you're just rejecting them.
+
+The following entry denies access to one specific user. Note that it MUST be put
+before ANY other entry with an Auth-Type attribute.
+
+	foo	Auth-Type = Reject
+		Reply-Msg = "foo is not allowed to dial-in"
+
+The following entry denies access to a group of users. The same restrictions as
+above on location in the raddb/users file also apply:
+
+	DEFAULT	Group = "disabled", Auth-Type = Reject
+		Reply-Message = "Your account has been disabled"
+
+
+<HR><H2><A NAME="5.3">5.3</A>	How do I use Login-Time for groups, not for users?</H2>
+
+Limit logons between 08:00am and 08:00pm for Unix group "daysonly"
+
+	DEFAULT Group = "daysonly", Login-Time = "0800-2000"
+or
+	DEFAULT Group = "daysonly", Login-Time = "Any0800-2000"
+
+Limit logons between 08:00am and 08:00pm, from Monday to Friday 
+for Unix group "weekdays"
+
+	DEFAULT Group = "weekdays", Login-Time = "Wk0800-2000"
+
+Limit logons between 08:00am and 08:00pm, in Saturday and Sunday 
+for Unix group "weekends"
+
+	DEFAULT Group = "weekends", Login-Time = "Sa-Su0800-2000"
+
+
+<HR><H2><A NAME="5.4">5.4</A>	How do I enable Cistron RADIUS to log accounting attribute type X?</H2>
+
+You can't. A RADIUS server will only log the messages which a NAS
+sends to it. If your NAS is not sending those messages or attributes,
+then the RADIUS server will not log them.
+
+You must configure your NAS to send the information you want to the
+RADIUS server. Once the NAS is sending the information, the server
+can then log it.
+
+
+<HR><H2><A NAME="5.5">5.5</A>	How do I permit access to any user regardless of password?</H2>
+
+	DEFAULT	Auth-Type = Accept
+
+
+<HR><H2><A NAME="5.6">5.6</A>	How do I limit access to only POP3 and SMTP?</H2>
+
+Q: I need to limit some users to be able only to use our POP3 and SMTP server.
+
+The most common approach is to just assign non-globally-routable IP addresses to
+those users, such as RFC1918 addresses. Depending on your internal network
+configuration, you may need to set up internal routes for those addresses, and
+if you don't want them to do anything besides SMTP and POP3 within your network,
+you'll have to set up ACLs on your dialup interfaces allowing only ports 25 and
+110 through. 
+
+Make sure you have RADIUS authorization enabled on your NAS.
+
+Example user entry in raddb/users file:
+
+	foo	Auth-Type=System
+		Framed-Filter-Id="160.in"
+		Framed-Filter-Id="161.out"
+		Fall-Through=Yes
+
+CISCO's config must have:
+
+	aaa authorization network default radius
+	ip access-list extended 160
+	permit ip ...
+	ip access-list extended 161
+	permit ip ...
+
+The access list 160 gets applied on inbound packets and 161 on 
+outbound packets.
+
+
+<HR><H2><A NAME="5.7">5.7</A>	How do I use PAM with Cistron RADIUS?</H2>
+
+You'll need the redhat/radiusd.pam file from the distribution. It should go
+into a new file, /etc/pam.d/radius.
+
+If you have 100's to 1000's of users in /etc/passwd, you'll want to replace
+the pam_pwdb.so entries with pam_unix_auth.so, pam_unix_acct.so etc. The
+pam_pwdb module is INCREDIBLY SLOW for authenticating users from a large
+/etc/passwd file.
+  
+Bruno Lopes F. Cabral <A HREF="bruno at openline dot com dot br">bruno at openline dot com dot br</A> also says:
+
+Now I can emulate group behaviour using just PAM and some tricks, like
+
+	#-----
+	auth	required /lib/security/pam_userdb.so \
+		crypt db=/etc/raddb/data/users
+	auth	required /lib/security/pam_listfile.so \
+		item=user sense=allow \
+		file=/etc/raddb/data/somehunt.allow onerr=fail
+	auth	required /lib/security/pam_nologin.so
+	account	required /lib/security/pam_userdb.so
+	#-----
+
+and
+
+	DEFAULT	Huntgroup-Name="somehunt", \
+		Auth-Type=PAM, \
+		Pam-Auth="radhunt", \
+ 		Simultaneous-Use=1
+        	Fall-Through = Yes
+
+this way I have NO users on /etc/password and NO need for lots of lines
+on /etc/raddb/users. time to search for a db enabled pam_listfile module ;&gt;
+
+
+<HR><H2><A NAME="5.8">5.8</A>	How do I get radius to pick up changes in the raddb/users file?</H2>
+
+The server reads the config files just once, at startup. This is very efficient,
+but you need to tell the server somehow to re-read its config files after you
+made a change. This can be done by sending the server a SIGHUP (signal '1' on
+almost if not all UNIX systems). The server writes its PID in
+/var/run/radiusd.pid, so a simple UNIX command to do this would be:
+
+	kill -1 `cat /var/run/radiusd.pid`
+
+Some people would be tempted to do this every 5 minutes so that changes come
+through automatically. That is not a good idea as it might take some time to
+re-read the config files and the server may drop a few authentication requests
+at that time. A better idea is to use a so-called "timestamp file" and only send
+a SIGHUP if the raddb/users file changed since the last time. For example a
+script like this, to be run every 5 minutes:
+
+	#! /bin/sh
+	cd /etc/raddb
+	if [ ! -e .last-reload ] || [ "`find users -nt .last-reload`" ]; then
+		if radiusd -C &gt; .last-reload 2&gt;&amp;1; then
+			kill -1 `cat /var/run/radiusd.pid`
+		else
+			mail -s "radius reload failed!" root &lt; .last-reload
+		fi
+	fi
+	touch .last-reload
+
+Note that you need at least 1.6.4 for the radiusd -C invocation to work.
+
+Of course a Makefile is suited perfectly for this kind of stuff.
+
+
+<HR><H2><A NAME="5.9">5.9</A>	How do I check the configuration before sending a HUP to the server?</H2>
+
+Some administrators have automated scripts to update the radius servers
+configuration files. The server can then be signalled via a HUP signal to
+re-read the configuration files.
+
+The problem with this approach is that any syntax errors in the configuration
+file may cause your main radius server to die! No one wants this to happen so
+there should be some process of checking the configuration files prior to
+re-starting the server.
+
+For versions prior to 1.6.4, you can use the following script:
+
+	<A HREF="ftp://ftp.freeradius.org/pub/radius/contrib/check-radiusd-config.sh">ftp://ftp.freeradius.org/pub/radius/contrib/check-radiusd-config.sh</A>
+
+With 1.6.4 and later, you can simply use
+
+	radiusd -C
+
+to check the configuration. It will print the status and exit with a zero exit
+status if everything is fine or with a non-zero exit status if errors were found
+in the configuration.
+
+In the example script in the paragraph above this has already been used.
+
+
+<HR><H2><A NAME="5.10">5.10</A>	How do I tell the user what to use for an IP netmask?</H2>
+
+The whole netmask business is a complicated one. An IP interface has
+an IP address and usually a netmask associated with it. Netmasks on
+point-to-point interfaces like a PPP link are generally not used.
+
+If you set the Framed-IP-Netmask attribute in a radius profile, you
+are setting the netmask of the interface on the side of the NAS.
+The Framed-IP-Netmask attribute is NOT something you can set to
+influence the netmask on the side of the dialin user. And usually,
+that makes no sense anyway even if you could set it.
+
+The result of this on most NASes is that they start to route a
+subnet (the subnet that contains the assigned IP address and that
+is as big as the netmask indicates) to that PPP interface and thus
+to the user. If that is exactly what you want, then that's fine,
+but if you do not intend to route a whole subnet to the user,
+then by all means do NOT use the Framed-IP-Netmask attribute.
+
+Almost (all?) NASes interpret a left-out Framed-IP-Netmask as if
+it was set to 255.255.255.255. So if you somehow feel a certain
+need to set the Framed-IP-Netmask to anything, set it to
+255.255.255.255.
+
+For example, the following entries do almost the same on most NASes:
+
+	user	Auth-Type = Local, Password = "blegh"
+		Service-Type = Framed-User,
+		Framed-Protocol = PPP,
+		Framed-IP-Address = 192.168.5.78,
+		Framed-IP-Netmask = 255.255.255.240
+
+	user	Auth-Type = Local, Password = "blegh"
+		Service-Type = Framed-User,
+		Framed-Protocol = PPP,
+		Framed-IP-Address = 192.168.5.78,
+		Framed-Route = "192.168.5.64/28 0.0.0.0 1"
+
+The result is that the end user gets IP address 192.168.5.78 and that
+the whole network with IP addresses 192.168.5.64 - 195.64.5.79 is
+routed over the PPP link to the user (see the Radius RFCs for the
+exact syntax of the Framed-Route attribute).
+
+
+<HR><P><H1>Section 6 - References</H1>
+
+
+  o  Cistron RADIUS Mailing List Subscription
+	<A HREF="http://lists.cistron.nl/mailman/listinfo/cistron-radius">http://lists.cistron.nl/mailman/listinfo/cistron-radius</A>
+
+  o  Cistron RADIUS Mailing List Archive
+	<A HREF="http://lists.cistron.nl/pipermail/cistron-radius/">http://lists.cistron.nl/pipermail/cistron-radius/</A>
+
+  o  Cistron RADIUS Web Page 
+	<A HREF="http://www.radius.cistron.nl/">http://www.radius.cistron.nl/</A>
+
+  o  Cistron RADIUS Source Code
+	<A HREF="ftp://ftp.cistron.nl/pub/people/miquels/radius/">ftp://ftp.cistron.nl/pub/people/miquels/radius/</A>
+
+  o  Cistron RADIUS FAQ 
+	<A HREF="http://www.radius.cistron.nl/faq/">http://www.radius.cistron.nl/faq/</A>
+
+  o  FreeRADIUS Web Page
+	<A HREF="http://www.freeradius.org/">http://www.freeradius.org/</A>
+
+  o  FreeRADIUS Users Mailing List Subscription
+	<A HREF="http://lists.cistron.nl/mailman/listinfo/freeradius-users">http://lists.cistron.nl/mailman/listinfo/freeradius-users</A>
+
+  o  FreeRADIUS Users Mailing List Archive
+	<A HREF="http://lists.cistron.nl/pipermail/freeradius-users/">http://lists.cistron.nl/pipermail/freeradius-users/</A>
+
+  o  FreeRADIUS Developers Mailing List Subscription
+	<A HREF="http://lists.cistron.nl/mailman/listinfo/freeradius-devel">http://lists.cistron.nl/mailman/listinfo/freeradius-devel</A>
+
+  o  FreeRADIUS Developers Mailing List Archive
+	<A HREF="http://lists.cistron.nl/pipermail/freeradius-devel/">http://lists.cistron.nl/pipermail/freeradius-devel/</A>
+
+  o  Cistron RADIUS RedHat packages 
+	<A HREF="ftp://ftp.redhat.com/pub/redhat">ftp://ftp.redhat.com/pub/redhat</A>
+	<A HREF="ftp://ftp.conectiva.com/pub/conectiva">ftp://ftp.conectiva.com/pub/conectiva</A>
+	<A HREF="ftp://ftp.mma.com.br/pub/cistron-radius-RPMS">ftp://ftp.mma.com.br/pub/cistron-radius-RPMS</A> 
+	<A HREF="http://www.istnet.net.au/~bart/radius">http://www.istnet.net.au/~bart/radius</A>
+
+  o  Cistron RADIUS Slackware packages
+	None yet.
+
+  o  Cistron RADIUS Debian packages
+	<A HREF="http://www.debiag.org/distrib/packages">http://www.debiag.org/distrib/packages</A>
+
+  o  RADIUS RFC and Drafts
+	<A HREF="http://www.freeradius.org/rfc/">http://www.freeradius.org/rfc/</A>
+
+
+<HR><P><H1>Section 7 - Acknowledgments</H1>
+
+
+Too many to count.
+</PRE>
