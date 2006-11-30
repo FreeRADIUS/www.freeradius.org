@@ -1,0 +1,76 @@
+@                       IN      SOA     ns1.freeradius.org. webmaster.freeradius.org. (
+                                         2006113001      ; serial
+                                         28800           ; refresh
+                                         7200            ; retry
+                                         604800          ; expire
+                                         86400 )         ; minimum TTL
+
+			 IN	 NS	 ns1.freeradius.org
+			 IN	 NS	 ns2.freeradius.org
+			 IN	 NS	 ns3.freeradius.org
+			 IN	 NS	 ns4.freeradius.org
+			 IN	 NS	 ns5.freeradius.org
+                         IN      NS      ns1.starnetusa.net.
+                         IN      NS      ns3.starnetusa.net.
+
+                         IN      A       66.135.41.84
+
+                         IN      MX      10 mail.freeradius.org.
+
+;
+;  Delegate lists.* to miquels@cistron.nl
+;
+lists                   IN      NS      ns.cistron.nl.
+lists                   IN      NS      ns2.cistron.nl.
+
+; Peter Nixon's Secondary DNS servers
+; ns1.geodns.net
+ns1			IN	A	66.139.72.14
+; ns2.geodns.net
+ns2			IN	A	66.139.72.20
+
+; Alan DeKok's machines, with glue records
+; nitros9.org
+ns3			IN	A	205.150.200.131
+; deployingradius.com
+ns4			IN	A	75.10.243.137
+
+; Peter Nixon's Primary DNS server. Listed last to reduce load on the LDAP tree.
+; ns1.suntel.com.tr
+ns5			IN	A	66.135.36.206
+
+;
+;  Main Servers
+;
+
+; prohosted.suntel.com.tr
+www                     IN      A	66.135.41.84
+ftp                     IN      A	66.135.41.84
+wiki                    IN      A	66.135.41.84
+; starnetusa.net
+cvs                     IN      A	64.24.0.50
+; deployingradius.com
+mail			IN	A	75.10.243.137
+
+;
+;  Other Servers
+;  cparker@segv.org
+;
+bugs                    IN      A       64.24.234.95
+bugs                    IN      MX      10 bugs
+
+;
+; Mirrors.  We used to have more, but they appear to be dead.
+;
+$ORIGIN uk.freeradius.org.
+ftp                     IN      CNAME   ftp.plig.org.
+
+; starnetusa.net, cparker@segv.org
+$ORIGIN us.freeradius.org.
+www                     IN      A	64.24.0.50
+ftp                     IN      A	64.24.0.50
+
+; prohosted.suntel.com.tr peter@suntel.com.tr
+$ORIGIN tr.freeradius.org.
+www                     IN      CNAME	prohosted.suntel.com.tr.
+ftp                     IN      CNAME	prohosted.suntel.com.tr.
