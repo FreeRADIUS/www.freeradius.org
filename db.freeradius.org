@@ -1,5 +1,5 @@
 @                       IN      SOA     ns1.freeradius.org. webmaster.freeradius.org. (
-                                         2006113002      ; serial
+                                         2006122401      ; serial
                                          28800           ; refresh
                                          7200            ; retry
                                          604800          ; expire
@@ -33,7 +33,7 @@ ns2			IN	A	66.139.72.20
 ; nitros9.org
 ns3			IN	A	205.150.200.131
 ; deployingradius.com
-ns4			IN	A	75.10.243.137
+ns4			IN	A	216.240.42.17
 
 ; Peter Nixon's Primary DNS server. Listed last to reduce load on the LDAP tree.
 ; ns1.suntel.com.tr
@@ -50,7 +50,7 @@ wiki                    IN      A	66.135.41.84
 ; starnetusa.net
 cvs                     IN      A	64.24.0.50
 ; deployingradius.com
-mail			IN	A	75.10.243.137
+mail			IN	A	216.240.42.17
 
 ;
 ;  Other Servers
