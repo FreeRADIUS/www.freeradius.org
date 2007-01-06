@@ -2,6 +2,9 @@
 #  Having checkout out freeradius-www, how do you get the rest of the
 #  web stuff, without doing 'wget'?
 #
+#
+#  This makefile is old, and probably shouldn't be used
+#
 #  $Id: Makefile,v 1.2 2002/06/07 18:05:08 aland Exp $
 #
 all: faq pam_radius_auth mod_auth_radius radiusd
