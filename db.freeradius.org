@@ -1,5 +1,5 @@
 @                       IN      SOA     ns1.freeradius.org. webmaster.freeradius.org. (
-                                         2006122401      ; serial
+                                         2007010701      ; serial
                                          28800           ; refresh
                                          7200            ; retry
                                          604800          ; expire
@@ -51,6 +51,7 @@ wiki                    IN      A	66.135.41.84
 cvs                     IN      A	64.24.0.50
 ; deployingradius.com
 mail			IN	A	216.240.42.17
+hg			IN	A	216.240.42.17
 
 ;
 ;  Other Servers
