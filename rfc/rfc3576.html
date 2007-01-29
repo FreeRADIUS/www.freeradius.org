@@ -539,14 +539,14 @@ RFC 3576       Dynamic Authorization Extensions to RADIUS      July 2003
       packet as it passes through in each direction.  When the proxy
       forwards a Disconnect or CoA-Request, it MAY add a <A HREF="rfc2865.html#Proxy-State">Proxy-State</A>
       Attribute, and when the proxy forwards a response, it MUST remove
-      its <A HREF="rfc2865.html#<A HREF="rfc2865.html#Proxy-State">Proxy-State</A>"><A HREF="rfc2865.html#Proxy-State">Proxy-State</A></A> Attribute if it added one.  <A HREF="rfc2865.html#<A HREF="rfc2865.html#Proxy-State">Proxy-State</A>"><A HREF="rfc2865.html#Proxy-State">Proxy-State</A></A> is always
+      its <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> Attribute if it added one.  <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> is always
       added or removed after any other Proxy-States, but no other
       assumptions regarding its location within the list of Attributes
       can be made.  Since Disconnect and CoA responses are authenticated
       on the entire packet contents, the stripping of the <A HREF="rfc2865.html#Proxy-State">Proxy-State</A>
       Attribute invalidates the integrity check - so the proxy needs to
       recompute it.  A forwarding proxy MUST NOT modify existing Proxy-
-      <A HREF="rfc2865.html#<A HREF="rfc2865.html#State">State</A>"><A HREF="rfc2865.html#State">State</A></A>, <A HREF="rfc2865.html#<A HREF="rfc2865.html#State">State</A>"><A HREF="rfc2865.html#State">State</A></A>, or <A HREF="rfc2865.html#Class">Class</A> Attributes present in the packet.
+      <A HREF="rfc2865.html#State">State</A>, <A HREF="rfc2865.html#State">State</A>, or <A HREF="rfc2865.html#Class">Class</A> Attributes present in the packet.
 
       If there are any <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> Attributes in a Disconnect-Request or
       CoA-Request received from the server, the forwarding proxy MUST
@@ -1062,7 +1062,7 @@ RFC 3576       Dynamic Authorization Extensions to RADIUS      July 2003
    MUST be sent unmodified from the NAS to the RADIUS server in a
    subsequent ACK or NAK message.  If a <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with
    value "Authorize Only" is included in a Disconnect-Request or CoA-
-   Request along with a <A HREF="rfc2865.html#<A HREF="rfc2865.html#State">State</A>"><A HREF="rfc2865.html#State">State</A></A> Attribute, then the <A HREF="rfc2865.html#<A HREF="rfc2865.html#State">State</A>"><A HREF="rfc2865.html#State">State</A></A> Attribute MUST
+   Request along with a <A HREF="rfc2865.html#State">State</A> Attribute, then the <A HREF="rfc2865.html#State">State</A> Attribute MUST
    be sent unmodified from the NAS to the RADIUS server in the resulting
    <A HREF="rfc2865.html#Access-Request">Access-Request</A> sent to the RADIUS server, if any.  The <A HREF="rfc2865.html#State">State</A>
    Attribute is also available to be sent by the RADIUS server to the
