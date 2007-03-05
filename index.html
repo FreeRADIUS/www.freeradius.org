@@ -34,11 +34,53 @@ nearly 100 vendor dictionary files.  It can perform authentications
 via the PAP, CHAP, MS-CHAP, EAP-MD5, EAP-GTC, EAP-TLS, EAP-TTLS,
 PEAPv0, LEAP, EAP-SIM, and Digest authentication protocols.  It has
 reached a stable
-<a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.gz"><!--#echo var="freeradius_major_version" --></a>
+<a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.gz"><!--#echo var="freeradius_version" --></a>
 version
 <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.gz.sig">(sig)</a>
 , with incremental improvements added in
 each release.</p>
+
+<hr />
+
+<h2>Recent News</h2>
+
+<span class="date">2006.03.05</span> Version <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.gz"><!--#echo var="freeradius_version" --></a>
+has been released.  The focus of this release is stability.
+
+<h3>Feature Improvements</h3
+<ul>
+<li>Added more dictionaries</li>
+<li>Dictionary files now MUST NOT be globally writable.</li>
+<li>Configuration files now MUST NOT be globally writable.</li>
+<li>Be more aggressive about freeing memory on clean exit.</li>
+<li> Updated rlm_python.</li>
+<li>Added another experimental SQL IP Pool module</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Corrected base64 decoding in rlm_pap</li>
+<li>Don't retransmit accounting packets.  The NAS should do this.</li>
+<li>Handle Client-Error in EAP-SIM.  (Closes #419)</li>
+<li>Port OpenSSL locking fixes from CVS head.  This makes PEAP more stable on some systems.</li>
+<li>Require Message-Authenticator in Status-Server packets.</li>
+<li>Correct Tunnel-Medium-Type VALUEs in dictionary.rfc2868.</li>
+<li> Increase buffer size for dynamic expansion, which allows longer SQL queries.  (Closes #405)</li>
+<li>Use correct line number when there's a parse error in one of the configuration sections. (Closes #421)</li>
+<li>Terminate SSL sessions in EAP on error, rather than continuing in some cases.</li>
+<li>Increase buffer size to allow parsing of long octet strings,</li>
+<li>Fix string termination on xlat in rlm_perl.</li>
+</ul>
+
+A number of additional issues have been fixed due to a scan provided
+by <a href="http://www.coverity.com/">Coverity</a>.  These issues do
+not affect the servers performance or stability, but are in the
+category of items we should fix anyways.  Not all of the issues have
+been fixed in this release, but all have been examined for potential
+side effects.  We expect future releases to contain fixes for
+lower-priority bugs found during the scan.
+
+<hr />
 
 <p>The server is released under the <a
 href="http://www.gnu.org/copyleft/gpl.html#SEC1">GNU General Public
