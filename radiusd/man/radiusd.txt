@@ -1,175 +1,86 @@
-radiusd.conf(5) 	 FreeRADIUS configuration file	       radiusd.conf(5)
-
-
-
-NAME
-       radiusd.conf - configuration file for the FreeRADIUS server
-
-DESCRIPTION
-       The  radiusd.conf  file	resides  in  the radius database directory, by
-       default /etc/raddb.   It  defines  the  global  configuration  for  the
-       FreeRADIUS server.
-
-
-FILE FORMAT
-       The file consists of attribute-value pairs, sections, and comments.
-
-       Attribute-value pairs are of the form name = value.
-
-       A  section  begins with a section name, followed on the same line by an
-       open bracket {.	The section may contain other sections, or  attribute-
-       value  pairs.   The  section  ends with a close bracket }, on a line by
-       itself.
-
-       Any line beginning with a (#)  is  deemed  to  be  a  comment,  and  is
-       ignored.  Lines containing only whitespace are also ignored.
-
-       The  file  is line-based.  That is, each newline-terminated line repre-
-       sents either a comment, a section name, or an attribute-value pair.  It
-       is  not	possible to specify multiple items on the same line, and there
-       are no continuation lines.
-
-       The value for a particular attribute may reference a previously defined
-       attribute by name. The standard shell reference format ${name} is used.
-       When the variable is in a section or subsection, it may	be  referenced
-       as  ${section.subsection.name}.	 Forward  references  are not allowed.
-       Relative references are allowed, via pre-pending the name with  one  or
-       more of '.'.
-
-       The  individidual  configuration  directives  are  too numerous to list
-       here, so this manual page only documents the file format.  Please  read
-       the  sample configuration file distributed with the server for comments
-       describing each of the allowed configuration directives.
-
-
-EXAMPLES
-	    foo = bar
-
-       Sets variable foo to have text value bar.
-
-	    blogs = ${foo}
-
-       Sets variable blogs to the value of variable foo from the current  sec-
-       tion.   If  there  is  no  variable foo in the current section, then it
-       looks for that variable in the body of  the  main  configuration  file,
-       e.g. {Blogdir}
-
-	    my_section {
-		 baz = bud
-	    }
-
-       Defines a section named my_section, containing variable baz.
-
-	    blogs = ${.foo}
-
-       Sets variable blogs to the value of variable foo, from the current sec-
-       tion.
-
-	    blogs = ${..foo}
-
-       Sets variable blogs to the value of  variable  foo,  from  the  section
-       which contains the current section.
-
-	    blogs = ${modules.detail.detailfile}
-
-       Sets  variable blogs to the value of variable detailfile, of the detail
-       module, which is in the modules section of the configuration file.
-
-
-
-FILES
-       /etc/raddb/radiusd.conf
-
-SEE ALSO
-       radiusd(8), users(5) clients(5)
-
-
-AUTHOR
 RADIUSD(8)		       FreeRADIUS Daemon		    RADIUSD(8)
 
 
-
-       Alan DeKok <aland@ox.org>
 
 NAME
        radiusd - Authentication, Authorization and Accounting server
 
 SYNOPSIS
        radiusd [-A] [-S] [-a accounting_directory] [-b] [-c] [-d config_direc-
-       tory]  [-f]  [-i ip-address] [-l log_directory] [-g facility] [-p port]
+       tory] [-f] [-i ip-address] [-l log_directory] [-g facility]  [-p  port]
        [-s] [-v] [-x] [-X] [-y] [-z]
 
 DESCRIPTION
-       This is the FreeRADIUS implementation of the well known	radius	server
-       program.   Even	though	this  program  is largely compatible with Liv-
+       This  is  the FreeRADIUS implementation of the well known radius server
+       program.  Even though this program  is  largely	compatible  with  Liv-
        ingston's radius version 2.0, it is not based on any part of that code.
 
        FreeRADIUS is a high-performance and highly configurable RADIUS server.
-       As a result, it can be difficult to configure in systems  with  complex
+       As  a  result, it can be difficult to configure in systems with complex
        requirements.  Our suggestion is to proceed via the following steps:
 
-       1)  Always  run the server in debugging mode ( radiusd -X ).  We cannot
-       emphasize this enough.  If you are not running the server in  debugging
-       mode,  you  will  not be able to see what is doing, and you will not be
+       1) Always run the server in debugging mode ( radiusd -X ).   We	cannot
+       emphasize  this enough.	If you are not running the server in debugging
+       mode, you will not be able to see what is doing, and you  will  not  be
        able to correct any problems.
 
-       2) When editing the radiusd.conf file, change as  little  as  possible,
-       especially  in the authorize{} section.	The ordering of the modules is
+       2)  When  editing  the radiusd.conf file, change as little as possible,
+       especially in the authorize{} section.  The ordering of the modules  is
        critical for the server to be able to "automatically" figure out how to
        handle the request.  Changing the order of the modules ensures that the
        server will not work.
 
-       3) When testing, start off by configuring a user and  password  in  the
+       3)  When  testing,  start off by configuring a user and password in the
        users file.  So long as the server knows about a user, and has a clear-
-       text password for that user, almost all of the  authentication  methods
+       text  password  for that user, almost all of the authentication methods
        will "just work".
 
        4) Gradually add more complex configurations to the server, while test-
-       ing them as you go.  If you start off by configuring the  server  in  a
+       ing  them  as  you go.  If you start off by configuring the server in a
        complex configuration, you will never be able to debug it.
 
-       5)  Ask	questions  on the mailing list (freeradius-users@lists.freera-
-       dius.org).  When asking questions, include the  output  from  debugging
-       mode  (	radiusd -X ).  This information will allow people to help you.
+       5) Ask questions on the	mailing  list  (freeradius-users@lists.freera-
+       dius.org).   When  asking  questions, include the output from debugging
+       mode ( radiusd -X ).  This information will allow people to  help  you.
        Without it, your message will get ignored.
 
 
 BACKGROUND
-       RADIUS is a protocol spoken  between  an  access  server,  typically  a
-       device  connected to several modems or ISDN lines, and a radius server.
-       When a user connects to the access server, (s)he is asked for a	login-
-       name  and  a  password.	This  information  is  then sent to the radius
+       RADIUS  is  a  protocol	spoken	between  an access server, typically a
+       device connected to several modems or ISDN lines, and a radius  server.
+       When  a user connects to the access server, (s)he is asked for a login-
+       name and a password. This  information  is  then  sent  to  the	radius
        server. The server replies with "access denied", or "access OK". In the
-       latter  case login information is sent along, such as the IP address in
+       latter case login information is sent along, such as the IP address  in
        the case of a PPP connection.
 
-       The access server also sends login and logout  records  to  the	radius
-       server  so accounting can be done. These records are kept for each ter-
-       minal server seperately in a file called detail, and in the  wtmp  com-
+       The  access  server  also  sends login and logout records to the radius
+       server so accounting can be done. These records are kept for each  ter-
+       minal  server  seperately in a file called detail, and in the wtmp com-
        patible logfile /var/log/radwtmp.
 
 
 OPTIONS
        -A     Write a file detail.auth in addition to the standard detail file
-	      in the same directory. This file will contain all the  authenti-
-	      cation-request  records.	This  can be useful for debugging, but
+	      in  the same directory. This file will contain all the authenti-
+	      cation-request records. This can be useful  for  debugging,  but
 	      not for normal operation.
 
 	      This command line option is accepted only for backwards compati-
-	      bility.	It no longer does anything.  See the configuration for
+	      bility.  It no longer does anything.  See the configuration  for
 	      the detail module in radiusd.conf.
 
 
-       -S     Write the stripped usernames (without prefix or suffix)  in  the
-	      detail  file instead of the raw record as received from the ter-
+       -S     Write  the  stripped usernames (without prefix or suffix) in the
+	      detail file instead of the raw record as received from the  ter-
 	      minal server.
 
-	      This   command   line   option   is   deprecated.     See    the
-	      log_stripped_names  configuration item in the radiusd.conf file.
+	      This    command	 line	option	 is   deprecated.    See   the
+	      log_stripped_names configuration item in the radiusd.conf  file.
 
 
        -a accounting directory
-	      This defaults to /var/log/radacct.  If  that  directory  exists,
+	      This  defaults  to  /var/log/radacct.  If that directory exists,
 	      radiusd will write an ascii accounting record into a detail file
 	      for every login/logout recorded. The location of the detail file
 	      is acct_dir/terminal_server/detail.
@@ -179,11 +90,11 @@ OPTIONS
 
 
        -l logging directory
-	      This defaults to /var/log. Radiusd writes a logfile here	called
-	      radius.log.  It  contains  informational and error messages, and
-	      optionally a record of every login attempt (for aiding an  ISP's
-	      helpdesk).  The  special	arguments  stdout and stderr cause the
-	      information to get written to the standard output,  or  standard
+	      This  defaults to /var/log. Radiusd writes a logfile here called
+	      radius.log. It contains informational and  error	messages,  and
+	      optionally  a record of every login attempt (for aiding an ISP's
+	      helpdesk). The special arguments stdout  and  stderr  cause  the
+	      information  to  get written to the standard output, or standard
 	      error instead. The special argument syslog sends the information
 	      with syslog(3).
 
@@ -202,32 +113,32 @@ OPTIONS
 
 
        -i ip-address
-	      Defines  which  IP  addres  to bind to for sending and receiving
+	      Defines which IP addres to bind to  for  sending	and  receiving
 	      packets- useful for multi-homed hosts.
 
-	      This command line option is deprecated.	See  the  bind_address
+	      This  command  line  option is deprecated.  See the bind_address
 	      configuration item in the radiusd.conf file.
 
 
-       -b     If  the radius server binary was compiled with dbm support, this
-	      flag tells it to actually use the database files instead of  the
+       -b     If the radius server binary was compiled with dbm support,  this
+	      flag  tells it to actually use the database files instead of the
 	      flat users file.
 
-	      This  command  line  option  is deprecated, and does not do any-
+	      This command line option is deprecated, and  does  not  do  any-
 	      thing.
 
 
-       -c     This is still an	experimental  feature.	 Cache	the  password,
-	      group  and  shadow  files in a hash-table in memory.  This makes
-	      the radius process use a bit more memory, but  username  lookups
+       -c     This  is	still  an  experimental  feature.  Cache the password,
+	      group and shadow files in a hash-table in  memory.   This  makes
+	      the  radius  process use a bit more memory, but username lookups
 	      in the password file are much faster.
 
-	      After  every change in the real password file (user added, pass-
-	      word changed) you need to send a SIGHUP to the radius server  to
-	      let  it  re-read its configuration and the password/group/shadow
+	      After every change in the real password file (user added,  pass-
+	      word  changed) you need to send a SIGHUP to the radius server to
+	      let it re-read its configuration and  the  password/group/shadow
 	      files !
 
-	      This command line option is deprecated.  See the cache  configu-
+	      This  command line option is deprecated.	See the cache configu-
 	      ration item for the unix module in the radiusd.conf file.
 
 
@@ -236,8 +147,8 @@ OPTIONS
 
        -p port
 	      Normally radiusd listens on the ports specified in /etc/services
-	      (radius and radacct). With this option radiusd  listens  on  the
-	      specified  port for authentication requests and on the specified
+	      (radius  and  radacct).  With this option radiusd listens on the
+	      specified port for authentication requests and on the  specified
 	      port +1 for accounting requests.
 
 	      This command line option is deprecated.  See the port configura-
@@ -245,89 +156,89 @@ OPTIONS
 
 
        -s     Run in "single server" mode.  The server normally runs with mul-
-	      tiple threads and/or processes, which  can  lower  its  response
+	      tiple  threads  and/or  processes,  which can lower its response
 	      time to requests.  Some systems have issues with threading, how-
-	      ever, so running in "single server" mode	may  help  to  address
-	      those  issues.   In single server mode, the server will also not
+	      ever,  so  running  in  "single server" mode may help to address
+	      those issues.  In single server mode, the server will  also  not
 	      "daemonize" (auto-background) itself.
 
 
        -v     Print server version information and exit.
 
 
-       -x     Debug mode. In this mode the server will print details of  every
-	      request  on  it's stderr output. Most useful in combination with
+       -x     Debug  mode. In this mode the server will print details of every
+	      request on it's stderr output. Most useful in  combination  with
 	      -s.  You can specify this option 2 times (-x -x or -xx) to get a
 	      bit more debugging output.
 
 
-       -X     Extended	debug  mode.   Equivalent  to  -sfxx,  but  simpler to
+       -X     Extended debug  mode.   Equivalent  to  -sfxx,  but  simpler  to
 	      explain.
 
 
-       -y     Write  details  about  every  authentication  request   in   the
+       -y     Write   details	about  every  authentication  request  in  the
 	      radius.log file.
 
-	      This  command  line option is deprecated.  See the log_auth con-
+	      This command line option is deprecated.  See the	log_auth  con-
 	      figuration item in the radiusd.conf file.
 
 
-       -z     Include the password in the radius.log file even for  successful
+       -z     Include  the password in the radius.log file even for successful
 	      logins. This is very insecure!.
 
-	      This  command  line option is deprecated.  See the log_auth_bad-
+	      This command line option is deprecated.  See  the  log_auth_bad-
 	      pass  and  the  log_auth_goodpass  configuration	items  in  the
 	      radiusd.conf file.
 
 
 CONFIGURATION
-       Radiusd	uses  a  number of configuration files. Each file has it's own
+       Radiusd uses a number of configuration files. Each file	has  it's  own
        manpage describing the format of the file. These files are:
 
        radiusd.conf
-	      The main configuration file, which sets  the  administrator-con-
+	      The  main  configuration file, which sets the administrator-con-
 	      trolled items.
 
        dictionary
-	      This  file is usually static. It defines all the possible RADIUS
-	      attributes used in the other  configuration  files.   You  don't
-	      have  to	modify	it.  It includes other dictionary files in the
+	      This file is usually static. It defines all the possible	RADIUS
+	      attributes  used	in  the  other configuration files.  You don't
+	      have to modify it.  It includes other dictionary	files  in  the
 	      same directory.
 
        clients
-	      [ Deprecated ] Contains the IP address  and  a  secret  key  for
+	      [  Deprecated  ]	Contains  the  IP address and a secret key for
 	      every client that wants to connect to the server.
 
        naslist
-	      Contains	an  entry for every NAS (Network Access Server) in the
-	      network. This is not the same as a  client,  especially  if  you
-	      have  radius  proxy  server  in  your network. In that case, the
-	      proxy server is the client and it sends requests	for  different
+	      Contains an entry for every NAS (Network Access Server)  in  the
+	      network.	This  is  not  the same as a client, especially if you
+	      have radius proxy server in your	network.  In  that  case,  the
+	      proxy  server  is the client and it sends requests for different
 	      NASes.
 
-	      It  also	contains  a abbreviated name for each terminal server,
+	      It also contains a abbreviated name for  each  terminal  server,
 	      used to create the directory name where the detail file is writ-
-	      ten,  and  used  for  the /var/log/radwtmp file. Finally it also
-	      defines what type of NAS (Cisco, Livingston, Portslave) the  NAS
+	      ten, and used for the /var/log/radwtmp  file.  Finally  it  also
+	      defines  what type of NAS (Cisco, Livingston, Portslave) the NAS
 	      is.
 
-       hints  Defines  certain hints to the radius server based on the users's
+       hints  Defines certain hints to the radius server based on the  users's
 	      loginname or other attributes sent by the access server. It also
 	      provides for mapping user names (such as Pusername -> username).
-	      This provides the functionality that the Livingston  2.0	server
-	      has  as  "Prefix" and "Suffix" support in the users file, but is
-	      more general. Ofcourse the Livingston way  of  doing  things  is
-	      also  supported,	and  you  can  even  use both at the same time
+	      This  provides  the functionality that the Livingston 2.0 server
+	      has as "Prefix" and "Suffix" support in the users file,  but  is
+	      more  general.  Ofcourse	the  Livingston way of doing things is
+	      also supported, and you can even	use  both  at  the  same  time
 	      (within certain limits).
 
        huntgroups
-	      Defines the huntgroups that you have, and makes it  possible  to
-	      restrict	access	to  certain  huntgroups to certain (groups of)
+	      Defines  the  huntgroups that you have, and makes it possible to
+	      restrict access to certain huntgroups  to  certain  (groups  of)
 	      users.
 
        users  Here the users are defined. On a typical setup, this file mainly
-	      contains	DEFAULT  entries  to  process  the  different types of
-	      logins, based on hints from the hints  file.  Authentication  is
+	      contains DEFAULT entries	to  process  the  different  types  of
+	      logins,  based  on  hints from the hints file. Authentication is
 	      then based on the contents of the UNIX /etc/passwd file. However
 	      it is also possible to define all users, and their passwords, in
 	      this file.

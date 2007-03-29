@@ -8,6 +8,6 @@ FILES	= radclient radeapclient radiusd radlast radrelay radsqlrelay \
 all:
 	for x in $(FILES); \
 	do \
-		src=`echo $(MAN)/*/$$x*`; \
+		src=`echo $(MAN)/*/$$x\.[0-9]`; \
 		nroff -man -Tascii $$src | col -b > $$x.txt; \
 	done
