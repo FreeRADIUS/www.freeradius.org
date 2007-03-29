@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>FreeRADIUS: The world's most popular RADIUS Server</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>The FreeRADIUS Client Library</h1>
+
+<p>FreeRADIUS Client is a framework and library for writing RADIUS
+Clients which additionally includes radlogin, a flexible RADIUS aware
+login replacement, a command line program to send RADIUS accounting
+records and a utility to query the status of a RADIUS server. All of
+these programs are based on a library that lets you develop a
+RADIUS-aware application in less than 50 lines of C code. It is highly
+portable and runs on Linux, many BSD variants and Solaris.</p>
+
+<h2>License</h2>
+
+<p>Unlike the FreeRADIUS Server which is available under the GPL, or
+libradius which is available under the LGPL, the FreeRADIUS Client
+library is distributed under the BSD license. This is to facilitate
+the maximum possible use of correct, up-to-date, maintained code in as
+many other RADIUS Client implementations as possible.</p>
+
+<p>The FreeRADIUS team collectively has decades of RADIUS experience,
+and is active in defining new RADIUS standards.  We have worked with
+many different RADIUS servers and clients, and know what it takes to
+make a client that is robust, feature-rich, and inter-operable.  To
+that end, we are releasing this library under the BSD license, to
+lower your costs in developing a RADIUS client, and to increase the
+likelihood that your client will inter-operate with every other
+implementation.</p>
+
+<p><center><em>We want you use this code in your application whether it
+is Open Source or not.</em></center></p>
+
+<p>Please see the COPYRIGHT file in the radiusclient source code for
+more details.</p>
+
+<h3>History</h3>
+
+<p>Radiusclient used to live at http://www.cityline.net/~lf/radius/ but
+seems to be no longer maintained (Tarballs are still available from
+ftp://ftp.cityline.net/pub/radiusclient/). It does however still ship
+with some Linux distributions including SUSE Linux.</p>
+
+<p>A fork of the original radiusclient called radiusclient-ng is used as
+the basis of the RADIUS support in SER and OpenSER.</p>
+
+<p>In late 2006 it was decided that the FreeRADIUS Project should adopt
+the latest code from radiusclient-ng cvs as the basis of a new
+FreeRADIUS client package. The intention is to roll some of the client
+functionality of the FreeRADIUS server into this separate client
+package and to make the FreeRADIUS suite a one stop shop for all
+people wishing to use and develop RADIUS related applications.</p>
+
+<p>The first version released by the FreeRADIUS project is 1.1.5. This
+version fixes an MD5 related endian issue and introduces a client
+configuration framework to the library which lends itself to allowing
+embedded radius client functionality. Development of the codebase is
+ongoing.</p>
+
+</div><!--content-->
+
+<!--#include virtual="/footer.html" -->
+
+</body>
+</html>
