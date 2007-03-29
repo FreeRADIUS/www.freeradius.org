@@ -1,34 +1,34 @@
-RADWATCH(8)                    FreeRADIUS Daemon                   RADWATCH(8)
+RADWATCH(8)		       FreeRADIUS Daemon		   RADWATCH(8)
 
 
 
-NNAAMMEE
+NAME
        radwatch - wrapper for radiusd
 
-SSYYNNOOPPSSIISS
-       rraaddwwaattcchh _[options_]
+SYNOPSIS
+       radwatch [options]
 
-DDEESSCCRRIIPPTTIIOONN
-       This  is a wrapper for _r_a_d_i_u_s_d. It starts the radius server, then waits
-       for it to terminate, which should never happen. If it does happen, rraadd‐‐
-       wwaattcchh  sends mail to _r_o_o_t informing her of the event, waits 10 seconds,
+DESCRIPTION
+       This  is a wrapper for radiusd. It starts the radius server, then waits
+       for it to terminate, which should never happen. If it does happen, rad-
+       watch  sends mail to root informing her of the event, waits 10 seconds,
        then restarts the server.
 
-       This script SSHHOOUULLDD NNOOTT BBEE UUSSEEDD!  It’s only  here  for  historical  pur‐
+       This script SHOULD NOT BE USED!	It's only  here  for  historical  pur-
        poses, and WILL be deleted in a future version of the the server.
 
-       Please see ’_d_o_c_/_s_u_p_e_r_v_i_s_e_-_r_a_d_i_u_s_d_._t_x_t’ for info on methods of supervis‐
+       Please see 'doc/supervise-radiusd.txt' for info on methods of supervis-
        ing your radius installation.
 
-OOPPTTIIOONNSS
-       Passed directly to the radius server - see the manpage of rraaddiiuussdd.
+OPTIONS
+       Passed directly to the radius server - see the manpage of radiusd.
 
-SSEEEE AALLSSOO
+SEE ALSO
        radiusd(8).
 
-AAUUTTHHOORR
+AUTHOR
        Miquel van Smoorenburg, miquels@cistron.nl.
 
 
 
-                               24 February 2001                    RADWATCH(8)
+			       24 February 2001 		   RADWATCH(8)

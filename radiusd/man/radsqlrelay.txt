@@ -1,73 +1,73 @@
-RADSQLRELAY(8)             FreeRADIUS helper program            RADSQLRELAY(8)
+RADSQLRELAY(8)		   FreeRADIUS helper program		RADSQLRELAY(8)
 
 
 
-NNAAMMEE
+NAME
        radsqlrelay - relay SQL queries to a central database server
 
 
-SSYYNNOOPPSSIISS
-       rraaddssqqllrreellaayy [--dd _s_q_l___d_r_i_v_e_r] [--bb _d_a_t_a_b_a_s_e] [--ff _f_i_l_e] [--hh _h_o_s_t] [--uu _u_s_e_r]
-       [--pp _p_a_s_s_w_o_r_d] [--11] _f_i_l_e___p_a_t_h
+SYNOPSIS
+       radsqlrelay [-d sql_driver] [-b database] [-f file] [-h host] [-u user]
+       [-p password] [-1] file_path
 
 
-DDEESSCCRRIIPPTTIIOONN
-       rraaddssqqllrreellaayy tails a SQL _l_o_g_f_i_l_e and forwards the queries to a  database
+DESCRIPTION
+       radsqlrelay tails a SQL logfile and forwards the queries to a  database
        server. Used to replicate accounting records to one (central) database,
        even if the database has extended downtime.
 
-       The SQL logfile is created by the rrllmm__ssqqll__lloogg module. The  module  must
-       be configured in the rraaddiiuussdd server before you can use rraaddssqqllrreellaayy.
+       The SQL logfile is created by the rlm_sql_log module. The  module  must
+       be configured in the radiusd server before you can use radsqlrelay.
 
 
-OOPPTTIIOONNSS
-       -d _s_q_l___d_r_i_v_e_r
-              Driver to use: mysql, pg, oracle.
+OPTIONS
+       -d sql_driver
+	      Driver to use: mysql, pg, oracle.
 
-       -b _d_a_t_a_b_a_s_e
-              Name of the database to use.
+       -b database
+	      Name of the database to use.
 
-       -f _f_i_l_e
-              Read password from file, instead of command line.
+       -f file
+	      Read password from file, instead of command line.
 
-       -h _h_o_s_t
-              Connect to host.
+       -h host
+	      Connect to host.
 
-       -u _u_s_e_r
-              User for login.
+       -u user
+	      User for login.
 
-       -p _p_a_s_s_w_o_r_d
-              Password to use when connecting to server.
+       -p password
+	      Password to use when connecting to server.
 
        -1     One-shot mode: push the file to database and exit.
 
        file_path
-              The pathname of the SQL logfile to use.
+	      The pathname of the SQL logfile to use.
 
 
-NNOOTTEESS
-   OOrraaccllee ddrriivveerr
+NOTES
+   Oracle driver
        The  command  "radsqlrelay  -d oracle -b db.domain.tld sql-relay" reads
        the database description stored in $TNS_ADMIN/tnsnames.ora:
 
        db.domain.tld =
-         (DESCRIPTION =
-           (ADDRESS_LIST =
-             (ADDRESS = (PROTOCOL = TCP)(HOST = db.domain.tld)(PORT = 1521))
-           )
-           (CONNECT_DATA =
-             (SERVICE_NAME = <DB SID>)
-           )
-         )
+	 (DESCRIPTION =
+	   (ADDRESS_LIST =
+	     (ADDRESS = (PROTOCOL = TCP)(HOST = db.domain.tld)(PORT = 1521))
+	   )
+	   (CONNECT_DATA =
+	     (SERVICE_NAME = <DB SID>)
+	   )
+	 )
 
 
-SSEEEE AALLSSOO
-       rrllmm__ssqqll__lloogg(5)
+SEE ALSO
+       rlm_sql_log(5)
 
 
-AAUUTTHHOORR
+AUTHOR
        Nicolas Baradakis <nicolas.baradakis@cegetel.net>
 
 
 
-                                 19 June 2005                   RADSQLRELAY(8)
+				 19 June 2005			RADSQLRELAY(8)

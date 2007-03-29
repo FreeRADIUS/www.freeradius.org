@@ -1,26 +1,26 @@
-rlm_sql(5)                     FreeRADIUS Module                    rlm_sql(5)
+rlm_sql(5)		       FreeRADIUS Module		    rlm_sql(5)
 
 
 
-NNAAMMEE
+NAME
        rlm_sql - FreeRADIUS Module
 
-DDEESSCCRRIIPPTTIIOONN
-       The  _r_l_m___s_q_l module provides an SQL interface to retrieve authorization
-       information and store accounting information.  It can be used  in  con‐
-       junction  with,  or  in  lieu of the files and detail modules.  The SQL
+DESCRIPTION
+       The  rlm_sql module provides an SQL interface to retrieve authorization
+       information and store accounting information.  It can be used  in  con-
+       junction  with,	or  in	lieu of the files and detail modules.  The SQL
        module has drivers to support the following SQL databases:
 
-            db2
-            iodbc
-            mysql
-            oracle
-            postgresql
-            sybase
-            unixodbc
+	    db2
+	    iodbc
+	    mysql
+	    oracle
+	    postgresql
+	    sybase
+	    unixodbc
 
-       Due to the size of the configuration variables, the sql module is  usu‐
-       ally  configured  in  a  separate  file,  which is included in the main
+       Due to the size of the configuration variables, the sql module is  usu-
+       ally  configured  in  a	separate  file,  which is included in the main
        radiusd.conf via an include directive.
 
        The main configuration items to be aware of are:
@@ -32,145 +32,248 @@ DDEESSCCRRIIPPTTIIOONN
        login
 
        password
-              These specify the servername, username, and password the  module
-              will use to connect to the database.
+	      These specify the servername, username, and password the	module
+	      will use to connect to the database.
 
        radius_db
-              The name of the database where the radius tables are stored.
+	      The name of the database where the radius tables are stored.
 
        acct_table1
 
        acct_table2
-              These specify the tables names for accounting records.  acct_ta‐
-              ble1  specifies  the  table  where  Start  records  are  stored.
-              acct_table2  specifies  the table where Stop records are stored.
-              In most cases, this should be the same table.
+	      These specify the tables names for accounting records.  acct_ta-
+	      ble1  specifies  the  table  where  Start  records  are  stored.
+	      acct_table2  specifies  the table where Stop records are stored.
+	      In most cases, this should be the same table.
 
        postauth_table
-              The name of the table to store post-authentication data.
+	      The name of the table to store post-authentication data.
 
        authcheck_table
 
        authreply_table
-              The tables where  individual  Check-Items  and  Reply-Items  are
-              stored.
+	      The tables where	individual  Check-Items  and  Reply-Items  are
+	      stored.
 
        groupcheck_table
 
        groupreply_table
-              The tables where group Check-Items and Reply-Items are stored.
+	      The tables where group Check-Items and Reply-Items are stored.
 
        usergroup_table
-              The table where username to group relationships are stored.
+	      The table where username to group relationships are stored.
 
        deletestatlesessions
-              This  option is set to ’yes’ or ’no’.  If you are doing Simulta‐
-              neous-Use checking, and this is set to  yes,  stale  sessions  (
-              defined  as  sessions for which a Stop record was not received )
-              will be cleared.
+	      This  option is set to 'yes' or 'no'.  If you are doing Simulta-
+	      neous-Use checking, and this is set to  yes,  stale  sessions  (
+	      defined  as  sessions for which a Stop record was not received )
+	      will be cleared.
 
        sqltrace
 
        sqltracefile
-              These two options are useful for  debugging  sql  problems.   If
-              sqltrace  is set to yes, then all sql queries being executed are
-              written to the file listed in sqltracefile.  This is disabled in
-              normal operation.
+	      These two options are useful for	debugging  sql	problems.   If
+	      sqltrace	is set to yes, then all sql queries being executed are
+	      written to the file listed in sqltracefile.  This is disabled in
+	      normal operation.
 
        num_sql_socks
-              The number of sql connections to make to the database.
+	      The number of sql connections to make to the database.
 
        connect_failure_retry_delay
-              The  number of seconds to wait before attempting to reconnect to
-              a failed database connection.
+	      The  number of seconds to wait before attempting to reconnect to
+	      a failed database connection.
 
        sql_user_name
-              This is the definition of the SQL-User-Name attribute.  This  is
-              set  once,  so  that  you  can  use  %{SQL-User-Name} in the SQL
-              queries, rather than the  nested  username  substitution.   This
-              ensures that Username is parsed consistently for all SQL queries
-              executed.
+	      This is the definition of the SQL-User-Name attribute.  This  is
+	      set  once,  so  that  you  can  use  %{SQL-User-Name} in the SQL
+	      queries, rather than the	nested	username  substitution.   This
+	      ensures that Username is parsed consistently for all SQL queries
+	      executed.
 
        default_user_profile
-              This is the default profile name that will  be  applied  to  all
-              users if set.  This is not set by default.
+	      This is the default profile name that will  be  applied  to  all
+	      users if set.  This is not set by default.
 
        query_on_not_found
-              This  option  is  set to ’yes’ or ’no’.  If set to yes, then the
-              default user profile is returned if no specific match was  found
-              for the user.
+	      This  option  is	set to 'yes' or 'no'.  If set to yes, then the
+	      default user profile is returned if no specific match was  found
+	      for the user.
 
        authorize_check_query
 
        authorize_reply_query
-              These  queries are run during the authorization stage to extract
-              the user authorization information from  the  ${authcheck_table}
-              and ${authreply_table}.
+	      These  queries are run during the authorization stage to extract
+	      the user authorization information from  the  ${authcheck_table}
+	      and ${authreply_table}.
 
        authorize_group_check_query
 
        authorize_group_reply_query
-              These  queries are run during the authorization stage to extract
-              the group authorization information from the ${groupcheck_table}
-              and ${groupreply_table}.
+	      These  queries are run during the authorization stage to extract
+	      the group authorization information from the ${groupcheck_table}
+	      and ${groupreply_table}.
 
        accounting_onoff_query
-              The  query to be run when receiving an Accounting On or Account‐
-              ing Off packet.
+	      The  query to be run when receiving an Accounting On or Account-
+	      ing Off packet.
 
        accounting_update_query
 
        accounting_update_query_alt
-              The query to be run when receiving an Accounting Update  packet.
-              If the primary query fails, the alt query is run.
+	      The query to be run when receiving an Accounting Update  packet.
+	      If the primary query fails, the alt query is run.
 
        accounting_start_query
 
        accounting_start_query_alt
-              The  query  to be run when receiving an Accounting Start packet.
-              If the primary query fails, the alt query is run.
+	      The  query  to be run when receiving an Accounting Start packet.
+	      If the primary query fails, the alt query is run.
 
        accounting_stop_query
 
        accounting_stop_query_alt
-              The query to be run when receiving an  Accounting  Stop  packet.
-              If the primary query fails, the alt query is run.
+	      The query to be run when receiving an  Accounting  Stop  packet.
+	      If the primary query fails, the alt query is run.
 
        simul_count_query
-              The  query  to be run to return the number simultaneous sessions
-              for the purposes of limiting Simultaneous Use.
+	      The  query  to be run to return the number simultaneous sessions
+	      for the purposes of limiting Simultaneous Use.
 
        simul_verify_query
-              The query to return the detail  information  needed  to  confirm
-              that  all  suspected  connected  sessions are valid, and are not
-              stale sessions.
+	      The query to return the detail  information  needed  to  confirm
+	      that  all  suspected  connected  sessions are valid, and are not
+	      stale sessions.
 
        group_membership_query
-              The query to run to check user group membership.
+	      The query to run to check user group membership.
 
        postauth_query
-              The query to run during the post-authentication stage.
+	      The query to run during the post-authentication stage.
 
-CCOONNFFIIGGUURRAATTIIOONN
-       Due to the size of  the  configuration  for  this  module,  it  is  not
+CONFIGURATION
+       Due to the size of  the	configuration  for  this  module,  it  is  not
        included in this manual page.  Please review the supplied configuration
        files for example queries and configuration details.
 
-SSEECCTTIIOONNSS
-       aauutthhoorriizzaattiioonn,, aaccccoouunnttiinngg,, cchheecckkssiimmuull,, ppoosstt--aauutthheennttiiccaattiioonn
+SECTIONS
+       authorization, accounting, checksimul, post-authentication
 
 
-FFIILLEESS
-       _/_e_t_c_/_r_a_d_d_b_/_r_a_d_i_u_s_d_._c_o_n_f_,     _/_e_t_c_/_r_a_d_d_b_/_s_q_l_._c_o_n_f_,      _/_e_t_c_/_r_a_d_d_b_/_o_r_a_c_‐
-       _l_e_s_q_l_._c_o_n_f_, _/_e_t_c_/_r_a_d_d_b_/_p_o_s_t_f_r_e_s_q_l_._c_o_n_f_, _/_e_t_c_/_r_a_d_d_b_/_m_s_s_q_l_._c_o_n_f
+FILES
+       /etc/raddb/radiusd.conf,     /etc/raddb/sql.conf,      /etc/raddb/orac-
+       lesql.conf, /etc/raddb/postfresql.conf, /etc/raddb/mssql.conf
 
 
-SSEEEE AALLSSOO
-       rraaddiiuussdd(8), rraaddiiuussdd..ccoonnff(5),
+SEE ALSO
+       radiusd(8), radiusd.conf(5),
 
-AAUUTTHHOORRSS
+AUTHORS
+rlm_sql_log(5)		       FreeRADIUS Module		rlm_sql_log(5)
+
+
+
        Chris Parker, cparker@segv.org
 
+NAME
+       rlm_sql_log - FreeRADIUS Module
+
+DESCRIPTION
+       The  rlm_sql_log  module appends the SQL queries in a log file which is
+       read later by the scripts/radsqlrelay Perl program.
+
+       The purpose of this module is to de-couple  the	storage  of  long-term
+       accounting  data  in  SQL  from "live" information needed by the RADIUS
+       server as it's running.	If you are  not  using	SQL  for  simultaneous
+       login  restrictions  (i.e. "sql" is not listed in the "session" section
+       of "radiusd.conf"), then this module allows you to log SQL queries to a
+       file, and then process them at your leisure.
+
+       The benefit of this approach is that for a busy server, the overhead of
+       performing SQL queries may be significant.  Also, if the SQL  databases
+       are  large (as is typical for ones storing months of data), the INSERTs
+       and UPDATEs may take a relatively long time.  Rather than slowing  down
+       the  RADIUS  server by having it interact with a database, you can just
+       log the queries to a file,  and	then  run  those  queries  on  another
+       machine,  or  at  a  time  when	the RADIUS server is typically lightly
+       loaded.
+
+       If  the	"sql"  module  is  listed  in	the   "session"   section   of
+       "radiusd.conf", then a similar system can still be used.  In that case,
+       one database would be used  to  maintain  "live"  session  information.
+       That  database  would  be small, fast, and information would be deleted
+       from it when a user logs out.  A second database would store  long-term
+       accounting information, as described above.
+
+LIMITATIONS
+       This  module only performs the dynamic expansion of the variables found
+       in the SQL statements. No operation is executed on the database server.
+       (this would be done later by an external program) That means the module
+       is useful only with non-"SELECT" statements.
+
+CONFIGURATION
+       The main configuration items to be aware of are the  path  of  the  log
+       file and the different SQL queries.
+
+       path   An  entry  named "path" sets the full path of the file where the
+	      SQL queries are recorded. (this variable is run through  dynamic
+	      string expansion, and can include FreeRADIUS variables to create
+	      a dynamic filename)
+
+       Accounting queries
+	      When a accounting record is processed,  the  module  searches  a
+	      config  entry keyed by the Acct-Status-Type attribute present in
+	      the packet. For example, the SQL to  be  run  on	an  accounting
+	      start must be named "Start" in the configuration for the module.
+	      Other usual values for  Acct-Status-Type	are  "Stop",  "Alive",
+	      "Accounting-On",	etc.   See  the VALUEs for Acct-Status-Type in
+	      the dictionary.rfc2866 file.
+
+       Post-Auth query
+	      An entry named "Post-Auth" sets the  query  to  run  during  the
+	      post-authentication  stage.   This  query  is mainly used to log
+	      sessions where there may not be a later accounting packet.
+
+       modules {
+	 ...
+	 sql_log {
+	   path = ${radacctdir}/sql-relay
+	   acct_table = "radacct"
+	   postauth_table = "radpostauth"
+
+	   Start = "INSERT INTO ${acct_table} ..."
+	   Stop = "UPDATE ${acct_table} SET ..."
+	   Alive = "UPDATE ${acct_table} SET ..."
+
+	   Post-Auth = "INSERT INTO ${postauth_table} ..."
+	 }
+	 ...
+       }
+
+       accounting {
+	 ...
+	 sql_log
+	 ...
+       }
+
+       post-auth {
+	 ...
+	 sql_log
+	 ...
+       }
+
+SECTIONS
+       accounting, post-auth
+
+FILES
+       /etc/raddb/radiusd.conf
+
+SEE ALSO
+       radsqlrelay(8), radiusd(8), radiusd.conf(5)
+
+AUTHOR
+       Nicolas Baradakis <nicolas.baradakis@cegetel.net>
 
 
-                                5 February 2004                     rlm_sql(5)
+
+				  28 May 2005			rlm_sql_log(5)

@@ -1,12 +1,12 @@
-rlm_always(5)                  FreeRADIUS Module                 rlm_always(5)
+rlm_always(5)		       FreeRADIUS Module		 rlm_always(5)
 
 
 
-NNAAMMEE
+NAME
        rlm_always - FreeRADIUS Module
 
-DDEESSCCRRIIPPTTIIOONN
-       The  _r_l_m___a_l_w_a_y_s module provides a simple way to "always" return a value
+DESCRIPTION
+       The  rlm_always module provides a simple way to "always" return a value
        during the processing of a  configuration  section.   The  module  does
        nothing other than return a configured value.
 
@@ -14,7 +14,7 @@ DDEESSCCRRIIPPTTIIOONN
        The main configuration item to be aware of is:
 
        rcode  This  module  will  always return with the rcode specified.  The
-              default, if none specified is: fail (RLM_MODULE_FAIL).
+	      default, if none specified is: fail (RLM_MODULE_FAIL).
 
        The valid options are:
 
@@ -25,57 +25,57 @@ DDEESSCCRRIIPPTTIIOONN
        ok     RLM_MODULE_OK
 
        handled
-              RLM_MODULE_HANDLED
+	      RLM_MODULE_HANDLED
 
        invalid
-              RLM_MODULE_INVALID
+	      RLM_MODULE_INVALID
 
        userlock
-              RLM_MODULE_USERLOCK
+	      RLM_MODULE_USERLOCK
 
        notfound
-              RLM_MODULE_NOTFOUND
+	      RLM_MODULE_NOTFOUND
 
        noop   RLM_MODULE_NOOP
 
        updated
-              RLM_MODULE_UPDATED
+	      RLM_MODULE_UPDATED
 
-CCOONNFFIIGGUURRAATTIIOONN
+CONFIGURATION
        modules {
-         ...
-         always ok {
-            rcode = ok
-         }
-         ...
+	 ...
+	 always ok {
+	    rcode = ok
+	 }
+	 ...
        }
-        ...
+	...
        authorize {
-         ...
-         redundant {
-            sql1          # try to find the user in sql1
-            sql2          # try to find the user in sql2
-            ok            # if still not found, it’s OK.
-         }
-         ...
+	 ...
+	 redundant {
+	    sql1	  # try to find the user in sql1
+	    sql2	  # try to find the user in sql2
+	    ok		  # if still not found, it's OK.
+	 }
+	 ...
        }
 
 
-SSEECCTTIIOONNSS
-       aauutthhoorriizzaattiioonn,,   aauutthheennttiiccaattiioonn,,   ppoossttaauutthheennttiiccaattiioonn,,   pprreeaaccccoouunnttiinngg,,
-       aaccccoouunnttiinngg,, pprreepprrooxxyy,, ppoossttpprrooxxyy
+SECTIONS
+       authorization,	authentication,   postauthentication,	preaccounting,
+       accounting, preproxy, postproxy
 
 
-FFIILLEESS
-       _/_e_t_c_/_r_a_d_d_b_/_r_a_d_i_u_s_d_._c_o_n_f
+FILES
+       /etc/raddb/radiusd.conf
 
 
-SSEEEE AALLSSOO
-       rraaddiiuussdd(8), rraaddiiuussdd..ccoonnff(5)
+SEE ALSO
+       radiusd(8), radiusd.conf(5)
 
-AAUUTTHHOORR
+AUTHOR
        Chris Parker, cparker@segv.org
 
 
 
-                                3 February 2004                  rlm_always(5)
+				3 February 2004 		 rlm_always(5)

@@ -1,84 +1,84 @@
-rlm_pap(5)                     FreeRADIUS Module                    rlm_pap(5)
+rlm_pap(5)		       FreeRADIUS Module		    rlm_pap(5)
 
 
 
-NNAAMMEE
+NAME
        rlm_pap - FreeRADIUS Module
 
-DDEESSCCRRIIPPTTIIOONN
-       The _r_l_m___p_a_p module performs PAP authentication.
+DESCRIPTION
+       The rlm_pap module performs PAP authentication.
 
        This  module performs authentication when the Access-Request contains a
-       User-Password attribute AND when a "known good" password has been  con‐
-       figured  for  the  user.   In  addition,  it takes care of decoding the
+       User-Password attribute AND when a "known good" password has been  con-
+       figured	for  the  user.   In  addition,  it takes care of decoding the
        "known good" password from hex or Base64 encoding to a form it can  use
        for authentication.
 
        As  a  result,  as of 1.1.4, the "encryption_scheme" configuration item
-       SHOULD  NOT  BE  USED,  and  the  rlm_ldap  configuration  item  "pass‐
+       SHOULD  NOT  BE	USED,  and  the  rlm_ldap  configuration  item	"pass-
        word_header"  SHOULD NOT BE USED.  Those items will continue to work in
        1.1.4, and existing systems will work  un-changed  after  upgrading  to
-       1.1.4.   We  recommend,  though, that sites using multiple instances of
-       rlm_pap see if they can  replace  those  multiple  instances  with  one
+       1.1.4.	We  recommend,	though, that sites using multiple instances of
+       rlm_pap see if they can	replace  those	multiple  instances  with  one
        instance,  using  the  new  "auto_header" configuration, and remove the
        "password_header" configuration from rlm_ldap.
 
        The configuration item(s):
 
        auto_header
-              Automatically discover password headers.  Permitted  values  are
-              "yes"  and  "no".   For  backwards compatibility, the default is
-              "no".
+	      Automatically discover password headers.	Permitted  values  are
+	      "yes"  and  "no".   For  backwards compatibility, the default is
+	      "no".
 
-              The recommended value is "yes".
+	      The recommended value is "yes".
 
        encryption_scheme
-              No longer used, and therefore no longer documented.
+	      No longer used, and therefore no longer documented.
 
-       When "auto_header" is set to "yes", the module will look in the config‐
-       uration  list for the User-Password attribute or the new Password-With-
+       When "auto_header" is set to "yes", the module will look in the config-
+       uration	list for the User-Password attribute or the new Password-With-
        Header attribute.  If found, it will then look at the string  value  of
        those attributes, for one of the following headers:
 
-            {clear}
-            {cleartext}
-            {crypt}
-            {md5}
-            {smd5}
-            {sha1}
-            {ssha1}
-            {nt}
-            {x-nthash}
-            {ns-mta-md5}
+	    {clear}
+	    {cleartext}
+	    {crypt}
+	    {md5}
+	    {smd5}
+	    {sha1}
+	    {ssha1}
+	    {nt}
+	    {x-nthash}
+	    {ns-mta-md5}
 
        The  text  following  the header is taken as the "known good" password,
        either cleartext, crypted, hashed, or hashed with a salt.  If the  text
        is hex or Base64 encoded, it will be decoded to obtain the correct form
-       of the "known good" password.  The User-Password in the  Access-Request
+       of the "known good" password.  The User-Password in the	Access-Request
        will  then  be  crypted,  or hashed as appropriate, and compared to the
-       "known good" password.  If they match, the user is authenticated,  oth‐
+       "known good" password.  If they match, the user is authenticated,  oth-
        erwise the module returns reject.
 
-CCAAVVEEAATTSS
-       In  order  for  the  "auto_header = yes" functionality to work, the _p_a_p
-       module MUST be listed LAST in the _a_u_t_h_o_r_i_z_e  section  of  _r_a_d_i_u_s_d_._c_o_n_f.
-       This  lets  other modules such as LDAP blindly add a "known good" pass‐
+CAVEATS
+       In  order  for  the  "auto_header = yes" functionality to work, the pap
+       module MUST be listed LAST in the authorize  section  of  radiusd.conf.
+       This  lets  other modules such as LDAP blindly add a "known good" pass-
        word to the configuration items, and the PAP module will just figure it
        out.   In  most cases, multiple instances of the PAP module, along with
        complex logic to determine which one to call when, can be replaced with
-       one  instance  of the module, with it listed last in the _a_u_t_h_o_r_i_z_e sec‐
+       one  instance  of the module, with it listed last in the authorize sec-
        tion.
 
-       Note that the _n_s___m_t_a___m_d_5 module is no  longer  necessary,  and  can  be
+       Note that the ns_mta_md5 module is no  longer  necessary,  and  can  be
        removed.
 
        Also,  setting  "Auth-Type  = Local" or "Auth-Type = Crypt-Local" is no
        longer necessary.  Any such settings SHOULD BE  DELETED.   Simply  list
-       _p_a_p  LAST  in  the  _a_u_t_h_o_r_i_z_e section, and the module will take care of
+       pap  LAST  in  the  authorize section, and the module will take care of
        figuring out what to do.  (Have we emphasized that enough?)
 
-       Another reason to list the module last is that it  will  take  care  of
-       normalizing  any  crypt’d or hashed password retrieved from a database.
+       Another reason to list the module last is that it  will	take  care  of
+       normalizing  any  crypt'd or hashed password retrieved from a database.
        So it is now safe to have clear-text passwords as "{clear}...", because
        the PAP module will take care of removing the "{clear}" prefix from the
        password.  Any other modules that need access to the cleartext password
@@ -87,68 +87,68 @@ CCAAVVEEAATTSS
        The module uses a number of new attributes.
 
        Password-With-Header
-              This  attribute  should  contain a "known good" password, with a
-              header such as "{crypt}, or "{md5}", etc.   It  should  be  used
-              when  the passwords retrieved from a DB may have different head‐
-              ers.  When _p_a_p is listed in the _a_u_t_h_o_r_i_z_e  section,  the  module
-              will  examine  this  attribute,  and use it to create one of the
-              other attributes listed below.  That  other  attribute  is  then
-              used for authentication.
+	      This  attribute  should  contain a "known good" password, with a
+	      header such as "{crypt}, or "{md5}", etc.   It  should  be  used
+	      when  the passwords retrieved from a DB may have different head-
+	      ers.  When pap is listed in the authorize  section,  the	module
+	      will  examine  this  attribute,  and use it to create one of the
+	      other attributes listed below.  That  other  attribute  is  then
+	      used for authentication.
 
-              If the passwords in a DB do not have a header, and are always in
-              one particular form, then the attributes  listed  below  can  be
-              used  directly.   In  that  case,  the PAP module will do hex or
-              Base64 decoding of the attribute contents, if necessary.  So _p_a_p
-              should still be listed in the _a_u_t_h_o_r_i_z_e section, because it will
-              enable the maximum flexibility for the server, and minimize con‐
-              figuration for the administrator.
+	      If the passwords in a DB do not have a header, and are always in
+	      one particular form, then the attributes	listed	below  can  be
+	      used  directly.	In  that  case,  the PAP module will do hex or
+	      Base64 decoding of the attribute contents, if necessary.	So pap
+	      should still be listed in the authorize section, because it will
+	      enable the maximum flexibility for the server, and minimize con-
+	      figuration for the administrator.
 
        Cleartext-Password
-              This  attribute  should contain the cleartext for a "known good"
-              password.  Previously, the  User-Password  attribute  was  over‐
-              loaded to contain this, both in the FAQ and in databases in many
-              sites.  Any configuration that sets  a  cleartext  form  of  the
-              password  using  User-Password SHOULD UPDATE to using Cleartext-
-              Password.  Doing so will simplify a number of debugging  issues.
+	      This  attribute  should contain the cleartext for a "known good"
+	      password.  Previously, the  User-Password  attribute  was  over-
+	      loaded to contain this, both in the FAQ and in databases in many
+	      sites.  Any configuration that sets  a  cleartext  form  of  the
+	      password	using  User-Password SHOULD UPDATE to using Cleartext-
+	      Password.  Doing so will simplify a number of debugging  issues.
 
        Crypt-Password
-              This  attribute  has  been around for a while, but is documented
-              here for completeness.  It contains  the  crypt’d  form  of  the
-              password.
+	      This  attribute  has  been around for a while, but is documented
+	      here for completeness.  It contains  the	crypt'd  form  of  the
+	      password.
 
        MD5-Password
-              This attribute contains the MD5 hashed form of the password.
+	      This attribute contains the MD5 hashed form of the password.
 
        SMD5-Password
-              This  attribute  contains  the  MD5 hashed form of the password,
-              with a salt.
+	      This  attribute  contains  the  MD5 hashed form of the password,
+	      with a salt.
 
        SHA1-Password
-              This attribute contains the SHA1 hashed form of the password.
+	      This attribute contains the SHA1 hashed form of the password.
 
        SSHA1-Password
-              This attribute contains the SHA1 hashed form  of  the  password,
-              with a salt.
+	      This attribute contains the SHA1 hashed form  of	the  password,
+	      with a salt.
 
        NT-Password
-              This  attribute  has  been around for a while, but is documented
-              here for completeness.  It contains the  NT  hash  form  of  the
-              password, as used by Active Directory and Samba.
+	      This  attribute  has  been around for a while, but is documented
+	      here for completeness.  It contains the  NT  hash  form  of  the
+	      password, as used by Active Directory and Samba.
 
-SSEECCTTIIOONNSS
-       aauutthhoorriizzee aauutthheennttiiccaattee
-
-
-FFIILLEESS
-       _/_e_t_c_/_r_a_d_d_b_/_r_a_d_i_u_s_d_._c_o_n_f
+SECTIONS
+       authorize authenticate
 
 
-SSEEEE AALLSSOO
-       rraaddiiuussdd(8), rraaddiiuussdd..ccoonnff(5)
+FILES
+       /etc/raddb/radiusd.conf
 
-AAUUTTHHOORR
+
+SEE ALSO
+       radiusd(8), radiusd.conf(5)
+
+AUTHOR
        Alan DeKok <aland@freeradius.org>
 
 
 
-                                3 February 2004                     rlm_pap(5)
+				3 February 2004 		    rlm_pap(5)

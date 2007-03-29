@@ -1,64 +1,64 @@
-rlm_attr_rewrite(5)            FreeRADIUS Module           rlm_attr_rewrite(5)
+rlm_attr_rewrite(5)	       FreeRADIUS Module	   rlm_attr_rewrite(5)
 
 
 
-NNAAMMEE
+NAME
        rlm_attr_rewrite - FreeRADIUS Module
 
-DDEESSCCRRIIPPTTIIOONN
-       The  _r_l_m___a_t_t_r___r_e_w_r_i_t_e  module provides functionality to rewrite data in
-       radius packets on the fly.  This can be  useful  in  authorization  and
+DESCRIPTION
+       The  rlm_attr_rewrite  module provides functionality to rewrite data in
+       radius packets on the fly.  This can be	useful	in  authorization  and
        accounting functions.
 
        The main configuration items to be aware of are:
 
        attribute
-              The name of the attribute that you want to be rewritten
+	      The name of the attribute that you want to be rewritten
 
        searchfor
-              String to be replaced.
+	      String to be replaced.
 
        searchin
-              Where  to  look  for  the  attribute.  Valid values are: ppaacckkeett,,
-              rreeppllyy,, pprrooxxyy,, pprrooxxyy__rreeppllyy,, ccoonnffiigg
+	      Where  to  look  for  the  attribute.  Valid values are: packet,
+	      reply, proxy, proxy_reply, config
 
        replacewith
-              String to replace "searchfor".
+	      String to replace "searchfor".
 
        append Set to yes or no.  If set to yes then the replace string will be
-              appended to the original string.
+	      appended to the original string.
 
        ignore_case
-              Set to yes or no.  Determines whether search will be case insen‐
-              sitive or case sensitive.
+	      Set to yes or no.  Determines whether search will be case insen-
+	      sitive or case sensitive.
 
        new_attribute
-              Set to yes or no.  If set to yes, then  new  attribute  will  be
-              created  with  values  from "searchin" and "replacewith".  Other
-              options will be ignored.
+	      Set to yes or no.  If set to yes, then  new  attribute  will  be
+	      created  with  values  from "searchin" and "replacewith".  Other
+	      options will be ignored.
 
        max_matches
-              Set the max number of attributes to match against.  This is use‐
-              ful if you need to rewrite the value in multiple Vendor Specific
-              Attributes.
+	      Set the max number of attributes to match against.  This is use-
+	      ful if you need to rewrite the value in multiple Vendor Specific
+	      Attributes.
 
 
-SSEECCTTIIOONNSS
-       aauutthhoorriizzaattiioonn,,   aauutthheennttiiccaattiioonn,,   ppoossttaauutthheennttiiccaattiioonn,,   pprreeaaccccoouunnttiinngg,,
-       aaccccoouunnttiinngg,, pprreepprrooxxyy,, ppoossttpprrooxxyy
+SECTIONS
+       authorization,	authentication,   postauthentication,	preaccounting,
+       accounting, preproxy, postproxy
 
 
-FFIILLEESS
-       _/_e_t_c_/_r_a_d_d_b_/_r_a_d_i_u_s_d_._c_o_n_f
+FILES
+       /etc/raddb/radiusd.conf
 
 
-SSEEEE AALLSSOO
-       rraaddiiuussdd(8), rraaddiiuussdd..ccoonnff(5)
+SEE ALSO
+       radiusd(8), radiusd.conf(5)
 
-AAUUTTHHOORR
+AUTHOR
        Chris Parker, cparker@segv.org
 
 
 
 
-                                3 February 2004            rlm_attr_rewrite(5)
+				3 February 2004 	   rlm_attr_rewrite(5)

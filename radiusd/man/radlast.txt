@@ -1,28 +1,28 @@
-RADLAST(1)                     FreeRADIUS Daemon                    RADLAST(1)
+RADLAST(1)		       FreeRADIUS Daemon		    RADLAST(1)
 
 
 
-NNAAMMEE
+NAME
        radlast - show "last" info from the radwtmp file
 
-SSYYNNOOPPSSIISS
-       rraaddllaasstt _[options_]
+SYNOPSIS
+       radlast [options]
 
-DDEESSCCRRIIPPTTIIOONN
-       The FreeRADIUS server can write an accounting log in the _w_t_m_p format of
-       the local system.  rraaddllaasstt is a frontend for the systems llaasstt command -
-       it  just  calls  llaasstt  with  the  _-_f _p_a_t_h___t_o___r_a_d_w_t_m_p___f_i_l_e argument, and
-       passes all options on the command line to the system llaasstt command.
+DESCRIPTION
+       The FreeRADIUS server can write an accounting log in the wtmp format of
+       the local system.  radlast is a frontend for the systems last command -
+       it  just  calls	last  with  the  -f path_to_radwtmp_file argument, and
+       passes all options on the command line to the system last command.
 
-OOPPTTIIOONNSS
-       See the manpage of the system llaasstt command.
+OPTIONS
+       See the manpage of the system last command.
 
-SSEEEE AALLSSOO
+SEE ALSO
        radiusd(8), radiusd.conf(5), wtmp(5), last(1).
 
-AAUUTTHHOORR
+AUTHOR
        Miquel van Smoorenburg, miquels@cistron.nl.
 
 
 
-                               22 February 2001                     RADLAST(1)
+			       22 February 2001 		    RADLAST(1)

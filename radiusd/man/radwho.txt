@@ -1,88 +1,88 @@
-RADWHO(1)                      FreeRADIUS Daemon                     RADWHO(1)
+RADWHO(1)		       FreeRADIUS Daemon		     RADWHO(1)
 
 
 
-NNAAMMEE
+NAME
        radwho - show online users
 
-SSYYNNOOPPSSIISS
-       rraaddwwhhoo  [--cc]  [--dd  _r_a_d_d_b___d_i_r_e_c_t_o_r_y]  [--ff] [--ii] [--nn] [--NN _n_a_s___i_p___a_d_d_r_e_s_s]
-       [--pp] [--PP _n_a_s___p_o_r_t] [--rr] [--RR] [--ss] [--SS] [--uu _u_s_e_r] [--UU _u_s_e_r] [--ZZ]
+SYNOPSIS
+       radwho  [-c]  [-d  raddb_directory]  [-f] [-i] [-n] [-N nas_ip_address]
+       [-p] [-P nas_port] [-r] [-R] [-s] [-S] [-u user] [-U user] [-Z]
 
-DDEESSCCRRIIPPTTIIOONN
+DESCRIPTION
        The FreeRADIUS server can be configured to maintain an  active  session
-       database  in  a  file called _r_a_d_u_t_m_p. This utility shows the content of
+       database  in  a	file called radutmp. This utility shows the content of
        that session database.
 
-OOPPTTIIOONNSS
+OPTIONS
        -c     Shows caller ID (if available) instead of the full name.
 
-       -d _r_a_d_d_b___d_i_r_e_c_t_o_r_y
-              The directory that  contains  the  RADIUS  configuration  files.
-              Defaults to _/_e_t_c_/_r_a_d_d_b.
+       -d raddb_directory
+	      The directory that  contains  the  RADIUS  configuration	files.
+	      Defaults to /etc/raddb.
 
-       -f     Behave  as  the  ’fingerd’ daemon - waits for one line of input,
-              then prints the output with lines \r\n terminated.
+       -f     Behave  as  the  'fingerd' daemon - waits for one line of input,
+	      then prints the output with lines \r\n terminated.
 
        -i     Shows the session ID instead of the full name.
 
-       -n     Normally radwho looks up the username in  the  systems  password
-              file, and shows the full username as well. The --nn flags prevents
-              this.
+       -n     Normally radwho looks up the username in	the  systems  password
+	      file, and shows the full username as well. The -n flags prevents
+	      this.
 
-       -N _n_a_s___i_p___a_d_d_r_e_s_s
-              Show only those entries which match the given NAS IP address.
+       -N nas_ip_address
+	      Show only those entries which match the given NAS IP address.
 
-       -p     Adds an extra column for the port type - I for ISDN, A for  Ana‐
-              log.
+       -p     Adds an extra column for the port type - I for ISDN, A for  Ana-
+	      log.
 
-       -P _n_a_s___p_o_r_t
-              Show only those entries which match the given NAS port.
+       -P nas_port
+	      Show only those entries which match the given NAS port.
 
-       -r     Outputs  all  data  in  _r_a_w  format - no headers, no formatting,
-              fields are comma-separated.
+       -r     Outputs  all  data  in  raw  format - no headers, no formatting,
+	      fields are comma-separated.
 
        -R     Output all data in RADIUS  attribute  format.   All  fields  are
-              printed.
+	      printed.
 
        -s     Show full name.
 
-       -S     Hide shell users. Doesn’t show the entries for users that do not
-              have a SLIP or PPP session.
+       -S     Hide shell users. Doesn't show the entries for users that do not
+	      have a SLIP or PPP session.
 
-       -u _u_s_e_r
-              Show only those entries which match  the  given  username  (case
-              insensitive).
+       -u user
+	      Show only those entries which match  the	given  username  (case
+	      insensitive).
 
-       -U _u_s_e_r
-              Show  only  those  entries  which match the given username (case
-              sensitive).
+       -U user
+	      Show  only  those  entries  which match the given username (case
+	      sensitive).
 
-       -Z     When combined with _-_R, prints out the contents of an Accounting-
-              Request  packet  which  can  be passed to _r_a_d_c_l_i_e_n_t, in order to
-              "zap" that users session from _r_a_d_u_t_m_p.
+       -Z     When combined with -R, prints out the contents of an Accounting-
+	      Request  packet  which  can  be passed to radclient, in order to
+	      "zap" that users session from radutmp.
 
        For example,
 
-              $ radwho -ZRN 10.0.0.1 | radclient -f - radius.example.net acct testing123
+	      $ radwho -ZRN 10.0.0.1 | radclient -f - radius.example.net acct testing123
 
        will result in all an  Accounting-Request  packet  being  sent  to  the
-       RADIUS  server,  which tells the server that the NAS rebooted.  i.e. It
+       RADIUS  server,	which tells the server that the NAS rebooted.  i.e. It
        "zaps" all of the users on that NAS.
 
        To "zap" one user, specifiy NAS, username, and NAS port:
 
-              $ radwho -ZRN 10.0.0.1 -u user -P 10 | radclient -f - radius.example.net acct testing123
+	      $ radwho -ZRN 10.0.0.1 -u user -P 10 | radclient -f - radius.example.net acct testing123
 
        Other combinations are also possible.
 
 
-SSEEEE AALLSSOO
+SEE ALSO
        radiusd(8), radclient(1), radiusd.conf(5).
 
-AAUUTTHHOORR
+AUTHOR
        Miquel van Smoorenburg, miquels@cistron.nl.
 
 
 
-                                 7 April 2005                        RADWHO(1)
+				 7 April 2005			     RADWHO(1)

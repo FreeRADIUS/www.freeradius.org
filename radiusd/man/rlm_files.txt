@@ -1,61 +1,61 @@
-rlm_files(5)                   FreeRADIUS Module                  rlm_files(5)
+rlm_files(5)		       FreeRADIUS Module		  rlm_files(5)
 
 
 
-NNAAMMEE
+NAME
        rlm_files - FreeRADIUS Module
 
-DDEESSCCRRIIPPTTIIOONN
-       The  _r_l_m___f_i_l_e_s module uses the ’users’ file for accessing authorization
-       information for users.  Additionally, it supports a ’users’ file syntax
+DESCRIPTION
+       The  rlm_files module uses the 'users' file for accessing authorization
+       information for users.  Additionally, it supports a 'users' file syntax
        to be applied to the accounting and pre-proxy sections.
 
        The main configuration items to be aware of are:
 
        usersfile
-              The  filename  of  the  ’users’ file, which is parsed during the
-              authorization stage of this module.
+	      The  filename  of  the  'users' file, which is parsed during the
+	      authorization stage of this module.
 
        acctusersfile
-              The filename of the ’users’ file, which  is  parsed  during  the
-              accounting stage of this module.
+	      The filename of the 'users' file, which  is  parsed  during  the
+	      accounting stage of this module.
 
        preproxy_usersfile
-              The  filename  of  the  ’users’ file, which is parsed during the
-              pre_proxy stage of this module.
+	      The  filename  of  the  'users' file, which is parsed during the
+	      pre_proxy stage of this module.
 
-       compat This option allows FreeRADIUS to parse an old style Cistron syn‐
-              tax.   The  default  is ’no’.  If you need to parse an old style
-              Cistron file, set this option to ’cistron’.
+       compat This option allows FreeRADIUS to parse an old style Cistron syn-
+	      tax.   The  default  is 'no'.  If you need to parse an old style
+	      Cistron file, set this option to 'cistron'.
 
-CCOONNFFIIGGUURRAATTIIOONN
+CONFIGURATION
        modules {
-         ... stuff here ...
-         files {
-           usersfile = %{confdir}/users
-           acctusersfile = %{confdir}/acct_users
-           preproxy_usersfile = %{confdir}/preproxy_users
-           compat = no
-         }
-         ... stuff here ...
+	 ... stuff here ...
+	 files {
+	   usersfile = %{confdir}/users
+	   acctusersfile = %{confdir}/acct_users
+	   preproxy_usersfile = %{confdir}/preproxy_users
+	   compat = no
+	 }
+	 ... stuff here ...
        }
 
 
-SSEECCTTIIOONNSS
-       aauutthhoorriizzaattiioonn,, aaccccoouunnttiinngg,, pprree__pprrooxxyy
+SECTIONS
+       authorization, accounting, pre_proxy
 
 
-FFIILLEESS
-       _/_e_t_c_/_r_a_d_d_b_/_r_a_d_i_u_s_d_._c_o_n_f_,    _/_e_t_c_/_r_a_d_d_b_/_u_s_e_r_s_,    _/_e_t_c_/_r_a_d_d_b_/_a_c_c_t___u_s_e_r_s_,
-       _/_e_t_c_/_r_a_d_d_b_/_p_r_e_p_r_o_x_y___u_s_e_r_s
+FILES
+       /etc/raddb/radiusd.conf,    /etc/raddb/users,	/etc/raddb/acct_users,
+       /etc/raddb/preproxy_users
 
 
-SSEEEE AALLSSOO
-       rraaddiiuussdd(8), rraaddiiuussdd..ccoonnff(5), uusseerrss(5)
+SEE ALSO
+       radiusd(8), radiusd.conf(5), users(5)
 
-AAUUTTHHOORRSS
+AUTHORS
        Chris Parker, cparker@segv.org
 
 
 
-                                5 February 2004                   rlm_files(5)
+				5 February 2004 		  rlm_files(5)
