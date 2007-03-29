@@ -1,0 +1,81 @@
+rlm_realm(5)                   FreeRADIUS Module                  rlm_realm(5)
+
+
+
+NNAAMMEE
+       rlm_realm - FreeRADIUS Module
+
+DDEESSCCRRIIPPTTIIOONN
+       The _r_l_m___r_e_a_l_m module parses the User-Name attribute into a User section
+       and a Realm section.  This is used primarily in a proxy situation, how‐
+       ever, Realms can also be used locally to provide different service pro‐
+       files based on the Realm being used.
+
+       The main configuration items to be aware of are:
+
+       format This can be either ’prefix’ or ’suffix’.  It  specifies  whether
+              the  Realm  is before or after the User portion in the User-Name
+              string.
+
+       delimiter
+              A single character in quotes, which is used  as  the  delimiting
+              character  that  separates  the  Realm  and User sections of the
+              string.
+
+       ignore_default
+              This is set to either ’yes’ or ’no’.  If set to ’yes’, this will
+              prevent  the  module  instance from matching a realm against the
+              DEFAULT entry.  This may be useful if you  have  multiple  realm
+              module instances.  The default is ’no’.
+
+       ignore_null
+              This is set to either ’yes’ or ’no’.  If set to ’yes’, this will
+              prevent the module instance from matching a  realm  against  the
+              NULL  entry.  This may be useful if you have multiple realm mod‐
+              ule instances.  The default is ’no’.
+
+       This module parses the realm from the User-Name attrbiute according  to
+       the instance configuration, and then performs a lookup to find a match‐
+       ing realm in the ’/etc/raddb/proxy.conf’ file.  Depending on  the  con‐
+       figuration  of  the  Realm  as matched in the file, the username may be
+       rewritten in a ’stripped’ format, or with the  Realm  portion  removed.
+       In either case, a Realm attribute is created and added to the packet on
+       a match, which can be used by other modules.
+
+       In order to force proxying for a request,  set  the  Proxy-To-Realm  :=
+       "realm-name" in the _u_s_e_r_s file, or in a database such as SQL.
+
+CCOONNFFIIGGUURRAATTIIOONN
+       modules {
+         ... stuff here ...
+         # useranme@realm syntax
+         realm suffix {
+           format = suffix
+           delimiter = "@"
+         }
+          # realm/username syntax
+          realm prefix {
+           format = prefix
+           delimiter = "/"
+         }
+         ... stuff here ...
+       }
+
+
+SSEECCTTIIOONNSS
+       aauutthhoorriizzaattiioonn,, pprree--aaccccoouunnttiinngg
+
+
+FFIILLEESS
+       _/_e_t_c_/_r_a_d_d_b_/_r_a_d_i_u_s_d_._c_o_n_f_, _/_e_t_c_/_r_a_d_d_b_/_p_r_o_x_y_._c_o_n_f
+
+
+SSEEEE AALLSSOO
+       rraaddiiuussdd(8), rraaddiiuussdd..ccoonnff(5), pprrooxxyy..ccoonnff(5)
+
+AAUUTTHHOORRSS
+       Chris Parker, cparker@segv.org
+
+
+
+                                  19 May 2006                     rlm_realm(5)

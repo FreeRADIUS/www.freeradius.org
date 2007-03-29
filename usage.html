@@ -58,7 +58,7 @@ following  files:</p>
  <A HREF="radiusd/INSTALL">INSTALL</a><br>
  <A HREF="radiusd/doc/README">doc/README</a><br>
  <A HREF="radiusd/raddb/radiusd.conf.in">radiusd.conf</a><br>
- Anything else in <A HREF="radiusd/doc/">doc/</a><br>
+ Anything else in the <A HREF="radiusd/doc/">doc/</a> directory, or the sample configuration files in the <A HREF="radiusd/raddb/">raddb/</a> directory.<br>
 </ul>
 
 Many of the modules are documented <em>only</em> in the comments
@@ -66,9 +66,57 @@ in the <A HREF="radiusd/raddb/radiusd.conf.in">radiusd.conf</a>
 file, sorry.  If this is insufficient, feel free to submit changes
 or updates.
 
+<h2>"man" Pages</h2>
+
+<h3>Program <code>man</code> pages.</h3>
+
+<a href="radiusd.txt">radiusd</a>
+<a href="radtest.txt">radtest</a>
+<a href="radclient.txt">radclient</a>
+<a href="radrelay.txt">radrelay</a>
+<a href="radsqlrelay.txt">radsqlrelay</a>
+<a href="radlast.txt">radlast</a>
+<a href="radwho.txt">radwho</a>
+<a href="radzap.txt">radzap</a>
+<a href="radeapclient.txt">radeapclient</a>
+
+<h3>Configuration file <code>man</code> pages.</h3>
+
+<a href="radiusd.conf.txt">radiusd.conf</a>
+<a href="clients.conf.txt">clients.conf</a>
+<a href="users.txt">users</a>
+<a href="dictionary.txt">dictionary</a>
+
+<h3>Module <code>man</code> pages.</h3>
+
+<a href="rlm_acct_unique.txt">acct_unique</a>
+<a href="rlm_always.txt">always</a>
+<a href="rlm_attr_filter.txt">attr_filter</a>
+<a href="rlm_attr_rewrite.txt">attr_rewrite</a>
+<a href="rlm_chap.txt">chap</a>
+<a href="rlm_counter.txt">counter</a>
+<a href="rlm_detail.txt">detail</a>
+<a href="rlm_expr.txt">expr</a>
+<a href="rlm_files.txt">files</a>
+<a href="rlm_mschap.txt">mschap</a>
+<a href="rlm_pap.txt">pap</a>
+<a href="rlm_passwd.txt">passwd</a>
+<a href="rlm_realm.txt">realm</a>
+<a href="rlm_sql_log.txt">sql_log</a>
+<a href="rlm_sql.txt">sql</a>
+<a href="rlm_unix.txt">unix</a>
+
+<p>If the server is installed properly on your local system, you should
+be able to type <code>man rlm_foo</code> to see the "man" page for the
+module "foo".</p>
+
+<p>Not all modules have "man" pages, so please read <a
+href="raddb/radiusd.conf.in">radiusd.conf</a> for additional
+documentation.</p>
+
 <h2>Documentation</h2>
 
-<p>There's plenty of documentation in the <code>doc/</code>
+<p>There is plenty of documentation in the <code>doc/</code>
 directory, but it is not complete as of yet.  We're working on it,
 but slowly.  As always, patches are welcome.</p>
 

@@ -1,0 +1,127 @@
+RADCLIENT(1)                   FreeRADIUS Daemon                  RADCLIENT(1)
+
+
+
+NNAAMMEE
+       radclient - send packets to a RADIUS server, show reply
+
+SSYYNNOOPPSSIISS
+       rraaddcclliieenntt  [--dd  _r_a_d_d_b___d_i_r_e_c_t_o_r_y]  [--cc  _c_o_u_n_t]  [--ff  _f_i_l_e]  [--ii  _i_d] [--nn
+       _n_u_m___r_e_q_u_e_s_t_s___p_e_r___s_e_c_o_n_d] [--pp _n_u_m___r_e_q_u_e_s_t_s___i_n___p_a_r_a_l_l_e_l] [--rr _n_u_m___r_e_t_r_i_e_s]
+       [--ss] [--SS _s_h_a_r_e_d___s_e_c_r_e_t___f_i_l_e] [--tt _t_i_m_e_o_u_t] [--qqvvxx] _s_e_r_v_e_r _{_a_c_c_t_|_a_u_t_h_|_s_t_a_‐
+       _t_u_s_|_d_i_s_c_o_n_n_e_c_t_} _s_e_c_r_e_t
+
+DDEESSCCRRIIPPTTIIOONN
+       rraaddcclliieenntt is a radius client program.  It  can  send  arbitrary  radius
+       packets  to  a  radius  server, then shows the reply. It can be used to
+       test changes you made in the configuration of the radius server, or  it
+       can be used to monitor if a radius server is up.
+
+       rraaddcclliieenntt reads radius attribute/value pairs from it standard input, or
+       from a file specified on  the  command  line.  It  then  encodes  these
+       attribute/value  pairs  using  the  dictionary,  and  sends them to the
+       remote server.
+
+       The  _U_s_e_r_-_P_a_s_s_w_o_r_d  and  _C_H_A_P_-_P_a_s_s_w_o_r_d  attributes  are   automatically
+       encrypted before the packet is sent to the server.
+
+
+OOPPTTIIOONNSS
+       -c _c_o_u_n_t
+              Send each packet _c_o_u_n_t times.
+
+       -d _r_a_d_d_b___d_i_r_e_c_t_o_r_y
+              The   directory  that  contains  the  RADIUS  dictionary  files.
+              Defaults to _/_e_t_c_/_r_a_d_d_b.
+
+       -f _f_i_l_e
+              File to read the attribute/value pairs  from.  If  this  is  not
+              specified,  they are read from stdin.  This option can be speci‐
+              fied multiple times, in which case packets are sent in order  by
+              file,  and  within each file, by first packet to last packet.  A
+              blank line separates logical packets within a file.
+
+       -i _i_d  Use _i_d as the RADIUS request Id.
+
+       -n _n_u_m___r_e_q_u_e_s_t_s___p_e_r___s_e_c_o_n_d
+              Send  _n_u_m___r_e_q_u_e_s_t_s___p_e_r___s_e_c_o_n_d,  evenly  spaced  over  time.   By
+              default, the requests are sent as fast as possible.  This option
+              allows you to slow  down  the  rate  at  which  radclient  sends
+              requests.
+
+       -p _n_u_m___r_e_q_u_e_s_t_s___i_n___p_a_r_a_l_l_e_l
+              Send  _n_u_m___r_e_q_u_e_s_t_s___i_n___p_a_r_a_l_l_e_l,  without  waiting for a response
+              for each one.  By default, radclient sends the first request  it
+              has  read,  waits  for  the  response,  and once the response is
+              received, sends the second request in  its  list.   This  option
+              allows  you  to  send  many  requests  at  simultaneously.  Once
+              _n_u_m___r_e_q_u_e_s_t_s___i_n___p_a_r_a_l_l_e_l are sent, radclient waits  for  all  of
+              the  responses  to  arrive  (or  for  the requests to time out),
+              before sending any more packets.
+
+       -q     Go to quiet mode, and do not print out anything.
+
+       -r _n_u_m___r_e_t_r_i_e_s
+              Try to send each packet _n_u_m___r_e_t_r_i_e_s times, before giving  up  on
+              it.  The default is 10.
+
+       -s     Print out some summaries of packets sent and received.
+
+       -S _s_h_a_r_e_d___s_e_c_r_e_t___f_i_l_e
+              Rather  than  reading  the  shared  secret from the command-line
+              (where it can be seen by others on the local  system),  read  it
+              instead from _s_h_a_r_e_d___s_e_c_r_e_t___f_i_l_e.
+
+       -t _t_i_m_e_o_u_t
+              Wait  _t_i_m_e_o_u_t  seconds  before  deciding  that  the  NAS has not
+              responded to a request, and re-sending the packet.  The  default
+              timeout is 3.
+
+       -v     Print out version information.
+
+       -x     Print out debugging information.
+
+       server[:port]
+              The  hostname  or  IP address of the remote server. Optionally a
+              UDP port can be specified. If no UDP port is  specified,  it  is
+              looked  up  in  _/_e_t_c_/_s_e_r_v_i_c_e_s.  The  service  name looked for is
+              rraaddaacccctt  for  accounting  packets,  and  rraaddiiuuss  for  all  other
+              requests.  If  a service is not found in _/_e_t_c_/_s_e_r_v_i_c_e_s, 1813 and
+              1812 are used respectively.
+
+
+       acct | auth | status | disconnect
+              Use aauutthh to send an authentication packet (Access-Request), aacccctt
+              to  send  an  accounting  packet (Accounting-Request), ssttaattuuss to
+              send an status packet (Status-Server), or ddiissccoonnnneecctt to  send  a
+              disconnection request. Instead of these values, you can also use
+              a decimal code here. For example, code 12 is also SSttaattuuss--SSeerrvveerr.
+
+
+       secret The  shared  secret  for this client.  It needs to be defined on
+              the radius server side too, for the IP address you  are  sending
+              the radius packets from.
+
+
+EEXXAAMMPPLLEE
+       A  sample session that queries the remote server for _S_t_a_t_u_s_-_S_e_r_v_e_r (not
+       all servers support this, but FreeRADIUS has configurable  support  for
+       it).
+
+              $ echo "User-Name = fnord" | radclient 192.168.1.42 12 s3cr3t
+              Sending request to server 192.168.1.42, port 1812.
+              radrecv: Packet from host 192.168.1.42 code=2, id=140, length=54
+                  Reply-Message = "FreeRADIUS up 21 days, 02:05"
+
+
+
+SSEEEE AALLSSOO
+       radiusd(8),
+
+AAUUTTHHOORRSS
+       Miquel  van Smoorenburg, miquels@cistron.nl.  Alan DeKok <aland@freera‐
+       dius.org>
+
+
+
+                                 7 April 2005                     RADCLIENT(1)

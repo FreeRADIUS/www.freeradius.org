@@ -1,0 +1,78 @@
+rlm_detail(5)                  FreeRADIUS Module                 rlm_detail(5)
+
+
+
+NNAAMMEE
+       rlm_detail - FreeRADIUS Module
+
+DDEESSCCRRIIPPTTIIOONN
+       The  _r_l_m___d_e_t_a_i_l  module writes radius packets to ’detail’ files.  It is
+       primarily used for storing accounting information, but can be  used  in
+       other sections to write packet details as well.
+
+       The  file  format is similar to that of the old Livingston servers, and
+       many ’detail’ file parsers should work with FreeRADIUS.
+
+       The main configuration items to be aware of are:
+
+       detailfile
+              The file name in which  to  store  the  radius  packet  records.
+              NOTE: this variable is run through dynamic string expansion, and
+              can include FreeRADIUS variables to create a dynamic filename.
+
+            %{radacctdir}/%{Client-IP-Address}/detail-%Y%m
+
+            This will create one file per month, for each client.
+            This accomplishes ’file rotation’ automatically from
+            within the server.
+
+
+       detailperm
+              The file permissions of the detailfile.  If omitted, the default
+              is 0600.
+
+       dirperm
+              The  directory  permissions  of  the  directory where the detail
+              files are created.  The default is 0755.
+
+       locking
+              This option is set to ’yes’ or ’no’.  By  default  it  is  ’no’.
+              Set  this  to yes to enable file locking, which is used with the
+              ’radrelay’ program.
+
+CCOONNFFIIGGUURRAATTIIOONN
+       modules {
+         ...
+         detail {
+           detailfile = %A/%{Client-IP-Address}/detail-%Y%m
+           detailperm = 0600
+           dirperm = 0755
+           locking = no
+         }
+         ...
+       }
+         ...
+       accounting {
+        ...
+        detail
+        ...
+       }
+
+
+SSEECCTTIIOONNSS
+       aauutthhoorriizzaattiioonn,, aaccccoouunnttiinngg,, pprree__pprrooxxyy,, ppoosstt__pprrooxxyy,, ppoosstt__aauutthheennttiiccaattiioonn
+
+
+FFIILLEESS
+       _/_e_t_c_/_r_a_d_d_b_/_r_a_d_i_u_s_d_._c_o_n_f
+
+
+SSEEEE AALLSSOO
+       rraaddiiuussdd(8), rraaddiiuussdd..ccoonnff(5)
+
+AAUUTTHHOORRSS
+       Chris Parker, cparker@segv.org
+
+
+
+                                5 February 2004                  rlm_detail(5)

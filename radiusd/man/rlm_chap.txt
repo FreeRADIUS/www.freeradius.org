@@ -1,0 +1,38 @@
+rlm_chap(5)                    FreeRADIUS Module                   rlm_chap(5)
+
+
+
+NNAAMMEE
+       rlm_chap - FreeRADIUS Module
+
+DDEESSCCRRIIPPTTIIOONN
+       The _r_l_m___c_h_a_p module provides CHAP functionality.
+
+       This  module  validates  a user with CHAP authentication.  If called in
+       Authorize, it will look  for  CHAP-Password  attribute  in  the  Acess-
+       Request and adds an Auth-Type attribute set to CHAP if the Config-Items
+       list unless Auth-Type has already set.
+
+       CHAP authentication requires access to the clear-text password for  the
+       user.   Standard  Unix system authentication or passwords encrypted via
+       crypt() are not compatible with CHAP.
+
+
+SSEECCTTIIOONNSS
+       aauutthhoorriizzaattiioonn,, aauutthheennttiiccaattiioonn
+
+
+FFIILLEESS
+       _/_e_t_c_/_r_a_d_d_b_/_r_a_d_i_u_s_d_._c_o_n_f
+
+
+SSEEEE AALLSSOO
+       rraaddiiuussdd(8), rraaddiiuussdd..ccoonnff(5)
+
+AAUUTTHHOORR
+       Chris Parker, cparker@segv.org
+
+
+
+
+                                3 February 2004                    rlm_chap(5)

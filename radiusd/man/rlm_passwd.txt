@@ -1,0 +1,116 @@
+rlm_passwd(5)                  FreeRADIUS Module                 rlm_passwd(5)
+
+
+
+NNAAMMEE
+       rlm_passwd - FreeRADIUS Module
+
+DDEESSCCRRIIPPTTIIOONN
+       The  _r_l_m___p_a_s_s_w_d module provides authorization via files similar in for‐
+       mat to /etc/passwd.
+
+       The lm_passwd module allows you to  retrieve  any  account  information
+       from  any  files with passwd-like format (/etc/passwd, /etc/group, smb‐
+       passwd, .htpasswd, etc).  Every field of the file may be  mapped  to  a
+       RADIUS attribute, with one of the fields used as a key.
+
+       The  module  reads the file when it initializes, and caches the data in
+       memory.  As a result, it does not support dynamic updates of the  files
+       (the  server has to be HUP’d), but it is very fast, even for files with
+       thousands of lines.
+
+       The configuration item(s):
+
+       filename
+              The path to the file.
+
+       delimiter = ":"
+              The character to use as a delimiter between fields.  The default
+              is ":"
+
+       hashsize
+              The  size  of  the  hashtable.  If 0, then the passwords are not
+              cached and the passwd file is parsed for every request.   We  do
+              not  recommend  such  a  configuration.  A larger hashsize means
+              less probability of collision and faster  search  in  hashtable.
+              Having  a  hashsize  in  the  range  of 30-100% of the number of
+              passwd file records is reasonable.
+
+       allowmultiplekeys
+              If set to ’yes’, and more than one record in  file  matches  the
+              request,  then  the attributes from all records will be used. If
+              set to ’no’ (the default) the module will warn about  duplicated
+              records.
+
+       ignorenislike
+              If  set  to ’yes’, then all records from the file beginning with
+              the ’+’ sign will be ignored.  The default is ’no’.
+
+       authtype
+              If an entry matches, the Auth-Type for the request will  be  set
+              to the one specified here.
+
+       format The  format  of the fields in the file, given as an example line
+              from the file, with the content of  the  fields  as  the  RADIUS
+              attributes which the fields map to.  The fields are seperated by
+              the ’:’ character.
+
+       The key field is signified by being  preceded  with  a  ’*’  character,
+       which  indicates  that the field has only one key, like the /etc/passwd
+       file.  The key field may instead be preceded with ’*,’, which indicates
+       that the field has multiple possible keys, like the /etc/group file.
+
+       The other fields signify RADIUS attributes which, by default, are added
+       to the configuration items for a request.
+
+       To add an attribute to the request (as though it was sent by the  NAS),
+       prefix  the  attribute name in the "format" string with the ’~’ charac‐
+       ter.
+
+       To add an attribute to the reply (to be sent back to  the  NAS)  prefix
+       the attribute name in the "format" string with the ’=’ character.
+
+
+EEXXAAMMPPLLEESS
+       format = "My-Group:::*,User-Name"
+
+              Parse a file similar to the /etc/group file.  An entry matches a
+              request when the name in a User-Name  attribute  exists  in  the
+              comma-seperated  list  of  a  line  in  the file.  When an entry
+              matches, a "My-Group" attribute will be created and added to the
+              configuration   items  for  the  request.   The  value  of  that
+              attribute will be taken from the first  field  of  the  matching
+              line in the file.
+
+              The  ":::"  in  the format string means that there are extra two
+              fields in the line, in between the group name and list  of  user
+              names.  Those fields do not map to any RADIUS attribute, and are
+              therefore ignored.
+
+              For this example to work in practice, you will have to  add  the
+              My-Group  attribute  to the dictionary file.  See the dictionary
+              manual page for details on how this may be done.
+
+       format = "~My-Group:::*,User-Name"
+
+              Similar to the previous entry, except the My-Group attribute  is
+              added to the request, as though it was sent by the NAS.
+
+SSEECCTTIIOONNSS
+       aauutthhoorriizzee
+
+
+FFIILLEESS
+       _/_e_t_c_/_r_a_d_d_b_/_r_a_d_i_u_s_d_._c_o_n_f
+
+
+SSEEEE AALLSSOO
+       rraaddiiuussdd(8), rraaddiiuussdd..ccoonnff(5) ddiiccttiioonnaarryy(5),
+
+AAUUTTHHOORR
+       Alan DeKok <aland@freeradius.org>
+
+
+
+
+                                 14 April 2004                   rlm_passwd(5)

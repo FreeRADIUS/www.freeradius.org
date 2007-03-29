@@ -1,0 +1,66 @@
+RADTEST(1)                     FreeRADIUS Daemon                    RADTEST(1)
+
+
+
+NNAAMMEE
+       radtest - send packets to a RADIUS server, show reply
+
+SSYYNNOOPPSSIISS
+       rraaddtteesstt  [--dd _r_a_d_d_b___d_i_r_e_c_t_o_r_y] _u_s_e_r _p_a_s_s_w_o_r_d _r_a_d_i_u_s_-_s_e_r_v_e_r _n_a_s_-_p_o_r_t_-_n_u_m_‐
+       _b_e_r _s_e_c_r_e_t [pppppphhiinntt] [nnaassnnaammee]
+
+DDEESSCCRRIIPPTTIIOONN
+       rraaddtteesstt  is  a  frontend  to  rraaddcclliieenntt(1).  It  generates  a  list  of
+       attribute/value  pairs  based  on the command line arguments, and feeds
+       these into rraaddcclliieenntt. It’s a fast and convenient way to test  a  radius
+       server.
+
+
+OOPPTTIIOONNSS
+       -d _r_a_d_d_b___d_i_r_e_c_t_o_r_y
+              The   directory  that  contains  the  RADIUS  dictionary  files.
+              Defaults to _/_e_t_c_/_r_a_d_d_b.
+
+
+       user   Username to send.
+
+
+       password
+              Password of the user.
+
+
+       radius-server
+              Hostname or IP address of the radius server. Optionally, you may
+              specify a port by appending :port
+
+
+       nas-port-number
+              The value of the NAS-Port attribute. Is an integer between 0 and
+              2^31, and it really doesn’t matter what you put here. _1_0 will do
+              fine.
+
+
+       secret The shared secret for this client.
+
+
+       ppphint
+              If  you put an integer > 0 here, radtest (or actually radclient)
+              will add the attribute _F_r_a_m_e_d_-_P_r_o_t_o_c_o_l  _=  _P_P_P  to  the  request
+              packet.
+
+
+       nasname
+              If  present, this will be resolved to an IP address and added to
+              the request packet as the _N_A_S_-_I_P_-_A_d_d_r_e_s_s attribute. If you don’t
+              specify it, the local hostname of the system will be used.
+
+
+SSEEEE AALLSSOO
+       radiusd(8), radclient(1).
+
+AAUUTTHHOORR
+       Miquel van Smoorenburg, miquels@cistron.nl.
+
+
+
+                               24 February 2001                     RADTEST(1)

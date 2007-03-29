@@ -1,0 +1,66 @@
+RADZAP(1)                      FreeRadius Daemon                     RADZAP(1)
+
+
+
+NNAAMMEE
+       radzap - remove rogue entries from the active sessions database
+
+SSYYNNOOPPSSIISS
+       rraaddzzaapp [--dd _r_a_d_d_b___d_i_r_e_c_t_o_r_y] [--NN _n_a_s___i_p___a_d_d_r_e_s_s] [--PP _n_a_s___p_o_r_t] [--uu _u_s_e_r]
+       [--UU _u_s_e_r] _s_e_r_v_e_r_[_:_p_o_r_t_] _s_e_c_r_e_t
+
+DDEESSCCRRIIPPTTIIOONN
+       The FreeRadius server can be configured to maintain an  active  session
+       database  in  a  file  called _r_a_d_u_t_m_p. Commands like rraaddwwhhoo(1) use this
+       database. Sometimes that database can get out  of  sync,  and  then  it
+       might contain rogue entries. rraaddzzaapp can clean up this database.
+
+       As  of FreeRADIUS 1.0.3, rraaddzzaapp is a simple shell-script wrapper around
+       rraaddwwhhoo(1) and rraaddcclliieenntt(1).
+
+       The sessions are "zapped" by sending an Accounting-Request packet which
+       contains the information necessary for the server to delete the session
+       record.  rraaddzzaapp sends a packet to the server, rather  than  writing  to
+       _r_a_d_u_t_m_p  directly,  because  session  records may also be maintained in
+       SQL.
+
+OOPPTTIIOONNSS
+       -d _r_a_d_d_b___d_i_r_e_c_t_o_r_y
+              The directory that  contains  the  RADIUS  configuration  files.
+              rraaddzzaapp  reads  _r_a_d_i_u_s_d_._c_o_n_f  to  determine  the  location of the
+              _r_a_d_u_t_m_p file.
+
+       -N _n_a_s___i_p___a_d_d_r_e_s_s
+              Zap the entries which match the given NAS IP address.
+
+       -P _n_a_s___p_o_r_t
+              Zap the entries which match the given NAS port.
+
+       -u _u_s_e_r
+              Zap the entries which match the given  username  (case  insensi‐
+              tive).
+
+       -U _u_s_e_r
+              Zap the entries which match the given username (case sensitive).
+
+       server[:port]
+              The hostname or IP address of the remote  server.  Optionally  a
+              UDP  port  can  be specified. If no UDP port is specified, it is
+              looked up in _/_e_t_c_/_s_e_r_v_i_c_e_s.  The  service  name  looked  for  is
+              rraaddaacccctt  for  accounting  packets,  and  rraaddiiuuss  for  all  other
+              requests. If a service is not found in _/_e_t_c_/_s_e_r_v_i_c_e_s,  1813  and
+              1812 are used respectively.
+
+       secret The  shared  secret  for this client.  It needs to be defined on
+              the radius server side too, for the IP address you  are  sending
+              the radius packets from.
+
+SSEEEE AALLSSOO
+       radwho(1), radclient(1), radiusd(8), radiusd.conf(5).
+
+AAUUTTHHOORR
+       Alan DeKok <aland@ox.org>
+
+
+
+                                 8 April 2005                        RADZAP(1)

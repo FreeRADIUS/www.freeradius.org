@@ -1,0 +1,71 @@
+rlm_acct_unique(5)             FreeRADIUS Module            rlm_acct_unique(5)
+
+
+
+NNAAMMEE
+       rlm_acct_unique - FreeRADIUS Module
+
+DDEESSCCRRIIPPTTIIOONN
+       The _r_l_m___a_c_c_t___u_n_i_q_u_e module creates a unique accounting session Id.
+
+       Many  NAS  vendors  have  their  equipment  supply  an  Acct-Session-Id
+       attribute which is not unique over reboots.  This makes accounting dif‐
+       ficult,  as there will be many independent sessions with the same Acct-
+       Session-Id attribute.  This module uses the Acct-Session-Id  attribute,
+       along  with  other  attributes  in the request, to create a more unique
+       session ID, called Acct-Unique-Session-Id.
+
+       The main configuration items to be aware of are:
+
+       key    A list of the attributes used in calculating an MD5  hash  which
+              is used as the value for the unique session id.
+
+CCOONNFFIIGGUURRAATTIIOONN
+       modules {
+         ...
+         acct_unique {
+            key = "User-Name, Acct-Session-Id, NAS-IP-Address, NAS-Port"
+         }
+         ...
+       }
+        ...
+       preacct {
+         ...
+         acct_unique
+         ...
+       }
+
+       After  generating  the  MD5  hash, the module adds it to the accounting
+       request packet received from the client.  It will look  something  like
+       this in your detail file:
+
+            Acct-Unique-Session-Id = "c66ef57e480b9d26"
+
+       NOTE:   Any attribute you specify that is not found in the ’dictionary’
+       file will cause the server to fail and exit with an error.
+
+       NOTE:  If you want the Acct-Unique-Session-Id of the Start and the Stop
+       packet  of  a  particular session to match, you must use values for the
+       key that will stay the same for the Start and Stop.  The above  example
+       is  a good start.  Adding ’Acct-Session-Time’, for example, would cause
+       a mismatch because that value is not the same on  the  Start  and  Stop
+       accounting packets.
+
+
+SSEECCTTIIOONNSS
+       aauutthhoorriizzaattiioonn,, pprree--aaccccoouunnttiinngg,, aaccccoouunnttiinngg
+
+
+FFIILLEESS
+       _/_e_t_c_/_r_a_d_d_b_/_r_a_d_i_u_s_d_._c_o_n_f
+
+
+SSEEEE AALLSSOO
+       rraaddiiuussdd(8), rraaddiiuussdd..ccoonnff(5)
+
+AAUUTTHHOORRSS
+       Chris Parker, cparker@segv.org
+
+
+
+                                3 February 2004             rlm_acct_unique(5)
