@@ -41,6 +41,11 @@ LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
 and put in reverse-chronological order.
        -->
 
+     <li><span class="date">2007.04.10</span> <a name="1.1.5">v1.1.5</a>, and earlier - A malicous 802.1x supplicant could send malformed Diameter format attributes inside of an EAP-TTLS tunnel.  The server would reject the authentication request, but would leak one <tt>VALUE_PAIR</tt> data structure, of approximately 300 bytes.  If an attacker performed the attack many times (e.g. thousands or more), the server could leak megabytes of memory, possibly leading to an "out of memory" condition, and process exit.
+<p>
+This bug was found as part of the <a href="http://www.coverity.com/">Coverity</a> <a href="http://scan.coverity.com">Scan</a> project.
+</li>
+<br />
      <li><span class="date">2006.03.20</span> <a name="1.0.5">v1.0.5</a>, and <a name="1.1.0">v1.1.0</a> - A validation issue exists with the EAP-MSCHAPv2 module in all versions from 1.0.0 (where the module first appeared) to 1.1.0.  Insufficient input validation was being done in the EAP-MSCHAPv2 state machine.  A malicious attacker could manipulate their EAP-MSCHAPv2 client state machine to potentially convince the server to bypass authentication checks.  This bypassing could also result in the server crashing.  We recommend that administrators upgrade immediately.</li>
  <br>
 
