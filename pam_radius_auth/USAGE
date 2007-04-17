@@ -62,15 +62,22 @@ client_id=bar  - send a NAS-Identifier RADIUS attribute with string
                  This feature may be disabled by using 'client_id='.
                  i.e. A blank client ID.
 
-nowarn         - Turn off all warning messages  NOT IMPLEMENTED
-
-retry = #      - allow a number (1 to 5) of retries before continuing
-                 to the next authentication module
+retry = #      - allow a number of retries before continuing to the next
+                 authentication module
 
 use_authtok    - force the use of a previously entered password.
                  This is  needed for pluggable password strength checking
                  i.e. try cracklib to be sure it's secure, then go update
                  the RADIUS server.
+
+ruser          - If PAM_USER is root, Use the value of PAM_RUSER instead
+                 of PAM_USER to determine the username to authenticate via
+                 RADIUS.  This is to allow 'su' to act like 'sudo'.
+
+localifdown    - This option tells pam_radius to return PAM_IGNORE instead
+                 of PAM_AUTHINFO_UNAVAIL if RADIUS auth failed due to
+                 network unavailability.  PAM_IGNORE tells the pam stack
+                 to continue down the stack regardless of the control flag.
 
 accounting_bug - When used, the accounting response vector is NOT
                  validated.  This option will probably only be necessary
