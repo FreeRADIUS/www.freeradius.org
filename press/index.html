@@ -22,6 +22,55 @@
 
 <!-- Remove download links from older versions! -->
 
+<dt><span class="date">May 16, 2007</span> - <b>FreeRADIUS <a
+name="freeradius-2.0.0-pre1">2.0.0-pre1</a> has been released.</b> <a
+href="ftp://ftp.freeradius.org/pub/radius/freeradius-2.0.0-pre1.tar.gz">Download</a>
+(<a
+href="ftp://ftp.freeradius.org/pub/radius/freeradius-2.0.0-pre1.tar.gz.sig">PGP
+Signature</a>). </dt>
+
+<dd><p>This is the first "pre" release of what will become version
+2.0.0 of the FreeRADIUS server.  Please download it and test it, to
+ensure that any issues are caught before the final 2.0.0
+release.</p>
+
+<p>It has been almost three years since 1.0.0 was released, and it's
+high time for the release of the next major version of the server.
+The notable changes between 1.x and 2.x are:</p>
+
+<ul>
+<li>Debugging mode is much clearer and easier to read.</li>
+<li>EAP-TLS and OpenSSL certificates "just work".
+    See raddb/certs/README for details.</li>
+<li>Proxying works much better than in 1.x.  We mean <em>much</em> better.
+    See proxy.conf for details.</li>
+<li>rlm_unix no longer has an "authenticate" section.
+    See "man rlm_unix" for details.</li>
+<li>The server has full support for IPv6.</li>
+<li>The server has much more complete support for SNMP MIBs.</li>
+<li>radiusd.conf has limited support for "if/then/else".
+    See doc/configurable_failover for details.</li>
+<li>"listen" sections can have per-socket clients.</li>
+<li>Replaced "radrelay" and "radsqlrelay".
+See "man radrelay.conf" for details.</li>
+<li>Post-Proxy-Type "Fail" section is executed when a home server
+fails to respond to a request.  See "radiusd.conf" for details.</li>
+<li>Configuration files CANNOT be copied directly from 1.x. Some may work, most will require careful porting.</li>
+</ul>
+
+<p>There are a few known issues with 2.0.0-pre1 that will be fixed
+before the final 2.0.0 release.  These issues are:</p>
+
+<ul>
+<li>HUP handling still isn't correct.  Almost anything may happen
+on HUP.</li>
+<li>The "radrelay" integration into the server is not yet finalized
+<br />Reading the detail files will work, mostly.</li>
+</ul>
+<p></p>
+</dd>
+
+
 <dt><span class="date">April 16, 2007</span> - <b>PAM Module version <a
 name="pam-1.3.17">1.3.17</a> has been released.</b> <a
 href="ftp://ftp.freeradius.org/pub/radius/pam_radius-1.3.17.tar.gz">Download</a>
