@@ -152,6 +152,7 @@ rfc4590	Digest-Domain
 rfc4590	Digest-Stale
 rfc4590	Digest-HA1
 rfc4590	SIP-AOR
+rfc4849	NAS-Filter-Rule
 rfc2865 Class
 rfc2865 State
 rfc4818 Delegated-IPv6-Prefix
