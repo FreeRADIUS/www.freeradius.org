@@ -52,37 +52,34 @@ Apache <a href="/mod_auth_radius/">module</a>.
 
 <h2>Recent News</h2>
 
-<span class="date">2007.04.12</span> Version <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
+<span class="date">2007.07.25</span> Version <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
 <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2.sig">(sig)</a>
 has been released.  The focus of this release is stability.
 
 <h3>Feature Improvements</h3
 <ul>
-<li>Added more dictionaries</li>
+<li>Updated LDAP documentation.</li>
+<li>Added note on DH parameters in eap.conf, and debugging messages
+which complain if DH is used, but not configured properly.</li>
+<li>Updated the Mikrotik dictionary.  Added a note that the sample
+dictionary they supply is broken.</li>
+<li>Output more information on blocked threads, which should help
+narrow down which modules is causing the problem.</li>
+<li>Added more eDirectory support.</li>
+<li>rlm_ldap now prints out attributes in the standard format</li>
+<li>Enabled server-side handling of procedures in MySQL</li>
 </ul>
 
 <h3>Bug Fixes</h3>
 <ul>
-<li>Corrected typo in rlm_pap.c (closes #440)</li>
-<li>Corrected typo in src/main/auth.c (closes #437)</li>
-<li>Suppress SSL error messages if error is zero.  (closes #436)</li>
-<li>Don't complain about "Error in read client certificate A"
-if we expect to read it in the next packet.  Fix based on patch
-by Dan Lukes.</li>
-<li>Corrected nearly 30 bugs found by Coverity
-See also http://scan.coverity.com</li>
-<li>Don't die on HUP.  Instead leak memory (sorry).  After a few
-hundred HUP's, the server will have leaked a few megabytes of
-memory, and you should probably re-start it.  It's ugly, but
-better than dying.  (Closes #426)</li>
-<li>Corrected a few double free's</li>
-<li>Corrected typo in radrelay, which prevented it from working</li>
-<li>Made Firebird module build</li>
-<li>Fixed bug in PostgreSQL module that caused server crash.</li>
-<li>Fixed bug in SQL module that could cause server to crash.</li>
+<li>Added NT-Hash support for mschap_xlat.</li>
+<li>Corrected documentation to point to correct location of files.</li>
+<li>Checks for more recent FreeBSD versions.</li>
+<li>uses -DLDAP_DEPRECATED to avoid OpenLDAP crashes.</li>
+<li>Use correct value for authentication name in rlm_mschap.</li>
+<li>Fix over-ride for usernames when use_tunneled_reply = yes.</li>
 </ul>
 
-<p>Anyone using EAP-TTLS <a href="/security.html#1.1.5">should upgrade</a> to this version.</p>
 <hr />
 
 <p>The server is released under the <a
