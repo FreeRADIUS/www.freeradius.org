@@ -22,6 +22,75 @@
 
 <!-- Remove download links from older versions! -->
 
+<dt><span class="date">August 29, 2007</span> - <b>FreeRADIUS <a
+name="freeradius-server-2.0.0-pre2">2.0.0-pre2</a> has been released.</b> <a
+href="ftp://ftp.freeradius.org/pub/radius/freeradius-server-2.0.0-pre2.tar.gz">Download</a>
+(<a
+href="ftp://ftp.freeradius.org/pub/radius/freeradius-server-2.0.0-pre2.tar.gz.sig">PGP
+Signature</a>). </dt>
+
+<dd><p>This is the second "pre" release of what will become version
+2.0.0 of the FreeRADIUS server.  Please download it and test it, to
+ensure that any issues are caught before the final 2.0.0
+release.  The notable changes between 2.0.0-pre1 and 2.0.0-pre2 are:</p>
+
+<ul>
+<li>There is a new policy "language" that makes it trivial to implement almost every policy.  See <tt>man unlang</tt> for comprehensive documentation.</li>
+<li><tt>radrelay</tt> functionality has been improved.  You can now limit the rate at which new requests are read from the <tt>detail</tt> file.  Please test and comment on any issues you see.
+<li>Virtual server support (like Apache).  See <tt>raddb/sites-available</tt> and <tt>raddb/sites-enabled</tt></li>
+<ul>
+<li>Multiple virtual servers may be configured.  Each one can have local policies that do not affect any other virtual servers.</a>
+<li>An IP address / port can be statically tied to one virtual server.</li>
+<li>An IP address / port can be dynamically directed to a virtual server</li>
+<li>Inner tunnel EAP sessions can be statically tied to one one virtual server.</li>
+<li>Inner tunnel EAP sessions can be dynamically directed to a virtual server.</li>
+<li>Each virtual server can have its own, private, list of clients.</li>
+<li>One client can be listed in multiple virtual servers, possibly with a different shared secret for each server.</a>
+</ul>
+<li>The biggest change from earlier versions of FreeRADIUS is that at
+least one default virtual server <b>must</b> be used.  If you are
+upgrading from a previous version of FreeRADIUS, this change can be
+done by editing <tt>radiusd.conf</tt>, and wrapping all of the
+<tt>authorize</tt>, <tt>authenticate</tt>, etc. sections in one
+<tt>server</tt> block, as follows:
+
+<ul>
+<pre>
+  server {	# line to add
+	authorize {
+		...
+	}
+	authenticate {
+		...
+	}
+	accounting {
+		...
+	}
+	...
+	post-proxy {
+		...
+	}
+  }  		# matching line to add
+</pre>
+</ul>
+
+<p>If this change is not made, the server <b>will not start</b>.</p></li>
+
+<li>The changes from 1.x to 2.0.0-pre1 are outlined below in the <a
+href="#freeradius-server-2.0.0-pre1">2.0.0-pre1</a> release
+announcement.</li>
+
+<li>There are a few known issues with 2.0.0-pre2 that should be fixed
+before the final 2.0.0 release.  These issues are:
+
+<ul>
+<li>HUP handling still doesn't work well.  A proposal to use RTA was <a href="http://lists.freeradius.org/pipermail/freeradius-devel/2007-July/011579.html">posted to the mailing list</a>.  Please comment if you have any opinions.</li>
+</ul>
+</li>
+</ul>
+<p></p>
+</dd>
+
 <dt><span class="date">July 25, 2007</span> - <b>Version <a
 name="1.1.7">1.1.7</a> has been released.</b> <a
 href="ftp://ftp.freeradius.org/pub/radius/freeradius-1.1.7.tar.gz">Download</a>
@@ -34,11 +103,8 @@ found in 1.1.6 have been fixed.  Some features have been added,
 including support for stored procedures in MySQL.</p></dd>
 
 <dt><span class="date">May 16, 2007</span> - <b>FreeRADIUS <a
-name="freeradius-server-2.0.0-pre1">2.0.0-pre1</a> has been released.</b> <a
-href="ftp://ftp.freeradius.org/pub/radius/freeradius-server-2.0.0-pre1.tar.gz">Download</a>
-(<a
-href="ftp://ftp.freeradius.org/pub/radius/freeradius-server-2.0.0-pre1.tar.gz.sig">PGP
-Signature</a>). </dt>
+name="freeradius-server-2.0.0-pre1">2.0.0-pre1</a> has been released.</b>.
+</dt>
 
 <dd><p>This is the first "pre" release of what will become version
 2.0.0 of the FreeRADIUS server.  Please download it and test it, to
@@ -59,8 +125,6 @@ The notable changes between 1.x and 2.x are:</p>
     See "man rlm_unix" for details.</li>
 <li>The server has full support for IPv6.</li>
 <li>The server has much more complete support for SNMP MIBs.</li>
-<li>radiusd.conf has limited support for "if/then/else".
-    See doc/configurable_failover for details.</li>
 <li>"listen" sections can have per-socket clients.</li>
 <li>Replaced "radrelay" and "radsqlrelay".
 See "man radrelay.conf" for details.</li>
