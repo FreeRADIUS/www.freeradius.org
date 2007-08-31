@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>FreeRADIUS -- Downloads</title>
+  <link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<meta name="keywords" content="download,server" />
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<p><a href="./">FreeRADIUS</a> is <a
+href="development.html">developed</a> under the <a
+href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GNU
+General Public License, Version 2</a> (GPLv2), and is free for
+download and use.</p>
+
+<h1>Downloads</h1>
+
+<p>
+Version <!--#echo var="freeradius_version" -->.: <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.gz">tar.gz</a> <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.gz.sig">(PGP Signature)</a>
+<br />
+Version <!--#echo var="freeradius_version" -->.: <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2">tar.bz2</a> <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2.sig">(PGP Signature)</a>
+</p>
+
+<p>Older versions are available <a href="/getting.html">here</a>.</p>
+
+<h1>Checking out from CVS</h1>
+
+<pre class="instructions" title="CVS checkout procedure">
+  $ cvs -d :pserver:anoncvs@cvs.freeradius.org:/source login
+  CVS password: <em>anoncvs</em>
+  $ cvs -d :pserver:anoncvs@cvs.freeradius.org:/source checkout radiusd
+  $ ./configure --help
+  $ ./configure <em>... options ...</em>
+  $ make
+  $ make install
+  $ radiusd -X
+</pre>
+
+<p>See the <a href="development.html#cvs">using CVS</a> page for more
+details.<p>
+
+<h1>Documentation</h1>
+
+<p>Some documentation is available in the online <a
+href="radiusd/man/">man</a> pages.</p>
+
+<p>See also the <a href="http://wiki.freeradius.org/">Wiki</a> for
+much more detailed documentation.</p>
+
+</div>
+
+<!--#include virtual="/footer.html" -->
+
+  </body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->
+
