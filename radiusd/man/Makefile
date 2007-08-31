@@ -27,13 +27,13 @@ CONFIG	:= $(filter-out rlm_%,$(CONFIG))
 	nroff -man -Tascii $< | col -b > $@
 
 %.html:%.1
-	man2html -r $< > $@
+	man2html -r $< | tail -n +2 > $@
 
 %.html:%.5
-	man2html -r $< > $@
+	man2html -r $< | tail -n +2 > $@
 
 %.html:%.8
-	man2html -r $< > $@
+	man2html -r $< | tail -n +2 > $@
 
 .PHONY: all
 all:	$(TXT) $(HTML) index.html
