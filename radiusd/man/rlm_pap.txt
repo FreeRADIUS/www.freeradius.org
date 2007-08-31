@@ -123,10 +123,10 @@ CAVEATS
 	      This  attribute  contains  the  MD5 hashed form of the password,
 	      with a salt.
 
-       SHA-Password
+       SHA1-Password
 	      This attribute contains the SHA1 hashed form of the password.
 
-       SSHA-Password
+       SSHA1-Password
 	      This attribute contains the SHA1 hashed form  of	the  password,
 	      with a salt.
 

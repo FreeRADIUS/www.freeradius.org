@@ -1,0 +1,98 @@
+clients.conf(5) 	FreeRADIUS client configuration        clients.conf(5)
+
+
+
+NAME
+       clients.conf - FreeRADIUS client configuration
+
+DESCRIPTION
+       The clients.conf file contains definitions of RADIUS clients.
+
+       The  information in this file overrides any information provided in the
+       deprecated clients(5) and naslist(5) files.
+
+       The file format is  the	same  as  that	used  for  radiusd.conf.   See
+       radiusd.conf(5) for more details.
+
+       Each RADIUS client entry has the following basic form:
+
+	      client <hostname|ip-address|ip-network> {
+		     <attribute> = <value>
+	       }
+
+       ip-network is used to specify a network of clients. Networks are speci-
+       fied in CIDR notation. If multiple overlapping  networks  are  defined,
+       the best match (smallest possible network) will be chosen for a packet.
+
+ATTRIBUTES
+       The attributes that can appear in a client section  are	listed	below.
+       Required  attributes  are  labelled  as	such. All other attributes are
+       optional.
+
+
+       secret [Required]
+	    The RADIUS	shared	secret	used  for  communication  between  the
+	    client/NAS and the RADIUS server.
+
+       shortname [Required]
+	    A short alias that can be used in place of the IP address or fully
+	    qualified hostname provided in the first line of the section.
+
+       nastype
+	    The nastype attribute is used to tell the checkrad.pl script which
+	    NAS-specific  method it should use when checking simultaneous use.
+
+	    The following values are currently recognized:
+	    cisco
+	    computone
+	    livingston
+	    max40xx
+	    multitech
+	    netserver
+	    pathras
+	    patton
+	    portslave
+	    tc
+	    usrhiper
+	    other
+
+       login
+	    Reserved for future use.
+
+       password
+	    Reserved for future use.
+
+EXAMPLES
+	      client 127.0.0.1 {
+		      secret	      = testing123
+		      shortname       = localhost
+		      nastype	      = other
+	      }
+
+       This adds a client for the loopback address. This is useful in  testing
+       the server locally, for example with radclient(1).
+
+	      client 192.168.0.0/24 {
+		     secret	     = testing123-1
+		     shortname	     = private-network-1
+	      }
+
+       This entry represents any client from the 192.168.0.0/24 network.
+
+FILES
+       /etc/raddb/clients.conf
+
+       /etc/raddb/radiusd.conf
+
+SEE ALSO
+       radiusd(8), radiusd.conf(5), clients(5), naslist(5)
+
+
+AUTHOR
+       This manual page was authored by Shawn K. O'Shea <shawn@eth0.net>.
+
+       FreeRADIUS is authored by the FreeRADIUS team.  http://freeradius.org/
+
+
+
+				 13 June 2005		       clients.conf(5)
