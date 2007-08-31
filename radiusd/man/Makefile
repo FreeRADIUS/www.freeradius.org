@@ -1,14 +1,66 @@
-MAN	= ../../../branch_1_1/man
-FILES	= radclient radeapclient radiusd radlast radrelay radsqlrelay \
-	radtest radwatch radwho radzap rlm_acct_unique rlm_always \
-	rlm_attr_filter rlm_attr_rewrite rlm_chap rlm_counter rlm_detail \
-	rlm_expr rlm_files rlm_mschap rlm_pap rlm_passwd rlm_realm \
-	rlm_sql_log rlm_sql rlm_unix dictionary users radiusd.conf \
-	clients.conf
+# Set this to where ever the files are located.
+MAN	:= ../../../branch_1_1/man
 
-all:
-	for x in $(FILES); \
-	do \
-		src=`echo $(MAN)/*/$$x\.[0-9]`; \
-		nroff -man -Tascii $$src | col -b > $$x.txt; \
-	done
+VPATH	:= $(MAN)/man1:$(MAN)/man5:$(MAN)/man8
+
+FILES	:= $(notdir $(wildcard $(MAN)/man1/*\.1) $(wildcard $(MAN)/man5/*\.5) $(wildcard $(MAN)/man8/*\.8))
+
+TXT	:= $(addsuffix .txt,$(basename $(FILES)))
+
+HTML	:= $(addsuffix .html,$(basename $(FILES)))
+
+BIN	:= $(filter %.1,$(FILES))
+BIN	+= $(filter %.8,$(FILES))
+
+MODS	:= $(filter rlm_%,$(FILES))
+
+CONFIG	:= $(filter %.5,$(FILES))
+CONFIG	:= $(filter-out rlm_%,$(CONFIG))
+
+%.txt:%.1
+	nroff -man -Tascii $< | col -b > $@
+
+%.txt:%.5
+	nroff -man -Tascii $< | col -b > $@
+
+%.txt:%.8
+	nroff -man -Tascii $< | col -b > $@
+
+%.html:%.1
+	man2html -r $< > $@
+
+%.html:%.5
+	man2html -r $< > $@
+
+%.html:%.8
+	man2html -r $< > $@
+
+.PHONY: all
+all:	$(TXT) $(HTML)
+
+index.html: $(HTML) index.html.top index.html.bot
+	cat index.html.top > index.html
+	echo "<h2>Programs</h2>" >> index.html
+	echo "<ul>" >> index.html
+	for x in $(BIN); do \
+		name=`echo $$x | sed 's,\..*,,'`; \
+		echo "<a href=\"$$name.html\">$$name</a><br />" >> index.html; \
+	done	
+	echo "</ul>" >> index.html
+	echo >> index.html
+	echo "<h2>Configuration Files</h2>" >> index.html
+	echo "<ul>" >> index.html
+	for x in $(CONFIG); do \
+		name=`echo $$x | sed 's,\..*,,'`; \
+		echo "<a href=\"$$name.html\">$$name</a><br />" >> index.html; \
+	done	
+	echo "</ul>" >> index.html
+	echo >> index.html
+	echo "<h2>Modules</h2>" >> index.html
+	echo "<ul>" >> index.html
+	for x in $(MODS); do \
+		name=`echo $$x | sed 's,\..*,,'`; \
+		echo "<a href=\"$$name.html\">$$name</a><br />" >> index.html; \
+	done	
+	echo "</ul>" >> index.html
+	cat index.html.bot >> index.html

@@ -1,0 +1,178 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of rlm_attr_filter</TITLE>
+</HEAD><BODY>
+<H1>rlm_attr_filter</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 3 February 2004<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_attr_filter - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_attr_filter</I> module exists for filtering certain
+attributes and values in received ( or transmitted ) radius packets
+from ( or to ) remote proxy servers.  It gives the proxier ( us ) a
+flexible framework to filter the attributes we send to or receive
+from these remote proxies.  This makes sense, for example, in an
+out-sourced dialup situation to various policy decisions, such as
+restricting a client to certain ranges of Idle-Timeout or
+Session-Timeout.
+<P>
+
+Filter rules are defined and applied on a per-realm basis, where the
+realm is anything that is defined and matched based on the
+configuration of the <I>rlm_realm</I> module.
+<P>
+
+The file that defines the attribute filtering rules follows a similar
+syntax to the <I>users</I> file.  There are a few differences however:
+<P>
+
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;There&nbsp;are&nbsp;no&nbsp;check-items&nbsp;allowed&nbsp;other&nbsp;than&nbsp;the&nbsp;realm.
+<P>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;There&nbsp;can&nbsp;only&nbsp;be&nbsp;a&nbsp;single&nbsp;DEFAULT&nbsp;entry.
+<P>
+
+The rules for each entry are parsed to top to bottom, and an
+attribute must pass *all* the rules which affect it in order to
+make it past the filter.  Order of the rules is important.
+The operators and their purpose in defining the rules are as
+follows:
+<DL COMPACT>
+<DT><B>=   </B>
+
+<DD>
+THIS OPERATOR IS NOT ALLOWED.  If used, and warning message is
+printed and it is treated as ==
+<DT><B>:=  </B>
+
+<DD>
+Set, this attribute and value will always be placed in the
+output A/V Pairs.  If the attribute exists, it is overwritten.
+<DT><B>==  </B>
+
+<DD>
+Equal, value must match exactly.
+<DT><B>=*  </B>
+
+<DD>
+Always Equal, allow all values for the specified attribute.
+<DT><B>!*  </B>
+
+<DD>
+Never Equal, disallow all values for the specified attribute.
+( This is redundant, as any A/V Pair not explicitly permitted
+will be dropped ).
+<DT><B>!=  </B>
+
+<DD>
+Not Equal, value must not match.
+<DT><B>&gt;=  </B>
+
+<DD>
+Greater Than or Equal
+<DT><B>&lt;=  </B>
+
+<DD>
+Less Than or Equal
+<DT><B>&gt;   </B>
+
+<DD>
+Greather Than
+<DT><B>&lt;   </B>
+
+<DD>
+Less Than
+</DL>
+<P>
+
+If regular expressions are enabled the following operators are
+also possible.  ( Regular Expressions are included by default
+unless your system doesn't support them, which should be rare ).
+The value field uses standard regular expression syntax.
+<P>
+
+<DL COMPACT>
+<DT><B>=~  </B>
+
+<DD>
+Regular Expression Equal
+<DT><B>!~  </B>
+
+<DD>
+Regular Expression Not Equal
+</DL>
+<P>
+
+See the default <I>/etc/raddb/attrs</I> for working examples of
+sample rule ordering and how to use the different operators.
+
+<P>
+
+The main configuration item is:
+<DL COMPACT>
+<DT>attrsfile<DD>
+This specifies the location of the file used to load the filter rules.
+</DL>
+<P>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>authorization,</B>
+
+<B>accounting,</B>
+
+<B>preproxy,</B>
+
+<B>postproxy</B>
+
+<P>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf</I>
+
+<I>/etc/raddb/attrs</I>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+
+<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5)
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
+<P>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">SECTIONS</A><DD>
+<DT><A HREF="#lbAE">FILES</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>

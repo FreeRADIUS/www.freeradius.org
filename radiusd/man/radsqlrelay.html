@@ -1,0 +1,137 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of RADSQLRELAY</TITLE>
+</HEAD><BODY>
+<H1>RADSQLRELAY</H1>
+Section: FreeRADIUS helper program (8)<BR>Updated: 19 June 2005<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<P>
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+radsqlrelay - relay SQL queries to a central database server
+<P>
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>radsqlrelay</B>
+
+[<B>-d</B>
+
+<I>sql_driver</I>]
+
+[<B>-b</B>
+
+<I>database</I>]
+
+[<B>-f</B>
+
+<I>file</I>]
+
+[<B>-h</B>
+
+<I>host</I>]
+
+[<B>-u</B>
+
+<I>user</I>]
+
+[<B>-p</B>
+
+<I>password</I>]
+
+[<B>-1</B>]
+
+<I>file_path</I>
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>radsqlrelay</B> tails a SQL <I>logfile</I> and forwards the queries
+to a database server. Used to replicate accounting records to one
+(central) database, even if the database has extended downtime.
+<P>
+
+The SQL logfile is created by the <B>rlm_sql_log</B> module. The module
+must be configured in the <B>radiusd</B> server before you can use
+<B>radsqlrelay</B>.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<DL COMPACT>
+<DT>-d <I>sql_driver</I><DD>
+Driver to use: mysql, pg, oracle.
+<DT>-b <I>database</I><DD>
+Name of the database to use.
+<DT>-f <I>file</I><DD>
+Read password from file, instead of command line.
+<DT>-h <I>host</I><DD>
+Connect to host.
+<DT>-u <I>user</I><DD>
+User for login.
+<DT>-p <I>password</I><DD>
+Password to use when connecting to server.
+<DT>-1<DD>
+One-shot mode: push the file to database and exit.
+<DT>file_path<DD>
+The pathname of the SQL logfile to use.
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>NOTES</H2>
+
+<A NAME="lbAG">&nbsp;</A>
+<H3>Oracle driver</H3>
+
+The command &quot;radsqlrelay -d oracle -b db.domain.tld sql-relay&quot; reads the
+database description stored in $TNS_ADMIN/tnsnames.ora:
+<P>
+
+
+db.domain.tld =
+<BR>&nbsp;&nbsp;(DESCRIPTION&nbsp;=
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;(ADDRESS_LIST&nbsp;=
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ADDRESS&nbsp;=&nbsp;(PROTOCOL&nbsp;=&nbsp;TCP)(HOST&nbsp;=&nbsp;db.domain.tld)(PORT&nbsp;=&nbsp;1521))
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;)
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;(CONNECT_DATA&nbsp;=
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SERVICE_NAME&nbsp;=&nbsp;&lt;DB&nbsp;SID&gt;)
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;)
+<BR>&nbsp;&nbsp;)
+
+<P>
+<A NAME="lbAH">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="../man5/rlm_sql_log.5.html">rlm_sql_log</A></B>(5)
+
+<P>
+<A NAME="lbAI">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Nicolas Baradakis &lt;<A HREF="mailto:nicolas.baradakis@cegetel.net">nicolas.baradakis@cegetel.net</A>&gt;
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">NOTES</A><DD>
+<DL>
+<DT><A HREF="#lbAG">Oracle driver</A><DD>
+</DL>
+<DT><A HREF="#lbAH">SEE ALSO</A><DD>
+<DT><A HREF="#lbAI">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>

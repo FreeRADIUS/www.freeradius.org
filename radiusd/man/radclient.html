@@ -1,0 +1,197 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of RADCLIENT</TITLE>
+</HEAD><BODY>
+<H1>RADCLIENT</H1>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 7 April 2005<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+radclient - send packets to a RADIUS server, show reply
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>radclient</B>
+
+[<B>-d</B>
+
+<I>raddb_directory</I>]
+
+[<B>-c</B>
+
+<I>count</I>]
+
+[<B>-f</B>
+
+<I>file</I>]
+
+[<B>-i</B>
+
+<I>id</I>]
+
+[<B>-n</B>
+
+<I>num_requests_per_second</I>]
+
+[<B>-p</B>
+
+<I>num_requests_in_parallel</I>]
+
+[<B>-r</B>
+
+<I>num_retries</I>]
+
+[<B>-s</B>]
+
+[<B>-S</B>
+
+<I>shared_secret_file</I>]
+
+[<B>-t</B>
+
+<I>timeout</I>]
+
+[<B>-qvx</B>]
+
+<I>server {acct|auth|status|disconnect} secret</I>
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>radclient</B> is a radius client program. It can send arbitrary radius
+packets to a radius server, then shows the reply. It can be used to
+test changes you made in the configuration of the radius server,
+or it can be used to monitor if a radius server is up.
+<P>
+
+<B>radclient</B> reads radius attribute/value pairs from it standard
+input, or from a file specified on the command line. It then encodes
+these attribute/value pairs using the dictionary, and sends them
+to the remote server.
+<P>
+
+The <I>User-Password</I> and <I>CHAP-Password</I> attributes are
+automatically encrypted before the packet is sent to the server.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<P>
+<DL COMPACT>
+<DT>-c&nbsp;<I>count</I><DD>
+Send each packet <I>count</I> times.
+<DT>-d&nbsp;<I>raddb_directory</I><DD>
+The directory that contains the RADIUS dictionary files. Defaults to
+<I>/etc/raddb</I>.
+<DT>-f&nbsp;<I>file</I><DD>
+File to read the attribute/value pairs from. If this is not specified,
+they are read from stdin.  This option can be specified multiple
+times, in which case packets are sent in order by file, and within
+each file, by first packet to last packet.  A blank line separates
+logical packets within a file.
+<DT>-i&nbsp;<I>id</I><DD>
+Use <I>id</I> as the RADIUS request Id.
+<DT>-n&nbsp;<I>num_requests_per_second</I><DD>
+Send <I>num_requests_per_second</I>, evenly spaced over time.  By
+default, the requests are sent as fast as possible.  This option
+allows you to slow down the rate at which radclient sends requests.
+<DT>-p&nbsp;<I>num_requests_in_parallel</I><DD>
+Send <I>num_requests_in_parallel</I>, without waiting for a response
+for each one.  By default, radclient sends the first request it has
+read, waits for the response, and once the response is received, sends
+the second request in its list.  This option allows you to send many
+requests at simultaneously.  Once <I>num_requests_in_parallel</I> are
+sent, radclient waits for all of the responses to arrive (or for the
+requests to time out), before sending any more packets.
+<DT>-q<DD>
+Go to quiet mode, and do not print out anything.
+<DT>-r&nbsp;<I>num_retries</I><DD>
+Try to send each packet <I>num_retries</I> times, before giving up on
+it.  The default is 10.
+<DT>-s<DD>
+Print out some summaries of packets sent and received.
+<DT>-S&nbsp;<I>shared_secret_file</I><DD>
+Rather than reading the shared secret from the command-line (where it
+can be seen by others on the local system), read it instead from
+<I>shared_secret_file</I>.
+<DT>-t&nbsp;<I>timeout</I><DD>
+Wait <I>timeout</I> seconds before deciding that the NAS has not
+responded to a request, and re-sending the packet.  The default
+timeout is 3.
+<DT>-v<DD>
+Print out version information.
+<DT>-x<DD>
+Print out debugging information.
+<DT>server[:port]<DD>
+The hostname or IP address of the remote server. Optionally a UDP port
+can be specified. If no UDP port is specified, it is looked up in
+<I>/etc/services</I>. The service name looked for is <B>radacct</B> for
+accounting packets, and <B>radius</B> for all other requests. If a
+service is not found in <I>/etc/services</I>, 1813 and 1812 are used
+respectively.
+<P>
+<DT>acct&nbsp;|&nbsp;auth&nbsp;|&nbsp;status&nbsp;|&nbsp;disconnect<DD>
+Use <B>auth</B> to send an authentication packet (Access-Request),
+<B>acct</B> to send an accounting packet (Accounting-Request),
+<B>status</B> to send an status packet (Status-Server), or
+<B>disconnect</B> to send a disconnection request. Instead of these
+values, you can also use a decimal code here. For example, code 12 is
+also <B>Status-Server</B>.
+<P>
+<DT>secret<DD>
+The shared secret for this client.  It needs to be defined on the
+radius server side too, for the IP address you are sending the radius
+packets from.
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>EXAMPLE</H2>
+
+<P>
+A sample session that queries the remote server for
+<I>Status-Server</I> (not all servers support this, but FreeRADIUS has
+configurable support for it).
+<DL COMPACT><DT><DD>
+<P>
+<PRE>
+$ echo &quot;User-Name = fnord&quot; | radclient 192.168.1.42 12 s3cr3t
+Sending request to server 192.168.1.42, port 1812.
+radrecv: Packet from host 192.168.1.42 code=2, id=140, length=54
+    Reply-Message = &quot;FreeRADIUS up 21 days, 02:05&quot;
+</PRE>
+
+<P>
+</DL>
+
+<P>
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<A HREF="../man8/radiusd.8.html">radiusd</A>(8),
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</A>.
+Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt;
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">EXAMPLE</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHORS</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>

@@ -1,0 +1,162 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of rlm_passwd</TITLE>
+</HEAD><BODY>
+<H1>rlm_passwd</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 14 April 2004<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_passwd - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_passwd</I> module provides authorization via files similar
+in format to /etc/passwd.
+<P>
+
+The lm_passwd module allows you to retrieve any account
+information from any files with passwd-like format (/etc/passwd,
+/etc/group, smbpasswd, .htpasswd, etc).  Every field of the file may
+be mapped to a RADIUS attribute, with one of the fields used as a
+key.
+<P>
+
+The module reads the file when it initializes, and caches the data
+in memory.  As a result, it does not support dynamic updates of the
+files (the server has to be HUP'd), but it is very fast, even for
+files with thousands of lines.
+<P>
+
+The configuration item(s):
+<DL COMPACT>
+<DT>filename<DD>
+The path to the file.
+<DT>delimiter&nbsp;=&nbsp;:<DD>
+The character to use as a delimiter between fields.  The default is
+&quot;:&quot;
+<DT>hashsize<DD>
+The size of the hashtable.  If 0, then the passwords are not cached
+and the passwd file is parsed for every request.  We do not recommend
+such a configuration.  A larger hashsize means less probability of
+collision and faster search in hashtable. Having a hashsize in the range
+of 30-100% of the number of passwd file records is reasonable.
+<DT>allowmultiplekeys<DD>
+If set to 'yes', and more than one record in file matches the request,
+then the attributes from all records will be used. If set to 'no' (the
+default) the module will warn about duplicated records.
+<DT>ignorenislike<DD>
+If set to 'yes', then all records from the file beginning with the '+'
+sign will be ignored.  The default is 'no'.
+<DT>authtype<DD>
+If an entry matches, the Auth-Type for the request will be set to the
+one specified here.
+<DT>format<DD>
+The format of the fields in the file, given as an example line from
+the file, with the content of the fields as the RADIUS attributes
+which the fields map to.  The fields are seperated by the ':' character.
+</DL>
+<P>
+
+The key field is signified by being preceded with a '*' character,
+which indicates that the field has only one key, like the /etc/passwd
+file.  The key field may instead be preceded with '*,', which
+indicates that the field has multiple possible keys, like the
+/etc/group file.
+<P>
+
+The other fields signify RADIUS attributes which, by default, are
+added to the configuration items for a request. 
+<P>
+
+To add an attribute to the request (as though it was sent by the NAS),
+prefix the attribute name in the &quot;format&quot; string with the '~' character.
+<P>
+
+To add an attribute to the reply (to be sent back to the NAS) prefix
+the attribute name in the &quot;format&quot; string with the '=' character.
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+
+format = &quot;My-Group:::*,User-Name&quot;
+
+<DL COMPACT>
+<DT><DD>
+Parse a file similar to the /etc/group file.  An entry matches a
+request when the name in a User-Name attribute exists in the
+comma-seperated list of a line in the file.  When an entry matches, 
+a &quot;My-Group&quot; attribute will be created and added to the configuration
+items for the request.  The value of that attribute will be taken from
+the first field of the matching line in the file.
+<DT><DD>
+The &quot;:::&quot; in the format string means that there are extra two fields
+in the line, in between the group name and list of user names.  Those
+fields do not map to any RADIUS attribute, and are therefore ignored.
+<DT><DD>
+For this example to work in practice, you will have to add the
+My-Group attribute to the dictionary file.  See the dictionary manual
+page for details on how this may be done.
+</DL>
+<P>
+
+
+format = &quot;~My-Group:::*,User-Name&quot;
+
+<DL COMPACT>
+<DT><DD>
+Similar to the previous entry, except the My-Group attribute is added
+to the request, as though it was sent by the NAS.
+</DL>
+<A NAME="lbAE">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>authorize</B>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf</I>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+
+<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5)
+
+<B><A HREF="../man5/dictionary.5.html">dictionary</A></B>(5),
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt;
+<P>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">EXAMPLES</A><DD>
+<DT><A HREF="#lbAE">SECTIONS</A><DD>
+<DT><A HREF="#lbAF">FILES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>

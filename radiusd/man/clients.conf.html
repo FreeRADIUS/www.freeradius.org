@@ -1,0 +1,193 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of clients.conf</TITLE>
+</HEAD><BODY>
+<H1>clients.conf</H1>
+Section: FreeRADIUS client configuration (5)<BR>Updated: 13 June 2005<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+clients.conf - FreeRADIUS client configuration
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The 
+<I>clients.conf</I>
+
+file contains definitions of RADIUS clients.
+<P>
+
+The information in this file overrides any information provided in
+the deprecated 
+<B><A HREF="../man5/clients.5.html">clients</A></B>(5)
+
+and 
+<B><A HREF="../man5/naslist.5.html">naslist</A></B>(5)
+
+files.
+<P>
+
+The file format is the same as that used for
+<I>radiusd.conf.</I>
+
+See 
+<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5)
+
+for more details.
+<P>
+
+Each RADIUS client entry has the following basic form:
+<DL COMPACT>
+<DT><DD>
+<PRE>
+client &lt;hostname|ip-address|ip-network&gt; {
+       &lt;attribute&gt; = &lt;value&gt;
+ }
+</PRE>
+
+</DL>
+<P>
+
+ip-network is used to specify a network of clients. Networks are
+specified in CIDR notation. If multiple overlapping networks are
+defined, the best match (smallest possible network) will be chosen for
+a packet.
+<A NAME="lbAD">&nbsp;</A>
+<H2>ATTRIBUTES</H2>
+
+The attributes that can appear in a 
+<B>client</B>
+
+section are listed below. Required attributes are labelled as
+such. All other attributes are optional.
+<P>
+
+<DL COMPACT>
+<DT><B>secret [Required]</B>
+
+<DD>
+The RADIUS shared secret used for communication between the client/NAS
+and the RADIUS server.
+<DT><B>shortname [Required]</B>
+
+<DD>
+A short alias that can be used in place of the IP address or fully
+qualified hostname provided in the first line of the section.
+<DT><B>nastype</B>
+
+<DD>
+The nastype attribute is used to tell the 
+<B>checkrad.pl</B>
+
+script which NAS-specific method it should use when checking
+simultaneous use.
+<P>
+The following values are currently recognized:
+<PRE>
+cisco
+computone
+livingston
+max40xx
+multitech
+netserver
+pathras
+patton
+portslave
+tc
+usrhiper
+other
+</PRE>
+
+<DT><B>login</B>
+
+<DD>
+Reserved for future use.
+<DT><B>password</B>
+
+<DD>
+Reserved for future use.
+</DL>
+<A NAME="lbAE">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+<DL COMPACT>
+<DT><DD>
+<PRE>
+client 127.0.0.1 {
+        secret          = testing123
+        shortname       = localhost
+        nastype         = other     
+}
+</PRE>
+
+</DL>
+<P>
+
+This adds a client for the loopback address. This is useful in testing
+the 
+server locally, for example with 
+<B><A HREF="../man1/radclient.1.html">radclient</A></B>(1).
+
+<DL COMPACT>
+<DT><DD>
+<PRE>
+client 192.168.0.0/24 {
+       secret          = testing123-1
+       shortname       = private-network-1
+}
+</PRE>
+
+</DL>
+<P>
+
+This entry represents any client from the 192.168.0.0/24 network. 
+<A NAME="lbAF">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/clients.conf</I>
+
+<P>
+<I>/etc/raddb/radiusd.conf</I>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+
+<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5),
+
+<B><A HREF="../man5/clients.5.html">clients</A></B>(5),
+
+<B><A HREF="../man5/naslist.5.html">naslist</A></B>(5)
+
+<P>
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+This manual page was authored by Shawn K. O'Shea &lt;<A HREF="mailto:shawn@eth0.net">shawn@eth0.net</A>&gt;.
+<P>
+FreeRADIUS is authored by the FreeRADIUS team. 
+<A HREF="http://freeradius.org/">http://freeradius.org/</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">ATTRIBUTES</A><DD>
+<DT><A HREF="#lbAE">EXAMPLES</A><DD>
+<DT><A HREF="#lbAF">FILES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>

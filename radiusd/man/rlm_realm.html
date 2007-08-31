@@ -1,0 +1,161 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of rlm_realm</TITLE>
+</HEAD><BODY>
+<H1>rlm_realm</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 19 May 2006<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_realm - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_realm</I> module parses the User-Name attribute into a
+User section and a Realm section.  This is used primarily in a
+proxy situation, however, Realms can also be used locally to provide
+different service profiles based on the Realm being used.
+<P>
+
+The main configuration items to be aware of are:
+<DL COMPACT>
+<DT>format<DD>
+This can be either 'prefix' or 'suffix'.  It specifies whether the
+Realm is before or after the User portion in the User-Name string.
+<DT>delimiter<DD>
+A single character in quotes, which is used as the delimiting
+character that separates the Realm and User sections of the string.
+<DT>ignore_default<DD>
+This is set to either 'yes' or 'no'.  If set to 'yes', this will 
+prevent the module instance from matching a realm against the DEFAULT
+entry.  This may be useful if you have multiple realm module instances.
+The default is 'no'.
+<DT>ignore_null<DD>
+This is set to either 'yes' or 'no'.  If set to 'yes', this will 
+prevent the module instance from matching a realm against the NULL
+entry.  This may be useful if you have multiple realm module instances.
+The default is 'no'.
+</DL>
+<P>
+
+This module parses the realm from the User-Name attrbiute according
+to the instance configuration, and then performs a lookup to find a
+matching realm in the '/etc/raddb/proxy.conf' file.  Depending on the
+configuration of the Realm as matched in the file, the username may
+be rewritten in a 'stripped' format, or with the Realm portion
+removed.  In either case, a Realm attribute is created and added to
+the packet on a match, which can be used by other modules.
+<P>
+
+In order to force proxying for a request, set the
+
+Proxy-To-Realm := &quot;realm-name&quot;
+
+in the <I>users</I> file, or in a database such as SQL.
+<A NAME="lbAD">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+<P>
+
+
+modules {
+<BR>&nbsp;&nbsp;...&nbsp;stuff&nbsp;here&nbsp;...
+<BR>
+
+<BR>
+
+<BR>&nbsp;&nbsp;#&nbsp;<A HREF="mailto:useranme@realm">useranme@realm</A>&nbsp;syntax
+<BR>
+
+<BR>&nbsp;&nbsp;realm&nbsp;suffix&nbsp;{
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;format&nbsp;=&nbsp;suffix
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;delimiter&nbsp;=&nbsp;&quot;@&quot;
+<BR>
+
+<BR>&nbsp;&nbsp;}
+<BR>
+
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;#&nbsp;realm/username&nbsp;syntax
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;realm&nbsp;prefix&nbsp;{
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;format&nbsp;=&nbsp;prefix
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;delimiter&nbsp;=&nbsp;&quot;/&quot;
+<BR>
+
+<BR>&nbsp;&nbsp;}
+<BR>
+
+<BR>
+
+<BR>&nbsp;&nbsp;...&nbsp;stuff&nbsp;here&nbsp;...
+<BR>
+
+}
+
+<P>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>authorization,</B>
+
+<B>pre-accounting</B>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf,</I>
+
+<I>/etc/raddb/proxy.conf</I>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+
+<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5),
+
+<B><A HREF="../man5/proxy.conf.5.html">proxy.conf</A></B>(5)
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAE">SECTIONS</A><DD>
+<DT><A HREF="#lbAF">FILES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHORS</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>

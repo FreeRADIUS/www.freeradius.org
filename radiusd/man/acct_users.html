@@ -1,0 +1,63 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of ACCT_USERS</TITLE>
+</HEAD><BODY>
+<H1>ACCT_USERS</H1>
+Section: FreeRADIUS user accounting file (5)<BR>Updated: 05 August 2000<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+acct_users - user accounting file for the FreeRADIUS server
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <B>acct_users</B> file resides in the radius database directory, by
+default <B>/etc/raddb</B>.  It contains a series of configuration
+directives which are used by the <I>files</I> module to decide how to
+log accounting messages.
+<P>
+The format of this file is identical to that of the <B>users</B> file,
+except that it controls the response to accounting requests, not
+authentication requests.
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>FILES</H2>
+
+/etc/raddb/acct_users
+<A NAME="lbAE">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="../man1/radclient.1.html">radclient</A></B>(1),
+
+<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+
+<B><A HREF="../man5/dictionary.5.html">dictionary</A></B>(5),
+
+<B><A HREF="../man5/users.5.html">users</A></B>(5)
+
+<P>
+<A NAME="lbAF">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Alan DeKok &lt;<A HREF="mailto:aland@ox.org">aland@ox.org</A>&gt;
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">FILES</A><DD>
+<DT><A HREF="#lbAE">SEE ALSO</A><DD>
+<DT><A HREF="#lbAF">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>

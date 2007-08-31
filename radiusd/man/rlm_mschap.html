@@ -1,0 +1,127 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of rlm_mschap</TITLE>
+</HEAD><BODY>
+<H1>rlm_mschap</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 19 May 2006<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_mschap - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_mschap</I> module provides MS-CHAP and MS-CHAPv2
+authentication support. 
+<P>
+
+This module validates a user with MS-CHAP or MS-CHAPv2 authentication.
+It should be listed in both the <I>authorize</I> and <I>authenticate</I>
+sections.  In <I>authorize</I>, it will look for MS-CHAP
+Challenge/Response attributes in the Acess-Request, and configure
+itself to be the module called for the <I>authenticate</I> section.
+<P>
+
+The module can authenticate the MS-CHAP session via plain-text
+passwords (User-Password attribute), or NT passwords (NT-Password
+attribute).  The module can perform authentication against an NT
+domain by using the <I>ntlm_auth</I> program.
+<A NAME="lbAD">&nbsp;</A>
+<H2>SMB Integration</H2>
+
+The module also enforces the SMB-Account-Ctrl attribute.  See the
+Samba documentation for the meaning of SMB account control.  The
+module does not read Samba password files.  Instead, the
+<I>rlm_passwd</I> module should be used to read a Samba password file,
+and to supply an NT-Password attribute which this module can use.  See
+the <I>etc_smbpasswd</I> module in <I>radiusd.conf</I> for more details.
+<A NAME="lbAE">&nbsp;</A>
+<H2>MODULE CONFIGURATION</H2>
+
+The main configuration items to be aware of are:
+<DL COMPACT>
+<DT>use_mppe<DD>
+Unless this is set to 'no', FreeRADIUS will add MS-CHAP-MPPE-Keys for
+MS-CHAPv1 and MS-MPPE-Recv-Key/MS-MPPE-Send-Key for MS-CHAPv2.  The
+default is 'yes'.
+<DT>require_encryption<DD>
+If MPPE is enabled, setting this attribute to 'yes' will cause the
+MS-MPPE-Encryption-Policy attribute to be set to require encryption.
+The default is 'no'.
+<DT>require_strong<DD>
+If MPPE is enabled, setting this attribute to 'yes' will cause the
+MS-MPPE-Encryption-Types attribute to be set to require a 128 bit key.
+The default is 'no'.
+<DT>with_ntdomain_hack<DD>
+Windows clients send User-Name in the form of &quot;DOMAIN\User&quot;, but send the
+challenge/response based only on the User portion.  Setting this value
+to yes, enables a work-around for this error.  The default is 'no'.
+<DT>ntlm_auth<DD>
+Use the <I>ntlm_auth</I> program for authentication against Samba, or a
+Windows NT or Active Directory Domain Controller.  For machine
+authentication, the following configuration should be used:
+
+ntlm_auth = &quot;/path/to/ntlm_auth --username=%{mschap:User-Name:-None} --challenge=%{mschap:Challenge:-00} --nt-response=%{mschap:NT-Response:-00} --domain=%{mschap:NT-Domain:-YOUR_DEFAULT_DOMAIN}
+
+If configured, <I>ntlm_auth</I> will always be called, even if there is
+a clear-text or NT-Password available for the user.  You can force
+<I>ntlm_auth</I> to not be used by setting
+
+MS-CHAP-Use-NTLM-Auth := No
+
+in the <I>users</I> file, or in a database such as SQL.
+</DL>
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>authorization,</B>
+
+<B>authentication</B>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf</I>
+
+<P>
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+
+<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5)
+
+<A NAME="lbAI">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
+<P>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">SMB Integration</A><DD>
+<DT><A HREF="#lbAE">MODULE CONFIGURATION</A><DD>
+<DT><A HREF="#lbAF">SECTIONS</A><DD>
+<DT><A HREF="#lbAG">FILES</A><DD>
+<DT><A HREF="#lbAH">SEE ALSO</A><DD>
+<DT><A HREF="#lbAI">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>

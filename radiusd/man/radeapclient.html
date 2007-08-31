@@ -1,0 +1,109 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of RADEAPCLIENT</TITLE>
+</HEAD><BODY>
+<H1>RADEAPCLIENT</H1>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 08 September 2003<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+radeapclient - send EAP packets to a RADIUS server, calculate responses
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>radeapclient</B>
+
+[<B>-d</B>
+
+<I>raddb_directory</I>]
+
+[<B>-f</B>
+
+<I>file</I>]
+
+[<B>-i</B>
+
+<I>source_ip</I>]
+
+[<B>-xy</B>]
+
+<I>server {acct|auth} secret</I>
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>radeapclient</B> is a radius client program. It can send arbitrary radius
+packets to a radius server, then shows the reply. Radeapclient differs from
+radclient in that if there is an EAP-MD5 challenge, then it will be responded
+to. 
+<P>
+
+<B>radeapclient</B> is otherwise identical to <B>radclient</B>.
+<P>
+
+The <I>EAP-Identity</I> attribute, if present is used to construct an
+EAP Identity message.
+<P>
+
+<P>
+
+The <I>EAP-MD5-Password</I> attribute, if present is used to respond to an
+MD5 challenge. 
+<P>
+
+No other EAP types are currently supported.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>EXAMPLE</H2>
+
+<P>
+A sample session that queries the remote server with an EAP-MD5
+challenge.
+<DL COMPACT><DT><DD>
+<P>
+<PRE>
+( echo 'User-Name = &quot;bob&quot;';
+  echo 'EAP-MD5-Password = &quot;hello&quot;';
+  echo 'NAS-IP-Address = marajade.sandelman.ottawa.on.c';
+  echo 'EAP-Code = Response';
+  echo 'EAP-Id = 210';
+  echo 'EAP-Type-Identity = &quot;bob&quot;;
+  echo 'Message-Authenticator = 0x00';
+  echo 'NAS-Port = 0' ) &gt;req.txt
+  
+radeapclient -x localhost auth testing123 &lt;req.txt
+</PRE>
+
+<P>
+</DL>
+
+<P>
+<A NAME="lbAF">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<A HREF="../man1/radclient.1.html">radclient</A>(1)
+<A NAME="lbAG">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Michael Richardson, &lt;<A HREF="mailto:mcr@sandelman.ottawa.on.ca">mcr@sandelman.ottawa.on.ca</A>&gt;
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">EXAMPLE</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>

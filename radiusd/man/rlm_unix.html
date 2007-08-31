@@ -1,0 +1,149 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of rlm_unix</TITLE>
+</HEAD><BODY>
+<H1>rlm_unix</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 5 February 2004<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_unix - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_unix</I> module allows authentication against the system
+password, shadow, and group files.  It also provides FreeRADIUS an
+interface into a radwtmp file (used by &quot;radlast&quot;) when added to the
+accounting section.
+<P>
+
+The <I>rlm_unix</I> module provides the functionality for &quot;Auth-Type =
+System&quot;, rather than &quot;Auth-Type = Unix&quot;.  The &quot;System&quot; name is used
+for historical reasons.
+<P>
+
+The main configuration items to be aware of are:
+<DL COMPACT>
+<DT>cache<DD>
+This is a 'yes' or 'no' option.  If set to yes, FreeRADIUS will read
+the system files into memory, rather than perform a system call to
+lookup the information.  On *BSD systems, you should set this value to
+no.  On other systems, if you have a very large passwd and shadow
+files, you can try setting this to yes, which may increase the servers
+performance.  The default is no.
+<DT>cache_reload<DD>
+This is the number of seconds to wait between refreshing the cached 
+files from the system.  It has no effect unless you enable caching.
+<DT>passwd<DD>
+The path to the system passwd file.  Usually /etc/passwd.  If
+commented out, or not set, the server will retrieve the information
+via systemcalls.
+<DT>shadow<DD>
+The path to the system shadow file.  Usually /etc/shadow.  This is not
+set by default.
+<DT>group<DD>
+The path to the system group file.  Usually /etc/group.  This is not
+set by default.
+<DT>radwtmp<DD>
+The path to the system wtmp file to be used for keeping the database
+of online users as read by the 'radlast' program.
+<DT>usegroup<DD>
+This is a 'yes' or 'no' option.  If set to 'yes' this allows the Group
+attribute to be used as a check item.  Default is 'no'.
+</DL>
+<A NAME="lbAD">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+<P>
+
+
+modules {
+<BR>&nbsp;&nbsp;...
+<BR>
+
+<BR>&nbsp;&nbsp;unix&nbsp;{
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;cache&nbsp;=&nbsp;no
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;cache_reload&nbsp;=&nbsp;600
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;#passwd&nbsp;=&nbsp;/etc/passwd
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;#shadow&nbsp;=&nbsp;/etc/shadow
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;#group&nbsp;=&nbsp;/etc/group
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;usegroup&nbsp;=&nbsp;no
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;radwtmp&nbsp;=&nbsp;${logdir}/radwtmp
+<BR>
+
+<BR>&nbsp;&nbsp;}
+<BR>
+
+<BR>&nbsp;&nbsp;...
+<BR>
+
+}
+
+<P>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>authentication,</B>
+
+<B>accounting</B>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf,</I>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+
+<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5),
+
+<B><A HREF="../man1/radlast.1.html">radlast</A></B>(1)
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAE">SECTIONS</A><DD>
+<DT><A HREF="#lbAF">FILES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHORS</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>

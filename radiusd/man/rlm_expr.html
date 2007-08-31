@@ -1,0 +1,175 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of rlm_expr</TITLE>
+</HEAD><BODY>
+<H1>rlm_expr</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 5 February 2004<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_expr - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_expr</I> module allows the server to perform
+limited mathematical calculations.  This module is not called
+directly in any section, it is invoked through the dynamic expansion
+of strings.
+<P>
+
+For example, some NAS boxes send a NAS-Port attribute
+which is a 32-bit number composed of port, card, and interface, all in
+different bytes.  To see these attributes split into pieces, you can
+have an entry in the 'users' file like:
+<P>
+
+DEFAULT
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;Vendor-Interface&nbsp;=&nbsp;`%{expr:&nbsp;%{NAS-Port}&nbsp;/&nbsp;(256&nbsp;*&nbsp;256)}`,
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;Vendor-Card&nbsp;=&nbsp;`%{expr:&nbsp;(%{NAS-Port}&nbsp;/&nbsp;256)&nbsp;%%&nbsp;256}`,
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;Vendor-Port&nbsp;=&nbsp;`%{expr:&nbsp;%{NAS-Port}&nbsp;%%&nbsp;256}`
+<BR>
+
+<P>
+
+where the attributes Vendor-Interface, Vendor-Card, and Vendor-Port
+are attributes created by either you or a vendor-supplied
+dictionary.
+<P>
+The methematical operators supported by the expression module are:
+<DL COMPACT>
+<DT><B>+</B>
+
+<DD>
+addition
+<DT><B>-</B>
+
+<DD>
+subtraction
+<DT><B>/</B>
+
+<DD>
+division
+<DT><B>%%</B>
+
+<DD>
+modulo remainder
+<DT><B>*</B>
+
+<DD>
+multiplication
+<DT><B>&amp;</B>
+
+<DD>
+boolean AND
+<DT><B>|</B>
+
+<DD>
+boolean OR
+<DT><B>()</B>
+
+<DD>
+grouping of sub-expressions
+</DL>
+<P>
+
+NOTE: The modulo remainder operator is '%%', and not '%'.  This
+is due to the '%' character being used as a special character for
+dynamic translation.
+<P>
+
+NOTE: These operators do NOT have precedence.  The parsing
+of the input string, and the calculation of the answer, is done
+strictly left to right.  If you wish to order the expressions, you
+MUST group them into sub-expression, as shown in the previous
+example.
+<P>
+
+All of the calculations are performed as unsigned 32-bit integers.
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+
+modules {
+<BR>&nbsp;&nbsp;...
+<BR>
+
+<BR>&nbsp;&nbsp;expr&nbsp;{
+<BR>
+
+<BR>&nbsp;&nbsp;}
+<BR>
+
+<BR>&nbsp;&nbsp;...
+<BR>
+
+}
+<BR>
+
+<BR>&nbsp;...
+<BR>
+
+instantiate {
+<BR>&nbsp;&nbsp;...
+<BR>
+
+<BR>&nbsp;&nbsp;expr
+<BR>&nbsp;&nbsp;...
+<BR>
+
+}
+<A NAME="lbAE">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>instantiate</B>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf</I>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+
+<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5)
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
+<P>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAE">SECTIONS</A><DD>
+<DT><A HREF="#lbAF">FILES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>

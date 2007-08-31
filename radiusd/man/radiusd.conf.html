@@ -1,0 +1,147 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of radiusd.conf</TITLE>
+</HEAD><BODY>
+<H1>radiusd.conf</H1>
+Section: FreeRADIUS configuration file (5)<BR>Updated: 23 Jan 2004<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+radiusd.conf - configuration file for the FreeRADIUS server
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <B>radiusd.conf</B> file resides in the radius database directory,
+by default <B>/etc/raddb</B>.  It defines the global configuration for
+the FreeRADIUS server.
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>FILE FORMAT</H2>
+
+The file consists of attribute-value pairs, sections, and comments.
+<P>
+Attribute-value pairs are of the form <B>name = value</B>.
+<P>
+A section begins with a section name, followed on the same line by an
+open bracket <B>{</B>.  The section may contain other
+sections, or attribute-value pairs.  The section ends with a close
+bracket <B>}</B>, on a line by itself.
+<P>
+Any line beginning with a (<B>#</B>) is deemed to be a comment, and is
+ignored.  Lines containing only whitespace are also ignored.
+<P>
+The file is line-based.  That is, each newline-terminated line
+represents either a comment, a section name, or an attribute-value
+pair.  It is not possible to specify multiple items on the same line,
+and there are no continuation lines.
+<P>
+The value for a particular attribute may reference a previously
+defined attribute by name. The standard shell reference format
+<B>${name}</B> is used.  When the variable is in a section or
+subsection, it may be referenced as <B>${section.subsection.name}</B>.
+Forward references are not allowed.  Relative references are allowed,
+via pre-pending the name with one or more of '.'.
+<P>
+The individidual configuration directives are too numerous to list
+here, so this manual page only documents the file format.  Please read
+the sample configuration file distributed with the server for comments
+describing each of the allowed configuration directives.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+<P>
+
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>foo = bar<BR>
+<P>
+
+Sets variable <B>foo</B> to have text value <B>bar</B>.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blogs = ${foo}<BR>
+<P>
+
+Sets variable <B>blogs</B> to the value of variable <B>foo</B> from the
+current section.  If there is no variable <B>foo</B> in the current
+section, then it looks for that variable in the body of the main
+configuration file, e.g. {Blogdir}
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>my_section {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>baz = bud<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+<P>
+
+Defines a section named <B>my_section</B>, containing variable
+<B>baz</B>.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blogs = ${.foo}<BR>
+<P>
+
+Sets variable <B>blogs</B> to the value of variable <B>foo</B>,
+from the current section.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blogs = ${..foo}<BR>
+<P>
+
+Sets variable <B>blogs</B> to the value of variable <B>foo</B>, from the
+section which contains the current section.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blogs = ${modules.detail.detailfile}<BR>
+<P>
+
+Sets variable <B>blogs</B> to the value of variable <B>detailfile</B>,
+of the <B>detail</B> module, which is in the <B>modules</B> section of
+the configuration file.
+<P>
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>FILES</H2>
+
+/etc/raddb/radiusd.conf
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+
+<B><A HREF="../man5/users.5.html">users</A></B>(5)
+
+<B><A HREF="../man5/clients.5.html">clients</A></B>(5)
+
+<P>
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Alan DeKok &lt;<A HREF="mailto:aland@ox.org">aland@ox.org</A>&gt;
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">FILE FORMAT</A><DD>
+<DT><A HREF="#lbAE">EXAMPLES</A><DD>
+<DT><A HREF="#lbAF">FILES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>

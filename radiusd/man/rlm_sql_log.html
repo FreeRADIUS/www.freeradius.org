@@ -1,0 +1,191 @@
+Content-type: text/html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of rlm_sql_log</TITLE>
+</HEAD><BODY>
+<H1>rlm_sql_log</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 28 May 2005<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_sql_log - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <B>rlm_sql_log</B> module appends the SQL queries in a log file
+which is read later by the scripts/radsqlrelay Perl program.
+<P>
+
+The purpose of this module is to de-couple the storage of long-term
+accounting data in SQL from &quot;live&quot; information needed by the RADIUS
+server as it's running.  If you are not using SQL for simultaneous
+login restrictions (i.e. &quot;sql&quot; is not listed in the &quot;session&quot; section
+of &quot;radiusd.conf&quot;), then this module allows you to log SQL queries to
+a file, and then process them at your leisure.
+<P>
+
+The benefit of this approach is that for a busy server, the overhead
+of performing SQL queries may be significant.  Also, if the SQL
+databases are large (as is typical for ones storing months of data),
+the INSERTs and UPDATEs may take a relatively long time.  Rather than
+slowing down the RADIUS server by having it interact with a database,
+you can just log the queries to a file, and then run those queries on
+another machine, or at a time when the RADIUS server is typically
+lightly loaded.
+<P>
+
+If the &quot;sql&quot; module is listed in the &quot;session&quot; section of
+&quot;radiusd.conf&quot;, then a similar system can still be used.  In that
+case, one database would be used to maintain &quot;live&quot; session
+information.  That database would be small, fast, and information
+would be deleted from it when a user logs out.  A second database
+would store long-term accounting information, as described above.
+<A NAME="lbAD">&nbsp;</A>
+<H2>LIMITATIONS</H2>
+
+This module only performs the dynamic expansion of the variables found
+in the SQL statements. No operation is executed on the database server.
+(this would be done later by an external program) That means the module
+is useful only with non-&quot;SELECT&quot; statements.
+<A NAME="lbAE">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+The main configuration items to be aware of are the path of the log
+file and the different SQL queries.
+<DL COMPACT>
+<DT>path<DD>
+An entry named &quot;path&quot; sets the full path of the file where the SQL
+queries are recorded. (this variable is run through dynamic string
+expansion, and can include FreeRADIUS variables to create a dynamic
+filename)
+<DT>Accounting queries<DD>
+When a accounting record is processed, the module searches a config
+entry keyed by the Acct-Status-Type attribute present in the
+packet. For example, the SQL to be run on an accounting start must be
+named &quot;Start&quot; in the configuration for the module. Other usual values
+for Acct-Status-Type are &quot;Stop&quot;, &quot;Alive&quot;, &quot;Accounting-On&quot;, etc.  See
+the VALUEs for Acct-Status-Type in the dictionary.rfc2866 file.
+<DT>Post-Auth query<DD>
+An entry named &quot;Post-Auth&quot; sets the query to run during the
+post-authentication stage.  This query is mainly used to log sessions
+where there may not be a later accounting packet.
+</DL>
+<P>
+
+
+modules {
+<BR>&nbsp;&nbsp;...
+<BR>
+
+<BR>&nbsp;&nbsp;sql_log&nbsp;{
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;=&nbsp;${radacctdir}/sql-relay
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;acct_table&nbsp;=&nbsp;&quot;radacct&quot;
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;postauth_table&nbsp;=&nbsp;&quot;radpostauth&quot;
+<BR>
+
+<P>
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;Start&nbsp;=&nbsp;&quot;INSERT&nbsp;INTO&nbsp;${acct_table}&nbsp;...&quot;
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;Stop&nbsp;=&nbsp;&quot;UPDATE&nbsp;${acct_table}&nbsp;SET&nbsp;...&quot;
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;Alive&nbsp;=&nbsp;&quot;UPDATE&nbsp;${acct_table}&nbsp;SET&nbsp;...&quot;
+<BR>
+
+<P>
+<BR>
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;Post-Auth&nbsp;=&nbsp;&quot;INSERT&nbsp;INTO&nbsp;${postauth_table}&nbsp;...&quot;
+<BR>
+
+<BR>&nbsp;&nbsp;}
+<BR>
+
+<BR>&nbsp;&nbsp;...
+<BR>
+
+}
+<P>
+<BR>
+
+accounting {
+<BR>&nbsp;&nbsp;...
+<BR>
+
+<BR>&nbsp;&nbsp;sql_log
+<BR>&nbsp;&nbsp;...
+<BR>
+
+}
+<BR>
+
+<P>
+<BR>
+
+post-auth {
+<BR>&nbsp;&nbsp;...
+<BR>
+
+<BR>&nbsp;&nbsp;sql_log
+<BR>&nbsp;&nbsp;...
+<BR>
+
+}
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>accounting,</B>
+
+<B>post-auth</B>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf</I>
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="../man8/radsqlrelay.8.html">radsqlrelay</A></B>(8),
+
+<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+
+<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5)
+
+<A NAME="lbAI">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Nicolas Baradakis &lt;<A HREF="mailto:nicolas.baradakis@cegetel.net">nicolas.baradakis@cegetel.net</A>&gt;
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">LIMITATIONS</A><DD>
+<DT><A HREF="#lbAE">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAF">SECTIONS</A><DD>
+<DT><A HREF="#lbAG">FILES</A><DD>
+<DT><A HREF="#lbAH">SEE ALSO</A><DD>
+<DT><A HREF="#lbAI">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 08:42:07 GMT, August 31, 2007
+</BODY>
+</HTML>
