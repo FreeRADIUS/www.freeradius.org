@@ -36,7 +36,7 @@ CONFIG	:= $(filter-out rlm_%,$(CONFIG))
 	man2html -r $< > $@
 
 .PHONY: all
-all:	$(TXT) $(HTML)
+all:	$(TXT) $(HTML) index.html
 
 index.html: $(HTML) index.html.top index.html.bot
 	cat index.html.top > index.html
