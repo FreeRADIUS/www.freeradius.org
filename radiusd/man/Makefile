@@ -44,7 +44,7 @@ index.html: $(HTML) index.html.top index.html.bot
 	echo "<ul>" >> index.html
 	for x in $(BIN); do \
 		name=`echo $$x | sed 's,\..*,,'`; \
-		echo "<a href=\"$$name.html\">$$name</a><br />" >> index.html; \
+		echo "<a href=\"$$name.html\">$$name</a>&nbsp;(<a href=\"$$name.txt\">txt</a>)<br />" >> index.html; \
 	done	
 	echo "</ul>" >> index.html
 	echo >> index.html
@@ -52,7 +52,7 @@ index.html: $(HTML) index.html.top index.html.bot
 	echo "<ul>" >> index.html
 	for x in $(CONFIG); do \
 		name=`echo $$x | sed 's,\..*,,'`; \
-		echo "<a href=\"$$name.html\">$$name</a><br />" >> index.html; \
+		echo "<a href=\"$$name.html\">$$name</a>&nbsp;(<a href=\"$$name.txt\">txt</a>)<br />" >> index.html; \
 	done	
 	echo "</ul>" >> index.html
 	echo >> index.html
@@ -60,7 +60,7 @@ index.html: $(HTML) index.html.top index.html.bot
 	echo "<ul>" >> index.html
 	for x in $(MODS); do \
 		name=`echo $$x | sed 's,\..*,,'`; \
-		echo "<a href=\"$$name.html\">$$name</a><br />" >> index.html; \
+		echo "<a href=\"$$name.html\">$$name</a>&nbsp;(<a href=\"$$name.txt\">txt</a>)<br />" >> index.html; \
 	done	
 	echo "</ul>" >> index.html
 	cat index.html.bot >> index.html
