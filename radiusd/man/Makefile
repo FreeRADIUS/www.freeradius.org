@@ -64,3 +64,4 @@ index.html: $(HTML) index.html.top index.html.bot
 	done	
 	echo "</ul>" >> index.html
 	cat index.html.bot >> index.html
+	chmod +x index.html
