@@ -40,7 +40,7 @@ all:	$(TXT) $(HTML) index.html
 
 index.html: $(HTML) index.html.top index.html.bot
 	cat index.html.top > index.html
-	echo "<h2>Programs</h2>" >> index.html
+	echo "<a name=\"programs\"><h2>Programs</h2></a>" >> index.html
 	echo "<ul>" >> index.html
 	for x in $(BIN); do \
 		name=`echo $$x | sed 's,\..*,,'`; \
@@ -48,7 +48,7 @@ index.html: $(HTML) index.html.top index.html.bot
 	done	
 	echo "</ul>" >> index.html
 	echo >> index.html
-	echo "<h2>Configuration Files</h2>" >> index.html
+	echo "<a name=\"files\"><h2>Configuration Files</h2></a>" >> index.html
 	echo "<ul>" >> index.html
 	for x in $(CONFIG); do \
 		name=`echo $$x | sed 's,\..*,,'`; \
@@ -56,7 +56,7 @@ index.html: $(HTML) index.html.top index.html.bot
 	done	
 	echo "</ul>" >> index.html
 	echo >> index.html
-	echo "<h2>Modules</h2>" >> index.html
+	echo "<a name=\"modules\"><h2>Modules</h2></a>" >> index.html
 	echo "<ul>" >> index.html
 	for x in $(MODS); do \
 		name=`echo $$x | sed 's,\..*,,'`; \
