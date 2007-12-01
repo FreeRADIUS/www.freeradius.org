@@ -155,6 +155,10 @@ span.date {
 	font-weight: bold;
 }
 
+caption {
+	font-weight: bold;
+}
+
 #content dl {
 	margin: 0 20px;
 	list-style: disc;
