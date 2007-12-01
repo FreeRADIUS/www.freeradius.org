@@ -34,7 +34,9 @@ attributes longer than 253 bytes in length.</p>
 
 <p><em>Estimated effort:</em> To parse and generate WiMAX attributes,
 approximately a thousand lines of code.  About the same effort again
-to update the protocol core to handle long attributes</p>
+to update the protocol core to handle long attributes.  The total cost
+is likely less than purchasing a commercial server that includes WiMAX
+support.</p>
 
 <p><em>Contact:</em> <a
 href="mailto:wimax@freeradius.org">wimax@freeradius.org</a></p>
@@ -44,11 +46,52 @@ href="mailto:wimax@freeradius.org">wimax@freeradius.org</a></p>
 <p><em>Scope of Work:</em> Update the protocol handlers to parse and
 generate 3GPP2 attributes.</p>
 
-<p><em>Estimated effort:</em> Approximately a thousand lines of
-code.</p>
+<p><em>Estimated effort:</em> Approximately a thousand lines of code.
+The total cost is likely less than purchasing a commercial server that
+includes WiMAX support.</p>
 
 <p><em>Contact:</em> <a
 href="mailto:3gpp2@freeradius.org">3gpp2@freeradius.org</a></p>
+
+<h2>Change of Authorization (CoA)</h2>
+
+<p><em>Scope of Work:</em> Update the server core to accept, process,
+and generate CoA-Request and Disconnect-Request packets.</p>
+
+<p><em>Estimated effort:</em> Significant.  Three to six (3-6) weeks of
+effort.</p>
+
+<p><em>Contact:</em> <a href="mailto:coa@freeradius.org">coa@freeradius.org</a></p>
+
+<h2>Native port to Windows</h2>
+
+<p><em>Scope of Work:</em> Update the server to build under <a
+href="http://www.mingw.org">MingW</a>.  Add native Windows
+implementations of some features (threads, signals, run as service,
+etc.)</p>
+
+<p><em>Estimated effort:</em> Three to four (3-4) weeks of work.  The
+end result will be a native Windows binary that can be run as a
+service on Windows.</p>
+
+<p><em>Contact:</em> <a
+href="mailto:win32@freeradius.org">win32@freeradius.org</a></p>
+
+<h2>Active Directory integration</h2>
+
+<p><em>Scope of Work:</em> Once the server runs natively on Windows,
+use internal Windows API's to obtain user passwords.  This information
+is not available to programs running elsewhere on the network.</p>
+
+<p><em>Estimated effort:</em> Three to four (3-4) weeks of work.  The
+end result will be a module that will look up a user and obtain their
+password from the internal Active Directory database.  This
+functionality will be equivalent to the <tt>unix</tt> module on Posix
+systems, which uses the user name as a key to obtain the password from
+<tt>/etc/passwd</tt></p>
+
+<p><em>Contact:</em> <a
+href="mailto:ad-password@freeradius.org">ad-password@freeradius.org</a></p>
 
 <h2>Change of Authorization (CoA)</h2>
 
