@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- Virtual Servers</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<meta name="keywords" content="virtual,server" />
+	<meta name="description" content="Virtual Servers in FreeRADIUS">
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>Virtual Servers</h1>
+
+<p>The idea of virtual servers (or <a
+href="http://en.wikipedia.org/wiki/Virtual_hosting">virtual hosts</a>)
+was first introduced in web servers such as Apache.  FreeRADIUS is the
+first RADIUS server to implement this functionality.</p>
+
+<p>This functionality is different from running a RADIUS server inside
+of a <a href="http://en.wikipedia.org/wiki/Virtual_machine">virtual
+machine</a> such as Xen or VMware.  It does not offer the same
+protection as a virtual machine, but it is often much easier to
+configure and maintain.</p>
+
+<h2>Background</h2>
+
+<p>RADIUS servers have traditionally had one configuration, and one
+global policy that was applied to all incoming requests.  That global
+policy may be configured to select one or more sub-policies
+(e.g. per-client or per-user), but creating and maintaining those
+policies was often difficult.</p>
+
+<p>The main difficulty in creating and maintaining these policies was
+in ensuring that changes to one sub-policy did not affect another,
+independent, sub-policy.  As the number of users, devices, and
+policies grows, the effort required to debug these policies can become
+significant.  Virtual servers can simplify this process considerably.</p>
+
+<h2>IP based</h2>
+
+<p>The server can listen on multiple IP addresses, and each IP address
+can have its own independent policy. For example, the following
+configuration enables the server to listen on two IP addresses, and to
+apply independent policies to packets received on each IP address.</p>
+
+<dl>
+<dt></dt><dd>
+<pre>
+listen {
+	ipaddr = 192.0.2.1
+	port = 1812
+	type = auth
+	virtual_server = one
+}
+
+listen {
+	ipaddr = 192.0.2.2
+	port = 1812
+	type = auth
+	virtual_server = two
+}
+
+server one {
+	...
+}
+
+server two {
+	...
+}
+</pre>
+</dd></dl>
+
+<p>When packets are received on the IP address <tt>192.0.2.1</tt>,
+they will be processed through the <tt>server one</tt> virtual server.
+When packets are received on the IP address <tt>192.0.2.2</tt>, they
+will be processed through the <tt>server two</tt> virtual server.</p>
+
+<p>The concents of the <tt>server one</tt> and <tt>server two</tt>
+sections are <tt>authorize</tt>, <tt>authenticate</tt>, etc. sections
+used to process packets in version 1.x.</p>
+
+<h2>Client based</h2>
+
+<p>The server identifies RADIUS clients by IP address, and each client
+can have its own independent policy. For example, the following
+configuration enables the server to have two clients, and to apply
+independent policies to packets received from each IP address.</p>
+
+<dl>
+<dt></dt><dd>
+<pre>
+listen {
+	ipaddr = 192.0.2.3
+	port = 1812
+	type = auth
+	# no server section is defined here
+	clients = disambiguate
+}
+
+clients disambiguate {
+	client one {
+		ipaddr = 192.0.2.4
+		secret = testing123
+		virtual_server = one
+	}
+
+	client two {
+		ipaddr = 192.0.2.5
+		secret = testing567
+		virtual_server = two
+	}
+}
+...
+# server one as above
+# server two as above
+</pre>
+</dd></dl>
+
+<p>When packets are received on the IP address <tt>192.0.2.3</tt>,
+they will be processed through the <tt>server one</tt> virtual server
+if they are received from <tt>client one</tt>.  When packets are
+received on the same IP address (<tt>192.0.2.3</tt>), they will be
+processed through the <tt>server two</tt> virtual server if they are
+received from <tt>client two</tt>.</p>
+
+<p>Both <em>IP based</em> and <em>client based</em> servers can be
+used at the same time, so long as there is only one way to map an
+incoming request to a virtual server.  If the same request can map to
+multiple virtual servers, FreeRADIUS will return an error, and will
+refuse to start.</p>
+
+<h2>TLS Tunnels</h2>
+
+<p>The <a href="eap.html">EAP</a> tunneled methods present an
+authentication request to FreeRADIUS inside of the TLS tunnel.  The
+<tt>eap</tt> module can map these tunneled requests to a virtual
+server.  This mapping enables <em>completely independent</em> policies
+for outer, and inner tunneled sessions.  This configuration was not
+possible in earlier versions of FreeRADIUS.</p>
+
+<dl>
+<dt></dt><dd>
+<pre>
+modules {
+	...
+	eap {
+		ttls {
+			...
+			virtual_server = inner-tunnel
+		}
+
+		peap {
+			...
+			virtual_server = inner-tunnel
+		}
+	}
+	...
+}
+...
+server inner-tunnel {
+	...
+}
+</pre>
+</dd></dl>
+
+<p>When requests are received inside of a TTLS or PEAP tunnel, they
+will be processed through the <tt>server inner-tunnel</tt> virtual
+server.</p>
+
+<h3>More examples</h3>
+
+<p>For more examples, see the <tt>raddb/sites-enabled/</tt> directory
+that is included in the server distribution.</p>
+
+</div>
+
+<!--#include virtual="/footer.html" -->
+</body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->
