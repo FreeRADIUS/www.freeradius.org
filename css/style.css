@@ -187,3 +187,9 @@ img.float-left {
 span.credit {
 	color: #008;
 }
+
+pre.config{
+	border:1px solid #dadada;
+	margin:20px 10px;
+	padding:8px;
+}

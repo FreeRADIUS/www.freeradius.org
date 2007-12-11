@@ -46,7 +46,12 @@ independent, sub-policy.  As the number of users, devices, and
 policies grows, the effort required to debug these policies can become
 significant.  Virtual servers can simplify this process considerably.</p>
 
-<h2>IP based</h2>
+<p>In FreeRADIUS 2.0, virtual servers can be configured independently
+for each of <a href="#ip">server IP address</a>, <a
+href="#client">client IP address</a>, <a href="#home">home server
+pool</a>, and <a href="#tunnel">inner TLS tunnel</a>.
+
+<a name="ip"><h2>IP based</h2></a>
 
 <p>The server can listen on multiple IP addresses, and each IP address
 can have it's own independent policy for incoming packets. For
@@ -56,7 +61,7 @@ received on each IP address.</p>
 
 <dl>
 <dt></dt><dd>
-<pre>
+<pre class="config">
 listen {
 	ipaddr = 192.0.2.1
 	port = 1812
@@ -90,7 +95,7 @@ will be processed through the <tt>server two</tt> virtual server.</p>
 sections are <tt>authorize</tt>, <tt>authenticate</tt>, etc. sections
 used to process packets in version 1.x.</p>
 
-<h2>Client based</h2>
+<a name="client"><h2>Client based</h2></a>
 
 <p>The server identifies RADIUS clients by IP address, and each client
 can have it's own independent policy based on client source IP
@@ -100,7 +105,7 @@ received from each IP address.</p>
 
 <dl>
 <dt></dt><dd>
-<pre>
+<pre class="config">
 listen {
 	ipaddr = 192.0.2.3
 	port = 1812
@@ -141,7 +146,7 @@ incoming request to a virtual server.  If the same request can map to
 multiple virtual servers, FreeRADIUS will return an error, and will
 refuse to start.</p>
 
-<h3>Home Server based</h3>
+<a name="home"><h2>Home Server based</h2></a>
 
 <p>The server identifies RADIUS home servers by server pools for
 fail-over and redundancy.  Each home server pool can have it's own
@@ -152,7 +157,7 @@ proxied to home servers in each pool.</p>
 
 <dl>
 <dt></dt><dd>
-<pre>
+<pre class="config">
 	...
 	home_server_pool one {
 		type = fail-over
@@ -195,7 +200,7 @@ pool, they will be processed through the <tt>server
 proxy-pool-one</tt>, or the <tt>server proxy-pool-two</tt> virtual
 server.</p>
 
-<h2>TLS Tunnels</h2>
+<a name="tunnel"><h2>TLS Tunnels</h2></a>
 
 <p>The <a href="eap.html">EAP</a> tunneled methods present an
 authentication request to FreeRADIUS inside of the TLS tunnel.  The
@@ -206,7 +211,7 @@ possible in earlier versions of FreeRADIUS.</p>
 
 <dl>
 <dt></dt><dd>
-<pre>
+<pre class="config">
 modules {
 	...
 	eap {
@@ -232,7 +237,7 @@ server inner-tunnel {
 will be processed through the <tt>server inner-tunnel</tt> virtual
 server.</p>
 
-<h3>More examples</h3>
+<h2>More examples</h2>
 
 <p>For more examples, see the <tt>raddb/sites-enabled/</tt> directory
 that is included in the server distribution.</p>
