@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- Features</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<meta name="keywords" content="PEAP,MSCHAPv2,TTLS,TLS,EAP,EAP-FAST" />
+	<meta name="description" content="EAP methods supported by FreeRADIUS">
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>Supported EAP Methods</h1>
+
+<p>FreeRADIUS is the first, and still the only, full-featured Open
+Source RADIUS server with support for EAP.</p>
+
+<p>The following EAP methods are supported by FreeRADIUS 2.0.</p>
+
+<ul>
+<li>EAP-AKA<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-FAST<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-GPSK (experimental)<sup><a href="#note-1">1</a></sup></li>
+<li>Cisco LEAP<sup><a href="#note-2">2</a></sup></li>
+<li>EAP-PAX<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-PEAP<sup><a href="#note-3">3</a></sup></li>
+<ul>
+<li>MSCHAPv2 (both PEAPv0 and PEAPv1)</li>
+<li>GTC (both PEAPv0 and PEAPv1)</li>
+<liMD5-Challenge (both PEAPv0 and PEAPv1)</li>
+</ul>
+<li>EAP-PSK<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-SAKE<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-SIM<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-TLS<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-TTLS<sup><a href="#note-3">3</a></sup></li>
+<ul>
+<li>PAP</li>
+<li>CHAP</li>
+<li>MS-CHAP</li>
+<li>MS-CHAPv2</li>
+<li>EAP-MSCHAPv2</li>
+<li>EAP-MD5</li>
+<li>EAP-GTC</li>
+</ul>
+</ul>
+
+<p>The following methods are also supported, but cannot be used with
+WPA or IEEE 802.1X WEP keying.</p>
+
+<ul>
+<li>EAP-MD5-Challenge<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-MSCHAPv2<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-GTC<sup><a href="#note-3">3</a></sup></li>
+</ul>
+
+<hr />
+<h3>Notes</h3>
+
+<p><sup><a name="note-1">1</a></sup> &nbsp; Via the "eap2" module, by
+using the <a href="http://hostap.epitest.fi/hostapd/">hostapd</a>
+<tt>libeap.so</tt> library.  This module is experimental, and may not
+be ready for use in a production environment.  This module is also not
+available in FreeRADIUS versions 1.0.x and 1.1.x</p>
+
+<p><sup><a name="note-2">2</a></sup> &nbsp; Via the "eap" module,
+using the native FreeRADIUS EAP implementation.</p>
+
+<p><sup><a name="note-3">3</a></sup> &nbsp; Via the "eap" and
+"eap2" modules.  Some functionality may differ between the two
+implementations.  See the configuration files for more details.</p>
+
+
+
+</div>
+
+<!--#include virtual="/footer.html" -->
+</body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->
