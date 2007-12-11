@@ -22,7 +22,8 @@
 <h1>Supported EAP Methods</h1>
 
 <p>FreeRADIUS is the first, and still the only, full-featured Open
-Source RADIUS server with support for EAP.</p>
+Source RADIUS server with support for EAP.  It also supports more EAP
+types than most commercial products.</p>
 
 <p>The following EAP methods are supported by FreeRADIUS 2.0.</p>
 
@@ -52,6 +53,7 @@ Source RADIUS server with support for EAP.</p>
 <li>EAP-MD5</li>
 <li>EAP-GTC</li>
 </ul>
+<li>EAP-TNC (experimental)<sup><a href="#note-2">2</a></sup></li>
 </ul>
 
 <p>The following methods are also supported, but cannot be used with
@@ -69,8 +71,9 @@ WPA or IEEE 802.1X WEP keying.</p>
 <p><sup><a name="note-1">1</a></sup> &nbsp; Via the "eap2" module, by
 using the <a href="http://hostap.epitest.fi/hostapd/">hostapd</a>
 <tt>libeap.so</tt> library.  This module is experimental, and may not
-be ready for use in a production environment.  This module is also not
-available in FreeRADIUS versions 1.0.x and 1.1.x</p>
+be ready for use in a production environment.  This module is only
+available in FreeRADIUS versions 2.0 and later.  It is not available
+in earlier versions of the server.</p>
 
 <p><sup><a name="note-2">2</a></sup> &nbsp; Via the "eap" module,
 using the native FreeRADIUS EAP implementation.</p>
