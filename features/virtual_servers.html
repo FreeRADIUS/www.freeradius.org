@@ -49,9 +49,10 @@ significant.  Virtual servers can simplify this process considerably.</p>
 <h2>IP based</h2>
 
 <p>The server can listen on multiple IP addresses, and each IP address
-can have its own independent policy. For example, the following
-configuration enables the server to listen on two IP addresses, and to
-apply independent policies to packets received on each IP address.</p>
+can have it's own independent policy for incoming packets. For
+example, the following configuration enables the server to listen on
+two IP addresses, and to apply independent policies to packets
+received on each IP address.</p>
 
 <dl>
 <dt></dt><dd>
@@ -92,9 +93,10 @@ used to process packets in version 1.x.</p>
 <h2>Client based</h2>
 
 <p>The server identifies RADIUS clients by IP address, and each client
-can have its own independent policy. For example, the following
-configuration enables the server to have two clients, and to apply
-independent policies to packets received from each IP address.</p>
+can have it's own independent policy based on client source IP
+address. For example, the following configuration enables the server
+to have two clients, and to apply independent policies to packets
+received from each IP address.</p>
 
 <dl>
 <dt></dt><dd>
@@ -139,6 +141,60 @@ incoming request to a virtual server.  If the same request can map to
 multiple virtual servers, FreeRADIUS will return an error, and will
 refuse to start.</p>
 
+<h3>Home Server based</h3>
+
+<p>The server identifies RADIUS home servers by server pools for
+fail-over and redundancy.  Each home server pool can have it's own
+independent policy based on where the packet is being proxied. For
+example, the following configuration enables the server to have two
+server pools, and to apply independent policies to packets that are
+proxied to home servers in each pool.</p>
+
+<dl>
+<dt></dt><dd>
+<pre>
+	...
+	home_server_pool one {
+		type = fail-over
+		home_server = 192.0.2.10
+		home_server = 192.0.2.11
+		home_server = 192.0.2.12
+		virtual_server = proxy-pool-one
+	}
+	home_server_pool two {
+		type = fail-over
+		home_server = 192.0.2.13
+		home_server = 192.0.2.14
+		home_server = 192.0.2.15
+		virtual_server = proxy-pool-two
+	}
+	...
+}
+...
+server proxy-pool-one {
+	pre-proxy {
+		...
+	}
+	post-proxy {
+		...
+	}
+}
+server proxy-pool-two {
+	pre-proxy {
+		...
+	}
+	post-proxy {
+		...
+	}
+}
+</pre>
+</dd></dl>
+
+<p>When requests are sent to one of the home servers listed in the
+pool, they will be processed through the <tt>server
+proxy-pool-one</tt>, or the <tt>server proxy-pool-two</tt> virtual
+server.</p>
+
 <h2>TLS Tunnels</h2>
 
 <p>The <a href="eap.html">EAP</a> tunneled methods present an
@@ -158,7 +214,6 @@ modules {
 			...
 			virtual_server = inner-tunnel
 		}
-
 		peap {
 			...
 			virtual_server = inner-tunnel
