@@ -19,29 +19,93 @@
 
 <div id="content">
 
-<h1>Features Supported by FreeRADIUS</h1>
+<h1>List of Features</h1>
 
-<p>FreeRADIUS runs on a wide variety of <a href="os.html">Operating
-Systems</a>.
+<p>The server has all features which are expected to be found in a
+normal RADIUS server implementation.  In addition, it is unique among
+Open Source RADIUS servers in it's support for <a
+href="eap.html">EAP</a>.  It also has many capabilities not found in
+any other RADIUS product, including commercial servers from large
+vendors.</p>
+
+<p>In short, if you need a certain feature, it is likely that
+FreeRADIUS supports it.  Please see the discussion and links below for
+additionanal information.</p>
+
+<h2>Operating Systems</h2>
+
+<p>The server is currently running on a wide variety of <a
+href="os.html">Operating Systems</a>.  It is tested to work on on
+32-bit and 64-bit CPUs.</p>
+
+<p>A large number of CPU and OS architectures are have been verified
+to work, and are supported via the <a href="/list/users.html">users
+list</a>.  We suggest that the server be installed via a pre-built
+package if one is available.  If a package does not exist for your
+system, it can be built from <a href="download.html">source</a>.</p>
 
 <h2>AAA Functionality</h2>
 
 <h3>Authentication</h3>
 
-All common <a href="eap.html">EAP</a> methods are supported.
+<p>The server can authenticate users via PAP, CHAP, <a
+href="http://www.freeradius.org/rfc/rfc2548.txt">MS-CHAP</a>, <a
+href="http://www.freeradius.org/rfc/rfc2548.txt">MS-CHAPv2</a>, SIP
+Digest, and all common <a href="eap.html">EAP</a> methods.</p>
+
+<p>User passwords can be stored as clear-text, NT hashed (MD4), LM
+hashed, MD5, salted-MD5, SHA1, salted-SHA1, or crypt
+(e.g. <tt>/etc/passwd</tt>).  The <tt>pap</tt> module understands
+passwords stored via the common LDAP method of using a header,
+followed by password text.  (e.g. <tt>{header}text</tt>).  It
+understands all commonly used header formats (<tt>{clear}</tt>,
+<tt>{crypt}</tt>, etc.), and can parse the password text from
+clear-text, a hex string, or a base-64 encoded string.</p>
+
+<p>If a password is not available locally for some reason, the server
+can pass the authentication to another system such as LDAP, PAM, Unix
+(<tt>/etc/passwd</tt>), Kerberos, Active Directory, or RADIUS server
+via RADIUS proxying.  Local programs (e.g. CGI scripts) can also be
+used to authenticate users via shell scripts or any other method.
+Perl or Python scripts can be pre-loaded into the server, which
+significantly lowers the cost of running such programs.</p>
 
 <h3>Authorization</h3>
 
 <h3>Accounting</h3>
 
+<h2>RFC's and Vendor Dictionaries</h2>
+
 <h2>Databases</h2>
+
+<h2>Scalability</h2>
+
+<p>The server is designed with a "plug-in" module system.  Any feature
+that is not needed can be removed from the configuration.  Once it is
+removed from the configuration, it does not effect server performance,
+memory use, etc.  This flexibility enables the server to run on
+platforms ranging from embedded systems (e.g. LinkSys WRT54G) to
+multi-core machines with gigabytes of RAM.  Only minor configuration
+changes are necessary when scaling from small systems (one packet
+every few seconds or minutes), to large systems (hundreds of threads,
+and thousands of packets per second).</p>
+
+<p>The server is currently deployed in many tier 1 ISPs and
+telecommunications companies, as seen in the <a
+href="/testimonials.html">testimonials</a> and <a
+href="/press/survey.html">survey</a> pages.  There are many sites with
+more than 10 million users who are using FreeRADIUS.  For some of
+these, it is the <em>only</em> RADIUS server that they use.  As for
+small sites (10 to 1000 users), nearly all of them use FreeRADIUS.</p>
 
 <h2>Virtual Servers</h2>
 
-FreeRADIUS is the only RADIUS server (commercial or Open Source) that
-supports <a href="virtual_servers.html">virtual servers</a>.  This
-feature is similar to the virtual servers used in well-known web
-servers such as Apache.
+<p>FreeRADIUS is the only RADIUS server (commercial or Open Source)
+that supports <a href="virtual_servers.html">virtual servers</a>.
+This feature is similar to the virtual servers used in well-known web
+servers such as Apache.  This feature can simplify complex
+implementations, and can reduce ongoing support and maintenance
+costs.</p>
 
 </div>
 
