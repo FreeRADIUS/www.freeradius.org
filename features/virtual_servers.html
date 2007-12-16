@@ -36,15 +36,15 @@ configure and maintain.</p>
 
 <p>RADIUS servers have traditionally had one configuration, and one
 global policy that was applied to all incoming requests.  That global
-policy may be configured to select one or more sub-policies
-(e.g. per-client or per-user), but creating and maintaining those
-policies was often difficult.</p>
+policy was usually configured to select one or more sub-policies
+(e.g. per-client or per-user).  The process of creating and
+maintaining those policies has often been difficult.</p>
 
-<p>The main difficulty in creating and maintaining these policies was
-in ensuring that changes to one sub-policy did not affect another,
-independent, sub-policy.  As the number of users, devices, and
-policies grows, the effort required to debug these policies can become
-significant.  Virtual servers can simplify this process considerably.</p>
+<p>The largest problem in creating and maintaining these policies was
+in ensuring that changes to one sub-policy did not affect another
+independent sub-policy.  As the number of users, devices, and policies
+increases, the effort required to debug these policies becomes
+significant.  Virtual servers simplify this process considerably.</p>
 
 <p>In FreeRADIUS 2.0, virtual servers can be configured independently
 for each of <a href="#ip">server IP address</a>, <a
@@ -146,14 +146,14 @@ incoming request to a virtual server.  If the same request can map to
 multiple virtual servers, FreeRADIUS will return an error, and will
 refuse to start.</p>
 
-<a name="home"><h2>Home Server based</h2></a>
+<a name="home"><h2>Home Server Pool based</h2></a>
 
 <p>The server identifies RADIUS home servers by server pools for
 fail-over and redundancy.  Each home server pool can have it's own
 independent policy based on where the packet is being proxied. For
 example, the following configuration enables the server to have two
-server pools, and to apply independent policies to packets that are
-proxied to home servers in each pool.</p>
+home server pools, and to apply independent policies to packets that
+are proxied to home servers in each pool.</p>
 
 <dl>
 <dt></dt><dd>
@@ -206,8 +206,8 @@ server.</p>
 authentication request to FreeRADIUS inside of the TLS tunnel.  The
 <tt>eap</tt> module can map these tunneled requests to a virtual
 server.  This mapping enables <em>completely independent</em> policies
-for outer, and inner tunneled sessions.  This configuration was not
-possible in earlier versions of FreeRADIUS.</p>
+for each of the outer and inner tunneled sessions.  This configuration
+was not possible in earlier versions of FreeRADIUS.</p>
 
 <dl>
 <dt></dt><dd>
