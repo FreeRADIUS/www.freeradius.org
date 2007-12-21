@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- Scalability</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<meta name="keywords" content="scale,scalability,performance,multi-cpu,threads" />
+	<meta name="description" content="Scalability of the server">
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>Scalability</h1>
+
+<p>The server is designed with a "plug-in" <a
+href="modules.html">module</a> system.  Any feature that is not needed
+can be removed from the configuration.  Once it is removed from the
+configuration, it does not affect server performance, memory use,
+security, etc.  This flexibility enables the server to run on
+platforms ranging from embedded systems (e.g. LinkSys WRT54G) to
+multi-core machines with gigabytes of RAM.  Only minor configuration
+changes are necessary when scaling from small systems (one packet
+every few minutes), to large systems (manhy CPUs, hundreds of threads,
+and thousands of packets per second).</p>
+
+<p>The server is currently deployed in Fortune 500 companies, and Tier
+1 ISPs and telecommunications companies, as seen in the <a
+href="/testimonials.html">testimonials</a> and <a
+href="/press/survey.html">survey</a> pages.  Many organizations with
+more than 10 million customers are depending on FreeRADIUS for all AAA
+functionality.  For some of these large sites, and for most small
+sites (10 to 1000 users) it is the <em>only</em> RADIUS server that is
+used.</p>
+
+</div>
+
+<!--#include virtual="/footer.html" -->
+</body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->

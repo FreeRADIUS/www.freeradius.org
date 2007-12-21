@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- Authentication</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<meta name="keywords" content="AAA,authentication,password" />
+	<meta name="description" content="Authentication">
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>Authentication</h1>
+
+<p>The server can authenticate users via PAP, CHAP, <a
+href="http://www.freeradius.org/rfc/rfc2548.txt">MS-CHAP</a>, <a
+href="http://www.freeradius.org/rfc/rfc2548.txt">MS-CHAPv2</a>, SIP
+Digest, and all common <a href="eap.html">EAP</a> methods.</p>
+
+<p>The ability to use a particular authentication protocol (PAP, CHAP,
+types of EAP) is <em>completely</em> under the control of the
+administrator.  In most cases, the choice of authentication protocol
+is under control of the user or NAS.  However, the server does not
+have to agree to accept that protocol.  It can reject a request if it
+determines that a protocol is insufficiently secure.</p>
+
+<p>User passwords can be stored as clear-text, NT hashed (MD4), LM
+hashed, MD5, salted-MD5, SHA1, salted-SHA1, or crypt
+(e.g. <tt>/etc/passwd</tt>).  The <tt>pap</tt> module understands
+passwords stored via the common LDAP method of using a header,
+followed by password text.  (e.g. <tt>{header}text</tt>).  It
+understands all commonly used header formats (<tt>{clear}</tt>,
+<tt>{crypt}</tt>, etc.), and can parse the password text from
+clear-text, a hex string, or a base-64 encoded string.</p>
+
+<p>If a password is not available locally for some reason, the server
+can pass the authentication to another system such as LDAP, PAM, Unix
+(<tt>/etc/passwd</tt>), Kerberos, Active Directory, or RADIUS server
+via RADIUS proxying.  Local programs (e.g. CGI scripts) can also be
+used to authenticate users via shell scripts or any other method.
+Perl or Python scripts can be pre-loaded into the server, which
+significantly lowers the cost of running such programs.</p>
+
+<p>The method used to obtain a "known good" password is completely
+independent of the authentication protocol being used.  A system can
+be deployed using EAP for authentication, and can obtain passwords
+from a flat-tex file, LDAP, SQL, or even a Perl script.</p>
+
+</div>
+
+<!--#include virtual="/footer.html" -->
+</body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->

@@ -32,6 +32,14 @@ vendors.</p>
 FreeRADIUS supports it.  Please see the discussion and links below for
 additionanal information.</p>
 
+<h2>Performance and Scalability</h2>
+
+<p>The server is one of the <a href="fast.html">fastest</a> and <a
+href="scalability.html">scalable</a> products we know of.  It's unique
+<a href="modules.html">modular</a> design enables it to be stripped
+down for embedded systems, or to expose all available features where
+required.</p>
+
 <h2>Operating Systems</h2>
 
 <p>The server is currently running on a wide variety of <a
@@ -48,27 +56,11 @@ system, it can be built from <a href="download.html">source</a>.</p>
 
 <h3>Authentication</h3>
 
-<p>The server can authenticate users via PAP, CHAP, <a
+<p>The server can <a href="authentication.html">authenticate</a> users
+via PAP, CHAP, <a
 href="http://www.freeradius.org/rfc/rfc2548.txt">MS-CHAP</a>, <a
 href="http://www.freeradius.org/rfc/rfc2548.txt">MS-CHAPv2</a>, SIP
 Digest, and all common <a href="eap.html">EAP</a> methods.</p>
-
-<p>User passwords can be stored as clear-text, NT hashed (MD4), LM
-hashed, MD5, salted-MD5, SHA1, salted-SHA1, or crypt
-(e.g. <tt>/etc/passwd</tt>).  The <tt>pap</tt> module understands
-passwords stored via the common LDAP method of using a header,
-followed by password text.  (e.g. <tt>{header}text</tt>).  It
-understands all commonly used header formats (<tt>{clear}</tt>,
-<tt>{crypt}</tt>, etc.), and can parse the password text from
-clear-text, a hex string, or a base-64 encoded string.</p>
-
-<p>If a password is not available locally for some reason, the server
-can pass the authentication to another system such as LDAP, PAM, Unix
-(<tt>/etc/passwd</tt>), Kerberos, Active Directory, or RADIUS server
-via RADIUS proxying.  Local programs (e.g. CGI scripts) can also be
-used to authenticate users via shell scripts or any other method.
-Perl or Python scripts can be pre-loaded into the server, which
-significantly lowers the cost of running such programs.</p>
 
 <h3>Authorization</h3>
 
@@ -77,27 +69,6 @@ significantly lowers the cost of running such programs.</p>
 <h2>RFC's and Vendor Dictionaries</h2>
 
 <h2>Databases</h2>
-
-<h2>Scalability</h2>
-
-<p>The server is designed with a "plug-in" module system.  Any feature
-that is not needed can be removed from the configuration.  Once it is
-removed from the configuration, it does not effect server performance,
-memory use, etc.  This flexibility enables the server to run on
-platforms ranging from embedded systems (e.g. LinkSys WRT54G) to
-multi-core machines with gigabytes of RAM.  Only minor configuration
-changes are necessary when scaling from small systems (one packet
-every few minutes), to large systems (manhy CPUs, hundreds of threads,
-and thousands of packets per second).</p>
-
-<p>The server is currently deployed in many tier 1 ISPs and
-telecommunications companies, as seen in the <a
-href="/testimonials.html">testimonials</a> and <a
-href="/press/survey.html">survey</a> pages.  Many organizations with
-more than 10 million customers are depending on FreeRADIUS for all AAA
-functionality.  For some of these large sites, and for most small
-sites (10 to 1000 users) it is the <em>only</em> RADIUS server that
-is used.</p>
 
 <h2>Virtual Servers</h2>
 

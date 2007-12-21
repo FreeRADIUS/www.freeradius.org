@@ -19,37 +19,31 @@
 
 <h1>The FreeRADIUS Project</h1>
 
-<p>FreeRADIUS has developed the industry leading RADIUS server.  Based
-on current statistics, there are over 50,000 deployments of the
-software.  These deployments include small sites with 10 users,
-large-scale enterprises with tens of thousands of users, and
-carrier-class deployments with over 10 million users.  In total, the
-sites that we know are using FreeRADIUS support nearly <a
-href="press/survey.html#users">100 million</a> users.  The only other
-servers that come close in terms of market share and/or number of
-sites are products from Cisco and Microsoft.</p>
+<p>FreeRADIUS includes a <a href="/radiusd.html">RADIUS server</a>, a
+BSD licensed <a href="/freeradius-client/">client library</a>, a <a
+href="/pam_radius_auth/">PAM</a> library, and an Apache <a
+href="/mod_auth_radius/">module</a>.  In most cases, the word
+<em>FreeRADIUS</em> refers to the RADIUS server.</p>
 
-<p>The server scales easily from embedded systems with small amounts
-of memory to systems with millions of users.  It is fast, <a
-href="features.html">flexible</a>, configurable, and supports more
-authentication protocols than most commercial servers.  It includes
-support for SQL, LDAP, RADIUS Proxying, failover, load balancing, and
-nearly 100 vendor dictionary files.  It can perform authentications
-via the PAP, CHAP, MS-CHAP, EAP-MD5, EAP-GTC, EAP-TLS, EAP-TTLS,
-PEAPv0, LEAP, EAP-SIM, and Digest authentication protocols.  It has
-reached a stable
-<a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
-version
-<a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2.sig">(sig)</a>
-, with incremental improvements added in
-each release.</p>
+<p>The RADIUS server is <a href="/features/fast.html">fast</a>, <a
+href="/features/">feature-rich</a>, <a
+href="/features/modules.html">modular</a>, and <a
+href="/features/scalability.html">scalable</a>.</p>
 
-<p>
-The project is growing to include a <a
-href="/freeradius-client/">client library</a> that is BSD licensed.
-There is also a <a href="/pam_radius_auth/">PAM</a> library, and an
-Apache <a href="/mod_auth_radius/">module</a>.
-</p>
+<p>FreeRADIUS is the <a href="/press/survey.html">most widely
+deployed</a> RADIUS server in the world.  It is the basis for multiple
+commercial offerings.  It supplies the AAA needs of many Fortune-500
+companies and Tier 1 ISPs.  It is also widely used in the academic
+community, including <a
+href="http://www.eduroam.org/">eduroam</a>.</p>
+
+<p>The server has reached a stable <a
+href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo
+var="freeradius_version" -->.tar.bz2">Version <!--#echo
+var="freeradius_version" --></a> <a
+href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo
+var="freeradius_version" -->.tar.bz2.sig">(sig)</a> , with incremental
+improvements added in every release.</p>
 
 <hr />
 
@@ -92,14 +86,6 @@ narrow down which modules is causing the problem.</li>
 <li>Use correct value for authentication name in rlm_mschap.</li>
 <li>Fix over-ride for usernames when use_tunneled_reply = yes.</li>
 </ul>
-
-<hr />
-
-<p>The server is released under the <a
-href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GNU
-General Public License, Version 2</a> (GPLv2), which means that it is
-free to <a href="getting.html">download</a> and <a
-href="usage.html">install</a>.</p>
 
 </div><!--content-->
 
