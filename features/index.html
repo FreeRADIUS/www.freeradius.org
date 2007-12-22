@@ -21,16 +21,16 @@
 
 <h1>List of Features</h1>
 
-<p>The server has all features which are expected to be found in a
-normal RADIUS server implementation.  In addition, it is unique among
-Open Source RADIUS servers in it's support for <a
-href="eap.html">EAP</a>.  It also has many capabilities not found in
-any other RADIUS product, including commercial servers from large
-vendors.</p>
+<p>The server has all of the features that are found in a normal
+RADIUS server implementation.  It is unique among Open Source RADIUS
+servers in it's support for <a href="eap.html">EAP</a>.  In addition,
+it has many capabilities not found in any other RADIUS products, even
+commercial servers from large vendors.  In spite of that complexity,
+it is <a href="simple.html">simple</a> to install and configure.</p>
 
 <p>In short, if you need a certain feature, it is likely that
-FreeRADIUS supports it.  Please see the discussion and links below for
-additionanal information.</p>
+FreeRADIUS supports it.  Please see the documentation and links below
+for additionanal information.</p>
 
 <h2>Performance and Scalability</h2>
 
@@ -65,12 +65,19 @@ Digest) and all common <a href="eap.html">EAP</a> types.</p>
 
 <h3>Authorization</h3>
 
+<p>Both <a href="pre-auth.html">pre-authentication</a> and <a
+href="post-auth.html">post-authentication</a> policies are supported.
+Polices may be stored in databases, flat-text files, or in Perl or
+Python scripts.</p>
+
 <h3>Accounting</h3>
 
 <h2>RFC's and Vendor Dictionaries</h2>
 
 <p>All RADIUS <a href="/rfc/">RFC's</a> are supported.  Over 100 <a
-href="vendors.html">vendor dictionaries</a> are supported.</p>
+href="vendors.html">vendor dictionaries</a> are supported.  FreeRADIUS
+is <a href="/press/index.html#rfc5080">defining</a> the industry
+standards for RADIUS.</p>
 
 <h2>Databases</h2>
 

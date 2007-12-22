@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- Simplicity</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<meta name="keywords" content="easy,configure" />
+	<meta name="description" content="Simplicity of configuration.">
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>Simplicity</h1>
+
+<p>Even with the features and complexity of the server. it is designed
+to be simple to install and configure.  When installing from source,
+just follow the 4-line instructions on the <a
+href="/download.html">download</a> page.  Or, install a <a
+href="os.html">package</a> for your operating system.</p>
+
+<p>Once the server has been installed, edit the <tt>raddb/users</tt> file,
+and add the following line of text at the top:</p>
+
+<dl>
+<dt></dt><dd>
+<pre class="config">
+bob&nbsp;&nbsp;&nbsp;Cleartext-Password := "hello"
+</pre>
+</dd>
+</dl>
+
+<p>Then in a terminal window, start the server in debugging mode:</p>
+
+<dl>
+<dt></dt><dd>
+<pre class="config">
+$ radiusd -X
+</pre>
+</dd>
+</dl>
+
+<p>When the debug messages finish scrolling, go to another terminal
+window on the same machine, and type:</p>
+
+<dl>
+<dt></dt><dd>
+<pre class="config">
+$ radtest bob hello localhost 0 testing123
+</pre>
+</dd>
+</dl>
+
+<p>The <tt>radtest</tt> program will send a test packet to the server,
+and the server will respond.  The server <em>should</em> respond with
+an <tt>Access-Accept</tt> message.  If it doesn't, something has gone
+wrong, and the debugging output of the server will explain any
+problems.</p>
+
+<p>If it does work (and it should), then almost all of the available
+authentication types will now work.  In Version 2.0 with the test
+certificates, most EAP authentication types will also work, including
+PEAP and EAP-TTLS.</p>
+
+<p>The default configuration has been designed to work in the widest
+possible set of circumstances.  Only minor edits to the configuration
+fles are required to enable most features.  Those edits are usually
+limited to un-commenting a feature everywhere it is mentioned in the
+configuration files (e.g. use of LDAP).  Then, adding a small amount
+of per-site configuration (e.g. point to a local LDAP server).</p>
+
+<p>In general, making large changes to the default configuration files
+will break common use-cases.  We <em>strongly</em> recommend using a
+careful process for editing the configuration files, such as the
+following:</p>
+
+<b>
+<ol>
+<li>Save a backup of the current configuration.</li>
+<li>Make a minor edit.</li>
+<li>Test it.</li>
+<li>If it works, repeat from the top.</li>
+</ol>
+</b>
+
+<p>Of course, not all changes may work.  If the changes do not behave
+as expected, then the configuration can be reverted to the
+known-working backup.  The server will then continue to run with the
+last configuration, giving you time to understand more about how it
+should be configured to meet your needs.</p>
+
+</div>
+
+<!--#include virtual="/footer.html" -->
+</body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->
