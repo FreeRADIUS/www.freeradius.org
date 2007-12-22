@@ -41,6 +41,58 @@ functionality.  For some of these large sites, and for most small
 sites (10 to 1000 users) it is the <em>only</em> RADIUS server that is
 used.</p>
 
+<p>The default configuration that is shipped with the server should
+work for most normal sites.  For high-load systems, there are a few
+configuration items you should change in
+<tt>raddb/radiusd.conf</tt>:</p>
+
+<dl>
+<dt></dt><dd>
+<pre class="config">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_requests = 1024
+</pre>
+</dd>
+</dl>
+
+<p>Change the number <tt>1024</tt> to a larger value, as suggested in
+the comments just above that entry.  For a system with large amounts
+of RAM, and large amounts of traffic, a value such as <tt>100000</tt>
+should be sufficient.</p>
+
+<p>For systems with a high load and many CPUs, the following
+configuration should also be changed to a higher value:</p>
+
+<dl>
+<dt></dt><dd>
+<pre class="config">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max_servers = 32
+</pre>
+</dd>
+</dl>
+
+<p>Some sites set this number as high as <tt>500</tt>.</p>
+
+<hr />
+
+<h2>That's it</h2>
+
+<p>The <em>same</em> RADIUS server will easily transition from from
+handling one request every few seconds, to handling thousands of
+requests per second.  The only changes required to enable this scaling
+are outlined above.  There is no need to purchase a "enterprise"
+product license to obtain better performance, more realms, more RADIUS
+clients, or any other feature.</p>
+
+<p>In short, where commercial servers have "small business",
+"enterprise", and "carrier class" versions of their product, there is
+only one version of FreeRADIUS:</p>
+
+<center>
+<em>Carrier class stability and functionality for everyone.</em>
+</center>
+
+<p>We prefer to keep it <a href="simple.html">simple</a>.</p>
+
 </div>
 
 <!--#include virtual="/footer.html" -->
