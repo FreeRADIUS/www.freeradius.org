@@ -21,38 +21,59 @@
 
 <h1>Supported EAP Methods</h1>
 
-<p>FreeRADIUS was the first full-featured Open Source RADIUS server to
-support EAP.  It includes support for more EAP types than most
-commercial products.</p>
+<p>FreeRADIUS was the first Open Source RADIUS server to support EAP.
+It has defined the <a href="/press/index.html#rfc5080">standard</a>
+for how RADIUS servers should manage EAP sessions.  As of Version 2.0,
+it supports more EAP methods than <em>any other RADIUS server</em>,
+commercial or Open Source.</p>
 
-<p>The following EAP methods are supported by FreeRADIUS 2.0.</p>
+<p>The following EAP methods are supported by FreeRADIUS 2.0:</p>
 
 <ul>
 <li>EAP-AKA<sup><a href="#note-1">1</a></sup></li>
 <li>EAP-FAST<sup><a href="#note-1">1</a></sup></li>
-<li>EAP-GPSK (experimental)<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-GPSK<sup><a href="#note-1">1</a></sup></li>
 <li>Cisco LEAP<sup><a href="#note-2">2</a></sup></li>
 <li>EAP-PAX<sup><a href="#note-1">1</a></sup></li>
-<li>EAP-PEAP<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-PEAPv0</li>
 <ul>
-<li>MSCHAPv2 (both PEAPv0 and PEAPv1)</li>
-<li>GTC (both PEAPv0 and PEAPv1)</li>
-<liMD5-Challenge (both PEAPv0 and PEAPv1)</li>
+<li>EAP-MSCHAPv2<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-GPSK<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-GTC<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-MD5-Challenge<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-PAX<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-PSK<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-SAKE<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-TLS<sup><a href="#note-2">2</a></sup></li>
 </ul>
-<li>EAP-PSK<sup><a href="#note-3">3</a></sup></li>
-<li>EAP-SAKE<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-PEAPv1<sup><a href="#note-1">1</a></sup></li>
+<ul>
+<li>EAP-MSCHAPv2</li>
+<li>EAP-GPSK</li>
+<li>EAP-GTC</li>
+<li>EAP-MD5-Challenge</li>
+<li>EAP-PAX</li>
+<li>EAP-PSK</li>
+<li>EAP-SAKE</li>
+</ul>
+<li>EAP-PSK<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-SAKE<sup><a href="#note-1">1</a></sup></li>
 <li>EAP-SIM<sup><a href="#note-3">3</a></sup></li>
 <li>EAP-TLS<sup><a href="#note-3">3</a></sup></li>
-<li>EAP-TTLS<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-TTLS</li>
 <ul>
-<li>PAP</li>
-<li>CHAP</li>
-<li>MS-CHAP</li>
-<li>MS-CHAPv2</li>
-<li>EAP-MSCHAPv2</li>
-<li>EAP-MD5</li>
-<li>EAP-GTC</li>
-<li>EAP-TLS</li>
+<li>PAP<sup><a href="#note-3">3</a></sup></li>
+<li>CHAP<sup><a href="#note-3">3</a></sup></li>
+<li>MS-CHAP<sup><a href="#note-3">3</a></sup></li>
+<li>MS-CHAPv2<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-MSCHAPv2<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-MD5<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-GPSK<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-GTC<sup><a href="#note-3">3</a></sup></li>
+<li>EAP-PAX<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-PSK<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-SAKE<sup><a href="#note-1">1</a></sup></li>
+<li>EAP-TLS<sup><a href="#note-2">2</a></sup></li>
 </ul>
 <li>EAP-TNC (experimental)<sup><a href="#note-2">2</a></sup></li>
 </ul>
