@@ -43,17 +43,18 @@ issue.</p>
 <p>Some commercial servers claim surprisingly high numbers for their
 performance.  In our tests, the security overhead of RADIUS (MD5
 hashes) can account for up to fifty percent (50%) of the time spent
-processing a packet.  Any product that claims more than double the
-performance of a tuned FreeRADIUS installation is best viewed with
-skepticism.</p>
+processing a packet.  Any claims that a product has more than double
+the performance of a tuned FreeRADIUS installation are best viewed
+with skepticism.</p>
 
 <p>The choice of database can strongly affect server performance.
 Each accounting packet may result in one or more write requests to a
 database.  The database performance then limits how many accounting
-packets can be processed, and hence limits the performance of the
+packets can be processed, and therefore limits the performance of the
 RADIUS server.  Many database cannot perform more than a few hundred
-to a few thousand writes per second, which in turn limits RADIUS
-performance to about the same number of packets per second.</p>
+to a few thousand writes per second.  This database limitation in turn
+lowers RADIUS performance to about the same number of packets per
+second.</p>
 
 </div>
 

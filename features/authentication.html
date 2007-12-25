@@ -27,11 +27,12 @@ href="http://www.freeradius.org/rfc/rfc2548.txt">MS-CHAPv2</a>, SIP
 Digest, and all common <a href="eap.html">EAP</a> methods.</p>
 
 <p>The ability to use a particular authentication protocol (PAP, CHAP,
-types of EAP) is <em>completely</em> under the control of the
-administrator.  In most cases, the choice of authentication protocol
-is under control of the user or NAS.  However, the server does not
-have to agree to accept that protocol.  It can reject a request if it
-determines that a protocol is insufficiently secure.</p>
+types of <a href="eap.html">EAP</a>) is <em>completely</em> under the
+control of the administrator.  In most cases, the choice of
+authentication protocol is under control of the user or NAS.  However,
+the server does not have to agree to accept that protocol.  It can
+reject a request if it determines that a protocol is insufficiently
+secure.</p>
 
 <p>User passwords can be stored as clear-text, NT hashed (MD4), LM
 hashed, MD5, salted-MD5, SHA1, salted-SHA1, or crypt
@@ -46,14 +47,17 @@ clear-text, a hex string, or a base-64 encoded string.</p>
 can pass the authentication to another system such as LDAP, PAM, Unix
 (<tt>/etc/passwd</tt>), Kerberos, Active Directory, or RADIUS server
 via RADIUS proxying.  Local programs (e.g. CGI scripts) can also be
-used to authenticate users via shell scripts or any other method.
-Perl or Python scripts can be pre-loaded into the server, which
-significantly lowers the cost of running such programs.</p>
+used to authenticate users via shell scripts or any other method.  <a
+href="http://wiki.freeradius.org/Rlm_perl">Perl</a> or <a
+href="http://wiki.freeradius.org/Rlm_python">Python</a> scripts can be
+pre-loaded into the server, which significantly lowers the cost of
+running such programs.</p>
 
 <p>The method used to obtain a "known good" password is completely
 independent of the authentication protocol being used.  A system can
-be deployed using EAP for authentication, and can obtain passwords
-from a flat-tex file, LDAP, SQL, or even a Perl script.</p>
+be deployed using <a href="eap.html">EAP</a> for authentication, and
+can obtain passwords from a flat-tex file, LDAP, SQL, or even a Perl
+or Python script.</p>
 
 </div>
 

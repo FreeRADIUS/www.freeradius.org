@@ -22,12 +22,20 @@
 <h1>Modules</h1>
 
 <p>The server is designed with a "plug-in" <a
-href="modules.html">module</a> system.  Any feature that is not needed
-can be removed from the configuration.  Once it is removed from the
-configuration, it does not affect server performance, memory use,
-security, etc.  This flexibility enables the server to run on
-platforms ranging from embedded systems (e.g. LinkSys WRT54G) to
-multi-core machines with gigabytes of RAM.</p>
+href="http://wiki.freeradius.org/Modules">module</a> system.  Any
+feature that is not needed can be removed from the configuration.
+Once it is removed from the configuration, it does not affect server
+performance, memory use, security, etc.  This flexibility enables the
+server to run on platforms ranging from embedded systems (e.g. LinkSys
+WRT54G) to multi-core machines with gigabytes of RAM.</p>
+
+<p>The module system permits simple integration of new features, as
+the modules ave complete control over the processing of a packet.  For
+example, the <a
+href="http://wiki.freeradius.org/Rlm_python">python</a> module adds
+support for the Python language in less than 500 lines of C.  The <a
+href="eap.html">eap2</a> module adds support for more EAP types, in
+just over 500 lines of C.</p>
 
 </div>
 

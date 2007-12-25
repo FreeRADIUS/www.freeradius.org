@@ -22,8 +22,8 @@
 <h1>Scalability</h1>
 
 <p>The default configuration that is shipped with the server should
-work for most normal sites.  For high-load systems, there are a few
-configuration items you should change in
+work for most sites under normal load.  For high-load systems, there
+are a few configuration items should be changed in
 <tt>raddb/radiusd.conf</tt>:</p>
 
 <dl>
@@ -35,12 +35,10 @@ configuration items you should change in
 </dl>
 
 <p>Change the number <tt>1024</tt> to a larger value, as suggested in
-the comments just above that entry.  For a system with large amounts
-of RAM, and large amounts of traffic, a value such as <tt>100000</tt>
-should be sufficient.</p>
+the comments just above that entry.</p>
 
 <p>For systems with a high load and many CPUs, the following
-configuration should also be changed to a higher value:</p>
+configuration item should also be changed to a higher value:</p>
 
 <dl>
 <dt></dt><dd>
@@ -50,7 +48,9 @@ configuration should also be changed to a higher value:</p>
 </dd>
 </dl>
 
-<p>Some sites set this number as high as <tt>500</tt>.</p>
+<p>This number should be increased.  The best value to use depends on
+local load and CPU power.  Some sites set this number as high as
+<tt>500</tt>.</p>
 
 <h2>That's it.</h2>
 
