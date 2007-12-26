@@ -1,5 +1,5 @@
 # Set this to where ever the files are located.
-MAN	:= ../../../branch_1_1/man
+MAN	:= ../../../radiusd/man
 
 VPATH	:= $(MAN)/man1:$(MAN)/man5:$(MAN)/man8
 
@@ -38,30 +38,32 @@ CONFIG	:= $(filter-out rlm_%,$(CONFIG))
 .PHONY: all
 all:	$(TXT) $(HTML) index.html
 
-index.html: $(HTML) index.html.top index.html.bot
-	cat index.html.top > index.html
-	echo "<a name=\"programs\"><h2>Programs</h2></a>" >> index.html
-	echo "<ul>" >> index.html
+index.html: $(HTML) programs-inc.html config-inc.html modules-inc.html
+	@touch $@
+	@chmod +x $@
+
+programs-inc.html:
+	echo "<ul>" >> $@
 	for x in $(BIN); do \
 		name=`echo $$x | sed 's,\..*,,'`; \
-		echo "<a href=\"$$name.html\">$$name</a>&nbsp;(<a href=\"$$name.txt\">txt</a>)<br />" >> index.html; \
+		echo "<a href=\"$$name.html\">$$name</a>&nbsp;(<a href=\"$$name.txt\">txt</a>)<br />" >> $@; \
 	done	
-	echo "</ul>" >> index.html
-	echo >> index.html
-	echo "<a name=\"files\"><h2>Configuration Files</h2></a>" >> index.html
-	echo "<ul>" >> index.html
+	echo "</ul>" >> $@
+
+config-inc.html:
+	echo "<ul>" >> $@
 	for x in $(CONFIG); do \
 		name=`echo $$x | sed 's,\..*,,'`; \
-		echo "<a href=\"$$name.html\">$$name</a>&nbsp;(<a href=\"$$name.txt\">txt</a>)<br />" >> index.html; \
+		echo "<a href=\"$$name.html\">$$name</a>&nbsp;(<a href=\"$$name.txt\">txt</a>)<br />" >> $@; \
 	done	
-	echo "</ul>" >> index.html
-	echo >> index.html
-	echo "<a name=\"modules\"><h2>Modules</h2></a>" >> index.html
-	echo "<ul>" >> index.html
+	echo "</ul>" >> $@
+	echo >> $@
+
+modules-inc.html:
+	echo "<ul>" >> $@
 	for x in $(MODS); do \
 		name=`echo $$x | sed 's,\..*,,'`; \
-		echo "<a href=\"$$name.html\">$$name</a>&nbsp;(<a href=\"$$name.txt\">txt</a>)<br />" >> index.html; \
+		echo "<a href=\"$$name.html\">$$name</a>&nbsp;(<a href=\"$$name.txt\">txt</a>)<br />" >> $@; \
 	done	
-	echo "</ul>" >> index.html
-	cat index.html.bot >> index.html
-	chmod +x index.html
+	echo "</ul>" >> $@
+

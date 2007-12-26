@@ -42,18 +42,12 @@ Each RADIUS client entry has the following basic form:
 <DL COMPACT>
 <DT><DD>
 <PRE>
-client &lt;hostname|ip-address|ip-network&gt; {
+client &lt;short-name&gt; {
        &lt;attribute&gt; = &lt;value&gt;
  }
 </PRE>
 
 </DL>
-<P>
-
-ip-network is used to specify a network of clients. Networks are
-specified in CIDR notation. If multiple overlapping networks are
-defined, the best match (smallest possible network) will be chosen for
-a packet.
 <A NAME="lbAD">&nbsp;</A>
 <H2>ATTRIBUTES</H2>
 
@@ -62,15 +56,17 @@ The attributes that can appear in a
 
 section are listed below. Required attributes are labelled as
 such. All other attributes are optional.
-<P>
-
 <DL COMPACT>
+<DT><B>ipaddr [Required]</B>
+
+<DD>
+The IP address of the client.  For IPv6, use &quot;ipv6addr&quot;
 <DT><B>secret [Required]</B>
 
 <DD>
 The RADIUS shared secret used for communication between the client/NAS
 and the RADIUS server.
-<DT><B>shortname [Required]</B>
+<DT><B>shortname [optional]</B>
 
 <DD>
 A short alias that can be used in place of the IP address or fully
@@ -115,7 +111,8 @@ Reserved for future use.
 <DL COMPACT>
 <DT><DD>
 <PRE>
-client 127.0.0.1 {
+client localhost {
+        ipaddr          = 127.0.0.1
         secret          = testing123
         shortname       = localhost
         nastype         = other     
@@ -133,9 +130,11 @@ server locally, for example with
 <DL COMPACT>
 <DT><DD>
 <PRE>
-client 192.168.0.0/24 {
-       secret          = testing123-1
-       shortname       = private-network-1
+client private-network-1 {
+        ipaddr          = 192.168.0.0
+        netmask         = 24
+        secret          = testing123-1
+        shortname       = private-network-1
 }
 </PRE>
 
@@ -143,6 +142,9 @@ client 192.168.0.0/24 {
 <P>
 
 This entry represents any client from the 192.168.0.0/24 network. 
+<P>
+The old-style format from 1.x is still accepted by the server, but
+that form is deprecated.
 <A NAME="lbAF">&nbsp;</A>
 <H2>FILES</H2>
 
@@ -166,8 +168,6 @@ This entry represents any client from the 192.168.0.0/24 network.
 <A NAME="lbAH">&nbsp;</A>
 <H2>AUTHOR</H2>
 
-This manual page was authored by Shawn K. O'Shea &lt;<A HREF="mailto:shawn@eth0.net">shawn@eth0.net</A>&gt;.
-<P>
 FreeRADIUS is authored by the FreeRADIUS team. 
 <A HREF="http://freeradius.org/">http://freeradius.org/</A>
 <P>
@@ -187,6 +187,6 @@ FreeRADIUS is authored by the FreeRADIUS team.
 This document was created by
 <A HREF="/cgi-bin/man/man2html">man2html</A>,
 using the manual pages.<BR>
-Time: 08:54:36 GMT, August 31, 2007
+Time: 03:29:25 GMT, December 26, 2007
 </BODY>
 </HTML>
