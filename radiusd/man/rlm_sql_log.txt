@@ -6,28 +6,28 @@ NAME
        rlm_sql_log - FreeRADIUS Module
 
 DESCRIPTION
-       The  rlm_sql_log  module appends the SQL queries in a log file which is
+       The  rlm_sql_log	 module appends the SQL queries in a log file which is
        read later by the scripts/radsqlrelay Perl program.
 
-       The purpose of this module is to de-couple  the	storage  of  long-term
-       accounting  data  in  SQL  from "live" information needed by the RADIUS
-       server as it's running.	If you are  not  using	SQL  for  simultaneous
+       The purpose of this module is to de-couple  the	storage	 of  long-term
+       accounting  data	 in  SQL  from "live" information needed by the RADIUS
+       server as it's running.	If you are  not	 using	SQL  for  simultaneous
        login  restrictions  (i.e. "sql" is not listed in the "session" section
        of "radiusd.conf"), then this module allows you to log SQL queries to a
        file, and then process them at your leisure.
 
        The benefit of this approach is that for a busy server, the overhead of
-       performing SQL queries may be significant.  Also, if the SQL  databases
+       performing SQL qeuries may be significant.  Also, if the SQL  databases
        are  large (as is typical for ones storing months of data), the INSERTs
        and UPDATEs may take a relatively long time.  Rather than slowing  down
        the  RADIUS  server by having it interact with a database, you can just
        log the queries to a file,  and	then  run  those  queries  on  another
-       machine,  or  at  a  time  when	the RADIUS server is typically lightly
+       machine,	 or  at	 a  time  when	the RADIUS server is typically lightly
        loaded.
 
-       If  the	"sql"  module  is  listed  in	the   "session"   section   of
-       "radiusd.conf", then a similar system can still be used.  In that case,
-       one database would be used  to  maintain  "live"  session  information.
+       If  the	"sql"  module  is  listed  in	the   "session"	  section   of
+       "radiusd.conf", then a similar system can still be used.	 In that case,
+       one database would be used  to  maintain	 "live"	 session  information.
        That  database  would  be small, fast, and information would be deleted
        from it when a user logs out.  A second database would store  long-term
        accounting information, as described above.
@@ -42,7 +42,7 @@ CONFIGURATION
        The main configuration items to be aware of are the  path  of  the  log
        file and the different SQL queries.
 
-       path   An  entry  named "path" sets the full path of the file where the
+       path   An  entry	 named "path" sets the full path of the file where the
 	      SQL queries are recorded. (this variable is run through  dynamic
 	      string expansion, and can include FreeRADIUS variables to create
 	      a dynamic filename)
@@ -58,7 +58,7 @@ CONFIGURATION
 
        Post-Auth query
 	      An entry named "Post-Auth" sets the  query  to  run  during  the
-	      post-authentication  stage.   This  query  is mainly used to log
+	      post-authentication  stage.   This  query	 is mainly used to log
 	      sessions where there may not be a later accounting packet.
 
        modules {

@@ -1,9 +1,9 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
 <HTML><HEAD><TITLE>Man page of rlm_unix</TITLE>
 </HEAD><BODY>
 <H1>rlm_unix</H1>
-Section: FreeRADIUS Module (5)<BR>Updated: 5 February 2004<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Module (5)<BR>Updated: 17 February 2005<BR><A HREF="#index">Index</A>
 <A HREF="../index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -13,45 +13,30 @@ rlm_unix - FreeRADIUS Module
 <A NAME="lbAC">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
-The <I>rlm_unix</I> module allows authentication against the system
-password, shadow, and group files.  It also provides FreeRADIUS an
-interface into a radwtmp file (used by &quot;radlast&quot;) when added to the
-accounting section.
+The <I>rlm_unix</I> module reads <A HREF="../man/crypt.html">crypt</A>(3) passwords from the system
+password file, and allows the server to use them for authentication.
+The module also provides FreeRADIUS an interface into a radwtmp file
+(used by &quot;radlast&quot;) when added to the accounting section.
 <P>
 
-The <I>rlm_unix</I> module provides the functionality for &quot;Auth-Type =
-System&quot;, rather than &quot;Auth-Type = Unix&quot;.  The &quot;System&quot; name is used
-for historical reasons.
+The <I>rlm_unix</I> module does provides the functionality for
+&quot;Auth-Type = System&quot;.  The module should be listed in the
+&quot;authenticate&quot; section.  Please see the default <I>radiusd.conf</I>
+shipped with the server for an example of the correct usage of this
+module.
+<P>
+
+As of FreeRADIUS 1, the module no longer reads, or caches
+/etc/passwd, /etc/shadow, or /etc/group.  If you wish to cache those
+files, see <I>rlm_passwd</I>.  Most, if not all, configurations should
+not need those files to be cached.
 <P>
 
 The main configuration items to be aware of are:
 <DL COMPACT>
-<DT>cache<DD>
-This is a 'yes' or 'no' option.  If set to yes, FreeRADIUS will read
-the system files into memory, rather than perform a system call to
-lookup the information.  On *BSD systems, you should set this value to
-no.  On other systems, if you have a very large passwd and shadow
-files, you can try setting this to yes, which may increase the servers
-performance.  The default is no.
-<DT>cache_reload<DD>
-This is the number of seconds to wait between refreshing the cached 
-files from the system.  It has no effect unless you enable caching.
-<DT>passwd<DD>
-The path to the system passwd file.  Usually /etc/passwd.  If
-commented out, or not set, the server will retrieve the information
-via systemcalls.
-<DT>shadow<DD>
-The path to the system shadow file.  Usually /etc/shadow.  This is not
-set by default.
-<DT>group<DD>
-The path to the system group file.  Usually /etc/group.  This is not
-set by default.
 <DT>radwtmp<DD>
 The path to the system wtmp file to be used for keeping the database
 of online users as read by the 'radlast' program.
-<DT>usegroup<DD>
-This is a 'yes' or 'no' option.  If set to 'yes' this allows the Group
-attribute to be used as a check item.  Default is 'no'.
 </DL>
 <A NAME="lbAD">&nbsp;</A>
 <H2>CONFIGURATION</H2>
@@ -64,24 +49,6 @@ modules {
 <BR>
 
 <BR>&nbsp;&nbsp;unix&nbsp;{
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;cache&nbsp;=&nbsp;no
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;cache_reload&nbsp;=&nbsp;600
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;#passwd&nbsp;=&nbsp;/etc/passwd
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;#shadow&nbsp;=&nbsp;/etc/shadow
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;#group&nbsp;=&nbsp;/etc/group
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;usegroup&nbsp;=&nbsp;no
 <BR>
 
 <BR>&nbsp;&nbsp;&nbsp;&nbsp;radwtmp&nbsp;=&nbsp;${logdir}/radwtmp
@@ -116,11 +83,13 @@ modules {
 <A NAME="lbAG">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+<B><A HREF="../man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5),
+<B><A HREF="../man/radiusd.conf.html">radiusd.conf</A></B>(5),
 
-<B><A HREF="../man1/radlast.1.html">radlast</A></B>(1)
+<B><A HREF="../man/rlm_passwd.html">rlm_passwd</A></B>(5),
+
+<B><A HREF="../man/radlast.html">radlast</A></B>(1)
 
 <A NAME="lbAH">&nbsp;</A>
 <H2>AUTHORS</H2>
@@ -141,8 +110,8 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/man2html">man2html</A>,
+<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 08:54:36 GMT, August 31, 2007
+Time: 03:42:16 GMT, December 26, 2007
 </BODY>
 </HTML>

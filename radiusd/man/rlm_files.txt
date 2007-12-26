@@ -13,7 +13,7 @@ DESCRIPTION
        The main configuration items to be aware of are:
 
        usersfile
-	      The  filename  of  the  'users' file, which is parsed during the
+	      The  filename  of	 the  'users' file, which is parsed during the
 	      authorization stage of this module.
 
        acctusersfile
@@ -21,12 +21,30 @@ DESCRIPTION
 	      accounting stage of this module.
 
        preproxy_usersfile
-	      The  filename  of  the  'users' file, which is parsed during the
+	      The  filename  of	 the  'users' file, which is parsed during the
 	      pre_proxy stage of this module.
 
        compat This option allows FreeRADIUS to parse an old style Cistron syn-
 	      tax.   The  default  is 'no'.  If you need to parse an old style
 	      Cistron file, set this option to 'cistron'.
+
+       key    This option lets you set the attribute to use as a key  to  find
+	      entries.	 The default is "%{Stripped-User-Name:-%{User-Name}}".
+	      Note that the key MUST supply  real  data.   Dynamic  attributes
+	      like  "Group"  will  not work, because the "Group" attribute can
+	      only be used as a comparison, to see if a	 user  is  in  a  Unix
+	      group.   It  will	 not  return the name of the Unix group that a
+	      user is in.
+
+       If you want to use groups as a key, see the rlm_passed, which will cre-
+       ate a real attribute that contains the group name.
+
+       This  configuration  entry enables you to have configurations that per-
+       form per-group checks, and return per-group attributes, where the group
+       membership  is  dynamically defined by a previous module.  It also lets
+       you do things like key off of attributes	 in  the  reply,  and  express
+       policies	 like  like "when I send replies containing attribute FOO with
+       value BAR, do more checks, and maybe send additional attributes".
 
 CONFIGURATION
        modules {
@@ -36,6 +54,7 @@ CONFIGURATION
 	   acctusersfile = %{confdir}/acct_users
 	   preproxy_usersfile = %{confdir}/preproxy_users
 	   compat = no
+	   key = %{Stripped-User-Name:-%{User-Name}}
 	 }
 	 ... stuff here ...
        }
@@ -46,7 +65,7 @@ SECTIONS
 
 
 FILES
-       /etc/raddb/radiusd.conf,    /etc/raddb/users,	/etc/raddb/acct_users,
+       /etc/raddb/radiusd.conf,	   /etc/raddb/users,	/etc/raddb/acct_users,
        /etc/raddb/preproxy_users
 
 
@@ -58,4 +77,4 @@ AUTHORS
 
 
 
-				5 February 2004 		  rlm_files(5)
+				5 February 2004			  rlm_files(5)

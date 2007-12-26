@@ -6,10 +6,10 @@ NAME
        radclient - send packets to a RADIUS server, show reply
 
 SYNOPSIS
-       radclient  [-d  raddb_directory]  [-c  count]  [-f  file]  [-i  id] [-n
+       radclient  [-d  raddb_directory]	 [-c  count]  [-f  file]  [-i  id] [-n
        num_requests_per_second] [-p num_requests_in_parallel] [-r num_retries]
        [-s] [-S shared_secret_file] [-t timeout] [-qvx] server {acct|auth|sta-
-       tus|disconnect} secret
+       tus|disconnect|auto} secret
 
 DESCRIPTION
        radclient is a radius client program.  It  can  send  arbitrary	radius
@@ -18,7 +18,7 @@ DESCRIPTION
        can be used to monitor if a radius server is up.
 
        radclient reads radius attribute/value pairs from it standard input, or
-       from a file specified on  the  command  line.  It  then	encodes  these
+       from a file specified on	 the  command  line.  It  then	encodes	 these
        attribute/value	pairs  using  the  dictionary,	and  sends them to the
        remote server.
 
@@ -35,7 +35,7 @@ OPTIONS
 	      Defaults to /etc/raddb.
 
        -f file
-	      File to read the attribute/value pairs  from.  If  this  is  not
+	      File to read the attribute/value pairs  from.  If	 this  is  not
 	      specified,  they are read from stdin.  This option can be speci-
 	      fied multiple times, in which case packets are sent in order  by
 	      file,  and  within each file, by first packet to last packet.  A
@@ -46,15 +46,15 @@ OPTIONS
        -n num_requests_per_second
 	      Send  num_requests_per_second,  evenly  spaced  over  time.   By
 	      default, the requests are sent as fast as possible.  This option
-	      allows you to slow  down	the  rate  at  which  radclient  sends
+	      allows you to slow  down	the  rate  at  which  radclient	 sends
 	      requests.
 
        -p num_requests_in_parallel
 	      Send  num_requests_in_parallel,  without	waiting for a response
 	      for each one.  By default, radclient sends the first request  it
-	      has  read,  waits  for  the  response,  and once the response is
-	      received, sends the second request in  its  list.   This	option
-	      allows  you  to  send  many  requests  at  simultaneously.  Once
+	      has  read,  waits	 for  the  response,  and once the response is
+	      received, sends the second request in  its  list.	  This	option
+	      allows  you  to  send  many  requests  at	 simultaneously.  Once
 	      num_requests_in_parallel are sent, radclient waits  for  all  of
 	      the  responses  to  arrive  (or  for  the requests to time out),
 	      before sending any more packets.
@@ -82,20 +82,41 @@ OPTIONS
        -x     Print out debugging information.
 
        server[:port]
-	      The  hostname  or  IP address of the remote server. Optionally a
+	      The  hostname  or	 IP address of the remote server. Optionally a
 	      UDP port can be specified. If no UDP port is  specified,	it  is
 	      looked  up  in  /etc/services.  The  service  name looked for is
-	      radacct  for  accounting	packets,  and  radius  for  all  other
-	      requests.  If  a service is not found in /etc/services, 1813 and
+	      radacct  for  accounting	packets,  and  radius  for  all	 other
+	      requests.	 If  a service is not found in /etc/services, 1813 and
 	      1812 are used respectively.
 
+	      The RADIUS attributes read by radclient can contain the  special
+	      attribute Packet-Dst-IP-Address.	If this attribute exists, then
+	      that IP address is where the packet  is  sent,  and  the	server
+	      specified on the command-line is ignored.
 
-       acct | auth | status | disconnect
+	      If  the RADIUS attribute list always contains the Packet-Dst-IP-
+	      Address attribute, then the server parameter can be given as  -.
+
+	      The  RADIUS attributes read by radclient can contain the special
+	      attribute Packet-Dst-Port.  If this attribute exists, then  that
+	      UDP port is where the packet is sent, and the :port specified on
+	      the command-line is ignored.
+
+
+       acct | auth | status | disconnect | auto
 	      Use auth to send an authentication packet (Access-Request), acct
 	      to  send	an  accounting	packet (Accounting-Request), status to
 	      send an status packet (Status-Server), or disconnect to  send  a
 	      disconnection request. Instead of these values, you can also use
 	      a decimal code here. For example, code 12 is also Status-Server.
+
+	      The  RADIUS attributes read by radclient can contain the special
+	      attribute Packet-Type.  If this attribute exists, then that type
+	      of packet is sent, and the type specified on the command-line is
+	      ignored.
+
+	      If the RADIUS attribute list  always  contains  the  Packet-Type
+	      attribute, then the type parameter can be given as auto.
 
 
        secret The  shared  secret  for this client.  It needs to be defined on

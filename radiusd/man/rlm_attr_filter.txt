@@ -7,21 +7,23 @@ NAME
 
 DESCRIPTION
        The  rlm_attr_filter module exists for filtering certain attributes and
-       values in received ( or transmitted ) radius packets from  (  or  to  )
-       remote proxy servers.  It gives the proxier ( us ) a flexible framework
-       to filter the attributes we send to or receive from these remote  prox-
-       ies.  This makes sense, for example, in an out-sourced dialup situation
-       to various policy decisions, such as restricting a  client  to  certain
-       ranges of Idle-Timeout or Session-Timeout.
+       values in received ( or transmitted ) radius  packets.	It  gives  the
+       server  a  flexible  framework  to  filter the attributes we send to or
+       receive from home servers or NASes.  This makes sense, for example,  in
+       an  out-sourced	dialup	situation to various policy decisions, such as
+       restricting a client to certain ranges of Idle-Timeout or Session-Time-
+       out.
 
-       Filter  rules  are  defined and applied on a per-realm basis, where the
-       realm is anything that is defined and matched based on  the  configura-
-       tion of the rlm_realm module.
+       Filter  rules  are  normally  defined and applied on a per-realm basis,
+       where the realm is anything that is defined and matched	based  on  the
+       configuration  of the rlm_realm module.	Filter rules can optionally be
+       applied using another attribute, by editing the key  configuration  for
+       this module.
 
        The  file  that defines the attribute filtering rules follows a similar
        syntax to the users file.  There are a few differences however:
 
-	   There are no check-items allowed other than the realm.
+	   There are no check-items allowed other than the name of the key.
 
 	   There can only be a single DEFAULT entry.
 
@@ -50,12 +52,12 @@ DESCRIPTION
 
        <=     Less Than or Equal
 
-       >      Greather Than
+       >      Greater Than
 
        <      Less Than
 
-       If  regular  expressions  are  enabled the following operators are also
-       possible.  ( Regular Expressions are included by  default  unless  your
+       If  regular  expressions	 are  enabled the following operators are also
+       possible.  ( Regular Expressions are included by	 default  unless  your
        system  doesn't	support them, which should be rare ).  The value field
        uses standard regular expression syntax.
 
@@ -67,15 +69,22 @@ DESCRIPTION
        See the default /etc/raddb/attrs for working examples  of  sample  rule
        ordering and how to use the different operators.
 
-       The main configuration item is:
+       The configuration items are:
 
        attrsfile
 	      This  specifies the location of the file used to load the filter
-	      rules.
+	      rules.  This file is used to  filter  the	 accounting  response,
+	      packet  before  it  is  proxied,	proxy  response	 from the home
+	      server, or our response to the NAS.
+
+       key    Usually %{Realm} (the default).  Can also	 be  %{User-Name},  or
+	      other  attribute that exists in the request.  Note that the mod-
+	      ule always keys off of attributes in the request, and NOT in any
+	      other packet.
 
 
 SECTIONS
-       authorization, accounting, preproxy, postproxy
+       accounting, pre-proxy, post-proxy, post-auth
 
 
 FILES
@@ -91,4 +100,4 @@ AUTHOR
 
 
 
-				3 February 2004 	    rlm_attr_filter(5)
+				3 February 2004		    rlm_attr_filter(5)

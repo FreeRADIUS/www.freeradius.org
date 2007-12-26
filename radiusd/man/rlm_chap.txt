@@ -14,7 +14,7 @@ DESCRIPTION
        list unless Auth-Type has already set.
 
        CHAP authentication requires access to the clear-text password for  the
-       user.   Standard  Unix system authentication or passwords encrypted via
+       user.   Standard	 Unix system authentication or passwords encrypted via
        crypt() are not compatible with CHAP.
 
 
@@ -35,4 +35,4 @@ AUTHOR
 
 
 
-				3 February 2004 		   rlm_chap(5)
+				3 February 2004			   rlm_chap(5)

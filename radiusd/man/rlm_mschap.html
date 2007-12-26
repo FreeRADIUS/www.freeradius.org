@@ -1,9 +1,9 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
 <HTML><HEAD><TITLE>Man page of rlm_mschap</TITLE>
 </HEAD><BODY>
 <H1>rlm_mschap</H1>
-Section: FreeRADIUS Module (5)<BR>Updated: 19 May 2006<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Module (5)<BR>Updated: 13 March 2004<BR><A HREF="#index">Index</A>
 <A HREF="../index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -17,31 +17,32 @@ The <I>rlm_mschap</I> module provides MS-CHAP and MS-CHAPv2
 authentication support. 
 <P>
 
-This module validates a user with MS-CHAP or MS-CHAPv2 authentication.
-It should be listed in both the <I>authorize</I> and <I>authenticate</I>
-sections.  In <I>authorize</I>, it will look for MS-CHAP
-Challenge/Response attributes in the Acess-Request, and configure
-itself to be the module called for the <I>authenticate</I> section.
+This module validates a user with MS-CHAP or MS-CHAPv2 
+authentication.
+If called in Authorize, it will look for MS-CHAP Challenge/Response
+attributes in the Acess-Request and adds an Auth-Type
+attribute set to MS-CHAP in the Config-Items list unless 
+Auth-Type has already set.
 <P>
 
 The module can authenticate the MS-CHAP session via plain-text
 passwords (User-Password attribute), or NT passwords (NT-Password
-attribute).  The module can perform authentication against an NT
-domain by using the <I>ntlm_auth</I> program.
-<A NAME="lbAD">&nbsp;</A>
-<H2>SMB Integration</H2>
+attribute).  The module cannot perform authentication against an NT
+domain.
+<P>
 
 The module also enforces the SMB-Account-Ctrl attribute.  See the
 Samba documentation for the meaning of SMB account control.  The
-module does not read Samba password files.  Instead, the
-<I>rlm_passwd</I> module should be used to read a Samba password file,
-and to supply an NT-Password attribute which this module can use.  See
-the <I>etc_smbpasswd</I> module in <I>radiusd.conf</I> for more details.
-<A NAME="lbAE">&nbsp;</A>
-<H2>MODULE CONFIGURATION</H2>
+module does not read Samba password files.  Instead, the fIrlm_passwd
+module can be used to read a Samba password file, and supply an
+NT-Password attribute which this module can use.
+<P>
 
 The main configuration items to be aware of are:
 <DL COMPACT>
+<DT>authtype<DD>
+This is the string used to set the authtype.  Normally it should be
+left to the default value of MS-CHAP.
 <DT>use_mppe<DD>
 Unless this is set to 'no', FreeRADIUS will add MS-CHAP-MPPE-Keys for
 MS-CHAPv1 and MS-MPPE-Recv-Key/MS-MPPE-Send-Key for MS-CHAPv2.  The
@@ -58,24 +59,67 @@ The default is 'no'.
 Windows clients send User-Name in the form of &quot;DOMAIN\User&quot;, but send the
 challenge/response based only on the User portion.  Setting this value
 to yes, enables a work-around for this error.  The default is 'no'.
-<DT>ntlm_auth<DD>
-Use the <I>ntlm_auth</I> program for authentication against Samba, or a
-Windows NT or Active Directory Domain Controller.  For machine
-authentication, the following configuration should be used:
-
-ntlm_auth = &quot;/path/to/ntlm_auth --username=%{mschap:User-Name:-None} --challenge=%{mschap:Challenge:-00} --nt-response=%{mschap:NT-Response:-00} --domain=%{mschap:NT-Domain:-YOUR_DEFAULT_DOMAIN}
-
-If configured, <I>ntlm_auth</I> will always be called, even if there is
-a clear-text or NT-Password available for the user.  You can force
-<I>ntlm_auth</I> to not be used by setting
-
-MS-CHAP-Use-NTLM-Auth := No
-
-in the <I>users</I> file, or in a database such as SQL.
 </DL>
 <P>
 
-<A NAME="lbAF">&nbsp;</A>
+<A NAME="lbAD">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+
+modules {
+<BR>&nbsp;&nbsp;...
+<BR>
+
+<BR>&nbsp;&nbsp;mschap&nbsp;{
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>authtype = MS-CHAP<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>use_mppe = yes<TT>&nbsp;&nbsp;</TT><BR>
+<BR>
+
+<BR>&nbsp;&nbsp;}
+<BR>
+
+<BR>&nbsp;&nbsp;...
+<BR>
+
+}
+<BR>
+
+<BR>&nbsp;...
+<BR>
+
+authorize {
+<BR>&nbsp;&nbsp;...
+<BR>
+
+<BR>&nbsp;&nbsp;mschap
+<BR>
+
+<BR>&nbsp;&nbsp;...
+<BR>
+
+}
+<BR>&nbsp;...
+<BR>
+
+authenticate {
+<BR>&nbsp;&nbsp;...
+<BR>
+
+<BR>&nbsp;&nbsp;mschap
+<BR>
+
+<BR>&nbsp;&nbsp;...
+<BR>
+
+}
+
+<P>
+
+<A NAME="lbAE">&nbsp;</A>
 <H2>SECTIONS</H2>
 
 <B>authorization,</B>
@@ -84,21 +128,21 @@ in the <I>users</I> file, or in a database such as SQL.
 
 <P>
 
-<A NAME="lbAG">&nbsp;</A>
+<A NAME="lbAF">&nbsp;</A>
 <H2>FILES</H2>
 
 <I>/etc/raddb/radiusd.conf</I>
 
 <P>
 
-<A NAME="lbAH">&nbsp;</A>
+<A NAME="lbAG">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+<B><A HREF="../man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5)
+<B><A HREF="../man/radiusd.conf.html">radiusd.conf</A></B>(5)
 
-<A NAME="lbAI">&nbsp;</A>
+<A NAME="lbAH">&nbsp;</A>
 <H2>AUTHOR</H2>
 
 Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
@@ -110,17 +154,16 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 <DL>
 <DT><A HREF="#lbAB">NAME</A><DD>
 <DT><A HREF="#lbAC">DESCRIPTION</A><DD>
-<DT><A HREF="#lbAD">SMB Integration</A><DD>
-<DT><A HREF="#lbAE">MODULE CONFIGURATION</A><DD>
-<DT><A HREF="#lbAF">SECTIONS</A><DD>
-<DT><A HREF="#lbAG">FILES</A><DD>
-<DT><A HREF="#lbAH">SEE ALSO</A><DD>
-<DT><A HREF="#lbAI">AUTHOR</A><DD>
+<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAE">SECTIONS</A><DD>
+<DT><A HREF="#lbAF">FILES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHOR</A><DD>
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/man2html">man2html</A>,
+<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 08:54:36 GMT, August 31, 2007
+Time: 03:42:15 GMT, December 26, 2007
 </BODY>
 </HTML>

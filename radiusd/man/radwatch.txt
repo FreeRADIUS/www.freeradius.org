@@ -11,10 +11,10 @@ SYNOPSIS
 DESCRIPTION
        This  is a wrapper for radiusd. It starts the radius server, then waits
        for it to terminate, which should never happen. If it does happen, rad-
-       watch  sends mail to root informing her of the event, waits 10 seconds,
-       then restarts the server.
+       watch sends a notification email to root about the event, waits 10 sec-
+       onds, then restarts the server.
 
-       This script SHOULD NOT BE USED!	It's only  here  for  historical  pur-
+       This script SHOULD NOT BE USED!	It's only  here	 for  historical  pur-
        poses, and WILL be deleted in a future version of the the server.
 
        Please see 'doc/supervise-radiusd.txt' for info on methods of supervis-
@@ -31,4 +31,4 @@ AUTHOR
 
 
 
-			       24 February 2001 		   RADWATCH(8)
+			       24 February 2001			   RADWATCH(8)

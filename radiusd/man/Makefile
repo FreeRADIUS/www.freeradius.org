@@ -27,13 +27,13 @@ CONFIG	:= $(filter-out rlm_%,$(CONFIG))
 	nroff -man -Tascii $< | col -b > $@
 
 %.html:%.1
-	man2html -r $< | tail -n +2 > $@
+	man2html -r $< | tail -n +2 | sed 's/man[0-8]/man/g;s/\.[0-8]//g' > $@
 
 %.html:%.5
-	man2html -r $< | tail -n +2 > $@
+	man2html -r $< | tail -n +2 | sed 's/man[0-8]/man/g;s/\.[0-8]//g' > $@
 
 %.html:%.8
-	man2html -r $< | tail -n +2 > $@
+	man2html -r $< | tail -n +2 | sed 's/man[0-8]/man/g;s/\.[0-8]//g' > $@
 
 .PHONY: all
 all:	$(TXT) $(HTML) index.html
@@ -67,3 +67,6 @@ modules-inc.html:
 	done	
 	echo "</ul>" >> $@
 
+clean:
+	@rm -f programs-inc.html config-inc.html modules-inc.html \
+		$(TXT) $(HTML)

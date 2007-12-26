@@ -1,5 +1,5 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
 <HTML><HEAD><TITLE>Man page of clients.conf</TITLE>
 </HEAD><BODY>
 <H1>clients.conf</H1>
@@ -21,10 +21,10 @@ file contains definitions of RADIUS clients.
 
 The information in this file overrides any information provided in
 the deprecated 
-<B><A HREF="../man5/clients.5.html">clients</A></B>(5)
+<B><A HREF="../man/clients.html">clients</A></B>(5)
 
 and 
-<B><A HREF="../man5/naslist.5.html">naslist</A></B>(5)
+<B><A HREF="../man/naslist.html">naslist</A></B>(5)
 
 files.
 <P>
@@ -33,7 +33,7 @@ The file format is the same as that used for
 <I>radiusd.conf.</I>
 
 See 
-<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5)
+<B><A HREF="../man/radiusd.conf.html">radiusd.conf</A></B>(5)
 
 for more details.
 <P>
@@ -112,7 +112,7 @@ Reserved for future use.
 <DT><DD>
 <PRE>
 client localhost {
-        ipaddr          = 127.0.0.1
+        ipaddr          = 127
         secret          = testing123
         shortname       = localhost
         nastype         = other     
@@ -125,13 +125,13 @@ client localhost {
 This adds a client for the loopback address. This is useful in testing
 the 
 server locally, for example with 
-<B><A HREF="../man1/radclient.1.html">radclient</A></B>(1).
+<B><A HREF="../man/radclient.html">radclient</A></B>(1).
 
 <DL COMPACT>
 <DT><DD>
 <PRE>
 client private-network-1 {
-        ipaddr          = 192.168.0.0
+        ipaddr          = 19268
         netmask         = 24
         secret          = testing123-1
         shortname       = private-network-1
@@ -141,7 +141,7 @@ client private-network-1 {
 </DL>
 <P>
 
-This entry represents any client from the 192.168.0.0/24 network. 
+This entry represents any client from the 19268/24 network. 
 <P>
 The old-style format from 1.x is still accepted by the server, but
 that form is deprecated.
@@ -156,13 +156,13 @@ that form is deprecated.
 <A NAME="lbAG">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="../man8/radiusd.8.html">radiusd</A></B>(8),
+<B><A HREF="../man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="../man5/radiusd.conf.5.html">radiusd.conf</A></B>(5),
+<B><A HREF="../man/radiusd.conf.html">radiusd.conf</A></B>(5),
 
-<B><A HREF="../man5/clients.5.html">clients</A></B>(5),
+<B><A HREF="../man/clients.html">clients</A></B>(5),
 
-<B><A HREF="../man5/naslist.5.html">naslist</A></B>(5)
+<B><A HREF="../man/naslist.html">naslist</A></B>(5)
 
 <P>
 <A NAME="lbAH">&nbsp;</A>
@@ -185,8 +185,8 @@ FreeRADIUS is authored by the FreeRADIUS team.
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/man2html">man2html</A>,
+<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 03:29:25 GMT, December 26, 2007
+Time: 03:42:15 GMT, December 26, 2007
 </BODY>
 </HTML>

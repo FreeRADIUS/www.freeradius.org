@@ -8,7 +8,7 @@ NAME
 DESCRIPTION
        The  rlm_sql module provides an SQL interface to retrieve authorization
        information and store accounting information.  It can be used  in  con-
-       junction  with,	or  in	lieu of the files and detail modules.  The SQL
+       junction	 with,	or  in	lieu of the files and detail modules.  The SQL
        module has drivers to support the following SQL databases:
 
 	    db2
@@ -20,7 +20,7 @@ DESCRIPTION
 	    unixodbc
 
        Due to the size of the configuration variables, the sql module is  usu-
-       ally  configured  in  a	separate  file,  which is included in the main
+       ally  configured	 in  a	separate  file,	 which is included in the main
        radiusd.conf via an include directive.
 
        The main configuration items to be aware of are:
@@ -42,7 +42,7 @@ DESCRIPTION
 
        acct_table2
 	      These specify the tables names for accounting records.  acct_ta-
-	      ble1  specifies  the  table  where  Start  records  are  stored.
+	      ble1  specifies  the  table  where  Start	 records  are  stored.
 	      acct_table2  specifies  the table where Stop records are stored.
 	      In most cases, this should be the same table.
 
@@ -52,7 +52,7 @@ DESCRIPTION
        authcheck_table
 
        authreply_table
-	      The tables where	individual  Check-Items  and  Reply-Items  are
+	      The tables where	individual  Check-Items	 and  Reply-Items  are
 	      stored.
 
        groupcheck_table
@@ -86,8 +86,8 @@ DESCRIPTION
 
        sql_user_name
 	      This is the definition of the SQL-User-Name attribute.  This  is
-	      set  once,  so  that  you  can  use  %{SQL-User-Name} in the SQL
-	      queries, rather than the	nested	username  substitution.   This
+	      set  once,  so  that  you	 can  use  %{SQL-User-Name} in the SQL
+	      queries, rather than the	nested	username  substitution.	  This
 	      ensures that Username is parsed consistently for all SQL queries
 	      executed.
 
@@ -97,7 +97,7 @@ DESCRIPTION
 
        query_on_not_found
 	      This  option  is	set to 'yes' or 'no'.  If set to yes, then the
-	      default user profile is returned if no specific match was  found
+	      default user profile is returned if no specific match was	 found
 	      for the user.
 
        authorize_check_query
@@ -133,7 +133,7 @@ DESCRIPTION
        accounting_stop_query
 
        accounting_stop_query_alt
-	      The query to be run when receiving an  Accounting  Stop  packet.
+	      The query to be run when receiving an  Accounting	 Stop  packet.
 	      If the primary query fails, the alt query is run.
 
        simul_count_query
@@ -142,7 +142,7 @@ DESCRIPTION
 
        simul_verify_query
 	      The query to return the detail  information  needed  to  confirm
-	      that  all  suspected  connected  sessions are valid, and are not
+	      that  all	 suspected  connected  sessions are valid, and are not
 	      stale sessions.
 
        group_membership_query
@@ -161,8 +161,8 @@ SECTIONS
 
 
 FILES
-       /etc/raddb/radiusd.conf,     /etc/raddb/sql.conf,      /etc/raddb/orac-
-       lesql.conf, /etc/raddb/postfresql.conf, /etc/raddb/mssql.conf
+       /etc/raddb/radiusd.conf,				  /etc/raddb/sql.conf,
+       /etc/raddb/sql/<DB>/dialup.conf, /etc/raddb/sql/<DB>/schema.sql,
 
 
 SEE ALSO
@@ -173,4 +173,4 @@ AUTHORS
 
 
 
-				5 February 2004 		    rlm_sql(5)
+				5 February 2004			    rlm_sql(5)

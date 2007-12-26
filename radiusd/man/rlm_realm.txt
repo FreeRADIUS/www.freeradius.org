@@ -19,14 +19,14 @@ DESCRIPTION
 
        delimiter
 	      A single character in quotes, which is used  as  the  delimiting
-	      character  that  separates  the  Realm  and User sections of the
+	      character	 that  separates  the  Realm  and User sections of the
 	      string.
 
        ignore_default
 	      This is set to either 'yes' or 'no'.  If set to 'yes', this will
 	      prevent  the  module  instance from matching a realm against the
-	      DEFAULT entry.  This may be useful if you  have  multiple  realm
-	      module instances.  The default is 'no'.
+	      DEFAULT entry.  This may be useful if you	 have  multiple	 realm
+	      module instances.	 The default is 'no'.
 
        ignore_null
 	      This is set to either 'yes' or 'no'.  If set to 'yes', this will
@@ -41,9 +41,6 @@ DESCRIPTION
        rewritten in a 'stripped' format, or with the  Realm  portion  removed.
        In either case, a Realm attribute is created and added to the packet on
        a match, which can be used by other modules.
-
-       In order to force proxying for a request,  set  the  Proxy-To-Realm  :=
-       "realm-name" in the users file, or in a database such as SQL.
 
 CONFIGURATION
        modules {
@@ -78,4 +75,4 @@ AUTHORS
 
 
 
-				  19 May 2006			  rlm_realm(5)
+				 14 March 2004			  rlm_realm(5)

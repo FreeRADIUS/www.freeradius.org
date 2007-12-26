@@ -6,7 +6,7 @@ NAME
        rlm_counter - FreeRADIUS Module
 
 DESCRIPTION
-       The  rlm_counter  module  provides  a general framework to allow access
+       The  rlm_counter	 module	 provides  a general framework to allow access
        based on accumulated usage of a resource, such as total time online  in
        a given period, total data transferred in a given period, etc.  This is
        very useful in a 'Prepaid Service' situation, where a user has paid for
@@ -30,7 +30,7 @@ DESCRIPTION
 	      counter data is incremented by the  Attribute  value.   For  all
 	      other attribute types the counter is incremented by one.
 
-       reset  How  frequently the counter data should be set back to 0.  Valid
+       reset  How  frequently the counter data should be set back to 0.	 Valid
 	      values for this variable are: hourly,  daily,  weekly,  monthly,
 	      ornever  Alternatively,  it  can	be  user defined, in the form:
 	      num[hdwm].  num is a numeric value, followed by one or  none  of
@@ -39,26 +39,32 @@ DESCRIPTION
        check-name
 	      This defines an attribute name which will be registered  by  the
 	      counter  module and can be used to set the maximum allowed value
-	      for the counter after which the user is rejected.  If Daily-Ses-
-	      sion-Time  is set, you can use the following syntax in the Users
+	      for the counter after which the user is rejected.	 If Daily-Ses-
+	      sion-Time	 is set, you can use the following syntax in the Users
 	      file to set a cap of 3600 seconds ( 8 hours ):
 
        DEFAULT Max-Daily-Session := 3600
 
 
+       reply-name
+	      This is the name of the attribute which will contain the remain-
+	      ing  value  for the counter in the reply packet when the user is
+	      successfully authorized. The default attribute name is "Session-
+	      Timeout".
+
        allowed-servicetype
-	      This can be used to only apply the limitations to specific  ser-
-	      vice  types  of  sessions.  For example, setting this to Framed-
-	      User will only apply the	counter  module  to  Framed  sessions,
+	      This  can be used to only apply the limitations to specific ser-
+	      vice types of sessions.  For example, setting  this  to  Framed-
+	      User  will  only	apply  the  counter module to Framed sessions,
 	      excluding other types such as Telnet or Rlogin.
 
        cache-size
-	      The  maximum  size  of  the cache to be used by the module.  The
+	      The maximum size of the cache to be used	by  the	 module.   The
 	      default is 1000.
 
 NOTES
-       This module registers an attribute,  so	it  should  be	added  to  the
-       instantiate  section, to be called on server startup.  When used in the
+       This  module  registers	an  attribute,	so  it	should be added to the
+       instantiate section, to be called on server startup.  When used in  the
        authorize section, it must come after any modules which set the 'check-
        name' attribute.
 

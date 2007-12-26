@@ -8,7 +8,7 @@ NAME
 DESCRIPTION
        The rlm_acct_unique module creates a unique accounting session Id.
 
-       Many  NAS  vendors  have  their	equipment  supply  an  Acct-Session-Id
+       Many  NAS  vendors  have	 their	equipment  supply  an  Acct-Session-Id
        attribute which is not unique over reboots.  This makes accounting dif-
        ficult,	as there will be many independent sessions with the same Acct-
        Session-Id attribute.  This module uses the Acct-Session-Id  attribute,
@@ -17,7 +17,7 @@ DESCRIPTION
 
        The main configuration items to be aware of are:
 
-       key    A list of the attributes used in calculating an MD5  hash  which
+       key    A list of the attributes used in calculating an MD5  hash	 which
 	      is used as the value for the unique session id.
 
 CONFIGURATION
@@ -36,7 +36,7 @@ CONFIGURATION
        }
 
        After  generating  the  MD5  hash, the module adds it to the accounting
-       request packet received from the client.  It will look  something  like
+       request packet received from the client.	 It will look  something  like
        this in your detail file:
 
 	    Acct-Unique-Session-Id = "c66ef57e480b9d26"
@@ -48,7 +48,7 @@ CONFIGURATION
        packet  of  a  particular session to match, you must use values for the
        key that will stay the same for the Start and Stop.  The above  example
        is  a good start.  Adding 'Acct-Session-Time', for example, would cause
-       a mismatch because that value is not the same on  the  Start  and  Stop
+       a mismatch because that value is not the same on	 the  Start  and  Stop
        accounting packets.
 
 
@@ -68,4 +68,4 @@ AUTHORS
 
 
 
-				3 February 2004 	    rlm_acct_unique(5)
+				3 February 2004		    rlm_acct_unique(5)

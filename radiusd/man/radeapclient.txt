@@ -1,4 +1,4 @@
-RADEAPCLIENT(1) 	       FreeRADIUS Daemon	       RADEAPCLIENT(1)
+RADEAPCLIENT(1)		       FreeRADIUS Daemon	       RADEAPCLIENT(1)
 
 
 
@@ -10,7 +10,7 @@ SYNOPSIS
        {acct|auth} secret
 
 DESCRIPTION
-       radeapclient  is  a radius client program. It can send arbitrary radius
+       radeapclient  is	 a radius client program. It can send arbitrary radius
        packets to a radius server, then shows the reply. Radeapclient  differs
        from  radclient	in that if there is an EAP-MD5 challenge, then it will
        be responded to.
@@ -28,7 +28,7 @@ DESCRIPTION
 
 
 EXAMPLE
-       A sample session that queries the remote server with an	EAP-MD5  chal-
+       A sample session that queries the remote server with an	EAP-MD5	 chal-
        lenge.
 
 	      ( echo 'User-Name = "bob"';

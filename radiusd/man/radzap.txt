@@ -11,11 +11,11 @@ SYNOPSIS
 
 DESCRIPTION
        The FreeRadius server can be configured to maintain an  active  session
-       database  in  a	file  called radutmp. Commands like radwho(1) use this
-       database. Sometimes that database can get out  of  sync,  and  then  it
+       database	 in  a	file  called radutmp. Commands like radwho(1) use this
+       database. Sometimes that database can get out  of  sync,	 and  then  it
        might contain rogue entries. radzap can clean up this database.
 
-       As  of FreeRADIUS 1.0.3, radzap is a simple shell-script wrapper around
+       As  of FreeRADIUS 1.1.0, radzap is a simple shell-script wrapper around
        radwho(1) and radclient(1).
 
        The sessions are "zapped" by sending an Accounting-Request packet which
@@ -26,7 +26,7 @@ DESCRIPTION
 
 OPTIONS
        -d raddb_directory
-	      The directory that  contains  the  RADIUS  configuration	files.
+	      The directory that  contains  the	 RADIUS	 configuration	files.
 	      radzap  reads  radiusd.conf  to  determine  the  location of the
 	      radutmp file.
 
@@ -44,10 +44,10 @@ OPTIONS
 	      Zap the entries which match the given username (case sensitive).
 
        server[:port]
-	      The hostname or IP address of the remote	server.  Optionally  a
-	      UDP  port  can  be specified. If no UDP port is specified, it is
-	      looked up in /etc/services.  The	service  name  looked  for  is
-	      radacct  for  accounting	packets,  and  radius  for  all  other
+	      The hostname or IP address of the remote	server.	 Optionally  a
+	      UDP  port	 can  be specified. If no UDP port is specified, it is
+	      looked up in /etc/services.  The	service	 name  looked  for  is
+	      radacct  for  accounting	packets,  and  radius  for  all	 other
 	      requests. If a service is not found in /etc/services,  1813  and
 	      1812 are used respectively.
 

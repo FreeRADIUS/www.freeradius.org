@@ -62,7 +62,7 @@ CONFIGURATION
 
 
 SECTIONS
-       authorization,	authentication,   postauthentication,	preaccounting,
+       authorization,	authentication,	  postauthentication,	preaccounting,
        accounting, preproxy, postproxy
 
 
@@ -78,4 +78,4 @@ AUTHOR
 
 
 
-				3 February 2004 		 rlm_always(5)
+				3 February 2004			 rlm_always(5)

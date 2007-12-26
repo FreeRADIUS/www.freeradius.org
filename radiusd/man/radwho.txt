@@ -11,14 +11,14 @@ SYNOPSIS
 
 DESCRIPTION
        The FreeRADIUS server can be configured to maintain an  active  session
-       database  in  a	file called radutmp. This utility shows the content of
+       database	 in  a	file called radutmp. This utility shows the content of
        that session database.
 
 OPTIONS
        -c     Shows caller ID (if available) instead of the full name.
 
        -d raddb_directory
-	      The directory that  contains  the  RADIUS  configuration	files.
+	      The directory that  contains  the	 RADIUS	 configuration	files.
 	      Defaults to /etc/raddb.
 
        -f     Behave  as  the  'fingerd' daemon - waits for one line of input,
@@ -42,7 +42,7 @@ OPTIONS
        -r     Outputs  all  data  in  raw  format - no headers, no formatting,
 	      fields are comma-separated.
 
-       -R     Output all data in RADIUS  attribute  format.   All  fields  are
+       -R     Output all data in RADIUS	 attribute  format.   All  fields  are
 	      printed.
 
        -s     Show full name.
@@ -51,11 +51,11 @@ OPTIONS
 	      have a SLIP or PPP session.
 
        -u user
-	      Show only those entries which match  the	given  username  (case
+	      Show only those entries which match  the	given  username	 (case
 	      insensitive).
 
        -U user
-	      Show  only  those  entries  which match the given username (case
+	      Show  only  those	 entries  which match the given username (case
 	      sensitive).
 
        -Z     When combined with -R, prints out the contents of an Accounting-
@@ -66,7 +66,7 @@ OPTIONS
 
 	      $ radwho -ZRN 10.0.0.1 | radclient -f - radius.example.net acct testing123
 
-       will result in all an  Accounting-Request  packet  being  sent  to  the
+       will result in all an  Accounting-Request  packet  being	 sent  to  the
        RADIUS  server,	which tells the server that the NAS rebooted.  i.e. It
        "zaps" all of the users on that NAS.
 
