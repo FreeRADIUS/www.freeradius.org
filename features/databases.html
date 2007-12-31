@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- Databases</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<meta name="keywords" content="SQL,LDAP" />
+	<meta name="description" content="Supported databases">
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>Databases</h1>
+
+<p>All common databases are supported, as indicated below.  For
+external (non-text) databases, multiple databases can be used both for
+load-balancing and fail-over.  Databases can even be mixed across
+fail-over methods (e.g. if an LDAP server is down, use an SQL server
+instead.)<p>
+
+<ul>
+<li>Flat files</li>
+<ul>
+<li><tt>users</tt></li>
+<li>Realms</li>
+<li><tt>/etc/passwd</tt></li>
+<li><tt>/etc/group</tt></li>
+<li>Any other <tt>passwd</tt> style file</li>
+</ul>
+<li>LDAP</li>
+<ul>
+<li><a href="http://openldap.org">OpenLDAP</a></li>
+<li>Active Directory (<em>for LDAP queries, or authentication via <a href="http://samba.org">samba</a> and <tt>ntlm_auth</tt></em>)</li>
+</ul>
+<li>SQL</li>
+<ul>
+<li><a href="http://firebirdsql.org">Firebird<a/></li>
+<li><a href="http://www.iodbc.org">IODBC</a></li>
+<li>MsSQL</li>
+<li><a href="http://mysql.org">MySQL</a></li>
+<li><a href="http://oracle.com">Oracle</a></li>
+<li><a href="http://www.postgresql.org">PostgreSQL</a></li>
+<li><a href="http://www.unixodbc.org">UnixODBC</a></li>
+</ul>
+</ul>
+
+<p><a href="policy.html">Policies</a> can be stored in any database,
+and policies can selectively obtain information from any database.</p>
+
+</div>
+
+<!--#include virtual="/footer.html" -->
+</body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->
