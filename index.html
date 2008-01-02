@@ -49,6 +49,33 @@ improvements added in every release.</p>
 
 <h2>Recent News</h2>
 
+<span class="date">2008.01.03</span> Version <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
+<a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2.sig">(sig)</a>
+has been released.  The focus of this release is functionality.
+
+<h3>Feature Improvements</h3
+<ul>
+<li>simple policy language (see <tt>man <a href="/man/unlang.html">unlang</a></tt>)</li>
+<li>virtual servers (<tt>raddb/sites-available/README</tt>)</li>
+<li>IPv6 support</li>
+<li>better proxy support (<tt>raddb/proxy.conf</tt>)</li>
+<li>More EAP types</li>
+<li>Debugging output should be <em>much</em> easier to understand</li>
+<li>VMPS support</li>
+<li>More modules are marked "stable" (python, etc.)</li>
+<li>SQL configuration has been cleaned up (see <tt>raddb/sql/*</tt>)</li>
+<li>limited support for HUP</li>
+<li>check configuration and exit (<tt>radiusd -C</tt>)</li>
+<li>Server core is now event based (simpler, more powerful)</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>The server re-design has resulted in simple fixes many issues that
+were too difficult to correct in Version 1.1.x.</li> </ul>
+
+<hr />
+
 <p><span class="date">2007.12.01</span> - <b>A Development
 Roadmap is announced</b></p>
 
@@ -56,36 +83,6 @@ Roadmap is announced</b></p>
 <a href="business/roadmap.html">looking for sponsors</a> for new
 features.  New projects include support for WiMAX, 3GPP2, Change of
 Authorization (CoA), Windows ports, etc.</p>
-
-<hr />
-
-<span class="date">2007.07.25</span> Version <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
-<a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2.sig">(sig)</a>
-has been released.  The focus of this release is stability.
-
-<h3>Feature Improvements</h3
-<ul>
-<li>Updated LDAP documentation.</li>
-<li>Added note on DH parameters in eap.conf, and debugging messages
-which complain if DH is used, but not configured properly.</li>
-<li>Updated the Mikrotik dictionary.  Added a note that the sample
-dictionary they supply is broken.</li>
-<li>Output more information on blocked threads, which should help
-narrow down which modules is causing the problem.</li>
-<li>Added more eDirectory support.</li>
-<li>rlm_ldap now prints out attributes in the standard format</li>
-<li>Enabled server-side handling of procedures in MySQL</li>
-</ul>
-
-<h3>Bug Fixes</h3>
-<ul>
-<li>Added NT-Hash support for mschap_xlat.</li>
-<li>Corrected documentation to point to correct location of files.</li>
-<li>Checks for more recent FreeBSD versions.</li>
-<li>uses -DLDAP_DEPRECATED to avoid OpenLDAP crashes.</li>
-<li>Use correct value for authentication name in rlm_mschap.</li>
-<li>Fix over-ride for usernames when use_tunneled_reply = yes.</li>
-</ul>
 
 </div><!--content-->
 

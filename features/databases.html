@@ -21,11 +21,12 @@
 
 <h1>Databases</h1>
 
-<p>All common databases are supported, as indicated below.  For
-external (non-text) databases, multiple databases can be used both for
-load-balancing and fail-over.  Databases can even be mixed across
-fail-over methods (e.g. if an LDAP server is down, use an SQL server
-instead.)<p>
+<p>All common <a
+href="http://wiki.freeradius.org/Databases">databases</a> are
+supported, as indicated below.  For external (non-text) databases,
+multiple databases can be used both for load-balancing and fail-over.
+Databases can even be mixed across fail-over methods (e.g. if an LDAP
+server is down, use an SQL server instead.)<p>
 
 <ul>
 <li>Flat files</li>
@@ -38,8 +39,11 @@ instead.)<p>
 </ul>
 <li>LDAP</li>
 <ul>
-<li><a href="http://openldap.org">OpenLDAP</a></li>
 <li>Active Directory (<em>for LDAP queries, or authentication via <a href="http://samba.org">samba</a> and <tt>ntlm_auth</tt></em>)</li>
+<li><a href="http://openldap.org">OpenLDAP</a></li>
+<li>Novell eDirectory</li>
+<li>Sun One Directory Server</li>
+<li>Any LDAPv3 compliant directory</li>
 </ul>
 <li>SQL</li>
 <ul>
@@ -55,6 +59,10 @@ instead.)<p>
 
 <p><a href="policy.html">Policies</a> can be stored in any database,
 and policies can selectively obtain information from any database.</p>
+
+<p>Schemas and queries for both plain Internet access and VoIP are
+included with the distribution.  Schemas and queries for <a
+href="ippool.html">IP pools</a> are also included.</p>
 
 </div>
 

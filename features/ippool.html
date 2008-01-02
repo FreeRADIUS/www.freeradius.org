@@ -4,10 +4,10 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>FreeRADIUS -- Proxying</title>
+    <title>FreeRADIUS -- IP Pools</title>
     <link type="text/css" rel="stylesheet" href="/css/style.css" />
-	<meta name="keywords" content="AAA,proxy,realm" />
-	<meta name="description" content="Proxying requests">
+	<meta name="keywords" content="IP,address,allocation,pool" />
+	<meta name="description" content="IP Pool allocation">
 	<!--[if lt IE 7.]>
 	<script defer type="text/javascript" src="/pngfix.js"></script>
 	<![endif]-->
@@ -19,10 +19,16 @@
 
 <div id="content">
 
-<h1>Proxying</h1>
+<h1>IP Pools</h1>
 
-<p>The server can <a href="http://wiki.freeradius.org/Proxy">proxy</a>
-any request to other RADIUS servers.</p>
+<p>IP addresses can be allocated from <a
+href="http://wiki.freeradius.org/IP_Pool">pools</a>.  The pools can be
+managed in SQL <a href="database.html">databases</a>, or via local
+GDBM files.</p>
+
+<p>When using an SQL database, the IP pools have been tested with
+pools containing tens of millions of addresses.  <a
+href="scalability.html">Scalability</a> is not a problem.</p>
 
 </div>
 
