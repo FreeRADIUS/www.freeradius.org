@@ -49,7 +49,7 @@ improvements added in every release.</p>
 
 <h2>Recent News</h2>
 
-<span class="date">2008.01.03</span> Version <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
+<span class="date">2008.01.10</span> Version <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
 <a href="ftp://ftp.freeradius.org:/pub/radius/freeradius-<!--#echo var="freeradius_version" -->.tar.bz2.sig">(sig)</a>
 has been released.  The focus of this release is functionality.
 
@@ -62,16 +62,16 @@ has been released.  The focus of this release is functionality.
 <li>More EAP types</li>
 <li>Debugging output should be <em>much</em> easier to understand</li>
 <li>VMPS support</li>
-<li>More modules are marked "stable" (python, etc.)</li>
+<li>More modules have been moved to "stable" status (python, etc.)</li>
 <li>SQL configuration has been cleaned up (see <tt>raddb/sql/*</tt>)</li>
-<li>limited support for HUP</li>
+<li>limited support for HUP.  (The configuration for some modules is re-loaded on HUP.  Nothing else is reloaded.)</li>
 <li>check configuration and exit (<tt>radiusd -C</tt>)</li>
 <li>Server core is now event based (simpler, more powerful)</li>
 </ul>
 
 <h3>Bug Fixes</h3>
 <ul>
-<li>The server re-design has resulted in simple fixes many issues that
+<li>The server re-design has resulted in simple fixes for many issues that
 were too difficult to correct in Version 1.1.x.</li> </ul>
 
 <hr />
