@@ -30,8 +30,30 @@ var="freeradius_version" --></a> <a
 href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-<!--#echo
 var="freeradius_version" -->.tar.bz2.sig">(sig)</a> has been released.
 This version is a tremendous step forward in <a
-href="/features/">functionality</a> for the server.</p></dd>
+href="/features/">functionality</a> for the server.</p>
 
+<h3>Feature Improvements</h3>
+<ul>
+<li>simple policy language (see <tt>man <a href="/radiusd/man/unlang.html">unlang</a></tt>)</li>
+<li>virtual servers (<tt>raddb/sites-available/README</tt>)</li>
+<li>IPv6 support</li>
+<li>better proxy support (<tt>raddb/proxy.conf</tt>)</li>
+<li>More EAP types</li>
+<li>Debugging output should be <em>much</em> easier to understand</li>
+<li>VMPS support</li>
+<li>More modules have been moved to "stable" status (python, etc.)</li>
+<li>SQL configuration has been cleaned up (see <tt>raddb/sql/*</tt>)</li>
+<li>limited support for HUP.  (The configuration for some modules is re-loaded on HUP.  Nothing else is reloaded.)</li>
+<li>check configuration and exit (<tt>radiusd -C</tt>)</li>
+<li>Server core is now event based (simpler, more powerful)</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>The server re-design has resulted in simple fixes for many issues that
+were too difficult to correct in Version 1.1.x.</li>
+</ul>
+</dd>
 </dl>
 
 <h2>Older Press Releases</h2>
