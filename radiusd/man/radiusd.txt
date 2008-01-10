@@ -6,8 +6,8 @@ NAME
        radiusd - Authentication, Authorization and Accounting server
 
 SYNOPSIS
-       radiusd	[-C] [-d config_directory] [-f] [-i ip-address] [-p port] [-s]
-       [-v] [-x] [-X]
+       radiusd	[-C]  [-d config_directory] [-f] [-i ip-address] [-n name] [-p
+       port] [-s] [-v] [-x] [-X]
 
 DESCRIPTION
        FreeRADIUS is a high-performance and highly configurable RADIUS server.
@@ -52,6 +52,8 @@ OPTIONS
 
        -f     Do not fork, stay running as a foreground process.
 
+       -n     Read raddb/name.conf instead of raddb/radiusd.conf.
+
        -p port
 	      Normally radiusd listens on the ports specified in /etc/services
 	      (radius and radacct). When this option is given, radiusd listens
@@ -78,65 +80,6 @@ OPTIONS
 	      details  of every request on it's stdout output. You can specify
 	      this option multiple times (-x -x or -xx) to get	more  detailed
 	      output.
-
-DEPRECATED OPTIONS
-       The following options may work, and are accepted for backwards compati-
-       bility.	Support for these options may be removed in a future  revision
-       of the server.
-
-       -A     Write a file detail.auth in addition to the standard detail file
-	      in the same directory. This file will contain all the  authenti-
-	      cation-request  records.	This  can be useful for debugging, but
-	      not for normal operation.
-
-	      This command line option is accepted only for backwards compati-
-	      bility.	It no longer does anything.  See the configuration for
-	      the detail module in radiusd.conf.
-
-       -a accounting directory
-	      This defaults to /var/log/radacct.  If  that  directory  exists,
-	      radiusd will write an ascii accounting record into a detail file
-	      for every login/logout recorded. The location of the detail file
-	      is acct_dir/terminal_server/detail.
-
-	      This command line option is deprecated.  See the radacctdir con-
-	      figuration item in the radiusd.conf file.
-
-       -g facility
-	      Specifies the syslog facility to be used with -l syslog. Default
-	      is daemon. Another reasonable choice would be authpriv.
-
-       -l logging directory
-	      This  defaults to /var/log. Radiusd writes a logfile here called
-	      radius.log. It contains informational and	 error	messages,  and
-	      optionally  a record of every login attempt (for aiding an ISP's
-	      helpdesk). The special arguments stdout  and  stderr  cause  the
-	      information  to  get written to the standard output, or standard
-	      error instead. The special argument syslog sends the information
-	      with syslog(3).
-
-	      This command line option is deprecated.  See the log_dir config-
-	      uration item in the radiusd.conf file.
-
-       -S     Write the stripped usernames (without prefix or suffix)  in  the
-	      detail  file instead of the raw record as received from the ter-
-	      minal server.
-
-	      This   command   line   option   is   deprecated.	    See	   the
-	      log_stripped_names  configuration item in the radiusd.conf file.
-
-       -y     Write  details  about  every  authentication  request   in   the
-	      radius.log file.
-
-	      This  command  line option is deprecated.	 See the log_auth con-
-	      figuration item in the radiusd.conf file.
-
-       -z     Include the password in the radius.log file even for  successful
-	      logins. This is very insecure!.
-
-	      This  command  line option is deprecated.	 See the log_auth_bad-
-	      pass  and	 the  log_auth_goodpass	 configuration	items  in  the
-	      radiusd.conf file.
 
 DEBUGGING
        The server can be difficult to configure correctly in systems with com-
@@ -196,47 +139,29 @@ CONFIGURATION
 	      have  to	modify	it.  It includes other dictionary files in the
 	      same directory.
 
-       clients
-	      [ Deprecated ] Contains the IP address  and  a  secret  key  for
-	      every client that wants to connect to the server.
-
-       naslist
-	      Contains	an  entry for every NAS (Network Access Server) in the
-	      network. This is not the same as a  client,  especially  if  you
-	      have  radius  proxy  server  in  your network. In that case, the
-	      proxy server is the client and it sends requests	for  different
-	      NASes.
-
-	      It  also	contains  a abbreviated name for each terminal server,
-	      used to create the directory name where the detail file is writ-
-	      ten,  and	 used  for  the /var/log/radwtmp file. Finally it also
-	      defines what type of NAS (Cisco, Livingston, Portslave) the  NAS
-	      is.
-
-       hints  Defines  certain hints to the radius server based on the users's
+       hints  Defines certain hints to the radius server based on the  users's
 	      loginname or other attributes sent by the access server. It also
 	      provides for mapping user names (such as Pusername -> username).
-	      This provides the functionality that the Livingston  2.0	server
-	      has  as  "Prefix" and "Suffix" support in the users file, but is
-	      more general. Ofcourse the Livingston way	 of  doing  things  is
-	      also  supported,	and  you  can  even  use both at the same time
+	      This  provides  the functionality that the Livingston 2.0 server
+	      has as "Prefix" and "Suffix" support in the users file,  but  is
+	      more  general.  Ofcourse	the  Livingston way of doing things is
+	      also supported, and you can even	use  both  at  the  same  time
 	      (within certain limits).
 
        huntgroups
-	      Defines the huntgroups that you have, and makes it  possible  to
-	      restrict	access	to  certain  huntgroups to certain (groups of)
+	      Defines  the  huntgroups that you have, and makes it possible to
+	      restrict access to certain huntgroups  to	 certain  (groups  of)
 	      users.
 
        users  Here the users are defined. On a typical setup, this file mainly
-	      contains	DEFAULT	 entries  to  process  the  different types of
-	      logins, based on hints from the hints  file.  Authentication  is
+	      contains DEFAULT entries	to  process  the  different  types  of
+	      logins,  based  on  hints from the hints file. Authentication is
 	      then based on the contents of the UNIX /etc/passwd file. However
 	      it is also possible to define all users, and their passwords, in
 	      this file.
 
 SEE ALSO
-       radiusd.conf(5), users(5), huntgroups(5), hints(5), clients(5), dictio-
-       nary(5).
+       radiusd.conf(5), users(5), huntgroups(5), hints(5), dictionary(5).
 
 AUTHOR
        The FreeRADIUS Server Project (http://www.freeradius.org)
@@ -244,4 +169,4 @@ AUTHOR
 
 
 
-				  11 Nov 2007			    RADIUSD(8)
+				  27 Dec 2007			    RADIUSD(8)

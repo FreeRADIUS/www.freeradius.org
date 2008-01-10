@@ -64,9 +64,10 @@ CONFIGURATION
        modules {
 	 ...
 	 sql_log {
-	   path = ${radacctdir}/sql-relay
+	   path = "${radacctdir}/sql-relay"
 	   acct_table = "radacct"
 	   postauth_table = "radpostauth"
+	   sql_user_name = "%{%{User-Name}:-DEFAULT}"
 
 	   Start = "INSERT INTO ${acct_table} ..."
 	   Stop = "UPDATE ${acct_table} SET ..."
