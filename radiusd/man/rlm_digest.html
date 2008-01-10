@@ -1,0 +1,128 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of rlm_digest</TITLE>
+</HEAD><BODY>
+<H1>rlm_digest</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 31 March 2005<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_digest - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_digest</I> module authenticates RADIUS Access-Request
+packets that contain Cisco SIP digest authentication attributes.  The
+module should be listed in the <I>authorize</I> and <I>authenticate</I>
+sections of <I>radiusd.conf</I>.
+<A NAME="lbAD">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+The digest module requires no additional configuration items.  When it
+is being used to authenticate requests, however, it does require
+access to the clear-text password for the user.  Hashed passwords are
+not acceptable, and will not work.
+<A NAME="lbAE">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+Add the following lines to the top of your 'raddb/users' file:
+<P>
+
+
+#---
+<BR>
+
+test<TT>&nbsp;&nbsp;&nbsp;</TT>Auth-Type := Digest, User-Password = &quot;test&quot;<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Reply-Message = &quot;Hello, test with digest&quot;<BR>
+<BR>
+
+#---
+
+<P>
+Once the server has been started (debugging mode is recommended),
+use '<I>radclient</I> to send the following packet to the server:
+<P>
+
+
+$  radclient -f digest localhost auth testing123
+
+<P>
+Where 'digest' is a file containing:
+<P>
+
+
+<BR>&nbsp;&nbsp;User-Name&nbsp;=&nbsp;&quot;test&quot;,
+<BR>
+
+<BR>&nbsp;&nbsp;Digest-Response&nbsp;=&nbsp;&quot;631d6d73147add2f9e437f59bbc3aeb7&quot;,
+<BR>
+
+<BR>&nbsp;&nbsp;Digest-Realm&nbsp;=&nbsp;&quot;testrealm&quot;,
+<BR>
+
+<BR>&nbsp;&nbsp;Digest-Nonce&nbsp;=&nbsp;&quot;1234abcd&quot;,
+<BR>
+
+<BR>&nbsp;&nbsp;Digest-Method&nbsp;=&nbsp;&quot;INVITE&quot;,
+<BR>
+
+<BR>&nbsp;&nbsp;Digest-URI&nbsp;=&nbsp;&quot;sip:<A HREF="mailto:5555551212@example.com">5555551212@example.com</A>&quot;,
+<BR>
+
+<BR>&nbsp;&nbsp;Digest-Algorithm&nbsp;=&nbsp;&quot;MD5&quot;,
+<BR>
+
+<BR>&nbsp;&nbsp;Digest-User-Name&nbsp;=&nbsp;&quot;test&quot;,
+<BR>
+
+<BR>&nbsp;&nbsp;Message-Authenticator&nbsp;=&nbsp;&quot;&quot;
+
+<P>
+You should see the authentication succeed.
+<P>
+<A NAME="lbAF">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>authorize,</B>
+
+<B>authenticate</B>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf,</I>
+
+<I>draft-sterman-aaa-sip-00.txt</I>
+
+<P>
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Alan DeKok &lt;<A HREF="mailto:aland@ox.org">aland@ox.org</A>&gt;
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAE">EXAMPLES</A><DD>
+<DT><A HREF="#lbAF">SECTIONS</A><DD>
+<DT><A HREF="#lbAG">FILES</A><DD>
+<DT><A HREF="#lbAH">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+using the manual pages.<BR>
+Time: 11:00:55 GMT, January 10, 2008
+</BODY>
+</HTML>
