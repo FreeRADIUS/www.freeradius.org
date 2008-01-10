@@ -26,14 +26,19 @@ CONFIG	:= $(filter-out rlm_%,$(CONFIG))
 %.txt:%.8
 	nroff -man -Tascii $< | col -b > $@
 
+SED_FIX = 's/man[0-8]/man/g;s/\.[0-8]//g;s,</HEAD>,<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD>,;s,<BODY>,<BODY><!--\#include virtual="/header.html" --><div id="content">,;s,</BODY>,</div><!--\#include virtual="/footer.html" --></BODY>,;s,<A HREF="../,<A HREF=",'
+
 %.html:%.1
-	man2html -r $< | tail -n +2 | sed 's/man[0-8]/man/g;s/\.[0-8]//g' > $@
+	man2html -r $< | tail -n +2 | sed $(SED_FIX) > $@
+	@chmod a+x $@
 
 %.html:%.5
-	man2html -r $< | tail -n +2 | sed 's/man[0-8]/man/g;s/\.[0-8]//g' > $@
+	man2html -r $< | tail -n +2 | sed $(SED_FIX) > $@
+	@chmod a+x $@
 
 %.html:%.8
-	man2html -r $< | tail -n +2 | sed 's/man[0-8]/man/g;s/\.[0-8]//g' > $@
+	man2html -r $< | tail -n +2 | sed $(SED_FIX) > $@
+	@chmod a+x $@
 
 .PHONY: all
 all:	$(TXT) $(HTML) index.html

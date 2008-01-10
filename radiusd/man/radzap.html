@@ -1,10 +1,10 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
 <HTML><HEAD><TITLE>Man page of RADZAP</TITLE>
-</HEAD><BODY>
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>RADZAP</H1>
 Section: FreeRadius Daemon (1)<BR>Updated: 8 April 2005<BR><A HREF="#index">Index</A>
-<A HREF="../index.html">Return to Main Contents</A><HR>
+<A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
 <H2>NAME</H2>
@@ -40,13 +40,13 @@ radzap - remove rogue entries from the active sessions database
 <H2>DESCRIPTION</H2>
 
 The FreeRadius server can be configured to maintain an active session
-database in a file called <I>radutmp</I>. Commands like <B><A HREF="../man/radwho.html">radwho</A></B>(1)
+database in a file called <I>radutmp</I>. Commands like <B><A HREF="man/radwho.html">radwho</A></B>(1)
 use this database. Sometimes that database can get out of sync, and
 then it might contain rogue entries. <B>radzap</B> can clean up this
 database.
 <P>
 As of FreeRADIUS 1, <B>radzap</B> is a simple shell-script wrapper
-around <B><A HREF="../man/radwho.html">radwho</A></B>(1) and <B><A HREF="../man/radclient.html">radclient</A></B>(1).
+around <B><A HREF="man/radwho.html">radwho</A></B>(1) and <B><A HREF="../man/radclient.html">radclient</A></B>(1).
 <P>
 The sessions are &quot;zapped&quot; by sending an Accounting-Request packet
 which contains the information necessary for the server to delete the
@@ -84,10 +84,10 @@ packets from.
 <A NAME="lbAF">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<A HREF="../man/radwho.html">radwho</A>(1),
-<A HREF="../man/radclient.html">radclient</A>(1),
-<A HREF="../man/radiusd.html">radiusd</A>(8),
-<A HREF="../man/radiusd.conf.html">radiusd.conf</A>(5).
+<A HREF="man/radwho.html">radwho</A>(1),
+<A HREF="man/radclient.html">radclient</A>(1),
+<A HREF="man/radiusd.html">radiusd</A>(8),
+<A HREF="man/radiusd.conf.html">radiusd.conf</A>(5).
 <A NAME="lbAG">&nbsp;</A>
 <H2>AUTHOR</H2>
 
@@ -108,6 +108,6 @@ Alan DeKok &lt;<A HREF="mailto:aland@ox.org">aland@ox.org</A>&gt;
 This document was created by
 <A HREF="/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 11:00:54 GMT, January 10, 2008
-</BODY>
+Time: 11:10:42 GMT, January 10, 2008
+</div><!--#include virtual="/footer.html" --></BODY>
 </HTML>
