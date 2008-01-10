@@ -1,0 +1,68 @@
+FOR IMMEDIATE RELEASE:
+
+
+CONTACT:
+Alan DeKok
+The FreeRADIUS Project
++33 6 12 09 18 40
+press@freeradius.org
+http://freeradius.org
+XYZ, Inc. Announces Widget to Maximize Customer Response Rate
+
+This headline is one of the most important components of the press
+release as this needs to "grab the attention" of the editor. It should
+be in bold type and a font that is larger than the body
+text. Preferred type fonts are Arial, Times New Roman, or
+Verdana. Keep the headline to 80-125 characters maximum. Capitalize
+every word with the exception of "a", "the" "an" or any word that is
+three characters or less.
+
+<City>, <State>, <Date> - Your first paragraph of the release should
+be written in a clear and concise manner. The opening sentence
+contains the most important information; keep it to 25 words or
+less. Never take for granted that the reader has read your
+headline. It needs contain information that will "entice" the
+reader. Remember, your story must be newsworthy and factual; don't
+make it a sales pitch or it will end up in the trash.
+
+Answer the questions "who", "what", "when", "where", "why" and
+"how". Your text should include pertinent information about your
+product, service or event. If writing about a product, make sure to
+include details on when the product is available, where it can be
+purchased and the cost. If you're writing about an event, include the
+date, location of the event and any other pertinent information. You
+should include a quote from someone that is a credible source of
+information; include their title or position with the company, and why
+they are considered a credible source. Always include information on
+any awards they have won, articles they've published or interviews
+they have given.
+
+Keep your sentences and paragraphs short; a paragraph should be no
+more than 3-4 sentences. Your release should be between 500 to 800
+words, written in a word processing program, and spell checked for
+errors. Don't forget to proofread for grammatical errors. The mood of
+the release should be factual, not hyped; don't use a sales pitch as
+it will ruin your credibility with the reader.
+
+The last paragraph before the company information should read: For
+additional information on (put in the subject of this release),
+contact "name" or visit www.yoururl.com. If you offer a sample, copy
+or demo, put the information in here. You can also include details on
+product availability, trademark acknowledgment, etc. in this area of
+the release.
+
+ABOUT The FreeRADIUS Project - Founded in 1999, FreeRADIUS provides
+the world's most popular RADIUS server.  It provides authentication
+and accounting services that are the foundation behind most network
+access techn ologies, including global WiFI and VoIP offerings.  It is
+used in nearly 100,000 organizations, including Tier 1
+telecommunications companies and ISPs, to authenticate hundreds of
+millions of people every day.
+
+- END -
+
+At the end of the release, you need to indicate that the release is
+ended. This lets the journalists know they have received the entire
+release. Type "End" on the first line after your text is completed. If
+your release goes over one page, type "MORE" at the bottom of the
+first page.
