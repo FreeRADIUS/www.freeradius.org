@@ -1,0 +1,752 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
+<HTML><HEAD><TITLE>Man page of unlang</TITLE>
+</HEAD><BODY>
+<H1>unlang</H1>
+Section: FreeRADIUS Processing un-language (5)<BR>Updated: 09 Jan 2008<BR><A HREF="#index">Index</A>
+<A HREF="../index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+unlang - FreeRADIUS Processing un-language
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+FreeRADIUS supports a simple processing language in its configuration
+files.  We call it an &quot;un-language&quot; because the intention is NOT to
+create yet another programming language.  If you need something more
+complicated than what is described here, we suggest using the Perl or
+Python modules rlm_perl, or rlm_python.
+<P>
+The goal of the language is to allow simple policies to be written
+with minimal effort.  Those policies are then applied when a request
+is being processed.
+<A NAME="lbAD">&nbsp;</A>
+<H2>KEYWORDS</H2>
+
+The keywords for the language are a combination of pre-defined
+keywords, and references to loadable module names.  We document only
+the pre-defined keywords here.
+<P>
+Subject to a few limitations described below, any keyword can appear
+in any context.  The language consists of a series of entries, each
+one one line.  Each entry begins with a keyword.  Entries are
+organized into lists.  Processing of the language is line by line,
+from the start of the list to the end.  Actions are executed
+per-keyword.
+<DL COMPACT>
+<DT>module-name<DD>
+A reference to the named module.  When processing reaches this point,
+the pre-compiled module is called.  The module may succeed or fail,
+and will return a status to &quot;unlang&quot; if so.  This status can be tested
+in a condition.  See the &quot;Simple Conditions&quot; text in the CONDITIONS
+section, and MODULE RETURN CODES, below.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>chap  # call the CHAP module<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>sql   # call the SQL module<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+
+<DT>if<DD>
+<BR>
+
+Checks for a particular condition.  If true, the block after the
+condition is processed.  Otherwise, the block is ignored.  See
+CONDITIONS, below, for documentation on the format of the conditions.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>if (condition) {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+
+<DT>else<DD>
+<BR>
+
+Define a block to be executed only if the previous &quot;if&quot; condition
+returned false.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>else {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+
+<DT>elsif<DD>
+<BR>
+
+Define a block to be executed only if the previous &quot;if&quot; condition
+returned false, and if the specified condition evaluates to true.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>elsif (condition) {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+
+<DT>switch<DD>
+<BR>
+
+Evaluate the given string, and choose the first matching &quot;case&quot;
+statement inside of the current block.  If the string is surrounded by
+double quotes, it is expanded as described below in the STRINGS AND
+VARIABLES section.
+<P>
+No statement other than &quot;case&quot; can appear in a &quot;switch&quot; block.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>switch &quot;string&quot; {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+
+<DT>case<DD>
+<BR>
+
+Define a static string to match a parent &quot;switch&quot; statement.  The
+strings given here are not expanded as is done with the parent
+&quot;switch&quot; statement.
+<P>
+A &quot;case&quot; statement cannot appear outside of a &quot;switch&quot; block.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>case string {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+
+<P>
+A default entry can be defined by omitting the static string.  This
+entry will be used if no other &quot;case&quot; entry matches.  Only one default
+entry can exist in a &quot;switch&quot; section.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>case {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+
+<DT>update<DD>
+<BR>
+
+Update a particular attribute list, based on the attributes given in
+the current block.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>update &lt;list&gt; {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>attribute = value<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+
+<P>
+The &lt;list&gt; can be one of &quot;request&quot;, &quot;reply&quot;, &quot;proxy-request&quot;,
+&quot;proxy-reply&quot;, or &quot;control&quot;.  The &quot;control&quot; list is the list of
+attributes maintainted internally by the server that controls how the
+server processes the request.  Any attribute that does not go in a
+packet on the network will generally be placed in the &quot;control&quot; list.
+<P>
+For backwards compatibility with older versions, &quot;check&quot; is accepted
+as a synonym for &quot;control&quot;.  The use of &quot;check&quot; is deprecated, and
+will be removed in a future release.
+<P>
+For EAP methods with tunneled authentication sessions (i.e. PEAP and
+EAP-TTLS), the inner tunnel session can also reference
+&quot;outer.request&quot;, &quot;outer.reply&quot;, and &quot;outer.control&quot;.  Those references
+will update the relevant list in the outer tunnel session.
+<P>
+The only contents permitted in an &quot;update&quot; section are attributes and
+values.  The contents of the &quot;update&quot; section are described in the
+ATTRIBUTES section below.
+<DT>redundant<DD>
+This section contains a simple list of modules.  The first module is
+called when the section is being processed.  If the first module
+succeeds in its operation, then the server stops processing the
+section, and returns to the parent section.
+<P>
+If, however, the module fails, then the next module in the list is
+tried, as described above.  The processing continues until one module
+succeeds, or until the list has been exhausted.
+<P>
+Redundant sections can contain only a list of modules, and cannot
+contain keywords that perform conditional operations (if, else, etc)
+or update an attribute list.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>redundant {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>sql1<TT>&nbsp;&nbsp;&nbsp;&nbsp;</TT># try this<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>sql2<TT>&nbsp;&nbsp;&nbsp;&nbsp;</TT># try this only if sql1 fails.<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+
+<DT>load-balance<DD>
+This section contains a simple list of modules.  When the section is
+entered, one module is chosen at random to process the request.  All
+of the modules in the list should be the same type (e.g. ldap or sql).
+All of the modules in the list should behave identically, otherwise
+the load-balance section will return different results for the same
+request.
+<P>
+Load-balance sections can contain only a list of modules, and cannot
+contain keywords that perform conditional operations (if, else, etc)
+or update an attribute list.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>load-balance {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ldap1<TT>&nbsp;&nbsp;&nbsp;</TT># 50% of requests go here<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ldap2<TT>&nbsp;&nbsp;&nbsp;</TT># 50% of requests go here<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+
+<P>
+In general, we recommend using &quot;redundant-load-balance&quot; instead of
+&quot;load-balance&quot;.
+<DT>redundant-load-balance<DD>
+This section contains a simple list of modules.  When the section is
+entered, one module is chosen at random to process the request.  If
+that module succeeds, then the server stops processing the section.
+If, however, the module fails, then one of the remaining modules is
+chosen at random to process the request.  This process repeats until
+one module succeeds, or until the list has been exhausted.
+<P>
+All of the modules in the list should be the same type (e.g. ldap or
+sql).  All of the modules in the list should behave identically,
+otherwise the load-balance section will return different results for
+the same request.
+<P>
+Load-balance sections can contain only a list of modules, and cannot
+contain keywords that perform conditional operations (if, else, etc)
+or update an attribute list.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>redundant-load-balance {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ldap1<TT>&nbsp;&nbsp;&nbsp;</TT># 50%, unless ldap2 is down, then 100%<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ldap2<TT>&nbsp;&nbsp;&nbsp;</TT># 50%, unless ldap1 is down, then 100%<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+
+</DL>
+<A NAME="lbAE">&nbsp;</A>
+<H2>CONDITIONS</H2>
+
+The conditions are similar to C conditions in syntax, though
+quoted strings are supported, as with the Unix shell.
+<DL COMPACT>
+<DT>Simple<DD>
+conditions
+<BR>
+
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo)<BR>
+
+<P>
+Evalutes to true if 'foo' is a non-empty string (single quotes, double
+quotes, or back-quoted).  Also evaluates to true if 'foo' is a
+non-zero number.  Note that the language is not typed, so the string
+&quot;0000&quot; can be interpreted as a numerical zero.  This issue can be
+avoided by comparings strings to an empty string, rather than by
+evaluating the string by itself.
+<P>
+If the text is not quoted, then it is used as a test for one of the
+module return codes.  The condition evaluates to true if the most
+recent module return code matches the name given here.  Valid module
+return codes are given in MODULE RETURN CODES, below.
+<DT>Negation<DD>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(!foo)<BR>
+
+<P>
+Evalutes to true if 'foo' evaluates to false, and vice-versa.
+</DL>
+<P>
+
+Short-circuit operators
+<DL COMPACT><DT><DD>
+<BR>
+
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo || bar)<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo &amp;&amp; bar)<BR>
+
+<P>
+&quot;&amp;&amp;&quot; and &quot;||&quot; are short-circuit operators.  &quot;&amp;&amp;&quot; evaluates the first
+condition, and evaluates the second condition if and only if the
+result of the first condition is true.  &quot;||&quot; is similar, but executes
+the second command if and only if the result of the first condition is
+false.
+</DL>
+
+<DL COMPACT>
+<DT>Comparisons<DD>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo == bar)<BR>
+
+<P>
+Compares 'foo' to 'bar', and evaluates to true if the comparison holds
+true.  Valid comparison operators are &quot;==&quot;, &quot;!=&quot;, &quot;&lt;&quot;, &quot;&lt;=&quot;, &quot;&gt;&quot;,
+&quot;&gt;=&quot;, &quot;=~&quot;, and &quot;!~&quot;, all with their usual meanings.  Invalid
+comparison operators are &quot;:=&quot; and &quot;=&quot;.
+</DL>
+<P>
+
+Conditions may be nested to any depth, subject only to line length
+limitations (8192 bytes).
+<A NAME="lbAF">&nbsp;</A>
+<H2>STRINGS AND NUMBERS</H2>
+
+Strings and numbers can appear as stand-alone conditions, in which
+case they are evaluated as described in &quot;Simple conditions&quot;, above.
+They can also appear (with some exceptions noted below) on the
+left-hand or on the right-hand side of a comparison.
+<DL COMPACT>
+<DT>Numbers<DD>
+Numbers are composed of decimal digits.  Floating point, hex, and
+octal numbers are not supported.  The maximum value for a number is
+machine-dependent, but is usually 32-bits, including one bit for a
+sign value.
+</DL>
+<P>
+
+&quot;strings&quot;
+<DL COMPACT><DT><DD>
+Double-quoted strings are expanded by inserting the value of any
+variables (see VARIABLES, below) before being evaluated.  If
+the result is a number it is evaluated in a numerical context.
+<P>
+String length is limited by line-length, usually about 8000
+characters.  A double quote character (&quot;) can be used in a string via
+the normal escaping method.  (&quot;like \&quot;this\&quot; !&quot;)
+</DL>
+
+<DL COMPACT>
+<DT>'strings'<DD>
+Single-quoted strings are evaluated as-is.
+<P>
+<DT>`strings`<DD>
+Back-quoted strings are evaluated by expanding the contents of the
+string, as described above for double-quoted strings.  The resulting
+command given inside of the string in a sub-shell, and taking the
+output as a string.  This behavior is much the same as that of Unix
+shells.
+<P>
+Note that for security reasons, the input string is split into command
+and arguments before variable expansion is done.
+<P>
+For performance reasons, we suggest that the use of back-quoted
+strings be kept to a minimum.  Executing external programs is
+relatively expensive, and executing a large number of programs for
+every request can quickly use all of the CPU time in a server.  If you
+believe that you need to execute many programs, we suggest finding
+alternative ways to achieve the same result.  In some cases, using a
+real language may be sufficient.
+<DT>/regex/i<DD>
+These strings are valid only on the right-hand side of a comparison,
+and then only when the comparison operator is &quot;=~&quot; or &quot;!~&quot;.  They are
+regular expressions, as implemented by the local regular expression
+library on the system.  This is usually Posix regular expressions.
+<P>
+The trailing 'i' is optional, and indicates that the regular
+expression match should be done in a case-insensitive fashion.
+<P>
+If the comparison operator is &quot;=~&quot;, then parantheses in the regular
+expression will define variables containing the matching text, as
+described below in the VARIABLES section.
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>VARIABLES</H2>
+
+Run-time variables are referenced using the following syntax
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{Variable-Name}<BR>
+
+<P>
+Note that unlike C, there is no way to declare variables, or to refer
+to them outside of a string context.  All references to variables MUST
+be contained inside of a double-quoted or back-quoted string.
+<P>
+Many potential variables are defined in the dictionaries that
+accompany the server.  These definitions define only the name and
+type, and do not define the value of the variable.  When the server
+receives a packet, it uses the packet contents to look up entries in
+the dictionary, and instantiates variables with a name taken from the
+dictionaries, and a value taken from the packet contents.  This
+process means that if a variable does not exist, it is usually because
+it was not mentioned in a packet that the server received.
+<P>
+Once the variable is instantiated, it is added to an appropriate
+attribute list, as described below.  In many cases, attributes and
+variables are inter-changeble, and are often talked about that way.
+However, variables can also refer to run-time calls to modules, which
+may perform operations like SQL SELECTs, and which may return the
+result as the value of the variable.
+<P>
+
+Referencing attribute lists
+<DL COMPACT><DT><DD>
+Attribute lists may be referenced via the following syntax
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{&lt;list&gt;:Attribute-Name}<BR>
+
+<P>
+Where &lt;list&gt; is one of &quot;request&quot;, &quot;reply&quot;, &quot;proxy-request&quot;,
+&quot;proxy-reply&quot;, &quot;control&quot;, &quot;outer.request&quot;, &quot;outer.reply&quot;, or
+&quot;outer.control&quot;, as described above in the documentation for the
+&quot;update&quot; section.  The &quot;&lt;list&gt;:&quot; prefix is optional, and if omitted,
+is assumed to refer to the &quot;request&quot; list.
+<P>
+When a variable is encountered, the given list is examined for an
+attribute of the given name.  If found, the variable reference in the
+string is replaced with the value of that attribute.  Some examples are:
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{User-Name}<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{request:User-Name} # same as above<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{reply:User-Name}<BR>
+
+</DL>
+
+<P>
+
+Results of regular expression matches
+<DL COMPACT><DT><DD>
+If a regular expression match has previously been performed, then the
+special variable %{0} will contain a copy of the input string.  The
+variables %{1} through %{8} will contain the substring matches,
+starting from the left-most parantheses, and onwards.  If there are
+more than 8 parantheses, the additional results will not be placed
+into any variables.
+</DL>
+
+<P>
+
+Obtaining results from databases
+<DL COMPACT><DT><DD>
+It is useful to query a database for some information, and to use the
+result in a condition.  The following syntax will call a module, pass
+it the given string, and replace the variable reference with the
+resulting string returned from the module.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{module: string ...}<BR>
+
+<P>
+The syntax of the string is module-specific.  Please read the module
+documentation for additional details.
+</DL>
+
+<P>
+
+Conditional Syntax
+<DL COMPACT><DT><DD>
+Conditional syntax similar to that used in Unix shells may also be
+used.
+<DL COMPACT>
+<DT>%{%{Foo}:-bar}<DD>
+If %{Foo} has a value, returns that value.
+<BR>
+
+Otherwise, returns literal string &quot;bar&quot;.
+<DT>%{%{Foo}:-%{Bar}}<DD>
+If %{Foo} has a value, returns that value.
+<BR>
+
+Otherwise, returns the expansion of %{Bar}.
+<P>
+These conditional expansions can be nested to almost any depth, such
+as with %{%{One}:-%{%{Two}:-%{Three}}}
+</DL>
+</DL>
+
+<P>
+
+String lengths and arrays
+<DL COMPACT><DT><DD>
+Similar to a Unix shell, there are ways to reference string lenths,
+and the second or more instance of an attribute in a list.  If you
+need this functionality, we recommend using a real language.
+<DL COMPACT>
+<DT>%{#string}<DD>
+The number of characters in %{string}.  If %{string} is not
+set, then the length is not set.
+<P>
+e.g. %{#Junk-junk:-foo} will yeild the string &quot;foo&quot;.
+<DT>%{Attribute-Name[index]}<DD>
+Reference the N'th occurance of the given attribute.  The syntax
+%{&lt;list&gt;:Attribute-Name[index]} may also be used.  The indexes start
+at zero.  This feature is NOT available for non-attribute dynamic
+translations, like %{sql:...}.
+<P>
+For example, %{User-Name[0]} is the same as %{User-Name}
+<P>
+The variable %{Cisco-AVPair[2]} will reference the value of the
+THIRD Cisco-AVPair attribute (if it exists) in the request packet,
+<DT>%{Attribute-Name[#]}<DD>
+Returns the total number of attributes of that name in the relevant
+attribute list.  The number will usually be between 0 and 200.
+<P>
+For most requests, %{request:User-Name[#]} == 1
+<DT>%{Attribute-Name[*]}<DD>
+Expands to a single string, with the value of each array
+member separated by a newline.
+<DT>%{#Attribute-Name[index]}<DD>
+Expands to the length of the string %{Attribute-Name[index]}.
+</DL>
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>ATTRIBUTES</H2>
+
+The attribute lists described above may be edited by listing one or
+more attributes in an &quot;update&quot; section.  Once the attributes have been
+defined, they may be referenced as described above in the VARIABLES
+section.
+<P>
+The following syntax defines attributes in an &quot;update&quot; section.  Each
+attribute and value has to be all on one line in the configuration
+file.  There is no need for commas or semi-colons after the value.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Attribute-Name = value<BR>
+
+<P>
+
+Attribute names
+<DL COMPACT><DT><DD>
+The Attribute-Name must be a name previously defined in a dictionary.
+If an undefined name is used, the server will return an error, and
+will not start.
+</DL>
+
+<DL COMPACT>
+<DT>Operators<DD>
+The operator used to assign the value of the attribute may be one of
+the following, with the given meaning.
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT>=<DD>
+Add the attribute to the list, if and only if an attribute of the same
+name is already present in that list.
+<DT>:=<DD>
+Add the attribute to the list.  If any attribute of the same name is
+already present in that list, its value is replaced with the value of
+the current attribute.
+<DT>+=<DD>
+Add the attribute to the tail of the list, even if attributes of the
+same name are already present in the list.
+</DL>
+</DL>
+
+</DL>
+<P>
+
+Enforcement and Filtering Operators
+<DL COMPACT><DT><DD>
+The following operators may also be used in addition to the ones
+listed above.  Their function is to perform enforcement or filtering
+on attributes in a list.
+<DL COMPACT>
+<DT>-=<DD>
+Remove all matching attributes from the list.  Both the attribute name
+and value have to match in order for the attribute to be removed from
+the list.
+<DT>==<DD>
+Remove all non-matching attributes from the list.  Both the attribute
+name and value have to match in order for the attribute to remain in
+the list.
+<P>
+Note that this operator is very different than the '=' operator listed
+above!
+<DT>&lt;=<DD>
+Enforce that the integer value of the attribute is less than or equal
+to the value given here.  If there is no attribute of the same name in
+the list, the attribute is added with the given value, is with &quot;+=&quot;.
+If an attribute in the list exists, and has value less than given
+here, it's value is unchanged.  If an attribute in the exists, and has
+value greater than given here, it's value is replaced with the value
+given here.
+<P>
+This operator is valid only for attributes of integer type.
+<DT>&gt;=<DD>
+Enforce that the integer value of the attribute is greater than or
+equal to the value given here.  If there is no attribute of the same
+name in the list, the attribute is added with the given value, is with
+&quot;+=&quot;.  If an attribute in the list exists, and has value greater than
+given here, it's value is unchanged.  If an attribute in the exists,
+and has value less than given here, it's value is replaced with the
+value given here.
+<P>
+This operator is valid only for attributes of integer type.
+</DL>
+</DL>
+
+<DL COMPACT>
+<DT>Values<DD>
+<BR>
+
+The format of the value is attribute-specific, and is usually a
+string, integer, IP address, etc.  Prior to the attribute being
+instantiated, the value is handled as described above in the STRINGS
+AND NUMBERS section.  This flexibility means that, for example, you
+can assign an IP address value to an attribute by specifying the IP
+address directly, or by having the address returned from a database
+query, or by having the address returned as the output of a program
+that is executed.
+<P>
+When string values are finally assigned to a variable, they can have a
+maximum length of 253 characters.  This limit is due in part to both
+protocol and internal server requirements.  That is, the strings in
+the language can be nearly 8k in length, say for a long SQL query.
+However, the output of that SQL query should be no more than 253
+characters in length.
+</DL>
+<A NAME="lbAI">&nbsp;</A>
+<H2>OTHER KEYWORDS</H2>
+
+Other keywords in the language are taken from the names of modules
+loaded by the server.  These keywords are dependent on both the
+modules, and the local configuration.
+<P>
+Some use keywords that are defined in the default configuration file
+are:
+<DL COMPACT>
+<DT>fail<DD>
+Cause the request to be treated as if a database failure had occured.
+<DT>noop<DD>
+Do nothing.  This also serves as an instruction to the configurable
+failover tracking that nothing was done in the current section.
+<DT>ok<DD>
+Instructs the server that the request was processed properly.  This
+keyword can be used to over-ride earlier failures, if the local
+administrator determines that the faiures are not catastrophic.
+<DT>reject<DD>
+Causes the request to be immediately rejected
+</DL>
+<A NAME="lbAJ">&nbsp;</A>
+<H2>MODULE RETURN CODES</H2>
+
+When a module is called, it returns one of the following codes to
+&quot;unlang&quot;, with the following meaning.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>notfound        information was not found<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>noop            the module did nothing<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ok              the module succeeded<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>updated         the module updated the request<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>fail            the module failed<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>reject          the module rejected the request<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>userlock        the user was locked out<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>invalid         the configuration was invalid<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>handled         the module has handled the request itself<BR>
+
+<P>
+These return codes can be tested for in a condition, as described
+above in the CONDITIONS section.
+<A NAME="lbAK">&nbsp;</A>
+<H2>FILES</H2>
+
+/etc/raddb/radiusd.conf
+<A NAME="lbAL">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="../man/radiusd.conf.html">radiusd.conf</A></B>(5),
+
+<B><A HREF="../man/dictionary.html">dictionary</A></B>(5)
+
+<A NAME="lbAM">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Alan DeKok &lt;<A HREF="mailto:aland@deployingradius.com">aland@deployingradius.com</A>&gt;
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">KEYWORDS</A><DD>
+<DT><A HREF="#lbAE">CONDITIONS</A><DD>
+<DT><A HREF="#lbAF">STRINGS AND NUMBERS</A><DD>
+<DT><A HREF="#lbAG">VARIABLES</A><DD>
+<DT><A HREF="#lbAH">ATTRIBUTES</A><DD>
+<DT><A HREF="#lbAI">OTHER KEYWORDS</A><DD>
+<DT><A HREF="#lbAJ">MODULE RETURN CODES</A><DD>
+<DT><A HREF="#lbAK">FILES</A><DD>
+<DT><A HREF="#lbAL">SEE ALSO</A><DD>
+<DT><A HREF="#lbAM">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+using the manual pages.<BR>
+Time: 10:58:28 GMT, January 10, 2008
+</BODY>
+</HTML>

@@ -1,0 +1,554 @@
+unlang(5)	       FreeRADIUS Processing un-language	     unlang(5)
+
+
+
+NAME
+       unlang - FreeRADIUS Processing un-language
+
+DESCRIPTION
+       FreeRADIUS  supports  a simple processing language in its configuration
+       files.  We call it an "un-language" because the	intention  is  NOT  to
+       create  yet  another  programming language.  If you need something more
+       complicated than what is described here, we suggest using the  Perl  or
+       Python modules rlm_perl, or rlm_python.
+
+       The goal of the language is to allow simple policies to be written with
+       minimal effort.	Those policies are then	 applied  when	a  request  is
+       being processed.
+
+KEYWORDS
+       The  keywords  for  the	language are a combination of pre-defined key-
+       words, and references to loadable module names.	We document  only  the
+       pre-defined keywords here.
+
+       Subject to a few limitations described below, any keyword can appear in
+       any context.  The language consists of a series of  entries,  each  one
+       one  line.   Each  entry	 begins with a keyword.	 Entries are organized
+       into lists.  Processing of the language is line by line, from the start
+       of the list to the end.	Actions are executed per-keyword.
+
+       module-name
+	      A	 reference  to the named module.  When processing reaches this
+	      point, the pre-compiled module is called.	 The module  may  suc-
+	      ceed  or fail, and will return a status to "unlang" if so.  This
+	      status can be tested in a condition.   See  the  "Simple	Condi-
+	      tions"  text in the CONDITIONS section, and MODULE RETURN CODES,
+	      below.
+
+		   chap	 # call the CHAP module
+		   sql	 # call the SQL module
+		   ...
+
+       if
+	      Checks for a particular condition.  If true, the block after the
+	      condition	 is  processed.	 Otherwise, the block is ignored.  See
+	      CONDITIONS, below, for documentation on the format of the condi-
+	      tions.
+
+		   if (condition) {
+			...
+		   }
+
+       else
+	      Define  a	 block to be executed only if the previous "if" condi-
+	      tion returned false.
+
+		   else {
+			...
+		   }
+
+       elsif
+	      Define a block to be executed only if the previous  "if"	condi-
+	      tion returned false, and if the specified condition evaluates to
+	      true.
+
+		   elsif (condition) {
+			...
+		   }
+
+       switch
+	      Evaluate the given string, and choose the first matching	"case"
+	      statement	 inside	 of  the current block.	 If the string is sur-
+	      rounded by double quotes, it is expanded as described  below  in
+	      the STRINGS AND VARIABLES section.
+
+	      No statement other than "case" can appear in a "switch" block.
+
+		   switch "string" {
+			...
+		   }
+
+       case
+	      Define  a	 static	 string	 to match a parent "switch" statement.
+	      The strings given here are not expanded as is done with the par-
+	      ent "switch" statement.
+
+	      A "case" statement cannot appear outside of a "switch" block.
+
+		   case string {
+			...
+		   }
+
+	      A	 default  entry	 can be defined by omitting the static string.
+	      This entry will be used if no other "case" entry matches.	  Only
+	      one default entry can exist in a "switch" section.
+
+		   case {
+			...
+		   }
+
+       update
+	      Update  a	 particular  attribute	list,  based on the attributes
+	      given in the current block.
+
+		   update <list> {
+			attribute = value
+			...
+		   }
+
+	      The <list> can be one of	"request",  "reply",  "proxy-request",
+	      "proxy-reply",  or "control".  The "control" list is the list of
+	      attributes maintainted internally by the	server	that  controls
+	      how  the	server processes the request.  Any attribute that does
+	      not go in a packet on the network will generally	be  placed  in
+	      the "control" list.
+
+	      For  backwards  compatibility  with  older  versions, "check" is
+	      accepted as a synonym for "control".  The use of "check" is dep-
+	      recated, and will be removed in a future release.
+
+	      For EAP methods with tunneled authentication sessions (i.e. PEAP
+	      and EAP-TTLS), the  inner	 tunnel	 session  can  also  reference
+	      "outer.request", "outer.reply", and "outer.control".  Those ref-
+	      erences will update the relevant list in the outer  tunnel  ses-
+	      sion.
+
+	      The   only   contents  permitted	in  an	"update"  section  are
+	      attributes and values.  The contents of the "update" section are
+	      described in the ATTRIBUTES section below.
+
+       redundant
+	      This  section contains a simple list of modules.	The first mod-
+	      ule is called when the section is being processed.  If the first
+	      module succeeds in its operation, then the server stops process-
+	      ing the section, and returns to the parent section.
+
+	      If, however, the module fails, then the next module in the  list
+	      is  tried,  as  described above.	The processing continues until
+	      one module succeeds, or until the list has been exhausted.
+
+	      Redundant sections can contain only a list of modules, and  can-
+	      not  contain  keywords  that perform conditional operations (if,
+	      else, etc) or update an attribute list.
+
+		   redundant {
+			sql1 # try this
+			sql2 # try this only if sql1 fails.
+			...
+		   }
+
+       load-balance
+	      This section contains a simple list of modules.  When  the  sec-
+	      tion  is	entered, one module is chosen at random to process the
+	      request.	All of the modules in the list should be the same type
+	      (e.g.  ldap  or  sql).   All  of	the modules in the list should
+	      behave identically,  otherwise  the  load-balance	 section  will
+	      return different results for the same request.
+
+	      Load-balance  sections  can  contain only a list of modules, and
+	      cannot contain keywords that perform conditional operations (if,
+	      else, etc) or update an attribute list.
+
+		   load-balance {
+			ldap1	  # 50% of requests go here
+			ldap2	  # 50% of requests go here
+		   }
+
+	      In  general, we recommend using "redundant-load-balance" instead
+	      of "load-balance".
+
+       redundant-load-balance
+	      This section contains a simple list of modules.  When  the  sec-
+	      tion  is	entered, one module is chosen at random to process the
+	      request.	If that module succeeds, then the  server  stops  pro-
+	      cessing the section.  If, however, the module fails, then one of
+	      the remaining  modules  is  chosen  at  random  to  process  the
+	      request.	 This  process	repeats	 until one module succeeds, or
+	      until the list has been exhausted.
+
+	      All of the modules in the list should be	the  same  type	 (e.g.
+	      ldap  or	sql).	All  of	 the modules in the list should behave
+	      identically, otherwise the load-balance section will return dif-
+	      ferent results for the same request.
+
+	      Load-balance  sections  can  contain only a list of modules, and
+	      cannot contain keywords that perform conditional operations (if,
+	      else, etc) or update an attribute list.
+
+		   redundant-load-balance {
+			ldap1	  # 50%, unless ldap2 is down, then 100%
+			ldap2	  # 50%, unless ldap1 is down, then 100%
+		   }
+
+CONDITIONS
+       The  conditions	are  similar  to C conditions in syntax, though quoted
+       strings are supported, as with the Unix shell.
+
+       Simple conditions
+		   (foo)
+
+	      Evalutes to true if 'foo' is a non-empty string (single  quotes,
+	      double quotes, or back-quoted).  Also evaluates to true if 'foo'
+	      is a non-zero number.  Note that the language is not  typed,  so
+	      the  string "0000" can be interpreted as a numerical zero.  This
+	      issue can be avoided by comparings strings to an	empty  string,
+	      rather than by evaluating the string by itself.
+
+	      If  the text is not quoted, then it is used as a test for one of
+	      the module return codes.	The condition evaluates to true if the
+	      most  recent  module  return  code  matches the name given here.
+	      Valid module return codes are  given  in	MODULE	RETURN	CODES,
+	      below.
+
+       Negation
+		   (!foo)
+
+	      Evalutes to true if 'foo' evaluates to false, and vice-versa.
+
+       Short-circuit operators
+		   (foo || bar)
+		   (foo && bar)
+
+	      "&&"  and	 "||" are short-circuit operators.  "&&" evaluates the
+	      first condition, and evaluates the second condition if and  only
+	      if  the result of the first condition is true.  "||" is similar,
+	      but executes the second command if and only if the result of the
+	      first condition is false.
+
+       Comparisons
+		   (foo == bar)
+
+	      Compares 'foo' to 'bar', and evaluates to true if the comparison
+	      holds true.  Valid comparison operators  are  "==",  "!=",  "<",
+	      "<=",  ">", ">=", "=~", and "!~", all with their usual meanings.
+	      Invalid comparison operators are ":=" and "=".
+
+       Conditions may be nested to any depth, subject only to line length lim-
+       itations (8192 bytes).
+
+STRINGS AND NUMBERS
+       Strings and numbers can appear as stand-alone conditions, in which case
+       they are evaluated as described in "Simple  conditions",	 above.	  They
+       can  also appear (with some exceptions noted below) on the left-hand or
+       on the right-hand side of a comparison.
+
+       Numbers
+	      Numbers are composed of decimal digits.	Floating  point,  hex,
+	      and  octal  numbers  are not supported.  The maximum value for a
+	      number is machine-dependent, but is usually  32-bits,  including
+	      one bit for a sign value.
+
+       "strings"
+	      Double-quoted strings are expanded by inserting the value of any
+	      variables (see VARIABLES, below) before being evaluated.	If the
+	      result is a number it is evaluated in a numerical context.
+
+	      String  length  is  limited  by  line-length, usually about 8000
+	      characters.  A double quote character  (")  can  be  used	 in  a
+	      string via the normal escaping method.  ("like \"this\" !")
+
+       'strings'
+	      Single-quoted strings are evaluated as-is.
+
+
+       `strings`
+	      Back-quoted  strings  are evaluated by expanding the contents of
+	      the string, as described above for double-quoted	strings.   The
+	      resulting command given inside of the string in a sub-shell, and
+	      taking the output as a string.  This behavior is much  the  same
+	      as that of Unix shells.
+
+	      Note  that  for security reasons, the input string is split into
+	      command and arguments before variable expansion is done.
+
+	      For performance reasons, we suggest that the use of  back-quoted
+	      strings  be  kept	 to a minimum.	Executing external programs is
+	      relatively expensive, and executing a large number  of  programs
+	      for  every  request  can	quickly	 use  all of the CPU time in a
+	      server.  If you believe that you need to execute many  programs,
+	      we  suggest finding alternative ways to achieve the same result.
+	      In some cases, using a real language may be sufficient.
+
+       /regex/i
+	      These strings are valid only on the right-hand side of a compar-
+	      ison,  and  then	only  when  the comparison operator is "=~" or
+	      "!~".  They are regular expressions, as implemented by the local
+	      regular expression library on the system.	 This is usually Posix
+	      regular expressions.
+
+	      The trailing 'i' is optional, and	 indicates  that  the  regular
+	      expression match should be done in a case-insensitive fashion.
+
+	      If the comparison operator is "=~", then parantheses in the reg-
+	      ular expression will define variables  containing	 the  matching
+	      text, as described below in the VARIABLES section.
+
+VARIABLES
+       Run-time variables are referenced using the following syntax
+
+	    %{Variable-Name}
+
+       Note  that  unlike C, there is no way to declare variables, or to refer
+       to them outside of a string context.  All references to variables  MUST
+       be contained inside of a double-quoted or back-quoted string.
+
+       Many potential variables are defined in the dictionaries that accompany
+       the server.  These definitions define only the name and	type,  and  do
+       not  define  the	 value	of  the	 variable.  When the server receives a
+       packet, it uses the packet contents to look up entries in  the  dictio-
+       nary,  and instantiates variables with a name taken from the dictionar-
+       ies, and a value taken from the packet contents.	  This	process	 means
+       that  if	 a  variable  does not exist, it is usually because it was not
+       mentioned in a packet that the server received.
+
+       Once the variable is  instantiated,  it	is  added  to  an  appropriate
+       attribute  list,	 as  described	below.	 In many cases, attributes and
+       variables are inter-changeble, and are often  talked  about  that  way.
+       However,	 variables  can also refer to run-time calls to modules, which
+       may perform operations like SQL	SELECTs,  and  which  may  return  the
+       result as the value of the variable.
+
+       Referencing attribute lists
+	      Attribute lists may be referenced via the following syntax
+
+		   %{<list>:Attribute-Name}
+
+	      Where  <list>  is	 one  of  "request", "reply", "proxy-request",
+	      "proxy-reply",  "control",  "outer.request",  "outer.reply",  or
+	      "outer.control", as described above in the documentation for the
+	      "update" section.	 The "<list>:"	prefix	is  optional,  and  if
+	      omitted, is assumed to refer to the "request" list.
+
+	      When  a  variable is encountered, the given list is examined for
+	      an attribute of the given name.  If found, the  variable	refer-
+	      ence in the string is replaced with the value of that attribute.
+	      Some examples are:
+
+		   %{User-Name}
+		   %{request:User-Name} # same as above
+		   %{reply:User-Name}
+
+       Results of regular expression matches
+	      If a regular expression match  has  previously  been  performed,
+	      then  the special variable %{0} will contain a copy of the input
+	      string.  The variables %{1} through %{8} will contain  the  sub-
+	      string  matches,	starting  from	the left-most parantheses, and
+	      onwards.	If there are more than 8 parantheses,  the  additional
+	      results will not be placed into any variables.
+
+       Obtaining results from databases
+	      It  is  useful  to query a database for some information, and to
+	      use the result in a condition.  The following syntax will call a
+	      module,  pass it the given string, and replace the variable ref-
+	      erence with the resulting string returned from the module.
+
+		   %{module: string ...}
+
+	      The syntax of the string is module-specific.   Please  read  the
+	      module documentation for additional details.
+
+       Conditional Syntax
+	      Conditional  syntax similar to that used in Unix shells may also
+	      be used.
+
+	      %{%{Foo}:-bar}
+		     If %{Foo} has a value, returns that value.
+		     Otherwise, returns literal string "bar".
+
+	      %{%{Foo}:-%{Bar}}
+		     If %{Foo} has a value, returns that value.
+		     Otherwise, returns the expansion of %{Bar}.
+
+		     These conditional expansions can be nested to almost  any
+		     depth, such as with %{%{One}:-%{%{Two}:-%{Three}}}
+
+       String lengths and arrays
+	      Similar  to  a  Unix  shell,  there are ways to reference string
+	      lenths, and the second or more instance of  an  attribute	 in  a
+	      list.  If you need this functionality, we recommend using a real
+	      language.
+
+	      %{#string}
+		     The number of characters in %{string}.  If	 %{string}  is
+		     not set, then the length is not set.
+
+		     e.g. %{#Junk-junk:-foo} will yeild the string "foo".
+
+	      %{Attribute-Name[index]}
+		     Reference the N'th occurance of the given attribute.  The
+		     syntax %{<list>:Attribute-Name[index]} may also be	 used.
+		     The indexes start at zero.	 This feature is NOT available
+		     for non-attribute dynamic translations, like  %{sql:...}.
+
+		     For example, %{User-Name[0]} is the same as %{User-Name}
+
+		     The  variable %{Cisco-AVPair[2]} will reference the value
+		     of the THIRD Cisco-AVPair attribute (if it exists) in the
+		     request packet,
+
+	      %{Attribute-Name[#]}
+		     Returns  the  total  number of attributes of that name in
+		     the relevant attribute list.  The number will usually  be
+		     between 0 and 200.
+
+		     For most requests, %{request:User-Name[#]} == 1
+
+	      %{Attribute-Name[*]}
+		     Expands  to a single string, with the value of each array
+		     member separated by a newline.
+
+	      %{#Attribute-Name[index]}
+		     Expands  to  the  length  of  the	 string	  %{Attribute-
+		     Name[index]}.
+
+ATTRIBUTES
+       The  attribute  lists  described	 above may be edited by listing one or
+       more attributes in an "update" section.	Once the attributes have  been
+       defined,	 they  may  be	referenced as described above in the VARIABLES
+       section.
+
+       The following syntax defines attributes in an "update"  section.	  Each
+       attribute  and  value  has  to  be all on one line in the configuration
+       file.  There is no need for commas or semi-colons after the value.
+
+	    Attribute-Name = value
+
+       Attribute names
+	      The Attribute-Name must be a name previously defined in  a  dic-
+	      tionary.	 If  an undefined name is used, the server will return
+	      an error, and will not start.
+
+       Operators
+	      The operator used to assign the value of the  attribute  may  be
+	      one of the following, with the given meaning.
+
+	      =	     Add  the  attribute  to  the  list,  if  and  only	 if an
+		     attribute of the same name is  already  present  in  that
+		     list.
+
+	      :=     Add  the  attribute to the list.  If any attribute of the
+		     same name is already present in that list, its  value  is
+		     replaced with the value of the current attribute.
+
+	      +=     Add  the  attribute  to  the  tail	 of  the list, even if
+		     attributes of the same name are already  present  in  the
+		     list.
+
+       Enforcement and Filtering Operators
+	      The following operators may also be used in addition to the ones
+	      listed above.  Their function is to perform enforcement or  fil-
+	      tering on attributes in a list.
+
+	      -=     Remove  all  matching attributes from the list.  Both the
+		     attribute name and value have to match in order  for  the
+		     attribute to be removed from the list.
+
+	      ==     Remove  all  non-matching attributes from the list.  Both
+		     the attribute name and value have to match in  order  for
+		     the attribute to remain in the list.
+
+		     Note  that	 this  operator is very different than the '='
+		     operator listed above!
+
+	      <=     Enforce that the integer value of the attribute  is  less
+		     than  or  equal  to the value given here.	If there is no
+		     attribute of the same name in the list, the attribute  is
+		     added  with  the  given  value,  is  with	"+=".	If  an
+		     attribute in the list exists, and	has  value  less  than
+		     given  here, it's value is unchanged.  If an attribute in
+		     the exists, and has value greater than given  here,  it's
+		     value is replaced with the value given here.
+
+		     This  operator  is	 valid	only for attributes of integer
+		     type.
+
+	      >=     Enforce that  the	integer	 value	of  the	 attribute  is
+		     greater  than or equal to the value given here.  If there
+		     is no attribute  of  the  same  name  in  the  list,  the
+		     attribute	is  added  with the given value, is with "+=".
+		     If an attribute in the list exists, and has value greater
+		     than   given  here,  it's	value  is  unchanged.	If  an
+		     attribute in the exists, and has value  less  than	 given
+		     here, it's value is replaced with the value given here.
+
+		     This  operator  is	 valid	only for attributes of integer
+		     type.
+
+       Values
+	      The format of the value is attribute-specific, and is usually  a
+	      string,  integer, IP address, etc.  Prior to the attribute being
+	      instantiated, the value is handled as  described	above  in  the
+	      STRINGS  AND  NUMBERS section.  This flexibility means that, for
+	      example, you can assign an IP address value to an	 attribute  by
+	      specifying  the  IP  address  directly, or by having the address
+	      returned from  a	database  query,  or  by  having  the  address
+	      returned as the output of a program that is executed.
+
+	      When  string values are finally assigned to a variable, they can
+	      have a maximum length of 253 characters.	This limit is  due  in
+	      part  to	both  protocol and internal server requirements.  That
+	      is, the strings in the language can be nearly 8k in length,  say
+	      for  a  long  SQL	 query.	 However, the output of that SQL query
+	      should be no more than 253 characters in length.
+
+OTHER KEYWORDS
+       Other keywords in the language are taken	 from  the  names  of  modules
+       loaded  by  the	server.	 These keywords are dependent on both the mod-
+       ules, and the local configuration.
+
+       Some use keywords that are defined in the  default  configuration  file
+       are:
+
+       fail   Cause  the  request  to  be treated as if a database failure had
+	      occured.
+
+       noop   Do nothing.  This also serves as an instruction to  the  config-
+	      urable  failover	tracking  that nothing was done in the current
+	      section.
+
+       ok     Instructs the server that the request  was  processed  properly.
+	      This  keyword  can be used to over-ride earlier failures, if the
+	      local administrator determines that the faiures are  not	catas-
+	      trophic.
+
+       reject Causes the request to be immediately rejected
+
+MODULE RETURN CODES
+       When  a	module	is  called,  it	 returns one of the following codes to
+       "unlang", with the following meaning.
+
+	    notfound	    information was not found
+	    noop	    the module did nothing
+	    ok		    the module succeeded
+	    updated	    the module updated the request
+	    fail	    the module failed
+	    reject	    the module rejected the request
+	    userlock	    the user was locked out
+	    invalid	    the configuration was invalid
+	    handled	    the module has handled the request itself
+
+       These return codes can be tested for in a condition, as described above
+       in the CONDITIONS section.
+
+FILES
+       /etc/raddb/radiusd.conf
+
+SEE ALSO
+       radiusd.conf(5), dictionary(5)
+
+AUTHOR
+       Alan DeKok <aland@deployingradius.com>
+
+
+
+				  09 Jan 2008			     unlang(5)
