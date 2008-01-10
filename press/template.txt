@@ -57,7 +57,9 @@ and accounting services that are the foundation behind most network
 access techn ologies, including global WiFI and VoIP offerings.  It is
 used in nearly 100,000 organizations, including Tier 1
 telecommunications companies and ISPs, to authenticate hundreds of
-millions of people every day.
+millions of people every day.  The server is Open Source, and is
+available under terms of the GNU General Public License, Version 2
+(GPLv2).
 
 - END -
 
