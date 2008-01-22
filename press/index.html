@@ -20,6 +20,30 @@
 
 <dl>
 
+<dt><span class="date">January 2, 2008</span> - <b>Version 2.0.1</b> has
+been released.</dt>
+
+<dd><p>We are pleased to announce that <a
+href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo
+var="freeradius_version" -->.tar.bz2">Version <!--#echo
+var="freeradius_version" --></a> <a
+href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo
+var="freeradius_version" -->.tar.bz2.sig">(sig)</a> has been released.</p>
+
+<h3>Feature Improvements</h3>
+<ul>
+<li><tt><a href="/radiusd/man/unlang.html">Unlang</a></tt> now permits type-specific checks, and requires using strings less often.  e.g. <tt>if (Framed-IP-Address > 192.168.0.1) { ...</tt>.</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li> The <tt>acct_unique</tt> module has been updated to understand the deprecated (but still used) <tt>Client-IP-Address</tt> attribute.</li>
+<li>The EAP-MSCHAPv2 module no longer leaks MS-CHAP2-Success in packets.</li>
+<li>Fixed crash in the <tt>dbm</tt> module.</li>
+<li>Corrected parsing of <tt>syslog</tt> entries in <tt>radiusd.conf</tt>.</li>
+</ul>
+</dd>
+
 <dt><span class="date">January 10, 2008</span> - <b>Version 2.0</b> has
 been released.</dt>
 

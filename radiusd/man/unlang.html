@@ -3,7 +3,7 @@
 <HTML><HEAD><TITLE>Man page of unlang</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>unlang</H1>
-Section: FreeRADIUS Processing un-language (5)<BR>Updated: 09 Jan 2008<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Processing un-language (5)<BR>Updated: 16 Jan 2008<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -103,8 +103,8 @@ returned false, and if the specified condition evaluates to true.
 
 Evaluate the given string, and choose the first matching &quot;case&quot;
 statement inside of the current block.  If the string is surrounded by
-double quotes, it is expanded as described below in the STRINGS AND
-VARIABLES section.
+double quotes, may be expanded as described in the DATA TYPES section,
+below.
 <P>
 No statement other than &quot;case&quot; can appear in a &quot;switch&quot; block.
 <P>
@@ -288,15 +288,21 @@ conditions
 <P>
 Evalutes to true if 'foo' is a non-empty string (single quotes, double
 quotes, or back-quoted).  Also evaluates to true if 'foo' is a
-non-zero number.  Note that the language is not typed, so the string
-&quot;0000&quot; can be interpreted as a numerical zero.  This issue can be
-avoided by comparings strings to an empty string, rather than by
+non-zero number.  Note that the language is poorly typed, so the
+string &quot;0000&quot; can be interpreted as a numerical zero.  This issue can
+be avoided by comparings strings to an empty string, rather than by
 evaluating the string by itself.
 <P>
-If the text is not quoted, then it is used as a test for one of the
-module return codes.  The condition evaluates to true if the most
-recent module return code matches the name given here.  Valid module
-return codes are given in MODULE RETURN CODES, below.
+If the word 'foo' is not a quoted string, then it can be taken as a
+reference to a named attribute.  See &quot;Referencing attribute lists&quot;,
+below, for examples of attribute references.  The condition evaluates
+to true if the named attribute exists.
+<P>
+Otherwise, if the word 'foo' is not a quoted string, and is not an
+attribute reference, then it is interpreted as a reference to a module
+return code.  The condition evaluates to true if the most recent
+module return code matches the name given here.  Valid module return
+codes are given in MODULE RETURN CODES, below.
 <DT>Negation<DD>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(!foo)<BR>
@@ -340,12 +346,14 @@ comparison operators are &quot;:=&quot; and &quot;=&quot;.
 Conditions may be nested to any depth, subject only to line length
 limitations (8192 bytes).
 <A NAME="lbAF">&nbsp;</A>
-<H2>STRINGS AND NUMBERS</H2>
+<H2>DATA TYPES</H2>
 
-Strings and numbers can appear as stand-alone conditions, in which
-case they are evaluated as described in &quot;Simple conditions&quot;, above.
-They can also appear (with some exceptions noted below) on the
-left-hand or on the right-hand side of a comparison.
+There are only a few data types supported in the language.  Reference
+to attributes, numbers, and strings.  Any data type can appear in
+stand-alone condition, in which case they are evaluated as described
+in &quot;Simple conditions&quot;, above.  They can also appear (with some
+exceptions noted below) on the left-hand or on the right-hand side of
+a comparison.
 <DL COMPACT>
 <DT>Numbers<DD>
 Numbers are composed of decimal digits.  Floating point, hex, and
@@ -355,7 +363,36 @@ sign value.
 </DL>
 <P>
 
-&quot;strings&quot;
+word
+<DL COMPACT><DT><DD>
+Text that is not enclosed in quotes is interpreted differently
+depending on where it occurs in a condition.  On the left hand side of
+a condition, it is interpreted as a reference to an attribute.  On the
+right hand side, it is interpreted as a simple string, in the same
+manner as a single-quoted string.
+<P>
+Using attribute references permits limited type-specific comparisons,
+as seen in the examples below.
+<P>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>if (User-Name == &quot;bob&quot;) {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>if (Framed-IP-Address &gt; 127) {<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>if (Service-Type == Login-User) { <BR>
+
+</DL>
+
+<DL COMPACT>
+<DT>strings<DD>
 <DL COMPACT><DT><DD>
 Double-quoted strings are expanded by inserting the value of any
 variables (see VARIABLES, below) before being evaluated.  If
@@ -363,13 +400,13 @@ the result is a number it is evaluated in a numerical context.
 <P>
 String length is limited by line-length, usually about 8000
 characters.  A double quote character (&quot;) can be used in a string via
-the normal escaping method.  (&quot;like \&quot;this\&quot; !&quot;)
+the normal back-slash escaping method.  (&quot;like \&quot;this\&quot; !&quot;)
 </DL>
 
-<DL COMPACT>
 <DT>'strings'<DD>
-Single-quoted strings are evaluated as-is.
-<P>
+Single-quoted strings are evaluated as-is.  Their values are not
+expanded as with double-quoted strings above, and they are not
+interpreted as attribute references.
 <DT>`strings`<DD>
 Back-quoted strings are evaluated by expanding the contents of the
 string, as described above for double-quoted strings.  The resulting
@@ -440,9 +477,9 @@ Attribute lists may be referenced via the following syntax
 <P>
 Where &lt;list&gt; is one of &quot;request&quot;, &quot;reply&quot;, &quot;proxy-request&quot;,
 &quot;proxy-reply&quot;, &quot;control&quot;, &quot;outer.request&quot;, &quot;outer.reply&quot;, or
-&quot;outer.control&quot;, as described above in the documentation for the
-&quot;update&quot; section.  The &quot;&lt;list&gt;:&quot; prefix is optional, and if omitted,
-is assumed to refer to the &quot;request&quot; list.
+&quot;outer.control&quot;, as described above for the &quot;update&quot; section.  The
+&quot;&lt;list&gt;:&quot; prefix is optional, and if omitted, is assumed to refer to
+the &quot;request&quot; list.
 <P>
 When a variable is encountered, the given list is examined for an
 attribute of the given name.  If found, the variable reference in the
@@ -614,9 +651,9 @@ Enforce that the integer value of the attribute is less than or equal
 to the value given here.  If there is no attribute of the same name in
 the list, the attribute is added with the given value, is with &quot;+=&quot;.
 If an attribute in the list exists, and has value less than given
-here, it's value is unchanged.  If an attribute in the exists, and has
-value greater than given here, it's value is replaced with the value
-given here.
+here, it's value is unchanged.  If an attribute in the list exists,
+and has a value greater than given here, then that value is replaced
+with the one given here.
 <P>
 This operator is valid only for attributes of integer type.
 <DT>&gt;=<DD>
@@ -624,9 +661,9 @@ Enforce that the integer value of the attribute is greater than or
 equal to the value given here.  If there is no attribute of the same
 name in the list, the attribute is added with the given value, is with
 &quot;+=&quot;.  If an attribute in the list exists, and has value greater than
-given here, it's value is unchanged.  If an attribute in the exists,
-and has value less than given here, it's value is replaced with the
-value given here.
+given here, it's value is unchanged.  If an attribute in the list
+exists, and has value less than given here, then that value is
+replaced with the one given here.
 <P>
 This operator is valid only for attributes of integer type.
 </DL>
@@ -638,8 +675,8 @@ This operator is valid only for attributes of integer type.
 
 The format of the value is attribute-specific, and is usually a
 string, integer, IP address, etc.  Prior to the attribute being
-instantiated, the value is handled as described above in the STRINGS
-AND NUMBERS section.  This flexibility means that, for example, you
+instantiated, the value may be expanded as described above in the DATA
+TYPES section, above.  This flexibility means that, for example, you
 can assign an IP address value to an attribute by specifying the IP
 address directly, or by having the address returned from a database
 query, or by having the address returned as the output of a program
@@ -663,7 +700,7 @@ Some use keywords that are defined in the default configuration file
 are:
 <DL COMPACT>
 <DT>fail<DD>
-Cause the request to be treated as if a database failure had occured.
+Cause the request to be treated as if a database failure had occurred.
 <DT>noop<DD>
 Do nothing.  This also serves as an instruction to the configurable
 failover tracking that nothing was done in the current section.
@@ -734,7 +771,7 @@ Alan DeKok &lt;<A HREF="mailto:aland@deployingradius.com">aland@deployingradius.
 <DT><A HREF="#lbAC">DESCRIPTION</A><DD>
 <DT><A HREF="#lbAD">KEYWORDS</A><DD>
 <DT><A HREF="#lbAE">CONDITIONS</A><DD>
-<DT><A HREF="#lbAF">STRINGS AND NUMBERS</A><DD>
+<DT><A HREF="#lbAF">DATA TYPES</A><DD>
 <DT><A HREF="#lbAG">VARIABLES</A><DD>
 <DT><A HREF="#lbAH">ATTRIBUTES</A><DD>
 <DT><A HREF="#lbAI">OTHER KEYWORDS</A><DD>
@@ -747,6 +784,6 @@ Alan DeKok &lt;<A HREF="mailto:aland@deployingradius.com">aland@deployingradius.
 This document was created by
 <A HREF="/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 11:10:45 GMT, January 10, 2008
+Time: 13:39:32 GMT, January 22, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>
