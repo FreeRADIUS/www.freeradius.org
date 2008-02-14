@@ -20,22 +20,31 @@ DESCRIPTION
        applied using another attribute, by editing the key  configuration  for
        this module.
 
-       The  file  that defines the attribute filtering rules follows a similar
+       In  2.0.1  and  earlier versions, the "accounting" section filtered the
+       Accounting-Request, even though it  was	documented  as	filtering  the
+       response.   This	 issue	has been fixed in version 2.0.2 and later ver-
+       sions.  The "preacct" section may now be	 used  to  filter  Accounting-
+       Request	packets.   The	"accounting"  section  now filters Accounting-
+       Response packets.  Administrators using "attr_filter" in the  "account-
+       ing"  section SHOULD move the reference to "attr_filter" from "account-
+       ing" to "preacct".
+
+       The file that defines the attribute filtering rules follows  a  similar
        syntax to the users file.  There are a few differences however:
 
 	   There are no check-items allowed other than the name of the key.
 
 	   There can only be a single DEFAULT entry.
 
-       The rules for each entry are parsed to top to bottom, and an  attribute
-       must  pass *all* the rules which affect it in order to make it past the
+       The  rules for each entry are parsed to top to bottom, and an attribute
+       must pass *all* the rules which affect it in order to make it past  the
        filter.	Order of the rules is important.  The operators and their pur-
        pose in defining the rules are as follows:
 
-       =      THIS  OPERATOR  IS NOT ALLOWED.  If used, and warning message is
+       =      THIS OPERATOR IS NOT ALLOWED.  If used, and warning  message  is
 	      printed and it is treated as ==
 
-       :=     Set, this attribute and value will always be placed in the  out-
+       :=     Set,  this attribute and value will always be placed in the out-
 	      put A/V Pairs.  If the attribute exists, it is overwritten.
 
        ==     Equal, value must match exactly.
@@ -56,9 +65,9 @@ DESCRIPTION
 
        <      Less Than
 
-       If  regular  expressions	 are  enabled the following operators are also
-       possible.  ( Regular Expressions are included by	 default  unless  your
-       system  doesn't	support them, which should be rare ).  The value field
+       If regular expressions are enabled the  following  operators  are  also
+       possible.   (  Regular  Expressions are included by default unless your
+       system doesn't support them, which should be rare ).  The  value	 field
        uses standard regular expression syntax.
 
 
@@ -66,25 +75,43 @@ DESCRIPTION
 
        !~     Regular Expression Not Equal
 
-       See the default /etc/raddb/attrs for working examples  of  sample  rule
+       See  the	 default  /etc/raddb/attrs for working examples of sample rule
        ordering and how to use the different operators.
 
        The configuration items are:
 
        attrsfile
-	      This  specifies the location of the file used to load the filter
-	      rules.  This file is used to  filter  the	 accounting  response,
-	      packet  before  it  is  proxied,	proxy  response	 from the home
+	      This specifies the location of the file used to load the	filter
+	      rules.   This  file  is  used to filter the accounting response,
+	      packet before it	is  proxied,  proxy  response  from  the  home
 	      server, or our response to the NAS.
 
-       key    Usually %{Realm} (the default).  Can also	 be  %{User-Name},  or
-	      other  attribute that exists in the request.  Note that the mod-
+       key    Usually  %{Realm}	 (the  default).  Can also be %{User-Name}, or
+	      other attribute that exists in the request.  Note that the  mod-
 	      ule always keys off of attributes in the request, and NOT in any
 	      other packet.
 
 
 SECTIONS
-       accounting, pre-proxy, post-proxy, post-auth
+       preacct
+	      Filters Accounting-Request packets.
+
+       accounting
+	      Filters Accounting-Response packets.
+
+       pre-proxy
+	      Filters Accounting-Request or Access-Request  packets  prior  to
+	      proxying them.
+
+       post-proxy
+	      Filters  Accounting-Response,  Access-Accept,  Access-Reject, or
+	      Access-Challenge responses from a home server.
+
+       authorize
+	      Filters Access-Request packets.
+
+       post-auth
+	      Filters Access-Accept or Access-Reject packets.
 
 
 FILES
@@ -100,4 +127,4 @@ AUTHOR
 
 
 
-				3 February 2004		    rlm_attr_filter(5)
+			       12 February 2008		    rlm_attr_filter(5)

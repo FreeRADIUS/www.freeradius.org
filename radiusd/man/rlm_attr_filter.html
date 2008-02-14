@@ -3,7 +3,7 @@
 <HTML><HEAD><TITLE>Man page of rlm_attr_filter</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>rlm_attr_filter</H1>
-Section: FreeRADIUS Module (5)<BR>Updated: 3 February 2004<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Module (5)<BR>Updated: 12 February 2008<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -27,6 +27,16 @@ where the realm is anything that is defined and matched based on the
 configuration of the <I>rlm_realm</I> module.  Filter rules can
 optionally be applied using another attribute, by editing the
 <I>key</I> configuration for this module.
+<P>
+
+In 2 and earlier versions, the &quot;accounting&quot; section filtered the
+Accounting-Request, even though it was documented as filtering the
+response.  This issue has been fixed in version 2 and later
+versions.  The &quot;preacct&quot; section may now be used to filter
+Accounting-Request packets.  The &quot;accounting&quot; section now filters
+Accounting-Response packets.  Administrators using &quot;attr_filter&quot; in
+the &quot;accounting&quot; section SHOULD move the reference to &quot;attr_filter&quot;
+from &quot;accounting&quot; to &quot;preacct&quot;.
 <P>
 
 The file that defines the attribute filtering rules follows a similar
@@ -133,14 +143,22 @@ keys off of attributes in the request, and NOT in any other packet.
 <A NAME="lbAD">&nbsp;</A>
 <H2>SECTIONS</H2>
 
-<B>accounting,</B>
-
-<B>pre-proxy,</B>
-
-<B>post-proxy,</B>
-
-<B>post-auth</B>
-
+<DL COMPACT>
+<DT>preacct<DD>
+Filters Accounting-Request packets.
+<DT>accounting<DD>
+Filters Accounting-Response packets.
+<DT>pre-proxy<DD>
+Filters Accounting-Request or Access-Request packets prior to proxying
+them.
+<DT>post-proxy<DD>
+Filters Accounting-Response, Access-Accept, Access-Reject, or
+Access-Challenge responses from a home server.
+<DT>authorize<DD>
+Filters Access-Request packets.
+<DT>post-auth<DD>
+Filters Access-Accept or Access-Reject packets.
+</DL>
 <P>
 
 <A NAME="lbAE">&nbsp;</A>
@@ -180,6 +198,6 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 <A HREF="/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 11:10:43 GMT, January 10, 2008
+Time: 11:30:03 GMT, February 14, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

@@ -20,6 +20,39 @@
 
 <dl>
 
+<dt><span class="date">14 February 2008</span> - <b><a name="2.0.2">Version 2.0.1</a></b> has been released.</dt>
+
+<dd><p>This version corrects a number of flaws in the handling of EAP sessions and <tt>detail</tt> files.  We recommend that all sites using 2.0.x and EAP upgrade to 2.0.2.</p>
+
+<h3>Feature Improvements</h3>
+<ul>
+<li>Added notes on how to debug the server in <tt><a href="/radiusd/man/radiusd.conf.html">radiusd.conf</a></tt>.</li>
+<li>Moved all <tt>log_*</tt> in <tt><a href="/radiusd/man/radiusd.conf.html">radiusd.conf</a></tt> to <tt>log{}</tt> section,  The old configurations are still accepted.</li>
+<li>Added <tt>ca.der</tt> target in <tt>raddb/certs/Makefile</tt>.  This is needed for importing CA certs into Windows.</li>
+<li>Added ability send raw attributes via <tt>Raw-Attribute = 0x0102...</tt> This is available only debug builds.  It can be used to create invalid packets! Use it with care.</li>
+<li>Permit <tt><a href="/radiusd/man/unlang.html">unlang</a></tt> policies inside of <tt>Auth-Type{}</tt> sub-sections of the <tt>authenticate{}</tt> section.  This makes some policies easier to implement.</li>
+<li> <tt>listen</tt> sections can now have <tt>type = proxy</tt>.  This lets you control which IP is used for sending proxied requests.</li>
+<li>Added note on SSL performance to <tt>raddb/certs/README</tt></li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Fixed reading of <tt>detail</tt> files.</li>
+<li>Allow inner EAP tunneled sessions to be proxied.</li>
+<li>Corrected MySQL schemas.</li>
+<li>syslog now works in <tt>log{}</tt> section.</li>
+<li>Corrected typo in raddb/certs/client.cnf</li>
+<li> Updated <tt>raddb/sites-available/proxy-inner-tunnel</tt> to permit authentication to work.</li>
+<li>Ignore zero-length attributes in received packets.</li>
+<li>Correct memcpy when dealing with unknown attributes.</li>
+<li>Corrected debugging messages in attr_rewrite.</li>
+<li> Corrected generation of <tt><a href="/rfc/attributes.html#State">State</a></tt> attribute in EAP.  This fixes the "failed to remember handler" issues.</li>
+<li> Fall back to <tt>DEFAULT</tt> realm if no realm was found. Based on a patch from Vincent Magnin.</li>
+<li>Updated example <tt>raddb/sites-available/proxy-inner-tunnel</tt></li>
+<li> Corrected behavior of <tt>attr_filter</tt> to match documentation.  This is NOT backwards compatible with previous versions!  See <tt>man <a href="/radiusd/man/rlm_attr_filter.html">rlm_attr_filter</a></tt> for details.</li>
+</ul>
+</dd>
+
 <dt><span class="date">January 2, 2008</span> - <b><a name="2.0.1">Version 2.0.1</a></b> has
 been released.</dt>
 

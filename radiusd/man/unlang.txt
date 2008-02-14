@@ -69,7 +69,7 @@ KEYWORDS
        switch
 	      Evaluate the given string, and choose the first matching	"case"
 	      statement	 inside	 of  the current block.	 If the string is sur-
-	      rounded by double quotes, may be expanded as  described  in  the
+	      rounded by double quotes, it is expanded	as  described  in  the
 	      DATA TYPES section, below.
 
 	      No statement other than "case" can appear in a "switch" block.
