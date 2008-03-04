@@ -45,11 +45,7 @@ section, and MODULE RETURN CODES, below.
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>chap  # call the CHAP module<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>sql   # call the SQL module<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
 
 <DT>if<DD>
@@ -61,11 +57,8 @@ CONDITIONS, below, for documentation on the format of the conditions.
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>if (condition) {<BR>
-<BR>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
 
 <DT>else<DD>
@@ -76,11 +69,7 @@ returned false.
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>else {<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
 
 <DT>elsif<DD>
@@ -91,11 +80,7 @@ returned false, and if the specified condition evaluates to true.
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>elsif (condition) {<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
 
 <DT>switch<DD>
@@ -110,11 +95,7 @@ No statement other than &quot;case&quot; can appear in a &quot;switch&quot; bloc
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>switch &quot;string&quot; {<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
 
 <DT>case<DD>
@@ -128,11 +109,7 @@ A &quot;case&quot; statement cannot appear outside of a &quot;switch&quot; block
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>case string {<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
 
 <P>
@@ -142,11 +119,7 @@ entry can exist in a &quot;switch&quot; section.
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>case {<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
 
 <DT>update<DD>
@@ -157,14 +130,8 @@ the current block.
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>update &lt;list&gt; {<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>attribute = value<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
 
 <P>
@@ -202,17 +169,9 @@ or update an attribute list.
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>redundant {<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>sql1<TT>&nbsp;&nbsp;&nbsp;&nbsp;</TT># try this<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>sql2<TT>&nbsp;&nbsp;&nbsp;&nbsp;</TT># try this only if sql1 fails.<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
 
 <DT>load-balance<DD>
@@ -229,14 +188,8 @@ or update an attribute list.
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>load-balance {<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ldap1<TT>&nbsp;&nbsp;&nbsp;</TT># 50% of requests go here<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ldap2<TT>&nbsp;&nbsp;&nbsp;</TT># 50% of requests go here<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
 
 <P>
@@ -261,14 +214,8 @@ or update an attribute list.
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>redundant-load-balance {<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ldap1<TT>&nbsp;&nbsp;&nbsp;</TT># 50%, unless ldap2 is down, then 100%<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ldap2<TT>&nbsp;&nbsp;&nbsp;</TT># 50%, unless ldap1 is down, then 100%<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
 
 </DL>
@@ -318,8 +265,6 @@ Short-circuit operators
 
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo || bar)<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo &amp;&amp; bar)<BR>
 
 <P>
@@ -376,17 +321,9 @@ as seen in the examples below.
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>if (User-Name == &quot;bob&quot;) {<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>if (Framed-IP-Address &gt; 127) {<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>if (Service-Type == Login-User) { <BR>
 
 </DL>
@@ -487,11 +424,7 @@ string is replaced with the value of that attribute.  Some examples are:
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{User-Name}<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{request:User-Name} # same as above<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{reply:User-Name}<BR>
 
 </DL>
@@ -719,29 +652,13 @@ When a module is called, it returns one of the following codes to
 <P>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>notfound        information was not found<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>noop            the module did nothing<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ok              the module succeeded<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>updated         the module updated the request<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>fail            the module failed<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>reject          the module rejected the request<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>userlock        the user was locked out<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>invalid         the configuration was invalid<BR>
-<BR>
-
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>handled         the module has handled the request itself<BR>
 
 <P>
