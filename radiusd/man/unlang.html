@@ -264,7 +264,7 @@ Evalutes to true if 'foo' evaluates to false, and vice-versa.
 
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo || bar)<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo &amp;&amp; bar)<BR>
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo &amp;&amp; bar)<BR>
 
 <P>
 &quot;&amp;&amp;&quot; and &quot;||&quot; are short-circuit operators.  &quot;&amp;&amp;&quot; evaluates the first
@@ -326,9 +326,7 @@ as seen in the examples below.
 
 </DL>
 
-<DL COMPACT>
-<DT>strings<DD>
-<DL COMPACT><DT><DD>
+<DL COMPACT><DT>"strings"<DD>
 Double-quoted strings are expanded by inserting the value of any
 variables (see VARIABLES, below) before being evaluated.  If
 the result is a number it is evaluated in a numerical context.
@@ -338,11 +336,13 @@ characters.  A double quote character (&quot;) can be used in a string via
 the normal back-slash escaping method.  (&quot;like \&quot;this\&quot; !&quot;)
 </DL>
 
-<DT>'strings'<DD>
+<DL COMPACT><DT>'strings'<DD>
 Single-quoted strings are evaluated as-is.  Their values are not
 expanded as with double-quoted strings above, and they are not
 interpreted as attribute references.
-<DT>`strings`<DD>
+</DL>
+
+<DL COMPACT><DT>`strings`<DD>
 Back-quoted strings are evaluated by expanding the contents of the
 string, as described above for double-quoted strings.  The resulting
 command given inside of the string in a sub-shell, and taking the
@@ -359,7 +359,9 @@ every request can quickly use all of the CPU time in a server.  If you
 believe that you need to execute many programs, we suggest finding
 alternative ways to achieve the same result.  In some cases, using a
 real language may be sufficient.
-<DT>/regex/i<DD>
+</DL>
+
+<DL COMPACT><DT>/regex/i<DD>
 These strings are valid only on the right-hand side of a comparison,
 and then only when the comparison operator is &quot;=~&quot; or &quot;!~&quot;.  They are
 regular expressions, as implemented by the local regular expression
