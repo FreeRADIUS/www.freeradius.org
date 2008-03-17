@@ -20,6 +20,37 @@
 
 <dl>
 
+<dt><span class="date">17 March 2008</span> - <b><a name="2.0.3">Version 2.0.3</a></b> has been released.</dt>
+
+<dd><p>The focus of this release is stability.</p>
+<h3>Feature Improvements</h3>
+<ul>
+<li> Updated <tt>raddb/certs/ca.cnf</tt> with extensions to allow the ca.der file to be imported as a CA on Symbian and Windows Mobile devices.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=524">bug #524</a>.</li>
+<li>Enable multiple matches in the <tt>hints</tt> file via <tt>Fall-Through = Yes</tt>.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=477">bug #477</a>.</li>
+<li> Added preliminary SQLite driver, contibuted by Apple.  Untested, with no sample configuration.  This address <a href="http://bugs.freeradius.org/show_bug.cgi?id=470">bug #470</a>.</li>
+<li>Updated logging sub-system so that log messages from libfreeradius can go to the log file, and not stdout.</li>
+<li>Added <tt>dictionary.rfc5176</tt> with two new values for the Error-Cause attribute..</li>
+<li>The EAP module now checks for instance name, and uses that for authentication.  This avoids the need to set Auth-Type when there are multiple instances of the EAP module.</li>
+<li>Added the Module-Return-Code attribute, which contains the value returned by the previous module (ok/fail/update/etc.).</li>
+
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Corrected typos in rlm_dbm.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=521">bug #521</a> and <a href="http://bugs.freeradius.org/show_bug.cgi?id=522">bug #522</a>.</li>
+<li>Detail file <tt>listen</tt> sections now work much better.</li>
+<li>Don't allow old <tt>log_*</tt> to over-ride new format.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=525">bug #525</a></li>
+<li>Initialize allocated memory in Oracle SQL driver.  This fixes occasional crashes on some systems.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=518">bug #518</a></li>
+<li>Call correct function in rlm_protocol_filter.  This enables the module to build.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=512">bug #512</a>.</li>
+<li>Added deprecated flag to build for rlm_krb5.  This allows it to run on 64-bit systems.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=491">bug #491</a>.</li>
+<li>Corrected error message when parsing invalid configurations so that the server does not crash.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=527">bug #527</a>.</li>
+<li>Fix handling of timeouts in rlm_ldap that affected 64-bit systems.</li>
+<li>Handle <tt>$INCLUDE</tt>'s in the <tt>instantiate</tt> section.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=528">bug #528</a>.</li>
+<li>Format updates to <a href="/radiusd/man/">man</a> pages from Stephen Gran.</li>
+</ul>
+</dd>
+
+<br />
 <dt><span class="date">5 March 2008</span> <b><a name="client-1.1.6">FreeRADIUS Client Version 1.1.6</b> has been released.</dt>
 
 <dd>
@@ -34,7 +65,7 @@
 </dd>
 
 <br />
-<dt><span class="date">14 February 2008</span> - <b><a name="2.0.2">Version 2.0.1</a></b> has been released.</dt>
+<dt><span class="date">14 February 2008</span> - <b><a name="2.0.2">Version 2.0.2</a></b> has been released.</dt>
 
 <dd><p>This version corrects a number of flaws in the handling of EAP sessions and <tt>detail</tt> files.  We recommend that all sites using 2.0.x and EAP upgrade to 2.0.2.</p>
 
