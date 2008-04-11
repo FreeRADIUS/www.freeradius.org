@@ -57,9 +57,9 @@ has been released.  The focus of this release is stability.</p>
 <ul>
 <li> Updated <tt>raddb/certs/ca.cnf</tt> with extensions to allow the ca.der file to be imported as a CA on Symbian and Windows Mobile devices.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=524">bug #524</a>.</li>
 <li>Enable multiple matches in the <tt>hints</tt> file via <tt>Fall-Through = Yes</tt>.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=477">bug #477</a>.</li>
-<li> Added preliminary SQLite driver, contibuted by Apple.  Untested, with no sample configuration.  This address <a href="http://bugs.freeradius.org/show_bug.cgi?id=470">bug #470</a>.</li>
-<li>Updated logging sub-system so that log messages from libfreeradius can go to the log file, and not stdout.</li>
-<li>Added <tt>dictionary.rfc5176</tt> with two new values for the Error-Cause attribute..</li>
+<li> Added preliminary SQLite driver, contibuted by Apple.  Untested, with no sample configuration.  This addresses <a href="http://bugs.freeradius.org/show_bug.cgi?id=470">bug #470</a>.</li>
+<li>Updated the logging sub-system so that log messages from libfreeradius can go to the log file, and not stdout.</li>
+<li>Added <tt>dictionary.rfc5176</tt> with two new values for the Error-Cause attribute.</li>
 <li>The EAP module now checks for instance name, and uses that for authentication.  This avoids the need to set Auth-Type when there are multiple instances of the EAP module.</li>
 <li>Added the Module-Return-Code attribute, which contains the value returned by the previous module (ok/fail/update/etc.).</li>
 
