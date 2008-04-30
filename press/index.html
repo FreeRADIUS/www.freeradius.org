@@ -20,6 +20,48 @@
 
 <dl>
 
+<dt><span class="date">30 April 2008</span> - <b><a name="2.0.4">Version 2.0.4</a></b> has been released.</dt>
+
+<dd><p>The focus of this release is stability.</p>
+<h3>Feature Improvements</h3>
+<ul>
+<li>Allow "virtual_server" in "realm" and "home_server" sections. See <tt>raddb/proxy.conf</tt> and <tt>raddb/sites-available/virtual.example.com</tt>.</li>
+<li>Allow "passwd" module to be listed in "accounting" and "post-auth".</li>
+<li>Added "fallback" to "home_server_pool" configuration, to handle the case of all home servers being dead.  See <tt>raddb/proxy.conf</tt>.</li>
+<li>Added sample text to <tt>raddb/sites-available/inner-tunnel</tt> which can simplify debugging of inner tunnel configurations.</li>
+<li>Added regular expression matching in realm names.  See <tt>raddb/proxy.conf</tt> for examples.</li>
+<li>Added simple DHCP server functionality.  For comments, see <tt>raddb/sites-available/dhcp</tt>.</li>
+<li>Added file globbing capabilities to detail file reader</li>
+<li>Added sample <tt>raddb/sites-available/robust-proxy-accounting</tt>.</li>
+<li>Clients in SQL can now refer to a virtual server. Patch from Michael Bretterklieber.</li>
+<li>Added some examples of creating RADIUS administrator in SQL, and assigning appropriate access rights.</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Install all files in <tt>raddb/sites-available</tt>.</li>
+<li>Allow non-threaded builds.</li>
+<li>Don't treat '0x' as special for known attributes that are not of type "octets".</li>
+<li>Fix log error in rlm_pap.</li>
+<li>Remove documentation about non-existent functionality.</li>
+<li>Updated warning messages in debug output.</li>
+<li>Fix handling of timeouts in rlm_ldap that affected 64-bit systems. This fix was supposed to go into 2.0.3, but did not make it.</li>
+<li>Fix event handling in debug mode for failed proxy requests.</li>
+<li>Fix memleak in fifos.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=537">bug #537</a>.</li>
+<li>Fix memleak on blocked threads.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=538">bug #538</a>.</li>
+<li>Perform additional checks on NULL realms.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=541">bug #541</a>.</li>
+<li>Fix handling of "clients" in "listen" section.</li>
+<li>When detail file cannot process a packet, sleep for longer to let the rest of the server do something.</li>
+<li>Add missing table to <tt>raddb/sql/mssql/schema.sql</tt>.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=545">bug #545</a>.</li>
+<li>Updated rlm_sql_postgresql to build with PostgreSQL 7.x.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=533">bug #533</a>.</li>
+<li>Fix "postauth" of rlm_ldap to look for LDAP-UserDn in the correct place.</li>
+<li>Update rlm_attr_filter for some corner cases.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=543">bug #543</a>.</li>
+<li>Fixed memory leak in libfreeradius event handler.</li>
+<li>In the SQL Accounting on/off queries, remove the restriction that the session time had to be zero.</li>
+</ul>
+</dd>
+
+<br />
 <dt><span class="date">17 March 2008</span> - <b><a name="2.0.3">Version 2.0.3</a></b> has been released.</dt>
 
 <dd><p>The focus of this release is stability.</p>
