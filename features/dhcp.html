@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- DHCP</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<meta name="keywords" content="DHCP,IPv4" />
+	<meta name="description" content="DHCP Functionality">
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>DHCPx</h1>
+
+<p>Experimental support for the DHCP protocol was added in Release
+2.0.4.  It is off by default, and requires some changes to the source
+tree.</p>
+
+<p>First, configure the server with DHCP: <tt>$ ./configure --with-dhcp</tt>.</p>
+
+<p>Second, edit <tt>share/dictionary</tt>, and un-comment the line containing <tt>$INCLUDE dictionary.dhcp</tt>.</p>
+
+<p>Finally, perform the normal <tt>make</tt> and <tt>make install</tt> process.</p>
+
+<p>An example of a DHCP configuration is in
+<tt>raddb/sites-available/dhcp</tt>.  It should be edited for your
+local configuration.</p>
+
+
+</div>
+
+<!--#include virtual="/footer.html" -->
+</body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->
