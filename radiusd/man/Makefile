@@ -26,7 +26,7 @@ CONFIG	:= $(filter-out rlm_%,$(CONFIG))
 %.txt:%.8
 	nroff -man -Tascii $< | col -b > $@
 
-SED_FIX = 's/man[0-8]/man/g;s/\.[0-8]//g;s,</HEAD>,<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD>,;s,<BODY>,<BODY><!--\#include virtual="/header.html" --><div id="content">,;s,</BODY>,</div><!--\#include virtual="/footer.html" --></BODY>,;s,<A HREF="../,<A HREF=",'
+SED_FIX = 's/man[0-8]/man/g;s/\.[0-8]//g;s,</HEAD>,<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD>,;s,<BODY>,<BODY><!--\#include virtual="/header.html" --><div id="content">,;s,</BODY>,</div><!--\#include virtual="/footer.html" --></BODY>,;s,<A HREF="../,<A HREF=",;s,HREF="man/,HREF="/radiusd/man/,;s,<A HREF="/cgi-bin/man/manhtml">manhtml</A>,manhtml,'
 
 %.html:%.1
 	man2html -r $< | tail -n +2 | sed $(SED_FIX) > $@
