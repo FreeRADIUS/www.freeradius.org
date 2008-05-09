@@ -47,17 +47,18 @@ DESCRIPTION
        value BAR, do more checks, and maybe send additional attributes".
 
 CONFIGURATION
-       modules {
-	 ... stuff here ...
-	 files {
-	   usersfile = %{confdir}/users
-	   acctusersfile = %{confdir}/acct_users
-	   preproxy_usersfile = %{confdir}/preproxy_users
-	   compat = no
-	   key = %{Stripped-User-Name:-%{User-Name}}
-	 }
-	 ... stuff here ...
-       }
+	      modules {
+		... stuff here ...
+		files {
+		  usersfile = %{confdir}/users
+		  acctusersfile = %{confdir}/acct_users
+		  preproxy_usersfile = %{confdir}/preproxy_users
+		  compat = no
+		  key = %{Stripped-User-Name:-%{User-Name}}
+		}
+		... stuff here ...
+	      }
+
 
 
 SECTIONS

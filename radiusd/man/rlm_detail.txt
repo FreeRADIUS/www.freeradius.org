@@ -41,22 +41,23 @@ DESCRIPTION
 	      'radrelay' program.
 
 CONFIGURATION
-       modules {
-	 ...
-	 detail {
-	   detailfile = %A/%{Client-IP-Address}/detail-%Y%m
-	   detailperm = 0600
-	   dirperm = 0755
-	   locking = no
-	 }
-	 ...
-       }
-	 ...
-       accounting {
-	...
-	detail
-	...
-       }
+	      modules {
+		...
+		detail {
+		  detailfile = %A/%{Client-IP-Address}/detail-%Y%m
+		  detailperm = 0600
+		  dirperm = 0755
+		  locking = no
+		}
+		...
+	      }
+		...
+	      accounting {
+	       ...
+	       detail
+	       ...
+	      }
+
 
 
 SECTIONS

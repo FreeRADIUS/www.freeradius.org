@@ -30,9 +30,11 @@ POLICY LANGUAGE
        The policy is composed of a series of named  policies.	The  following
        example defines a policy named "foo".
 
-	    policy foo {
-		 ...
-	    }
+
+		   policy foo {
+			...
+		   }
+
 
        Policy  names  MAY  NOT	be  the	 same as attributes in the dictionary.
        Defining a policy with the same name as	a  dictionary  attribute  will
@@ -43,14 +45,18 @@ POLICY LANGUAGE
        the  module  calls  a  policy named "authorize".	 The "post-auth", etc.
        sections behave the same.  These names cannot be changed.
 
-	    include "policy.txt"
+
+		   include "policy.txt"
+
 
        The filename must be in a double-quoted string, and is  assumed	to  be
        relative	 to  the  location  of the current file.  If the filename ends
        with a '/', then it is assumed to be a directory, and all files in that
        directory will be read.
 
-	    include "dir/"
+
+		   include "dir/"
+
 
        All  file  in  "dir/" will be read and included into the policy defini-
        tion.  Any dot files (".", "..", etc.) will not be included, however.
@@ -62,8 +68,11 @@ POLICY LANGUAGE
 
 
    Referencing a named policy
-       The  following  example	references a named policy      foo() While the
-       brackets are required, no arguments may be passed.
+       The following example references a named policy
+
+		   foo()
+
+       While the brackets are required, no arguments may be passed.
 
 
    Conditions
@@ -73,6 +82,7 @@ POLICY LANGUAGE
 		 ...
 	    }
 
+
        and "else"
 
 	    if (expression) {
@@ -80,6 +90,7 @@ POLICY LANGUAGE
 	    } else {
 		 ...
 	    }
+
 
        also, "else if"
 
@@ -90,42 +101,43 @@ POLICY LANGUAGE
 	    }
 
 
+
    Expressions within if statements
        Always have to have brackets around them.  Sorry.
 
        The following kinds of expressions may be used, with their meanings.
 
        (attribute-reference)
-	      TRUE if the referenced attribute exists, FALSE  otherwise.   See
+	      TRUE  if	the referenced attribute exists, FALSE otherwise.  See
 	      below for details on attribute references.
 
        (!(expression))
-	      FALSE  if	 the  expression returned TRUE, and TRUE if the nested
+	      FALSE if the expression returned TRUE, and TRUE  if  the	nested
 	      expression returned FALSE.
 
        (attribute-reference == value)
-	      Compares the attribute to the value.  The operators here can  be
+	      Compares	the attribute to the value.  The operators here can be
 	      "==", "!=", "=~", "!~", "<", "<=", ">", and ">=".
 
        (string1 == string2)
-	      A	 special  case	of  the	 above.	  The "string1" is dynamically
-	      expanded at run time, while "string2"  is	 not.	The  operators
-	      here  can be "==", "!=", "=~",and "!~".  Of these, the most use-
-	      ful is "=~', which lets you do things  like  ("%{ldap:query...}"
-	      =~  "foo=(.*)  ").   The results of the regular expression match
-	      are put into %{1},  and  can  be	used  later.   See  "doc/vari-
+	      A special case of	 the  above.   The  "string1"  is  dynamically
+	      expanded	at  run	 time,	while "string2" is not.	 The operators
+	      here can be "==", "!=", "=~",and "!~".  Of these, the most  use-
+	      ful  is  "=~', which lets you do things like ("%{ldap:query...}"
+	      =~ "foo=(.*) ").	The results of the  regular  expression	 match
+	      are  put	into  %{1},  and  can  be  used later.	See "doc/vari-
 	      ables.txt" for more information.
 
        ((expression1) || (expression2))
-	      Short-circuit  "or".  If expression1 is TRUE, expression2 is not
+	      Short-circuit "or".  If expression1 is TRUE, expression2 is  not
 	      evaluated.
 
        ((expression1) && (expression2))
-	      Short-circuit "and".  If expression1 is  FALSE,  expression2  is
+	      Short-circuit  "and".   If  expression1 is FALSE, expression2 is
 	      not evaluated.
 
        Limitations.
-	      The  && and || operators have equal precedence. You can't call a
+	      The && and || operators have equal precedence. You can't call  a
 	      function as a expression.
 
 
@@ -134,12 +146,12 @@ POLICY LANGUAGE
        Attribute references are:
 
        Attribute-Name
-	      Refers to an attribute of that name  in  the  Access-Request  or
-	      Accounting-Request  packet.   May	 also  refer  to "server-side"
+	      Refers  to  an  attribute	 of that name in the Access-Request or
+	      Accounting-Request packet.   May	also  refer  to	 "server-side"
 	      attributes, which are not documented anywhere.
 
        request:Attribute-Name
-	      An alternate way of referencing  an  attribute  in  the  request
+	      An  alternate  way  of  referencing  an attribute in the request
 	      packet.
 
 
@@ -148,18 +160,18 @@ POLICY LANGUAGE
 
 
        proxy-request:Attribute-Name
-	      An  attribute in the Access-Request or Accounting-Request packet
+	      An attribute in the Access-Request or Accounting-Request	packet
 	      which will be proxied to the home server.
 
 
        proxy-reply:Attribute-Name
-	      An attribute in the Access-Accept	 or  other  packet  which  was
+	      An  attribute  in	 the  Access-Accept  or other packet which was
 	      received from a home server.
 
 
        control:Attribute-Name
 	      An  attribute  in	 the  per-request  configuration  and  control
-	      attributes.   Also  known	 as  "check"   attributes   (doc/vari-
+	      attributes.    Also   known  as  "check"	attributes  (doc/vari-
 	      ables.txt).
 
 
@@ -171,7 +183,8 @@ POLICY LANGUAGE
 		 attribute-name = value
 	    }
 
-       The  first  name can be "request", "reply", "control", "proxy-request",
+
+       The first name can be "request", "reply",  "control",  "proxy-request",
        or "proxy-reply".
 
        The operator can be
@@ -180,10 +193,10 @@ POLICY LANGUAGE
 
 	:= - replaces existing list with the attributes in the list (bad idea)
 
-	=  - use operators from "attribute = value" to decide what to do. (see
+	= - use operators from "attribute = value" to decide what to do.  (see
        "users")
 
-       The block must contain only attributes and  values.   Nothing  else  is
+       The  block  must	 contain  only attributes and values.  Nothing else is
        permitted.
 
 

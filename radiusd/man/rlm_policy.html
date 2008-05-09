@@ -46,13 +46,20 @@ example defines a policy named &quot;foo&quot;.
 <P>
 
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>policy foo {<BR>
-<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+        policy foo {
 <BR>
+                ...
+<BR>
+        }
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -68,7 +75,16 @@ etc. sections behave the same.  These names cannot be changed.
 <P>
 
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>include &quot;policy.txt&quot;<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        include &quot;policy.txt&quot;
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -79,7 +95,16 @@ that directory will be read.
 <P>
 
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>include &quot;dir/&quot;<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        include &quot;dir/&quot;
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -100,7 +125,16 @@ or more other files, as in the following example.
 
 The following example references a named policy
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>foo()<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        foo()
+
+</PRE>
+
+</DL>
+
+<P>
 
 While the brackets are required, no arguments may be passed.
 <P>
@@ -118,6 +152,10 @@ While the brackets are required, no arguments may be passed.
 <BR>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+
+
+
+<P>
 
 <P>
 
@@ -138,6 +176,10 @@ and &quot;else&quot;
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
 
+
+
+<P>
+
 <P>
 
 also, &quot;else if&quot;
@@ -156,6 +198,10 @@ also, &quot;else if&quot;
 <BR>
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+
+
+
+<P>
 
 <P>
 
@@ -257,6 +303,10 @@ Also known as &quot;check&quot; attributes (doc/variables.txt).
 
 <TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
 
+
+
+<P>
+
 <P>
 
 The first name can be &quot;request&quot;, &quot;reply&quot;, &quot;control&quot;, &quot;proxy-request&quot;,
@@ -300,11 +350,11 @@ The block must contain only attributes and values.  Nothing else is permitted.
 <A NAME="lbAN">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/radiusd.html">radiusd</A></B>(8),
+<B><A HREF="/radiusd/man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="man/users.html">users</A></B>(5),
+<B><A HREF="/radiusd/man/users.html">users</A></B>(5),
 
-<B><A HREF="man/radiusd.conf.html">radiusd.conf</A></B>(5)
+<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5)
 
 <A NAME="lbAO">&nbsp;</A>
 <H2>AUTHOR</H2>
@@ -335,8 +385,8 @@ Alan DeKok &lt;<A HREF="mailto:aland@ox.org">aland@ox.org</A>&gt;
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:10:44 GMT, January 10, 2008
+Time: 05:18:31 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

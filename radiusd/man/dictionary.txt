@@ -51,7 +51,9 @@ FORMAT
 	    arated list of the following options:
 
 
-	    encrypt=[1-3]
+
+			     encrypt=[1-3]
+
 	    Mark the attribute as being encrypted with one of  three  methods.
 	    "1"	 means	that  the  attribute  is  encrypted with the method as
 	    defined in RFC2865 for the	User-Password  attribute.   "2"	 means
@@ -60,7 +62,9 @@ FORMAT
 	    attribute is encrypted as per Ascend's definitions for the Ascend-
 	    Send-Secret attribute.
 
-	    has_tag
+
+		 has_tag
+
 	    Mark the attribute as being permitted to have a tag, as defined in
 	    RFC2868.   The  purpose  of	 the  tag  is  to  allow  grouping  of
 	    attributes for tunnelled users.  See RFC2868 for more details.

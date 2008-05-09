@@ -28,13 +28,14 @@ DESCRIPTION
 	      database of online users as read by the 'radlast' program.
 
 CONFIGURATION
-       modules {
-	 ...
-	 unix {
-	   radwtmp = ${logdir}/radwtmp
-	 }
-	 ...
-       }
+	      modules {
+		...
+		unix {
+		  radwtmp = ${logdir}/radwtmp
+		}
+		...
+	      }
+
 
 
 SECTIONS

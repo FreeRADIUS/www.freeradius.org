@@ -21,25 +21,28 @@ DESCRIPTION
 	      is used as the value for the unique session id.
 
 CONFIGURATION
-       modules {
-	 ...
-	 acct_unique {
-	    key = "User-Name, Acct-Session-Id, NAS-IP-Address, NAS-Port"
-	 }
-	 ...
-       }
-	...
-       preacct {
-	 ...
-	 acct_unique
-	 ...
-       }
+	      modules {
+		...
+		acct_unique {
+		   key = "User-Name, Acct-Session-Id, NAS-IP-Address, NAS-Port"
+		}
+		...
+	      }
+	       ...
+	      preacct {
+		...
+		acct_unique
+		...
+	      }
+
 
        After  generating  the  MD5  hash, the module adds it to the accounting
        request packet received from the client.	 It will look  something  like
        this in your detail file:
 
-	    Acct-Unique-Session-Id = "c66ef57e480b9d26"
+
+		   Acct-Unique-Session-Id = "c66ef57e480b9d26"
+
 
        NOTE:   Any attribute you specify that is not found in the 'dictionary'
        file will cause the server to fail and exit with an error.

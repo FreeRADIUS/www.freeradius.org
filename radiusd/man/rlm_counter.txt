@@ -43,7 +43,9 @@ DESCRIPTION
 	      sion-Time	 is set, you can use the following syntax in the Users
 	      file to set a cap of 3600 seconds ( 8 hours ):
 
-       DEFAULT Max-Daily-Session := 3600
+
+	      DEFAULT Max-Daily-Session := 3600
+
 
 
        reply-name

@@ -42,23 +42,24 @@ DESCRIPTION
 	      RLM_MODULE_UPDATED
 
 CONFIGURATION
-       modules {
-	 ...
-	 always ok {
-	    rcode = ok
-	 }
-	 ...
-       }
-	...
-       authorize {
-	 ...
-	 redundant {
-	    sql1	  # try to find the user in sql1
-	    sql2	  # try to find the user in sql2
-	    ok		  # if still not found, it's OK.
-	 }
-	 ...
-       }
+	      modules {
+		...
+		always ok {
+		   rcode = ok
+		}
+		...
+	      }
+	       ...
+	      authorize {
+		...
+		redundant {
+		   sql1		 # try to find the user in sql1
+		   sql2		 # try to find the user in sql2
+		   ok		 # if still not found, it's OK.
+		}
+		...
+	      }
+
 
 
 SECTIONS

@@ -13,7 +13,7 @@ rlm_unix - FreeRADIUS Module
 <A NAME="lbAC">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
-The <I>rlm_unix</I> module reads <A HREF="man/crypt.html">crypt</A>(3) passwords from the system
+The <I>rlm_unix</I> module reads <A HREF="/radiusd/man/crypt.html">crypt</A>(3) passwords from the system
 password file, and allows the server to use them for authentication.
 The module also provides FreeRADIUS an interface into a radwtmp file
 (used by &quot;radlast&quot;) when added to the accounting section.
@@ -44,23 +44,27 @@ of online users as read by the 'radlast' program.
 <P>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 modules {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;unix&nbsp;{
+  unix {
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;radwtmp&nbsp;=&nbsp;${logdir}/radwtmp
+    radwtmp = ${logdir}/radwtmp
 <BR>
-
-<BR>&nbsp;&nbsp;}
+  }
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -83,13 +87,13 @@ modules {
 <A NAME="lbAG">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/radiusd.html">radiusd</A></B>(8),
+<B><A HREF="/radiusd/man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="man/radiusd.conf.html">radiusd.conf</A></B>(5),
+<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5),
 
-<B><A HREF="man/rlm_passwd.html">rlm_passwd</A></B>(5),
+<B><A HREF="/radiusd/man/rlm_passwd.html">rlm_passwd</A></B>(5),
 
-<B><A HREF="man/radlast.html">radlast</A></B>(1)
+<B><A HREF="/radiusd/man/radlast.html">radlast</A></B>(1)
 
 <A NAME="lbAH">&nbsp;</A>
 <H2>AUTHORS</H2>
@@ -110,8 +114,8 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:10:45 GMT, January 10, 2008
+Time: 05:18:32 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

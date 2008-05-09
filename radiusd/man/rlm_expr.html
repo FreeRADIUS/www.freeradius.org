@@ -25,17 +25,22 @@ different bytes.  To see these attributes split into pieces, you can
 have an entry in the 'users' file like:
 <P>
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 DEFAULT
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;Vendor-Interface&nbsp;=&nbsp;`%{expr:&nbsp;%{NAS-Port}&nbsp;/&nbsp;(256&nbsp;*&nbsp;256)}`,
+    Vendor-Interface = `%{expr: %{NAS-Port} / (256 * 256)}`,
+<BR>
+    Vendor-Card = `%{expr: (%{NAS-Port} / 256) %% 256}`,
+<BR>
+    Vendor-Port = `%{expr: %{NAS-Port} %% 256}`
 <BR>
 
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;Vendor-Card&nbsp;=&nbsp;`%{expr:&nbsp;(%{NAS-Port}&nbsp;/&nbsp;256)&nbsp;%%&nbsp;256}`,
-<BR>
 
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;Vendor-Port&nbsp;=&nbsp;`%{expr:&nbsp;%{NAS-Port}&nbsp;%%&nbsp;256}`
-<BR>
+</PRE>
+
+</DL>
 
 <P>
 
@@ -94,39 +99,39 @@ example.
 
 All of the calculations are performed as unsigned 32-bit integers.
 
+
+
+<P>
+
 <A NAME="lbAD">&nbsp;</A>
 <H2>CONFIGURATION</H2>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 modules {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;expr&nbsp;{
+  expr {
 <BR>
-
-<BR>&nbsp;&nbsp;}
+  }
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
 <BR>
-
-<BR>&nbsp;...
+ ...
 <BR>
-
 instantiate {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;expr
-<BR>&nbsp;&nbsp;...
+  expr
+  ...
 <BR>
-
 }
-<A NAME="lbAE">&nbsp;</A>
+</DL>
+</PRE><A NAME="lbAE">&nbsp;</A>
 <H2>SECTIONS</H2>
 
 <B>instantiate</B>
@@ -143,9 +148,9 @@ instantiate {
 <A NAME="lbAG">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/radiusd.html">radiusd</A></B>(8),
+<B><A HREF="/radiusd/man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="man/radiusd.conf.html">radiusd.conf</A></B>(5)
+<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5)
 
 <A NAME="lbAH">&nbsp;</A>
 <H2>AUTHOR</H2>
@@ -167,8 +172,8 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:10:43 GMT, January 10, 2008
+Time: 05:18:31 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

@@ -46,39 +46,59 @@ sections, and comments.
 Variables can be set via:
 <P>
 
-<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>name = value<BR>
+<BR>
+        name = value
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 Single and double-quoted strings are permitted:
 <P>
 
-<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>string1 = &quot;hello world&quot;<BR>
 <BR>
+        string1 = &quot;hello world&quot;
+<BR>
+        string2 = 'hello mom'
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>string2 = 'hello mom'<BR>
+</PRE>
+
+</DL>
+
+<P>
 
 <DT>Sections<DD>
 A section begins with a section name, followed on the same line by an
 open bracket '<B>{</B>'.  Section may contain other sections, comments, or
 variables.  Sections may be nested to any depth, limited
 only by available memory.  A section ends with a close bracket
-<B>
-}</B>', on a line by itself.
+'<B>}</B>', on a line by itself.
 <P>
 
-<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>section {<BR>
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+        section {
 <BR>
+                ...
+<BR>
+        }
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 Sections can sometimes have a second name following the first one.
@@ -87,51 +107,67 @@ examples and comments in the <B>radiusd.conf</B> file for more
 information.
 <P>
 
-<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>section foo {<BR>
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+        section foo {
 <BR>
+                ...
+<BR>
+        }
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+</PRE>
+
+</DL>
+
+<P>
 
 <DT>Comments<DD>
 Any line beginning with a (<B>#</B>) is deemed to be a comment, and is
 ignored.  Comments can appear after a variable or section definitions.
 <P>
 
-<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT># comment<BR>
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>foo = bar # set variable 'foo' to value 'bar'<BR>
+        # comment
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>section {<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT># start of section<BR>
+        foo = bar # set variable 'foo' to value 'bar'
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+        section {       # start of section
 <BR>
+        ...
+<BR>
+        }               # end of section
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT># end of section<BR>
+</PRE>
+
+</DL>
+
+<P>
 
 <DT>Continuations<DD>
 Long lines can be broken up via continuations, using '\' as the last
 character of the line.  For example, the following entry:
 <P>
 
-<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>foo = &quot;blah \<BR>
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blah \<BR>
+        foo = &quot;blah \
 <BR>
+        blah \
+<BR>
+        blah&quot;
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blah&quot;<BR>
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 will set the value of the variable &quot;foo&quot; to &quot;blah blah blah&quot;.  Any CR
@@ -150,13 +186,20 @@ short ones.
 Variables are referenced by ${variable_name}, as in the following examples.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>foo = bar       # set variable 'foo' to value 'bar'<BR>
-<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>who = ${foo}    # sets variable 'who' to value of variable 'foo'<BR>
+        foo = bar       # set variable 'foo' to value 'bar'
 <BR>
+        who = ${foo}    # sets variable 'who' to value of variable 'foo'
+<BR>
+        my = &quot;${foo} a&quot; # sets variable 'my' to &quot;bar a&quot;
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>my = &quot;${foo} a&quot; # sets variable 'my' to &quot;bar a&quot;<BR>
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 If the variable exists in a section or subsection, it can be
@@ -165,21 +208,48 @@ not allowed.  Relative references are allowed, by pre-pending the name
 with one or more period.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blogs = ${.foo}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        blogs = ${.foo}
+
+
+</PRE>
+
+</DL>
+
 <P>
 
 Will set variable <B>blogs</B> to the value of variable <B>foo</B>,
 from the current section.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blogs = ${..foo}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        blogs = ${..foo}
+
+
+</PRE>
+
+</DL>
+
 <P>
 
 Will set variable <B>blogs</B> to the value of variable <B>foo</B>, from the
 section which contains the current section.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blogs = ${modules.detail.detailfile}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        blogs = ${modules.detail.detailfile}
+
+
+</PRE>
+
+</DL>
+
 <P>
 
 Will set variable <B>blogs</B> to the value of variable <B>detailfile</B>,
@@ -192,9 +262,9 @@ the configuration file.
 <A NAME="lbAH">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/radiusd.html">radiusd</A></B>(8)
+<B><A HREF="/radiusd/man/radiusd.html">radiusd</A></B>(8)
 
-<B><A HREF="man/unlang.html">unlang</A></B>(5)
+<B><A HREF="/radiusd/man/unlang.html">unlang</A></B>(5)
 
 <A NAME="lbAI">&nbsp;</A>
 <H2>AUTHOR</H2>
@@ -216,8 +286,8 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:30:03 GMT, February 14, 2008
+Time: 05:18:29 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

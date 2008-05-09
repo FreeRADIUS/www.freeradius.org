@@ -72,42 +72,39 @@ the detail module to <B>radiusd.conf</B>:
 For example:
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>detail radrelay-detail {<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        detail radrelay-detail {
+<BR>
+                detailfile = ${radacctdir}/radrelay/detail
+<BR>
+                detailperm = 0600
+<BR>
+                dirperm = 0755
+<BR>
+                locking = yes
+<BR>
+        }
+<BR>
+        ...
+<BR>
+        accounting {
+<BR>
+                ...
+<BR>
+                radrelay-detail
+<BR>
+                ...
+<BR>
+        }
 <BR>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>detailfile = ${radacctdir}/radrelay/detail<BR>
-<BR>
+</PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>detailperm = 0600<BR>
-<BR>
+</DL>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>dirperm = 0755<BR>
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>locking = yes<BR>
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>accounting {<BR>
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>radrelay-detail<BR>
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
-<BR>
-
+<P>
 
 This configuration will cause accounting packets to be logged to the
 <I>${radacctdir}/radrelay/detail</I> file.  This file should not be
@@ -123,26 +120,28 @@ To have the &quot;radrelay&quot; portion of the server read the above detail
 file, configure <B>radrelay.conf</B> with the following section:
 <P>
 
+<DL COMPACT><DT><DD>
+<PRE>
+
+<BR>
+        listen {
+<BR>
+                type = detail
+<BR>
+                detail = ${radacctdir}/radrelay/detail
+<BR>
+                max_outstanding = 100
+<BR>
+                identity = radrelay
+<BR>
+        }
 <BR>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>listen {<BR>
-<BR>
+</PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>type = detail<BR>
-<BR>
+</DL>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>detail = ${radacctdir}/radrelay/detail<BR>
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>max_outstanding = 100<BR>
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>identity = radrelay<BR>
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
-<BR>
-
+<P>
 
 <P>
 The server will read the accounting packets from the detail file, and
@@ -179,9 +178,9 @@ a basis for the design of this implementation.
 <A NAME="lbAM">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/radiusd.html">radiusd</A></B>(8),
+<B><A HREF="/radiusd/man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="man/radiusd.conf.html">radiusd.conf</A></B>(5)
+<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5)
 
 <A NAME="lbAN">&nbsp;</A>
 <H2>AUTHOR</H2>
@@ -208,8 +207,8 @@ Alan DeKok &lt;<A HREF="mailto:aland@ox.org">aland@ox.org</A>&gt;
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:10:42 GMT, January 10, 2008
+Time: 05:18:29 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

@@ -31,16 +31,22 @@ Add the following lines to the top of your 'raddb/users' file:
 <P>
 
 
-#---
-<BR>
-
-test<TT>&nbsp;&nbsp;&nbsp;</TT>Auth-Type := Digest, User-Password = &quot;test&quot;<BR>
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Reply-Message = &quot;Hello, test with digest&quot;<BR>
-<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
 #---
+<BR>
+test    Auth-Type := Digest, User-Password = &quot;test&quot;
+<BR>
+        Reply-Message = &quot;Hello, test with digest&quot;
+<BR>
+#---
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 Once the server has been started (debugging mode is recommended),
@@ -48,38 +54,48 @@ use '<I>radclient</I> to send the following packet to the server:
 <P>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 $  radclient -f digest localhost auth testing123
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 Where 'digest' is a file containing:
 <P>
 
 
-<BR>&nbsp;&nbsp;User-Name&nbsp;=&nbsp;&quot;test&quot;,
-<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<BR>&nbsp;&nbsp;Digest-Response&nbsp;=&nbsp;&quot;631d6d73147add2f9e437f59bbc3aeb7&quot;,
+  User-Name = &quot;test&quot;,
 <BR>
-
-<BR>&nbsp;&nbsp;Digest-Realm&nbsp;=&nbsp;&quot;testrealm&quot;,
+  Digest-Response = &quot;631d6d73147add2f9e437f59bbc3aeb7&quot;,
 <BR>
-
-<BR>&nbsp;&nbsp;Digest-Nonce&nbsp;=&nbsp;&quot;1234abcd&quot;,
+  Digest-Realm = &quot;testrealm&quot;,
 <BR>
-
-<BR>&nbsp;&nbsp;Digest-Method&nbsp;=&nbsp;&quot;INVITE&quot;,
+  Digest-Nonce = &quot;1234abcd&quot;,
 <BR>
-
-<BR>&nbsp;&nbsp;Digest-URI&nbsp;=&nbsp;&quot;sip:<A HREF="mailto:5555551212@example.com">5555551212@example.com</A>&quot;,
+  Digest-Method = &quot;INVITE&quot;,
 <BR>
-
-<BR>&nbsp;&nbsp;Digest-Algorithm&nbsp;=&nbsp;&quot;MD5&quot;,
+  Digest-URI = &quot;sip:<A HREF="mailto:5555551212@example.com">5555551212@example.com</A>&quot;,
 <BR>
-
-<BR>&nbsp;&nbsp;Digest-User-Name&nbsp;=&nbsp;&quot;test&quot;,
+  Digest-Algorithm = &quot;MD5&quot;,
 <BR>
+  Digest-User-Name = &quot;test&quot;,
+<BR>
+  Message-Authenticator = &quot;&quot;
 
-<BR>&nbsp;&nbsp;Message-Authenticator&nbsp;=&nbsp;&quot;&quot;
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 You should see the authentication succeed.
@@ -121,8 +137,8 @@ Alan DeKok &lt;<A HREF="mailto:aland@ox.org">aland@ox.org</A>&gt;
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:10:43 GMT, January 10, 2008
+Time: 05:18:30 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

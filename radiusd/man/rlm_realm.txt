@@ -43,20 +43,21 @@ DESCRIPTION
        a match, which can be used by other modules.
 
 CONFIGURATION
-       modules {
-	 ... stuff here ...
-	 # useranme@realm syntax
-	 realm suffix {
-	   format = suffix
-	   delimiter = "@"
-	 }
-	  # realm/username syntax
-	  realm prefix {
-	   format = prefix
-	   delimiter = "/"
-	 }
-	 ... stuff here ...
-       }
+	      modules {
+		... stuff here ...
+		# useranme@realm syntax
+		realm suffix {
+		  format = suffix
+		  delimiter = "@"
+		}
+		 # realm/username syntax
+		 realm prefix {
+		  format = prefix
+		  delimiter = "/"
+		}
+		... stuff here ...
+	      }
+
 
 
 SECTIONS

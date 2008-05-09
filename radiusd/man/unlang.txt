@@ -35,9 +35,11 @@ KEYWORDS
 	      tions"  text in the CONDITIONS section, and MODULE RETURN CODES,
 	      below.
 
+
 		   chap	 # call the CHAP module
 		   sql	 # call the SQL module
 		   ...
+
 
        if
 	      Checks for a particular condition.  If true, the block after the
@@ -45,26 +47,32 @@ KEYWORDS
 	      CONDITIONS, below, for documentation on the format of the condi-
 	      tions.
 
+
 		   if (condition) {
 			...
 		   }
+
 
        else
 	      Define  a	 block to be executed only if the previous "if" condi-
 	      tion returned false.
 
+
 		   else {
 			...
 		   }
 
+
        elsif
-	      Define a block to be executed only if the previous  "if"	condi-
-	      tion returned false, and if the specified condition evaluates to
-	      true.
+	      Define a	block  to  be  executed	 only  if  the	previous  "if"
+	      condition	 returned false, and if the specified condition evalu-
+	      ates to true.
+
 
 		   elsif (condition) {
 			...
 		   }
+
 
        switch
 	      Evaluate the given string, and choose the first matching	"case"
@@ -74,9 +82,11 @@ KEYWORDS
 
 	      No statement other than "case" can appear in a "switch" block.
 
+
 		   switch "string" {
 			...
 		   }
+
 
        case
 	      Define  a	 static	 string	 to match a parent "switch" statement.
@@ -85,47 +95,51 @@ KEYWORDS
 
 	      A "case" statement cannot appear outside of a "switch" block.
 
+
 		   case string {
 			...
 		   }
 
-	      A	 default  entry	 can be defined by omitting the static string.
-	      This entry will be used if no other "case" entry matches.	  Only
-	      one default entry can exist in a "switch" section.
+
+       A  default  entry  can  be defined by omitting the static string.  This
+       entry will be used if no other "case" entry matches.  Only one  default
+       entry can exist in a "switch" section.
+
 
 		   case {
 			...
 		   }
 
+
        update
 	      Update  a	 particular  attribute	list,  based on the attributes
 	      given in the current block.
+
 
 		   update <list> {
 			attribute = value
 			...
 		   }
 
-	      The <list> can be one of	"request",  "reply",  "proxy-request",
-	      "proxy-reply",  or "control".  The "control" list is the list of
-	      attributes maintainted internally by the	server	that  controls
-	      how  the	server processes the request.  Any attribute that does
-	      not go in a packet on the network will generally	be  placed  in
-	      the "control" list.
 
-	      For  backwards  compatibility  with  older  versions, "check" is
-	      accepted as a synonym for "control".  The use of "check" is dep-
-	      recated, and will be removed in a future release.
+       The <list> can be one of "request", "reply",  "proxy-request",  "proxy-
+       reply",	or  "control".	 The  "control" list is the list of attributes
+       maintainted internally by the server that controls how the server  pro-
+       cesses  the request.  Any attribute that does not go in a packet on the
+       network will generally be placed in the "control" list.
 
-	      For EAP methods with tunneled authentication sessions (i.e. PEAP
-	      and EAP-TTLS), the  inner	 tunnel	 session  can  also  reference
-	      "outer.request", "outer.reply", and "outer.control".  Those ref-
-	      erences will update the relevant list in the outer  tunnel  ses-
-	      sion.
+       For backwards compatibility with older versions, "check" is accepted as
+       a synonym for "control".	 The use of "check" is deprecated, and will be
+       removed in a future release.
 
-	      The   only   contents  permitted	in  an	"update"  section  are
-	      attributes and values.  The contents of the "update" section are
-	      described in the ATTRIBUTES section below.
+       For EAP methods with tunneled authentication sessions  (i.e.  PEAP  and
+       EAP-TTLS), the inner tunnel session can also reference "outer.request",
+       "outer.reply", and "outer.control".   Those  references	allow  you  to
+       address the relevant list in the outer tunnel session.
+
+       The  only  contents permitted in an "update" section are attributes and
+       values.	The contents of the "update"  section  are  described  in  the
+       ATTRIBUTES section below.
 
        redundant
 	      This  section contains a simple list of modules.	The first mod-
@@ -141,11 +155,13 @@ KEYWORDS
 	      not  contain  keywords  that perform conditional operations (if,
 	      else, etc) or update an attribute list.
 
+
 		   redundant {
 			sql1 # try this
 			sql2 # try this only if sql1 fails.
 			...
 		   }
+
 
        load-balance
 	      This section contains a simple list of modules.  When  the  sec-
@@ -159,13 +175,15 @@ KEYWORDS
 	      cannot contain keywords that perform conditional operations (if,
 	      else, etc) or update an attribute list.
 
+
 		   load-balance {
 			ldap1	  # 50% of requests go here
 			ldap2	  # 50% of requests go here
 		   }
 
-	      In  general, we recommend using "redundant-load-balance" instead
-	      of "load-balance".
+
+       In  general,  we	 recommend  using  "redundant-load-balance" instead of
+       "load-balance".
 
        redundant-load-balance
 	      This section contains a simple list of modules.  When  the  sec-
@@ -185,184 +203,203 @@ KEYWORDS
 	      cannot contain keywords that perform conditional operations (if,
 	      else, etc) or update an attribute list.
 
+
 		   redundant-load-balance {
 			ldap1	  # 50%, unless ldap2 is down, then 100%
 			ldap2	  # 50%, unless ldap1 is down, then 100%
 		   }
+
 
 CONDITIONS
        The  conditions	are  similar  to C conditions in syntax, though quoted
        strings are supported, as with the Unix shell.
 
        Simple conditions
+
 		   (foo)
 
-	      Evalutes to true if 'foo' is a non-empty string (single  quotes,
-	      double quotes, or back-quoted).  Also evaluates to true if 'foo'
-	      is a non-zero number.  Note that the language is	poorly	typed,
-	      so  the  string  "0000"  can be interpreted as a numerical zero.
-	      This issue can be avoided by  comparings	strings	 to  an	 empty
-	      string, rather than by evaluating the string by itself.
 
-	      If  the  word 'foo' is not a quoted string, then it can be taken
-	      as a reference to a named attribute.  See "Referencing attribute
-	      lists", below, for examples of attribute references.  The condi-
-	      tion evaluates to true if the named attribute exists.
+       Evalutes to true if 'foo' is a non-empty string (single quotes,	double
+       quotes, or back-quoted).	 Also evaluates to true if 'foo' is a non-zero
+       number.	Note that the language is poorly typed, so the	string	"0000"
+       can  be	interpreted as a numerical zero.  This issue can be avoided by
+       comparings strings to an empty string, rather than  by  evaluating  the
+       string by itself.
 
-	      Otherwise, if the word 'foo' is not a quoted string, and is  not
-	      an attribute reference, then it is interpreted as a reference to
-	      a module return code.  The condition evaluates to	 true  if  the
-	      most  recent  module  return  code  matches the name given here.
-	      Valid module return codes are  given  in	MODULE	RETURN	CODES,
-	      below.
+       If  the	word  'foo'  is not a quoted string, then it can be taken as a
+       reference to a named attribute.	 See  "Referencing  attribute  lists",
+       below,  for  examples of attribute references.  The condition evaluates
+       to true if the named attribute exists.
+
+       Otherwise, if the word 'foo' is not a quoted  string,  and  is  not  an
+       attribute  reference, then it is interpreted as a reference to a module
+       return code.  The condition evaluates to true if the most recent module
+       return code matches the name given here.	 Valid module return codes are
+       given in MODULE RETURN CODES, below.
 
        Negation
+
 		   (!foo)
 
-	      Evalutes to true if 'foo' evaluates to false, and vice-versa.
+
+       Evalutes to true if 'foo' evaluates to false, and vice-versa.
 
        Short-circuit operators
-		   (foo || bar)
-		   (foo && bar)
 
-	      "&&"  and	 "||" are short-circuit operators.  "&&" evaluates the
-	      first condition, and evaluates the second condition if and  only
-	      if  the result of the first condition is true.  "||" is similar,
+			  (foo || bar)
+			  (foo && bar)
+
+
+	      "&&" and "||" are short-circuit operators.  "&&"	evaluates  the
+	      first  condition, and evaluates the second condition if and only
+	      if the result of the first condition is true.  "||" is  similar,
 	      but executes the second command if and only if the result of the
 	      first condition is false.
 
        Comparisons
+
 		   (foo == bar)
 
-	      Compares 'foo' to 'bar', and evaluates to true if the comparison
-	      holds true.  Valid comparison operators  are  "==",  "!=",  "<",
-	      "<=",  ">", ">=", "=~", and "!~", all with their usual meanings.
-	      Invalid comparison operators are ":=" and "=".
+
+       Compares 'foo' to 'bar', and evaluates to true if the comparison	 holds
+       true.  Valid comparison operators are "==", "!=", "<", "<=", ">", ">=",
+       "=~", and "!~", all with	 their	usual  meanings.   Invalid  comparison
+       operators are ":=" and "=".
 
        Conditions may be nested to any depth, subject only to line length lim-
        itations (8192 bytes).
 
 DATA TYPES
-       There  are  only a few data types supported in the language.  Reference
-       to attributes, numbers, and strings.   Any  data	 type  can  appear  in
+       There are only a few data types supported in the	 language.   Reference
+       to  attributes,	numbers,  and  strings.	  Any  data type can appear in
        stand-alone condition, in which case they are evaluated as described in
        "Simple conditions", above.  They can also appear (with some exceptions
-       noted  below)  on the left-hand or on the right-hand side of a compari-
+       noted below) on the left-hand or on the right-hand side of  a  compari-
        son.
 
        Numbers
-	      Numbers are composed of decimal digits.	Floating  point,  hex,
-	      and  octal  numbers  are not supported.  The maximum value for a
-	      number is machine-dependent, but is usually  32-bits,  including
+	      Numbers  are  composed  of decimal digits.  Floating point, hex,
+	      and octal numbers are not supported.  The maximum	 value	for  a
+	      number  is  machine-dependent, but is usually 32-bits, including
 	      one bit for a sign value.
 
        word
-	      Text  that  is not enclosed in quotes is interpreted differently
-	      depending on where it occurs in a condition.  On the  left  hand
-	      side  of	a  condition,  it  is interpreted as a reference to an
-	      attribute.  On the right hand side, it is interpreted as a  sim-
+	      Text that is not enclosed in quotes is  interpreted  differently
+	      depending	 on  where it occurs in a condition.  On the left hand
+	      side of a condition, it is interpreted  as  a  reference	to  an
+	      attribute.   On the right hand side, it is interpreted as a sim-
 	      ple string, in the same manner as a single-quoted string.
 
 	      Using attribute references permits limited type-specific compar-
 	      isons, as seen in the examples below.
 
-		   if (User-Name == "bob") {
-			...
-		   if (Framed-IP-Address > 127.0.0.1) {
-			...
-		   if (Service-Type == Login-User) {
+
+			  if (User-Name == "bob") {
+			       ...
+			  if (Framed-IP-Address > 127.0.0.1) {
+			       ...
+			  if (Service-Type == Login-User) {
+
 
        strings
 	      Double-quoted strings are expanded by inserting the value of any
 	      variables (see VARIABLES, below) before being evaluated.	If the
 	      result is a number it is evaluated in a numerical context.
 
-	      String length is limited	by  line-length,  usually  about  8000
-	      characters.   A  double  quote  character	 (")  can be used in a
+	      String  length  is  limited  by  line-length, usually about 8000
+	      characters.  A double quote character  (")  can  be  used	 in  a
 	      string  via  the	normal	back-slash  escaping  method.	("like
 	      \"this\" !")
 
        'strings'
 	      Single-quoted strings are evaluated as-is.  Their values are not
-	      expanded as with double-quoted strings above, and they  are  not
+	      expanded	as  with double-quoted strings above, and they are not
 	      interpreted as attribute references.
 
        `strings`
-	      Back-quoted  strings  are evaluated by expanding the contents of
-	      the string, as described above for double-quoted	strings.   The
+	      Back-quoted strings are evaluated by expanding the  contents  of
+	      the  string,  as described above for double-quoted strings.  The
 	      resulting command given inside of the string in a sub-shell, and
-	      taking the output as a string.  This behavior is much  the  same
+	      taking  the  output as a string.	This behavior is much the same
 	      as that of Unix shells.
 
-	      Note  that  for security reasons, the input string is split into
+	      Note that for security reasons, the input string is  split  into
 	      command and arguments before variable expansion is done.
 
-	      For performance reasons, we suggest that the use of  back-quoted
-	      strings  be  kept	 to a minimum.	Executing external programs is
-	      relatively expensive, and executing a large number  of  programs
-	      for  every  request  can	quickly	 use  all of the CPU time in a
-	      server.  If you believe that you need to execute many  programs,
-	      we  suggest finding alternative ways to achieve the same result.
+	      For  performance reasons, we suggest that the use of back-quoted
+	      strings be kept to a minimum.  Executing	external  programs  is
+	      relatively  expensive,  and executing a large number of programs
+	      for every request can quickly use all  of	 the  CPU  time	 in  a
+	      server.	If you believe that you need to execute many programs,
+	      we suggest finding alternative ways to achieve the same  result.
 	      In some cases, using a real language may be sufficient.
 
        /regex/i
 	      These strings are valid only on the right-hand side of a compar-
-	      ison,  and  then	only  when  the comparison operator is "=~" or
+	      ison, and then only when the  comparison	operator  is  "=~"  or
 	      "!~".  They are regular expressions, as implemented by the local
 	      regular expression library on the system.	 This is usually Posix
 	      regular expressions.
 
-	      The trailing 'i' is optional, and	 indicates  that  the  regular
+	      The  trailing  'i'  is  optional, and indicates that the regular
 	      expression match should be done in a case-insensitive fashion.
 
 	      If the comparison operator is "=~", then parantheses in the reg-
-	      ular expression will define variables  containing	 the  matching
+	      ular  expression	will  define variables containing the matching
 	      text, as described below in the VARIABLES section.
 
 VARIABLES
        Run-time variables are referenced using the following syntax
 
-	    %{Variable-Name}
 
-       Note  that  unlike C, there is no way to declare variables, or to refer
-       to them outside of a string context.  All references to variables  MUST
+		   %{Variable-Name}
+
+
+       Note that unlike C, there is no way to declare variables, or  to	 refer
+       to  them outside of a string context.  All references to variables MUST
        be contained inside of a double-quoted or back-quoted string.
 
        Many potential variables are defined in the dictionaries that accompany
-       the server.  These definitions define only the name and	type,  and  do
-       not  define  the	 value	of  the	 variable.  When the server receives a
-       packet, it uses the packet contents to look up entries in  the  dictio-
-       nary,  and instantiates variables with a name taken from the dictionar-
-       ies, and a value taken from the packet contents.	  This	process	 means
-       that  if	 a  variable  does not exist, it is usually because it was not
+       the  server.   These  definitions define only the name and type, and do
+       not define the value of the  variable.	When  the  server  receives  a
+       packet,	it  uses the packet contents to look up entries in the dictio-
+       nary, and instantiates variables with a name taken from the  dictionar-
+       ies,  and  a  value taken from the packet contents.  This process means
+       that if a variable does not exist, it is usually	 because  it  was  not
        mentioned in a packet that the server received.
 
-       Once the variable is  instantiated,  it	is  added  to  an  appropriate
-       attribute  list,	 as  described	below.	 In many cases, attributes and
-       variables are inter-changeble, and are often  talked  about  that  way.
-       However,	 variables  can also refer to run-time calls to modules, which
-       may perform operations like SQL	SELECTs,  and  which  may  return  the
+       Once  the  variable  is	instantiated,  it  is  added to an appropriate
+       attribute list, as described below.   In	 many  cases,  attributes  and
+       variables  are  inter-changeble,	 and  are often talked about that way.
+       However, variables can also refer to run-time calls to  modules,	 which
+       may  perform  operations	 like  SQL  SELECTs,  and which may return the
        result as the value of the variable.
 
        Referencing attribute lists
 	      Attribute lists may be referenced via the following syntax
 
-		   %{<list>:Attribute-Name}
 
-	      Where  <list>  is	 one  of  "request", "reply", "proxy-request",
-	      "proxy-reply",  "control",  "outer.request",  "outer.reply",  or
-	      "outer.control",	as  described  above for the "update" section.
-	      The "<list>:" prefix is optional, and if omitted, is assumed  to
-	      refer to the "request" list.
+			  %{<list>:Attribute-Name}
+
+
+	      Where <list> is one of "request",	 "reply",  "control",  "proxy-
+	      request",	  "proxy-reply",  or  "outer.request",	"outer.reply",
+	      "outer.control", "outer.proxy-request", or  "outer.proxy-reply".
+	      just  as with the "update" section, above.  The "<list>:" prefix
+	      is optional,  and	 if  omitted,  is  assumed  to	refer  to  the
+	      "request" list.
 
 	      When  a  variable is encountered, the given list is examined for
 	      an attribute of the given name.  If found, the  variable	refer-
 	      ence in the string is replaced with the value of that attribute.
 	      Some examples are:
 
-		   %{User-Name}
-		   %{request:User-Name} # same as above
-		   %{reply:User-Name}
+
+			  %{User-Name}
+			  %{request:User-Name} # same as above
+			  %{reply:User-Name}
+			  %{outer.reqest:User-Name} # from inside of a TTLS/PEAP tunnel
+
 
        Results of regular expression matches
 	      If a regular expression match  has  previously  been  performed,
@@ -378,7 +415,9 @@ VARIABLES
 	      module,  pass it the given string, and replace the variable ref-
 	      erence with the resulting string returned from the module.
 
-		   %{module: string ...}
+
+			  %{module: string ...}
+
 
 	      The syntax of the string is module-specific.   Please  read  the
 	      module documentation for additional details.
@@ -447,7 +486,9 @@ ATTRIBUTES
        attribute  and  value  has  to  be all on one line in the configuration
        file.  There is no need for commas or semi-colons after the value.
 
-	    Attribute-Name = value
+
+		   Attribute-Name = value
+
 
        Attribute names
 	      The Attribute-Name must be a name previously defined in  a  dic-
@@ -554,15 +595,17 @@ MODULE RETURN CODES
        When a module is called, it returns  one	 of  the  following  codes  to
        "unlang", with the following meaning.
 
-	    notfound	    information was not found
-	    noop	    the module did nothing
-	    ok		    the module succeeded
-	    updated	    the module updated the request
-	    fail	    the module failed
-	    reject	    the module rejected the request
-	    userlock	    the user was locked out
-	    invalid	    the configuration was invalid
-	    handled	    the module has handled the request itself
+
+		   notfound	   information was not found
+		   noop		   the module did nothing
+		   ok		   the module succeeded
+		   updated	   the module updated the request
+		   fail		   the module failed
+		   reject	   the module rejected the request
+		   userlock	   the user was locked out
+		   invalid	   the configuration was invalid
+		   handled	   the module has handled the request itself
+
 
        These return codes can be tested for in a condition, as described above
        in the CONDITIONS section.

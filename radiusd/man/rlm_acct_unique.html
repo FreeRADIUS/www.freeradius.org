@@ -35,37 +35,37 @@ as the value for the unique session id.
 <H2>CONFIGURATION</H2>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 modules {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;acct_unique&nbsp;{
+  acct_unique {
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>key = &quot;User-Name, Acct-Session-Id, NAS-IP-Address, NAS-Port&quot;<BR>
+        key = &quot;User-Name, Acct-Session-Id, NAS-IP-Address, NAS-Port&quot;
 <BR>
-
-<BR>&nbsp;&nbsp;}
+  }
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
 <BR>
-
-<BR>&nbsp;...
+ ...
 <BR>
-
 preacct {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;acct_unique
-<BR>&nbsp;&nbsp;...
+  acct_unique
+  ...
 <BR>
-
 }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -75,7 +75,16 @@ this in your detail file:
 <P>
 
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Acct-Unique-Session-Id = &quot;c66ef57e480b9d26&quot;<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        Acct-Unique-Session-Id = &quot;c66ef57e480b9d26&quot;
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -112,9 +121,9 @@ Stop accounting packets.
 <A NAME="lbAG">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/radiusd.html">radiusd</A></B>(8),
+<B><A HREF="/radiusd/man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="man/radiusd.conf.html">radiusd.conf</A></B>(5)
+<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5)
 
 <A NAME="lbAH">&nbsp;</A>
 <H2>AUTHORS</H2>
@@ -135,8 +144,8 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:10:42 GMT, January 10, 2008
+Time: 05:18:30 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

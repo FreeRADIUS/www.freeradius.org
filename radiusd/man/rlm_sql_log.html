@@ -74,76 +74,64 @@ where there may not be a later accounting packet.
 <P>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 modules {
-<BR>&nbsp;&nbsp;...
+  ...
+<BR>
+  sql_log {
+<BR>
+    path = &quot;${radacctdir}/sql-relay&quot;
+<BR>
+    acct_table = &quot;radacct&quot;
+<BR>
+    postauth_table = &quot;radpostauth&quot;
+<BR>
+    sql_user_name = &quot;%{%{User-Name}:-DEFAULT}&quot;
 <BR>
 
-<BR>&nbsp;&nbsp;sql_log&nbsp;{
+<BR>
+    Start = &quot;INSERT INTO ${acct_table} ...&quot;
+<BR>
+    Stop = &quot;UPDATE ${acct_table} SET ...&quot;
+<BR>
+    Alive = &quot;UPDATE ${acct_table} SET ...&quot;
 <BR>
 
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;=&nbsp;&quot;${radacctdir}/sql-relay&quot;
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;acct_table&nbsp;=&nbsp;&quot;radacct&quot;
+    Post-Auth = &quot;INSERT INTO ${postauth_table} ...&quot;
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;postauth_table&nbsp;=&nbsp;&quot;radpostauth&quot;
+  }
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;sql_user_name&nbsp;=&nbsp;&quot;%{%{User-Name}:-DEFAULT}&quot;
+  ...
 <BR>
-
-<P>
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;Start&nbsp;=&nbsp;&quot;INSERT&nbsp;INTO&nbsp;${acct_table}&nbsp;...&quot;
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;Stop&nbsp;=&nbsp;&quot;UPDATE&nbsp;${acct_table}&nbsp;SET&nbsp;...&quot;
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;Alive&nbsp;=&nbsp;&quot;UPDATE&nbsp;${acct_table}&nbsp;SET&nbsp;...&quot;
-<BR>
-
-<P>
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;Post-Auth&nbsp;=&nbsp;&quot;INSERT&nbsp;INTO&nbsp;${postauth_table}&nbsp;...&quot;
-<BR>
-
-<BR>&nbsp;&nbsp;}
-<BR>
-
-<BR>&nbsp;&nbsp;...
-<BR>
-
 }
-<P>
-<BR>
 
+<BR>
 accounting {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;sql_log
-<BR>&nbsp;&nbsp;...
+  sql_log
+  ...
 <BR>
-
 }
 <BR>
+
+<BR>
+post-auth {
+  ...
+<BR>
+  sql_log
+  ...
+<BR>
+}
+
+</PRE>
+
+</DL>
 
 <P>
-<BR>
-
-post-auth {
-<BR>&nbsp;&nbsp;...
-<BR>
-
-<BR>&nbsp;&nbsp;sql_log
-<BR>&nbsp;&nbsp;...
-<BR>
-
-}
 
 <A NAME="lbAF">&nbsp;</A>
 <H2>SECTIONS</H2>
@@ -160,11 +148,11 @@ post-auth {
 <A NAME="lbAH">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/radsqlrelay.html">radsqlrelay</A></B>(8),
+<B><A HREF="/radiusd/man/radsqlrelay.html">radsqlrelay</A></B>(8),
 
-<B><A HREF="man/radiusd.html">radiusd</A></B>(8),
+<B><A HREF="/radiusd/man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="man/radiusd.conf.html">radiusd.conf</A></B>(5)
+<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5)
 
 <A NAME="lbAI">&nbsp;</A>
 <H2>AUTHOR</H2>
@@ -186,8 +174,8 @@ Nicolas Baradakis &lt;<A HREF="mailto:nicolas.baradakis@cegetel.net">nicolas.bar
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:10:44 GMT, January 10, 2008
+Time: 05:18:32 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

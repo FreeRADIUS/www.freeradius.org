@@ -11,13 +11,15 @@ DESCRIPTION
        junction	 with,	or  in	lieu of the files and detail modules.  The SQL
        module has drivers to support the following SQL databases:
 
-	    db2
-	    iodbc
-	    mysql
-	    oracle
-	    postgresql
-	    sybase
-	    unixodbc
+
+		   db2
+		   iodbc
+		   mysql
+		   oracle
+		   postgresql
+		   sybase
+		   unixodbc
+
 
        Due to the size of the configuration variables, the sql module is  usu-
        ally  configured	 in  a	separate  file,	 which is included in the main

@@ -66,56 +66,50 @@ to yes, enables a work-around for this error.  The default is 'no'.
 <H2>CONFIGURATION</H2>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 modules {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;mschap&nbsp;{
+  mschap {
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>authtype = MS-CHAP<BR>
+        authtype = MS-CHAP
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>use_mppe = yes<TT>&nbsp;&nbsp;</TT><BR>
+        use_mppe = yes  
 <BR>
-
-<BR>&nbsp;&nbsp;}
+  }
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
 <BR>
-
-<BR>&nbsp;...
+ ...
 <BR>
-
 authorize {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;mschap
+  mschap
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
-<BR>&nbsp;...
+ ...
 <BR>
-
 authenticate {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;mschap
+  mschap
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -138,9 +132,9 @@ authenticate {
 <A NAME="lbAG">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/radiusd.html">radiusd</A></B>(8),
+<B><A HREF="/radiusd/man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="man/radiusd.conf.html">radiusd.conf</A></B>(5)
+<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5)
 
 <A NAME="lbAH">&nbsp;</A>
 <H2>AUTHOR</H2>
@@ -162,8 +156,8 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:10:44 GMT, January 10, 2008
+Time: 05:18:31 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

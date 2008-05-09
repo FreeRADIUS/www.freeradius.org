@@ -44,11 +44,12 @@ syntax to the <I>users</I> file.  There are a few differences however:
 <P>
 
 
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;There&nbsp;are&nbsp;no&nbsp;check-items&nbsp;allowed&nbsp;other&nbsp;than&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;key.
-<P>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;There&nbsp;can&nbsp;only&nbsp;be&nbsp;a&nbsp;single&nbsp;DEFAULT&nbsp;entry.
-<P>
+    There are no check-items allowed other than the name of the key.
+
+    There can only be a single DEFAULT entry.
 
 The rules for each entry are parsed to top to bottom, and an
 attribute must pass *all* the rules which affect it in order to
@@ -57,72 +58,51 @@ The operators and their purpose in defining the rules are as
 follows:
 <DL COMPACT>
 <DT><B>=   </B>
-
-<DD>
-THIS OPERATOR IS NOT ALLOWED.  If used, and warning message is
+<DD>THIS OPERATOR IS NOT ALLOWED.  If used, and warning message is
 printed and it is treated as ==
 <DT><B>:=  </B>
-
-<DD>
-Set, this attribute and value will always be placed in the
+<DD>Set, this attribute and value will always be placed in the
 output A/V Pairs.  If the attribute exists, it is overwritten.
 <DT><B>==  </B>
-
-<DD>
-Equal, value must match exactly.
+<DD>Equal, value must match exactly.
 <DT><B>=*  </B>
-
-<DD>
-Always Equal, allow all values for the specified attribute.
+<DD>Always Equal, allow all values for the specified attribute.
 <DT><B>!*  </B>
-
-<DD>
-Never Equal, disallow all values for the specified attribute.
+<DD>Never Equal, disallow all values for the specified attribute.
 ( This is redundant, as any A/V Pair not explicitly permitted
 will be dropped ).
 <DT><B>!=  </B>
-
-<DD>
-Not Equal, value must not match.
+<DD>Not Equal, value must not match.
 <DT><B>&gt;=  </B>
-
-<DD>
-Greater Than or Equal
+<DD>Greater Than or Equal
 <DT><B>&lt;=  </B>
-
-<DD>
-Less Than or Equal
+<DD>Less Than or Equal
 <DT><B>&gt;   </B>
-
-<DD>
-Greater Than
+<DD>Greater Than
 <DT><B>&lt;   </B>
-
-<DD>
-Less Than
+<DD>Less Than
 </DL>
-<P>
 
 If regular expressions are enabled the following operators are
 also possible.  ( Regular Expressions are included by default
 unless your system doesn't support them, which should be rare ).
 The value field uses standard regular expression syntax.
-<P>
 
 <DL COMPACT>
 <DT><B>=~  </B>
-
-<DD>
-Regular Expression Equal
+<DD>Regular Expression Equal
 <DT><B>!~  </B>
-
-<DD>
-Regular Expression Not Equal
+<DD>Regular Expression Not Equal
 </DL>
-<P>
 
 See the default <I>/etc/raddb/attrs</I> for working examples of
 sample rule ordering and how to use the different operators.
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -173,9 +153,9 @@ Filters Access-Accept or Access-Reject packets.
 <A NAME="lbAF">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/radiusd.html">radiusd</A></B>(8),
+<B><A HREF="/radiusd/man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="man/radiusd.conf.html">radiusd.conf</A></B>(5)
+<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5)
 
 <A NAME="lbAG">&nbsp;</A>
 <H2>AUTHOR</H2>
@@ -196,8 +176,8 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:30:03 GMT, February 14, 2008
+Time: 05:18:30 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

@@ -61,35 +61,35 @@ attributes&quot;.
 <P>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 modules {
-<BR>&nbsp;&nbsp;...&nbsp;stuff&nbsp;here&nbsp;...
+  ... stuff here ...
 <BR>
-
-<BR>&nbsp;&nbsp;files&nbsp;{
+  files {
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;usersfile&nbsp;=&nbsp;%{confdir}/users
+    usersfile = %{confdir}/users
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;acctusersfile&nbsp;=&nbsp;%{confdir}/acct_users
+    acctusersfile = %{confdir}/acct_users
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;preproxy_usersfile&nbsp;=&nbsp;%{confdir}/preproxy_users
+    preproxy_usersfile = %{confdir}/preproxy_users
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;compat&nbsp;=&nbsp;no
+    compat = no
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;key&nbsp;=&nbsp;%{Stripped-User-Name:-%{User-Name}}
+    key = %{Stripped-User-Name:-%{User-Name}}
 <BR>
-
-<BR>&nbsp;&nbsp;}
+  }
 <BR>
-
-<BR>&nbsp;&nbsp;...&nbsp;stuff&nbsp;here&nbsp;...
+  ... stuff here ...
 <BR>
-
 }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -120,11 +120,11 @@ modules {
 <A NAME="lbAG">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/radiusd.html">radiusd</A></B>(8),
+<B><A HREF="/radiusd/man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="man/radiusd.conf.html">radiusd.conf</A></B>(5),
+<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5),
 
-<B><A HREF="man/users.html">users</A></B>(5)
+<B><A HREF="/radiusd/man/users.html">users</A></B>(5)
 
 <A NAME="lbAH">&nbsp;</A>
 <H2>AUTHORS</H2>
@@ -145,8 +145,8 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:10:44 GMT, January 10, 2008
+Time: 05:18:31 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

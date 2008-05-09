@@ -30,18 +30,20 @@ CONFIGURATION
        This module understands many kinds  of  password	 hashing  methods,  as
        given by the following table.
 
-       Header	    Attribute	       Description
-       ------	    ---------	       -----------
-       {clear}	    User-Password      clear-text passwords
-       {cleartext}  User-Password      clear-text passwords
-       {crypt}	    Crypt-Password     Unix-style "crypt"ed passwords
-       {md5}	    MD5-Password       MD5 hashed passwords
-       {smd5}	    SMD5-Password      MD5 hashed passwords, with a salt
-       {sha}	    SHA-Password       SHA1 hashed passwords
-       {ssha}	    SSHA-Password      SHA1 hashed passwords, with a salt
-       {nt}	    NT-Password	       Windows NT hashed passwords
-       {x-nthash}   NT-Password	       Windows NT hashed passwords
-       {lm}	    LM-Password	       Windows Lan Manager (LM) passwords.
+
+	      Header	   Attribute	      Description
+	      ------	   ---------	      -----------
+	      {clear}	   User-Password      clear-text passwords
+	      {cleartext}  User-Password      clear-text passwords
+	      {crypt}	   Crypt-Password     Unix-style "crypt"ed passwords
+	      {md5}	   MD5-Password	      MD5 hashed passwords
+	      {smd5}	   SMD5-Password      MD5 hashed passwords, with a salt
+	      {sha}	   SHA-Password	      SHA1 hashed passwords
+	      {ssha}	   SSHA-Password      SHA1 hashed passwords, with a salt
+	      {nt}	   NT-Password	      Windows NT hashed passwords
+	      {x-nthash}   NT-Password	      Windows NT hashed passwords
+	      {lm}	   LM-Password	      Windows Lan Manager (LM) passwords.
+
 
        The module tries to be flexible when handling the various password for-
        mats.  It will automatically handle Base-64 encoded data, hex  strings,

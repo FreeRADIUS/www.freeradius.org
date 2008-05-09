@@ -74,7 +74,8 @@ DESCRIPTION
 
 
 EXAMPLES
-       format = "My-Group:::*,User-Name"
+	      format = "My-Group:::*,User-Name"
+
 
 	      Parse a file similar to the /etc/group file.  An entry matches a
 	      request when the name in a User-Name  attribute  exists  in  the
@@ -93,7 +94,9 @@ EXAMPLES
 	      My-Group	attribute  to the dictionary file.  See the dictionary
 	      manual page for details on how this may be done.
 
-       format = "~My-Group:::*,User-Name"
+
+	      format = "~My-Group:::*,User-Name"
+
 
 	      Similar to the previous entry, except the My-Group attribute  is
 	      added to the request, as though it was sent by the NAS.

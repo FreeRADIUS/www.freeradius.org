@@ -59,18 +59,20 @@ USAGE
 
        For example:
 
-	    detail radrelay-detail {
-		 detailfile = ${radacctdir}/radrelay/detail
-		 detailperm = 0600
-		 dirperm = 0755
-		 locking = yes
-	    }
-	    ...
-	    accounting {
-		 ...
-		 radrelay-detail
-		 ...
-	    }
+
+		   detail radrelay-detail {
+			detailfile = ${radacctdir}/radrelay/detail
+			detailperm = 0600
+			dirperm = 0755
+			locking = yes
+		   }
+		   ...
+		   accounting {
+			...
+			radrelay-detail
+			...
+		   }
+
        This configuration will cause accounting packets to be  logged  to  the
        ${radacctdir}/radrelay/detail file.  This file should not be rotated by
        standard log rotation scripts, as the radrelay program  will  read  and
@@ -83,12 +85,14 @@ RADRELAY.CONF EXAMPLE
        To have the "radrelay" portion of the  server  read  the	 above	detail
        file, configure radrelay.conf with the following section:
 
-	    listen {
-		 type = detail
-		 detail = ${radacctdir}/radrelay/detail
-		 max_outstanding = 100
-		 identity = radrelay
-	    }
+
+		   listen {
+			type = detail
+			detail = ${radacctdir}/radrelay/detail
+			max_outstanding = 100
+			identity = radrelay
+		   }
+
 
        The  server  will read the accounting packets from the detail file, and
        process them just as if it had received them from the NAS.   Therefore,

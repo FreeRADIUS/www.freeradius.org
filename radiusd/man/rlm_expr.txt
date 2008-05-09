@@ -15,10 +15,12 @@ DESCRIPTION
        To see these attributes split into pieces, you can have an entry in the
        'users' file like:
 
-       DEFAULT
-	   Vendor-Interface = `%{expr: %{NAS-Port} / (256 * 256)}`,
-	   Vendor-Card = `%{expr: (%{NAS-Port} / 256) %% 256}`,
-	   Vendor-Port = `%{expr: %{NAS-Port} %% 256}`
+
+	      DEFAULT
+		  Vendor-Interface = `%{expr: %{NAS-Port} / (256 * 256)}`,
+		  Vendor-Card = `%{expr: (%{NAS-Port} / 256) %% 256}`,
+		  Vendor-Port = `%{expr: %{NAS-Port} %% 256}`
+
 
        where the attributes Vendor-Interface, Vendor-Card, and Vendor-Port are
        attributes created by either you or a vendor-supplied dictionary.
@@ -52,19 +54,20 @@ DESCRIPTION
 
        All of the calculations are performed as unsigned 32-bit integers.
 
+
 CONFIGURATION
-       modules {
-	 ...
-	 expr {
-	 }
-	 ...
-       }
-	...
-       instantiate {
-	 ...
-	 expr
-	 ...
-       }
+	      modules {
+		...
+		expr {
+		}
+		...
+	      }
+	       ...
+	      instantiate {
+		...
+		expr
+		...
+	      }
 
 SECTIONS
        instantiate

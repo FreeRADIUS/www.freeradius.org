@@ -61,34 +61,36 @@ CONFIGURATION
 	      post-authentication  stage.   This  query	 is mainly used to log
 	      sessions where there may not be a later accounting packet.
 
-       modules {
-	 ...
-	 sql_log {
-	   path = "${radacctdir}/sql-relay"
-	   acct_table = "radacct"
-	   postauth_table = "radpostauth"
-	   sql_user_name = "%{%{User-Name}:-DEFAULT}"
 
-	   Start = "INSERT INTO ${acct_table} ..."
-	   Stop = "UPDATE ${acct_table} SET ..."
-	   Alive = "UPDATE ${acct_table} SET ..."
+	      modules {
+		...
+		sql_log {
+		  path = "${radacctdir}/sql-relay"
+		  acct_table = "radacct"
+		  postauth_table = "radpostauth"
+		  sql_user_name = "%{%{User-Name}:-DEFAULT}"
 
-	   Post-Auth = "INSERT INTO ${postauth_table} ..."
-	 }
-	 ...
-       }
+		  Start = "INSERT INTO ${acct_table} ..."
+		  Stop = "UPDATE ${acct_table} SET ..."
+		  Alive = "UPDATE ${acct_table} SET ..."
 
-       accounting {
-	 ...
-	 sql_log
-	 ...
-       }
+		  Post-Auth = "INSERT INTO ${postauth_table} ..."
+		}
+		...
+	      }
 
-       post-auth {
-	 ...
-	 sql_log
-	 ...
-       }
+	      accounting {
+		...
+		sql_log
+		...
+	      }
+
+	      post-auth {
+		...
+		sql_log
+		...
+	      }
+
 
 SECTIONS
        accounting, post-auth

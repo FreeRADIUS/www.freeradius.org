@@ -50,15 +50,17 @@ NOTES
        The  command  "radsqlrelay  -d oracle -b db.domain.tld sql-relay" reads
        the database description stored in $TNS_ADMIN/tnsnames.ora:
 
-       db.domain.tld =
-	 (DESCRIPTION =
-	   (ADDRESS_LIST =
-	     (ADDRESS = (PROTOCOL = TCP)(HOST = db.domain.tld)(PORT = 1521))
-	   )
-	   (CONNECT_DATA =
-	     (SERVICE_NAME = <DB SID>)
-	   )
-	 )
+
+	      db.domain.tld =
+		(DESCRIPTION =
+		  (ADDRESS_LIST =
+		    (ADDRESS = (PROTOCOL = TCP)(HOST = db.domain.tld)(PORT = 1521))
+		  )
+		  (CONNECT_DATA =
+		    (SERVICE_NAME = <DB SID>)
+		  )
+		)
+
 
 
 SEE ALSO

@@ -53,47 +53,44 @@ RLM_MODULE_UPDATED
 <H2>CONFIGURATION</H2>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 modules {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;always&nbsp;ok&nbsp;{
+  always ok {
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>rcode = ok<BR>
+        rcode = ok
 <BR>
-
-<BR>&nbsp;&nbsp;}
+  }
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
 <BR>
-
-<BR>&nbsp;...
+ ...
 <BR>
-
 authorize {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;redundant&nbsp;{
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sql1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;try&nbsp;to&nbsp;find&nbsp;the&nbsp;user&nbsp;in&nbsp;sql1
+  redundant {
+     sql1          # try to find the user in sql1
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sql2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;try&nbsp;to&nbsp;find&nbsp;the&nbsp;user&nbsp;in&nbsp;sql2
+     sql2          # try to find the user in sql2
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;if&nbsp;still&nbsp;not&nbsp;found,&nbsp;it's&nbsp;OK.
+     ok            # if still not found, it's OK.
 <BR>
-
-<BR>&nbsp;&nbsp;}
-<BR>&nbsp;&nbsp;...
+  }
+  ...
 <BR>
-
 }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -126,9 +123,9 @@ authorize {
 <A NAME="lbAG">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/radiusd.html">radiusd</A></B>(8),
+<B><A HREF="/radiusd/man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="man/radiusd.conf.html">radiusd.conf</A></B>(5)
+<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5)
 
 <A NAME="lbAH">&nbsp;</A>
 <H2>AUTHOR</H2>
@@ -149,8 +146,8 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:10:43 GMT, January 10, 2008
+Time: 05:18:30 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

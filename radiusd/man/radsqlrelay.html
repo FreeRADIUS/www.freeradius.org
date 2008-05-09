@@ -90,21 +90,30 @@ database description stored in $TNS_ADMIN/tnsnames.ora:
 <P>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 db.domain.tld =
-<BR>&nbsp;&nbsp;(DESCRIPTION&nbsp;=
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;(ADDRESS_LIST&nbsp;=
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(ADDRESS&nbsp;=&nbsp;(PROTOCOL&nbsp;=&nbsp;TCP)(HOST&nbsp;=&nbsp;db.domain.tld)(PORT&nbsp;=&nbsp;1521))
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;)
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;(CONNECT_DATA&nbsp;=
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(SERVICE_NAME&nbsp;=&nbsp;&lt;DB&nbsp;SID&gt;)
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;)
-<BR>&nbsp;&nbsp;)
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = db.domain.tld)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SERVICE_NAME = &lt;DB SID&gt;)
+    )
+  )
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 <A NAME="lbAH">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/rlm_sql_log.html">rlm_sql_log</A></B>(5)
+<B><A HREF="/radiusd/man/rlm_sql_log.html">rlm_sql_log</A></B>(5)
 
 <P>
 <A NAME="lbAI">&nbsp;</A>
@@ -129,8 +138,8 @@ Nicolas Baradakis &lt;<A HREF="mailto:nicolas.baradakis@cegetel.net">nicolas.bar
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:10:45 GMT, January 10, 2008
+Time: 05:18:33 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

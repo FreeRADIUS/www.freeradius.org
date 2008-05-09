@@ -44,9 +44,20 @@ in a condition.  See the &quot;Simple Conditions&quot; text in the CONDITIONS
 section, and MODULE RETURN CODES, below.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>chap  # call the CHAP module<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>sql   # call the SQL module<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        chap  # call the CHAP module
+<BR>
+        sql   # call the SQL module
+<BR>
+        ...
+
+</PRE>
+
+</DL>
+
+<P>
 
 <DT>if<DD>
 <BR>
@@ -56,10 +67,20 @@ condition is processed.  Otherwise, the block is ignored.  See
 CONDITIONS, below, for documentation on the format of the conditions.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>if (condition) {<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+        if (condition) {
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <DT>else<DD>
 <BR>
@@ -68,9 +89,20 @@ Define a block to be executed only if the previous &quot;if&quot; condition
 returned false.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>else {<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        else {
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <DT>elsif<DD>
 <BR>
@@ -79,9 +111,20 @@ Define a block to be executed only if the previous &quot;if&quot; condition
 returned false, and if the specified condition evaluates to true.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>elsif (condition) {<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        elsif (condition) {
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <DT>switch<DD>
 <BR>
@@ -94,9 +137,20 @@ below.
 No statement other than &quot;case&quot; can appear in a &quot;switch&quot; block.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>switch &quot;string&quot; {<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        switch &quot;string&quot; {
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <DT>case<DD>
 <BR>
@@ -108,9 +162,20 @@ strings given here are not expanded as is done with the parent
 A &quot;case&quot; statement cannot appear outside of a &quot;switch&quot; block.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>case string {<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        case string {
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 A default entry can be defined by omitting the static string.  This
@@ -118,9 +183,20 @@ entry will be used if no other &quot;case&quot; entry matches.  Only one default
 entry can exist in a &quot;switch&quot; section.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>case {<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        case {
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <DT>update<DD>
 <BR>
@@ -129,10 +205,22 @@ Update a particular attribute list, based on the attributes given in
 the current block.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>update &lt;list&gt; {<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>attribute = value<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        update &lt;list&gt; {
+<BR>
+                attribute = value
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 The &lt;list&gt; can be one of &quot;request&quot;, &quot;reply&quot;, &quot;proxy-request&quot;,
@@ -148,7 +236,7 @@ will be removed in a future release.
 For EAP methods with tunneled authentication sessions (i.e. PEAP and
 EAP-TTLS), the inner tunnel session can also reference
 &quot;outer.request&quot;, &quot;outer.reply&quot;, and &quot;outer.control&quot;.  Those references
-will update the relevant list in the outer tunnel session.
+allow you to address the relevant list in the outer tunnel session.
 <P>
 The only contents permitted in an &quot;update&quot; section are attributes and
 values.  The contents of the &quot;update&quot; section are described in the
@@ -168,11 +256,24 @@ contain keywords that perform conditional operations (if, else, etc)
 or update an attribute list.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>redundant {<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>sql1<TT>&nbsp;&nbsp;&nbsp;&nbsp;</TT># try this<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>sql2<TT>&nbsp;&nbsp;&nbsp;&nbsp;</TT># try this only if sql1 fails.<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        redundant {
+<BR>
+                sql1    # try this
+<BR>
+                sql2    # try this only if sql1 fails.
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <DT>load-balance<DD>
 This section contains a simple list of modules.  When the section is
@@ -187,10 +288,22 @@ contain keywords that perform conditional operations (if, else, etc)
 or update an attribute list.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>load-balance {<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ldap1<TT>&nbsp;&nbsp;&nbsp;</TT># 50% of requests go here<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ldap2<TT>&nbsp;&nbsp;&nbsp;</TT># 50% of requests go here<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        load-balance {
+<BR>
+                ldap1   # 50% of requests go here
+<BR>
+                ldap2   # 50% of requests go here
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 In general, we recommend using &quot;redundant-load-balance&quot; instead of
@@ -213,10 +326,22 @@ contain keywords that perform conditional operations (if, else, etc)
 or update an attribute list.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>redundant-load-balance {<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ldap1<TT>&nbsp;&nbsp;&nbsp;</TT># 50%, unless ldap2 is down, then 100%<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>ldap2<TT>&nbsp;&nbsp;&nbsp;</TT># 50%, unless ldap1 is down, then 100%<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        redundant-load-balance {
+<BR>
+                ldap1   # 50%, unless ldap2 is down, then 100%
+<BR>
+                ldap2   # 50%, unless ldap1 is down, then 100%
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
 
 </DL>
 <A NAME="lbAE">&nbsp;</A>
@@ -230,7 +355,16 @@ conditions
 <BR>
 
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo)<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        (foo)
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 Evalutes to true if 'foo' is a non-empty string (single quotes, double
@@ -252,19 +386,39 @@ module return code matches the name given here.  Valid module return
 codes are given in MODULE RETURN CODES, below.
 <DT>Negation<DD>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(!foo)<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        (!foo)
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 Evalutes to true if 'foo' evaluates to false, and vice-versa.
 </DL>
 <P>
 
-<DL COMPACT><DT>Short-circuit operators<DD>
+Short-circuit operators
+<DL COMPACT><DT><DD>
 <BR>
 
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo || bar)<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo &amp;&amp; bar)<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        (foo || bar)
+<BR>
+        (foo &amp;&amp; bar)
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 &quot;&amp;&amp;&quot; and &quot;||&quot; are short-circuit operators.  &quot;&amp;&amp;&quot; evaluates the first
@@ -277,7 +431,16 @@ false.
 <DL COMPACT>
 <DT>Comparisons<DD>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>(foo == bar)<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        (foo == bar)
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 Compares 'foo' to 'bar', and evaluates to true if the comparison holds
@@ -307,7 +470,8 @@ sign value.
 </DL>
 <P>
 
-<DL COMPACT><DT>word<DD>
+word
+<DL COMPACT><DT><DD>
 Text that is not enclosed in quotes is interpreted differently
 depending on where it occurs in a condition.  On the left hand side of
 a condition, it is interpreted as a reference to an attribute.  On the
@@ -318,15 +482,30 @@ Using attribute references permits limited type-specific comparisons,
 as seen in the examples below.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>if (User-Name == &quot;bob&quot;) {<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>if (Framed-IP-Address &gt; 127) {<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>...<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>if (Service-Type == Login-User) { <BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        if (User-Name == &quot;bob&quot;) {
+<BR>
+                ...
+<BR>
+        if (Framed-IP-Address &gt; 127) {
+<BR>
+                ...
+<BR>
+        if (Service-Type == Login-User) { 
+
+</PRE>
 
 </DL>
 
-<DL COMPACT><DT>"strings"<DD>
+<P>
+
+</DL>
+
+<DL COMPACT>
+<DT>strings<DD>
+<DL COMPACT><DT><DD>
 Double-quoted strings are expanded by inserting the value of any
 variables (see VARIABLES, below) before being evaluated.  If
 the result is a number it is evaluated in a numerical context.
@@ -336,13 +515,11 @@ characters.  A double quote character (&quot;) can be used in a string via
 the normal back-slash escaping method.  (&quot;like \&quot;this\&quot; !&quot;)
 </DL>
 
-<DL COMPACT><DT>'strings'<DD>
+<DT>'strings'<DD>
 Single-quoted strings are evaluated as-is.  Their values are not
 expanded as with double-quoted strings above, and they are not
 interpreted as attribute references.
-</DL>
-
-<DL COMPACT><DT>`strings`<DD>
+<DT>`strings`<DD>
 Back-quoted strings are evaluated by expanding the contents of the
 string, as described above for double-quoted strings.  The resulting
 command given inside of the string in a sub-shell, and taking the
@@ -359,9 +536,7 @@ every request can quickly use all of the CPU time in a server.  If you
 believe that you need to execute many programs, we suggest finding
 alternative ways to achieve the same result.  In some cases, using a
 real language may be sufficient.
-</DL>
-
-<DL COMPACT><DT>/regex/i<DD>
+<DT>/regex/i<DD>
 These strings are valid only on the right-hand side of a comparison,
 and then only when the comparison operator is &quot;=~&quot; or &quot;!~&quot;.  They are
 regular expressions, as implemented by the local regular expression
@@ -380,7 +555,16 @@ described below in the VARIABLES section.
 Run-time variables are referenced using the following syntax
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{Variable-Name}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        %{Variable-Name}
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 Note that unlike C, there is no way to declare variables, or to refer
@@ -409,23 +593,45 @@ Referencing attribute lists
 Attribute lists may be referenced via the following syntax
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{&lt;list&gt;:Attribute-Name}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        %{&lt;list&gt;:Attribute-Name}
+
+</PRE>
+
+</DL>
 
 <P>
-Where &lt;list&gt; is one of &quot;request&quot;, &quot;reply&quot;, &quot;proxy-request&quot;,
-&quot;proxy-reply&quot;, &quot;control&quot;, &quot;outer.request&quot;, &quot;outer.reply&quot;, or
-&quot;outer.control&quot;, as described above for the &quot;update&quot; section.  The
-&quot;&lt;list&gt;:&quot; prefix is optional, and if omitted, is assumed to refer to
-the &quot;request&quot; list.
+
+<P>
+Where &lt;list&gt; is one of &quot;request&quot;, &quot;reply&quot;, &quot;control&quot;, &quot;proxy-request&quot;,
+&quot;proxy-reply&quot;, or &quot;outer.request&quot;, &quot;outer.reply&quot;, &quot;outer.control&quot;,
+&quot;outer.proxy-request&quot;, or &quot;outer.proxy-reply&quot;. just as with the
+&quot;update&quot; section, above.  The &quot;&lt;list&gt;:&quot; prefix is optional, and if
+omitted, is assumed to refer to the &quot;request&quot; list.
 <P>
 When a variable is encountered, the given list is examined for an
 attribute of the given name.  If found, the variable reference in the
 string is replaced with the value of that attribute.  Some examples are:
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{User-Name}<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{request:User-Name} # same as above<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{reply:User-Name}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        %{User-Name}
+<BR>
+        %{request:User-Name} # same as above
+<BR>
+        %{reply:User-Name}
+<BR>
+        %{outer.reqest:User-Name} # from inside of a TTLS/PEAP tunnel
+
+</PRE>
+
+</DL>
+
+<P>
 
 </DL>
 
@@ -451,7 +657,16 @@ it the given string, and replace the variable reference with the
 resulting string returned from the module.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>%{module: string ...}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        %{module: string ...}
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 The syntax of the string is module-specific.  Please read the module
@@ -529,7 +744,16 @@ attribute and value has to be all on one line in the configuration
 file.  There is no need for commas or semi-colons after the value.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Attribute-Name = value<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        Attribute-Name = value
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -651,15 +875,32 @@ When a module is called, it returns one of the following codes to
 &quot;unlang&quot;, with the following meaning.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><B>notfound</B>        information was not found<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><B>noop</B>            the module did nothing<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><B>ok</B>              the module succeeded<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><B>updated</B>         the module updated the request<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><B>fail</B>            the module failed<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><B>reject</B>          the module rejected the request<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><B>userlock</B>        the user was locked out<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><B>invalid</B>         the configuration was invalid<BR>
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><B>handled</B>         the module has handled the request itself<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        notfound        information was not found
+<BR>
+        noop            the module did nothing
+<BR>
+        ok              the module succeeded
+<BR>
+        updated         the module updated the request
+<BR>
+        fail            the module failed
+<BR>
+        reject          the module rejected the request
+<BR>
+        userlock        the user was locked out
+<BR>
+        invalid         the configuration was invalid
+<BR>
+        handled         the module has handled the request itself
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 These return codes can be tested for in a condition, as described
@@ -671,9 +912,9 @@ above in the CONDITIONS section.
 <A NAME="lbAL">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="man/radiusd.conf.html">radiusd.conf</A></B>(5),
+<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5),
 
-<B><A HREF="man/dictionary.html">dictionary</A></B>(5)
+<B><A HREF="/radiusd/man/dictionary.html">dictionary</A></B>(5)
 
 <A NAME="lbAM">&nbsp;</A>
 <H2>AUTHOR</H2>
@@ -699,8 +940,8 @@ Alan DeKok &lt;<A HREF="mailto:aland@deployingradius.com">aland@deployingradius.
 </DL>
 <HR>
 This document was created by
-<A HREF="/cgi-bin/man/manhtml">manhtml</A>,
+manhtml,
 using the manual pages.<BR>
-Time: 11:30:03 GMT, February 14, 2008
+Time: 05:18:32 GMT, May 09, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>
