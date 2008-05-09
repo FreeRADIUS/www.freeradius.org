@@ -45,7 +45,7 @@ section, and MODULE RETURN CODES, below.
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         chap  # call the CHAP module
 <BR>
@@ -53,7 +53,7 @@ section, and MODULE RETURN CODES, below.
 <BR>
         ...
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -68,7 +68,7 @@ CONDITIONS, below, for documentation on the format of the conditions.
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         if (condition) {
 <BR>
@@ -76,7 +76,7 @@ CONDITIONS, below, for documentation on the format of the conditions.
 <BR>
         }
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -90,7 +90,7 @@ returned false.
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         else {
 <BR>
@@ -98,7 +98,7 @@ returned false.
 <BR>
         }
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -112,7 +112,7 @@ returned false, and if the specified condition evaluates to true.
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         elsif (condition) {
 <BR>
@@ -120,7 +120,7 @@ returned false, and if the specified condition evaluates to true.
 <BR>
         }
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -138,7 +138,7 @@ No statement other than &quot;case&quot; can appear in a &quot;switch&quot; bloc
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         switch &quot;string&quot; {
 <BR>
@@ -146,7 +146,7 @@ No statement other than &quot;case&quot; can appear in a &quot;switch&quot; bloc
 <BR>
         }
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -163,7 +163,7 @@ A &quot;case&quot; statement cannot appear outside of a &quot;switch&quot; block
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         case string {
 <BR>
@@ -171,7 +171,7 @@ A &quot;case&quot; statement cannot appear outside of a &quot;switch&quot; block
 <BR>
         }
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -184,7 +184,7 @@ entry can exist in a &quot;switch&quot; section.
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         case {
 <BR>
@@ -192,7 +192,7 @@ entry can exist in a &quot;switch&quot; section.
 <BR>
         }
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -206,7 +206,7 @@ the current block.
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         update &lt;list&gt; {
 <BR>
@@ -216,7 +216,7 @@ the current block.
 <BR>
         }
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -257,7 +257,7 @@ or update an attribute list.
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         redundant {
 <BR>
@@ -269,7 +269,7 @@ or update an attribute list.
 <BR>
         }
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -289,7 +289,7 @@ or update an attribute list.
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         load-balance {
 <BR>
@@ -299,7 +299,7 @@ or update an attribute list.
 <BR>
         }
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -327,7 +327,7 @@ or update an attribute list.
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         redundant-load-balance {
 <BR>
@@ -337,7 +337,7 @@ or update an attribute list.
 <BR>
         }
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -356,11 +356,11 @@ conditions
 
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         (foo)
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -387,11 +387,11 @@ codes are given in MODULE RETURN CODES, below.
 <DT>Negation<DD>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         (!foo)
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -408,13 +408,13 @@ Short-circuit operators
 
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         (foo || bar)
 <BR>
         (foo &amp;&amp; bar)
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -432,11 +432,11 @@ false.
 <DT>Comparisons<DD>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         (foo == bar)
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -483,7 +483,7 @@ as seen in the examples below.
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         if (User-Name == &quot;bob&quot;) {
 <BR>
@@ -495,7 +495,7 @@ as seen in the examples below.
 <BR>
         if (Service-Type == Login-User) { 
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -556,11 +556,11 @@ Run-time variables are referenced using the following syntax
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         %{Variable-Name}
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -594,11 +594,11 @@ Attribute lists may be referenced via the following syntax
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         %{&lt;list&gt;:Attribute-Name}
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -617,7 +617,7 @@ string is replaced with the value of that attribute.  Some examples are:
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         %{User-Name}
 <BR>
@@ -627,7 +627,7 @@ string is replaced with the value of that attribute.  Some examples are:
 <BR>
         %{outer.reqest:User-Name} # from inside of a TTLS/PEAP tunnel
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -658,11 +658,11 @@ resulting string returned from the module.
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         %{module: string ...}
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -745,11 +745,11 @@ file.  There is no need for commas or semi-colons after the value.
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         Attribute-Name = value
 
-</PRE>
+</TT>
 
 </DL>
 
@@ -876,7 +876,7 @@ When a module is called, it returns one of the following codes to
 <P>
 
 <DL COMPACT><DT><DD>
-<PRE>
+<TT>
 
         notfound        information was not found
 <BR>
@@ -896,7 +896,7 @@ When a module is called, it returns one of the following codes to
 <BR>
         handled         the module has handled the request itself
 
-</PRE>
+</TT>
 
 </DL>
 
