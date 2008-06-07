@@ -20,6 +20,31 @@
 
 <dl>
 
+<dt><span class="date">07 June 2008</span> - <b><a name="2.0.5">Version 2.0.5</a></b> has been released.</dt>
+
+<dd><p>The focus of this release is stability.</p>
+<h3>Feature Improvements</h3>
+<ul>
+<li>Permit SQL <tt>authorize_reply_query</tt> to be empty.</li>
+<li>Allow setting response packet type in Post-Proxy-Type Fail handler.</li>
+<li>Added <tt>install-chown</tt> target to set correct permission and ownership <tt>make RADMIN=radmin RGROUP=radius install-chown</tt>.</li>
+<li> Support for LDAP-Group and other dynamic comparison attribute in <a href="/radiusd/man/unlang.html">unlang</a>.  Developed from a patch by Jason Alderfer.</li>
+<li>Added chroot support.  See <tt>radiusd.conf</tt> for comments.</li>
+<li>Allow clients of 0/0.  We do not recommend using this, though.</li>
+<li>Moved many module configurations into <tt>raddb/modules/*</tt>.</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Allow proxying to virtual servers for accounting packets, too.</li>
+<li>Added <tt>num_fields</tt> function to PostgreSQL client.  This lets clients be read from a PostgreSQL database.</li>
+<li>Updated proxy fallback mechanism to validate fallback servers, and to process fallback requests in a child thread.</li>
+<li>The <tt>realm</tt> module returns <tt>ok</tt> for LOCAL realms, not <tt>noop</tt>.</li>
+<li>Fixed some DHCP code handling.  The examples should now work.</li>
+</ul>
+</dd>
+
+<br />
 <dt><span class="date">30 April 2008</span> - <b><a name="2.0.4">Version 2.0.4</a></b> has been released.</dt>
 
 <dd><p>The focus of this release is stability.</p>

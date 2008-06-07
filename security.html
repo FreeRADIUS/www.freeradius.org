@@ -42,13 +42,20 @@ LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
 and put in reverse-chronological order.
        -->
 
+     <li><span class="date">2008.05.13</span> <p>A bug added to  <a name="openssl">OpenSSL</a> on <a href="http://lists.debian.org/debian-security-announce/2008/msg00152.html">Debian</a> and <a href="https://lists.ubuntu.com/archives/ubuntu-security-announce/2008-May/000705.html">Ubuntu</a> systems means that SSL keys on those systems may be guessable.</p>
+<p>
+We recommend that administrators using OpenSSL on Debian or Ubuntu
+upgrade immediately.  We also recommend re-generating any SSL
+certificates used in RADIUS systems, if those certificates were created on a Debian or Ubuntu system since 2006.</p>
+<p>We emphasize that this is <em>not</em> a bug in FreeRADIUS.  FreeRADIUS uses OpenSSL for many of it's cryptographic operations, and as such, is at the mercy of any problems in OpenSSL.</p>
+</li>
      <li><span class="date">2007.04.10</span> <a name="1.1.5">v1.1.5</a>, and earlier - A malicous 802.1x supplicant could send malformed Diameter format attributes inside of an EAP-TTLS tunnel.  The server would reject the authentication request, but would leak one <tt>VALUE_PAIR</tt> data structure, of approximately 300 bytes.  If an attacker performed the attack many times (e.g. thousands or more over a period of minutes to hours), the server could leak megabytes of memory, potentially leading to an "out of memory" condition, and early process exit.
 <p>
 We recommend that administrators using EAP-TTLS upgrade immediately.
 </p>
-This bug was found as part of the <a href="http://www.coverity.com/">Coverity</a> <a href="http://scan.coverity.com">Scan</a> project.
+<p>This bug was found as part of the <a href="http://www.coverity.com/">Coverity</a> <a href="http://scan.coverity.com">Scan</a> project.</p>
 </li>
-<br />
+
      <li><span class="date">2006.03.20</span> <a name="1.0.5">v1.0.5</a>, and <a name="1.1.0">v1.1.0</a> - A validation issue exists with the EAP-MSCHAPv2 module in all versions from 1.0.0 (where the module first appeared) to 1.1.0.  Insufficient input validation was being done in the EAP-MSCHAPv2 state machine.  A malicious attacker could manipulate their EAP-MSCHAPv2 client state machine to potentially convince the server to bypass authentication checks.  This bypassing could also result in the server crashing.  We recommend that administrators upgrade immediately.</li>
  <br>
 
