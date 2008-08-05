@@ -1,0 +1,15 @@
+
+# Contact info submission
+
+url: freeradius.org/
+site_owner: FreeRADIUS.org
+address1: 
+address2: 
+city: 
+state: 
+country: 
+postal_code: 
+phone_number: 
+display_email: 
+site_name: The FreeRADIUS Server Project
+site_description: The world's most popular RADIUS server.
