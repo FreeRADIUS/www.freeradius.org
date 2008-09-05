@@ -1,0 +1,34 @@
+#
+#  Sample Apache configuration file for mirrors
+#
+#  The repository can be kept up to date via a cron job that runs
+#  once a day, and executes the following command:
+#
+#	git pull origin refs/tags/public
+#
+<VirtualHost *>
+	ServerAdmin webmaster@MYSITE.freeradius.org
+	ServerName MYSITE.freeradius.org
+	
+	DocumentRoot /PATH/TO/FILES/www.freeradius.org
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+	<Directory /PATH/TO/FILES/www.freeradius.org/ >
+		Options Indexes MultiViews +Includes
+		XBitHack Full
+		AllowOverride None
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	ErrorLog /var/LOG/www.freeradius.org-error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog /var/LOG/www.freeradius.org-access.log combined
+	ServerSignature Off
+</VirtualHost>
