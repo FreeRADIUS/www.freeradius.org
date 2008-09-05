@@ -47,9 +47,6 @@ href="ftp://ftp.us.freeradius.org/pub/radius/">ftp://ftp.us.freeradius.org/pub/r
 <br />
 <em>Hosted by <a href="http://starnetusa.net">starnetusa.net</a></em> 
 
-<p><em>To become a mirror, email <a
-href="mailto:webmaster@freeradius.org">webmaster@freeradius.org</a></em></p>
-
 <hr />
 
 <p>New mirrors can be set up via:</p>
@@ -70,6 +67,12 @@ unset GIT_DIR
 git checkout -f refs/tags/public > /dev/null 2>&1
 </pre>
 
+<p>The mirror can be kept up to date via a cron job that runs once a
+day, and does:</p>
+
+<pre class="config">
+cd /PATH/TO/FILES/www.freeradius.org && git pull
+</pre>
 
 <p>Then see the file <a href="http.conf.example">http.conf.example</a>
 in the checked out directory for sample Apache configuration.</p>
