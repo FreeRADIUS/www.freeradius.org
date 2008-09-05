@@ -1,0 +1,32 @@
+RADMIN(8)		FreeRADIUS Administration Tool		     RADMIN(8)
+
+
+
+NAME
+       radmin - FreeRADIUS Administration tool
+
+SYNOPSIS
+       radmin [path]
+
+DESCRIPTION
+       Tool  that connects to the control socket of the FreeRADIUS server, and
+       gives a command-liner interface to the server.
+
+       At this time, only a few commands are supported.	 Please type "help" at
+       the  command  prompt  for detailed information about the supported com-
+       mands.
+
+WARNING
+       This tool is experimental and should not be used in production environ-
+       ments.  Changes may be made at any time to the commands accepted by the
+       server, and/or to the resulting output.
+
+SEE ALSO
+       radiusd.conf(5), raddb/sites-available/control
+
+AUTHOR
+       Alan DeKok <aland@freeradius.org>
+
+
+
+				  4 Sept 2008			     RADMIN(8)
