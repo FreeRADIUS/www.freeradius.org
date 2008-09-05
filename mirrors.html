@@ -56,11 +56,23 @@ href="mailto:webmaster@freeradius.org">webmaster@freeradius.org</a></em></p>
 
 <pre class="config">
 $ git clone git://git.freeradius.org/www.freeradius.org.git
-$ git checkout refs/tags/public
+$ cd www.freeradius.org/.git/hooks
+$ chmod +x post-update
+$ vi post-update
 </pre>
 
+<p>Delete the line that says <tt>exec git-update-server-info</tt>, and
+replace it with the following text:</p>
+
+<pre class="config">
+cd ..
+unset GIT_DIR
+git checkout -f refs/tags/public > /dev/null 2>&1
+</pre>
+
+
 <p>Then see the file <a href="http.conf.example">http.conf.example</a>
-in the checked out directory.</p>
+in the checked out directory for sample Apache configuration.</p>
 
 </div><!--content-->
 

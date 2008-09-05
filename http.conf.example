@@ -4,7 +4,10 @@
 #  The repository can be kept up to date via a cron job that runs
 #  once a day, and executes the following command:
 #
-#	git pull origin refs/tags/public
+#	git pull
+#
+#  See also "mirrors.html" in this directory for additional instructions
+#  on setting up the mirrored repository.
 #
 <VirtualHost *>
 	ServerAdmin webmaster@MYSITE.freeradius.org
