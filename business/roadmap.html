@@ -31,25 +31,6 @@ Priorities include re-reading clients, realms, home servers, etc.</p>
 <p><em>Contact:</em> <a
 href="mailto:hup@freeradius.org">hup@freeradius.org</a></p>
 
-<h2>WiMAX</h2>
-
-<p><a href="http://www.wimaxforum.org/home/">WiMAX</a> is growing in
-popularity.  The WiMAX specification for RADIUS has a few differences
-from the historical Vendor-Specific Attribute (VSA) format.  The
-protocol parser currently in the server does not support this new
-format.</p>
-
-<p><em>Scope of Work:</em> Modify the protocol handlers to parse and
-generate WiMAX attributes.</p>
-
-<p><em>Estimated effort:</em> To parse and generate WiMAX attributes,
-approximately a thousand lines of code.  This includes attribute
-encoding and decoding only.  The total cost is likely less than
-purchasing a commercial server that includes WiMAX support.</p>
-
-<p><em>Contact:</em> <a
-href="mailto:wimax@freeradius.org">wimax@freeradius.org</a></p>
-
 <h2>3GPP2</h2>
 
 <p><em>Scope of Work:</em> Update the protocol handlers to parse and
@@ -107,41 +88,17 @@ href="mailto:ad-password@freeradius.org">ad-password@freeradius.org</a></p>
 
 <h1>Completed Milestones</h1>
 
-<h2>Version 2.0</h2>
+<h2>WiMAX</h2>
 
-<p>Version 2.0 contains a large number of fixes over the 1.x release
-stream.</p>
+<p><a href="http://www.wimaxforum.org/home/">WiMAX</a> is growing in
+popularity.  The WiMAX specification for RADIUS has a few differences
+from the historical Vendor-Specific Attribute (VSA) format.  The
+protocol parser currently in the server does not support this new
+format.</p>
 
-<p>We expect that once this version has been released, 1.x will go
-into "maintenance" mode, where the only changes will be critical bug
-fixes.</p>
-
-<p>The following is a partial list of new and updated functionality in
-2.0:</p>
-
-<ul>
-<li>Debugging mode is much clearer and easier to read.</li>
-<li>A new policy language makes many configurations trivial.
-See <tt>man unlang</tt> for a complete description.</li>
-<li>Virtual servers are now supported.  This permits clear separation
-of policies.  See raddb/sites-available/README</li>
-<li>EAP-TLS (PEAP, EAP-TTLS) and OpenSSL certificates "just work".
-See <tt>raddb/certs/README</tt> for details.</li>
-<li>Proxying is much more configurable than before.
-See proxy.conf for documentation on pools, and new config items.</li>
-<li>Full support for IPv6.</li>
-<li>Much more complete support for the RADIUS SNMP MIBs.</li>
-<li>HUP now works.  However, only some modules are re-loaded,
-and the server configuation is <em>not</em> reloaded.</li>
-<li>There is now a "check configuration" option.  See <tt>man
-radiusd</tt> for functionality and limitations.</li>
-<li><tt>radrelay</tt> functionality is now included in the server core.
-See <tt>raddb/sites-available/copy-acct-to-home-server</tt></li>
-<li><a
-href="http://en.wikipedia.org/wiki/VLAN_Management_Policy_Server"VMPS</a>
-support.  It is minimal, but functional.</li>
-<li>Cleaned up internal API's and names, including library names.</li>
-</ul>
+<p>
+Version 2.1.1 now has nearly complete support for WiMAX functionality.
+We thank our sponsors for helping with this effort.</p>
 
 </div><!--content-->
 
