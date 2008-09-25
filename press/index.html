@@ -20,6 +20,33 @@
 
 <dl>
 
+<dt><span class="date">025 September 2008</span> - <b><a name="2.1.1">Version 2.1.1</a></b> has been released.</dt>
+
+<dd><p>The focus of this release is stability.</p>
+<h3>Feature Improvements</h3>
+<ul>
+<li>Many more options and features are available via radmin.  See <a href="/radiusd/man/radmin.html">man radmin</a> and <tt>raddb/sites-available/control-socket</tt>.</li>
+<li> Many more commands available via the control socket.  Connect via <tt>radmin</tt>, and type <tt>help</tt> for more information.</li>
+<li>Added dictionary.networkphysics and dictionary.lancom.</li>
+<li>Calculate WiMAX MIP keys, and added sample WiMAX SQL tables.</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Fixed bug that made radmin not work.</li>
+<li>Fixed Suse && Debian package scripts.</li>
+<li>Fixed issues with dynamic clients.</li>
+<li>Fixed configure checks for <tt>-lreadline</tt></li>
+<li><tt>rlm_sqlippool</tt> no longer needs to be linked to <tt>rlm_sql</tt>.</li>
+<li>Add statistics for detail file listeners.  This closes bug #593.</li>
+<li>Fixed printing of some WiMAX attributes.</li>
+<li>Fixed double free on <tt>exit()</tt> in <tt>rlm_attr_filter</tt>.</li>
+<li>Fixed build issues on Solaris.</li>
+<li>Fixed fast session resumption for EAP-TLS.</li>
+</ul>
+</dd>
+<br />
+
 <dt><span class="date">05 September 2008</span> - <b><a name="2.1.0">Version 2.1.0</a></b> has been released.</dt>
 
 <dd><p>The focus of this release is features.</p>

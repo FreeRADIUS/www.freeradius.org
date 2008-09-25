@@ -3,7 +3,7 @@
 <HTML><HEAD><TITLE>Man page of RADMIN</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>RADMIN</H1>
-Section: FreeRADIUS Administration Tool (8)<BR>Updated: 4 Sept 2008<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Server Administration Tool (8)<BR>Updated: 10 Sept 2008<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -15,13 +15,37 @@ radmin - FreeRADIUS Administration tool
 
 <B>radmin</B>
 
-[<B>path</B>]
+[<B>-d</B>
+
+<I>config_directory</I>]
+
+[<B>-e</B>
+
+<I>command</I>]
+
+[<B>-f</B>
+
+<I>socket_file</I>]
+
+[<B>-i</B>
+
+<I>input_file</I>]
+
+[<B>-n</B>
+
+<I>name</I>]
+
+[<B>-o</B>
+
+<I>output_file</I>]
+
+[<B>-q</B>]
 
 <A NAME="lbAD">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
-Tool that connects to the control socket of the FreeRADIUS server, and
-gives a command-liner interface to the server.
+FreeRADIUS Server administration tool that connects to the control
+socket of a running server, and gives a command-line interface to it.
 <P>
 At this time, only a few commands are supported.  Please type &quot;help&quot;
 at the command prompt for detailed information about the supported
@@ -32,11 +56,84 @@ commands.
 This tool is experimental and should not be used in production
 environments.  Changes may be made at any time to the commands
 accepted by the server, and/or to the resulting output.
+<P>
+The security protections offered by this command are pretty minimal.
+If someone has permission to connect to the server, they can do almost
+anything, from stopping the server, to changing it's configuration.
+<P>
+Please exercise caution when using this command!
 <A NAME="lbAF">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+The following command-line options are accepted by the program.
+<DL COMPACT>
+<DT>-d <I>config directory</I><DD>
+Defaults to <I>/etc/raddb</I>. <B>radmin</B> looks here for the server
+configuration files to find the &quot;listen&quot; section that defines the
+control socket filename.
+<DT>-e <I>command</I><DD>
+Run <I>command</I> and exit.
+<DT>-f <I>socket_file</I><DD>
+Specify the socket filename directly.  The radiusd.conf file is not read.
+<DT>-i <I>input_file</I><DD>
+Reads input from the specified file.  If not specified, stdin is used.
+This also sets &quot;-q&quot;.
+<DT>-n <I>mname</I><DD>
+Read <I>raddb/name.conf</I> instead of <I>raddb/radiusd.conf</I>.
+<DT>-o <I>output_file</I><DD>
+Write output to the specified file.  If not specified, stdout is used.
+This also sets &quot;-q&quot;.
+<DT>-q<DD>
+Quiet mode.
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>COMMANDS</H2>
+
+The commands implemented by the command-line interface are almost
+completely controlled by the server.  There are a few commands
+interpreted locally by radmin:
+<DL COMPACT>
+<DT>reconnect<DD>
+Reconnect to the server.
+<DT>quit<DD>
+Exit from radmin.
+<DT>exit<DD>
+Exit from radmin.
+</DL>
+<P>
+
+The other commands are implemented by the server.  Type &quot;help&quot; at the
+prompt for more information.
+<A NAME="lbAH">&nbsp;</A>
+<H2>EXAMPLES</H2>
+
+<DL COMPACT>
+<DT>debug&nbsp;file&nbsp;/var/log/radius/bob.log<DD>
+Set debug logs to /var/log/radius/bob.log.  There is very little
+checking of this filename.  Rogue administrators may be able use this
+command to over-write almost any file on the system.  If those
+administrators have write access to &quot;radius.conf&quot;, they can do the
+same thing without radmin, too.
+<DT>debug&nbsp;condition&nbsp;'(User-Name&nbsp;==&nbsp;bob)'<DD>
+Enable debugging output for all requests that match the condition.
+Any &quot;unlang&quot; condition is valid here.  The condition is parsed as a
+string, so it must be enclosed in single or double quotes.  Strings
+enclosed in double-quotes must have back-slashes and the quotation
+marks escaped inside of the string.
+<P>
+Only one debug condition can be active at a time.
+<DT>debug&nbsp;condition&nbsp;'((User-Name&nbsp;==&nbsp;bob)&nbsp;||&nbsp;(Packet-Src-IP-Address&nbsp;==&nbsp;1922))'<DD>
+A more complex condition that enables debugging output for requests
+containing User-Name &quot;bob&quot;, or requests that originate from source IP
+address 1922.
+<DT>debug&nbsp;condition<DD>
+Disable debug conditionals.
+</DL>
+<A NAME="lbAI">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A>(5), raddb/sites-available/control
-<A NAME="lbAG">&nbsp;</A>
+<A HREF="/radiusd/man/unlang.html">unlang</A>(5), <A HREF="../man/radiusd.conf.html">radiusd.conf</A>(5), raddb/sites-available/control
+<A NAME="lbAJ">&nbsp;</A>
 <H2>AUTHOR</H2>
 
 Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt;
@@ -49,13 +146,16 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 <DT><A HREF="#lbAC">SYNOPSIS</A><DD>
 <DT><A HREF="#lbAD">DESCRIPTION</A><DD>
 <DT><A HREF="#lbAE">WARNING</A><DD>
-<DT><A HREF="#lbAF">SEE ALSO</A><DD>
-<DT><A HREF="#lbAG">AUTHOR</A><DD>
+<DT><A HREF="#lbAF">OPTIONS</A><DD>
+<DT><A HREF="#lbAG">COMMANDS</A><DD>
+<DT><A HREF="#lbAH">EXAMPLES</A><DD>
+<DT><A HREF="#lbAI">SEE ALSO</A><DD>
+<DT><A HREF="#lbAJ">AUTHOR</A><DD>
 </DL>
 <HR>
 This document was created by
 manhtml,
 using the manual pages.<BR>
-Time: 11:45:21 GMT, September 05, 2008
+Time: 08:51:34 GMT, September 25, 2008
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

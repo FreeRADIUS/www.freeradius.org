@@ -47,33 +47,30 @@ improvements added in every release.</p>
 
 <h2>Recent News</h2>
 
-<p><span class="date">2008.09.05</span> Version <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
+<p><span class="date">2008.09.25</span> Version <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
 <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius_version" -->.tar.bz2.sig">(sig)</a>
-has been released.  The focus of this release is features.</p>
+has been released.  The focus of this release is stability.</p>
 
 <h3>Feature Improvements</h3>
 <ul>
-<li>Clients may now be defined dynamically, based on IP address.  See <tt>raddb/sites-available/dynamic-clients</tt>.</li>
-<li>SNMP support is now available through an experimental Perl script.  See <tt>scripts/snmp-proxy/README</tt></li>
-<li>SNMP statistics are also available through Status-Server packets.  See <tt>raddb/sites-available/status</tt></li>
-<li>Added more Microsoft attributes from bug #568.</li>
-<li>The <tt>linelog</tt> module has more functionality and flexibility. See <tt>raddb/modules/linelog</tt>.</li>
-<li>The debugging output has been sanitized.  It should be much more readable.
-<li>Debug logs can now be turned on/off while the server is running, for a user, group, realm, etc.  See the <tt>log</tt> section of <tt>raddb/radiusd.conf</tt>.</li>
-<li>Added support for WiMAX Forum attributes.  The dynamic keys are not yet calculated.  See <tt>share/dictionary.wimax</tt></li>
-<li>Added session resumption for PEAP and TTLS.  See <tt>raddb/eap.conf</tt>, and the <tt>cache</tt> sub-section.</li>
-<li>Added <tt>radmin</tt> command-line tool for administering a running server.  See <a href="/radiusd/man/radmin.html">man radmin</a> and <tt>raddb/sites-available/control-socket</tt>.</li></ul>
+<li>Many more options and features are available via radmin.  See <a href="/radiusd/man/radmin.html">man radmin</a> and <tt>raddb/sites-available/control-socket</tt>.</li>
+<li> Many more commands available via the control socket.  Connect via <tt>radmin</tt>, and type <tt>help</tt> for more information.</li>
+<li>Added dictionary.networkphysics and dictionary.lancom.</li>
+<li>Calculate WiMAX MIP keys, and added sample WiMAX SQL tables.</li>
+</ul>
 
 <h3>Bug Fixes</h3>
 <ul>
-<li>Double escaping of '\\' in the <tt>users</tt> (and some other) files has been fixed.  If you have '\\' in the <tt>users</tt> file, your configuration <b>will need to be checked, and fixed!</b></li>
-<li>Parse <tt>security</tt> section of <tt>radiusd.conf</tt>.  This was accidentally deleted in 2.0.5.  Closes bug #566.</li>
-<li>Bind to interface before IP, which allows DHCP sockets to listen on "*" for multiple interfaces.</li>
-<li>Fix handling of giaddr in DHCP responses.</li>
-<li>Corrected parsing of <tt>status_check</tt> in home_server so that it works.</li>
-<li>Fix hints so that "Puser" works again.</li>
-<li>Removed length restrictions on attribute names in the dictionaries.</li>
-<li>Update socket code to avoid C compiler optimizations.</li>
+<li>Fixed bug that made radmin not work.</li>
+<li>Fixed Suse && Debian package scripts.</li>
+<li>Fixed issues with dynamic clients.</li>
+<li>Fixed configure checks for <tt>-lreadline</tt></li>
+<li><tt>rlm_sqlippool</tt> no longer needs to be linked to <tt>rlm_sql</tt>.</li>
+<li>Add statistics for detail file listeners.  This closes bug #593.</li>
+<li>Fixed printing of some WiMAX attributes.</li>
+<li>Fixed double free on <tt>exit()</tt> in <tt>rlm_attr_filter</tt>.</li>
+<li>Fixed build issues on Solaris.</li>
+<li>Fixed fast session resumption for EAP-TLS.</li>
 </ul>
 
 <p><span class="date">2008.05.13</span> A security bug in <a href="/security.html#openssl">OpenSSL</a> on Debian or Ubuntu systems may affect FreeRADIUS on those systems.  We recommend that everyone using Debian or Ubuntu upgrade their OpenSSL packages immediately.  Any certificates created on those systems since 2006 should also be re-generated.</p>
