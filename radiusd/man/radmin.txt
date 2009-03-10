@@ -1,4 +1,4 @@
-RADMIN(8)		FreeRADIUS Administration Tool		     RADMIN(8)
+RADMIN(8)	     FreeRADIUS Server Administration Tool	     RADMIN(8)
 
 
 
@@ -6,14 +6,15 @@ NAME
        radmin - FreeRADIUS Administration tool
 
 SYNOPSIS
-       radmin [path]
+       radmin	[-d   config_directory]  [-e  command]	[-f  socket_file]  [-i
+       input_file] [-n name] [-o output_file] [-q]
 
 DESCRIPTION
-       Tool  that connects to the control socket of the FreeRADIUS server, and
-       gives a command-liner interface to the server.
+       FreeRADIUS Server administration tool  that  connects  to  the  control
+       socket of a running server, and gives a command-line interface to it.
 
-       At this time, only a few commands are supported.	 Please type "help" at
-       the  command  prompt  for detailed information about the supported com-
+       At this time, only a few commands are supported.  Please type "help" at
+       the command prompt for detailed information about  the  supported  com-
        mands.
 
 WARNING
@@ -21,12 +22,87 @@ WARNING
        ments.  Changes may be made at any time to the commands accepted by the
        server, and/or to the resulting output.
 
+       The  security  protections  offered by this command are pretty minimal.
+       If someone has permission to connect to the server, they can do	almost
+       anything, from stopping the server, to changing it's configuration.
+
+       Please exercise caution when using this command!
+
+OPTIONS
+       The following command-line options are accepted by the program.
+
+       -d config directory
+	      Defaults to /etc/raddb. radmin looks here for the server config-
+	      uration files to find the "listen" section that defines the con-
+	      trol socket filename.
+
+       -e command
+	      Run command and exit.
+
+       -f socket_file
+	      Specify  the socket filename directly.  The radiusd.conf file is
+	      not read.
+
+       -i input_file
+	      Reads input from the specified file.  If not specified, stdin is
+	      used.  This also sets "-q".
+
+       -n mname
+	      Read raddb/name.conf instead of raddb/radiusd.conf.
+
+       -o output_file
+	      Write output to the specified file.  If not specified, stdout is
+	      used.  This also sets "-q".
+
+       -q     Quiet mode.
+
+COMMANDS
+       The commands implemented by the command-line interface are almost  com-
+       pletely controlled by the server.  There are a few commands interpreted
+       locally by radmin:
+
+       reconnect
+	      Reconnect to the server.
+
+       quit   Exit from radmin.
+
+       exit   Exit from radmin.
+
+       The other commands are implemented by the server.  Type "help"  at  the
+       prompt for more information.
+
+EXAMPLES
+       debug file /var/log/radius/bob.log
+	      Set debug logs to /var/log/radius/bob.log.  There is very little
+	      checking of this filename.  Rogue administrators may be able use
+	      this  command  to  over-write almost any file on the system.  If
+	      those administrators have write access  to  "radius.conf",  they
+	      can do the same thing without radmin, too.
+
+       debug condition '(User-Name == "bob")'
+	      Enable  debugging  output for all requests that match the condi-
+	      tion.  Any "unlang" condition is valid here.  The  condition  is
+	      parsed  as  a string, so it must be enclosed in single or double
+	      quotes.  Strings	enclosed  in  double-quotes  must  have  back-
+	      slashes and the quotation marks escaped inside of the string.
+
+	      Only one debug condition can be active at a time.
+
+       debug condition '((User-Name == "bob") || (Packet-Src-IP-
+       Address == 192.0.2.22))'
+	      A  more  complex	condition  that  enables  debugging output for
+	      requests containing User-Name "bob", or requests that  originate
+	      from source IP address 192.0.2.22.
+
+       debug condition
+	      Disable debug conditionals.
+
 SEE ALSO
-       radiusd.conf(5), raddb/sites-available/control
+       unlang(5), radiusd.conf(5), raddb/sites-available/control
 
 AUTHOR
        Alan DeKok <aland@freeradius.org>
 
 
 
-				  4 Sept 2008			     RADMIN(8)
+				 10 Sept 2008			     RADMIN(8)

@@ -13,7 +13,7 @@ DESCRIPTION
        FreeRADIUS is a high-performance and highly configurable RADIUS server.
        It supports many database back-ends such as flat-text files, SQL, LDAP,
        Perl, Python, etc.  It also supports many authentication protocols such
-       as  PAP,	 CHAP,	MS-CHAP(v2),  HTTP  Digest, and EAP (EAP-MD5, EAP-TLS,
+       as  PAP,  CHAP,	MS-CHAP(v2),  HTTP  Digest, and EAP (EAP-MD5, EAP-TLS,
        PEAP, EAP-TTLS, EAP-SIM, etc.).
 
        Version 2.0 has preliminary support for Cisco's	VLAN  Query  Protocol,
@@ -22,7 +22,7 @@ DESCRIPTION
 OPTIONS
        The following command-line options are accepted by the server.
 
-       -C     Check  the  configuration	 and  exit immediately.	 If there is a
+       -C     Check  the  configuration  and  exit immediately.  If there is a
 	      problem reading the configuration, then  the  server  will  exit
 	      with a non-zero status code.  If the configuration appears to be
 	      acceptable, then the server will exit with a zero status code.
@@ -33,7 +33,7 @@ OPTIONS
 	      status  code  when run with -C, but may still exit with an error
 	      when run normally.
 
-	      See the output of radiusd -XC for an informative list  of	 which
+	      See the output of radiusd -XC for an informative list  of  which
 	      modules are checked for correct configuration, and which modules
 	      are skipped, and therefore not checked.
 
@@ -66,8 +66,8 @@ OPTIONS
 	      This option MUST be used in conjunction with "-i".
 
        -s     Run in "single server" mode.  The server normally runs with mul-
-	      tiple threads and/or processes, which  can  lower	 its  response
-	      time to requests.	 Some systems have issues with threading, how-
+	      tiple threads and/or processes, which  can  lower  its  response
+	      time to requests.  Some systems have issues with threading, how-
 	      ever, so running in "single server" mode	may  help  to  address
 	      those  issues.   In single server mode, the server will also not
 	      "daemonize" (auto-background) itself.
@@ -76,7 +76,7 @@ OPTIONS
 
        -X     Debugging mode.  Equivalent to -sfxx -l stdout
 
-       -x     Finer-grained debug mode. In this mode  the  server  will	 print
+       -x     Finer-grained debug mode. In this mode  the  server  will  print
 	      details  of every request on it's stdout output. You can specify
 	      this option multiple times (-x -x or -xx) to get	more  detailed
 	      output.
@@ -88,10 +88,10 @@ DEBUGGING
 
        1)  Always  run the server in debugging mode ( radiusd -X ).  We cannot
        emphasize this enough.  If you are not running the server in  debugging
-       mode,  you  will	 not be able to see what is doing, and you will not be
+       mode,  you  will  not be able to see what is doing, and you will not be
        able to correct any problems.
 
-       2) When editing the radiusd.conf file, change as	 little	 as  possible,
+       2) When editing the radiusd.conf file, change as  little  as  possible,
        especially  in the authorize{} section.	The ordering of the modules is
        critical for the server to be able to "automatically" figure out how to
        handle the request.  Changing the order of the modules ensures that the
@@ -103,7 +103,7 @@ DEBUGGING
        will "just work".
 
        4) Gradually add more complex configurations to the server, while test-
-       ing them as you go.  If you start off by configuring the	 server	 in  a
+       ing them as you go.  If you start off by configuring the  server  in  a
        complex configuration, you will never be able to debug it.
 
        5)  Ask	questions  on the mailing list (freeradius-users@lists.freera-
@@ -112,7 +112,7 @@ DEBUGGING
        Without it, your message will get ignored.
 
 BACKGROUND
-       RADIUS is a protocol spoken  between  an	 access	 server,  typically  a
+       RADIUS is a protocol spoken  between  an  access  server,  typically  a
        device  connected to several modems or ISDN lines, and a radius server.
        When a user connects to the access server, (s)he is asked for a	login-
        name  and  a  password.	This  information  is  then sent to the radius
@@ -126,7 +126,7 @@ BACKGROUND
        patible logfile /var/log/radwtmp.
 
 CONFIGURATION
-       Radiusd	uses  a	 number of configuration files. Each file has it's own
+       Radiusd	uses  a  number of configuration files. Each file has it's own
        manpage describing the format of the file. These files are:
 
        radiusd.conf
@@ -135,7 +135,7 @@ CONFIGURATION
 
        dictionary
 	      This  file is usually static. It defines all the possible RADIUS
-	      attributes used in the other  configuration  files.   You	 don't
+	      attributes used in the other  configuration  files.   You  don't
 	      have  to	modify	it.  It includes other dictionary files in the
 	      same directory.
 
@@ -150,7 +150,7 @@ CONFIGURATION
 
        huntgroups
 	      Defines  the  huntgroups that you have, and makes it possible to
-	      restrict access to certain huntgroups  to	 certain  (groups  of)
+	      restrict access to certain huntgroups  to  certain  (groups  of)
 	      users.
 
        users  Here the users are defined. On a typical setup, this file mainly
