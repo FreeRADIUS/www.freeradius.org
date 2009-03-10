@@ -24,7 +24,7 @@ WARNING
 
        The  security  protections  offered by this command are pretty minimal.
        If someone has permission to connect to the server, they can do	almost
-       anything, from stopping the server, to changing it's configuration.
+       anything, from stopping the server, to changing its configuration.
 
        Please exercise caution when using this command!
 
@@ -97,12 +97,127 @@ EXAMPLES
        debug condition
 	      Disable debug conditionals.
 
+FULL LIST OF COMMANDS
+       add <command>
+	      do sub-command of add
+
+       add client <command>
+	      Add client configuration commands
+
+       add client file <filename>
+	      Add new client definition from <filename>
+
+       debug <command>
+	      debugging commands
+
+       debug condition [condition]
+	      Enable debugging for requests matching [condition]
+
+       debug level <number>
+	      Set debug level to <number>.  Higher is more debugging.
+
+       debug file [filename]
+	      Send all debugging output to [filename]
+
+       hup [module]
+	      sends a HUP signal to the server, or optionally to one module
+
+       reconnect
+	      reconnect to a running server
+
+       terminate
+	      terminates the server, and cause it to exit
+
+       set <command>
+	      do sub-command of set
+
+       set module <command>
+	      set module commands
+
+       set module config <module> variable value
+	      set configuration for <module>
+
+       set home_server <command>
+	      set home server commands
+
+       set home_server state <ipaddr> <port> [alive|dead]
+	      set state for given home server
+
+       show <command>
+	      do sub-command of show
+
+       show client <command>
+	      do sub-command of client
+
+       show client config <ipaddr>
+	      show configuration for given client
+
+       show client list
+	      shows list of global clients
+
+       show debug <command>
+	      show debug properties
+
+       show debug condition
+	      Shows current debugging condition.
+
+       show debug level
+	      Shows current debugging level.
+
+       show debug file
+	      Shows current debugging file.
+
+       show home_server <command>
+	      do sub-command of home_server
+
+       show home_server config <ipaddr> <port>
+	      show configuration for given home server
+
+       show home_server list
+	      shows list of home servers
+
+       show home_server state <ipaddr> <port>
+	      shows state of given home server
+
+       show module <command>
+	      do sub-command of module
+
+       show module config <module>
+	      show configuration for given module
+
+       show module flags <module>
+	      show other module properties
+
+       show module list
+	      shows list of loaded modules
+
+       show module methods <module>
+	      show sections where <module> may be used
+
+       show uptime
+	      shows time at which server started
+
+       show version
+	      Prints version of the running server
+
+       show xml <reference>
+	      Prints out configuration as XML
+
+       stats <command>
+	      do sub-command of stats
+
+       stats client [auth/acct] <ipaddr>
+	      show statistics for client
+
+       stats home_server <ipaddr> <port>
+	      show statistics for home server
+
 SEE ALSO
-       unlang(5), radiusd.conf(5), raddb/sites-available/control
+       unlang(5), radiusd.conf(5), raddb/sites-available/control-socket
 
 AUTHOR
        Alan DeKok <aland@freeradius.org>
 
 
 
-				 10 Sept 2008			     RADMIN(8)
+				  15 Feb 2009			     RADMIN(8)

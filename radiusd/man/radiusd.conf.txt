@@ -1,4 +1,4 @@
-radiusd.conf(5)		 FreeRADIUS configuration file	       radiusd.conf(5)
+radiusd.conf(5) 	 FreeRADIUS configuration file	       radiusd.conf(5)
 
 
 
@@ -6,13 +6,13 @@ NAME
        radiusd.conf - configuration file for the FreeRADIUS server
 
 DESCRIPTION
-       The  radiusd.conf  file	resides	 in  the radius database directory, by
-       default /etc/raddb.   It	 defines  the  global  configuration  for  the
+       The  radiusd.conf  file	resides  in  the radius database directory, by
+       default /etc/raddb.   It  defines  the  global  configuration  for  the
        FreeRADIUS RADIUS server.
 
 CONTENTS
        There  are  a  large number of configuration parameters for the server.
-       Most are documented in the file itself as comments.   This  page	 docu-
+       Most are documented in the file itself as comments.   This  page  docu-
        ments  only  the format of the file.  Please read the radiusd.conf file
        itself for more information.
 
@@ -25,7 +25,7 @@ CONTENTS
        This "feature" can be (ab)used in certain interesting ways.
 
 FILE FORMAT
-       The  file  format  is  line-based,  like	 many other Unix configuration
+       The  file  format  is  line-based,  like  many other Unix configuration
        files.  Each entry in the file must be placed  on  a  line  by  itself,
        although continuations are supported.
 
@@ -98,22 +98,22 @@ FILE FORMAT
 
 REFERENCES
        The  value  of a variable can reference another variable.  These refer-
-       ences are evaluated when the configuration file is loaded, which	 means
+       ences are evaluated when the configuration file is loaded, which  means
        that  there  is no run-time cost associated with them.  This feature is
-       most useful for turning long, repeated pieces of text into short	 ones.
+       most useful for turning long, repeated pieces of text into short  ones.
 
        Variables are referenced by ${variable_name}, as in the following exam-
        ples.
 
 
 		   foo = bar	   # set variable 'foo' to value 'bar'
-		   who = ${foo}	   # sets variable 'who' to value of variable 'foo'
+		   who = ${foo}    # sets variable 'who' to value of variable 'foo'
 		   my = "${foo} a" # sets variable 'my' to "bar a"
 
 
        If the variable exists in a section or subsection, it can be referenced
        as ${section.subsection.variable}.  Forward references are not allowed.
-       Relative references are allowed, by pre-pending the name	 with  one  or
+       Relative references are allowed, by pre-pending the name  with  one  or
        more period.
 
 
@@ -135,7 +135,7 @@ REFERENCES
 
 
        Will  set  variable  blogs  to the value of variable detailfile, of the
-       detail module, which is in the modules  section	of  the	 configuration
+       detail module, which is in the modules  section	of  the  configuration
        file.
 
 FILES

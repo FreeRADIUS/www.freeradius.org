@@ -3,7 +3,7 @@
 <HTML><HEAD><TITLE>Man page of unlang</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>unlang</H1>
-Section: FreeRADIUS Processing un-language (5)<BR>Updated: 16 Jan 2008<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Processing un-language (5)<BR>Updated: 01 Jul 2008<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -45,15 +45,11 @@ section, and MODULE RETURN CODES, below.
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         chap  # call the CHAP module
-<BR>
         sql   # call the SQL module
-<BR>
         ...
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -68,15 +64,11 @@ CONDITIONS, below, for documentation on the format of the conditions.
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         if (condition) {
-<BR>
                 ...
-<BR>
         }
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -90,15 +82,11 @@ returned false.
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         else {
-<BR>
                 ...
-<BR>
         }
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -112,15 +100,11 @@ returned false, and if the specified condition evaluates to true.
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         elsif (condition) {
-<BR>
                 ...
-<BR>
         }
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -138,15 +122,11 @@ No statement other than &quot;case&quot; can appear in a &quot;switch&quot; bloc
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         switch &quot;string&quot; {
-<BR>
                 ...
-<BR>
         }
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -163,15 +143,11 @@ A &quot;case&quot; statement cannot appear outside of a &quot;switch&quot; block
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         case string {
-<BR>
                 ...
-<BR>
         }
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -184,15 +160,11 @@ entry can exist in a &quot;switch&quot; section.
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         case {
-<BR>
                 ...
-<BR>
         }
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -206,17 +178,12 @@ the current block.
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         update &lt;list&gt; {
-<BR>
                 attribute = value
-<BR>
                 ...
-<BR>
         }
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -224,10 +191,11 @@ the current block.
 
 <P>
 The &lt;list&gt; can be one of &quot;request&quot;, &quot;reply&quot;, &quot;proxy-request&quot;,
-&quot;proxy-reply&quot;, or &quot;control&quot;.  The &quot;control&quot; list is the list of
-attributes maintainted internally by the server that controls how the
-server processes the request.  Any attribute that does not go in a
-packet on the network will generally be placed in the &quot;control&quot; list.
+&quot;proxy-reply&quot;, &quot;coa&quot;, &quot;disconnect&quot;, or &quot;control&quot;.  The &quot;control&quot; list
+is the list of attributes maintainted internally by the server that
+controls how the server processes the request.  Any attribute that
+does not go in a packet on the network will generally be placed in the
+&quot;control&quot; list.
 <P>
 For backwards compatibility with older versions, &quot;check&quot; is accepted
 as a synonym for &quot;control&quot;.  The use of &quot;check&quot; is deprecated, and
@@ -237,6 +205,14 @@ For EAP methods with tunneled authentication sessions (i.e. PEAP and
 EAP-TTLS), the inner tunnel session can also reference
 &quot;outer.request&quot;, &quot;outer.reply&quot;, and &quot;outer.control&quot;.  Those references
 allow you to address the relevant list in the outer tunnel session.
+<P>
+The &quot;coa&quot; and &quot;disconnect&quot; sections can only be used when the server
+receives an Access-Request or Accounting-Request.  Adding one or more
+attributes to either of the &quot;coa&quot; or &quot;disconnect&quot; list causes server
+to originate a CoA-Request or Disconnect-Request packet.  That packet
+is sent when the current Access-Request or Accounting-Request has been
+finished, and a reply sent to the NAS.  See
+raddb/sites-available/originate-coa for additional information.
 <P>
 The only contents permitted in an &quot;update&quot; section are attributes and
 values.  The contents of the &quot;update&quot; section are described in the
@@ -257,19 +233,13 @@ or update an attribute list.
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         redundant {
-<BR>
                 sql1    # try this
-<BR>
                 sql2    # try this only if sql1 fails.
-<BR>
                 ...
-<BR>
         }
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -289,17 +259,12 @@ or update an attribute list.
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         load-balance {
-<BR>
                 ldap1   # 50% of requests go here
-<BR>
                 ldap2   # 50% of requests go here
-<BR>
         }
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -327,17 +292,12 @@ or update an attribute list.
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         redundant-load-balance {
-<BR>
                 ldap1   # 50%, unless ldap2 is down, then 100%
-<BR>
                 ldap2   # 50%, unless ldap1 is down, then 100%
-<BR>
         }
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -356,11 +316,9 @@ conditions
 
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         (foo)
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -387,11 +345,9 @@ codes are given in MODULE RETURN CODES, below.
 <DT>Negation<DD>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         (!foo)
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -408,13 +364,10 @@ Short-circuit operators
 
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         (foo || bar)
-<BR>
         (foo &amp;&amp; bar)
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -432,11 +385,9 @@ false.
 <DT>Comparisons<DD>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         (foo == bar)
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -483,19 +434,13 @@ as seen in the examples below.
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         if (User-Name == &quot;bob&quot;) {
-<BR>
                 ...
-<BR>
         if (Framed-IP-Address &gt; 127) {
-<BR>
                 ...
-<BR>
         if (Service-Type == Login-User) { 
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -556,11 +501,9 @@ Run-time variables are referenced using the following syntax
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         %{Variable-Name}
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -594,11 +537,9 @@ Attribute lists may be referenced via the following syntax
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         %{&lt;list&gt;:Attribute-Name}
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -617,17 +558,12 @@ string is replaced with the value of that attribute.  Some examples are:
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         %{User-Name}
-<BR>
         %{request:User-Name} # same as above
-<BR>
         %{reply:User-Name}
-<BR>
         %{outer.reqest:User-Name} # from inside of a TTLS/PEAP tunnel
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -658,11 +594,9 @@ resulting string returned from the module.
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         %{module: string ...}
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -745,11 +679,9 @@ file.  There is no need for commas or semi-colons after the value.
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         Attribute-Name = value
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -772,7 +704,7 @@ the following, with the given meaning.
 <DL COMPACT>
 <DT>=<DD>
 Add the attribute to the list, if and only if an attribute of the same
-name is already present in that list.
+name is not already present in that list.
 <DT>:=<DD>
 Add the attribute to the list.  If any attribute of the same name is
 already present in that list, its value is replaced with the value of
@@ -876,27 +808,17 @@ When a module is called, it returns one of the following codes to
 <P>
 
 <DL COMPACT><DT><DD>
-<TT>
-
+<PRE>
         notfound        information was not found
-<BR>
         noop            the module did nothing
-<BR>
         ok              the module succeeded
-<BR>
         updated         the module updated the request
-<BR>
         fail            the module failed
-<BR>
         reject          the module rejected the request
-<BR>
         userlock        the user was locked out
-<BR>
         invalid         the configuration was invalid
-<BR>
         handled         the module has handled the request itself
-
-</TT>
+</PRE>
 
 </DL>
 
@@ -942,6 +864,6 @@ Alan DeKok &lt;<A HREF="mailto:aland@deployingradius.com">aland@deployingradius.
 This document was created by
 manhtml,
 using the manual pages.<BR>
-Time: 05:18:32 GMT, May 09, 2008
+Time: 12:02:39 GMT, March 10, 2009
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

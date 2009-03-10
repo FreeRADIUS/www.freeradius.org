@@ -3,7 +3,7 @@
 <HTML><HEAD><TITLE>Man page of RADMIN</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>RADMIN</H1>
-Section: FreeRADIUS Server Administration Tool (8)<BR>Updated: 10 Sept 2008<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Server Administration Tool (8)<BR>Updated: 15 Feb 2009<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -59,7 +59,7 @@ accepted by the server, and/or to the resulting output.
 <P>
 The security protections offered by this command are pretty minimal.
 If someone has permission to connect to the server, they can do almost
-anything, from stopping the server, to changing it's configuration.
+anything, from stopping the server, to changing its configuration.
 <P>
 Please exercise caution when using this command!
 <A NAME="lbAF">&nbsp;</A>
@@ -130,10 +130,91 @@ address 1922.
 Disable debug conditionals.
 </DL>
 <A NAME="lbAI">&nbsp;</A>
+<H2>FULL LIST OF COMMANDS</H2>
+
+<DL COMPACT>
+<DT>add&nbsp;&lt;command&gt;<DD>
+do sub-command of add
+<DT>add&nbsp;client&nbsp;&lt;command&gt;<DD>
+Add client configuration commands
+<DT>add&nbsp;client&nbsp;file&nbsp;&lt;filename&gt;<DD>
+Add new client definition from &lt;filename&gt;
+<DT>debug&nbsp;&lt;command&gt;<DD>
+debugging commands
+<DT>debug&nbsp;condition&nbsp;[condition]<DD>
+Enable debugging for requests matching [condition]
+<DT>debug&nbsp;level&nbsp;&lt;number&gt;<DD>
+Set debug level to &lt;number&gt;.  Higher is more debugging.
+<DT>debug&nbsp;file&nbsp;[filename]<DD>
+Send all debugging output to [filename]
+<DT>hup&nbsp;[module]<DD>
+sends a HUP signal to the server, or optionally to one module
+<DT>reconnect<DD>
+reconnect to a running server
+<DT>terminate<DD>
+terminates the server, and cause it to exit
+<DT>set&nbsp;&lt;command&gt;<DD>
+do sub-command of set
+<DT>set&nbsp;module&nbsp;&lt;command&gt;<DD>
+set module commands
+<DT>set&nbsp;module&nbsp;config&nbsp;&lt;module&gt;&nbsp;variable&nbsp;value<DD>
+set configuration for &lt;module&gt;
+<DT>set&nbsp;home_server&nbsp;&lt;command&gt;<DD>
+set home server commands
+<DT>set&nbsp;home_server&nbsp;state&nbsp;&lt;ipaddr&gt;&nbsp;&lt;port&gt;&nbsp;[alive|dead]<DD>
+set state for given home server
+<DT>show&nbsp;&lt;command&gt;<DD>
+do sub-command of show
+<DT>show&nbsp;client&nbsp;&lt;command&gt;<DD>
+do sub-command of client
+<DT>show&nbsp;client&nbsp;config&nbsp;&lt;ipaddr&gt;<DD>
+show configuration for given client
+<DT>show&nbsp;client&nbsp;list<DD>
+shows list of global clients
+<DT>show&nbsp;debug&nbsp;&lt;command&gt;<DD>
+show debug properties
+<DT>show&nbsp;debug&nbsp;condition<DD>
+Shows current debugging condition.
+<DT>show&nbsp;debug&nbsp;level<DD>
+Shows current debugging level.
+<DT>show&nbsp;debug&nbsp;file<DD>
+Shows current debugging file.
+<DT>show&nbsp;home_server&nbsp;&lt;command&gt;<DD>
+do sub-command of home_server
+<DT>show&nbsp;home_server&nbsp;config&nbsp;&lt;ipaddr&gt;&nbsp;&lt;port&gt;<DD>
+show configuration for given home server
+<DT>show&nbsp;home_server&nbsp;list<DD>
+shows list of home servers
+<DT>show&nbsp;home_server&nbsp;state&nbsp;&lt;ipaddr&gt;&nbsp;&lt;port&gt;<DD>
+shows state of given home server
+<DT>show&nbsp;module&nbsp;&lt;command&gt;<DD>
+do sub-command of module
+<DT>show&nbsp;module&nbsp;config&nbsp;&lt;module&gt;<DD>
+show configuration for given module
+<DT>show&nbsp;module&nbsp;flags&nbsp;&lt;module&gt;<DD>
+show other module properties
+<DT>show&nbsp;module&nbsp;list<DD>
+shows list of loaded modules
+<DT>show&nbsp;module&nbsp;methods&nbsp;&lt;module&gt;<DD>
+show sections where &lt;module&gt; may be used
+<DT>show&nbsp;uptime<DD>
+shows time at which server started
+<DT>show&nbsp;version<DD>
+Prints version of the running server
+<DT>show&nbsp;xml&nbsp;&lt;reference&gt;<DD>
+Prints out configuration as XML
+<DT>stats&nbsp;&lt;command&gt;<DD>
+do sub-command of stats
+<DT>stats&nbsp;client&nbsp;[auth/acct]&nbsp;&lt;ipaddr&gt;<DD>
+show statistics for client
+<DT>stats&nbsp;home_server&nbsp;&lt;ipaddr&gt;&nbsp;&lt;port&gt;<DD>
+show statistics for home server
+</DL>
+<A NAME="lbAJ">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<A HREF="/radiusd/man/unlang.html">unlang</A>(5), <A HREF="../man/radiusd.conf.html">radiusd.conf</A>(5), raddb/sites-available/control
-<A NAME="lbAJ">&nbsp;</A>
+<A HREF="/radiusd/man/unlang.html">unlang</A>(5), <A HREF="../man/radiusd.conf.html">radiusd.conf</A>(5), raddb/sites-available/control-socket
+<A NAME="lbAK">&nbsp;</A>
 <H2>AUTHOR</H2>
 
 Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt;
@@ -149,13 +230,14 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 <DT><A HREF="#lbAF">OPTIONS</A><DD>
 <DT><A HREF="#lbAG">COMMANDS</A><DD>
 <DT><A HREF="#lbAH">EXAMPLES</A><DD>
-<DT><A HREF="#lbAI">SEE ALSO</A><DD>
-<DT><A HREF="#lbAJ">AUTHOR</A><DD>
+<DT><A HREF="#lbAI">FULL LIST OF COMMANDS</A><DD>
+<DT><A HREF="#lbAJ">SEE ALSO</A><DD>
+<DT><A HREF="#lbAK">AUTHOR</A><DD>
 </DL>
 <HR>
 This document was created by
 manhtml,
 using the manual pages.<BR>
-Time: 11:52:49 GMT, March 10, 2009
+Time: 12:02:07 GMT, March 10, 2009
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>
