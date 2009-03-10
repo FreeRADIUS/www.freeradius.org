@@ -1,0 +1,331 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- News</title>
+    <link rel="stylesheet" href="/css/style.css" />
+	<meta name="keywords" content="press,release,2007" />
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+  </head>
+  <body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>Press Releases</h1>
+
+<dl>
+
+<dt><span class="date">05 December 2008</span> - <b><a name="2.1.3">Version 2.1.3</a></b> has been released.</dt>
+
+<dd><p>The focus of this release is stability.</p>
+<h3>Feature Improvements</h3>
+<ul>
+<li>Allow running with <tt>user=radiusd</tt> and binding to secure sockets.</li>
+<li>Start sending Status-Server "are you alive" messages earlier, which helps with proxying multiple realms to a home server.</li>
+<li>Removed thread pool code from <tt>rlm_perl</tt>.  It's not necessary.</li>
+<li>Added example Perl configuration to <tt>raddb/modules/perl</tt></li>
+<li>Force OpenSSL to support certificates with SHA256. This seems to be necessary for WiMAX certs.</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Fix Debian patch to allow it to build.</li>
+<li>Fix potential NULL dereference in debugging mode on certain platforms for TTLS and PEAP inner tunnels.</li>
+<li>Fix uninitialized memory in handling of vendor definitions</li>
+<li>Fix parsing of quoted (but non-string) attributes in the <tt>users</tt< file.</li>
+<li>Initialize unknown NAS IP to 255.255.255.255, rather than 0.0.0.0</li>
+<li>use <tt>SUN_LEN</tt> in control socket, to avoid truncation on some platforms.</li>
+<li>Correct internal handling of <tt>debug condition</tt> to prevent it from being over-written.</li>
+<li>Check return code of regcomp in <tt><a href="/radiusd/man/unlang.html">unlang</a></tt>, so that invalid regular expressions are caught rather than mishandled.</li>
+<li>Make <tt>rlm_sql</tt> use &lt;ltdl.h&gt;.  Addresses bug <a href="http://bugs.freeradius.org/show_bug.cgi?id=610">#610</a>.</li>
+<li>Document list "type = status" better.  Closes bug <a href="http://bugs.freeradius.org/show_bug.cgi?id=580">#580</a>.</li>
+<li>Set "default days" for certificates, because OpenSSL won't do it.  This closes bug <a href="http://bugs.freeradius.org/show_bug.cgi?id=615">#615</a>.</li>
+<li>Reference correct list in example raddb/modules/ldap. Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=596">#596</a>.</li>
+<li>Increase default schema size for <a href="http://freeradius.org/rfc/rfc2866.html#Acct-Session-Id">Acct-Session-Id</a> to 64. Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=540">#540</a>.</li>
+<li>Fix use of temporary files in dialup-admin.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=605">#605</a> and addresses <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-4474">CVE-2008-4474.</a></li>
+<li>Addressed a number of minor issues found by <a href="http://scan.coverity.com">Coverity</a>.</li>
+<li>Added DHCP option 150 to the dictionary.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=618">#618</a>.</li>
+</ul>
+</dd>
+<br />
+
+<dt><span class="date">04 December 2008</span> - <b><a name="2.1.2">Version 2.1.2</a></b> has been released.</dt>
+<dd><em>Due to packaging issues, 2.1.2 has been pulled from the net.</em></dd>
+<br />
+
+<dt><span class="date">25 September 2008</span> - <b><a name="2.1.1">Version 2.1.1</a></b> has been released.</dt>
+
+<dd><p>The focus of this release is stability.</p>
+<h3>Feature Improvements</h3>
+<ul>
+<li>Many more options and features are available via radmin.  See <a href="/radiusd/man/radmin.html">man radmin</a> and <tt>raddb/sites-available/control-socket</tt>.</li>
+<li> Many more commands available via the control socket.  Connect via <tt>radmin</tt>, and type <tt>help</tt> for more information.</li>
+<li>Added dictionary.networkphysics and dictionary.lancom.</li>
+<li>Calculate WiMAX MIP keys, and added sample WiMAX SQL tables.</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Fixed bug that made radmin not work.</li>
+<li>Fixed Suse && Debian package scripts.</li>
+<li>Fixed issues with dynamic clients.</li>
+<li>Fixed configure checks for <tt>-lreadline</tt></li>
+<li><tt>rlm_sqlippool</tt> no longer needs to be linked to <tt>rlm_sql</tt>.</li>
+<li>Add statistics for detail file listeners.  This closes bug #593.</li>
+<li>Fixed printing of some WiMAX attributes.</li>
+<li>Fixed double free on <tt>exit()</tt> in <tt>rlm_attr_filter</tt>.</li>
+<li>Fixed build issues on Solaris.</li>
+<li>Fixed fast session resumption for EAP-TLS.</li>
+</ul>
+</dd>
+<br />
+
+<dt><span class="date">05 September 2008</span> - <b><a name="2.1.0">Version 2.1.0</a></b> has been released.</dt>
+
+<dd><p>The focus of this release is features.</p>
+<h3>Feature Improvements</h3>
+<ul>
+<li>Clients may now be defined dynamically, based on IP address.  See <tt>raddb/sites-available/dynamic-clients</tt>.</li>
+<li>SNMP support is now available through an experimental Perl script.  See <tt>scripts/snmp-proxy/README</tt></li>
+<li>SNMP statistics are also available through Status-Server packets.  See <tt>raddb/sites-available/status</tt></li>
+<li>Added more Microsoft attributes from bug #568.</li>
+<li>The <tt>linelog</tt> module has more functionality and flexibility. See <tt>raddb/modules/linelog</tt>.</li>
+<li>The debugging output has been sanitized.  It should be much more readable.
+<li>Debug logs can now be turned on/off while the server is running, for a user, group, realm, etc.  See the <tt>log</tt> section of <tt>raddb/radiusd.conf</tt>.</li>
+<li>Added support for WiMAX Forum attributes.  The dynamic keys are not yet calculated.  See <tt>share/dictionary.wimax</tt></li>
+<li>Added session resumption for PEAP and TTLS.  See <tt>raddb/eap.conf</tt>, and the <tt>cache</tt> sub-section.</li>
+<li>Added <tt>radmin</tt> command-line tool for administering a running server.  See <a href="/radiusd/man/radmin.html">man radmin</a> and <tt>raddb/sites-available/control-socket</tt>.</li></ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Double escaping of '\\' in the <tt>users</tt> (and some other) files has been fixed.  If you have '\\' in the <tt>users</tt> file, your configuration <b>will need to be checked, and fixed!</b></li>
+<li>Parse <tt>security</tt> section of <tt>radiusd.conf</tt>.  This was accidentally deleted in 2.0.5.  Closes bug #566.</li>
+<li>Bind to interface before IP, which allows DHCP sockets to listen on "*" for multiple interfaces.</li>
+<li>Fix handling of giaddr in DHCP responses.</li>
+<li>Corrected parsing of <tt>status_check</tt> in home_server so that it works.</li>
+<li>Fix hints so that "Puser" works again.</li>
+<li>Removed length restrictions on attribute names in the dictionaries.</li>
+<li>Update socket code to avoid C compiler optimizations.</li>
+</ul>
+</dd>
+
+<br />
+<dt><span class="date">07 June 2008</span> - <b><a name="2.0.5">Version 2.0.5</a></b> has been released.</dt>
+
+<dd><p>The focus of this release is stability.</p>
+<h3>Feature Improvements</h3>
+<ul>
+<li>Permit SQL <tt>authorize_reply_query</tt> to be empty.</li>
+<li>Allow setting response packet type in Post-Proxy-Type Fail handler.</li>
+<li>Added <tt>install-chown</tt> target to set correct permission and ownership <tt>make RADMIN=radmin RGROUP=radius install-chown</tt>.</li>
+<li> Support for LDAP-Group and other dynamic comparison attribute in <a href="/radiusd/man/unlang.html">unlang</a>.  Developed from a patch by Jason Alderfer.</li>
+<li>Added chroot support.  See <tt>radiusd.conf</tt> for comments.</li>
+<li>Allow clients of 0/0.  We do not recommend using this, though.</li>
+<li>Moved many module configurations into <tt>raddb/modules/*</tt>.</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Allow proxying to virtual servers for accounting packets, too.</li>
+<li>Added <tt>num_fields</tt> function to PostgreSQL client.  This lets clients be read from a PostgreSQL database.</li>
+<li>Updated proxy fallback mechanism to validate fallback servers, and to process fallback requests in a child thread.</li>
+<li>The <tt>realm</tt> module returns <tt>ok</tt> for LOCAL realms, not <tt>noop</tt>.</li>
+<li>Fixed some DHCP code handling.  The examples should now work.</li>
+</ul>
+</dd>
+
+<br />
+<dt><span class="date">30 April 2008</span> - <b><a name="2.0.4">Version 2.0.4</a></b> has been released.</dt>
+
+<dd><p>The focus of this release is stability.</p>
+<h3>Feature Improvements</h3>
+<ul>
+<li>Allow "virtual_server" in "realm" and "home_server" sections. See <tt>raddb/proxy.conf</tt> and <tt>raddb/sites-available/virtual.example.com</tt>.</li>
+<li>Allow "passwd" module to be listed in "accounting" and "post-auth".</li>
+<li>Added "fallback" to "home_server_pool" configuration, to handle the case of all home servers being dead.  See <tt>raddb/proxy.conf</tt>.</li>
+<li>Added sample text to <tt>raddb/sites-available/inner-tunnel</tt> which can simplify debugging of inner tunnel configurations.</li>
+<li>Added regular expression matching in realm names.  See <tt>raddb/proxy.conf</tt> for examples.</li>
+<li>Added simple DHCP server functionality.  For comments, see <tt>raddb/sites-available/dhcp</tt>.</li>
+<li>Added file globbing capabilities to detail file reader</li>
+<li>Added sample <tt>raddb/sites-available/robust-proxy-accounting</tt>.</li>
+<li>Clients in SQL can now refer to a virtual server. Patch from Michael Bretterklieber.</li>
+<li>Added some examples of creating RADIUS administrator in SQL, and assigning appropriate access rights.</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Install all files in <tt>raddb/sites-available</tt>.</li>
+<li>Allow non-threaded builds.</li>
+<li>Don't treat '0x' as special for known attributes that are not of type "octets".</li>
+<li>Fix log error in rlm_pap.</li>
+<li>Remove documentation about non-existent functionality.</li>
+<li>Updated warning messages in debug output.</li>
+<li>Fix handling of timeouts in rlm_ldap that affected 64-bit systems. This fix was supposed to go into 2.0.3, but did not make it.</li>
+<li>Fix event handling in debug mode for failed proxy requests.</li>
+<li>Fix memleak in fifos.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=537">bug #537</a>.</li>
+<li>Fix memleak on blocked threads.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=538">bug #538</a>.</li>
+<li>Perform additional checks on NULL realms.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=541">bug #541</a>.</li>
+<li>Fix handling of "clients" in "listen" section.</li>
+<li>When detail file cannot process a packet, sleep for longer to let the rest of the server do something.</li>
+<li>Add missing table to <tt>raddb/sql/mssql/schema.sql</tt>.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=545">bug #545</a>.</li>
+<li>Updated rlm_sql_postgresql to build with PostgreSQL 7.x.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=533">bug #533</a>.</li>
+<li>Fix "postauth" of rlm_ldap to look for LDAP-UserDn in the correct place.</li>
+<li>Update rlm_attr_filter for some corner cases.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=543">bug #543</a>.</li>
+<li>Fixed memory leak in libfreeradius event handler.</li>
+<li>In the SQL Accounting on/off queries, remove the restriction that the session time had to be zero.</li>
+</ul>
+</dd>
+
+<br />
+<dt><span class="date">17 March 2008</span> - <b><a name="2.0.3">Version 2.0.3</a></b> has been released.</dt>
+
+<dd><p>The focus of this release is stability.</p>
+<h3>Feature Improvements</h3>
+<ul>
+<li> Updated <tt>raddb/certs/ca.cnf</tt> with extensions to allow the ca.der file to be imported as a CA on Symbian and Windows Mobile devices.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=524">bug #524</a>.</li>
+<li>Enable multiple matches in the <tt>hints</tt> file via <tt>Fall-Through = Yes</tt>.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=477">bug #477</a>.</li>
+<li> Added preliminary SQLite driver, contibuted by Apple.  Untested, with no sample configuration.  This addresses <a href="http://bugs.freeradius.org/show_bug.cgi?id=470">bug #470</a>.</li>
+<li>Updated the logging sub-system so that log messages from libfreeradius can go to the log file, and not stdout.</li>
+<li>Added <tt>dictionary.rfc5176</tt> with two new values for the Error-Cause attribute.</li>
+<li>The EAP module now checks for instance name, and uses that for authentication.  This avoids the need to set Auth-Type when there are multiple instances of the EAP module.</li>
+<li>Added the Module-Return-Code attribute, which contains the value returned by the previous module (ok/fail/update/etc.).</li>
+
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Corrected typos in rlm_dbm.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=521">bug #521</a> and <a href="http://bugs.freeradius.org/show_bug.cgi?id=522">bug #522</a>.</li>
+<li>Detail file <tt>listen</tt> sections now work much better.</li>
+<li>Don't allow old <tt>log_*</tt> to over-ride new format.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=525">bug #525</a></li>
+<li>Initialize allocated memory in Oracle SQL driver.  This fixes occasional crashes on some systems.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=518">bug #518</a></li>
+<li>Call correct function in rlm_protocol_filter.  This enables the module to build.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=512">bug #512</a>.</li>
+<li>Added deprecated flag to build for rlm_krb5.  This allows it to run on 64-bit systems.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=491">bug #491</a>.</li>
+<li>Corrected error message when parsing invalid configurations so that the server does not crash.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=527">bug #527</a>.</li>
+<li>Fix handling of timeouts in rlm_ldap that affected 64-bit systems.</li>
+<li>Handle <tt>$INCLUDE</tt>'s in the <tt>instantiate</tt> section.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=528">bug #528</a>.</li>
+<li>Format updates to <a href="/radiusd/man/">man</a> pages from Stephen Gran.</li>
+</ul>
+</dd>
+
+<br />
+<dt><span class="date">5 March 2008</span> <b><a name="client-1.1.6">FreeRADIUS Client Version 1.1.6</b> has been released.</dt>
+
+<dd>
+<ul>
+<li>Added dead_time functionality / configuration.</li>
+<li>Merge in fixes and enhancements from 'radiusclient-ng'.</li>
+<li>Improved functionality for embedded operation.  In use in <a href="http://www.freeswitch.org">FreeSWITCH</a> and <a href="http://www.openser.org">OpenSER</a> projects.</li>
+<li>Wrap <tt>gethostby*()</tt> family of calls with threadsafe variants.</li>
+<li>Change <tt>UINT4</tt> to <tt>uint32_t</tt>, <tt>int</tt> to <tt>size_t</tt>, etc.</li>
+<li>Fixed wrong usage of <tt>strncat</tt> function in several places.</li>
+</ul>
+</dd>
+
+<br />
+<dt><span class="date">14 February 2008</span> - <b><a name="2.0.2">Version 2.0.2</a></b> has been released.</dt>
+
+<dd><p>This version corrects a number of flaws in the handling of EAP sessions and <tt>detail</tt> files.  We recommend that all sites using 2.0.x and EAP upgrade to 2.0.2.</p>
+
+<h3>Feature Improvements</h3>
+<ul>
+<li>Added notes on how to debug the server in <tt><a href="/radiusd/man/radiusd.conf.html">radiusd.conf</a></tt>.</li>
+<li>Moved all <tt>log_*</tt> in <tt><a href="/radiusd/man/radiusd.conf.html">radiusd.conf</a></tt> to <tt>log{}</tt> section,  The old configurations are still accepted.</li>
+<li>Added <tt>ca.der</tt> target in <tt>raddb/certs/Makefile</tt>.  This is needed for importing CA certs into Windows.</li>
+<li>Added ability send raw attributes via <tt>Raw-Attribute = 0x0102...</tt> This is available only debug builds.  It can be used to create invalid packets! Use it with care.</li>
+<li>Permit <tt><a href="/radiusd/man/unlang.html">unlang</a></tt> policies inside of <tt>Auth-Type{}</tt> sub-sections of the <tt>authenticate{}</tt> section.  This makes some policies easier to implement.</li>
+<li> <tt>listen</tt> sections can now have <tt>type = proxy</tt>.  This lets you control which IP is used for sending proxied requests.</li>
+<li>Added note on SSL performance to <tt>raddb/certs/README</tt></li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>Fixed reading of <tt>detail</tt> files.</li>
+<li>Allow inner EAP tunneled sessions to be proxied.</li>
+<li>Corrected MySQL schemas.</li>
+<li>syslog now works in <tt>log{}</tt> section.</li>
+<li>Corrected typo in raddb/certs/client.cnf</li>
+<li> Updated <tt>raddb/sites-available/proxy-inner-tunnel</tt> to permit authentication to work.</li>
+<li>Ignore zero-length attributes in received packets.</li>
+<li>Correct memcpy when dealing with unknown attributes.</li>
+<li>Corrected debugging messages in attr_rewrite.</li>
+<li> Corrected generation of <tt><a href="/rfc/attributes.html#State">State</a></tt> attribute in EAP.  This fixes the "failed to remember handler" issues.</li>
+<li> Fall back to <tt>DEFAULT</tt> realm if no realm was found. Based on a patch from Vincent Magnin.</li>
+<li>Updated example <tt>raddb/sites-available/proxy-inner-tunnel</tt></li>
+<li> Corrected behavior of <tt>attr_filter</tt> to match documentation.  This is NOT backwards compatible with previous versions!  See <tt>man <a href="/radiusd/man/rlm_attr_filter.html">rlm_attr_filter</a></tt> for details.</li>
+</ul>
+</dd>
+
+<br />
+<dt><span class="date">January 2, 2008</span> - <b><a name="2.0.1">Version 2.0.1</a></b> has been released.</dt>
+
+<dd>
+
+<h3>Feature Improvements</h3>
+<ul>
+<li><tt><a href="/radiusd/man/unlang.html">Unlang</a></tt> now permits type-specific checks, and requires using strings less often.  e.g. <tt>if (Framed-IP-Address > 192.168.0.1) { ...</tt>.</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li> The <tt>acct_unique</tt> module has been updated to understand the deprecated (but still used) <tt>Client-IP-Address</tt> attribute.</li>
+<li>The EAP-MSCHAPv2 module no longer leaks MS-CHAP2-Success in packets.</li>
+<li>Fixed crash in the <tt>dbm</tt> module.</li>
+<li>Corrected parsing of <tt>syslog</tt> entries in <tt>radiusd.conf</tt>.</li>
+</ul>
+</dd>
+
+<br />
+<dt><span class="date">January 10, 2008</span> - <b><a name="2.0.0">Version 2.0</a></b> has
+been released.</dt>
+
+<dd><p>We are pleased to announce that <a
+href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo
+var="freeradius_version" -->.tar.bz2">Version <!--#echo
+var="freeradius_version" --></a> <a
+href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo
+var="freeradius_version" -->.tar.bz2.sig">(sig)</a> has been released.
+This version is a tremendous step forward in <a
+href="/features/">functionality</a> for the server.</p>
+
+<h3>Feature Improvements</h3>
+<ul>
+<li>simple policy language (see <tt>man <a href="/radiusd/man/unlang.html">unlang</a></tt>)</li>
+<li>virtual servers (<tt>raddb/sites-available/README</tt>)</li>
+<li>IPv6 support</li>
+<li>better proxy support (<tt>raddb/proxy.conf</tt>)</li>
+<li>More EAP types</li>
+<li>Debugging output should be <em>much</em> easier to understand</li>
+<li>VMPS support</li>
+<li>More modules have been moved to "stable" status (python, etc.)</li>
+<li>SQL configuration has been cleaned up (see <tt>raddb/sql/*</tt>)</li>
+<li>limited support for HUP.  (The configuration for some modules is re-loaded on HUP.  Nothing else is reloaded.)</li>
+<li>check configuration and exit (<tt>radiusd -C</tt>)</li>
+<li>Server core is now event based (simpler, more powerful)</li>
+</ul>
+
+<h3>Bug Fixes</h3>
+<ul>
+<li>The server re-design has resulted in simple fixes for many issues that
+were too difficult to correct in Version 1.1.x.</li>
+</ul>
+</dd>
+</dl>
+
+<h2>Older Press Releases</h2>
+
+<a href="2007.html">2007</a>,
+<a href="2006.html">2006</a>,
+<a href="2005.html">2005</a>. 
+
+</div><!--content-->
+
+<!--#include virtual="/footer.html" -->
+
+</body>
+</html>
+

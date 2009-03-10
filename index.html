@@ -47,38 +47,11 @@ improvements added in every release.</p>
 
 <h2>Recent News</h2>
 
-<p><span class="date">2008.12.05</span> Version <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
+<p><span class="date">2009.03.10</span> Version <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
 <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius_version" -->.tar.bz2.sig">(sig)</a>
 has been released.  The focus of this release is stability.</p>
 
-<h3>Feature Improvements</h3>
-<ul>
-<li>Allow running with <tt>user=radiusd</tt> and binding to secure sockets.</li>
-<li>Start sending Status-Server "are you alive" messages earlier, which helps with proxying multiple realms to a home server.</li>
-<li>Removed thread pool code from <tt>rlm_perl</tt>.  It's not necessary.</li>
-<li>Added example Perl configuration to <tt>raddb/modules/perl</tt></li>
-<li>Force OpenSSL to support certificates with SHA256. This seems to be necessary for WiMAX certs.</li>
-</ul>
-
-<h3>Bug Fixes</h3>
-<ul>
-<li>Fix Debian patch to allow it to build.</li>
-<li>Fix potential NULL dereference in debugging mode on certain platforms for TTLS and PEAP inner tunnels.</li>
-<li>Fix uninitialized memory in handling of vendor definitions</li>
-<li>Fix parsing of quoted (but non-string) attributes in the <tt>users</tt< file.</li>
-<li>Initialize unknown NAS IP to 255.255.255.255, rather than 0.0.0.0</li>
-<li>use <tt>SUN_LEN</tt> in control socket, to avoid truncation on some platforms.</li>
-<li>Correct internal handling of <tt>debug condition</tt> to prevent it from being over-written.</li>
-<li>Check return code of regcomp in <tt><a href="/radiusd/man/unlang.html">unlang</a></tt>, so that invalid regular expressions are caught rather than mishandled.</li>
-<li>Make <tt>rlm_sql</tt> use &lt;ltdl.h&gt;.  Addresses bug <a href="http://bugs.freeradius.org/show_bug.cgi?id=610">#610</a>.</li>
-<li>Document list "type = status" better.  Closes bug <a href="http://bugs.freeradius.org/show_bug.cgi?id=580">#580</a>.</li>
-<li>Set "default days" for certificates, because OpenSSL won't do it.  This closes bug <a href="http://bugs.freeradius.org/show_bug.cgi?id=615">#615</a>.</li>
-<li>Reference correct list in example raddb/modules/ldap. Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=596">#596</a>.</li>
-<li>Increase default schema size for <a href="http://freeradius.org/rfc/rfc2866.html#Acct-Session-Id">Acct-Session-Id</a> to 64. Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=540">#540</a>.</li>
-<li>Fix use of temporary files in dialup-admin.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=605">#605</a> and addresses <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2008-4474">CVE-2008-4474.</a></li>
-<li>Addressed a number of minor issues found by <a href="http://scan.coverity.com">Coverity</a>.</li>
-<li>Added DHCP option 150 to the dictionary.  Closes <a href="http://bugs.freeradius.org/show_bug.cgi?id=618">#618</a>.</li>
-</ul>
+<!--#include virtual="/press/release_214.html" -->
 
 <p><span class="date">2008.05.13</span> A security bug in <a href="/security.html#openssl">OpenSSL</a> on Debian or Ubuntu systems may affect FreeRADIUS on those systems.  We recommend that everyone using Debian or Ubuntu upgrade their OpenSSL packages immediately.  Any certificates created on those systems since 2006 should also be re-generated.</p>
 
