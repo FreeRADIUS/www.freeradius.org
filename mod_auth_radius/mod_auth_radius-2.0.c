@@ -49,7 +49,7 @@
  * project, please see <http://www.apache.org/>.
  *
  *
- *  CVS $Id: mod_auth_radius-2.0.c,v 1.8 2006/06/06 16:40:35 aland Exp $
+ *  CVS $Id$
  */
 
 /*
@@ -300,6 +300,9 @@
 #include "apr_general.h"
 #include "apr_tables.h"
 #include "apr_strings.h"
+/* Apache 2.1+ */
+#include "ap_provider.h"
+#include "mod_auth.h"
 
 module AP_MODULE_DECLARE_DATA radius_auth_module;
 
@@ -734,8 +737,9 @@ add_cookie(request_rec *r, apr_table_t *header, char *cookie, time_t expires)
   if (expires != 0) {
     char buffer[1024];
 
-    strftime(buffer, sizeof(buffer), "%a %d-%b-%Y %H:%M:%S %Z", expires);
-    ap_snprintf(new_cookie, 1024, "%s=%s; path=/ expires=%s;",
+    strftime(buffer, sizeof(buffer), "%a %d-%b-%Y %H:%M:%S %Z",
+	     gmtime(&expires));
+    apr_snprintf(new_cookie, 1024, "%s=%s; path=/; expires=%s;",
 		cookie_name, cookie, buffer);
   } else {
     apr_snprintf(new_cookie, 1024,
@@ -950,7 +954,7 @@ radius_authenticate(request_rec *r, radius_server_config_rec *scr,
   }
 
   if (total_length < RADIUS_HEADER_LEN) {
-    ap_snprintf(errstr, MAX_STRING_LEN, "Packet is too small");
+    apr_snprintf(errstr, MAX_STRING_LEN, "Packet is too small");
     return FALSE;
   }
 
@@ -989,8 +993,11 @@ find_attribute(radius_packet_t *packet, unsigned char type)
   }
   return attr;
 }
-#define radcpy(STRING, ATTR) {memcpy(STRING, ATTR->data, ATTR->length - 2); \
-                              (STRING)[ATTR->length - 2] = 0;}
+#define radcpy(STRING, ATTR) do { \
+				  unsigned char len = ATTR->length; \
+				  if (len >= 2) len-=2; \
+				  memcpy(STRING, ATTR->data, len); \
+				  (STRING)[len] = 0;} while (0)
 
 
 /* authentication module utility functions */
@@ -1078,7 +1085,7 @@ check_pw(request_rec *r, radius_server_config_rec *scr, const char *user, const 
 	}
 
 	if ((a_state->length <= 2) || (a_reply->length <= 2)) {
-	  ap_snprintf(errstr, MAX_STRING_LEN, "RADIUS access-challenge received with invalid State or Reply-Message");
+	  apr_snprintf(errstr, MAX_STRING_LEN, "RADIUS access-challenge received with invalid State or Reply-Message");
 	  break;
 	}
 
@@ -1139,8 +1146,11 @@ note_challenge_auth_failure(request_rec *r, char *user, char *message)
  * basic authentication...
  */
 
-static int
-authenticate_basic_user(request_rec *r)
+/* common stuff for both Apache 2.0 and 2.1+ */
+int
+authenticate_basic_user_common(request_rec *r,
+                               const char* user,
+                               const char* sent_pw)
 {
   radius_dir_config_rec *rec =
     (radius_dir_config_rec *)ap_get_module_config (r->per_dir_config, &radius_auth_module);
@@ -1148,21 +1158,25 @@ authenticate_basic_user(request_rec *r)
   radius_server_config_rec *scr = (radius_server_config_rec *)
     ap_get_module_config (s->module_config, &radius_auth_module);
   conn_rec *c = r->connection;
-  const char *sent_pw;
   char errstr[MAX_STRING_LEN];
-  int res, min;
+  int min;
   char *cookie;
   char *state = NULL;
   char message[256];
   time_t expires;
   struct stat buf;
   
-  if (!rec->active || !scr->radius_ip)	/*  not active here, or no radius */
-    return DECLINED;                    /*  server declared, decline      */
-  
-  if ((res = ap_get_basic_auth_pw(r, &sent_pw)))
-    return res;
+  /* not active here, just decline */
+  if (!rec->active)
+    return DECLINED;
 
+  /* no server declared, decline but note for debugging purposes -joy */
+  if (!scr->radius_ip) {
+    ap_log_error(APLOG_MARK, APLOG_NOERRNO | APLOG_WARNING, 0, r->server,
+                 "AuthRadiusActive set, but no RADIUS server IP - missing AddRadiusAuth in this context?");
+    return DECLINED;
+  }
+  
   if (r->user[0] == 0)		/* NUL users can never be let in */
     return HTTP_UNAUTHORIZED;
 
@@ -1202,6 +1216,7 @@ authenticate_basic_user(request_rec *r)
     ap_log_error(APLOG_MARK, APLOG_NOERRNO | APLOG_DEBUG, 0, r->server," No cookie found.  Trying RADIUS authentication.\n");
   }
 
+#if 0
   /*
    *  This is for one-time passwords, so we don't get too badly out of sync .
    *  Also, don't bother doing the stat for requests we're proxying.
@@ -1210,6 +1225,7 @@ authenticate_basic_user(request_rec *r)
       (stat(r->filename, &buf) < 0)) {
     return HTTP_NOT_FOUND; /* can't stat it, so we can't authenticate it */
   }
+#endif
 
   /* Check the password, and fill in the error string if an error happens */
   if (!(check_pw(r, scr, r->user, sent_pw, state, message, errstr))) {
@@ -1244,9 +1260,57 @@ authenticate_basic_user(request_rec *r)
   return OK;
 }
 
+/* Apache 2.1+ */
+static authn_status
+authenticate_basic_user_newargs(request_rec *r,
+                                const char *user,
+                                const char *password)
+{
+  int normalreturnvalue = authenticate_basic_user_common(r, user, password);
+
+  if (normalreturnvalue == OK)
+    return AUTH_GRANTED;
+  else if (normalreturnvalue == HTTP_UNAUTHORIZED)
+    return AUTH_DENIED;
+  else
+    return AUTH_GENERAL_ERROR;
+  /* AUTH_USER_NOT_FOUND would be nice, but the typical RADIUS server
+     never gives any such information, it just sends an Access-Reject
+     packet, no reasons given
+   */
+}
+
+/* Apache 2.0 */
+static int
+authenticate_basic_user(request_rec *r)
+{
+  int res;
+  const char *sent_pw;
+  
+  /* this used to say just if ((res=...)), which relied on the fact that
+     OK is defined as 0, and the other states are non-0, which is then
+     used in a typical C fashion... but it's a bad idea, really, we should
+     explicitly check if it's not OK, whatever that may be -joy
+   */
+  res = ap_get_basic_auth_pw(r, &sent_pw);
+  if (res != OK)
+    return res;
+
+  return authenticate_basic_user_common(r, r->user, sent_pw);
+}
+
+/* Apache 2.1+ */
+static const authn_provider authn_radius_provider = {
+    &authenticate_basic_user_newargs,
+    NULL
+};
+
 static void register_hooks(apr_pool_t *p)
 {
-    ap_hook_check_user_id(authenticate_basic_user,NULL,NULL,APR_HOOK_MIDDLE);
+/* Apache 2.1+ */
+    static const char * const aszPost[]={ "mod_authz_user.c", NULL };
+    ap_register_provider(p, AUTHN_PROVIDER_GROUP, "radius", "0", &authn_radius_provider);
+    ap_hook_check_user_id(authenticate_basic_user,NULL,aszPost,APR_HOOK_MIDDLE);
 }
 
 module AP_MODULE_DECLARE_DATA radius_auth_module =

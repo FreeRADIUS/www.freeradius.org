@@ -49,7 +49,7 @@
  * project, please see <http://www.apache.org/>.
  *
  *
- *  CVS $Id: mod_auth_radius.c,v 1.18 2006/06/06 16:40:35 aland Exp $
+ *  CVS $Id$
  */
 
 /*
@@ -302,7 +302,7 @@ module radius_auth_module;
 #define DPRINTF printf
 #else
 #define DPRINTF
-#endif DEBUG_RADIUS
+#endif /* DEBUG_RADIUS */
 
 /*
   RFC 2138 says that this port number is wrong, but everyone's using it.
@@ -730,8 +730,9 @@ add_cookie(request_rec *r, table *header, char *cookie, time_t expires)
   if (expires != 0) {
     char buffer[1024];
 
-    strftime(buffer, sizeof(buffer), "%a %d-%b-%Y %H:%M:%S %Z", expires);
-    ap_snprintf(new_cookie, 1024, "%s=%s; path=/ expires=%s;",
+    strftime(buffer, sizeof(buffer), "%a %d-%b-%Y %H:%M:%S %Z",
+	     gmtime(&expires));
+    ap_snprintf(new_cookie, 1024, "%s=%s; path=/; expires=%s;",
 		cookie_name, cookie, buffer);
   } else {
     ap_snprintf(new_cookie, 1024,
@@ -983,8 +984,11 @@ find_attribute(radius_packet_t *packet, unsigned char type)
   }
   return attr;
 }
-#define radcpy(STRING, ATTR) {memcpy(STRING, ATTR->data, ATTR->length - 2); \
-                              (STRING)[ATTR->length - 2] = 0;}
+#define radcpy(STRING, ATTR) do { \
+				  unsigned char len = ATTR->length; \
+				  if (len >= 2) len-=2; \
+				  memcpy(STRING, ATTR->data, len); \
+				  (STRING)[len] = 0;} while (0)
 
 
 /* authentication module utility functions */
