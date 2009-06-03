@@ -56,6 +56,15 @@ to a few thousand writes per second.  This database limitation in turn
 lowers RADIUS performance to about the same number of packets per
 second.</p>
 
+<p>The best way to determine the performance of a server is via
+testing.  FreeRADIUS comes with a tool called <tt>radclient</tt>,
+which can be used for basic peformance testing.  A third party tool
+called <a hrf="http://networkradius.com/radperf.html">RadPerf</a> is
+also available.  It uses the FreeRADIUS libraries to implement the
+RADIUS portion, and then builds more complex functionality on top of
+that.  It can be used to simulate user logins, and can auto-generate
+accounting packets for user sessions.
+
 </div>
 
 <!--#include virtual="/footer.html" -->
