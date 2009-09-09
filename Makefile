@@ -37,3 +37,9 @@ radiusd.stamp:
 radiusd: radiusd.stamp
 	[ -d radiusd ] || cvs checkout radiusd
 	[ -d radiusd ] && cvs update -A -d radiusd
+
+.PHONY: push
+push:
+	git push
+	ssh freeradius.org@liberty "cd www && git pull origin master:master"
+	ssh freeradius.org@www.tr.freeradius.org "cd public_html && git pull origin master:master"
