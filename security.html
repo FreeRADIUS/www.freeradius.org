@@ -42,6 +42,18 @@ LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
 and put in reverse-chronological order.
        -->
 
+      <li><span class="date">2009.09.09</span> <a
+name="1.1.7">v1.1.7</a> - Anyone who can send packets to the server
+can crash it by sending a Tunnel-Password attribute in an
+Access-Request packet.  This vulnerability is not otherwise
+exploitable.  We have released 1.1.8 to correct this vulnerability.
+<p>
+This issue is similar to the previous Tunnel-Password issue noted
+below.  The vulnerable versions are 1.1.3 through 1.1.7.  Version 2.x
+is not affected.
+</p>
+      </li>
+
      <li><span class="date">2008.05.13</span> <p>A bug added to  <a name="openssl">OpenSSL</a> on <a href="http://lists.debian.org/debian-security-announce/2008/msg00152.html">Debian</a> and <a href="https://lists.ubuntu.com/archives/ubuntu-security-announce/2008-May/000705.html">Ubuntu</a> systems means that SSL keys on those systems may be guessable.</p>
 <p>
 We recommend that administrators using OpenSSL on Debian or Ubuntu
