@@ -1,5 +1,5 @@
 # Set this to where ever the files are located.
-MAN	:= ../../../git.freeradius.org/man
+MAN	:= ../../../stable.git.freeradius.org/man
 
 VPATH	:= $(MAN)/man1:$(MAN)/man5:$(MAN)/man8
 

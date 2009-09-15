@@ -3,7 +3,7 @@
 <HTML><HEAD><TITLE>Man page of unlang</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>unlang</H1>
-Section: FreeRADIUS Processing un-language (5)<BR>Updated: 01 Jul 2008<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Processing un-language (5)<BR>Updated: 21 Apr 2009<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -21,7 +21,13 @@ Python modules rlm_perl, or rlm_python.
 <P>
 The goal of the language is to allow simple policies to be written
 with minimal effort.  Those policies are then applied when a request
-is being processed.
+is being processed.  Requests are processed through virtual servers
+(including the default one), in the sections titled &quot;authorize&quot;,
+&quot;authenticate&quot;, &quot;post-auth&quot;, &quot;preacct&quot;, &quot;accounting&quot;, &quot;pre-proxy&quot;,
+&quot;post-proxy&quot;, and &quot;session&quot;.
+<P>
+These policies cannot be used in any other part of the configuration
+files, such as module or client configuration.
 <A NAME="lbAD">&nbsp;</A>
 <H2>KEYWORDS</H2>
 
@@ -207,12 +213,15 @@ EAP-TTLS), the inner tunnel session can also reference
 allow you to address the relevant list in the outer tunnel session.
 <P>
 The &quot;coa&quot; and &quot;disconnect&quot; sections can only be used when the server
-receives an Access-Request or Accounting-Request.  Adding one or more
-attributes to either of the &quot;coa&quot; or &quot;disconnect&quot; list causes server
-to originate a CoA-Request or Disconnect-Request packet.  That packet
-is sent when the current Access-Request or Accounting-Request has been
-finished, and a reply sent to the NAS.  See
-raddb/sites-available/originate-coa for additional information.
+receives an Access-Request or Accounting-Request.  Use &quot;request&quot; and
+&quot;reply&quot; instead of &quot;coa&quot; when the server receives a CoA-Request or
+Disconnect-Request packet.
+<P>
+Adding one or more attributes to either of the &quot;coa&quot; or &quot;disconnect&quot;
+list causes server to originate a CoA-Request or Disconnect-Request
+packet.  That packet is sent when the current Access-Request or
+Accounting-Request has been finished, and a reply sent to the NAS.
+See raddb/sites-available/originate-coa for additional information.
 <P>
 The only contents permitted in an &quot;update&quot; section are attributes and
 values.  The contents of the &quot;update&quot; section are described in the
@@ -413,7 +422,7 @@ in &quot;Simple conditions&quot;, above.  They can also appear (with some
 exceptions noted below) on the left-hand or on the right-hand side of
 a comparison.
 <DL COMPACT>
-<DT>Numbers<DD>
+<DT>numbers<DD>
 Numbers are composed of decimal digits.  Floating point, hex, and
 octal numbers are not supported.  The maximum value for a number is
 machine-dependent, but is usually 32-bits, including one bit for a
@@ -449,14 +458,14 @@ as seen in the examples below.
 </DL>
 
 <DL COMPACT>
-<DT>strings<DD>
+<DT>&quot;strings&quot;<DD>
 <DL COMPACT><DT><DD>
 Double-quoted strings are expanded by inserting the value of any
 variables (see VARIABLES, below) before being evaluated.  If
 the result is a number it is evaluated in a numerical context.
 <P>
 String length is limited by line-length, usually about 8000
-characters.  A double quote character (&quot;) can be used in a string via
+characters.  A double quote character can be used in a string via
 the normal back-slash escaping method.  (&quot;like \&quot;this\&quot; !&quot;)
 </DL>
 
@@ -729,32 +738,28 @@ Remove all matching attributes from the list.  Both the attribute name
 and value have to match in order for the attribute to be removed from
 the list.
 <DT>==<DD>
-Remove all non-matching attributes from the list.  Both the attribute
-name and value have to match in order for the attribute to remain in
-the list.
+Keep all matching attributes.  Both the attribute name and value have
+to match in order for the attribute to remain in the list.
 <P>
 Note that this operator is very different than the '=' operator listed
 above!
 <DT>&lt;=<DD>
-Enforce that the integer value of the attribute is less than or equal
-to the value given here.  If there is no attribute of the same name in
-the list, the attribute is added with the given value, is with &quot;+=&quot;.
-If an attribute in the list exists, and has value less than given
-here, it's value is unchanged.  If an attribute in the list exists,
-and has a value greater than given here, then that value is replaced
-with the one given here.
+Keep all attributes having values less than, or equal to, the value
+given here.  Any larger value is replaced by the value given here.  If
+no attribute exists, it is added with the value given here, as with
+&quot;+=&quot;.
 <P>
 This operator is valid only for attributes of integer type.
 <DT>&gt;=<DD>
-Enforce that the integer value of the attribute is greater than or
-equal to the value given here.  If there is no attribute of the same
-name in the list, the attribute is added with the given value, is with
-&quot;+=&quot;.  If an attribute in the list exists, and has value greater than
-given here, it's value is unchanged.  If an attribute in the list
-exists, and has value less than given here, then that value is
-replaced with the one given here.
+Keep all attributes having values greater than, or equal to, the value
+given here.  Any larger value is replaced by the value given here.  If
+no attribute exists, it is added with the value given here, as with
+&quot;+=&quot;.
 <P>
 This operator is valid only for attributes of integer type.
+<DT>!*<DD>
+Delete all occurances of the named attribute, no matter what the
+value.
 </DL>
 </DL>
 
@@ -864,6 +869,6 @@ Alan DeKok &lt;<A HREF="mailto:aland@deployingradius.com">aland@deployingradius.
 This document was created by
 manhtml,
 using the manual pages.<BR>
-Time: 12:02:39 GMT, March 10, 2009
+Time: 12:56:15 GMT, September 15, 2009
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>
