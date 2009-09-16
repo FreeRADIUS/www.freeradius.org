@@ -16,24 +16,172 @@
 
 <div id="content">
 
-<h1>Documentation</h1>
+<h1>FreeRADIUS Version 2 Documentation</h1>
 
-Please see the <a href="http://wiki.freeradius.org">Wiki</a> for up to
-date documentation and How-To's.
+<p>Configuring the server can be a complex task.  This task is made
+easier in Version 2, as the documentation and "default" configurations
+have been improved.</p>
 
-<h2>Manual pages</h2>
+<p>If you are using Version 1 of the server, we suggest upgrading to
+Version 2.  Version 2 is much easier to install and configure.  The
+documentation available for Version 1 is thin, and often out of date.
+Even worse, there are many "third party" web sites that contain
+instructions for configuring FreeRADIUS</p>
+
+<hr />
+<em>Nearly all of the documentation and How-To's on "third party" web
+sites is wrong and outdated.  We <b>strongly</b> suggest that you do
+not follow any non-FreeRADIUS documentation.  If you do follow
+external documentation, the result will likely be a server that does
+not work.
+</em><hr />
+
+<h3>Installing the Server</h3>
+
+<p>Where possible, we recommend using the packaging system that is
+used by your operating system.  The version that is supplied by your
+OS might be out of date, but it is likely to work "out of the box".</p>
+
+<p>If you need to install it yourself, the
+Wiki <a href="http://wiki.freeradius.org/Installation">installation</a>
+page contains detailed instructions for a number of platforms.</p>
+
+<h3>Starting the Server</h3>
+
+<p>Once it has been installed, the first thing to do is <em>as little
+as possible</em>.  The default configuration is designed to work
+everywhere, and to provide nearly every authentication method.</p>
+
+<hr />
+<em>
+Do not edit the default configuration files until you understand what
+they do.  This means reading the documentation contained in the
+comments of the configuration files.
+</em><hr />
+
+<p>Many common configurations are documented as suggestions or
+examples in the configuration files.  Many common problems are
+discussed in the configuration files, along with suggested solutions.</p>
+
+<p>We recommend reading the configuration files, in large part because
+most of the configuration items are documented <em>only</em> in the
+comments in the configuration files.</p>
+
+<p>When the server has been installed on a new machine, the first step
+is to start it in debugging mode, as user <code>root</code>:</p>
+
+<pre>
+$ radiusd -X
+</pre>
+
+<p>This step demonstrates that the server is installed and configured
+properly.  If you have installed Version 2 from source, this step will
+also create the default certificates used for EAP authentication.</p>
+
+<h3>Configuring the Server</h3>
+
+<p>Changing the server configuration should be done via the following
+steps:</p>
+
+<ol>
+<li>Start with a "known working" configuration, such as supplied by
+the default installation.</li>
+<li>Make one <em>small</em> change to the configuration files.</li>
+<li>Start the server in debugging mode (<code>radiusd -X</code>).</li>
+<li>Verify that the results are what you expect
+<ul>
+<li>The debug output shows any configuration changes you have made.</li>
+<li>Databases (if used) are connected and operating.</li>
+<li>Test packets are accepted by the server.</li>
+<li>The debug output shows that the packets are being processed as you
+expect.</li>
+<li>The response packets are contain the attributes you expect to see.</li>
+</ul>
+</li>
+<li>If everything is OK, save a copy of the configuration, go back to
+step (2), and make another change.</li>
+<li>If anything goes wrong,
+<ul>
+<li>double-check the configuration</li>
+<li>read the <em>entire</em> debug output, looking for words
+like <code>error</code> or <code>warning</code>.  These messages
+usually contain descriptions of what went wrong, and suggestions for
+how it can be fixed.</li>
+<li>Try replace your configuration with a saved copy of a "known
+working" configuration, and start again.  This process can clean up
+errors caused by temporary edits, or edits that you have forgotten
+about.</li>
+<li>Ask for help on
+the <a href="/list/users.html">freeradius-users</a> mailing list.
+Include a description of what you are trying to do, and the <em>entire
+debugging output</em>, especially output showing the server receiving
+and processing test packets.  You may want to scrub "secret"
+information from the output before posting it.  (Shared secrets,
+passwords, etc.) </li>
+</ul>
+</li>
+</ol>
+
+<h3>Debugging the Server</h3>
+
+<p>This process is the same as configuring the server.  See the
+section above.</p>
+
+<p>Also:</p>
+
+<hr /><em>Run the server in debugging mode as suggested in the FAQ,
+README, INSTALL, <code>man</code> page, and daily on the mailing
+list.</em><hr />
+
+<p>We cannot emphasize that strongly enough.  There is <b>no way</b>
+for anyone to help you unless you post the debugging output along with
+your question.  If you do not post the debugging output, your question will either be ignored, or you will receive a number of responses saying</p>
+
+<hr /><em>Post the debug output as suggested in the FAQ, README,
+INSTALL, <code>man</code> page, and daily on the mailing
+list.</em><hr />
+
+<p>A large number of problems can be trivially solved by having an
+expert read the debug output.  If you do not post it to the list, you
+are making it impossible for anyone to help you.<p>
+
+<hr />
+<h2>Other sources of Documentation</h2>
+
+<h3>Wiki</h3>
+
+<p>The <a href="http://wiki.freeradius.org">Wiki</a> has a fair amount
+of documentation and How-To's.  It is also searchable.</p>
+
+<h3>Manual pages</h3>
 
 The on-line <a href="/radiusd/man/">man</a> pages contain documentation for
 <a href="/radiusd/man/index.html#programs">programs</a>, <a href="/radiusd/man/index.html#files">configuration files</a>, and <a href="/radiusd/man/index.html#modules">modules.</a>
 
-<h2>Related Documents</h2>
+<h3>Useful How-To's</h3>
+
+<p>The web site <a href="http://deployingradius.com">Deploying
+RADIUS</a> has a number of useful documents that are kept up to date
+with newer versions of the server.  These documents include:</p>
+
+<ul>
+<li>A step by step guide to <a href="http://deployingradius.com/documents/configuration/eap.html">configuring EAP</a>.</li>
+<li>How to <a href="http://deployingradius.com/documents/configuration/active_directory.html">configure Active Directory</a> for authentication.</li>
+<li>More instructions on <a href="http://deployingradius.com/documents/configuration/setup.html">setting up the server</a></li>
+<li>A <a href="http://deployingradius.com/documents/protocols/compatibility.html">table</a>
+describing which authentication protocols are compatible with back-end
+databases and password storage methods.</li>
+</ul>
+
+<h3>Older Documents</h3>
+
 <ul>
 <A HREF="EAPTLS.pdf">EAPTLS.pdf</A><BR>
 Another <A HREF="http://www.missl.cs.umd.edu/wireless/eaptls/?tag=missl-802-1">eap-tls HOWTO</A><BR>
 <A HREF="EAP-MD5.html">EAP-MD5</A><BR>
 </ul>
 
-<h2>Novell eDirectory Integration</h2>
+<h3>Novell eDirectory Integration</h3>
 
 An administration guide to <a href="radiusadmin.pdf">FreeRADIUS and Novell eDirectory</a>
 is available.  For the latest version of the "Integrating Novell eDirectory
