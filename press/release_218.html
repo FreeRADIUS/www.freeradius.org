@@ -1,0 +1,46 @@
+<h3>Feature improvements</h3>
+<ul>
+<li>Print more descriptive error message for too many EAP sessions.</li>
+This gives hints on what to do when "failed to store handler"</li>
+<li>Commands received from radmin are now printed on stdout when
+in debugging mode.</li>
+<li>Allow accounting packets to be written to a detail file, even
+if they were read from a different detail file.</li>
+<li>Added OpenSSL license exception (src/LICENSE.openssl)</li>
+</ul>
+
+<h3>Bug fixes</h3>
+<ul>
+<li>DHCP sockets can now set the broadcast flag before binding to a
+socket.  You need to set "broadcast = yes" in the DHCP listener.</li>
+<li>Be more restrictive on string parsing in the config files</li>
+<li>Fix password length in scripts/create-users.pl</li>
+<li>Be more flexible about parsing the detail file.  This allows
+it to read files where the attributes have been edited.</li>
+<li>Ensure that requests read from the detail file are cleaned up
+(i.e. don't leak) if they are proxied without a response.</li>
+<li>Write the PID file after opening sockets, not before
+(closes bug #29)</li>
+<li>Proxying large numbers of packets no longer gives error
+"unable to open proxy socket".</li>
+<li>Avoid mutex locks in libc after fork</li>
+<li>Retry packet from detail file if there was no response.</li>
+<li>Allow old-style dictionary formats, where the vendor name is the
+last field in an ATTRIBUTE definition.</li>
+<li>Removed all recursive use of mutexes.  Some systems just don't
+support this.</li>
+<li>Allow !* to work as documented.</li>
+<li>make templates work (see templates.conf)</li>
+<li>Enabled "allow_core_dumps" to work again</li>
+<li>Print better errors when reading invalid dictionaries</li>
+<li>Sign client certificates with CA, rather than server certs.</li>
+<li>Fix potential crash in rlm_passwd when file was closed</li>
+<li>Fixed corner cases in conditional dynamic expansion.</li>
+<li>Use InnoDB for MySQL IP Pools, to gain transactional support</li>
+<li>Apply patch to libltdl for CVE-2009-3736.</li>
+<li>Fixed a few issues found by LLVM's static checker</li>
+<li>Keep track of "bad authenticators" for accounting packets</li>
+<li>Keep track of "dropped packets" for auth/acct packets</li>
+<li>Synced the "debian" directory with upstream</li>
+<li>Made "unlang" use unsigned 32-bit integers, to match the
+dictionaries.</li>
