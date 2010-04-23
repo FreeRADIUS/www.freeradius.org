@@ -78,6 +78,52 @@ $ radiusd -X
 properly.  If you have installed Version 2 from source, this step will
 also create the default certificates used for EAP authentication.</p>
 
+<h3>Initial Tests</h3>
+
+<p>Testing authentication is simple.  Edit the <code>users</code>
+file, and add the following line of text at the top, before anything
+else:</p>
+
+<pre>
+testing Cleartext-Password := "password"
+</pre>
+
+<p>Start the server in debugging mode (<code>radiusd -X</code>), and
+run <code>radtest</code> from another terminal window:</p>
+
+<pre>
+$ radtest testing password 127.0.0.1 0 testing123
+</pre>
+
+<p>You <em>should</em> see the server respond with
+an <tt>Access-Accept</tt>.  If it doesn't, the debug log will show
+why.  Paste the output into
+the <a href="http://networkradius.com/freeradius.html">debug form</a>,
+and a colorized HTML version will be produced.  Look for red or yellow
+text, and read the messages.</p>
+
+<p>If you do see an <tt>Access-Accept</tt>,
+then <em>congratulations</em>, the following authentication methods
+now work for the <tt>testing</tt> user:</p>
+
+<pre>
+PAP, CHAP, MS-CHAPv1, MS-CHAPv2, PEAP, EAP-TTLS, EAP-GTC, EAP-MD5.
+</pre>
+
+<p>The next step is to add more users, and to configure databases.
+Those steps are outside of the scope of this short web page, but the
+general method to use is important, and is outlined in the next
+section.</p>
+
+<center>
+<b>
+The following steps outline the best known method for configuring the
+server.  Following them lets you create complex configurations with a
+minimm of effort.  Failure to follow them leads to days of frustration
+and wasted effort.
+</b>
+</center>
+
 <h3>Configuring the Server</h3>
 
 <p>Changing the server configuration should be done via the following
@@ -106,7 +152,9 @@ step (2), and make another change.</li>
 <li>read the <em>entire</em> debug output, looking for words
 like <code>error</code> or <code>warning</code>.  These messages
 usually contain descriptions of what went wrong, and suggestions for
-how it can be fixed.</li>
+how it can be fixed. (see also
+the <a href="http://networkradius.com/freeradius.html">debug
+form</a>)</li>
 <li>Try replace your configuration with a saved copy of a "known
 working" configuration, and start again.  This process can clean up
 errors caused by temporary edits, or edits that you have forgotten
