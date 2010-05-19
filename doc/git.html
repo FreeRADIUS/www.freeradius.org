@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>FreeRADIUS -- Documentation</title>
+    <link rel="stylesheet" href="/css/style.css" />
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>Git instructions for Community Documentation</h1>
+
+<p>Github has good documentation for how
+to <a href="http://help.github.com/forking/">fork</a> a project.  This
+page documents the FreeRADIUS-specific instructions.</p>
+
+<p>We use <b>account</b> to refer to your specific account.</p>
+
+<h2>Detailed Instructions</h2>
+
+<p>Set up a Github account.</p>
+
+<p>Go to
+the <a href="http://github.com/alandekok/freeradius-server">FreeRADIUS
+git</a> page.</p>
+
+<p>Click on <em>fork</em></p>
+
+<p><img src="20100125-8tykuy41tn39emcbsrxy545e9f.jpg"</img</p>
+
+<p>Clone the fork</p>
+
+<pre>
+$ git clone git@github.com:<b>account</b>/freeradius-server.git
+</pre>
+
+<p>Be sure that you have a copy of the "upstream" source, so that you
+can pull in changes made by other people.</p>
+
+<pre>
+$ cd freeradius-server
+$ git remote add upstream git@github.com:alandekok/freeradius-server.git
+$ git fetch upstream
+</pre>
+
+<p>Don't bother doing <tt>./configure / make / make install</tt>.
+
+<p>Edit the files in the <tt>doc/</tt> directory.
+
+<p>Commit them.</p>
+
+<pre>
+$ git commit <em>doc/filename</em>
+</pre>
+
+<p>Use a reasonable commit message describing what you changed.</p>
+
+<p>Push the changes back to Github.</p>
+
+<pre>
+$ git push origin master
+</pre>
+
+<p>Tell us that you made a change.  Go to your project’s page, and click
+the “pull request” button. Fill in a note, and pick who to send the
+request to.</p>
+
+<p>Periodically ull changes from "upstream".</p>
+
+<pre>
+$ git fetch upstream
+$ git merge upstream/master
+</pre>
+
+<p>If it says "merge conflict", the best thing to do is to revert to
+the "upstream" version.  For each file that has a conflict, do:</p>
+
+<pre>
+$ git checkout --theirs <em>doc/filename</em>
+</pre>
+
+<p>Followed by a commit</p>
+
+<pre>
+$ git commit <em>files</em>
+</pre>
+
+<p>And then push the changes back to Github.</p>
+
+<pre>
+$ git push origin master
+</pre>
+
+<p>That's it.</p>
+
+</div><!--content-->
+
+<!--#include virtual="/footer.html" -->
+
+  </body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->
