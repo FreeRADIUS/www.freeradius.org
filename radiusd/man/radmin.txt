@@ -18,15 +18,10 @@ DESCRIPTION
        mands.
 
 WARNING
-       This tool is experimental and should not be used in production environ-
-       ments.  Changes may be made at any time to the commands accepted by the
-       server, and/or to the resulting output.
-
-       The  security  protections  offered by this command are pretty minimal.
-       If someone has permission to connect to the server, they can do	almost
-       anything, from stopping the server, to changing its configuration.
-
-       Please exercise caution when using this command!
+       The  security  protections  offered  by this command are limited to the
+       permissions on the Unix domain socket, and  the	server	configuration.
+       If  someone can connect to the Unix domain socket, they have a substan-
+       tial amount of control over the server.
 
 OPTIONS
        The following command-line options are accepted by the program.
@@ -40,7 +35,7 @@ OPTIONS
 	      Run command and exit.
 
        -f socket_file
-	      Specify  the socket filename directly.  The radiusd.conf file is
+	      Specify the socket filename directly.  The radiusd.conf file  is
 	      not read.
 
        -i input_file
@@ -57,7 +52,7 @@ OPTIONS
        -q     Quiet mode.
 
 COMMANDS
-       The commands implemented by the command-line interface are almost  com-
+       The  commands implemented by the command-line interface are almost com-
        pletely controlled by the server.  There are a few commands interpreted
        locally by radmin:
 
@@ -68,30 +63,30 @@ COMMANDS
 
        exit   Exit from radmin.
 
-       The other commands are implemented by the server.  Type "help"  at  the
+       The  other  commands are implemented by the server.  Type "help" at the
        prompt for more information.
 
 EXAMPLES
        debug file /var/log/radius/bob.log
 	      Set debug logs to /var/log/radius/bob.log.  There is very little
 	      checking of this filename.  Rogue administrators may be able use
-	      this  command  to  over-write almost any file on the system.  If
-	      those administrators have write access  to  "radius.conf",  they
+	      this command to over-write almost any file on  the  system.   If
+	      those  administrators  have  write access to "radius.conf", they
 	      can do the same thing without radmin, too.
 
        debug condition '(User-Name == "bob")'
-	      Enable  debugging  output for all requests that match the condi-
-	      tion.  Any "unlang" condition is valid here.  The  condition  is
-	      parsed  as  a string, so it must be enclosed in single or double
-	      quotes.  Strings	enclosed  in  double-quotes  must  have  back-
+	      Enable debugging output for all requests that match  the	condi-
+	      tion.   Any  "unlang" condition is valid here.  The condition is
+	      parsed as a string, so it must be enclosed in single  or	double
+	      quotes.	Strings  enclosed  in  double-quotes  must  have back-
 	      slashes and the quotation marks escaped inside of the string.
 
 	      Only one debug condition can be active at a time.
 
        debug condition '((User-Name == "bob") || (Packet-Src-IP-
        Address == 192.0.2.22))'
-	      A  more  complex	condition  that  enables  debugging output for
-	      requests containing User-Name "bob", or requests that  originate
+	      A more complex  condition  that  enables	debugging  output  for
+	      requests	containing User-Name "bob", or requests that originate
 	      from source IP address 192.0.2.22.
 
        debug condition
@@ -220,4 +215,4 @@ AUTHOR
 
 
 
-				  15 Feb 2009			     RADMIN(8)
+				  19 Jul 2010			     RADMIN(8)

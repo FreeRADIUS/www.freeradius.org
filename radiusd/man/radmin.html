@@ -1,9 +1,8 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
-<HTML><HEAD><TITLE>Man page of RADMIN</TITLE>
+<HTML><HEAD><TITLE>Manpage of RADMIN</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>RADMIN</H1>
-Section: FreeRADIUS Server Administration Tool (8)<BR>Updated: 15 Feb 2009<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Server Administration Tool (8)<BR>Updated: 19 Jul 2010<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -53,15 +52,10 @@ commands.
 <A NAME="lbAE">&nbsp;</A>
 <H2>WARNING</H2>
 
-This tool is experimental and should not be used in production
-environments.  Changes may be made at any time to the commands
-accepted by the server, and/or to the resulting output.
-<P>
-The security protections offered by this command are pretty minimal.
-If someone has permission to connect to the server, they can do almost
-anything, from stopping the server, to changing its configuration.
-<P>
-Please exercise caution when using this command!
+The security protections offered by this command are limited to the
+permissions on the Unix domain socket, and the server
+configuration.  If someone can connect to the Unix domain socket, they
+have a substantial amount of control over the server.
 <A NAME="lbAF">&nbsp;</A>
 <H2>OPTIONS</H2>
 
@@ -236,8 +230,8 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 </DL>
 <HR>
 This document was created by
-manhtml,
+<A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 12:02:07 GMT, March 10, 2009
+Time: 17:17:31 GMT, February 06, 2011
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>
