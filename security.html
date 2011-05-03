@@ -42,63 +42,6 @@ LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
 and put in reverse-chronological order.
        -->
 
-      <li><span class="date">2010.10.01</span> <a
-name="CVE-2010-3697"><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-3697">CVE-2010-3697</a></a> - This issue was filed without consulting with us, and we do not agree with the assessment.
-<p>
-The correct summary is that if the database is down for a long time
-and the server is unresponsive, there are corner cases where known
-clients (not attackers) sending large amounts of data can cause the
-server to crash.
-</p>
-<p>
-In normal operation, when the server stops responding to packets
-(i.e. because the database is down), the NAS will stop sending it
-packets, and will fail over to another server.  In addition, our tests
-indicate that this issue occurs only when the database is down for
-extended periods of time, and the server receives many millions of
-packets during that time.  i.e. the problem will not occur in most
-deployments.
-</p>
-<p>
-We recommend that deployments monitor their database and RADIUS
-server.  If the database is down for extended periods, the root cause
-should be investigated and corrected.  When FreeRADIUS is configured
-to depend on a database, database outages will naturally cause service
-outages for the RADIUS server.  People who want a fix to this issue
-can upgrade to the latest version of the server.
-</p>
-      </li>
-
-      <li><span class="date">2010.10.01</span> <a
-name="CVE-2010-3696"><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-3696">CVE-2010-3696</a></a> - This issue was filed without consulting with us, and we do not agree with the assessment.
-<p>
-The correct summary is that modifying the source code to the server
-can cause it to crash.  The DHCP code is clearly marked
-"experimental", and is not normally included in the server binaries.
-It should be no surprise, therefore, that experimental and untested
-features do not work properly.
-</p>
-<p>
-We recommend that people run experimental code in a closed
-environment.  People who want a fix to this issue can upgrade to the
-latest version of the server.
-</p>
-      </li>
-
-      <li><span class="date">2010.02.03</span> <a
-name="CVE-2010-0524"><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-0524">CVE-2010-0524</a></a> - This issue only affects Mac OS X Server systems.
-<p>
-Apple had apparently configured FreeRADIUS to accept all "well known"
-Certificate Authorities as valid for EAP-TLS.  This configuration
-permitted almost anyone to create a client certificate for use with
-EAP-TLS, which would then be accepted by Mac OS X Server systems.
-</p>
-<p>
-We recommend that the list of Certificate Authorities configured in
-FreeRADIUS be audited, and kept as small as possible.
-</p>
-      </li>
-
       <li><span class="date">2009.09.09</span> <a
 name="1.1.7">v1.1.7</a> - Anyone who can send packets to the server
 can crash it by sending a Tunnel-Password attribute in an
@@ -202,6 +145,63 @@ are not real vulnerabilities get listed below.  This affords us the
 opportunity to give an official response in a public forum.</p>
 
     <ul>
+      <li><span class="date">2010.10.01</span> <a
+name="CVE-2010-3697"><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-3697">CVE-2010-3697</a></a> - This issue was filed without consulting with us, and we do not agree with the assessment.
+<p>
+The correct summary is that if the database is down for a long time
+and the server is unresponsive, there are corner cases where known
+clients (not attackers) sending large amounts of data can cause the
+server to crash.
+</p>
+<p>
+In normal operation, when the server stops responding to packets
+(i.e. because the database is down), the NAS will stop sending it
+packets, and will fail over to another server.  In addition, our tests
+indicate that this issue occurs only when the database is down for
+extended periods of time, and the server receives many millions of
+packets during that time.  i.e. the problem will not occur in most
+deployments.
+</p>
+<p>
+We recommend that deployments monitor their database and RADIUS
+server.  If the database is down for extended periods, the root cause
+should be investigated and corrected.  When FreeRADIUS is configured
+to depend on a database, database outages will naturally cause service
+outages for the RADIUS server.  People who want a fix to this issue
+can upgrade to the latest version of the server.
+</p>
+      </li>
+
+      <li><span class="date">2010.10.01</span> <a
+name="CVE-2010-3696"><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-3696">CVE-2010-3696</a></a> - This issue was filed without consulting with us, and we do not agree with the assessment.
+<p>
+The correct summary is that modifying the source code to the server
+can cause it to crash.  The DHCP code is clearly marked
+"experimental", and is not normally included in the server binaries.
+It should be no surprise, therefore, that experimental and untested
+features do not work properly.
+</p>
+<p>
+We recommend that people run experimental code in a closed
+environment.  People who want a fix to this issue can upgrade to the
+latest version of the server.
+</p>
+      </li>
+
+      <li><span class="date">2010.02.03</span> <a
+name="CVE-2010-0524"><a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-0524">CVE-2010-0524</a></a> - This issue only affects Mac OS X Server systems.
+<p>
+Apple had apparently configured FreeRADIUS to accept all "well known"
+Certificate Authorities as valid for EAP-TLS.  This configuration
+permitted almost anyone to create a client certificate for use with
+EAP-TLS, which would then be accepted by Mac OS X Server systems.
+</p>
+<p>
+We recommend that the list of Certificate Authorities configured in
+FreeRADIUS be audited, and kept as small as possible.
+</p>
+      </li>
+
       <li><span class="date">2007.01.02</span> - <A HREF="http://www.securityfocus.com/archive/1/archive/1/455678/100/0/threaded">SMB_Handle_Type SMB_Connect_Server</A>.  While the summary is superficially correct, and there is a stack overflow in rlm_smb,  the issue is <a href="http://www.securityfocus.com/archive/1/455812/100/0/threaded">less problematic</a> than it sounds.
 	    <p><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=2007-0080">CVE-2007-0080</a> has been updated with our statement.</p>
 	    <p><a href="http://securitytracker.com/alerts/2007/Jan/1017463.html">SecurityTracker Alert ID:  1017463</a> has been updated with our statement.</p>
