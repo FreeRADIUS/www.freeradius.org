@@ -41,5 +41,6 @@ radiusd: radiusd.stamp
 .PHONY: push
 push:
 	git push
+	git push github
 	ssh freeradius.org@liberty "cd www && git pull origin master:master"
 	ssh freeradius.org@www.tr.freeradius.org "cd public_html && git pull origin master:master"
