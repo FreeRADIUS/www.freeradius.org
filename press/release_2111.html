@@ -1,0 +1,81 @@
+<h3>Feature improvements</h3>
+<ul>
+<li>Added doc/rfc/rfc6158.txt: RADIUS Design Guidelines. All vendors need to read it and follow its directions.</li>
+<li>Microsoft SoH support for PEAP from Phil Mayers. See doc/SoH.txt</li>
+<li>Certificate "bootstrap" script now checks for certificate expiry. See comments in raddb/eap.conf, and then "make_cert_command".</li>
+<li>Support for dynamic expansion of EAP-GTC challenges. Patch from Alexander Clouter.</li>
+<li>OCSP support from Alex Bergmann.  See raddb/eap.conf, "ocsp" section.</li>
+<li>Updated dictionary.huawei, dictionary.3gpp, dictionary.3gpp3.</li>
+<li>Added dictionary.eltex, dictionary.motorola, and dictionary.ukerna.</li>
+<li>Experimental redis support from Gabriel Blanchard.  See raddb/modules/redis and raddb/modules/rediswho</li>
+<li>Add "key" to rlm_fastusers.  Closes bug #126.</li>
+<li>Added scripts/radtee from original software at http://horde.net/~jwm/software/misc/comparison-tee</li>
+<li>Updated radmin "man" page for new commands.</li>
+<li>radsniff now prints the hex decoding of the packet (-x -x -x)</li>
+<li>mschap module now reloads its configuration on HUP</li>
+<li>Added experimental "replicate" module.  See raddb/modules/replicate</li>
+<li>Policy "foo" can now refer to module "foo".  This lets you over-ride the behavior of a module.</li>
+<li>Policy "foo.authorize" can now over-ride the behavior of module "foo", "authorize" method.</li>
+<li>Produce errors in more situations when the configuration files have invalid syntax.</li>
+</ul>
+
+
+<h3>Bug fixes</h3>
+<ul>
+<li>Ignore pre/post-proxy sections if proxying is disabled.</li>
+<li>Add configure checks for pcap_fopen*.</li>
+<li>Fix call to otp_write in rlm_otp</li>
+<li>Fix issue with Access-Challenge checking from 2.1.10, when the debug flag was set after server startup.  Closes #116 and #117.</li>
+<li>Fix typo in zombie period start time.</li>
+<li>Fix leak in src/main/valuepair.c.  Patch from James Ballantine.</li>
+<li>Allow radtest to use spaces in shared secret. Patch from Cedric Carree.</li>
+<li>Remove extra calls to HMAC_CTX_init() in rlm_wimax, fixing leak. Patch from James Ballantine.</li>
+<li>Remove MN-FA key generation.  The NAS does this, not AAA. Patch from Ben Weichman.</li>
+<li>Include dictionary.mikrotik by default.  Closes bug #121.</li>
+<li>Add group membership query to MS-SQL examples.  Closes bug #120.</li>
+<li>Don't cast NAS-Port to integer in Postgresql queries. Closes bug #112.</li>
+<li>Fixes for libtool and autoconf from Sam Hartman.</li>
+<li>radsniff should read the dictionaries in more situations.</li>
+<li>Use fnmatch to check for detail file reader==writer. Closes bug #128.</li>
+<li>Check for short writes (i.e. disk full) in rlm_detail. Closes bug #130.  Patches and testing from John Morrissey.</li>
+<li>Fix typo in src/lib/token.c.  Closes bug #124</li>
+<li>Allow workstation trust accounts to use MS-CHAP. Closes bug #123.</li>
+<li>Assigning foo=`/bin/echo hello` now produces a syntax error if it is done outside of an "update" section.</li>
+<li>Fix "too many open file descriptors" problem when using "verify client" in eap.conf.</li>
+<li>Many fixes to dialup_admin for PHP5, by Stefan Winter.</li>
+<li>Allow preprocess module to have "hints = " and "huntgroups =", which allows them to be empty or non-existent.</li>
+<li>Renamed "php3" files to "php" in dialup_admin/</li>
+<li>Produce error when sub-TLVs are used in a dictionary.  They are supported only in the "master" branch, and not in 2.1.x.</li>
+<li>Minor fix in dictionary.redback.  Closes bug #138.</li>
+<li>Fixed MySQL "NULL" issues in ippool.conf.  Closes bug #129.</li>
+<li>Fix to Access-Challenge warning from Ken-ichirou Matsuzawa. Closes bug #118.</li>
+<li>DHCP fixes to send unicast packets in more situations.</li>
+<li>Fix to udpfromto, to enable it to work on IPv6 networks.</li>
+<li>Fixes to the Oracle accounting_onoff_query.</li>
+<li>When using both IPv4 and IPv6 home servers, ensure that we use the correct local socket for proxying.  Closes bug #143.</li>
+<li>Suppress messages when thread pool is nearly full, all threads are busy, and we can't create new threads.</li>
+<li>IPv6 is now enabled for udpfromto.  Closes bug #141</li>
+<li>Make sqlippool query buffer the same size as sql module. Closes bug #139.</li>
+<li>Make Coa / Disconnect proxying work again.</li>
+<li>Configure scripts for rlm_caching from Nathaniel McCallum</li>
+<li>src/lib/dhcp.c and src/include/libradius.h are LGPL, not GPL.</li>
+<li>Updated password routines to use time-insensitive comparisons. This prevents timing attacks (though none are known).</li>
+<li>Allow sqlite module to do normal SELECT queries.</li>
+<li>rlm_wimax now has a configure script</li>
+<li>Moved Ascend, USR, and Motorola "illegal" dictionaries to separate files.  See share/dictionary for explanations.</li>
+<li>Check for duplicate module definitions in the modules{} section, and refuse to start if duplicates are found.</li>
+<li>Check for duplicate virtual servers, and refuse to start if duplicates are found.</li>
+<li>Don't use udpfromto if source is INADDR_ANY.  Closes bug #148.</li>
+<li>Check pre-conditions before running radmin "inject file".</li>
+<li>Don't over-ride "no match" with "match" for regexes. Closes bug #152.</li>
+<li>Make retry and error message configurable in mschap. See raddb/modules/mschap</li>
+<li>Allow EAP-MSCHAPv2 to send error message to client.  This change allows some clients to prompt the user for a new password. See raddb/eap.conf, mschapv2 section, "send_error".</li>
+<li>Load the default virtual server before any others. This matches what users expect, and reduces confusion.</li>
+<li>Fix configure checks for udpfromto.  Fixes Debian bug #606866</li>
+<li>Definitive fix for bug #35, where the server could crash under certain loads.  Changes src/lib/packet.c to use RB trees.</li>
+<li>Updated "configure" checks to allow IPv6 udpfromto on Linux.</li>
+<li>SQL module now returns NOOP if the accounting start/interim/stop queries don't do anything.</li>
+<li>Allow %{outer.control: ... } in string expansions</li>
+<li>home_server coa config now matches raddb/proxy.conf</li>
+<li>Never send a reply to a DHCP Release.</li><
+</ul>
