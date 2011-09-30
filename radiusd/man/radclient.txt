@@ -6,7 +6,7 @@ NAME
        radclient - send packets to a RADIUS server, show reply
 
 SYNOPSIS
-       radclient  [-d  raddb_directory]	 [-c  count]  [-f  file]  [-i  id] [-n
+       radclient  [-d  raddb_directory]  [-c  count]  [-f  file]  [-i  id] [-n
        num_requests_per_second] [-p num_requests_in_parallel] [-r num_retries]
        [-s] [-S shared_secret_file] [-t timeout] [-qvx] server {acct|auth|sta-
        tus|disconnect|auto} secret
@@ -18,7 +18,7 @@ DESCRIPTION
        can be used to monitor if a radius server is up.
 
        radclient reads radius attribute/value pairs from it standard input, or
-       from a file specified on	 the  command  line.  It  then	encodes	 these
+       from a file specified on  the  command  line.  It  then	encodes  these
        attribute/value	pairs  using  the  dictionary,	and  sends them to the
        remote server.
 
@@ -35,7 +35,7 @@ OPTIONS
 	      Defaults to /etc/raddb.
 
        -f file
-	      File to read the attribute/value pairs  from.  If	 this  is  not
+	      File to read the attribute/value pairs  from.  If  this  is  not
 	      specified,  they are read from stdin.  This option can be speci-
 	      fied multiple times, in which case packets are sent in order  by
 	      file,  and  within each file, by first packet to last packet.  A
@@ -44,20 +44,26 @@ OPTIONS
        -i id  Use id as the RADIUS request Id.
 
        -n num_requests_per_second
-	      Send  num_requests_per_second,  evenly  spaced  over  time.   By
-	      default, the requests are sent as fast as possible.  This option
-	      allows you to slow  down	the  rate  at  which  radclient	 sends
-	      requests.
+	      Try to send num_requests_per_second, evenly spaced.  This option
+	      allows  you  to  slow  down  the	rate  at which radclient sends
+	      requests.  When not using -n, the default is to send packets  as
+	      quickly as possible, with no inter-packet delays.
+
+	      Due to limitations in radclient, this option does not accurately
+	      send the requested number of packets per second.
 
        -p num_requests_in_parallel
-	      Send  num_requests_in_parallel,  without	waiting for a response
-	      for each one.  By default, radclient sends the first request  it
-	      has  read,  waits	 for  the  response,  and once the response is
-	      received, sends the second request in  its  list.	  This	option
-	      allows  you  to  send  many  requests  at	 simultaneously.  Once
-	      num_requests_in_parallel are sent, radclient waits  for  all  of
-	      the  responses  to  arrive  (or  for  the requests to time out),
+	      Send num_requests_in_parallel, without waiting  for  a  response
+	      for  each one.  By default, radclient sends the first request it
+	      has read, waits for the  response,  and  once  the  response  is
+	      received,  sends	the  second  request in its list.  This option
+	      allows you  to  send  many  requests  at	simultaneously.   Once
+	      num_requests_in_parallel	are  sent,  radclient waits for all of
+	      the responses to arrive (or  for	the  requests  to  time  out),
 	      before sending any more packets.
+
+	      This option permits you to discover the maximum load accepted by
+	      a RADIUS server.
 
        -q     Go to quiet mode, and do not print out anything.
 
@@ -82,11 +88,11 @@ OPTIONS
        -x     Print out debugging information.
 
        server[:port]
-	      The  hostname  or	 IP address of the remote server. Optionally a
+	      The  hostname  or  IP address of the remote server. Optionally a
 	      UDP port can be specified. If no UDP port is  specified,	it  is
 	      looked  up  in  /etc/services.  The  service  name looked for is
-	      radacct  for  accounting	packets,  and  radius  for  all	 other
-	      requests.	 If  a service is not found in /etc/services, 1813 and
+	      radacct  for  accounting	packets,  and  radius  for  all  other
+	      requests.  If  a service is not found in /etc/services, 1813 and
 	      1812 are used respectively.
 
 	      The RADIUS attributes read by radclient can contain the  special
@@ -145,4 +151,4 @@ AUTHORS
 
 
 
-				 7 April 2005			  RADCLIENT(1)
+				 2 April 2009			  RADCLIENT(1)

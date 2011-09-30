@@ -14,12 +14,12 @@ DESCRIPTION
        attributes in the Acess-Request and adds an Auth-Type attribute set  to
        MS-CHAP in the Config-Items list unless Auth-Type has already set.
 
-       The  module  can	 authenticate the MS-CHAP session via plain-text pass-
-       words  (User-Password  attribute),   or	 NT   passwords	  (NT-Password
+       The  module  can  authenticate the MS-CHAP session via plain-text pass-
+       words  (User-Password  attribute),   or	 NT   passwords   (NT-Password
        attribute).   The  module  cannot  perform authentication against an NT
        domain.
 
-       The module also enforces the SMB-Account-Ctrl attribute.	 See the Samba
+       The module also enforces the SMB-Account-Ctrl attribute.  See the Samba
        documentation  for the meaning of SMB account control.  The module does
        not read Samba password files.  Instead, the fIrlm_passwd module can be
        used to read a Samba password file, and supply an NT-Password attribute
@@ -48,7 +48,7 @@ DESCRIPTION
 
        with_ntdomain_hack
 	      Windows clients send User-Name in the form of "DOMAIN\User", but
-	      send the challenge/response based	 only  on  the	User  portion.
+	      send the challenge/response based  only  on  the	User  portion.
 	      Setting this value to yes, enables a work-around for this error.
 	      The default is 'no'.
 

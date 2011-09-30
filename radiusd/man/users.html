@@ -1,6 +1,5 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
-<HTML><HEAD><TITLE>Man page of USERS</TITLE>
+<HTML><HEAD><TITLE>Manpage of USERS</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>USERS</H1>
 Section: FreeRADIUS user authorization file (5)<BR>Updated: 04 Jan 2004<BR><A HREF="#index">Index</A>
@@ -213,7 +212,7 @@ Not allowed as a reply item.
 <DL COMPACT><DT><DD>
 <PRE>
 
-bob     User-Password == &quot;hello&quot;
+bob     Cleartext-Password := &quot;hello&quot;
 
 
 </PRE>
@@ -224,8 +223,8 @@ bob     User-Password == &quot;hello&quot;
 
 <DL COMPACT><DT><DD>
 Requests containing the User-Name attribute, with value &quot;bob&quot;, will be
-authenticated using the password &quot;bob&quot;.  There are no reply items, so
-the reply will be empty.
+authenticated using the &quot;known good&quot; password &quot;hello&quot;.  There are no
+reply items, so the reply will be empty.
 </DL>
 
 <P>
@@ -341,8 +340,8 @@ The FreeRADIUS team.
 </DL>
 <HR>
 This document was created by
-manhtml,
+<A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 05:18:32 GMT, May 09, 2008
+Time: 17:17:31 GMT, February 06, 2011
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

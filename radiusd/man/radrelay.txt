@@ -10,7 +10,7 @@ DESCRIPTION
        that one instance of radiusd can read multiple detail files, among oth-
        ers.
 
-       The  rlm_sql_log	 module	 does  something similar, but for SQL queries.
+       The  rlm_sql_log  module  does  something similar, but for SQL queries.
        See it's man page for details.
 
 REPLICATION FOR BACKUPS
@@ -19,10 +19,10 @@ REPLICATION FOR BACKUPS
        switch to the backup server.
 
        That will cause your accounting packets to go the the backup  server  -
-       and  some  NASes	 don't	even switch back to the primary server when it
+       and  some  NASes  don't	even switch back to the primary server when it
        comes back up.
 
-       The result is that accounting records are missed, and/or	 the  adminis-
+       The result is that accounting records are missed, and/or  the  adminis-
        trator must jump through hoops in order to combine the different detail
        files from multiple servers. It also means that	the  session  database
        ("radutmp", used for radwho and simultaneous use detection) gets out of
@@ -40,9 +40,9 @@ BUFFERING FOR HIGH-LOAD SERVERS
        going to a back-end database.
 
        Similarly, you may have one database that tracks "live"	sessions,  and
-       another	that tracks historical accounting data.	 In that case, access-
+       another	that tracks historical accounting data.  In that case, access-
        ing the first database is fast, as it is small.	Accessing  the	second
-       database	 many be slower, as it may contain multiple gigabytes of data.
+       database  many be slower, as it may contain multiple gigabytes of data.
        In addition, writing to the first database in a timely manner is impor-
        tant,  while data may be written to the second database with a few min-
        utes delay, without any harm being done.
@@ -57,4 +57,4 @@ AUTHOR
 
 
 
-				23 October 2007			   RADRELAY(8)
+				23 October 2007 		   RADRELAY(8)

@@ -6,11 +6,11 @@ NAME
        radtest - send packets to a RADIUS server, show reply
 
 SYNOPSIS
-       radtest	[-d raddb_directory] user password radius-server nas-port-num-
-       ber secret [ppphint] [nasname]
+       radtest	[-d  raddb_directory] [-t pap/chap/mschap] [-x ] user password
+       radius-server nas-port-number secret [ppphint] [nasname]
 
 DESCRIPTION
-       radtest	is  a  frontend	 to  radclient(1).  It	generates  a  list  of
+       radtest	is  a  frontend  to  radclient(1).  It	generates  a  list  of
        attribute/value	pairs  based  on the command line arguments, and feeds
        these into radclient. It's a fast and convenient way to test  a	radius
        server.
@@ -20,6 +20,15 @@ OPTIONS
        -d raddb_directory
 	      The   directory  that  contains  the  RADIUS  dictionary	files.
 	      Defaults to /etc/raddb.
+
+
+       -t pap/chap/mschap/eap-md5
+	      Choose the authentiction method to  use.	 e.g.  "-t  pap",  "-t
+	      chap", "-t mschap", or "-t eap-md5",.  Defaults to "pap".  Using
+	      EAP-MD5 requires that the "radeapclient" program is installed.
+
+
+       -x     Enables debugging output for the RADIUS client.
 
 
        user   Username to send.
@@ -45,7 +54,7 @@ OPTIONS
 
        ppphint
 	      If  you put an integer > 0 here, radtest (or actually radclient)
-	      will add the attribute Framed-Protocol  =	 PPP  to  the  request
+	      will add the attribute Framed-Protocol  =  PPP  to  the  request
 	      packet.
 
 
@@ -63,4 +72,4 @@ AUTHOR
 
 
 
-			       24 February 2001			    RADTEST(1)
+				 3 August 2010			    RADTEST(1)

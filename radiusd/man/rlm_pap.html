@@ -1,9 +1,8 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
-<HTML><HEAD><TITLE>Man page of rlm_pap</TITLE>
+<HTML><HEAD><TITLE>Manpage of rlm_pap</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>rlm_pap</H1>
-Section: FreeRADIUS Module (5)<BR>Updated: 8 February 2005<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Module (5)<BR>Updated: 6 June 2008<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -54,9 +53,9 @@ Header       Attribute          Description
 <BR>
 ------       ---------          -----------
 <BR>
-{clear}      User-Password      clear-text passwords
+{clear}      Cleartext-Password clear-text passwords
 <BR>
-{cleartext}  User-Password      clear-text passwords
+{cleartext}  Cleartext-Password clear-text passwords
 <BR>
 {crypt}      Crypt-Password     Unix-style &quot;crypt&quot;ed passwords
 <BR>
@@ -85,6 +84,17 @@ The module tries to be flexible when handling the various password
 formats.  It will automatically handle Base-64 encoded data, hex
 strings, and binary data, and convert them to a format that the server
 can use.
+<P>
+
+It is important to understand the difference between the User-Password
+and Cleartext-Password attributes.  The Cleartext-Password attribute
+is the &quot;known good&quot; password for the user.  Simply supplying the
+Cleartext-Password to the server will result in most authentication
+methods working.  The User-Password attribute is the password as typed
+in by the user on their private machine.  The two are not the same,
+and should be treated very differently.  That is, you should generally
+not use the User-Password attribute anywhere in the RADIUS
+configuration.
 <P>
 
 For backwards compatibility, there are old configuration parameters
@@ -132,8 +142,8 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 </DL>
 <HR>
 This document was created by
-manhtml,
+<A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 05:18:31 GMT, May 09, 2008
+Time: 17:17:31 GMT, February 06, 2011
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

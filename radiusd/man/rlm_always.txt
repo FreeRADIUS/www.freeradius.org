@@ -53,8 +53,8 @@ CONFIGURATION
 	      authorize {
 		...
 		redundant {
-		   sql1		 # try to find the user in sql1
-		   sql2		 # try to find the user in sql2
+		   sql1 	 # try to find the user in sql1
+		   sql2 	 # try to find the user in sql2
 		   ok		 # if still not found, it's OK.
 		}
 		...
@@ -63,7 +63,7 @@ CONFIGURATION
 
 
 SECTIONS
-       authorization,	authentication,	  postauthentication,	preaccounting,
+       authorization,	authentication,   postauthentication,	preaccounting,
        accounting, preproxy, postproxy
 
 
@@ -79,4 +79,4 @@ AUTHOR
 
 
 
-				3 February 2004			 rlm_always(5)
+				3 February 2004 		 rlm_always(5)

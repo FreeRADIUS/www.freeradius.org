@@ -22,8 +22,8 @@ DESCRIPTION
 
        In  2.0.1  and  earlier versions, the "accounting" section filtered the
        Accounting-Request, even though it  was	documented  as	filtering  the
-       response.   This	 issue	has been fixed in version 2.0.2 and later ver-
-       sions.  The "preacct" section may now be	 used  to  filter  Accounting-
+       response.   This  issue	has been fixed in version 2.0.2 and later ver-
+       sions.  The "preacct" section may now be  used  to  filter  Accounting-
        Request	packets.   The	"accounting"  section  now filters Accounting-
        Response packets.  Administrators using "attr_filter" in the  "account-
        ing"  section SHOULD move the reference to "attr_filter" from "account-
@@ -43,7 +43,7 @@ DESCRIPTION
 	      The operators and their purpose in defining the rules are as
 	      follows:
 
-	      =	     THIS OPERATOR IS NOT ALLOWED.  If used, and warning message is
+	      =      THIS OPERATOR IS NOT ALLOWED.  If used, and warning message is
 		     printed and it is treated as ==
 
 	      :=     Set, this attribute and value will always be placed in the
@@ -63,9 +63,9 @@ DESCRIPTION
 
 	      <=     Less Than or Equal
 
-	      >	     Greater Than
+	      >      Greater Than
 
-	      <	     Less Than
+	      <      Less Than
 
 	      If regular expressions are enabled the following operators are
 	      also possible.  ( Regular Expressions are included by default
@@ -85,11 +85,11 @@ DESCRIPTION
 
        attrsfile
 	      This  specifies the location of the file used to load the filter
-	      rules.  This file is used to  filter  the	 accounting  response,
-	      packet  before  it  is  proxied,	proxy  response	 from the home
+	      rules.  This file is used to  filter  the  accounting  response,
+	      packet  before  it  is  proxied,	proxy  response  from the home
 	      server, or our response to the NAS.
 
-       key    Usually %{Realm} (the default).  Can also	 be  %{User-Name},  or
+       key    Usually %{Realm} (the default).  Can also  be  %{User-Name},  or
 	      other  attribute that exists in the request.  Note that the mod-
 	      ule always keys off of attributes in the request, and NOT in any
 	      other packet.
@@ -130,4 +130,4 @@ AUTHOR
 
 
 
-			       12 February 2008		    rlm_attr_filter(5)
+			       12 February 2008 	    rlm_attr_filter(5)

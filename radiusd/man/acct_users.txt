@@ -1,4 +1,4 @@
-ACCT_USERS(5)		FreeRADIUS user accounting file		 ACCT_USERS(5)
+ACCT_USERS(5)		FreeRADIUS user accounting file 	 ACCT_USERS(5)
 
 
 
@@ -12,7 +12,7 @@ DESCRIPTION
        sages.
 
        The format of this file is identical to that of the users file,	except
-       that  it	 controls the response to accounting requests, not authentica-
+       that  it  controls the response to accounting requests, not authentica-
        tion requests.
 
 

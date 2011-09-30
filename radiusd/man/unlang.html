@@ -1,9 +1,8 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
-<HTML><HEAD><TITLE>Man page of unlang</TITLE>
+<HTML><HEAD><TITLE>Manpage of unlang</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>unlang</H1>
-Section: FreeRADIUS Processing un-language (5)<BR>Updated: 21 Apr 2009<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Processing un-language (5)<BR>Updated: 19 May 2010<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -52,9 +51,13 @@ section, and MODULE RETURN CODES, below.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         chap  # call the CHAP module
+<BR>
         sql   # call the SQL module
+<BR>
         ...
+
 </PRE>
 
 </DL>
@@ -71,9 +74,13 @@ CONDITIONS, below, for documentation on the format of the conditions.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         if (condition) {
+<BR>
                 ...
+<BR>
         }
+
 </PRE>
 
 </DL>
@@ -89,9 +96,13 @@ returned false.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         else {
+<BR>
                 ...
+<BR>
         }
+
 </PRE>
 
 </DL>
@@ -107,9 +118,13 @@ returned false, and if the specified condition evaluates to true.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         elsif (condition) {
+<BR>
                 ...
+<BR>
         }
+
 </PRE>
 
 </DL>
@@ -129,9 +144,13 @@ No statement other than &quot;case&quot; can appear in a &quot;switch&quot; bloc
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         switch &quot;string&quot; {
+<BR>
                 ...
+<BR>
         }
+
 </PRE>
 
 </DL>
@@ -150,9 +169,13 @@ A &quot;case&quot; statement cannot appear outside of a &quot;switch&quot; block
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         case string {
+<BR>
                 ...
+<BR>
         }
+
 </PRE>
 
 </DL>
@@ -167,9 +190,13 @@ entry can exist in a &quot;switch&quot; section.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         case {
+<BR>
                 ...
+<BR>
         }
+
 </PRE>
 
 </DL>
@@ -185,10 +212,15 @@ the current block.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         update &lt;list&gt; {
+<BR>
                 attribute = value
+<BR>
                 ...
+<BR>
         }
+
 </PRE>
 
 </DL>
@@ -243,11 +275,17 @@ or update an attribute list.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         redundant {
+<BR>
                 sql1    # try this
+<BR>
                 sql2    # try this only if sql1 fails.
+<BR>
                 ...
+<BR>
         }
+
 </PRE>
 
 </DL>
@@ -269,10 +307,15 @@ or update an attribute list.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         load-balance {
+<BR>
                 ldap1   # 50% of requests go here
+<BR>
                 ldap2   # 50% of requests go here
+<BR>
         }
+
 </PRE>
 
 </DL>
@@ -302,10 +345,15 @@ or update an attribute list.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         redundant-load-balance {
+<BR>
                 ldap1   # 50%, unless ldap2 is down, then 100%
+<BR>
                 ldap2   # 50%, unless ldap1 is down, then 100%
+<BR>
         }
+
 </PRE>
 
 </DL>
@@ -326,7 +374,9 @@ conditions
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         (foo)
+
 </PRE>
 
 </DL>
@@ -355,7 +405,9 @@ codes are given in MODULE RETURN CODES, below.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         (!foo)
+
 </PRE>
 
 </DL>
@@ -374,8 +426,11 @@ Short-circuit operators
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         (foo || bar)
+<BR>
         (foo &amp;&amp; bar)
+
 </PRE>
 
 </DL>
@@ -395,7 +450,9 @@ false.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         (foo == bar)
+
 </PRE>
 
 </DL>
@@ -444,11 +501,17 @@ as seen in the examples below.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         if (User-Name == &quot;bob&quot;) {
+<BR>
                 ...
+<BR>
         if (Framed-IP-Address &gt; 127) {
+<BR>
                 ...
+<BR>
         if (Service-Type == Login-User) { 
+
 </PRE>
 
 </DL>
@@ -458,7 +521,7 @@ as seen in the examples below.
 </DL>
 
 <DL COMPACT>
-<DT>&quot;strings&quot;<DD>
+<DT>strings<DD>
 <DL COMPACT><DT><DD>
 Double-quoted strings are expanded by inserting the value of any
 variables (see VARIABLES, below) before being evaluated.  If
@@ -511,7 +574,9 @@ Run-time variables are referenced using the following syntax
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         %{Variable-Name}
+
 </PRE>
 
 </DL>
@@ -547,7 +612,9 @@ Attribute lists may be referenced via the following syntax
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         %{&lt;list&gt;:Attribute-Name}
+
 </PRE>
 
 </DL>
@@ -568,10 +635,15 @@ string is replaced with the value of that attribute.  Some examples are:
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         %{User-Name}
+<BR>
         %{request:User-Name} # same as above
+<BR>
         %{reply:User-Name}
+<BR>
         %{outer.reqest:User-Name} # from inside of a TTLS/PEAP tunnel
+
 </PRE>
 
 </DL>
@@ -604,7 +676,9 @@ resulting string returned from the module.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         %{module: string ...}
+
 </PRE>
 
 </DL>
@@ -652,6 +726,15 @@ The number of characters in %{string}.  If %{string} is not
 set, then the length is not set.
 <P>
 e.g. %{#Junk-junk:-foo} will yeild the string &quot;foo&quot;.
+<DT>%{Attribute-Name#}<DD>
+Will print the integer value of the attribute, rather than a decoded
+VALUE or date.  This feature applies only to attributes of type
+&quot;date&quot;, &quot;integer&quot;, &quot;byte&quot;, and &quot;short&quot;.  It has no effect on any other
+attributes.  It is used when the numerical value is needed (e.g. Unix
+seconds), rather than a humanly-readable string.
+<P>
+e.g. If a request contains &quot;Service-Type = Login-User&quot;, the expansion
+of %{Service-Type#} will yeild &quot;1&quot;.
 <DT>%{Attribute-Name[index]}<DD>
 Reference the N'th occurance of the given attribute.  The syntax
 %{&lt;list&gt;:Attribute-Name[index]} may also be used.  The indexes start
@@ -689,7 +772,9 @@ file.  There is no need for commas or semi-colons after the value.
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         Attribute-Name = value
+
 </PRE>
 
 </DL>
@@ -814,15 +899,25 @@ When a module is called, it returns one of the following codes to
 
 <DL COMPACT><DT><DD>
 <PRE>
+
         notfound        information was not found
+<BR>
         noop            the module did nothing
+<BR>
         ok              the module succeeded
+<BR>
         updated         the module updated the request
+<BR>
         fail            the module failed
+<BR>
         reject          the module rejected the request
+<BR>
         userlock        the user was locked out
+<BR>
         invalid         the configuration was invalid
+<BR>
         handled         the module has handled the request itself
+
 </PRE>
 
 </DL>
@@ -832,6 +927,9 @@ When a module is called, it returns one of the following codes to
 <P>
 These return codes can be tested for in a condition, as described
 above in the CONDITIONS section.
+<P>
+See also the file doc/configurable_failover for additional methods of
+trapping and modifying module return codes.
 <A NAME="lbAK">&nbsp;</A>
 <H2>FILES</H2>
 
@@ -867,8 +965,8 @@ Alan DeKok &lt;<A HREF="mailto:aland@deployingradius.com">aland@deployingradius.
 </DL>
 <HR>
 This document was created by
-manhtml,
+<A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 12:56:15 GMT, September 15, 2009
+Time: 17:17:31 GMT, February 06, 2011
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

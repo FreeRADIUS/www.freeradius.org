@@ -1,9 +1,8 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
-<HTML><HEAD><TITLE>Man page of RADDEBUG</TITLE>
+<HTML><HEAD><TITLE>Manpage of RADDEBUG</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>RADDEBUG</H1>
-Section: FreeRADIUS Daemon (1)<BR>Updated: 13 February 2009<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Daemon (8)<BR>Updated: 1 September 2010<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -49,7 +48,7 @@ raddebug - Display debugging output from a running server.
 <B>raddebug</B> is a shell script wrapper around <B>radmin</B> that
 automates the process of obtaining debugging output from a running
 server.  It does this without impacting service availability, unlike
-using <B>radiusd -X</B>.  There are a number of prerequisites that areOt
+using <B>radiusd -X</B>.  There are a number of prerequisites that are
 required for its proper operation:
 <P>
 
@@ -57,16 +56,20 @@ required for its proper operation:
 * <B>radmin</B> must be available in the PATH.
 <BR>
 
-* The user running <B>raddebug</B> must have permission to connect to the server control socket.
+* The user running <B>raddebug</B> must have permission to connect to
+<BR>&nbsp;&nbsp;the&nbsp;server&nbsp;control&nbsp;socket.
 <BR>
 
-* The control socket must be configured.  For instructions, see raddb/sites-available/control-socket
+* The control socket must be configured.  For instructions, see
+<BR>&nbsp;&nbsp;raddb/sites-available/control-socket
 <BR>
 
 * The control socket must be marked as &quot;mode = rw&quot;.
 <BR>
 
-* The user running <B>raddebug</B> must have permission to read and write files in the &quot;logdir&quot; directory.  This is usually <tt>/var/log/radiusd/</tt>.
+* The user running <B>raddebug</B> must have permission to read and
+<BR>&nbsp;&nbsp;write&nbsp;files&nbsp;in&nbsp;the&nbsp;&quot;logdir&quot;&nbsp;directory.&nbsp;&nbsp;This&nbsp;is&nbsp;usually
+<BR>&nbsp;&nbsp;/var/log/radiusd.
 
 <P>
 
@@ -108,7 +111,7 @@ option is equivalent to using:
 The radius configuration directory, usually /etc/raddb.  See the
 <I>radmin</I> manual page for more description of this option.
 <DT>-I&nbsp;<I>ipv6-address</I><DD>
-Show debug output for the client having the given IPv4 address.  This
+Show debug output for the client having the given IPv6 address.  This
 option is equivalent to using:
 <BR>
 
@@ -117,7 +120,7 @@ option is equivalent to using:
 
 <DT>-t&nbsp;<I>timeout</I><DD>
 Stop printing debug output after &quot;timeout&quot; seconds.  The default
-timeout is ten (10) seconds.  Use &quot;-t 0&quot; to print debugging output forever,
+timeout is sixty (60) seconds.  Use &quot;-t 0&quot; to print debugging output forever,
 or until the script exits.
 <DT>-u&nbsp;<I>name</I><DD>
 Show debug output for users having the given name.  This
@@ -151,8 +154,8 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 </DL>
 <HR>
 This document was created by
-manhtml,
+<A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 12:02:39 GMT, March 10, 2009
+Time: 17:17:31 GMT, February 06, 2011
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

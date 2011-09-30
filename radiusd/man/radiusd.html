@@ -1,9 +1,8 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
-<HTML><HEAD><TITLE>Man page of RADIUSD</TITLE>
+<HTML><HEAD><TITLE>Manpage of RADIUSD</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>RADIUSD</H1>
-Section: FreeRADIUS Daemon (8)<BR>Updated: 27 Dec 2007<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Daemon (8)<BR>Updated: 08 Mar 2009<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -52,8 +51,11 @@ SQL, LDAP, Perl, Python, etc.  It also supports many authentication
 protocols such as PAP, CHAP, MS-CHAP(v2), HTTP Digest, and EAP
 (EAP-MD5, EAP-TLS, PEAP, EAP-TTLS, EAP-SIM, etc.).
 <P>
-Version 2 has preliminary support for Cisco's VLAN Query Protocol,
-also known as VMPS.
+It also has experimental support for Cisco's VLAN Query Protocol
+(VMPS) and DHCP.
+<P>
+Please read the DEBUGGING section below.  It contains instructions
+for quickly configuring the server for your local system.
 <A NAME="lbAE">&nbsp;</A>
 <H2>OPTIONS</H2>
 
@@ -89,7 +91,7 @@ If this command-line option is given, then the &quot;bind_address&quot; and all
 This option MUST be used in conjunction with &quot;-p&quot;.
 <DT>-f<DD>
 Do not fork, stay running as a foreground process.
-<DT>-n <DD>
+<DT>-n <I>name</I><DD>
 Read <I>raddb/name.conf</I> instead of <I>raddb/radiusd.conf</I>.
 <DT>-p <I>port</I><DD>
 Normally radiusd listens on the ports specified in <I>/etc/services</I>
@@ -111,7 +113,8 @@ single server mode, the server will also not &quot;daemonize&quot;
 <DT>-v<DD>
 Print server version information and exit.
 <DT>-X<DD>
-Debugging mode.  Equivalent to -sfxx -l stdout
+Debugging mode.  Equivalent to &quot;-sfxx -l stdout&quot;.  When trying to
+understand how the server works, ALWAYS run it with &quot;radiusd -X&quot;.
 <DT>-x<DD>
 Finer-grained debug mode. In this mode the server will print details
 of every request on it's <B>stdout</B> output. You can specify this
@@ -133,22 +136,65 @@ server in debugging mode, you <I>will not</I> be able to see what is
 doing, and you <I>will not</I> be able to correct any problems.
 <P>
 
-2) When editing the <I>radiusd.conf</I> file, change as little as
-possible, especially in the <I>authorize{}</I> section.  The ordering
-of the modules is critical for the server to be able to
-&quot;automatically&quot; figure out how to handle the request.  Changing the
-order of the modules ensures that the server will not work.
+2) Change as little as possible in the default configuration files.
+The server contains a decade of experience with protocols, databases,
+and different systems.  Its default configuration is designed to work
+almost everywhere, and to do almost everything.
 <P>
 
-3) When testing, start off by configuring a user and password in the
-<I>users</I> file.  So long as the server knows about a user, and has a
-clear-text password for that user, <B>almost all of the authentication
-methods will &quot;just work&quot;</B>.
+3) Make small changes to the configuration files, while testing each
+change as you make it.  If the change works, save a copy of the
+configuration, and make another change.  If the change doesn't work,
+debug it, and try to understand why it doesn't work.
 <P>
 
-4) Gradually add more complex configurations to the server, while
-testing them as you go.  If you start off by configuring the server in
-a complex configuration, you will never be able to debug it.
+If you begin by making large changes to the server configuration, it
+will never work, and you will never be able to debug it.
+<P>
+
+4) If you need to add a connection to a database FOO (e.g. LDAP or
+SQL), then:
+<P>
+
+
+a) Edit raddb/modules/foo
+<BR>
+
+This file contains the default configuration for the module.  It
+contains comments describing what can be configured, and what those
+configuration entries mean.
+<BR>
+
+<BR>
+
+b) Edit raddb/sites-available/default
+<BR>
+
+This file contains the default policy for the server.  e.g. &quot;enable
+CHAP, MS-CHAP, and EAP authentication&quot;.  Look in this file for all
+references to your module &quot;foo&quot;.  Read the comments, and remove the
+leading hash '#' from the lines referencing the module.  This enables
+the module.
+<BR>
+
+<BR>
+
+c) Edit raddb/sites-available/inner-tunnel
+<BR>
+
+This file contains the default policy for the &quot;tunneled&quot; portion of
+certain EAP methods.  Perform the same kind of edits as above, for the
+&quot;default&quot; file..  If you are not using EAP (802X), then this step
+can be skipped.
+<BR>
+
+<BR>
+
+d) Start the server in debugging mode (
+<B>radiusd -X</B>
+
+), and start testing.
+
 <P>
 
 5) Ask questions on the mailing list
@@ -156,8 +202,14 @@ a complex configuration, you will never be able to debug it.
 include the output from debugging mode (
 <B>radiusd -X</B>
 
-).  This information will allow people to help you.  Without it, your
-message will get ignored.
+).  This information will allow people to help you.  If you do not
+include it, the first response to your message will be &quot;post the
+output of debug mode&quot;.
+<P>
+
+Ask questions earlier, rather than later.  If you cannot solve a
+problem in a day, ask a question on the mailing list.  Most questions
+have been seen before, and can be answered quickly.
 <A NAME="lbAG">&nbsp;</A>
 <H2>BACKGROUND</H2>
 
@@ -232,8 +284,8 @@ The FreeRADIUS Server Project (<A HREF="http://www.freeradius.org)">http://www.f
 </DL>
 <HR>
 This document was created by
-manhtml,
+<A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 12:02:39 GMT, March 10, 2009
+Time: 17:17:31 GMT, February 06, 2011
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>
