@@ -52,8 +52,8 @@ The discoverer notified us and sent a patch.
 </p>
 <p>
 The OCSP functionality in 2.1.11 could be enabled manually, but it
-would never mark certificates as revoked.  As such, the OCSP
-functionality did not behave as expected
+would never mark certificates as revoked.  As such, it did not behave
+as expected
 </p>
 <p>
 Since this issue requires manually enabling OCSP, it's severity is
@@ -72,7 +72,7 @@ us before releasing the alleged vulnerability.  We also disagree with
 their description of the problem.
 </p>
 <p>
-The DHCP functionality in 2.1.9 is <em>not enabled</em> by default.
+The DHCP functionality in 2.1.9 is <em>not</em> enabled by default.
 Enabling it requires code modifications, a complete re-build and
 re-install of the server, and a manual enabling of DHCP in the
 configuration.  Further, the DHCP functionality is marked
@@ -111,15 +111,14 @@ FreeRADIUS and the database can prevent FreeRADIUS from operating
 correctly.  This result should not be a surprise.
 </p>
 <p>
-This issue is not exploitable.  There are no known (or possible)
-attacks.  There is no possibility for priviledge escalation, or access
-to the system running FreeRADIUS.  The issue is marked "network
-exploitable" in the CVE database because it requires the network to
+There is no possibility for privilege escalation, or access to the
+system running FreeRADIUS.  The issue is marked "network exploitable"
+in the CVE database because it requires the network to
 be <em>down</em> for the attack to work.
 </p>
 <p>
 Our recommendation is to upgrade to the latest version of the server.
-We also recommend that mission-critical systems be monitored.  If the
+We also recommend that mission-critical systems be monitored.  If they
 go offline for extended periods, they should be restarted.
 </p>
 </li>
