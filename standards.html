@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>FreeRADIUS: Standards Compliant and Standards Setting</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<meta name="keywords" content="RADIUS,AAA,GPL,SQL,LDAP,Active Directory,EAP" />
+	<meta name="description" content="The world's leading RADIUS provider.  The project includes a GPL AAA server, a GUI, and a BSD licensed client.  Full support is available"/>
+	<meta name="robots" content="noodp"/>
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<!--#include file="/header.html" -->
+
+<div id="content">
+
+<h1>Compliance to Standards</h1>
+
+<p>FreeRADIUS is compliant with all
+<a href="http://ietf.org/">IETF</a> <a href="http://freeradius.org/rfc/">RFCs</a>.  We have authored or co-authored the following documents:</p>
+
+<dl>
+
+<dt><span class="date"><a href="http://tools.ietf.org/html/rfc6613">RFC 6613</a></span> - RADIUS Over TCP</dt>
+
+<dd>The Remote Authentication Dial-In User Server (RADIUS) protocol has,
+   until now, required the User Datagram Protocol (UDP) as the
+   underlying transport layer.  This document defines RADIUS over the
+   Transmission Control Protocol (RADIUS/TCP), in order to address
+   handling issues related to RADIUS over Transport Layer Security
+   (RADIUS/TLS).  It permits TCP to be used as a transport protocol for
+   RADIUS only when a transport layer such as TLS or IPsec provides
+   confidentiality and security.</dd>
+
+<dt><span class="date"><a href="http://tools.ietf.org/html/rfc6148">RFC 6158</a></span> - RADIUS Design Guidelines</dt>
+
+<dd>This document provides guidelines for the design of attributes used
+   by the Remote Authentication Dial In User Service (RADIUS) protocol.
+   It is expected that these guidelines will prove useful to authors and
+   reviewers of future RADIUS attribute specifications, within the IETF
+   as well as other Standards Development Organizations (SDOs).</dd>
+
+<dt><span class="date"><a href="http://tools.ietf.org/html/rfc5997">RFC 5997</a></span> - Use of Status-Server Packets in the Remote Authentication Dial In User Service (RADIUS) Protocol</dt>
+
+<dd>This document describes a deployed extension to the Remote
+   Authentication Dial In User Service (RADIUS) protocol, enabling
+   clients to query the status of a RADIUS server.  This extension
+   utilizes the Status-Server (12) Code, which was reserved for
+   experimental use in RFC 2865.</dd>
+
+
+<dt><span class="date"><a href="http://tools.ietf.org/html/rfc5080">RFC 5080</a></span> - Common Remote Authentication Dial In User Service (RADIUS) Implementation Issues and Suggested Fixes</dt>
+
+<dd>This document describes common issues seen in Remote Authentication
+   Dial In User Service (RADIUS) implementations and suggests some
+   fixes.  Where applicable, ambiguities and errors in previous RADIUS
+   specifications are clarified.</dd>
+
+</dl>
+
+<p>FreeRADIUS is also compliant with many 3GPP, 3GPP2, and WiMAX
+standards.  Those are too numerous to list here.</p>
+
+<p>Where FreeRADIUS does not follow the RFC recommendations, the RFC is wrong, or has been updated by a <href="http://tools.ietf.org/html/rfc5080">RFC 5080</a>.  That document correct numerous errors and omissions in previous RFCs</p>
+
+</div><!--content-->
+
+<!--#include virtual="/footer.html" -->
+
+</body>
+</html>
