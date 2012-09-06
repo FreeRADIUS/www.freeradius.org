@@ -19,22 +19,22 @@ DESCRIPTION
 	      String to be replaced.
 
        searchin
-	      Where  to	 look  for  the	 attribute.  Valid values are: packet,
+	      Where  to  look  for  the  attribute.  Valid values are: packet,
 	      reply, proxy, proxy_reply, config
 
        replacewith
 	      String to replace "searchfor".
 
-       append Set to yes or no.	 If set to yes then the replace string will be
+       append Set to yes or no.  If set to yes then the replace string will be
 	      appended to the original string.
 
        ignore_case
-	      Set to yes or no.	 Determines whether search will be case insen-
+	      Set to yes or no.  Determines whether search will be case insen-
 	      sitive or case sensitive.
 
        new_attribute
-	      Set to yes or no.	 If set to yes, then  new  attribute  will  be
-	      created  with  values  from "searchin" and "replacewith".	 Other
+	      Set to yes or no.  If set to yes, then  new  attribute  will  be
+	      created  with  values  from "searchin" and "replacewith".  Other
 	      options will be ignored.
 
        max_matches
@@ -44,7 +44,7 @@ DESCRIPTION
 
 
 SECTIONS
-       authorization,	authentication,	  postauthentication,	preaccounting,
+       authorization,	authentication,   postauthentication,	preaccounting,
        accounting, preproxy, postproxy
 
 
@@ -61,4 +61,4 @@ AUTHOR
 
 
 
-				3 February 2004		   rlm_attr_rewrite(5)
+				3 February 2004 	   rlm_attr_rewrite(5)

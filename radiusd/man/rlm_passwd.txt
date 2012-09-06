@@ -11,11 +11,11 @@ DESCRIPTION
 
        The lm_passwd module allows you to  retrieve  any  account  information
        from  any  files with passwd-like format (/etc/passwd, /etc/group, smb-
-       passwd, .htpasswd, etc).	 Every field of the file may be	 mapped	 to  a
+       passwd, .htpasswd, etc).  Every field of the file may be  mapped  to  a
        RADIUS attribute, with one of the fields used as a key.
 
        The  module  reads the file when it initializes, and caches the data in
-       memory.	As a result, it does not support dynamic updates of the	 files
+       memory.	As a result, it does not support dynamic updates of the  files
        (the  server has to be HUP'd), but it is very fast, even for files with
        thousands of lines.
 
@@ -29,11 +29,11 @@ DESCRIPTION
 	      is ":"
 
        hashsize
-	      The  size	 of  the  hashtable.  If 0, then the passwords are not
+	      The  size  of  the  hashtable.  If 0, then the passwords are not
 	      cached and the passwd file is parsed for every request.	We  do
 	      not  recommend  such  a  configuration.  A larger hashsize means
 	      less probability of collision and faster	search	in  hashtable.
-	      Having  a	 hashsize  in  the  range  of 30-100% of the number of
+	      Having  a  hashsize  in  the  range  of 30-100% of the number of
 	      passwd file records is reasonable.
 
        allowmultiplekeys
@@ -46,12 +46,12 @@ DESCRIPTION
 	      If  set  to 'yes', then all records from the file beginning with
 	      the '+' sign will be ignored.  The default is 'no'.
 
-       format The format of the fields in the file, given as an	 example  line
-	      from  the	 file,	with  the  content of the fields as the RADIUS
+       format The format of the fields in the file, given as an  example  line
+	      from  the  file,	with  the  content of the fields as the RADIUS
 	      attributes which the fields map to.  The fields are seperated by
 	      the ':' character.
 
-       The  key	 field	is  signified  by being preceded with a '*' character,
+       The  key  field	is  signified  by being preceded with a '*' character,
        which indicates that the field has only one key, like  the  /etc/passwd
        file.  The key field may instead be preceded with '*,', which indicates
        that the field has multiple possible keys, like the /etc/group file.
@@ -79,10 +79,10 @@ EXAMPLES
 
 	      Parse a file similar to the /etc/group file.  An entry matches a
 	      request when the name in a User-Name  attribute  exists  in  the
-	      comma-seperated  list  of	 a  line  in  the file.	 When an entry
+	      comma-seperated  list  of  a  line  in  the file.  When an entry
 	      matches, a "My-Group" attribute will be created and added to the
-	      configuration   items  for  the  request.	  The  value  of  that
-	      attribute will be taken from the first  field  of	 the  matching
+	      configuration   items  for  the  request.   The  value  of  that
+	      attribute will be taken from the first  field  of  the  matching
 	      line in the file.
 
 	      The  ":::"  in  the format string means that there are extra two

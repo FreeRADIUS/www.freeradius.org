@@ -13,9 +13,9 @@ DESCRIPTION
        any other feature of a real language.  If those features are needed for
        your system, we suggest using rlm_perl.
 
-       What the	 policy	 module	 implements  is	 a  simple  way	 to  look  for
-       attributes  in  the  request  packet  (or  other	 places),  and	to add
-       attributes to the reply packet (or other places) based on  those	 deci-
+       What the  policy  module  implements  is  a  simple  way  to  look  for
+       attributes  in  the  request  packet  (or  other  places),  and	to add
+       attributes to the reply packet (or other places) based on  those  deci-
        sions.  Where the module shines is that it is significantly more flexi-
        ble than the old-style users file.
 
@@ -36,13 +36,13 @@ POLICY LANGUAGE
 		   }
 
 
-       Policy  names  MAY  NOT	be  the	 same as attributes in the dictionary.
+       Policy  names  MAY  NOT	be  the  same as attributes in the dictionary.
        Defining a policy with the same name as	a  dictionary  attribute  will
-       cause  an  error	 message  to  be  printed,  and the policy will not be
+       cause  an  error  message  to  be  printed,  and the policy will not be
        loaded.
 
        When the policy module is listed in a module section like  "authorize",
-       the  module  calls  a  policy named "authorize".	 The "post-auth", etc.
+       the  module  calls  a  policy named "authorize".  The "post-auth", etc.
        sections behave the same.  These names cannot be changed.
 
 
@@ -50,7 +50,7 @@ POLICY LANGUAGE
 
 
        The filename must be in a double-quoted string, and is  assumed	to  be
-       relative	 to  the  location  of the current file.  If the filename ends
+       relative  to  the  location  of the current file.  If the filename ends
        with a '/', then it is assumed to be a directory, and all files in that
        directory will be read.
 
@@ -120,11 +120,11 @@ POLICY LANGUAGE
 	      "==", "!=", "=~", "!~", "<", "<=", ">", and ">=".
 
        (string1 == string2)
-	      A special case of	 the  above.   The  "string1"  is  dynamically
-	      expanded	at  run	 time,	while "string2" is not.	 The operators
+	      A special case of  the  above.   The  "string1"  is  dynamically
+	      expanded	at  run  time,	while "string2" is not.  The operators
 	      here can be "==", "!=", "=~",and "!~".  Of these, the most  use-
 	      ful  is  "=~', which lets you do things like ("%{ldap:query...}"
-	      =~ "foo=(.*) ").	The results of the  regular  expression	 match
+	      =~ "foo=(.*) ").	The results of the  regular  expression  match
 	      are  put	into  %{1},  and  can  be  used later.	See "doc/vari-
 	      ables.txt" for more information.
 
@@ -146,8 +146,8 @@ POLICY LANGUAGE
        Attribute references are:
 
        Attribute-Name
-	      Refers  to  an  attribute	 of that name in the Access-Request or
-	      Accounting-Request packet.   May	also  refer  to	 "server-side"
+	      Refers  to  an  attribute  of that name in the Access-Request or
+	      Accounting-Request packet.   May	also  refer  to  "server-side"
 	      attributes, which are not documented anywhere.
 
        request:Attribute-Name
@@ -165,12 +165,12 @@ POLICY LANGUAGE
 
 
        proxy-reply:Attribute-Name
-	      An  attribute  in	 the  Access-Accept  or other packet which was
+	      An  attribute  in  the  Access-Accept  or other packet which was
 	      received from a home server.
 
 
        control:Attribute-Name
-	      An  attribute  in	 the  per-request  configuration  and  control
+	      An  attribute  in  the  per-request  configuration  and  control
 	      attributes.    Also   known  as  "check"	attributes  (doc/vari-
 	      ables.txt).
 
@@ -196,7 +196,7 @@ POLICY LANGUAGE
 	= - use operators from "attribute = value" to decide what to do.  (see
        "users")
 
-       The  block  must	 contain  only attributes and values.  Nothing else is
+       The  block  must  contain  only attributes and values.  Nothing else is
        permitted.
 
 
@@ -217,4 +217,4 @@ AUTHOR
 
 
 
-				7 December 2004			 rlm_policy(5)
+				7 December 2004 		 rlm_policy(5)

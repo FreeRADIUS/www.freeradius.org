@@ -1,4 +1,4 @@
-clients.conf(5)		FreeRADIUS client configuration	       clients.conf(5)
+clients.conf(5) 	FreeRADIUS client configuration        clients.conf(5)
 
 
 
@@ -29,7 +29,7 @@ ATTRIBUTES
 	    The IP address of the client.  For IPv6, use "ipv6addr"
 
        secret [Required]
-	    The	 RADIUS	 shared	 secret	 used  for  communication  between the
+	    The  RADIUS  shared  secret  used  for  communication  between the
 	    client/NAS and the RADIUS server.
 
        shortname [optional]
@@ -64,7 +64,7 @@ EXAMPLES
 	      client localhost {
 		      ipaddr	      = 127.0.0.1
 		      secret	      = testing123
-		      shortname	      = localhost
+		      shortname       = localhost
 		      nastype	      = other
 	      }
 
@@ -75,7 +75,7 @@ EXAMPLES
 		      ipaddr	      = 192.168.0.0
 		      netmask	      = 24
 		      secret	      = testing123-1
-		      shortname	      = private-network-1
+		      shortname       = private-network-1
 	      }
 
        This entry represents any client from the 192.168.0.0/24 network.

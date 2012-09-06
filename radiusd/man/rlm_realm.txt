@@ -19,14 +19,14 @@ DESCRIPTION
 
        delimiter
 	      A single character in quotes, which is used  as  the  delimiting
-	      character	 that  separates  the  Realm  and User sections of the
+	      character  that  separates  the  Realm  and User sections of the
 	      string.
 
        ignore_default
 	      This is set to either 'yes' or 'no'.  If set to 'yes', this will
 	      prevent  the  module  instance from matching a realm against the
-	      DEFAULT entry.  This may be useful if you	 have  multiple	 realm
-	      module instances.	 The default is 'no'.
+	      DEFAULT entry.  This may be useful if you  have  multiple  realm
+	      module instances.  The default is 'no'.
 
        ignore_null
 	      This is set to either 'yes' or 'no'.  If set to 'yes', this will

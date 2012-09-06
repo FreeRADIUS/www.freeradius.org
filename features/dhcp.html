@@ -15,15 +15,15 @@
 
   <body>
 
-<!--#include virtual="/header.html" -->
+<!--#include file="/header.html" -->
 
 <div id="content">
 
 <h1>DHCP</h1>
 
-<p>Experimental support for the DHCP protocol was added in Release
-2.0.4.  It is off by default, and requires some changes to the source
-tree.</p>
+<p>As of Version 2.2.0, the server has complete support for DHCP.  It
+can serve DHCP queries from an SQL database.  It can act as a DHCP
+relay.</p>
 
 <p>First, configure the server with DHCP: <tt>$ ./configure --with-dhcp</tt>.</p>
 

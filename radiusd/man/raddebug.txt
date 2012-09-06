@@ -1,4 +1,4 @@
-RADDEBUG(1)		       FreeRADIUS Daemon		   RADDEBUG(1)
+RADDEBUG(8)		       FreeRADIUS Daemon		   RADDEBUG(8)
 
 
 
@@ -13,7 +13,7 @@ DESCRIPTION
        raddebug is a shell script wrapper around  radmin  that	automates  the
        process	of  obtaining debugging output from a running server.  It does
        this without impacting service availability, unlike using  radiusd  -X.
-       There  are a number of prerequisites that areOt required for its proper
+       There  are  a  number of prerequisites that are required for its proper
        operation:
 
 	  * radmin must be available in the PATH.
@@ -60,14 +60,14 @@ OPTIONS
 	      radmin manual page for more description of this option.
 
        -I ipv6-address
-	      Show  debug output for the client having the given IPv4 address.
+	      Show  debug output for the client having the given IPv6 address.
 	      This option is equivalent to using:
 		 -c '(Packet-Src-IPv6-Address == ipv6-address)'
 
        -t timeout
 	      Stop printing debug output after "timeout" seconds.  The default
-	      timeout is ten (10) seconds.  Use "-t 0" to print debugging out-
-	      put forever, or until the script exits.
+	      timeout  is  sixty  (60) seconds.  Use "-t 0" to print debugging
+	      output forever, or until the script exits.
 
        -u name
 	      Show debug output for users having the given name.  This	option
@@ -84,4 +84,4 @@ AUTHORS
 
 
 
-			       13 February 2009 		   RADDEBUG(1)
+			       1 September 2010 		   RADDEBUG(8)

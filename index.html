@@ -13,7 +13,7 @@
 
 <body>
 
-<!--#include virtual="/header.html" -->
+<!--#include file="/header.html" -->
 
 <div id="content">
 
@@ -47,11 +47,18 @@ improvements added in every release.</p>
 
 <h2>Recent News</h2>
 
-<p><span class="date">2011.06.29</span> Version <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
+<p><span class="date">2012.04.19</span> OpenSSL vulnerability may affect FreeRADIUS.</p>
+<p>
+We recommend all administrators using certificates with FreeRADIUS
+upgrade their OpenSSL to a secure version.  For details, see the <a href="http://www.openssl.org/news/secadv_20120419.txt">OpenSSL notification</a>
+</p>
+<p>We emphasize that this is <em>not</em> a bug in FreeRADIUS.  FreeRADIUS uses OpenSSL for many of it's cryptographic operations, and as such, is at the mercy of any problems in OpenSSL.</p>
+
+<p><span class="date">2011.09.30</span> Version <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
 <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius_version" -->.tar.bz2.sig">(sig)</a>
 has been released.  The focus of this release is stability.</p>
 
-<!--#include virtual="/press/release_2111.html" -->
+<!--#include virtual="/press/release_2112.html" -->
 
 <p><span class="date">2010.05.21</span> - <b>A Development
 Roadmap is announced</b></p>

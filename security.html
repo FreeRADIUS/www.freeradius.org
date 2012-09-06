@@ -14,7 +14,7 @@
 
   <body>
 
-<!--#include virtual="/header.html" -->
+<!--#include file="/header.html" -->
 
 <div id="content">
 
@@ -42,6 +42,100 @@ LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
 and put in reverse-chronological order.
        -->
 
+<li><span class="date">2012.04.19</span> <a name="openssl"> - Versions of OpenSSL are vulnerable to malformed certificates.
+<p>
+The CVE notification
+is <a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-2110">CVE-2012-2110</a>.
+</p>
+<p>
+We recommend all administrators using certificates with FreeRADIUS
+upgrade their OpenSSL to a secure version.  For details, see the <a href="http://www.openssl.org/news/secadv_20120419.txt">OpenSSL notification</a>
+</p>
+<p>We emphasize that this is <em>not</em> a bug in FreeRADIUS.  FreeRADIUS uses OpenSSL for many of it's cryptographic operations, and as such, is at the mercy of any problems in OpenSSL.</p>
+</li>
+
+
+<li><span class="date">2011.09.22</span> <a name="2.1.11"> - Manually
+enabling OCSP has no effect.  This issue is applicable only to version
+2.1.11.
+<p>
+The CVE notification
+is <a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2011-2701">CVE-2011-2701</a>.
+The discoverer notified us and sent a patch.
+</p>
+<p>
+The OCSP functionality in 2.1.11 could be enabled manually, but it
+would never mark certificates as revoked.  As such, it did not behave
+as expected
+</p>
+<p>
+Since this issue requires manually enabling OCSP, it's severity is
+low.  The recommended solution is to upgrade to version 2.1.12.
+</p>
+</li>
+
+<li><span class="date">2010.10.08</span> <a name="2.1.9"> - Code
+modifications to the server can cause it to crash.  This issue is
+applicable only to version 2.1.9.
+<p>
+The CVE notification
+is <a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-3696">CVE-2010-3696</a>.
+As with many such notifications, the issuer did not communicate with
+us before releasing the alleged vulnerability.  We also disagree with
+their description of the problem.
+</p>
+<p>
+The DHCP functionality in 2.1.9 is <em>not</em> enabled by default.
+Enabling it requires code modifications, a complete re-build and
+re-install of the server, and a manual enabling of DHCP in the
+configuration.  Further, the DHCP functionality is marked
+"experimental" in this release.  As such, it should be used only on
+trusted networks.
+</p>
+<p>
+This issue is exploitable whenever FreeRADIUS has had DHCP
+functionality enabled, and where the administrator has manually
+configured the server to accept DHCP packets.  Any DHCP packet with a
+"Relay Agent" sub-option can cause FreeRADIUS to enter an infinite
+loop.
+</p>
+<p>
+Our recommendation is to run experimental features only in trusted
+networks.
+</p>
+</li>
+
+
+<li><span class="date">2010.10.08</span> <a name="2.1.9"> - If
+FreeRADIUS depends on a database, and the database goes down for
+extended periods, the server may crash.  This issue applies to versions
+2.0.0 through 2.1.9.  This issue is not externally exploitable.
+<p>
+The CVE notification
+is <a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2010-3697">CVE-2010-3697</a>.
+As with many such notifications, the issuer did not communicate with
+us before releasing the alleged vulnerability.  We also disagree with
+their description of the problem.
+</p>
+<p>
+The short description of this problem is that any administrator who
+can (a) take the database down, or (b) disrupt communication between
+FreeRADIUS and the database can prevent FreeRADIUS from operating
+correctly.  This result should not be a surprise.
+</p>
+<p>
+There is no possibility for privilege escalation, or access to the
+system running FreeRADIUS.  The issue is marked "network exploitable"
+in the CVE database because it requires the network to
+be <em>down</em> for the attack to work.
+</p>
+<p>
+Our recommendation is to upgrade to the latest version of the server.
+We also recommend that mission-critical systems be monitored.  If they
+go offline for extended periods, they should be restarted.
+</p>
+</li>
+
       <li><span class="date">2009.09.09</span> <a
 name="1.1.7">v1.1.7</a> - Anyone who can send packets to the server
 can crash it by sending a Tunnel-Password attribute in an
@@ -54,7 +148,7 @@ is not affected.
 </p>
       </li>
 
-     <li><span class="date">2008.05.13</span> <p>A bug added to  <a name="openssl">OpenSSL</a> on <a href="http://lists.debian.org/debian-security-announce/2008/msg00152.html">Debian</a> and <a href="https://lists.ubuntu.com/archives/ubuntu-security-announce/2008-May/000705.html">Ubuntu</a> systems means that SSL keys on those systems may be guessable.</p>
+     <li><span class="date">2008.05.13</span> - <p>A bug added to  <a name="openssl">OpenSSL</a> on <a href="http://lists.debian.org/debian-security-announce/2008/msg00152.html">Debian</a> and <a href="https://lists.ubuntu.com/archives/ubuntu-security-announce/2008-May/000705.html">Ubuntu</a> systems means that SSL keys on those systems may be guessable.</p>
 <p>
 We recommend that administrators using OpenSSL on Debian or Ubuntu
 upgrade immediately.  We also recommend re-generating any SSL

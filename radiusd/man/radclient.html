@@ -1,9 +1,8 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
-<HTML><HEAD><TITLE>Man page of RADCLIENT</TITLE>
-<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
+<HTML><HEAD><TITLE>Manpage of RADCLIENT</TITLE>
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include file="/header.html" --><div id="content">
 <H1>RADCLIENT</H1>
-Section: FreeRADIUS Daemon (1)<BR>Updated: 7 April 2005<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 2 April 2009<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -93,9 +92,13 @@ logical packets within a file.
 <DT>-i&nbsp;<I>id</I><DD>
 Use <I>id</I> as the RADIUS request Id.
 <DT>-n&nbsp;<I>num_requests_per_second</I><DD>
-Send <I>num_requests_per_second</I>, evenly spaced over time.  By
-default, the requests are sent as fast as possible.  This option
+Try to send <I>num_requests_per_second</I>, evenly spaced.  This option
 allows you to slow down the rate at which radclient sends requests.
+When not using -n, the default is to send packets as quickly as
+possible, with no inter-packet delays.
+<P>
+Due to limitations in radclient, this option does not accurately send
+the requested number of packets per second.
 <DT>-p&nbsp;<I>num_requests_in_parallel</I><DD>
 Send <I>num_requests_in_parallel</I>, without waiting for a response
 for each one.  By default, radclient sends the first request it has
@@ -104,6 +107,9 @@ the second request in its list.  This option allows you to send many
 requests at simultaneously.  Once <I>num_requests_in_parallel</I> are
 sent, radclient waits for all of the responses to arrive (or for the
 requests to time out), before sending any more packets.
+<P>
+This option permits you to discover the maximum load accepted by a
+RADIUS server.
 <DT>-q<DD>
 Go to quiet mode, and do not print out anything.
 <DT>-r&nbsp;<I>num_retries</I><DD>
@@ -212,8 +218,8 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 </DL>
 <HR>
 This document was created by
-manhtml,
+<A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 05:18:28 GMT, May 09, 2008
+Time: 17:17:31 GMT, February 06, 2011
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

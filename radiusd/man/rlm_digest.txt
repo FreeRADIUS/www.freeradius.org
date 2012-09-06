@@ -30,7 +30,7 @@ EXAMPLES
        'radclient to send the following packet to the server:
 
 
-	      $	 radclient -f digest localhost auth testing123
+	      $  radclient -f digest localhost auth testing123
 
 
        Where 'digest' is a file containing:

@@ -22,16 +22,16 @@ REPLICATION FOR BACKUPS
        switch to the backup server.
 
        That will cause your accounting packets to go the the backup  server  -
-       and  some  NASes	 don't	even switch back to the primary server when it
+       and  some  NASes  don't	even switch back to the primary server when it
        comes back up.
 
-       The result is that accounting records are missed, and/or	 the  adminis-
+       The result is that accounting records are missed, and/or  the  adminis-
        trator must jump through hoops in order to combine the different detail
        files from multiple servers. It also means that	the  session  database
        ("radutmp", used for radwho and simultaneous use detection) gets out of
        sync.
 
-       radrelay solves this issue by "relaying" packets	 from  one  server  to
+       radrelay solves this issue by "relaying" packets  from  one  server  to
        another, so they both have the same set of accounting data.
 
 BUFFERING FOR HIGH-LOAD SERVERS
@@ -41,15 +41,15 @@ BUFFERING FOR HIGH-LOAD SERVERS
        going to a back-end database.
 
        Similarly, you may have one database that tracks "live"	sessions,  and
-       another	that tracks historical accounting data.	 In that case, access-
+       another	that tracks historical accounting data.  In that case, access-
        ing the first database is fast, as it is small.	Accessing  the	second
-       database	 many be slower, as it may contain multiple gigabytes of data.
+       database  many be slower, as it may contain multiple gigabytes of data.
        In addition, writing to the first database in a timely manner is impor-
        tant,  while data may be written to the second database with a few min-
        utes delay, without any harm being done.
 
 RELAYING OF ACCOUNTING PACKETS
-       The radrelay.conf file  controls	 the  "radrelay"  personality  of  the
+       The radrelay.conf file  controls  the  "radrelay"  personality  of  the
        server, which can perform both of the functions above at the same time.
 
 USAGE
@@ -79,10 +79,10 @@ USAGE
        rotate it.
 
 RADRELAY.CONF EXAMPLE
-       See  the	 radrelay.conf file for detailed instructions on configuration
+       See  the  radrelay.conf file for detailed instructions on configuration
        entries, what they mean, and how to use them.
 
-       To have the "radrelay" portion of the  server  read  the	 above	detail
+       To have the "radrelay" portion of the  server  read  the  above	detail
        file, configure radrelay.conf with the following section:
 
 
@@ -113,7 +113,7 @@ NOTES
 
 CREDITS
        The  original  "radrelay" program was written by Miquel van Smoorenburg
-       for the Cistron radius project,	and  ported  to	 FreeRADIUS  by	 Simon
+       for the Cistron radius project,	and  ported  to  FreeRADIUS  by  Simon
        Ekstrand.   The	"radsqlrelay"  was written by Kostas Kalavras.	It was
        never released as part of an offical FreeRADIUS release, but served  as
        a basis for the design of this implementation.

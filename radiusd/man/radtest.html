@@ -1,9 +1,8 @@
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 41 Transitional//EN">
-<HTML><HEAD><TITLE>Man page of RADTEST</TITLE>
-<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
+<HTML><HEAD><TITLE>Manpage of RADTEST</TITLE>
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include file="/header.html" --><div id="content">
 <H1>RADTEST</H1>
-Section: FreeRADIUS Daemon (1)<BR>Updated: 24 February 2001<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 3 August 2010<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -18,6 +17,14 @@ radtest - send packets to a RADIUS server, show reply
 [<B>-d</B>
 
 <I>raddb_directory</I>]
+
+[<B>-t</B>
+
+<I>pap/chap/mschap</I>]
+
+[<B>-x</B>
+
+<I>]</I>
 
 <I>user password radius-server nas-port-number secret</I>
 
@@ -41,6 +48,14 @@ way to test a radius server.
 <DT>-d <I>raddb_directory</I><DD>
 The directory that contains the RADIUS dictionary files. Defaults to
 <I>/etc/raddb</I>.
+<P>
+<DT>-t <I>pap/chap/mschap/eap-md5</I><DD>
+Choose the authentiction method to use.  e.g. &quot;-t pap&quot;, &quot;-t chap&quot;, &quot;-t
+mschap&quot;, or &quot;-t eap-md5&quot;,.  Defaults to &quot;pap&quot;.  Using EAP-MD5 requires
+that the &quot;radeapclient&quot; program is installed.
+<P>
+<DT>-x<DD>
+Enables debugging output for the RADIUS client.
 <P>
 <DT>user<DD>
 Username to send.
@@ -92,8 +107,8 @@ Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</
 </DL>
 <HR>
 This document was created by
-manhtml,
+<A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 05:18:29 GMT, May 09, 2008
+Time: 17:17:31 GMT, February 06, 2011
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>
