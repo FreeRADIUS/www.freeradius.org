@@ -42,6 +42,42 @@ LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
 and put in reverse-chronological order.
        -->
 
+<li><span class="date">2012.09.10</span> <a name="CVE-2012-3547"> - Overflow in EAP-TLS for 2.1.11 and 2.1.12.
+<p>
+The CVE notification
+is <a href="http://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-3547">CVE-2012-3547</a>.
+The issue was found by Timo Warns, and communicated to
+security@freeradius.org.  A sample exploit for the issue was included
+in the notification.
+</p>
+<p>
+We recommend all administrators using EAP and 2.1.11, 2.1.12, or the
+git "master' branch upgrade immediately.
+</p>
+<p> The vulnerability was created in commit a368a6f4f4aaf on August
+18, 2010.  Vulnerable versions include 2.1.10, 2.1.11, and 2.1.12.
+Also anyone running the git "master" branch after August 18, 2010 is
+vulnerable.</p>
+
+<p>All sites using TLS-based EAP methods and the above versions are
+vulnerable.  The only configuration change which can avoid the issue is
+to disable EAP-TLS, EAP-TTLS, and PEAP.</p>
+
+<p>An external attacker can use this vulnerability to over-write the
+stack frame of the RADIUS server, and cause it to crash.  In addition,
+more sophisticated attacks may gain additional privileges on the
+system running the RADIUS server.</p>
+
+<p>This attack does not require local network access to the RADIUS
+server.  It can be done by an attacker through a WiFi Access Point, so
+long as the Access Point is configured to use 802.1X authentication
+with the RADIUS server.</p>
+
+<p>We scanned the rlm_eap_tls.c file with the LLVM checker-267, taken
+from http://clang-analyzer.llvm.org/.  It did not find this issue.
+However, a Coverity scan did discover it.</p>
+</li>
+
 <li><span class="date">2012.04.19</span> <a name="openssl"> - Versions of OpenSSL are vulnerable to malformed certificates.
 <p>
 The CVE notification
