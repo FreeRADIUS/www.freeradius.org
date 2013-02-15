@@ -6,7 +6,7 @@
   <head>
     <title>FreeRADIUS -- Development</title>
     <link type="text/css" rel="stylesheet" href="/css/style.css" />
-	<meta name="keywords" content="contributing,patches,CVS" />
+	<meta name="keywords" content="contributing,patches" />
 	<!--[if lt IE 7.]>
 	<script defer type="text/javascript" src="/pngfix.js"></script>
 	<![endif]-->
@@ -27,53 +27,6 @@
     the project.  The following information should prove useful for
     potential contributors.</p>
 
-    <h1><a id="cvs" name="cvs">Using CVS</a></h1>
-
-    <p>We use <a href="http://www.cyclic.com/">CVS</a> to
-    coordinate and manage our source code. Public anonymous access
-    to the repository can be obtained with the username <i>anoncvs</i>
-    and the password <i>anoncvs</i> by doing the following:</p>
-
-    <a
-    class="icon" href="http://www.cyclic.com/"><img class="icon"
-    src="cvssmaller.gif" alt="Source control by CVS"
-    align="LEFT" /></a>
-<pre class="instructions" title="CVS checkout procedure">
-  $ cvs -d :pserver:anoncvs@cvs.freeradius.org:/source login
-  CVS password: <em>anoncvs</em>
-
-  $ cvs -d :pserver:anoncvs@cvs.freeradius.org:/source checkout <em>module</em>
-
-</pre>
-
-    <p>where <em>module</em> is one of the following module
-    names:</p>
-
-    <dl>
-      <dt>radiusd</dt>
-
-      <dd>The FreeRADIUS server daemon. <em>Here for historical reasons only.  All new development is on <a href="http://git.freeradius.org">git.freeradius.org</a></em></dd>
-
-      <dt><a href="/pam_radius_auth/">pam_radius</a></dt>
-
-      <dd>A <a
-      href="http://www.kernel.org/pub/linux/libs/pam/">Pluggable
-      Authentication Module</a> that should work on Linux, FreeBSD,
-      and Solaris.<br />
-      </dd>
-
-      <dt><a href="/mod_auth_radius/">mod_auth_radius</a></dt>
-
-      <dd>An authentication module for the <a
-      href="http://www.apache.org/">Apache HTTP Server
-      Project.</a></dd>
-      
-      <dt><a href="/freeradius-client/">radiusclient</a></dt>
-
-      <dd>A BSD licensed client authentication module meant to be used in other projects.</dd>
-      
-    </dl>
-
     <h2>Patches and contributions</h2>
 
     <p>If you're considering submitting a patch, please read the
@@ -82,6 +35,12 @@
     href="http://bugs.freeradius.org">bug tracking system</a>.  While
     patches can be mail to the lists, we prefer that they be submitted
     also via the online bug system.</p>
+
+    <p>Development of FreeRADIUS is done
+    using <a href="https://github.com/FreeRADIUS/freeradius-server/">Github.</a>
+    Please submit issues, bugs, patches, etc. there.  Additional
+    instructions are on <a href="http://git.freeradius.org">our git
+    page</a>.</p>
 
     <p>The FTP site contains some additional patches that are
     specialized and haven't been applied to the tree.</p>
