@@ -42,6 +42,27 @@ LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
 and put in reverse-chronological order.
        -->
 
+<li><span class="date">2012.11.10</span> <a name="CVE-2011-4966"> - Unix module allows expired passwords
+<p>
+The CVE notification
+is <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-4966">CVE-2011-4966</a>
+(note: it is still marked "private" for unknown reasons).
+</p>
+<p>
+It was found that the "unix" module ignored the password expiration
+setting in "/etc/shadow".  The default configuration does not use the
+"unix" module, so there is no issue for most deployments.  However, if
+the server was configured to use this module for authentication, users
+with an expired password could successfully authenticate, even though
+their access should have been denied.
+
+We recommend managing users in a database, instead of leveraging
+/etc/passwd.  The fact that a user has login access to a machine does
+not necessarily mean that they can use RADIUS for other kinds of
+network access.
+</p>
+</li>
+
 <li><span class="date">2012.09.10</span> <a name="CVE-2012-3547"> - Overflow in EAP-TLS for 2.1.10, 2.1.11 and 2.1.12.
 <p>
 The CVE notification
