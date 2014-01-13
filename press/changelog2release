@@ -1,0 +1,58 @@
+#!/usr/bin/env perl
+
+$release = <>;
+$version = $release;
+$version =~ s/^FreeRADIUS //;
+$version =~ s/\s.*//;
+
+#
+#  FIXME: automatically read the changelog, and
+#  create the output file.
+#
+
+$li = 0;
+
+while (<>) {
+    last if (/^FreeRADIUS/);
+
+    s/^\t//;
+    chop;
+
+    if (/^Feature improvements/) {
+	print "<h3>Feature improvements</h3>\n";
+	print "<ul>\n";
+	$li = 0;
+	next;
+    }
+
+    if (/^Bug fixes/) {
+	print "</li>\n";
+	print "</ul>\n";
+	$li = 0;
+	print "<h3>Bug Fixes</h3>\n";
+	next;
+    }
+
+    if (/^\s*$/) {
+	next;
+    }
+
+    if (/#\d+/) {
+	s,#(\d+),#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/$1">$1</a>,;
+    }
+
+    if (/^\* /) {
+	print "</li>\n" if ($li);
+
+	s/^\* //;
+	print "<li>", $_, "\n";
+	$li = 1;
+	next;
+    }
+
+    s/^  //;
+    print $_, "\n";
+}
+
+print "</li>\n";
+print "</ul>\n";
