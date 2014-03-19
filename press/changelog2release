@@ -30,6 +30,7 @@ while (<>) {
 	print "</ul>\n";
 	$li = 0;
 	print "<h3>Bug Fixes</h3>\n";
+	print "<ul>\n";
 	next;
     }
 
