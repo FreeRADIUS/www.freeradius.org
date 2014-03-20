@@ -1,7 +1,13 @@
 #!/usr/bin/env perl
 
-$release = <>;
-$version = $release;
+use strict;
+use warnings;
+use CGI();
+my $html = CGI->new;
+
+
+my $release = <>;
+my $version = $release;
 $version =~ s/^FreeRADIUS //;
 $version =~ s/\s.*//;
 
@@ -10,7 +16,7 @@ $version =~ s/\s.*//;
 #  create the output file.
 #
 
-$li = 0;
+my $li = 0;
 
 while (<>) {
     last if (/^FreeRADIUS/);
@@ -18,14 +24,14 @@ while (<>) {
     s/^\t//;
     chop;
 
-    if (/^Feature improvements/) {
+    if (/^Feature improvements/i) {
 	print "<h3>Feature improvements</h3>\n";
 	print "<ul>\n";
 	$li = 0;
 	next;
     }
 
-    if (/^Bug fixes/) {
+    if (/^Bug fixes/i) {
 	print "</li>\n";
 	print "</ul>\n";
 	$li = 0;
@@ -37,6 +43,8 @@ while (<>) {
     if (/^\s*$/) {
 	next;
     }
+
+    $_ = $html->escapeHTML($_);
 
     if (/#\d+/) {
 	s,#(\d+),#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/$1">$1</a>,;
