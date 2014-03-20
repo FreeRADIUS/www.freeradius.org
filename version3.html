@@ -28,6 +28,26 @@ at run-time, RADIUS over TLS (i.e. RadSec) and RADIUS over TCP are
 supported.  The <tt>raddb/</tt> directory has been re-arranged so that
 files are easier to find.</p>
 
+<h2>Upgrading from Version 2</h2>
+
+<p>The configuration of Version 3 is similar to that of Version 2.
+That similarity means that most of the documentation for v2 still
+applies to v3.  This includes third-party documentation, the Wiki,
+etc.  However, we do <em>not</em> recommend using a v2 configuration
+with v3.  We do <em>not</em> recommend starting with a v2
+configuration, and trying to "tweak" it to be acceptable to v3.</p>
+
+<p>Instead, administrators should start with the default v3
+configuration, and gradually add in their local changes.  Doing so
+will ensure that you start off with a working configuration, go to the
+next step with a working configuration, and end with a working
+configuration.</p>
+
+<p>The differences between the two versions are documented in
+the <a href="https://github.com/FreeRADIUS/freeradius-server/blob/v3.0.x/raddb/README.rst">README.rst</a>
+file distributed with version 3.  We recommend that administrators
+read that file before starting the upgrade process.</p>
+
 <h2>Latest Release</h2>
 
 <p><span class="date">2013.12.11</span> Version <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius3_version" -->.tar.bz2"><!--#echo var="freeradius3_version" --></a>
