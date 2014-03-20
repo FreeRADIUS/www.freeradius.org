@@ -42,4 +42,3 @@ radiusd: radiusd.stamp
 push:
 	git push
 	git push github
-	ssh -A freeradius.org@liberty "cd www && git pull origin master:master"
