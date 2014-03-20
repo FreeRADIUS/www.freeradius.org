@@ -1,9 +1,9 @@
 <h3>Feature improvements</h3>
 <ul>
-<li>A "panic_action" can be set to have the server dump a gdb
+<li>A &quot;panic_action&quot; can be set to have the server dump a gdb
 log on SEGV or other fatal error.
 </li>
-<li>allow radmin command "set module status &lt;module&gt; &lt;code&gt;"
+<li>allow radmin command &quot;set module status &lt;module&gt; &lt;code&gt;&quot;
 which can be used to forcibly enable/disable modules.
 </li>
 </ul>
@@ -14,7 +14,7 @@ reported to the parent, which exits with an error.
 </li>
 <li>Session / delay times in MySQL are unsigned int.
 </li>
-<li>Use --tag=CC for libtool.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/497">497</a>.  Because libtool
+<li>Use --tag=CC for libtool.  Closes #&lt;a href=&quot;https://github.com/FreeRADIUS/freeradius-server/issues/497&quot;&gt;497&lt;/a&gt;.  Because libtool
 is too stupid to notice that compiling means compilation.
 </li>
 <li>Fix bug when copying attributes for vendors &gt; 32767
@@ -23,14 +23,14 @@ is too stupid to notice that compiling means compilation.
 bound to an IP address would fail when the server was built with
 udpfromto.
 </li>
-<li>Don't fail config check if were listening on an IP which is
+<li>Don&#39;t fail config check if were listening on an IP which is
 also a home server. Some deployments have valid reasons
 to loop packets back to another virtual server.
 </li>
 <li>Use correct port when DHCP relaying.
 </li>
 <li>Set source IP address for DHCP packets from DHCP-Server-IP-Address,
-or DHCP-DHCP-Server-Identifier, if we're unable to otherwise
-determine the source IP.
+       or DHCP-DHCP-Server-Identifier, if we're unable to otherwise
+       determine the source IP.
 </li>
 </ul>
