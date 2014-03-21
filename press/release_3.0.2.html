@@ -1,0 +1,183 @@
+<h3>Feature improvements</h3>
+<ul>
+<li>secret keys and LDAP / SQL passwords are now printed as
+&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;&amp;lt;&amp;lt;&amp;lt; secret &amp;gt;&amp;gt;&amp;gt;&#39; in debugging mode.  Use -Xx to see the
+actual passwords.
+</li>
+<li>Print out more information about passwords in -Xx,
+including hashes, comparisons, etc.
+</li>
+<li>Allow cast (and implicit conversion) of integers to IPv4 addresses
+</li>
+<li>More xlats allow attribute references.  This means they can
+operate on binary data.  e.g. expr, base64, md5, sha1.
+</li>
+<li>Added more tests.
+</li>
+<li>The dictionaries are now auto-loaded.  raddb/dictionary
+should no longer have $INCLUDE ${prefix}/share/dictionary
+</li>
+<li>A &quot;panic_action&quot; can be set to have the server dump a gdb
+log on SEGV or other fatal error.  See radiusd.conf
+</li>
+<li>Add support for SHA-224, SHA-256, SHA-384, SHA-512 to rlm_pap.
+</li>
+<li>Add &quot;%{sha256:}&quot; and &quot;%{sha512:}&quot; xlat functions.
+</li>
+<li>Cache CUI in EAP session resumption.
+</li>
+<li>templates can now have sub-sections, which will be included
+in the section referencing the template.
+</li>
+<li>Update more dictionaries.
+</li>
+<li>Added more instances of the &quot;always&quot; module, for all return
+codes.
+</li>
+<li>Suppress broken NASes when proxying.  Retransmits which occur
+more than once per second are rate-limited to once per second.
+</li>
+<li>Allow &#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;&amp;amp;&#39; in more xlat expansions.
+</li>
+<li>Update PostgreSQL schema and queries to record last updated
+time, and accounting interim.
+</li>
+<li>Optimize more &quot;if&quot; conditions when the server loads.  This will
+avoid work at run time.  e.g. (&quot;foo&quot; == &quot;bar&quot;) --&amp;gt; FALSE.
+</li>
+<li>Allow removal of all attributes within a list with !* operator.
+</li>
+<li>Allow list to list copies with request qualifiers (outer.).
+</li>
+<li>Add support for ipv4 prefixes and ipv6 addresses and prefixes to
+%{integer:}.
+</li>
+<li>allow radmin command &quot;set module status &amp;lt;module&amp;gt; &amp;lt;code&amp;gt;&quot;
+which can be used to forcibly enable/disable modules.
+</li>
+<li>pap module now assumes Cleartext-Password if Password-With-Header
+doesn&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t have a {...} header.
+</li>
+<li>Added &quot;unpack&quot; module.  It can unpack binary data from horrible
+VSA formats.  See raddb/mods-available/unpack
+</li>
+<li>Added example IP Pool for DHCP, using sqlite.  From Matthew Newton
+See raddb/mods-config/sql/ippool-dhcp/
+</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li>Fix SQL groups.
+</li>
+<li>Fix operation of fr_strerror() with RE*() macros.
+</li>
+<li>Don&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t assert if the connection we&#39;re trying to reconnect
+is not in_use.
+</li>
+<li>Fix %{mschap:User-Name} xlat.
+</li>
+<li>Allow comparisons of signed integers and of ethernet addresses.
+</li>
+<li>Fix parsing of text-based ascend binary filters.
+</li>
+<li>Fix a few minor Coverity and clang analyzer issues.
+</li>
+<li>Log WARNING and ERROR prefixes only once, not twice.
+</li>
+<li>Fix attribute truncation seen in Perl and other places.
+</li>
+<li>Use correct port when DHCP relaying.
+</li>
+<li>Fix behaviour on FreeBSD where sending packets from an interface
+bound to an IP address would fail when the server was built with
+udpfromto.
+</li>
+<li>Don&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t abort() when freeing home servers on exit.
+</li>
+<li>Fix edge case in pairmove() when some attributes could be over-
+written.
+</li>
+<li>Do checks for individual sqlite v2 functions so rlm_sqlite builds
+correctly with more versions of the library.
+</li>
+<li>In heimdal kerberos, create MEMORY ccaches on a per context basis.
+This prevents issues with the root ccache being used.
+</li>
+<li>Fix corner case with proxying, where home server goes down.
+</li>
+<li>Rate-limit &quot;max_requests&quot; complaint.  We don&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t want to fill the
+logs when something goes wrong.
+</li>
+<li>Use /dev/urandom for raddb/certs/random, if it exists.
+</li>
+<li>Issue WARNING that old-style clients should no longer be used.
+</li>
+<li>Auto-set secret to &quot;radsec&quot; for tcp+tls home servers.
+</li>
+<li>Fix double free in home_server_add when there is a parse error
+on startup.
+</li>
+<li>rlm_unix checks if the dictionaries are broken, instead of crashing
+</li>
+<li>Fix potential memory corruption when normalising salted password
+hashes from hex, where the combined hash and salt was &amp;gt; 64 bytes.
+</li>
+<li>Register sqlcounter attributes correctly, and other issues with it
+</li>
+<li>treat 127.0.0.1/32 as being identical to 127.0.0.1
+</li>
+<li>Don&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t mangle error output of SQL drivers like PostgreSQL
+</li>
+<li>Fix usage of &quot;tls = ${tls}&quot;.  It could previously cause problems
+when the reference was used multiple times.
+</li>
+<li>Fix TLS session leak for incoming sockets.
+</li>
+<li>Try harder to clean up memory on exit when using &quot;-mM&quot;
+</li>
+<li>Fix memory leak when home server is down for RadSec connections
+</li>
+<li>rate-limit outgoing connection attempts when the home server
+is down.  It will retry no more than once per second.
+</li>
+<li>When parsing ipv6 address prefixes, always mask off the host
+portion.
+</li>
+<li>Fix rlm_counter so that it does not create two reply
+attributes.
+</li>
+<li>Fix issues with DHCP Sub-TLVs where the value of the first
+Sub-TLV would appear corrupted, and subsequent TLVs would
+not appear in debug output.
+</li>
+<li>Initialize scope in IP address parsing
+</li>
+<li>Prevent vendor attributes and RFC space attributes from clashing
+in rlm_attr_filter.
+</li>
+<li>Set source IP address for DHCP packets from DHCP-Server-IP-Address,
+or DHCP-DHCP-Server-Identifier, if we&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;re unable to otherwise
+determine the source IP.
+</li>
+<li>Fix POST attribute parsing in rlm_rest.
+</li>
+<li>Fix JSON attribute parsing in rlm_rest.
+</li>
+<li>Don&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t append trailing &amp;amp; to POST options in rlm_rest (minor).
+</li>
+<li>Process HTTP 100 Continue messages correctly in rlm_rest
+</li>
+<li>Fix generation of long &amp;gt; 512 byte POST payloads, where attribute
+values on the chunk boundary may have been omitted in rlm_rest.
+</li>
+<li>Remove duplicate escape sequence parsing in rlm_sqlippool and
+rlm_sqlcounter which caused issues with escaping %. Escape
+sequence parsing is now handled purely by the xlat functions.
+</li>
+<li>Ensure %% is treated as a string literal, and so not passed to any
+xlat escape functions for processing.
+</li>
+<li>Correct calculation of Message-Authenticator
+for CoA packets.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/556">556</a>
+</li>
+</ul>
