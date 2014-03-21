@@ -24,6 +24,10 @@ while (<>) {
     s/^\t//;
     chop;
 
+    s/&/&amp;/g;
+    s/</&lt;/g;
+    s/>/&gt;/g;
+
     if (/^Feature improvements/i) {
 	print "<h3>Feature improvements</h3>\n";
 	print "<ul>\n";
