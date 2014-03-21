@@ -46,6 +46,8 @@ while (<>) {
 
     $_ = $html->escapeHTML($_);
 
+    s/&#39;/'/g;		# stupid shit
+
     if (/#\d+/) {
 	s,#(\d+),#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/$1">$1</a>,;
     }

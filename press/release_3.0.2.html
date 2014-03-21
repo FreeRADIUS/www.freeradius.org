@@ -1,7 +1,7 @@
 <h3>Feature improvements</h3>
 <ul>
 <li>secret keys and LDAP / SQL passwords are now printed as
-&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;&lt;&lt;&lt; secret &gt;&gt;&gt;&#39; in debugging mode.  Use -Xx to see the
+'&lt;&lt;&lt; secret &gt;&gt;&gt;' in debugging mode.  Use -Xx to see the
 actual passwords.
 </li>
 <li>Print out more information about passwords in -Xx,
@@ -37,7 +37,7 @@ codes.
 <li>Suppress broken NASes when proxying.  Retransmits which occur
 more than once per second are rate-limited to once per second.
 </li>
-<li>Allow &#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;&amp;&#39; in more xlat expansions.
+<li>Allow '&amp;' in more xlat expansions.
 </li>
 <li>Update PostgreSQL schema and queries to record last updated
 time, and accounting interim.
@@ -56,7 +56,7 @@ avoid work at run time.  e.g. (&quot;foo&quot; == &quot;bar&quot;) --&gt; FALSE.
 which can be used to forcibly enable/disable modules.
 </li>
 <li>pap module now assumes Cleartext-Password if Password-With-Header
-doesn&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t have a {...} header.
+doesn't have a {...} header.
 </li>
 <li>Added &quot;unpack&quot; module.  It can unpack binary data from horrible
 VSA formats.  See raddb/mods-available/unpack
@@ -71,7 +71,7 @@ See raddb/mods-config/sql/ippool-dhcp/
 </li>
 <li>Fix operation of fr_strerror() with RE*() macros.
 </li>
-<li>Don&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t assert if the connection we&#39;re trying to reconnect
+<li>Don't assert if the connection we're trying to reconnect
 is not in_use.
 </li>
 <li>Fix %{mschap:User-Name} xlat.
@@ -92,7 +92,7 @@ is not in_use.
 bound to an IP address would fail when the server was built with
 udpfromto.
 </li>
-<li>Don&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t abort() when freeing home servers on exit.
+<li>Don't abort() when freeing home servers on exit.
 </li>
 <li>Fix edge case in pairmove() when some attributes could be over-
 written.
@@ -105,7 +105,7 @@ This prevents issues with the root ccache being used.
 </li>
 <li>Fix corner case with proxying, where home server goes down.
 </li>
-<li>Rate-limit &quot;max_requests&quot; complaint.  We don&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t want to fill the
+<li>Rate-limit &quot;max_requests&quot; complaint.  We don't want to fill the
 logs when something goes wrong.
 </li>
 <li>Use /dev/urandom for raddb/certs/random, if it exists.
@@ -126,7 +126,7 @@ hashes from hex, where the combined hash and salt was &gt; 64 bytes.
 </li>
 <li>treat 127.0.0.1/32 as being identical to 127.0.0.1
 </li>
-<li>Don&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t mangle error output of SQL drivers like PostgreSQL
+<li>Don't mangle error output of SQL drivers like PostgreSQL
 </li>
 <li>Fix usage of &quot;tls = ${tls}&quot;.  It could previously cause problems
 when the reference was used multiple times.
@@ -156,14 +156,14 @@ not appear in debug output.
 in rlm_attr_filter.
 </li>
 <li>Set source IP address for DHCP packets from DHCP-Server-IP-Address,
-or DHCP-DHCP-Server-Identifier, if we&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;re unable to otherwise
+or DHCP-DHCP-Server-Identifier, if we're unable to otherwise
 determine the source IP.
 </li>
 <li>Fix POST attribute parsing in rlm_rest.
 </li>
 <li>Fix JSON attribute parsing in rlm_rest.
 </li>
-<li>Don&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t append trailing &amp; to POST options in rlm_rest (minor).
+<li>Don't append trailing &amp; to POST options in rlm_rest (minor).
 </li>
 <li>Process HTTP 100 Continue messages correctly in rlm_rest
 </li>
