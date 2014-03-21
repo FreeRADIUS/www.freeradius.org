@@ -1,7 +1,7 @@
 <h3>Feature improvements</h3>
 <ul>
 <li>secret keys and LDAP / SQL passwords are now printed as
-&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;&amp;lt;&amp;lt;&amp;lt; secret &amp;gt;&amp;gt;&amp;gt;&#39; in debugging mode.  Use -Xx to see the
+&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;&lt;&lt;&lt; secret &gt;&gt;&gt;&#39; in debugging mode.  Use -Xx to see the
 actual passwords.
 </li>
 <li>Print out more information about passwords in -Xx,
@@ -37,13 +37,13 @@ codes.
 <li>Suppress broken NASes when proxying.  Retransmits which occur
 more than once per second are rate-limited to once per second.
 </li>
-<li>Allow &#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;&amp;amp;&#39; in more xlat expansions.
+<li>Allow &#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;&amp;&#39; in more xlat expansions.
 </li>
 <li>Update PostgreSQL schema and queries to record last updated
 time, and accounting interim.
 </li>
 <li>Optimize more &quot;if&quot; conditions when the server loads.  This will
-avoid work at run time.  e.g. (&quot;foo&quot; == &quot;bar&quot;) --&amp;gt; FALSE.
+avoid work at run time.  e.g. (&quot;foo&quot; == &quot;bar&quot;) --&gt; FALSE.
 </li>
 <li>Allow removal of all attributes within a list with !* operator.
 </li>
@@ -52,7 +52,7 @@ avoid work at run time.  e.g. (&quot;foo&quot; == &quot;bar&quot;) --&amp;gt; FA
 <li>Add support for ipv4 prefixes and ipv6 addresses and prefixes to
 %{integer:}.
 </li>
-<li>allow radmin command &quot;set module status &amp;lt;module&amp;gt; &amp;lt;code&amp;gt;&quot;
+<li>allow radmin command &quot;set module status &lt;module&gt; &lt;code&gt;&quot;
 which can be used to forcibly enable/disable modules.
 </li>
 <li>pap module now assumes Cleartext-Password if Password-With-Header
@@ -120,7 +120,7 @@ on startup.
 <li>rlm_unix checks if the dictionaries are broken, instead of crashing
 </li>
 <li>Fix potential memory corruption when normalising salted password
-hashes from hex, where the combined hash and salt was &amp;gt; 64 bytes.
+hashes from hex, where the combined hash and salt was &gt; 64 bytes.
 </li>
 <li>Register sqlcounter attributes correctly, and other issues with it
 </li>
@@ -163,11 +163,11 @@ determine the source IP.
 </li>
 <li>Fix JSON attribute parsing in rlm_rest.
 </li>
-<li>Don&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t append trailing &amp;amp; to POST options in rlm_rest (minor).
+<li>Don&#<a href="https://github.com/FreeRADIUS/freeradius-server/issues/39">39</a>;t append trailing &amp; to POST options in rlm_rest (minor).
 </li>
 <li>Process HTTP 100 Continue messages correctly in rlm_rest
 </li>
-<li>Fix generation of long &amp;gt; 512 byte POST payloads, where attribute
+<li>Fix generation of long &gt; 512 byte POST payloads, where attribute
 values on the chunk boundary may have been omitted in rlm_rest.
 </li>
 <li>Remove duplicate escape sequence parsing in rlm_sqlippool and
