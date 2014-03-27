@@ -41,7 +41,7 @@ Abstract
    authentication framework which supports multiple authentication
    mechanisms.  In the proposed scheme, the Network Access Server (NAS)
    forwards EAP packets to and from the RADIUS server, encapsulated
-   within <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attributes.  This has the advantage of allowing
+   within EAP-Message attributes.  This has the advantage of allowing
    the NAS to support any EAP authentication method, without the need
    for method-specific code, which resides on the RADIUS server.  While
    EAP was originally developed for use with PPP, it is now also in use
@@ -83,8 +83,8 @@ Table of Contents
        2.5.  Alternative uses . . . . . . . . . . . . . . . . . . . . 11
        2.6.  Usage Guidelines . . . . . . . . . . . . . . . . . . . . 11
    3.  Attributes . . . . . . . . . . . . . . . . . . . . . . . . . . 14
-       3.1.  <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>. . . . . . . . . . . . . . . . . . . . . . . 15
-       3.2.  <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>. . . . . . . . . . . . . . . . . . 16
+       3.1.  EAP-Message. . . . . . . . . . . . . . . . . . . . . . . 15
+       3.2.  Message-Authenticator. . . . . . . . . . . . . . . . . . 16
        3.3.  Table of Attributes. . . . . . . . . . . . . . . . . . . 18
    4.  Security Considerations. . . . . . . . . . . . . . . . . . . . 19
        4.1.  Security Requirements. . . . . . . . . . . . . . . . . . 19
@@ -130,7 +130,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    3-tuples.  New attribute values can be added without disturbing
    existing implementations of the protocol.  This specification
    describes RADIUS attributes supporting the Extensible Authentication
-   Protocol (EAP): <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> and <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>.  These
+   Protocol (EAP): EAP-Message and Message-Authenticator.  These
    attributes now have extensive field experience.  The purpose of this
    document is to provide clarification and resolve interoperability
    issues.
@@ -139,8 +139,8 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    implement a given service MUST NOT implement the RADIUS attributes
    for that service.  This implies that a NAS that is unable to offer
    EAP service MUST NOT implement the RADIUS attributes for EAP.  A NAS
-   MUST treat a RADIUS <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> requesting an unavailable service
-   as an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> instead.
+   MUST treat a RADIUS Access-Accept requesting an unavailable service
+   as an Access-Reject instead.
 
 <H2>1.1.  Specification of Requirements</H2>
 
@@ -246,7 +246,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    no longer perform local authentication for that session.
 
    In order to support EAP within RADIUS, two new attributes,
-   <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> and <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>, are introduced in this
+   EAP-Message and Message-Authenticator, are introduced in this
    document.  This section describes how these new attributes may be
    used for providing EAP support within RADIUS.
 
@@ -262,7 +262,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    EAP-Request for an authentication method (Types 4 and greater).  A
    NAS MAY be configured to initiate with a default authentication
    method.  This is useful in cases where the identity is determined by
-   another means (such as <A HREF="rfc2865.html#Called-Station-Id">Called-Station-Id</A>, <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A> and/or
+   another means (such as Called-Station-Id, Calling-Station-Id and/or
    Originating-Line-Info); where a single authentication method is
    required, which includes its own identity exchange; where identity
    hiding is desired, so that the identity is not requested until after
@@ -271,21 +271,21 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    The peer replies with an EAP-Response.  The NAS MAY determine from
    the Response that it should proceed with local authentication.
    Alternatively, the NAS MAY act as a pass-through, encapsulating the
-   EAP-Response within <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s) sent to the RADIUS
-   server within a RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet.  If the NAS sends an
+   EAP-Response within EAP-Message attribute(s) sent to the RADIUS
+   server within a RADIUS Access-Request packet.  If the NAS sends an
    EAP-Request/Identity message as the initial packet, the peer responds
    with an EAP-Response/Identity.  The NAS may determine that the peer
    is local and proceed with local authentication.  If no match is found
    against the list of local users, the NAS encapsulates the
-   EAP-Response/Identity message within an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute,
-   enclosed within an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet.
+   EAP-Response/Identity message within an EAP-Message attribute,
+   enclosed within an Access-Request packet.
 
-   On receiving a valid <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet containing <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>
+   On receiving a valid Access-Request packet containing EAP-Message
    attribute(s), a RADIUS server compliant with this specification and
    wishing to authenticate with EAP MUST respond with an
-   <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet containing <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s).  If the
+   Access-Challenge packet containing EAP-Message attribute(s).  If the
    RADIUS server does not support EAP or does not wish to authenticate
-   with EAP, it MUST respond with an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>.
+   with EAP, it MUST respond with an Access-Reject.
 
 
 
@@ -294,17 +294,17 @@ Aboba &amp; Calhoun              Informational                      [Page 5]
 RFC 3579                      RADIUS &amp; EAP                September 2003
 
 
-   <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s) encapsulate a single EAP packet which the
+   EAP-Message attribute(s) encapsulate a single EAP packet which the
    NAS decapsulates and passes on to the authenticating peer.  The peer
    then responds with an EAP-Response packet, which the NAS encapsulates
-   within an <A HREF="rfc2865.html#Access-Request">Access-Request</A> containing <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s).  EAP is
+   within an Access-Request containing EAP-Message attribute(s).  EAP is
    a 'lock step' protocol, so that other than the initial Request, a new
    Request cannot be sent prior to receiving a valid Response.
 
-   The conversation continues until either a RADIUS <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> or
-   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet is received from the RADIUS server.  Reception
-   of a RADIUS <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet MUST result in the NAS denying
-   access to the authenticating peer.  A RADIUS <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet
+   The conversation continues until either a RADIUS Access-Reject or
+   Access-Accept packet is received from the RADIUS server.  Reception
+   of a RADIUS Access-Reject packet MUST result in the NAS denying
+   access to the authenticating peer.  A RADIUS Access-Accept packet
    successfully ends the authentication phase.  The NAS MUST NOT
    "manufacture" a Success or Failure packet as the result of a timeout.
    After a suitable number of timeouts have elapsed, the NAS SHOULD
@@ -320,7 +320,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    be configured with the initial packet to be sent to the peer, and for
    the NAS to act as a pass-through for subsequent messages.  Note that
    since the NAS only encapsulates the EAP-Response in its initial
-   <A HREF="rfc2865.html#Access-Request">Access-Request</A>, the initial EAP-Request within the authentication
+   Access-Request, the initial EAP-Request within the authentication
    method is not available to the RADIUS server.  For the RADIUS server
    to be able to continue the conversation, either the initial
    EAP-Request is vestigial, so that the RADIUS server need not be aware
@@ -333,7 +333,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    authentication Type (4 or greater), the peer MAY respond with a Nak
    indicating that it would prefer another authentication method that is
    not implemented locally.  In this case, the NAS SHOULD send
-   <A HREF="rfc2865.html#Access-Request">Access-Request</A> encapsulating the received EAP-Response/Nak.  This
+   Access-Request encapsulating the received EAP-Response/Nak.  This
    provides the RADIUS server with a hint about the authentication
    method(s) preferred by the peer, although it does not provide
    information on the Type of the original Request.  It also provides
@@ -352,7 +352,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
    In order to evaluate whether the alternatives preferred by the
    authenticating peer are allowed, the RADIUS server will typically
-   respond with an <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> containing <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s)
+   respond with an Access-Challenge containing EAP-Message attribute(s)
    encapsulating an EAP-Request/Identity (Type 1).  This allows the
    RADIUS server to determine the peer identity, so as to be able to
    retrieve the associated authentication policy.  Alternatively, an
@@ -362,30 +362,30 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    an unacceptable method, and for the peer to respond with another Nak.
 
    In order to permit non-EAP aware RADIUS proxies to forward the
-   <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet, if the NAS initially sends an
+   Access-Request packet, if the NAS initially sends an
    EAP-Request/Identity message to the peer, the NAS MUST copy the
    contents of the Type-Data field of the EAP-Response/Identity received
-   from the peer into the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute and MUST include the
+   from the peer into the User-Name attribute and MUST include the
 <B>   Type-Data field of the EAP-Response/Identity in the User-Name</B>
-   attribute in every subsequent <A HREF="rfc2865.html#Access-Request">Access-Request</A>.  Since RADIUS proxies
+   attribute in every subsequent Access-Request.  Since RADIUS proxies
    are assumed to act as a pass-through, they cannot be expected to
-   parse an EAP-Response/Identity encapsulated within <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>
+   parse an EAP-Response/Identity encapsulated within EAP-Message
    attribute(s).  If the NAS initially sends an EAP-Request for an
    authentication method, and the peer identity cannot be determined
-   from the EAP-Response, then the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute SHOULD be
+   from the EAP-Response, then the User-Name attribute SHOULD be
    determined by another means.  As noted in [RFC2865] Section 5.6, it
    is recommended that Access-Requests use the value of the
-   <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A> as the value of the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute.
+   Calling-Station-Id as the value of the User-Name attribute.
 
    Having the NAS send the initial EAP-Request packet has a number of
    advantages:
 
    [1]  It saves a round trip between the NAS and RADIUS server.
 
-   [2]  An <A HREF="rfc2865.html#Access-Request">Access-Request</A> is only sent to the RADIUS server if the
+   [2]  An Access-Request is only sent to the RADIUS server if the
         authenticating peer sends an EAP-Response, confirming that it
         supports EAP.  In situations where peers may be EAP unaware,
-        initiating a RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> on a "carrier sense" or
+        initiating a RADIUS Access-Request on a "carrier sense" or
         "media up" indication may result in many authentication
         exchanges that cannot complete successfully.  For example, on
         wired networks [IEEE8021X] Supplicants typically do not initiate
@@ -410,22 +410,22 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    substantial advantages, this technique cannot be universally
    employed.  There are circumstances in which the peer identity is
    already known (such as when authentication and accounting is handled
-   based on <A HREF="rfc2865.html#Called-Station-Id">Called-Station-Id</A>, <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A> and/or
+   based on Called-Station-Id, Calling-Station-Id and/or
    Originating-Line-Info), but where the appropriate EAP method may vary
    based on that identity.
 
    Rather than sending an initial EAP-Request packet to the
    authenticating peer, on detecting the presence of the peer, the NAS
-   MAY send an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet to the RADIUS server containing an
-   <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute signifying EAP-Start.  The RADIUS server will
-   typically respond with an <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> containing <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>
+   MAY send an Access-Request packet to the RADIUS server containing an
+   EAP-Message attribute signifying EAP-Start.  The RADIUS server will
+   typically respond with an Access-Challenge containing EAP-Message
    attribute(s) encapsulating an EAP-Request/Identity (Type 1).
    However, an EAP-Request for an authentication method (Type 4 or
    greater) can also be sent by the server.
 
-   EAP-Start is indicated by sending an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute with a
-   length of 2 (no data).  The <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A> SHOULD be included in
-   the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute.  This may result in a RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>
+   EAP-Start is indicated by sending an EAP-Message attribute with a
+   length of 2 (no data).  The Calling-Station-Id SHOULD be included in
+   the User-Name attribute.  This may result in a RADIUS Access-Request
    being sent by the NAS to the RADIUS server without first confirming
    that the peer supports EAP.  Since this technique can result in a
    large number of uncompleted RADIUS conversations, in situations where
@@ -435,18 +435,18 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    employed by default.
 
    For proxied RADIUS requests, there are two methods of processing.  If
-   the domain is determined based on the <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A>,
-   <A HREF="rfc2865.html#Called-Station-Id">Called-Station-Id</A> and/or Originating-Line-Info, the RADIUS server may
+   the domain is determined based on the Calling-Station-Id,
+   Called-Station-Id and/or Originating-Line-Info, the RADIUS server may
    proxy the initial RADIUS Access-Request/EAP-Start.  If the realm is
    determined based on the peer identity, the local RADIUS server MUST
-   respond with a RADIUS <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> including an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>
+   respond with a RADIUS Access-Challenge including an EAP-Message
    attribute encapsulating an EAP-Request/Identity packet.  The response
    from the authenticating peer SHOULD be proxied to the final
    authentication server.
 
-   If an <A HREF="rfc2865.html#Access-Request">Access-Request</A> is sent to a RADIUS server which does not
-   support the <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute, then an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> MUST be sent
-   in response.  On receiving an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>, the NAS MUST deny access
+   If an Access-Request is sent to a RADIUS server which does not
+   support the EAP-Message attribute, then an Access-Reject MUST be sent
+   in response.  On receiving an Access-Reject, the NAS MUST deny access
    to the authenticating peer.
 
 
@@ -471,7 +471,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    Identifier value against the current Identifier, supplied by the
    RADIUS server in the most recently validated EAP-Request.  On
    receiving an EAP packet from the RADIUS server (encapsulated within
-   an <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>), the NAS checks the Code (1) and Length fields,
+   an Access-Challenge), the NAS checks the Code (1) and Length fields,
    then updates the current Identifier value.  Pending EAP Responses
    that do not match the current Identifier value are silently discarded
    by the NAS.
@@ -479,33 +479,33 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    Since EAP method fields (Type, Type-Data) are typically not validated
    by a NAS operating as a pass-through, despite these checks it is
    possible for a NAS to forward an invalid EAP packet to or from the
-   RADIUS server.  A RADIUS server receiving <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s) it
+   RADIUS server.  A RADIUS server receiving EAP-Message attribute(s) it
    does not understand SHOULD make the determination of whether the
    error is fatal or non-fatal based on the EAP Type.  A RADIUS server
    determining that a fatal error has occurred MUST send an
-   <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> containing an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute encapsulating
+   Access-Reject containing an EAP-Message attribute encapsulating
    EAP-Failure.
 
    A RADIUS server determining that a non-fatal error has occurred MAY
-   send an <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> to the NAS including <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>
-   attribute(s) as well as an <A HREF="rfc3576.html#Error-Cause">Error-Cause</A> attribute [RFC3576] with value
-   202 (decimal), "Invalid EAP Packet (Ignored)".  The <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>
-   SHOULD encapsulate within <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s) the most recently
+   send an Access-Challenge to the NAS including EAP-Message
+   attribute(s) as well as an Error-Cause attribute [RFC3576] with value
+   202 (decimal), "Invalid EAP Packet (Ignored)".  The Access-Challenge
+   SHOULD encapsulate within EAP-Message attribute(s) the most recently
    sent EAP-Request packet (including the same Identifier value).  On
-   receiving such an <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>, a NAS implementing previous
+   receiving such an Access-Challenge, a NAS implementing previous
    versions of this specification will decapsulate the EAP-Request and
    send it to the peer, which will retransmit the EAP-Response.
 
    A NAS compliant with this specification, on receiving an
-   <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> with an <A HREF="rfc3576.html#Error-Cause">Error-Cause</A> attribute of value 202 (decimal)
+   Access-Challenge with an Error-Cause attribute of value 202 (decimal)
    SHOULD discard the EAP-Response packet most recently transmitted to
    the RADIUS server and check whether additional EAP-Response packets
    have been received matching the current Identifier value.  If so, a
    new EAP-Response packet, if available, MUST be sent to the RADIUS
-   server within an <A HREF="rfc2865.html#Access-Request">Access-Request</A>, and the <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s)
-   included within the <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> are silently discarded.  If no
+   server within an Access-Request, and the EAP-Message attribute(s)
+   included within the Access-Challenge are silently discarded.  If no
    EAP-Response packet is available, then the EAP-Request encapsulated
-   within the <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> is sent to the peer, and the
+   within the Access-Challenge is sent to the peer, and the
    retransmission timer is reset.
 
 
@@ -524,7 +524,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    to an appropriate policy once that buffer has been exceeded.  Also,
    the RADIUS server is advised to permit only a modest number of
    invalid EAP packets within a single session, prior to terminating the
-   session with an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>.  By default a value of 5 invalid EAP
+   session with an Access-Reject.  By default a value of 5 invalid EAP
    packets is recommended.
 
 <H2>2.3.  Retransmission</H2>
@@ -539,10 +539,10 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    find the card and enter the token.  Since the NAS will typically not
    have knowledge of the required parameters, these need to be provided
    by the RADIUS server.  This can be accomplished by inclusion of
-   <A HREF="rfc2865.html#Session-Timeout">Session-Timeout</A> attribute within the <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet.
+   Session-Timeout attribute within the Access-Challenge packet.
 
-   If <A HREF="rfc2865.html#Session-Timeout">Session-Timeout</A> is present in an <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet that also
-   contains an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>, the value of the <A HREF="rfc2865.html#Session-Timeout">Session-Timeout</A> is used to
+   If Session-Timeout is present in an Access-Challenge packet that also
+   contains an EAP-Message, the value of the Session-Timeout is used to
    set the EAP retransmission timer for that EAP Request, and that
    Request alone.  Once the EAP-Request has been sent, the NAS sets the
    retransmission timer, and if it expires without having received an
@@ -551,19 +551,19 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
 <H2>2.4.  Fragmentation</H2>
 
-   Using the <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute, it is possible for the RADIUS server
+   Using the EAP-Message attribute, it is possible for the RADIUS server
    to encapsulate an EAP packet that is larger than the MTU on the link
    between the NAS and the peer.  Since it is not possible for the
    RADIUS server to use MTU discovery to ascertain the link MTU, the
-   <A HREF="rfc2865.html#Framed-MTU">Framed-MTU</A> attribute may be included in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet
-   containing an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute so as to provide the RADIUS
+   Framed-MTU attribute may be included in an Access-Request packet
+   containing an EAP-Message attribute so as to provide the RADIUS
    server with this information.  A RADIUS server having received a
-   <A HREF="rfc2865.html#Framed-MTU">Framed-MTU</A> attribute in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet MUST NOT send any
-   subsequent packet in this EAP conversation containing <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>
+   Framed-MTU attribute in an Access-Request packet MUST NOT send any
+   subsequent packet in this EAP conversation containing EAP-Message
    attributes whose values, when concatenated, exceed the length
-   specified by the <A HREF="rfc2865.html#Framed-MTU">Framed-MTU</A> value, taking the link type (specified by
-   the <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> attribute) into account.  For example, as noted in
-   [RFC3580] Section 3.10, for a <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> value of IEEE 802.11, the
+   specified by the Framed-MTU value, taking the link type (specified by
+   the NAS-Port-Type attribute) into account.  For example, as noted in
+   [RFC3580] Section 3.10, for a NAS-Port-Type value of IEEE 802.11, the
 
 
 
@@ -574,7 +574,7 @@ Aboba &amp; Calhoun              Informational                     [Page 10]
 RFC 3579                      RADIUS &amp; EAP                September 2003
 
 
-   RADIUS server may send an EAP packet as large as <A HREF="rfc2865.html#Framed-MTU">Framed-MTU</A> minus
+   RADIUS server may send an EAP packet as large as Framed-MTU minus
    four (4) octets, taking into account the additional overhead for the
    IEEE 802.1X Version (1), Type (1) and Body Length (2) fields.
 
@@ -593,10 +593,10 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
    In the case where RADIUS-encapsulated EAP is used in a conversation
    between a RADIUS server and a security server, the security server
-   will typically return an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message without inclusion of
-   the expected attributes currently returned in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>.  This
+   will typically return an Access-Accept message without inclusion of
+   the expected attributes currently returned in an Access-Accept.  This
    means that the RADIUS server MUST add these attributes prior to
-   sending an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message to the NAS.
+   sending an Access-Accept message to the NAS.
 
 <H2>2.6.  Usage Guidelines</H2>
 
@@ -607,10 +607,10 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    packets with the same Identifier existing within distinct sessions,
    originating on the same NAS.  For this purpose, sessions can be
    distinguished based on NAS and session identification attributes.
-   NAS identification attributes include <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A>,
+   NAS identification attributes include NAS-Identifier,
    NAS-IPv6-Address and NAS-IPv4-Address.  Session identification
-   attributes include <A HREF="rfc2865.html#User-Name">User-Name</A>, <A HREF="rfc2865.html#NAS-Port">NAS-Port</A>, <A HREF="rfc2865.html#NAS-Port">NAS-Port</A>-Type, <A HREF="rfc2865.html#NAS-Port">NAS-Port</A>-Id,
-   <A HREF="rfc2865.html#Called-Station-Id">Called-Station-Id</A>, <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A> and Originating-Line-Info.
+   attributes include User-Name, NAS-Port, NAS-Port-Type, NAS-Port-Id,
+   Called-Station-Id, Calling-Station-Id and Originating-Line-Info.
 
 <H2>2.6.2.  Role Reversal</H2>
 
@@ -619,8 +619,8 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    may act as authenticators and authenticatees at the same time.
 
    However, role reversal is not supported by this specification.  A
-   RADIUS server MUST respond to an <A HREF="rfc2865.html#Access-Request">Access-Request</A> encapsulating an
-   EAP-Request with an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>.  In order to avoid retransmissions
+   RADIUS server MUST respond to an Access-Request encapsulating an
+   EAP-Request with an Access-Reject.  In order to avoid retransmissions
 
 
 
@@ -630,43 +630,43 @@ Aboba &amp; Calhoun              Informational                     [Page 11]
 RFC 3579                      RADIUS &amp; EAP                September 2003
 
 
-   by the peer, the <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> SHOULD include an EAP-Response/Nak
+   by the peer, the Access-Reject SHOULD include an EAP-Response/Nak
    packet indicating no preferred method, encapsulated within
-   <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s).
+   EAP-Message attribute(s).
 
 <H2>2.6.3.  Conflicting Messages</H2>
 
    The NAS MUST make its access control decision based solely on the
    RADIUS Packet Type (Access-Accept/Access-Reject).  The access control
    decision MUST NOT be based on the contents of the EAP packet
-   encapsulated in one or more <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attributes, if present.
+   encapsulated in one or more EAP-Message attributes, if present.
 
-   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets SHOULD have only one <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute in
-   them, containing EAP Success; similarly, <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packets SHOULD
-   have only one <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute in them, containing EAP Failure.
+   Access-Accept packets SHOULD have only one EAP-Message attribute in
+   them, containing EAP Success; similarly, Access-Reject packets SHOULD
+   have only one EAP-Message attribute in them, containing EAP Failure.
 
    Where the encapsulated EAP packet does not match the result implied
    by the RADIUS Packet Type, the combination is likely to cause
    confusion, because the NAS and peer will arrive at different
    conclusions as to the outcome of the authentication.
 
-   For example, if the NAS receives an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> with an
+   For example, if the NAS receives an Access-Reject with an
    encapsulated EAP Success, it will not grant access to the peer.
    However, on receiving the EAP Success, the peer will be lead to
    believe that it authenticated successfully.
 
-   If the NAS receives an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> with an encapsulated EAP
+   If the NAS receives an Access-Accept with an encapsulated EAP
    Failure, it will grant access to the peer.  However, on receiving an
    EAP Failure, the peer will be lead to believe that it failed
-   authentication.  If no <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute is included within an
-   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> or <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>, then the peer may not be informed as
+   authentication.  If no EAP-Message attribute is included within an
+   Access-Accept or Access-Reject, then the peer may not be informed as
    to the outcome of the authentication, while the NAS will take action
    to allow or deny access.
 
    As described in [RFC2284], the EAP Success and Failure packets are
    not acknowledged, and these packets terminate the EAP conversation.
    As a result, if these packets are encapsulated within an
-   <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>, no response will be received, and therefore the NAS
+   Access-Challenge, no response will be received, and therefore the NAS
    will send no further Access-Requests to the RADIUS server for the
    session.  As a result, the RADIUS server will not indicate to the NAS
    whether to allow or deny access, while the peer will be informed as
@@ -690,14 +690,14 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    sent by a RADIUS server:
 
       Access-Accept/EAP-Message/EAP Failure
-      Access-Accept/no <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute
+      Access-Accept/no EAP-Message attribute
       Access-Accept/EAP-Start
       Access-Reject/EAP-Message/EAP Success
-      Access-Reject/no <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute
+      Access-Reject/no EAP-Message attribute
       Access-Reject/EAP-Start
       Access-Challenge/EAP-Message/EAP Success
       Access-Challenge/EAP-Message/EAP Failure
-      Access-Challenge/no <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute
+      Access-Challenge/no EAP-Message attribute
       Access-Challenge/EAP-Start
 
    Since the responsibility for avoiding conflicts lies with the RADIUS
@@ -708,26 +708,26 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
 <H2>2.6.4.  Priority</H2>
 
-   A RADIUS <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> or <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet may contain EAP-
+   A RADIUS Access-Accept or Access-Reject packet may contain EAP-
    Message attribute(s). In order to ensure the correct processing of
    RADIUS packets, the NAS MUST first process the attributes, including
-   the <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s), prior to processing the Accept/Reject
+   the EAP-Message attribute(s), prior to processing the Accept/Reject
    indication.
 
 <H2>2.6.5.  Displayable Messages</H2>
 
-   The <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> attribute, defined in [RFC2865], Section 5.18,
+   The Reply-Message attribute, defined in [RFC2865], Section 5.18,
    indicates text which may be displayed to the peer.  This is similar
    in concept to EAP Notification, defined in [RFC2284].  When sending a
    displayable message to a NAS during an EAP conversation, the RADIUS
    server MUST encapsulate displayable messages within
-   EAP-Message/EAP-Request/Notification attribute(s).  <A HREF="rfc2865.html#Reply-Message">Reply-Message</A>
+   EAP-Message/EAP-Request/Notification attribute(s).  Reply-Message
    attribute(s) MUST NOT be included in any RADIUS message containing an
-   <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute.  An <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>/EAP-Request/Notification
-   SHOULD NOT be included within an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> or <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>
+   EAP-Message attribute.  An EAP-Message/EAP-Request/Notification
+   SHOULD NOT be included within an Access-Accept or Access-Reject
    packet.
 
-   In some existing implementations, a NAS receiving <A HREF="rfc2865.html#Reply-Message">Reply-Message</A>
+   In some existing implementations, a NAS receiving Reply-Message
    attribute(s) copies the Text field(s) into the Type-Data field of an
    EAP-Request/Notification packet, fills in the Identifier field, and
    sends this to the peer.  However, several issues arise from this:
@@ -745,48 +745,48 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    [1]  Unexpected Responses.  On receiving an EAP-Request/Notification,
         the peer will send an EAP-Response/Notification, and the NAS
         will pass this on to the RADIUS server, encapsulated within
-        <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s).  However, the RADIUS server may not be
-        expecting an <A HREF="rfc2865.html#Access-Request">Access-Request</A> containing an
+        EAP-Message attribute(s).  However, the RADIUS server may not be
+        expecting an Access-Request containing an
         EAP-Message/EAP-Response/Notification attribute.
 
-        For example, consider what happens when a <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> is
-        included within an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> or <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet with no
-        <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s) present.  If the value of the
-        <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> attribute is copied into the Type-Data of an
+        For example, consider what happens when a Reply-Message is
+        included within an Access-Accept or Access-Reject packet with no
+        EAP-Message attribute(s) present.  If the value of the
+        Reply-Message attribute is copied into the Type-Data of an
         EAP-Request/Notification and sent to the peer, this will result
-        in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> containing an
+        in an Access-Request containing an
         EAP-Message/EAP-Response/Notification attribute being sent by
-        the NAS to the RADIUS server.  Since an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> or
-        <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet terminates the RADIUS conversation, such an
-        <A HREF="rfc2865.html#Access-Request">Access-Request</A> would not be expected, and could be interpreted
+        the NAS to the RADIUS server.  Since an Access-Accept or
+        Access-Reject packet terminates the RADIUS conversation, such an
+        Access-Request would not be expected, and could be interpreted
         as the start of another conversation.
 
    [2]  Identifier conflicts.  While the EAP-Request/Notification is an
-        EAP packet containing an Identifier field, the <A HREF="rfc2865.html#Reply-Message">Reply-Message</A>
+        EAP packet containing an Identifier field, the Reply-Message
         attribute does not contain an Identifier field.  As a result, a
-        NAS receiving a <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> attribute and wishing to translate
+        NAS receiving a Reply-Message attribute and wishing to translate
         this to an EAP-Request/Notification will need to choose an
         Identifier value.  It is possible that the chosen Identifier
         value will conflict with a value chosen by the RADIUS server for
         another packet within the EAP conversation, potentially causing
         confusion between a new packet and a retransmission.
 
-   To avoid these problems, a NAS receiving a <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> attribute
+   To avoid these problems, a NAS receiving a Reply-Message attribute
    from the RADIUS server SHOULD silently discard the attribute, rather
    than attempting to translate it to an EAP Notification Request.
 
 <H2>3.  Attributes</H2>
 
-   The <A HREF="rfc2865.html#NAS-Port">NAS-Port</A> or <A HREF="rfc2865.html#NAS-Port">NAS-Port</A>-Id attributes SHOULD be included by the NAS
-   in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets, and either <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A>, <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A>
+   The NAS-Port or NAS-Port-Id attributes SHOULD be included by the NAS
+   in Access-Request packets, and either NAS-Identifier, NAS-IP-Address
    or NAS-IPv6-Address attributes MUST be included.  In order to permit
-   forwarding of the Access-Reply by EAP-unaware proxies, if a <A HREF="rfc2865.html#User-Name">User-Name</A>
-   attribute was included in an <A HREF="rfc2865.html#Access-Request">Access-Request</A>, the RADIUS server MUST
-   include the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute in subsequent <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.
-   Without the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute, accounting and billing becomes
-   difficult to manage.  The <A HREF="rfc2865.html#User-Name">User-Name</A> attribute within the Access-
-   Accept packet need not be the same as the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute in the
-   <A HREF="rfc2865.html#Access-Request">Access-Request</A>.
+   forwarding of the Access-Reply by EAP-unaware proxies, if a User-Name
+   attribute was included in an Access-Request, the RADIUS server MUST
+   include the User-Name attribute in subsequent Access-Accept packets.
+   Without the User-Name attribute, accounting and billing becomes
+   difficult to manage.  The User-Name attribute within the Access-
+   Accept packet need not be the same as the User-Name attribute in the
+   Access-Request.
 
 
 
@@ -798,7 +798,7 @@ Aboba &amp; Calhoun              Informational                     [Page 14]
 RFC 3579                      RADIUS &amp; EAP                September 2003
 
 
-<A NAME="EAP-Message"><H2>3.1.  EAP-Message</H2></a>
+<H2>3.1.  EAP-Message</H2>
 
 <B>   Description</B>
 
@@ -807,23 +807,23 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
       the EAP method it is passing through.
 
       The NAS places EAP messages received from the authenticating peer
-      into one or more <B>EAP-Message</B> attributes and forwards them to the
-      RADIUS server within an <A HREF="rfc2865.html#Access-Request">Access-Request</A> message.  If multiple
-      <B>EAP-Message</B> attributes are contained within an <A HREF="rfc2865.html#Access-Request">Access-Request</A> or
-      <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet, they MUST be in order and they MUST be
-      consecutive attributes in the <A HREF="rfc2865.html#Access-Request">Access-Request</A> or <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>
-      packet.  The RADIUS server can return <B>EAP-Message</B> attributes in
-      <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>, <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> and <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packets.
+      into one or more EAP-Message attributes and forwards them to the
+      RADIUS server within an Access-Request message.  If multiple
+      EAP-Message attributes are contained within an Access-Request or
+      Access-Challenge packet, they MUST be in order and they MUST be
+      consecutive attributes in the Access-Request or Access-Challenge
+      packet.  The RADIUS server can return EAP-Message attributes in
+      Access-Challenge, Access-Accept and Access-Reject packets.
 
-      When RADIUS is used to enable EAP authentication, <A HREF="rfc2865.html#Access-Request">Access-Request</A>,
-      <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>, <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, and <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packets SHOULD
-      contain one or more <B>EAP-Message</B> attributes.  Where more than one
-      <B>EAP-Message</B> attribute is included, it is assumed that the
+      When RADIUS is used to enable EAP authentication, Access-Request,
+      Access-Challenge, Access-Accept, and Access-Reject packets SHOULD
+      contain one or more EAP-Message attributes.  Where more than one
+      EAP-Message attribute is included, it is assumed that the
       attributes are to be concatenated to form a single EAP packet.
 
-      Multiple EAP packets MUST NOT be encoded within <B>EAP-Message</B>
-      attributes contained within a single <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>,
-      <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> or <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet.
+      Multiple EAP packets MUST NOT be encoded within EAP-Message
+      attributes contained within a single Access-Challenge,
+      Access-Accept, Access-Reject or Access-Request packet.
 
       It is expected that EAP will be used to implement a variety of
       authentication methods, including methods involving strong
@@ -832,18 +832,18 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
       EAP Failure packets) it is necessary that RADIUS provide
       per-packet authentication and integrity protection.
 
-      Therefore the <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute MUST be used to
-      protect all <A HREF="rfc2865.html#Access-Request">Access-Request</A>, <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>, <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, and
-      <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packets containing an <B>EAP-Message</B> attribute.
+      Therefore the Message-Authenticator attribute MUST be used to
+      protect all Access-Request, Access-Challenge, Access-Accept, and
+      Access-Reject packets containing an EAP-Message attribute.
 
-      <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets including <B>EAP-Message</B> attribute(s) without
-      a <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute SHOULD be silently discarded by
-      the RADIUS server.  A RADIUS server supporting the <B>EAP-Message</B>
+      Access-Request packets including EAP-Message attribute(s) without
+      a Message-Authenticator attribute SHOULD be silently discarded by
+      the RADIUS server.  A RADIUS server supporting the EAP-Message
       attribute MUST calculate the correct value of the
-      <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> and MUST silently discard the packet if it
+      Message-Authenticator and MUST silently discard the packet if it
       does not match the value sent.  A RADIUS server not supporting the
-      <B>EAP-Message</B> attribute MUST return an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> if it receives
-      an <A HREF="rfc2865.html#Access-Request">Access-Request</A> containing an <B>EAP-Message</B> attribute.
+      EAP-Message attribute MUST return an Access-Reject if it receives
+      an Access-Request containing an EAP-Message attribute.
 
 
 
@@ -854,14 +854,14 @@ Aboba &amp; Calhoun              Informational                     [Page 15]
 RFC 3579                      RADIUS &amp; EAP                September 2003
 
 
-      <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>, <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, or <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packets
-      including <B>EAP-Message</B> attribute(s) without a <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>
+      Access-Challenge, Access-Accept, or Access-Reject packets
+      including EAP-Message attribute(s) without a Message-Authenticator
       attribute SHOULD be silently discarded by the NAS.  A NAS
-      supporting the <B>EAP-Message</B> attribute MUST calculate the correct
-      value of the <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> and MUST silently discard the
+      supporting the EAP-Message attribute MUST calculate the correct
+      value of the Message-Authenticator and MUST silently discard the
       packet if it does not match the value sent.
 
-      A summary of the <B>EAP-Message</B> attribute format is shown below.  The
+      A summary of the EAP-Message attribute format is shown below.  The
       fields are transmitted from left to right.
 
        0                   1                   2
@@ -872,7 +872,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
 <B>   Type</B>
 
-      79 for <B>EAP-Message</B>
+      79 for EAP-Message
 
 <B>   Length</B>
 
@@ -881,23 +881,23 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    String
 
       The String field contains an EAP packet, as defined in [RFC2284].
-      If multiple <B>EAP-Message</B> attributes are present in a packet their
+      If multiple EAP-Message attributes are present in a packet their
       values should be concatenated; this allows EAP packets longer than
       253 octets to be transported by RADIUS.
 
-<A NAME="Message-Authenticator"><H2>3.2.  Message-Authenticator</H2></a>
+<H2>3.2.  Message-Authenticator</H2>
 
 <B>   Description</B>
 
       This attribute MAY be used to authenticate and integrity-protect
       Access-Requests in order to prevent spoofing.  It MAY be used in
-      any <A HREF="rfc2865.html#<A HREF="rfc2865.html#Access-Request">Access-Request</A>"><A HREF="rfc2865.html#Access-Request">Access-Request</A></A>.  It MUST be used in any <A HREF="rfc2865.html#<A HREF="rfc2865.html#Access-Request">Access-Request</A>"><A HREF="rfc2865.html#Access-Request">Access-Request</A></A>,
-      <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> or <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> that includes an
-      <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute.
+      any Access-Request.  It MUST be used in any Access-Request,
+      Access-Accept, Access-Reject or Access-Challenge that includes an
+      EAP-Message attribute.
 
-      A RADIUS server receiving an <A HREF="rfc2865.html#Access-Request">Access-Request</A> with a
-      <B>Message-Authenticator</B> attribute present MUST calculate the correct
-      value of the <B>Message-Authenticator</B> and silently discard the packet
+      A RADIUS server receiving an Access-Request with a
+      Message-Authenticator attribute present MUST calculate the correct
+      value of the Message-Authenticator and silently discard the packet
       if it does not match the value sent.
 
 
@@ -910,13 +910,13 @@ Aboba &amp; Calhoun              Informational                     [Page 16]
 RFC 3579                      RADIUS &amp; EAP                September 2003
 
 
-      A RADIUS client receiving an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> or
-      <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> with a <B>Message-Authenticator</B> attribute present
-      MUST calculate the correct value of the <B>Message-Authenticator</B> and
+      A RADIUS client receiving an Access-Accept, Access-Reject or
+      Access-Challenge with a Message-Authenticator attribute present
+      MUST calculate the correct value of the Message-Authenticator and
       silently discard the packet if it does not match the value sent.
 
       This attribute is not required in Access-Requests which include
-      the <A HREF="rfc2865.html#User-Password">User-Password</A> attribute, but is useful for preventing attacks
+      the User-Password attribute, but is useful for preventing attacks
       on other types of authentication.  This attribute is intended to
       thwart attempts by an attacker to setup a "rogue" NAS, and perform
       online dictionary attacks against the RADIUS server.  It does not
@@ -925,7 +925,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
       response, and performs a dictionary attack against those packets
       offline.
 
-      A summary of the <B>Message-Authenticator</B> attribute format is shown
+      A summary of the Message-Authenticator attribute format is shown
       below.  The fields are transmitted from left to right.
 
        0                   1                   2
@@ -936,7 +936,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
 <B>   Type</B>
 
-      80 for <B>Message-Authenticator</B>
+      80 for Message-Authenticator
 
 <B>   Length</B>
 
@@ -944,12 +944,12 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
    String
 
-      When present in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet, <B>Message-Authenticator</B> is
-      an HMAC-MD5 [RFC2104] hash of the entire <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet,
+      When present in an Access-Request packet, Message-Authenticator is
+      an HMAC-MD5 [RFC2104] hash of the entire Access-Request packet,
       including Type, ID, Length and Authenticator, using the shared
       secret as the key, as follows.
 
-      <B>Message-Authenticator</B> = HMAC-MD5 (Type, Identifier, Length,
+      Message-Authenticator = HMAC-MD5 (Type, Identifier, Length,
       Request Authenticator, Attributes)
 
       When the message integrity check is calculated the signature
@@ -966,52 +966,52 @@ Aboba &amp; Calhoun              Informational                     [Page 17]
 RFC 3579                      RADIUS &amp; EAP                September 2003
 
 
-      For <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>, <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, and <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packets,
-      the <B>Message-Authenticator</B> is calculated as follows, using the
-      Request-Authenticator from the <A HREF="rfc2865.html#Access-Request">Access-Request</A> this packet is in
+      For Access-Challenge, Access-Accept, and Access-Reject packets,
+      the Message-Authenticator is calculated as follows, using the
+      Request-Authenticator from the Access-Request this packet is in
       reply to:
 
-      <B>Message-Authenticator</B> = HMAC-MD5 (Type, Identifier, Length,
+      Message-Authenticator = HMAC-MD5 (Type, Identifier, Length,
       Request Authenticator, Attributes)
 
       When the message integrity check is calculated the signature
       string should be considered to be sixteen octets of zero.  The
       shared secret is used as the key for the HMAC-MD5 message
-      integrity check.  The <B>Message-Authenticator</B> is calculated and
+      integrity check.  The Message-Authenticator is calculated and
       inserted in the packet before the Response Authenticator is
       calculated.
 
 <H2>3.3.  Table of Attributes</H2>
 
    The following table provides a guide to which attributes may be found
-   in packets including <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute(s), and in what quantity.
-   The <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> and <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attributes specified in
-   this document MUST NOT be present in an <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A>.  If a
+   in packets including EAP-Message attribute(s), and in what quantity.
+   The EAP-Message and Message-Authenticator attributes specified in
+   this document MUST NOT be present in an Accounting-Request.  If a
    table entry is omitted, the values found in [RFC2548], [RFC2865],
    [RFC2868], [RFC2869] and [RFC3162] should be assumed.
 
 Request  Accept  Reject  Challenge   #    Attribute
-0-1      0-1     0       0            1   <A HREF="rfc2865.html#User-Name">User-Name</A>
-0        0       0       0            2   <A HREF="rfc2865.html#User-Password">User-Password</A> [Note 1]
-0        0       0       0            3   <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A> [Note 1]
-0        0       0       0           18   <A HREF="rfc2865.html#Reply-Message">Reply-Message</A>
-0        0       0       0           60   <A HREF="rfc2865.html#CHAP-Challenge">CHAP-Challenge</A>
-0        0       0       0           70   <A HREF="rfc2869.html#ARAP-Password">ARAP-Password</A> [Note 1]
-0        0       0       0           75   <A HREF="rfc2869.html#Password-Retry">Password-Retry</A>
-1+       1+      1+      1+          79   <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> [Note 1]
-1        1       1       1           80   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> [Note 1]
+0-1      0-1     0       0            1   User-Name
+0        0       0       0            2   User-Password [Note 1]
+0        0       0       0            3   CHAP-Password [Note 1]
+0        0       0       0           18   Reply-Message
+0        0       0       0           60   CHAP-Challenge
+0        0       0       0           70   ARAP-Password [Note 1]
+0        0       0       0           75   Password-Retry
+1+       1+      1+      1+          79   EAP-Message [Note 1]
+1        1       1       1           80   Message-Authenticator [Note 1]
 0-1      0       0       0           94   Originating-Line-Info [Note 3]
-0        0       0-1     0-1        101   <A HREF="rfc3576.html#Error-Cause">Error-Cause</A> [Note 2]
+0        0       0-1     0-1        101   Error-Cause [Note 2]
 Request  Accept  Reject  Challenge   #    Attribute
 
-   [Note 1] An <A HREF="rfc2865.html#Access-Request">Access-Request</A> that contains either a <A HREF="rfc2865.html#User-Password">User-Password</A> or
-   <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A> or <A HREF="rfc2869.html#ARAP-Password">ARAP-Password</A> or one or more <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attributes
+   [Note 1] An Access-Request that contains either a User-Password or
+   CHAP-Password or ARAP-Password or one or more EAP-Message attributes
    MUST NOT contain more than one type of those four attributes.  If it
    does not contain any of those four attributes, it SHOULD contain a
-   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>.  If any packet type contains an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>
-   attribute it MUST also contain a <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>.  A RADIUS
-   server receiving an <A HREF="rfc2865.html#Access-Request">Access-Request</A> not containing any of those four
-   attributes and also not containing a <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute
+   Message-Authenticator.  If any packet type contains an EAP-Message
+   attribute it MUST also contain a Message-Authenticator.  A RADIUS
+   server receiving an Access-Request not containing any of those four
+   attributes and also not containing a Message-Authenticator attribute
    SHOULD silently discard it.
 
 
@@ -1022,7 +1022,7 @@ Aboba &amp; Calhoun              Informational                     [Page 18]
 RFC 3579                      RADIUS &amp; EAP                September 2003
 
 
-   [Note 2] The <A HREF="rfc3576.html#Error-Cause">Error-Cause</A> attribute is defined in [RFC3576].
+   [Note 2] The Error-Cause attribute is defined in [RFC3576].
 
    [Note 3] The Originating-Line-Info attribute is defined in [NASREQ].
 
@@ -1098,7 +1098,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    and replay protection.  IKE SHOULD be used for key management.
 
    Within RADIUS [RFC2865], a shared secret is used for hiding of
-   attributes such as <A HREF="rfc2865.html#User-Password">User-Password</A>, as well as in computation of the
+   attributes such as User-Password, as well as in computation of the
    Response Authenticator.  In RADIUS accounting [RFC2866], the shared
    secret is used in computation of both the Request Authenticator and
    the Response Authenticator.
@@ -1248,8 +1248,8 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
 <H2>4.3.1.  Privacy Issues</H2>
 
-   Since RADIUS messages may contain the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute as well as
-   <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> or <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A> attributes, an attacker snooping on
+   Since RADIUS messages may contain the User-Name attribute as well as
+   NAS-IP-Address or NAS-Identifier attributes, an attacker snooping on
    RADIUS traffic may be able to determine the geographic location of
    peers in real time.  In wireless networks, it is often assumed that
    RADIUS traffic is physically secure, since it typically travels over
@@ -1269,27 +1269,27 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
 <H2>4.3.2.  Spoofing and Hijacking</H2>
 
-   <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets with a <A HREF="rfc2865.html#User-Password">User-Password</A> attribute establish the
-   identity of both the user and the NAS sending the <A HREF="rfc2865.html#Access-Request">Access-Request</A>,
+   Access-Request packets with a User-Password attribute establish the
+   identity of both the user and the NAS sending the Access-Request,
    because of the way the shared secret between the NAS and RADIUS
-   server is used.  <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets with <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A> or
-   <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attributes do not have a <A HREF="rfc2865.html#User-Password">User-Password</A> attribute.  As a
-   result, the <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute SHOULD be used in
-   <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets that do not have a <A HREF="rfc2865.html#User-Password">User-Password</A> attribute, in
+   server is used.  Access-Request packets with CHAP-Password or
+   EAP-Message attributes do not have a User-Password attribute.  As a
+   result, the Message-Authenticator attribute SHOULD be used in
+   Access-Request packets that do not have a User-Password attribute, in
    order to establish the identity of the NAS sending the request.
 
    An attacker may attempt to inject packets into the conversation
    between the NAS and the RADIUS server, or between the RADIUS server
    and the security server.  RADIUS [RFC2865] does not support
    encryption other than attribute hiding.  As described in [RFC2865],
-   only Access-Reply and <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets are integrity
+   only Access-Reply and Access-Challenge packets are integrity
    protected.  Moreover, the per-packet authentication and integrity
    protection mechanism described in [RFC2865] has known weaknesses
    [MD5Attack], making it a tempting target for attackers looking to
    subvert RADIUS/EAP.
 
-   To provide stronger security, the <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute
-   MUST be used in all RADIUS packets containing an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>
+   To provide stronger security, the Message-Authenticator attribute
+   MUST be used in all RADIUS packets containing an EAP-Message
    attribute.  Implementations of this specification SHOULD use IPsec
    ESP with non-null transform and per-packet encryption,
    authentication, integrity and replay protection, as described in
@@ -1306,7 +1306,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
    The RADIUS shared secret is vulnerable to offline dictionary attack,
    based on capture of the Response Authenticator or
-   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute.  In order to decrease the level of
+   Message-Authenticator attribute.  In order to decrease the level of
    vulnerability, [RFC2865] recommends:
 
       The secret (password shared between the client and the RADIUS
@@ -1320,25 +1320,25 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
 <H2>4.3.4.  Known Plaintext Attacks</H2>
 
-   Since EAP [RFC2284] does not support PAP, the RADIUS <A HREF="rfc2865.html#User-Password">User-Password</A>
+   Since EAP [RFC2284] does not support PAP, the RADIUS User-Password
    attribute is not used to carry hidden user passwords within
-   RADIUS/EAP conversations.  The <A HREF="rfc2865.html#User-Password">User-Password</A> hiding mechanism,
+   RADIUS/EAP conversations.  The User-Password hiding mechanism,
    defined in [RFC2865] utilizes MD5, defined in [RFC1321], in order to
    generate a key stream based on the RADIUS shared secret and the
    Request  Authenticator.  Where PAP is in use, it is possible to
    collect key streams corresponding to a given Request Authenticator
    value, by capturing RADIUS conversations corresponding to a PAP
    authentication attempt, using a known password.  Since the
-   <A HREF="rfc2865.html#User-Password">User-Password</A> is known, the key stream corresponding to a given
+   User-Password is known, the key stream corresponding to a given
    Request Authenticator can be determined and stored.
 
    Since the key stream may have been determined previously from a known
    plaintext attack, if the Request Authenticator repeats, attributes
    encrypted using the RADIUS attribute hiding mechanism should be
-   considered compromised.  In addition to the <A HREF="rfc2865.html#User-Password">User-Password</A> attribute,
+   considered compromised.  In addition to the User-Password attribute,
    which is not used with EAP, this includes attributes such as
-   <A HREF="rfc2868.html#Tunnel-Password">Tunnel-Password</A> [RFC2868, section 3.5] and <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A> and
-   <A HREF="rfc2548.html#MS-MPPE-Recv-Key">MS-MPPE-Recv-Key</A> attributes [RFC2548, section 2.4], which include a
+   Tunnel-Password [RFC2868, section 3.5] and MS-MPPE-Send-Key and
+   MS-MPPE-Recv-Key attributes [RFC2548, section 2.4], which include a
    Salt field as part of the hiding algorithm.
 
    To avoid this, [RFC2865], Section 3 advises:
@@ -1367,12 +1367,12 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    MD5(S + R + A).  Since the Salt field is placed at the end, if the
    Request Authenticator were to repeat on a network where PAP is in
    use, then the salted keystream could be calculated from the
-   <A HREF="rfc2865.html#User-Password">User-Password</A> keystream by continuing the MD5 calculation based on
+   User-Password keystream by continuing the MD5 calculation based on
    the Salt field (A), which is sent in the clear.
 
    Even though EAP does not support PAP authentication, a security
    vulnerability can still exist where the same RADIUS shared secret is
-   used for hiding <A HREF="rfc2865.html#User-Password">User-Password</A> as well as other attributes.  This can
+   used for hiding User-Password as well as other attributes.  This can
    occur, for example, if the same RADIUS proxy handles authentication
    requests for both EAP and PAP.
 
@@ -1380,7 +1380,7 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    non-null transform, as described in Section 4.2.  Where RADIUS shared
    secrets are configured, the RADIUS shared secret used by a NAS
    supporting EAP MUST NOT be reused by a NAS utilizing the
-   <A HREF="rfc2865.html#User-Password">User-Password</A> attribute, since improper shared secret hygiene could
+   User-Password attribute, since improper shared secret hygiene could
    lead to compromise of hidden attributes.
 
 <H2>4.3.5.  Replay Attacks</H2>
@@ -1397,8 +1397,8 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    accounting servers, protocol-based replay protection is not
    sufficient to prevent duplicate accounting records.  However, once
    accepted by the accounting server, duplicate accounting records can
-   be detected by use of the the <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> [RFC2866, section 5.5]
-   and <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A> [RFC2869, section 5.3] attributes.
+   be detected by use of the the Acct-Session-Id [RFC2866, section 5.5]
+   and Event-Timestamp [RFC2869, section 5.3] attributes.
 
    Unlike RADIUS authentication, RADIUS accounting does not use the
    Request Authenticator as a nonce.  Instead, the Request Authenticator
@@ -1414,12 +1414,12 @@ Aboba &amp; Calhoun              Informational                     [Page 25]
 RFC 3579                      RADIUS &amp; EAP                September 2003
 
 
-   Authenticator field from the <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packet being replied
+   Authenticator field from the Accounting-Request packet being replied
    to, the response attributes and the shared secret.
 
    Since the Accounting Response Authenticator depends in part on the
    Accounting Request Authenticator, it is not possible to replay an
-   <A HREF="rfc2866.html#Accounting-Response">Accounting-Response</A> unless the Request Authenticator repeats.  While
+   Accounting-Response unless the Request Authenticator repeats.  While
    it is possible to utilize EAP methods such as EAP TLS [RFC2716] which
    include liveness checks on both sides, not all EAP messages will
    include liveness so that this provides incomplete protection.
@@ -1486,18 +1486,18 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    session.  This avoids forcing a peer to support more than one
    authentication type, which could weaken security.
 
-   If CHAP is negotiated, the NAS will pass the <A HREF="rfc2865.html#User-Name">User-Name</A> and
-   <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A> attributes to the RADIUS server in an <A HREF="rfc2865.html#Access-Request">Access-Request</A>
+   If CHAP is negotiated, the NAS will pass the User-Name and
+   CHAP-Password attributes to the RADIUS server in an Access-Request
    packet.  If the peer is not required to use EAP, then the RADIUS
-   server will respond with an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> or <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet as
+   server will respond with an Access-Accept or Access-Reject packet as
    appropriate.  However, if CHAP has been negotiated but EAP is
-   required, the RADIUS server MUST respond with an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>,
+   required, the RADIUS server MUST respond with an Access-Reject,
    rather than an Access-Challenge/EAP-Message/EAP-Request packet.  The
    authenticating peer MUST refuse to renegotiate authentication, even
    if the renegotiation is from CHAP to EAP.
 
    If EAP is negotiated but is not supported by the RADIUS proxy or
-   server, then the server or proxy MUST respond with an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>.
+   server, then the server or proxy MUST respond with an Access-Reject.
    In these cases, a PPP NAS MUST send an LCP-Terminate and disconnect
    the peer.  This is the correct behavior since the authenticating peer
    is expecting EAP to be negotiated, and that expectation cannot be
@@ -1526,19 +1526,19 @@ Aboba &amp; Calhoun              Informational                     [Page 27]
 RFC 3579                      RADIUS &amp; EAP                September 2003
 
 
-   When RADIUS requests are forwarded by a proxy, the <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> or
+   When RADIUS requests are forwarded by a proxy, the NAS-IP-Address or
    NAS-IPv6-Address attributes may not match the source address.  Since
-   the <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A> attribute need not contain an FQDN, this attribute
+   the NAS-Identifier attribute need not contain an FQDN, this attribute
    also may not correspond to the source address, even indirectly, with
    or without a proxy present.
 
    As a result, the authenticity check performed by a RADIUS server or
    proxy does not verify the correctness of NAS identification
    attributes.  This makes it possible for a rogue NAS to forge
-   <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A>, NAS-IPv6-Address or <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A> attributes within
-   a RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> in order to impersonate another NAS.  It is
+   NAS-IP-Address, NAS-IPv6-Address or NAS-Identifier attributes within
+   a RADIUS Access-Request in order to impersonate another NAS.  It is
    also possible for a rogue NAS to forge session identification
-   attributes such as <A HREF="rfc2865.html#Called-Station-Id">Called-Station-Id</A>, <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A>, and
+   attributes such as Called-Station-Id, Calling-Station-Id, and
    Originating-Line-Info.
 
    This could fool the RADIUS server into subsequently sending
@@ -1546,24 +1546,24 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    session identification attributes to a NAS targeted by an attacker.
 
    To address these vulnerabilities RADIUS proxies SHOULD check whether
-   NAS identification attributes (<A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A>, NAS-IPv6-Address,
-   <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A>) match the source address of packets originating from
-   the NAS.  Where a match is not found, an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> SHOULD be
+   NAS identification attributes (NAS-IP-Address, NAS-IPv6-Address,
+   NAS-Identifier) match the source address of packets originating from
+   the NAS.  Where a match is not found, an Access-Reject SHOULD be
    sent, and an error SHOULD be logged.
 
    However, such a check may not always be possible.  Since the
-   <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A> attribute need not correspond to an FQDN, it may not
+   NAS-Identifier attribute need not correspond to an FQDN, it may not
    be resolvable to an IP address to be matched against the source
    address.  Also, where a NAT exists between the RADIUS client and
-   proxy, checking the <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> or NAS-IPv6-Address attributes may
+   proxy, checking the NAS-IP-Address or NAS-IPv6-Address attributes may
    not be feasible.
 
    To allow verification of NAS and session identification parameters,
    EAP methods can support the secure exchange of these parameters
    between the EAP peer and EAP server.  NAS identification attributes
-   include <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A>, NAS-IPv6-Address and <A HREF="rfc2865.html#Called-Station-Id">Called-Station-Id</A>;
-   session identification attributes include <A HREF="rfc2865.html#User-Name">User-Name</A> and
-   <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A>.  The secure exchange of these parameters between
+   include NAS-IP-Address, NAS-IPv6-Address and Called-Station-Id;
+   session identification attributes include User-Name and
+   Calling-Station-Id.  The secure exchange of these parameters between
    the EAP peer and server enables the RADIUS server to check whether
    the attributes provided by the NAS match those provided by the peer;
    similarly, the peer can check the parameters provided by the NAS
@@ -1615,14 +1615,14 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
    As described in Section 4.2, when RADIUS/EAP is used to encapsulate
    EAP packets, IPsec SHOULD be used to provide per-packet
    authentication, integrity, replay protection and confidentiality.
-   The <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute is also required in RADIUS
-   Access-Requests containing an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute sent from the NAS
+   The Message-Authenticator attribute is also required in RADIUS
+   Access-Requests containing an EAP-Message attribute sent from the NAS
    or tunnel server to the RADIUS server.  Since the
-   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute involves an HMAC-MD5 message
+   Message-Authenticator attribute involves an HMAC-MD5 message
    integrity check, it is possible for the RADIUS server to verify the
-   integrity of the <A HREF="rfc2865.html#Access-Request">Access-Request</A> as well as the NAS or tunnel server's
-   identity, even where IPsec is not used.  Similarly, <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>
-   packets containing an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute sent from the RADIUS
+   integrity of the Access-Request as well as the NAS or tunnel server's
+   identity, even where IPsec is not used.  Similarly, Access-Challenge
+   packets containing an EAP-Message attribute sent from the RADIUS
    server to the NAS are also authenticated and integrity protected
    using an HMAC-MD5 message integrity check, enabling the NAS or tunnel
    server to determine the integrity of the packet and verify the
@@ -1879,22 +1879,22 @@ Authenticating peer     NAS                    RADIUS server
                         Identity
 EAP-Response/
 Identity (MyID) -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         (MyID) -&gt;
                                                &lt;- RADIUS
-                                               <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
+                                               Access-Challenge/
                                                EAP-Message/EAP-Request
                                                OTP/OTP Challenge
                         &lt;- EAP-Request/
                         OTP/OTP Challenge
 EAP-Response/
 OTP, OTPpw -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         OTP, OTPpw -&gt;
                                                 &lt;- RADIUS
-                                                <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>/
+                                                Access-Accept/
                                                 EAP-Message/EAP-Success
                                                 (other attributes)
                         &lt;- EAP-Success
@@ -1930,11 +1930,11 @@ Authenticating peer     NAS                    RADIUS server
 EAP-Response/
 EAP-Type=EAP-TLS
 (TLS client_hello)-&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         EAP-Type=EAP-TLS-&gt;
-                                              &lt;-RADIUS <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
-                                              <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>/
+                                              &lt;-RADIUS Access-Challenge/
+                                              EAP-Message/
                                               EAP-Request/
                                               EAP-Type=EAP-TLS
                          &lt;- EAP-Request/
@@ -1951,11 +1951,11 @@ TLS client_key_exchange,
 [TLS certificate_verify,]
 TLS change_cipher_spec,
 TLS finished)-&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         EAP-Type=EAP-TLS-&gt;
-                                              &lt;-RADIUS <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
-                                              <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>/
+                                              &lt;-RADIUS Access-Challenge/
+                                              EAP-Message/
                                               EAP-Request/
                                               EAP-Type=EAP-TLS
                         &lt;- EAP-Request/
@@ -1976,10 +1976,10 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
 EAP-Response/
 EAP-Type=EAP-TLS -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         EAP-Type=EAP-TLS-&gt;
-                                              &lt;-RADIUS <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>/
+                                              &lt;-RADIUS Access-Accept/
                                               EAP-Message/EAP-Success
                                               (other attributes)
                         &lt;- EAP-Success
@@ -1989,32 +1989,32 @@ EAP-Type=EAP-TLS -&gt;
 
 Authenticating peer     NAS                    RADIUS server
 -------------------     ---                    -------------
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/Start -&gt;
                                                &lt;- RADIUS
-                                               <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
+                                               Access-Challenge/
                                                EAP-Message/EAP-Request/
                                                Identity
                         &lt;- EAP-Request/
                         Identity
 EAP-Response/
 Identity (MyID) -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         Identity (MyID) -&gt;
                                                 &lt;- RADIUS
-                                                <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
+                                                Access-Challenge/
                                                 EAP-Message/EAP-Request/
                                                 OTP/OTP Challenge
                         &lt;- EAP-Request/
                         OTP/OTP Challenge
 EAP-Response/
 OTP, OTPpw -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         OTP, OTPpw -&gt;
                                                 &lt;- RADIUS
-                                                <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>/
+                                                Access-Accept/
                                                 EAP-Message/EAP-Success
                                                 (other attributes)
                         &lt;- EAP-Success
@@ -2043,33 +2043,33 @@ Authenticating peer     NAS                    RADIUS server
 EAP-Response/
 EAP-Type=Nak
 (Alternative(s))-&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         Nak -&gt;
                                                &lt;- RADIUS
-                                               <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
+                                               Access-Challenge/
                                                EAP-Message/EAP-Request/
                                                Identity
                         &lt;- EAP-Request/
                         Identity
 EAP-Response/
 Identity (MyID) -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         (MyID) -&gt;
                                                &lt;- RADIUS
-                                               <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
+                                               Access-Challenge/
                                                EAP-Message/EAP-Request
                                                OTP/OTP Challenge
                         &lt;- EAP-Request/
                         OTP/OTP Challenge
 EAP-Response/
 OTP, OTPpw -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         OTP, OTPpw -&gt;
                                                 &lt;- RADIUS
-                                                <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>/
+                                                Access-Accept/
                                                 EAP-Message/EAP-Success
                                                 (other attributes)
                         &lt;- EAP-Success
@@ -2093,12 +2093,12 @@ Authenticating peer     NAS                    RADIUS Server
 -------------------     ---                    -------------
 EAP-Request/
 Challenge, MD5 -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Request/
                         Challenge, MD5 -&gt;
                                                 &lt;- RADIUS
-                                                <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>/
-                                                <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>/
+                                                Access-Reject/
+                                                EAP-Message/
                                                 EAP-Response/
                                                 Nak (no alternative)
 
@@ -2151,11 +2151,11 @@ Authenticating peer     NAS                    RADIUS server
                         EAP-Type=Foo
 EAP-Response/
 EAP-Type=Foo -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         EAP-Type=Foo -&gt;
                                                &lt;- RADIUS
-                                               <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
+                                               Access-Challenge/
                                                EAP-Message/EAP-Request/
                                                EAP-Type=Foo
                         &lt;- EAP-Request/
@@ -2167,20 +2167,20 @@ EAP-Type=Bar -&gt;
 Good guy:
 EAP-Response/
 EAP-Type=Foo -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         EAP-Type=Bar -&gt;
 
                                                &lt;- RADIUS
-                                               <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
+                                               Access-Challenge/
                                                EAP-Message/EAP-Request/
                                                EAP-Type=Foo,
                                                Error-Cause="Invalid EAP
                                                 Packet (Ignored)"
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         EAP-Type=Foo -&gt;
-                                               &lt;- <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>/
+                                               &lt;- Access-Accept/
                                                EAP-Message/Success
                         &lt;- EAP Success
 
@@ -2204,32 +2204,32 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
 Authenticating peer     NAS                    RADIUS server
 -------------------     ---                    -------------
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/Start -&gt;
                                                &lt;- RADIUS
-                                               <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
+                                               Access-Challenge/
                                                EAP-Message/EAP-Response/
                                                Identity
                         &lt;- EAP-Request/
                         Identity
 EAP-Response/
 Identity (MyID) -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         (MyID) -&gt;
                                                 &lt;- RADIUS
-                                                <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
+                                                Access-Challenge/
                                                 EAP-Message/EAP-Request
                                                 OTP/OTP Challenge
                         &lt;- EAP-Request/
                         OTP/OTP Challenge
 EAP-Response/
 OTP, OTPpw -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         OTP, OTPpw -&gt;
                                                 &lt;- RADIUS
-                                                <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
+                                                Access-Challenge/
                                                 EAP-Message/EAP-Request/
                                                 Notification
                         &lt;- EAP-Request/
@@ -2237,11 +2237,11 @@ OTP, OTPpw -&gt;
 
 EAP-Response/
 Notification -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         Notification -&gt;
                                                  &lt;- RADIUS
-                                                 <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>/
+                                                 Access-Reject/
                                                  EAP-Message/EAP-Failure
                         &lt;- EAP-Failure
                         (client disconnected)
@@ -2260,23 +2260,23 @@ RFC 3579                      RADIUS &amp; EAP                September 2003
 
 Authenticating peer     NAS                       RADIUS server
 -------------------     ---                       -------------
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/Start -&gt;
                                                   &lt;- RADIUS
-                                                  <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>
+                                                  Access-Reject
                         (User Disconnected)
 
-In the case where the local RADIUS server does support <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>, but
+In the case where the local RADIUS server does support EAP-Message, but
 the remote RADIUS server does not, the conversation would appear as
 follows:
 
 Authenticating peer     NAS                       RADIUS server
 -------------------     ---                       -------------
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/Start -&gt;
                                                   &lt;- RADIUS
-                                                  <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>/
-                                                  <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>/
+                                                  Access-Challenge/
+                                                  EAP-Message/
                                                   EAP-Response/
                                                   Identity
                         &lt;- EAP-Request/
@@ -2285,11 +2285,11 @@ Authenticating peer     NAS                       RADIUS server
 EAP-Response/
 Identity
 (MyID) -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
+                        RADIUS Access-Request/
                         EAP-Message/EAP-Response/
                         (MyID) -&gt;
                                                   &lt;- RADIUS
-                                                  <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>
+                                                  Access-Reject
                                                   (proxied from remote
                                                    RADIUS server)
                         (User Disconnected)
@@ -2326,11 +2326,11 @@ PPP LCP ACK-CHAP
 auth -&gt;
                         &lt;- PPP CHAP Challenge
 PPP CHAP Response -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
-                        <A HREF="rfc2865.html#User-Name">User-Name</A>,
-                        <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A> -&gt;
+                        RADIUS Access-Request/
+                        User-Name,
+                        CHAP-Password -&gt;
                                                   &lt;- RADIUS
-                                                  <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>
+                                                  Access-Reject
                         &lt;-  PPP LCP Terminate
                         (User Disconnected)
 
@@ -2347,12 +2347,12 @@ PP LCP ACK-CHAP
 auth -&gt;
                         &lt;- PPP CHAP Challenge
 PPP CHAP Response -&gt;
-                        RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>/
-                        <A HREF="rfc2865.html#User-Name">User-Name</A>,
-                        <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A> -&gt;
+                        RADIUS Access-Request/
+                        User-Name,
+                        CHAP-Password -&gt;
 
                                                  &lt;- RADIUS
-                                                 <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>
+                                                 Access-Reject
                         &lt;-  PPP LCP Terminate
                         (User Disconnected)
 
@@ -2377,14 +2377,14 @@ Appendix B - Change Log
 
    The NAS may initiate with an EAP-Request for an authentication Type.
    If the Request is NAK'd, the NAS should send an initial
-   <A HREF="rfc2865.html#Access-Request">Access-Request</A> with an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute containing an
+   Access-Request with an EAP-Message attribute containing an
    EAP-Response/Nak.
 
    The RADIUS server may treat an invalid EAP Response as a non-fatal
    error (Section 2.2)
 
-   For use with RADIUS/EAP, the <A HREF="rfc2869.html#Password-Retry">Password-Retry</A> (Section 2.3) and
-   <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> (2.6.5) attributes are deprecated.
+   For use with RADIUS/EAP, the Password-Retry (Section 2.3) and
+   Reply-Message (2.6.5) attributes are deprecated.
 
    Each EAP session has a unique Identifier space (Section 2.6.1).
 
@@ -2396,7 +2396,7 @@ Appendix B - Change Log
    Only a single EAP packet may be encapsulated within a RADIUS message
    (Section 3.1).
 
-   An <A HREF="rfc2865.html#Access-Request">Access-Request</A> lacking explicit authentication as well as a
+   An Access-Request lacking explicit authentication as well as a
    Message- Authenticator attribute SHOULD be silently discarded
    (Section 3.3).
 

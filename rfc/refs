@@ -30,7 +30,7 @@ rfc2548	MS-Primary-DNS-Server
 rfc2548	MS-Secondary-DNS-Server
 rfc2548	MS-Primary-NBNS-Server
 rfc2548	MS-Secondary-NBNS-Server
-rfc2865	Keep-Alives
+rfc2865	Keep-Alives Considered Harmful
 rfc2865	Access-Request
 rfc2865	Access-Accept
 rfc2865	Access-Reject
@@ -106,6 +106,8 @@ rfc2868	Tunnel-Assignment-ID
 rfc2868	Tunnel-Preference
 rfc2868	Tunnel-Client-Auth-ID
 rfc2868	Tunnel-Server-Auth-ID
+rfc2868	Tunnel-Type Attribute Values
+rfc2868	Tunnel-Medium-Type Attribute Values
 rfc2869	Acct-Input-Gigawords
 rfc2869	Acct-Output-Gigawords
 rfc2869	Event-Timestamp
@@ -123,36 +125,72 @@ rfc2869	ARAP-Challenge-Response
 rfc2869	Acct-Interim-Interval
 rfc2869	NAS-Port-Id
 rfc2869	Framed-Pool
+rfc2869	Message-Authenticator Security
 rfc3162	NAS-IPv6-Address
 rfc3162	Framed-Interface-Id
 rfc3162	Framed-IPv6-Prefix
 rfc3162	Login-IPv6-Host
 rfc3162	Framed-IPv6-Route
 rfc3162	Framed-IPv6-Pool
-rfc3576	Change-of-Authorization
-rfc3576	Error-Cause
 rfc3580	Filter-ID
-rfc4590	Digest-Response
-rfc4590	Digest-Realm
-rfc4590	Digest-Nonce
-rfc4590	Digest-Response-Auth
-rfc4590	Digest-Nextnonce
-rfc4590	Digest-Method
-rfc4590	Digest-URI
-rfc4590	Digest-Qop
-rfc4590	Digest-Algorithm
-rfc4590	Digest-Entity-Body-Hash
-rfc4590	Digest-CNonce
-rfc4590	Digest-Nonce-Count
-rfc4590	Digest-Username
-rfc4590	Digest-Opaque
-rfc4590	Digest-Auth-Param
-rfc4590	Digest-AKA-Auts
-rfc4590	Digest-Domain
-rfc4590	Digest-Stale
-rfc4590	Digest-HA1
-rfc4590	SIP-AOR
-rfc4849	NAS-Filter-Rule
+rfc4590	Digest-Response attribute
+rfc4590	Digest-Realm Attribute
+rfc4590	Digest-Nonce Attribute
+rfc4590	Digest-Response-Auth Attribute
+rfc4590	Digest-Nextnonce Attribute
+rfc4590	Digest-Method Attribute
+rfc4590	Digest-URI Attribute
+rfc4590	Digest-Qop Attribute
+rfc4590	Digest-Algorithm Attribute
+rfc4590	Digest-Entity-Body-Hash Attribute
+rfc4590	Digest-CNonce Attribute
+rfc4590	Digest-Nonce-Count Attribute
+rfc4590	Digest-Username Attribute
+rfc4590	Digest-Opaque Attribute
+rfc4590	Digest-Auth-Param Attribute
+rfc4590	Digest-AKA-Auts Attribute
+rfc4590	Digest-Domain Attribute
+rfc4590	Digest-Stale Attribute
+rfc4590	Digest-HA1 Attribute
+rfc4590	SIP-AOR Attribute
+rfc4849	NAS-Filter-Rule Attribute
+rfc5090	Digest-Response Attribute
+rfc5176	Change-of-Authorization (CoA) Messages
+rfc5176	Error-Cause
+rfc5607	Framed-Management-Protocol
+rfc5607	Management-Transport-Protection
+rfc5607	Management-Policy-Id
+rfc5607	Management-Privilege-Level
+rfc5904	PKM-SS-Cert
+rfc5904	PKM-CA-Cert
+rfc5904	PKM-Config-Settings
+rfc5904	PKM-Cryptosuite-List
+rfc5904	PKM-SAID
+rfc5904	PKM-SA-Descriptor
+rfc5904	PKM-AUTH-Key
+rfc5904	AUTH-Key Protection
+rfc6519	DS-Lite Configuration with RADIUS and DHCPv6
+rfc6519	DS-Lite-Tunnel-Name
+rfc6572	Mobile-Node-Identifier
+rfc6572	Service-Selection
+rfc6572	Chargeable-User-Identity
+rfc6911	Framed-IPv6-Address
+rfc6911	DNS-Server-IPv6-Address
+rfc6911	Route-IPv6-Information
+rfc6911	Delegated-IPv6-Prefix-Pool
+rfc6911	Stateful-IPv6-Address-Pool
+rfc6929	Extended-Type-1
+rfc6929	Extended-Type-2
+rfc6929	Extended-Type-3
+rfc6929	Extended-Type-4
+rfc6929	Long-Extended-Type-1
+rfc6929	Long-Extended-Type-2
+rfc6929	Extended-Vendor-Specific-1
+rfc6929	Extended-Vendor-Specific-2
+rfc6929	Extended-Vendor-Specific-3
+rfc6929	Extended-Vendor-Specific-4
+rfc6929	Extended-Vendor-Specific-5
+rfc6929	Extended-Vendor-Specific-6
 rfc2865 Class
 rfc2865 State
 rfc4818 Delegated-IPv6-Prefix
