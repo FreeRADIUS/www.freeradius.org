@@ -87,14 +87,14 @@ Table of Contents
    1.  Introduction . . . . . . . . . . . . . . . . . . . . . . . . .  3
    2.  Acronyms . . . . . . . . . . . . . . . . . . . . . . . . . . .  3
    3.  Attributes . . . . . . . . . . . . . . . . . . . . . . . . . .  3
-     3.1.  PKM-SS-Cert  . . . . . . . . . . . . . . . . . . . . . . .  4
-     3.2.  PKM-CA-Cert  . . . . . . . . . . . . . . . . . . . . . . .  5
-     3.3.  PKM-Config-Settings  . . . . . . . . . . . . . . . . . . .  6
-     3.4.  PKM-Cryptosuite-List . . . . . . . . . . . . . . . . . . .  8
-     3.5.  PKM-SAID . . . . . . . . . . . . . . . . . . . . . . . . .  9
-     3.6.  PKM-SA-Descriptor  . . . . . . . . . . . . . . . . . . . .  9
-     3.7.  PKM-AUTH-Key . . . . . . . . . . . . . . . . . . . . . . . 10
-       3.7.1.  AUTH-Key Protection  . . . . . . . . . . . . . . . . . 12
+     3.1.  <A HREF="#PKM-SS-Cert">PKM-SS-Cert</A>  . . . . . . . . . . . . . . . . . . . . . . .  4
+     3.2.  <A HREF="#PKM-CA-Cert">PKM-CA-Cert</A>  . . . . . . . . . . . . . . . . . . . . . . .  5
+     3.3.  <A HREF="#PKM-Config-Settings">PKM-Config-Settings</A>  . . . . . . . . . . . . . . . . . . .  6
+     3.4.  <A HREF="#PKM-Cryptosuite-List">PKM-Cryptosuite-List</A> . . . . . . . . . . . . . . . . . . .  8
+     3.5.  <A HREF="#PKM-SAID">PKM-SAID</A> . . . . . . . . . . . . . . . . . . . . . . . . .  9
+     3.6.  <A HREF="#PKM-SA-Descriptor">PKM-SA-Descriptor</A>  . . . . . . . . . . . . . . . . . . . .  9
+     3.7.  <A HREF="#PKM-AUTH-Key">PKM-AUTH-Key</A> . . . . . . . . . . . . . . . . . . . . . . . 10
+       3.7.1.  <A HREF="#AUTH-Key">AUTH-Key</A> Protection  . . . . . . . . . . . . . . . . . 12
    4.  Table of Attributes  . . . . . . . . . . . . . . . . . . . . . 12
    5.  Diameter Considerations  . . . . . . . . . . . . . . . . . . . 13
    6.  Security Considerations  . . . . . . . . . . . . . . . . . . . 13
@@ -169,11 +169,11 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
    The following subsections describe the Attributes defined by this
    document.  This specification concerns the following values:
 
-      137 PKM-SS-Cert
+      137 <A HREF="#PKM-SS-Cert">PKM-SS-Cert</A>
 
-      138 PKM-CA-Cert
+      138 <A HREF="#PKM-CA-Cert">PKM-CA-Cert</A>
 
-      139 PKM-Config-Settings
+      139 <A HREF="#PKM-Config-Settings">PKM-Config-Settings</A>
 
 
 
@@ -182,34 +182,34 @@ Zorn                          Informational                     [Page 3]
 RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 
-      140 PKM-Cryptosuite-List
+      140 <A HREF="#PKM-Cryptosuite-List">PKM-Cryptosuite-List</A>
 
-      141 PKM-SAID
+      141 <A HREF="#PKM-SAID">PKM-SAID</A>
 
-      142 PKM-SA-Descriptor
+      142 <A HREF="#PKM-SA-Descriptor">PKM-SA-Descriptor</A>
 
       143 PKM-Auth-Key
 
-<H2>3.1.  PKM-SS-Cert</H2>
+<A NAME="PKM-SS-Cert"><H2>3.1.  PKM-SS-Cert</H2></a>
 
 <B>   Description</B>
 
-      The PKM-SS-Cert Attribute is variable length and MAY be
-      transmitted in the Access-Request message.  The Value field is of
+      The <B>PKM-SS-Cert</B> Attribute is variable length and MAY be
+      transmitted in the <A HREF="rfc2865.html#Access-Request">Access-Request</A> message.  The Value field is of
       type string and contains the X.509 certificate [RFC2459] binding a
       public key to the identifier of the Subscriber Station.
 
       The minimum size of an SS certificate exceeds the maximum size of
       a RADIUS attribute.  Therefore, the client MUST encapsulate the
       certificate in the Value fields of two or more instances of the
-      PKM-SS-Cert Attribute, each (except possibly the last) having a
-      length of 255 octets.  These multiple PKM-SS-Cert Attributes MUST
+      <B>PKM-SS-Cert</B> Attribute, each (except possibly the last) having a
+      length of 255 octets.  These multiple <B>PKM-SS-Cert</B> Attributes MUST
       appear consecutively and in order within the packet.  Upon
       receipt, the RADIUS server MUST recover the original certificate
-      by concatenating the Value fields of the received PKM-SS-Cert
+      by concatenating the Value fields of the received <B>PKM-SS-Cert</B>
       Attributes in order.
 
-   A summary of the PKM-SS-Cert Attribute format is shown below.  The
+   A summary of the <B>PKM-SS-Cert</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
                           1                   2
@@ -220,7 +220,7 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 <B>   Type</B>
 
-      137 for PKM-SS-Cert
+      137 for <B>PKM-SS-Cert</B>
 
    Len
 
@@ -238,27 +238,27 @@ Zorn                          Informational                     [Page 4]
 RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 
-<H2>3.2.  PKM-CA-Cert</H2>
+<A NAME="PKM-CA-Cert"><H2>3.2.  PKM-CA-Cert</H2></a>
 
 <B>   Description</B>
 
-      The PKM-CA-Cert Attribute is variable length and MAY be
-      transmitted in the Access-Request message.  The Value field is of
+      The <B>PKM-CA-Cert</B> Attribute is variable length and MAY be
+      transmitted in the <A HREF="rfc2865.html#Access-Request">Access-Request</A> message.  The Value field is of
       type string and contains the X.509 certificate [RFC2459] used by
-      the CA to sign the SS certificate carried in the PKM-SS-Cert
+      the CA to sign the SS certificate carried in the <A HREF="#PKM-SS-Cert">PKM-SS-Cert</A>
       attribute (Section 3.1) in the same message.
 
       The minimum size of a CA certificate exceeds the maximum size of a
       RADIUS attribute.  Therefore, the client MUST encapsulate the
       certificate in the Value fields of two or more instances of the
-      PKM-CA-Cert Attribute, each (except possibly the last) having a
-      length of 255 octets.  These multiple PKM-CA-Cert Attributes MUST
+      <B>PKM-CA-Cert</B> Attribute, each (except possibly the last) having a
+      length of 255 octets.  These multiple <B>PKM-CA-Cert</B> Attributes MUST
       appear consecutively and in order within the packet.  Upon
       receipt, the RADIUS server MUST recover the original certificate
-      by concatenating the Value fields of the received PKM-CA-Cert
+      by concatenating the Value fields of the received <B>PKM-CA-Cert</B>
       Attributes in order.
 
-   A summary of the PKM-CA-Cert Attribute format is shown below.  The
+   A summary of the <B>PKM-CA-Cert</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
                           1                   2
@@ -269,7 +269,7 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 <B>   Type</B>
 
-      138 for PKM-CA-Cert
+      138 for <B>PKM-CA-Cert</B>
 
    Len
 
@@ -294,21 +294,21 @@ Zorn                          Informational                     [Page 5]
 RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 
-<H2>3.3.  PKM-Config-Settings</H2>
+<A NAME="PKM-Config-Settings"><H2>3.3.  PKM-Config-Settings</H2></a>
 
 <B>   Description</B>
 
-      The PKM-Config-Settings Attribute is of type string [RFC2865].  It
+      The <B>PKM-Config-Settings</B> Attribute is of type string [RFC2865].  It
       is 30 octets in length and consists of seven independent fields,
       each of which is conceptually an unsigned integer.  Each of the
       fields contains a timeout value and corresponds to a Type-Length-
       Value (TLV) tuple encapsulated in the IEEE 802.16 "PKM
       configuration settings" attribute; for details on the contents of
       each field, see Section 11.9.19 of [IEEE.802.16-2004].  One
-      instance of the PKM-Config-Settings Attribute MAY be included in
-      the Access-Accept message.
+      instance of the <B>PKM-Config-Settings</B> Attribute MAY be included in
+      the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message.
 
-   A summary of the PKM-Config-Settings Attribute format is shown below.
+   A summary of the <B>PKM-Config-Settings</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
                         1                   2                   3
@@ -333,7 +333,7 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 <B>   Type</B>
 
-      139 for PKM-Config-Settings
+      139 for <B>PKM-Config-Settings</B>
 
    Len
 
@@ -406,32 +406,32 @@ Zorn                          Informational                     [Page 7]
 RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 
-<H2>3.4.  PKM-Cryptosuite-List</H2>
+<A NAME="PKM-Cryptosuite-List"><H2>3.4.  PKM-Cryptosuite-List</H2></a>
 
 <B>   Description</B>
 
-      The PKM-Cryptosuite-List Attribute is of type string [RFC2865] and
+      The <B>PKM-Cryptosuite-List</B> Attribute is of type string [RFC2865] and
       is variable length; it corresponds roughly to the "Cryptographic-
       Suite-List" 802.16 attribute (see Section 11.19.15 of
       [IEEE.802.16-2004]), the difference being that the RADIUS
       Attribute contains only the list of 3-octet cryptographic suite
       identifiers, omitting the IEEE Type and Length fields.
 
-      The PKM-Cryptosuite-List Attribute MAY be present in an Access-
-      Request message.  Any message in which the PKM-Cryptosuite-List
+      The <B>PKM-Cryptosuite-List</B> Attribute MAY be present in an Access-
+      Request message.  Any message in which the <B>PKM-Cryptosuite-List</B>
       Attribute is present MUST also contain an instance of the Message-
       Authenticator Attribute [RFC3579].
 
       Implementation Note
 
-         The PKM-Cryptosuite-List Attribute is used as a building block
+         The <B>PKM-Cryptosuite-List</B> Attribute is used as a building block
          to create the 802.16 "Security-Capabilities" attribute
          ([IEEE.802.16-2004], Section 11.9.13); since this document only
          pertains to PKM version 1, the "Version" sub-attribute in that
          structure MUST be set to 0x01 when the RADIUS client constructs
          it.
 
-   A summary of the PKM-Cryptosuite-List Attribute format is shown
+   A summary of the <B>PKM-Cryptosuite-List</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
                         1                   2                   3
@@ -442,7 +442,7 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 <B>   Type</B>
 
-      140 for PKM-Cryptosuite-List
+      140 for <B>PKM-Cryptosuite-List</B>
 
    Len
 
@@ -469,16 +469,16 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
       length and corresponds to the Value field of an IEEE 802.16
       Cryptographic-Suite attribute.
 
-<H2>3.5.  PKM-SAID</H2>
+<A NAME="PKM-SAID"><H2>3.5.  PKM-SAID</H2></a>
 
 <B>   Description</B>
 
-      The PKM-SAID Attribute is of type string [RFC2865].  It is 4
+      The <B>PKM-SAID</B> Attribute is of type string [RFC2865].  It is 4
       octets in length and contains a PKM Security Association
       Identifier ([IEEE.802.16-2004], Section 11.9.7).  It MAY be
-      included in an Access-Request message.
+      included in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> message.
 
-   A summary of the PKM-SAID Attribute format is shown below.  The
+   A summary of the <B>PKM-SAID</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
                         1                   2                   3
@@ -489,7 +489,7 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 <B>   Type</B>
 
-      141 for PKM-SAID
+      141 for <B>PKM-SAID</B>
 
    Len
 
@@ -500,15 +500,15 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
       The SAID field is two octets in length and corresponds to the
       Value field of the 802.16 PKM SAID attribute
 
-<H2>3.6.  PKM-SA-Descriptor</H2>
+<A NAME="PKM-SA-Descriptor"><H2>3.6.  PKM-SA-Descriptor</H2></a>
 
 <B>   Description</B>
 
-      The PKM-SA-Descriptor Attribute is of type string and is 8 octets
+      The <B>PKM-SA-Descriptor</B> Attribute is of type string and is 8 octets
       in length.  It contains three fields, described below, which
       together specify the characteristics of a PKM security
-      association.  One or more instances of the PKM-SA-Descriptor
-      Attribute MAY occur in an Access-Accept message.
+      association.  One or more instances of the <B>PKM-SA-Descriptor</B>
+      Attribute MAY occur in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message.
 
 
 
@@ -518,7 +518,7 @@ Zorn                          Informational                     [Page 9]
 RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 
-   A summary of the PKM-SA-Descriptor Attribute format is shown below.
+   A summary of the <B>PKM-SA-Descriptor</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
                         1                   2                   3
@@ -531,7 +531,7 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 <B>   Type</B>
 
-      142 for PKM-SA-Descriptor
+      142 for <B>PKM-SA-Descriptor</B>
 
    Len
 
@@ -553,16 +553,16 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
       correspond to those of the Value field of an IEEE 802.16
       Cryptographic-Suite attribute.
 
-<H2>3.7.  PKM-AUTH-Key</H2>
+<A NAME="PKM-AUTH-Key"><H2>3.7.  PKM-AUTH-Key</H2></a>
 
 <B>   Description</B>
 
-      The PKM-AUTH-Key Attribute is of type string, 135 octets in
+      The <B>PKM-AUTH-Key</B> Attribute is of type string, 135 octets in
       length.  It consists of 3 fields, described below, which together
       specify the characteristics of a PKM authorization key.  The PKM-
-      AUTH-Key Attribute MAY occur in an Access-Accept message.  Any
-      packet that contains an instance of the PKM-AUTH-Key Attribute
-      MUST also contain an instance of the Message-Authenticator
+      <A HREF="#AUTH-Key">AUTH-Key</A> Attribute MAY occur in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message.  Any
+      packet that contains an instance of the <B>PKM-AUTH-Key</B> Attribute
+      MUST also contain an instance of the <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>
       Attribute [RFC3579].
 
 
@@ -574,7 +574,7 @@ Zorn                          Informational                    [Page 10]
 RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 
-   A summary of the PKM-AUTH-Key Attribute format is shown below.  The
+   A summary of the <B>PKM-AUTH-Key</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
                         1                   2                   3
@@ -587,7 +587,7 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 <B>   Type</B>
 
-      143 for PKM-AUTH-Key
+      143 for <B>PKM-AUTH-Key</B>
 
    Len
 
@@ -609,7 +609,7 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
    Key
 
       The Key field is 128 octets in length.  The contents correspond to
-      those of the Value field of an IEEE 802.16 AUTH-Key attribute.
+      those of the Value field of an IEEE 802.16 <A HREF="#AUTH-Key">AUTH-Key</A> attribute.
       The Key field MUST be encrypted under the public key from the
       Subscriber Station certificate (Section 3.1) using RSA encryption
       [RFC2437]; see Section 7.5 of [IEEE.802.16-2004] for further
@@ -618,7 +618,7 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
       Implementation Note
 
          It is necessary that a plaintext copy of this field be returned
-         in the Access-Accept message; appropriate precautions MUST be
+         in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message; appropriate precautions MUST be
          taken to ensure the confidentiality of the key.
 
 
@@ -630,22 +630,22 @@ Zorn                          Informational                    [Page 11]
 RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 
-<H2>3.7.1.  AUTH-Key Protection</H2>
+<A NAME="AUTH-Key"><H2>3.7.1.  AUTH-Key Protection</H2></a>
 
-   The PKM-AUTH-Key Attribute (Section 3.7) contains the AUTH-Key
+   The PKM-<B>AUTH-Key</B> Attribute (Section 3.7) contains the <B>AUTH-Key</B>
    encrypted with the SS's public key.  The BS also needs the AK, so a
-   second copy of the AK needs to be returned in the Access-Accept
+   second copy of the AK needs to be returned in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
    message.
 
    It is RECOMMENDED that the AK is encapsulated in an instance of the
-   MS-MPPE-Send-Key Attribute [RFC2548].  However, see Section 4.3.4 of
+   <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A> Attribute [RFC2548].  However, see Section 4.3.4 of
    RFC 3579 [RFC3579] for details regarding weaknesses in the encryption
    scheme used.
 
    If better means for protecting the Auth-Key are available (such as
    RADIUS key attributes with better security properties, or means of
-   protecting the whole Access-Accept message), they SHOULD be used
-   instead of (or in addition to) the MS-MPPE-Send-Key Attribute.
+   protecting the whole <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message), they SHOULD be used
+   instead of (or in addition to) the <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A> Attribute.
 
 <H2>4.  Table of Attributes</H2>
 
@@ -653,26 +653,26 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
    in which kinds of packets, and in what quantity.
 
    Request Accept Reject Challenge Acct-Req  #   Attribute
-   0+      0      0      0         0        137 PKM-SS-Cert [Note 1]
-   0+      0      0      0         0        138 PKM-CA-Cert [Note 2]
-   0       0-1    0      0         0        139 PKM-Config-Settings
-   0-1     0      0      0         0        140 PKM-Cryptosuite-List
-   0-1     0      0      0         0        141 PKM-SAID
-   0       0+     0      0         0        142 PKM-SA-Descriptor
+   0+      0      0      0         0        137 <A HREF="#PKM-SS-Cert">PKM-SS-Cert</A> [Note 1]
+   0+      0      0      0         0        138 <A HREF="#PKM-CA-Cert">PKM-CA-Cert</A> [Note 2]
+   0       0-1    0      0         0        139 <A HREF="#PKM-Config-Settings">PKM-Config-Settings</A>
+   0-1     0      0      0         0        140 <A HREF="#PKM-Cryptosuite-List">PKM-Cryptosuite-List</A>
+   0-1     0      0      0         0        141 <A HREF="#PKM-SAID">PKM-SAID</A>
+   0       0+     0      0         0        142 <A HREF="#PKM-SA-Descriptor">PKM-SA-Descriptor</A>
    0       0-1    0      0         0        143 PKM-Auth-Key
-   0       0-1    0      0         0             MS-MPPE-Send-Key
+   0       0-1    0      0         0             <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A>
                                                     [Note 3]
 
    [Note 1]
       No more than one Subscriber Station Certificate may be transferred
-      in an Access-Request packet.
+      in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet.
 
    [Note 2]
       No more than one CA Certificate may be transferred in an Access-
       Request packet.
 
    [Note 3]
-      MS-MPPE-Send-Key is one possible attribute that can be used to
+      <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A> is one possible attribute that can be used to
       convey the AK to the BS; other attributes can be used instead (see
       Section 3.7.1).
 
@@ -708,12 +708,12 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
    Management Protocol in IEEE 802.16e-2005" [SecEn] discusses the
    operation and vulnerabilities of the PKMv1 protocol.
 
-   If the Access-Request message is not subject to strong integrity
+   If the <A HREF="rfc2865.html#Access-Request">Access-Request</A> message is not subject to strong integrity
    protection, an attacker may be able to modify the contents of the
-   PKM-Cryptosuite-List Attribute, weakening 802.16 security or
+   <A HREF="#PKM-Cryptosuite-List">PKM-Cryptosuite-List</A> Attribute, weakening 802.16 security or
    disabling data encryption altogether.
 
-   If the Access-Accept message is not subject to strong integrity
+   If the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message is not subject to strong integrity
    protection, an attacker may be able to modify the contents of the
    PKM-Auth-Key Attribute.  For example, the Key field could be replaced
    with a key known to the attacker.
@@ -725,15 +725,15 @@ RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
    IANA has assigned numbers for the following Attributes:
 
-      137 PKM-SS-Cert
+      137 <A HREF="#PKM-SS-Cert">PKM-SS-Cert</A>
 
-      138 PKM-CA-Cert
+      138 <A HREF="#PKM-CA-Cert">PKM-CA-Cert</A>
 
-      139 PKM-Config-Settings
+      139 <A HREF="#PKM-Config-Settings">PKM-Config-Settings</A>
 
-      140 PKM-Cryptosuite-List
+      140 <A HREF="#PKM-Cryptosuite-List">PKM-Cryptosuite-List</A>
 
-      141 PKM-SAID
+      141 <A HREF="#PKM-SAID">PKM-SAID</A>
 
 
 
@@ -742,7 +742,7 @@ Zorn                          Informational                    [Page 13]
 RFC 5904               RADIUS Attributes for PKMv1             June 2010
 
 
-      142 PKM-SA-Descriptor
+      142 <A HREF="#PKM-SA-Descriptor">PKM-SA-Descriptor</A>
 
       143 PKM-Auth-Key
 

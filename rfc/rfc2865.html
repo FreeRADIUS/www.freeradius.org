@@ -81,43 +81,43 @@ Table of Contents
       2.3       Proxy ...........................................    8
       2.4       Why UDP? ........................................   11
       2.5       Retransmission Hints ............................   12
-      2.6       Keep-Alives Considered Harmful ..................   13
+      2.6       <A HREF="#Keep-Alives">Keep-Alives</A> Considered Harmful ..................   13
    3.     Packet Format .........................................   13
    4.     Packet Types ..........................................   17
-      4.1       Access-Request ..................................   17
-      4.2       Access-Accept ...................................   18
-      4.3       Access-Reject ...................................   20
-      4.4       Access-Challenge ................................   21
+      4.1       <A HREF="#Access-Request">Access-Request</A> ..................................   17
+      4.2       <A HREF="#Access-Accept">Access-Accept</A> ...................................   18
+      4.3       <A HREF="#Access-Reject">Access-Reject</A> ...................................   20
+      4.4       <A HREF="#Access-Challenge">Access-Challenge</A> ................................   21
    5.     Attributes ............................................   22
-      5.1       User-Name .......................................   26
-      5.2       User-Password ...................................   27
-      5.3       CHAP-Password ...................................   28
-      5.4       NAS-IP-Address ..................................   29
-      5.5       NAS-Port ........................................   30
-      5.6       Service-Type ....................................   31
-      5.7       Framed-Protocol .................................   33
-      5.8       Framed-IP-Address ...............................   34
-      5.9       Framed-IP-Netmask ...............................   34
-      5.10      Framed-Routing ..................................   35
-      5.11      Filter-Id .......................................   36
-      5.12      Framed-MTU ......................................   37
-      5.13      Framed-Compression ..............................   37
-      5.14      Login-IP-Host ...................................   38
-      5.15      Login-Service ...................................   39
-      5.16      Login-TCP-Port ..................................   40
+      5.1       <A HREF="#User-Name">User-Name</A> .......................................   26
+      5.2       <A HREF="#User-Password">User-Password</A> ...................................   27
+      5.3       <A HREF="#CHAP-Password">CHAP-Password</A> ...................................   28
+      5.4       <A HREF="#NAS-IP-Address">NAS-IP-Address</A> ..................................   29
+      5.5       <A HREF="#NAS-Port">NAS-Port</A> ........................................   30
+      5.6       <A HREF="#Service-Type">Service-Type</A> ....................................   31
+      5.7       <A HREF="#Framed-Protocol">Framed-Protocol</A> .................................   33
+      5.8       <A HREF="#Framed-IP-Address">Framed-IP-Address</A> ...............................   34
+      5.9       <A HREF="#Framed-IP-Netmask">Framed-IP-Netmask</A> ...............................   34
+      5.10      <A HREF="#Framed-Routing">Framed-Routing</A> ..................................   35
+      5.11      <A HREF="#Filter-Id">Filter-Id</A> .......................................   36
+      5.12      <A HREF="#Framed-MTU">Framed-MTU</A> ......................................   37
+      5.13      <A HREF="#Framed-Compression">Framed-Compression</A> ..............................   37
+      5.14      <A HREF="#Login-IP-Host">Login-IP-Host</A> ...................................   38
+      5.15      <A HREF="#Login-Service">Login-Service</A> ...................................   39
+      5.16      <A HREF="#Login-TCP-Port">Login-TCP-Port</A> ..................................   40
       5.17      (unassigned) ....................................   41
-      5.18      Reply-Message ...................................   41
-      5.19      Callback-Number .................................   42
-      5.20      Callback-Id .....................................   42
+      5.18      <A HREF="#Reply-Message">Reply-Message</A> ...................................   41
+      5.19      <A HREF="#Callback-Number">Callback-Number</A> .................................   42
+      5.20      <A HREF="#Callback-Id">Callback-Id</A> .....................................   42
       5.21      (unassigned) ....................................   43
-      5.22      Framed-Route ....................................   43
-      5.23      Framed-IPX-Network ..............................   44
-      5.24      State ...........................................   45
-      5.25      Class ...........................................   46
-      5.26      Vendor-Specific .................................   47
-      5.27      Session-Timeout .................................   48
-      5.28      Idle-Timeout ....................................   49
-      5.29      Termination-Action ..............................   49
+      5.22      <A HREF="#Framed-Route">Framed-Route</A> ....................................   43
+      5.23      <A HREF="#Framed-IPX-Network">Framed-IPX-Network</A> ..............................   44
+      5.24      <A HREF="#State">State</A> ...........................................   45
+      5.25      <A HREF="#Class">Class</A> ...........................................   46
+      5.26      <A HREF="#Vendor-Specific">Vendor-Specific</A> .................................   47
+      5.27      <A HREF="#Session-Timeout">Session-Timeout</A> .................................   48
+      5.28      <A HREF="#Idle-Timeout">Idle-Timeout</A> ....................................   49
+      5.29      <A HREF="#Termination-Action">Termination-Action</A> ..............................   49
 
 
 
@@ -126,20 +126,20 @@ Rigney, et al.              Standards Track                     [Page 2]
 RFC 2865                         RADIUS                        June 2000
 
 
-      5.30      Called-Station-Id ...............................   50
-      5.31      Calling-Station-Id ..............................   51
-      5.32      NAS-Identifier ..................................   52
-      5.33      Proxy-State .....................................   53
-      5.34      Login-LAT-Service ...............................   54
-      5.35      Login-LAT-Node ..................................   55
-      5.36      Login-LAT-Group .................................   56
-      5.37      Framed-AppleTalk-Link ...........................   57
-      5.38      Framed-AppleTalk-Network ........................   58
-      5.39      Framed-AppleTalk-Zone ...........................   58
-      5.40      CHAP-Challenge ..................................   59
-      5.41      NAS-Port-Type ...................................   60
-      5.42      Port-Limit ......................................   61
-      5.43      Login-LAT-Port ..................................   62
+      5.30      <A HREF="#Called-Station-Id">Called-Station-Id</A> ...............................   50
+      5.31      <A HREF="#Calling-Station-Id">Calling-Station-Id</A> ..............................   51
+      5.32      <A HREF="#NAS-Identifier">NAS-Identifier</A> ..................................   52
+      5.33      <A HREF="#Proxy-State">Proxy-State</A> .....................................   53
+      5.34      <A HREF="#Login-LAT-Service">Login-LAT-Service</A> ...............................   54
+      5.35      <A HREF="#Login-LAT-Node">Login-LAT-Node</A> ..................................   55
+      5.36      <A HREF="#Login-LAT-Group">Login-LAT-Group</A> .................................   56
+      5.37      <A HREF="#Framed-AppleTalk-Link">Framed-AppleTalk-Link</A> ...........................   57
+      5.38      <A HREF="#Framed-AppleTalk-Network">Framed-AppleTalk-Network</A> ........................   58
+      5.39      <A HREF="#Framed-AppleTalk-Zone">Framed-AppleTalk-Zone</A> ...........................   58
+      5.40      <A HREF="#CHAP-Challenge">CHAP-Challenge</A> ..................................   59
+      5.41      <A HREF="#NAS-Port-Type">NAS-Port-Type</A> ...................................   60
+      5.42      <A HREF="#Port-Limit">Port-Limit</A> ......................................   61
+      5.43      <A HREF="#Login-LAT-Port">Login-LAT-Port</A> ..................................   62
       5.44      Table of Attributes .............................   63
    6.     IANA Considerations ...................................   64
       6.1       Definition of Terms .............................   64
@@ -294,7 +294,7 @@ Rigney, et al.              Standards Track                     [Page 5]
 RFC 2865                         RADIUS                        June 2000
 
 
-   The Access-Request is submitted to the RADIUS server via the network.
+   The <A HREF="#Access-Request">Access-Request</A> is submitted to the RADIUS server via the network.
    If no response is returned within a length of time, the request is
    re-sent a number of times.  The client can also forward requests to
    an alternate server or servers in the event that the primary server
@@ -316,30 +316,30 @@ RFC 2865                         RADIUS                        June 2000
    The RADIUS server MAY make requests of other servers in order to
    satisfy the request, in which case it acts as a client.
 
-   If any Proxy-State attributes were present in the Access-Request,
+   If any <A HREF="#Proxy-State">Proxy-State</A> attributes were present in the <A HREF="#Access-Request">Access-Request</A>,
    they MUST be copied unmodified and in order into the response packet.
    Other Attributes can be placed before, after, or even between the
-   Proxy-State attributes.
+   <A HREF="#Proxy-State">Proxy-State</A> attributes.
 
    If any condition is not met, the RADIUS server sends an "Access-
    Reject" response indicating that this user request is invalid.  If
-   desired, the server MAY include a text message in the Access-Reject
+   desired, the server MAY include a text message in the <A HREF="#Access-Reject">Access-Reject</A>
    which MAY be displayed by the client to the user.  No other
-   Attributes (except Proxy-State) are permitted in an Access-Reject.
+   Attributes (except <A HREF="#Proxy-State">Proxy-State</A>) are permitted in an <A HREF="#Access-Reject">Access-Reject</A>.
 
    If all conditions are met and the RADIUS server wishes to issue a
    challenge to which the user must respond, the RADIUS server sends an
-   "Access-Challenge" response.  It MAY include a text message to be
+   "<A HREF="#Access-Challenge">Access-Challenge</A>" response.  It MAY include a text message to be
    displayed by the client to the user prompting for a response to the
-   challenge, and MAY include a State attribute.
+   challenge, and MAY include a <A HREF="#State">State</A> attribute.
 
-   If the client receives an Access-Challenge and supports
+   If the client receives an <A HREF="#Access-Challenge">Access-Challenge</A> and supports
    challenge/response it MAY display the text message, if any, to the
    user, and then prompt the user for a response.  The client then re-
-   submits its original Access-Request with a new request ID, with the
-   User-Password Attribute replaced by the response (encrypted), and
-   including the State Attribute from the Access-Challenge, if any.
-   Only 0 or 1 instances of the State Attribute SHOULD be
+   submits its original <A HREF="#Access-Request">Access-Request</A> with a new request ID, with the
+   <A HREF="#User-Password">User-Password</A> Attribute replaced by the response (encrypted), and
+   including the <A HREF="#State">State</A> Attribute from the <A HREF="#Access-Challenge">Access-Challenge</A>, if any.
+   Only 0 or 1 instances of the <A HREF="#State">State</A> Attribute SHOULD be
 
 
 
@@ -351,11 +351,11 @@ RFC 2865                         RADIUS                        June 2000
 
 
    present in a request.  The server can respond to this new Access-
-   Request with either an Access-Accept, an Access-Reject, or another
-   Access-Challenge.
+   Request with either an <A HREF="#Access-Accept">Access-Accept</A>, an <A HREF="#Access-Reject">Access-Reject</A>, or another
+   <A HREF="#Access-Challenge">Access-Challenge</A>.
 
    If all conditions are met, the list of configuration values for the
-   user are placed into an "Access-Accept" response.  These values
+   user are placed into an "<A HREF="#Access-Accept">Access-Accept</A>" response.  These values
    include the type of service (for example: SLIP, PPP, Login User) and
    all necessary values to deliver the desired service.  For SLIP and
    PPP, this may include values such as IP address, subnet mask, MTU,
@@ -373,7 +373,7 @@ RFC 2865                         RADIUS                        June 2000
    device or software and lacking knowledge of the secret key necessary
    to emulate such a device or software, can only guess at the response.
 
-   The Access-Challenge packet typically contains a Reply-Message
+   The <A HREF="#Access-Challenge">Access-Challenge</A> packet typically contains a <A HREF="#Reply-Message">Reply-Message</A>
    including a challenge to be displayed to the user, such as a numeric
    value unlikely ever to be repeated. Typically this is obtained from
    an external server that knows what type of authenticator is in the
@@ -383,19 +383,19 @@ RFC 2865                         RADIUS                        June 2000
 
    The user then enters the challenge into his device (or software) and
    it calculates a response, which the user enters into the client which
-   forwards it to the RADIUS server via a second Access-Request.  If the
+   forwards it to the RADIUS server via a second <A HREF="#Access-Request">Access-Request</A>.  If the
    response matches the expected response the RADIUS server replies with
-   an Access-Accept, otherwise an Access-Reject.
+   an <A HREF="#Access-Accept">Access-Accept</A>, otherwise an <A HREF="#Access-Reject">Access-Reject</A>.
 
-   Example: The NAS sends an Access-Request packet to the RADIUS Server
-   with NAS-Identifier, NAS-Port, User-Name, User-Password (which may
+   Example: The NAS sends an <A HREF="#Access-Request">Access-Request</A> packet to the RADIUS Server
+   with <A HREF="#NAS-Identifier">NAS-Identifier</A>, <A HREF="#NAS-Port">NAS-Port</A>, <A HREF="#User-Name">User-Name</A>, <A HREF="#User-Password">User-Password</A> (which may
    just be a fixed string like "challenge" or ignored).  The server
-   sends back an Access-Challenge packet with State and a Reply-Message
+   sends back an <A HREF="#Access-Challenge">Access-Challenge</A> packet with <A HREF="#State">State</A> and a <A HREF="#Reply-Message">Reply-Message</A>
    along the lines of "Challenge 12345678, enter your response at the
    prompt" which the NAS displays.  The NAS prompts for the response and
-   sends a NEW Access-Request to the server (with a new ID) with NAS-
-   Identifier, NAS-Port, User-Name, User-Password (the response just
-   entered by the user, encrypted), and the same State Attribute that
+   sends a NEW <A HREF="#Access-Request">Access-Request</A> to the server (with a new ID) with NAS-
+   Identifier, <A HREF="#NAS-Port">NAS-Port</A>, <A HREF="#User-Name">User-Name</A>, <A HREF="#User-Password">User-Password</A> (the response just
+   entered by the user, encrypted), and the same <A HREF="#State">State</A> Attribute that
 
 
 
@@ -406,42 +406,42 @@ Rigney, et al.              Standards Track                     [Page 7]
 RFC 2865                         RADIUS                        June 2000
 
 
-   came with the Access-Challenge.  The server then sends back either an
-   Access-Accept or Access-Reject based on whether the response matches
-   the required value, or it can even send another Access-Challenge.
+   came with the <A HREF="#Access-Challenge">Access-Challenge</A>.  The server then sends back either an
+   <A HREF="#Access-Accept">Access-Accept</A> or <A HREF="#Access-Reject">Access-Reject</A> based on whether the response matches
+   the required value, or it can even send another <A HREF="#Access-Challenge">Access-Challenge</A>.
 
 <H2>2.2.  Interoperation with PAP and CHAP</H2>
 
    For PAP, the NAS takes the PAP ID and password and sends them in an
-   Access-Request packet as the User-Name and User-Password. The NAS MAY
-   include the Attributes Service-Type = Framed-User and Framed-Protocol
+   <A HREF="#Access-Request">Access-Request</A> packet as the <A HREF="#User-Name">User-Name</A> and <A HREF="#User-Password">User-Password</A>. The NAS MAY
+   include the Attributes <A HREF="#Service-Type">Service-Type</A> = Framed-User and <A HREF="#Framed-Protocol">Framed-Protocol</A>
    = PPP as a hint to the RADIUS server that PPP service is expected.
 
    For CHAP, the NAS generates a random challenge (preferably 16 octets)
    and sends it to the user, who returns a CHAP response along with a
-   CHAP ID and CHAP username.  The NAS then sends an Access-Request
-   packet to the RADIUS server with the CHAP username as the User-Name
-   and with the CHAP ID and CHAP response as the CHAP-Password
+   CHAP ID and CHAP username.  The NAS then sends an <A HREF="#Access-Request">Access-Request</A>
+   packet to the RADIUS server with the CHAP username as the <A HREF="#User-Name">User-Name</A>
+   and with the CHAP ID and CHAP response as the <A HREF="#CHAP-Password">CHAP-Password</A>
    (Attribute 3).  The random challenge can either be included in the
-   CHAP-Challenge attribute or, if it is 16 octets long, it can be
-   placed in the Request Authenticator field of the Access-Request
-   packet.  The NAS MAY include the Attributes Service-Type = Framed-
-   User and Framed-Protocol = PPP as a hint to the RADIUS server that
+   <A HREF="#CHAP-Challenge">CHAP-Challenge</A> attribute or, if it is 16 octets long, it can be
+   placed in the Request Authenticator field of the <A HREF="#Access-Request">Access-Request</A>
+   packet.  The NAS MAY include the Attributes <A HREF="#Service-Type">Service-Type</A> = Framed-
+   User and <A HREF="#Framed-Protocol">Framed-Protocol</A> = PPP as a hint to the RADIUS server that
    PPP service is expected.
 
-   The RADIUS server looks up a password based on the User-Name,
+   The RADIUS server looks up a password based on the <A HREF="#User-Name">User-Name</A>,
    encrypts the challenge using MD5 on the CHAP ID octet, that password,
-   and the CHAP challenge (from the CHAP-Challenge attribute if present,
+   and the CHAP challenge (from the <A HREF="#CHAP-Challenge">CHAP-Challenge</A> attribute if present,
    otherwise from the Request Authenticator), and compares that result
-   to the CHAP-Password.  If they match, the server sends back an
-   Access-Accept, otherwise it sends back an Access-Reject.
+   to the <A HREF="#CHAP-Password">CHAP-Password</A>.  If they match, the server sends back an
+   <A HREF="#Access-Accept">Access-Accept</A>, otherwise it sends back an <A HREF="#Access-Reject">Access-Reject</A>.
 
    If the RADIUS server is unable to perform the requested
-   authentication it MUST return an Access-Reject.  For example, CHAP
+   authentication it MUST return an <A HREF="#Access-Reject">Access-Reject</A>.  For example, CHAP
    requires that the user's password be available in cleartext to the
    server so that it can encrypt the CHAP challenge and compare that to
    the CHAP response.  If the password is not available in cleartext to
-   the RADIUS server then the server MUST send an Access-Reject to the
+   the RADIUS server then the server MUST send an <A HREF="#Access-Reject">Access-Reject</A> to the
    client.
 
 <H2>2.3.  Proxy</H2>
@@ -464,8 +464,8 @@ RFC 2865                         RADIUS                        June 2000
 
    The NAS sends its RADIUS access-request to the "forwarding server"
    which forwards it to the "remote server".  The remote server sends a
-   response (Access-Accept, Access-Reject, or Access-Challenge) back to
-   the forwarding server, which sends it back to the NAS.  The User-Name
+   response (<A HREF="#Access-Accept">Access-Accept</A>, <A HREF="#Access-Reject">Access-Reject</A>, or <A HREF="#Access-Challenge">Access-Challenge</A>) back to
+   the forwarding server, which sends it back to the NAS.  The <A HREF="#User-Name">User-Name</A>
    attribute MAY contain a Network Access Identifier [8] for RADIUS
    Proxy operations.  The choice of which server receives the forwarded
    request SHOULD be based on the authentication "realm". The
@@ -498,16 +498,16 @@ RFC 2865                         RADIUS                        June 2000
 
    4. The forwarding server sends the access-accept to the NAS.
 
-   The forwarding server MUST treat any Proxy-State attributes already
+   The forwarding server MUST treat any <A HREF="#Proxy-State">Proxy-State</A> attributes already
    in the packet as opaque data.  Its operation MUST NOT depend on the
-   content of Proxy-State attributes added by previous servers.
+   content of <A HREF="#Proxy-State">Proxy-State</A> attributes added by previous servers.
 
-   If there are any Proxy-State attributes in the request received from
-   the client, the forwarding server MUST include those Proxy-State
+   If there are any <A HREF="#Proxy-State">Proxy-State</A> attributes in the request received from
+   the client, the forwarding server MUST include those <A HREF="#Proxy-State">Proxy-State</A>
    attributes in its reply to the client.  The forwarding server MAY
-   include the Proxy-State attributes in the access-request when it
+   include the <A HREF="#Proxy-State">Proxy-State</A> attributes in the access-request when it
    forwards the request, or MAY omit them in the forwarded request.  If
-   the forwarding server omits the Proxy-State attributes in the
+   the forwarding server omits the <A HREF="#Proxy-State">Proxy-State</A> attributes in the
    forwarded access-request, it MUST attach them to the response before
    sending it to the client.
 
@@ -521,39 +521,39 @@ RFC 2865                         RADIUS                        June 2000
    We now examine each step in more detail.
 
    1. A NAS sends its access-request to the forwarding server.  The
-      forwarding server decrypts the User-Password, if present, using
-      the shared secret it knows for the NAS.  If a CHAP-Password
-      attribute is present in the packet and no CHAP-Challenge attribute
+      forwarding server decrypts the <A HREF="#User-Password">User-Password</A>, if present, using
+      the shared secret it knows for the NAS.  If a <A HREF="#CHAP-Password">CHAP-Password</A>
+      attribute is present in the packet and no <A HREF="#CHAP-Challenge">CHAP-Challenge</A> attribute
       is present, the forwarding server MUST leave the Request-
-      Authenticator untouched or copy it to a CHAP-Challenge attribute.
+      Authenticator untouched or copy it to a <A HREF="#CHAP-Challenge">CHAP-Challenge</A> attribute.
 
-   '' The forwarding server MAY add one Proxy-State attribute to the
+   '' The forwarding server MAY add one <A HREF="#Proxy-State">Proxy-State</A> attribute to the
       packet.  (It MUST NOT add more than one.)  If it adds a Proxy-
-      State, the Proxy-State MUST appear after any other Proxy-States in
+      <A HREF="#State">State</A>, the Proxy-<A HREF="#State">State</A> MUST appear after any other Proxy-<A HREF="#State">State</A>s in
       the packet.  The forwarding server MUST NOT modify any other
       Proxy-States that were in the packet (it may choose not to forward
       them, but it MUST NOT change their contents).  The forwarding
       server MUST NOT change the order of any attributes of the same
-      type, including Proxy-State.
+      type, including <A HREF="#Proxy-State">Proxy-State</A>.
 
-   2. The forwarding server encrypts the User-Password, if present,
+   2. The forwarding server encrypts the <A HREF="#User-Password">User-Password</A>, if present,
       using the secret it shares with the remote server, sets the
       Identifier as needed, and forwards the access-request to the
       remote server.
 
    3. The remote server (if the final destination) verifies the user
-      using User-Password, CHAP-Password, or such method as future
+      using <A HREF="#User-Password">User-Password</A>, <A HREF="#CHAP-Password">CHAP-Password</A>, or such method as future
       extensions may dictate, and returns an access-accept, access-
       reject or access-challenge back to the forwarding server.  For
       this example, an access-accept is sent.  The remote server MUST
-      copy all Proxy-State attributes (and only the Proxy-State
+      copy all <A HREF="#<A HREF="#Proxy-State">Proxy-State</A>"><A HREF="#Proxy-State">Proxy-State</A></A> attributes (and only the <A HREF="#<A HREF="#Proxy-State">Proxy-State</A>"><A HREF="#Proxy-State">Proxy-State</A></A>
       attributes) in order from the access-request to the response
       packet, without modifying them.
 
    4. The forwarding server verifies the Response Authenticator using
       the secret it shares with the remote server, and silently discards
       the packet if it fails verification.  If the packet passes
-      verification, the forwarding server removes the last Proxy-State
+      verification, the forwarding server removes the last <A HREF="#Proxy-State">Proxy-State</A>
       (if it attached one), signs the Response Authenticator using the
       secret it shares with the NAS, restores the Identifier to match
       the one in the original request by the NAS, and sends the access-
@@ -562,7 +562,7 @@ RFC 2865                         RADIUS                        June 2000
    A forwarding server MAY need to modify attributes to enforce local
    policy.  Such policy is outside the scope of this document, with the
    following restrictions.  A forwarding server MUST not modify existing
-   Proxy-State, State, or Class attributes present in the packet.
+   <A HREF="#Proxy-<A HREF="#State">State</A>">Proxy-<A HREF="#State">State</A></A>, <A HREF="#State">State</A>, or <A HREF="#Class">Class</A> attributes present in the packet.
 
 
 
@@ -575,7 +575,7 @@ RFC 2865                         RADIUS                        June 2000
 
 
    Implementers of forwarding servers should consider carefully which
-   values it is willing to accept for Service-Type.  Careful
+   values it is willing to accept for <A HREF="#Service-Type">Service-Type</A>.  Careful
    consideration must be given to the effects of passing along Service-
 <B>   Types of NAS-Prompt or Administrative in a proxied Access-Accept, and</B>
    implementers may wish to provide mechanisms to block those or other
@@ -664,7 +664,7 @@ RFC 2865                         RADIUS                        June 2000
    content of the attributes haven't changed.  If you want to use a new
    Request Authenticator when sending to the alternate server, you may.
 
-   If you change the contents of the User-Password attribute (or any
+   If you change the contents of the <A HREF="#User-Password">User-Password</A> attribute (or any
    other attribute), you need a new Request Authenticator and therefore
    a new ID.
 
@@ -690,7 +690,7 @@ RFC 2865                         RADIUS                        June 2000
    for each source port.  This allows up to 16 million or so outstanding
    requests at one time to a single server.
 
-<H2>2.6.  Keep-Alives Considered Harmful</H2>
+<A NAME="Keep-Alives"><H2>2.6.  Keep-Alives Considered Harmful</H2></a>
 
    Some implementers have adopted the practice of sending test RADIUS
    requests to see if a server is alive.  This practice is strongly
@@ -766,12 +766,12 @@ RFC 2865                         RADIUS                        June 2000
 
       RADIUS Codes (decimal) are assigned as follows:
 
-        1       Access-Request
-        2       Access-Accept
-        3       Access-Reject
-        4       Accounting-Request
-        5       Accounting-Response
-       11       Access-Challenge
+        1       <A HREF="#Access-Request">Access-Request</A>
+        2       <A HREF="#Access-Accept">Access-Accept</A>
+        3       <A HREF="#Access-Reject">Access-Reject</A>
+        4       <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A>
+        5       <A HREF="rfc2866.html#Accounting-Response">Accounting-Response</A>
+       11       <A HREF="#Access-Challenge">Access-Challenge</A>
        12       Status-Server (experimental)
        13       Status-Client (experimental)
       255       Reserved
@@ -817,7 +817,7 @@ RFC 2865                         RADIUS                        June 2000
 
       Request Authenticator
 
-         In Access-Request Packets, the Authenticator value is a 16
+         In <A HREF="#Access-Request">Access-Request</A> Packets, the Authenticator value is a 16
          octet random number, called the Request Authenticator.  The
          value SHOULD be unpredictable and unique over the lifetime of a
          secret (the password shared between the client and the RADIUS
@@ -828,7 +828,7 @@ RFC 2865                         RADIUS                        June 2000
          disparate geographic regions, the Request Authenticator field
          SHOULD exhibit global and temporal uniqueness.
 
-         The Request Authenticator value in an Access-Request packet
+         The Request Authenticator value in an <A HREF="#Access-Request">Access-Request</A> packet
          SHOULD also be unpredictable, lest an attacker trick a server
          into responding to a predicted future request, and then use the
          response to masquerade as that server to a future Access-
@@ -854,18 +854,18 @@ Rigney, et al.              Standards Track                    [Page 15]
 RFC 2865                         RADIUS                        June 2000
 
 
-         in the User-Password attribute in the Access-Request packet.
-         See the entry for User-Password in the section on Attributes
+         in the <A HREF="#User-Password">User-Password</A> attribute in the <A HREF="#Access-Request">Access-Request</A> packet.
+         See the entry for <A HREF="#User-Password">User-Password</A> in the section on Attributes
          for a more detailed description.
 
       Response Authenticator
 
-         The value of the Authenticator field in Access-Accept, Access-
-         Reject, and Access-Challenge packets is called the Response
+         The value of the Authenticator field in <A HREF="#Access-Accept">Access-Accept</A>, Access-
+         Reject, and <A HREF="#Access-Challenge">Access-Challenge</A> packets is called the Response
          Authenticator, and contains a one-way MD5 hash calculated over
          a stream of octets consisting of: the RADIUS packet, beginning
          with the Code field, including the Identifier, the Length, the
-         Request Authenticator field from the Access-Request packet, and
+         Request Authenticator field from the <A HREF="#Access-Request">Access-Request</A> packet, and
          the response Attributes, followed by the shared secret.  That
          is, ResponseAuth =
          MD5(Code+ID+Length+RequestAuth+Attributes+Secret) where +
@@ -887,13 +887,13 @@ RFC 2865                         RADIUS                        June 2000
 
       When using a forwarding proxy, the proxy must be able to alter the
       packet as it passes through in each direction - when the proxy
-      forwards the request, the proxy MAY add a Proxy-State Attribute,
+      forwards the request, the proxy MAY add a <A HREF="#Proxy-State">Proxy-State</A> Attribute,
       and when the proxy forwards a response, it MUST remove its Proxy-
-      State Attribute if it added one.  Proxy-State is always added or
+      <A HREF="#State">State</A> Attribute if it added one.  Proxy-<A HREF="#State">State</A> is always added or
       removed after any other Proxy-States, but no other assumptions
       regarding its location within the list of attributes can be made.
-      Since Access-Accept and Access-Reject replies are authenticated on
-      the entire packet contents, the stripping of the Proxy-State
+      Since <A HREF="#Access-Accept">Access-Accept</A> and <A HREF="#Access-Reject">Access-Reject</A> replies are authenticated on
+      the entire packet contents, the stripping of the <A HREF="#Proxy-State">Proxy-State</A>
       attribute invalidates the signature in the packet - so the proxy
       has to re-sign it.
 
@@ -915,39 +915,39 @@ RFC 2865                         RADIUS                        June 2000
    The RADIUS Packet type is determined by the Code field in the first
    octet of the Packet.
 
-<H2>4.1.  Access-Request</H2>
+<A NAME="Access-Request"><H2>4.1.  Access-Request</H2></a>
 
 <B>   Description</B>
 
-      Access-Request packets are sent to a RADIUS server, and convey
+      <B>Access-Request</B> packets are sent to a RADIUS server, and convey
       information used to determine whether a user is allowed access to
       a specific NAS, and any special services requested for that user.
       An implementation wishing to authenticate a user MUST transmit a
-      RADIUS packet with the Code field set to 1 (Access-Request).
+      RADIUS packet with the Code field set to 1 (<B>Access-Request</B>).
 
-      Upon receipt of an Access-Request from a valid client, an
+      Upon receipt of an <B>Access-Request</B> from a valid client, an
       appropriate reply MUST be transmitted.
 
-      An Access-Request SHOULD contain a User-Name attribute.  It MUST
-      contain either a NAS-IP-Address attribute or a NAS-Identifier
+      An <B>Access-Request</B> SHOULD contain a <A HREF="#User-Name">User-Name</A> attribute.  It MUST
+      contain either a <A HREF="#NAS-IP-Address">NAS-IP-Address</A> attribute or a <A HREF="#NAS-Identifier">NAS-Identifier</A>
       attribute (or both).
 
-      An Access-Request MUST contain either a User-Password or a CHAP-
-      Password or a State.  An Access-Request MUST NOT contain both a
-      User-Password and a CHAP-Password.  If future extensions allow
+      An <B>Access-Request</B> MUST contain either a <A HREF="#User-Password">User-Password</A> or a CHAP-
+      Password or a <A HREF="#State">State</A>.  An <B>Access-Request</B> MUST NOT contain both a
+      <A HREF="#User-Password">User-Password</A> and a <A HREF="#CHAP-Password">CHAP-Password</A>.  If future extensions allow
       other kinds of authentication information to be conveyed, the
-      attribute for that can be used in an Access-Request instead of
-      User-Password or CHAP-Password.
+      attribute for that can be used in an <B>Access-Request</B> instead of
+      <A HREF="#User-Password">User-Password</A> or <A HREF="#CHAP-Password">CHAP-Password</A>.
 
-      An Access-Request SHOULD contain a NAS-Port or NAS-Port-Type
+      An <B>Access-Request</B> SHOULD contain a <A HREF="#NAS-Port">NAS-Port</A> or <A HREF="#NAS-Port">NAS-Port</A>-Type
       attribute or both unless the type of access being requested does
       not involve a port or the NAS does not distinguish among its
       ports.
 
-      An Access-Request MAY contain additional attributes as a hint to
+      An <B>Access-Request</B> MAY contain additional attributes as a hint to
       the server, but the server is not required to honor the hint.
 
-      When a User-Password is present, it is hidden using a method based
+      When a <A HREF="#User-Password">User-Password</A> is present, it is hidden using a method based
       on the RSA Message Digest Algorithm MD5 [3].
 
 
@@ -966,7 +966,7 @@ Rigney, et al.              Standards Track                    [Page 17]
 RFC 2865                         RADIUS                        June 2000
 
 
-   A summary of the Access-Request packet format is shown below.  The
+   A summary of the <B>Access-Request</B> packet format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -984,7 +984,7 @@ RFC 2865                         RADIUS                        June 2000
 
    Code
 
-      1 for Access-Request.
+      1 for <B>Access-Request</B>.
 
    Identifier
 
@@ -1004,15 +1004,15 @@ RFC 2865                         RADIUS                        June 2000
       of Attributes that are required for the type of service, as well
       as any desired optional Attributes.
 
-<H2>4.2.  Access-Accept</H2>
+<A NAME="Access-Accept"><H2>4.2.  Access-Accept</H2></a>
 
 <B>   Description</B>
 
-      Access-Accept packets are sent by the RADIUS server, and provide
+      <B>Access-Accept</B> packets are sent by the RADIUS server, and provide
       specific configuration information necessary to begin delivery of
       service to the user.  If all Attribute values received in an
-      Access-Request are acceptable then the RADIUS implementation MUST
-      transmit a packet with the Code field set to 2 (Access-Accept).
+      <A HREF="#Access-Request">Access-Request</A> are acceptable then the RADIUS implementation MUST
+      transmit a packet with the Code field set to 2 (<B>Access-Accept</B>).
 
 
 
@@ -1022,12 +1022,12 @@ Rigney, et al.              Standards Track                    [Page 18]
 RFC 2865                         RADIUS                        June 2000
 
 
-      On reception of an Access-Accept, the Identifier field is matched
-      with a pending Access-Request.  The Response Authenticator field
-      MUST contain the correct response for the pending Access-Request.
+      On reception of an <B>Access-Accept</B>, the Identifier field is matched
+      with a pending <A HREF="#Access-Request">Access-Request</A>.  The Response Authenticator field
+      MUST contain the correct response for the pending <A HREF="#Access-Request">Access-Request</A>.
       Invalid packets are silently discarded.
 
-   A summary of the Access-Accept packet format is shown below.  The
+   A summary of the <B>Access-Accept</B> packet format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1045,12 +1045,12 @@ RFC 2865                         RADIUS                        June 2000
 
    Code
 
-      2 for Access-Accept.
+      2 for <B>Access-Accept</B>.
 
    Identifier
 
       The Identifier field is a copy of the Identifier field of the
-      Access-Request which caused this Access-Accept.
+      <A HREF="#Access-Request">Access-Request</A> which caused this <B>Access-Accept</B>.
 
    Response Authenticator
 
@@ -1078,17 +1078,17 @@ Rigney, et al.              Standards Track                    [Page 19]
 RFC 2865                         RADIUS                        June 2000
 
 
-<H2>4.3.  Access-Reject</H2>
+<A NAME="Access-Reject"><H2>4.3.  Access-Reject</H2></a>
 
 <B>   Description</B>
 
       If any value of the received Attributes is not acceptable, then
       the RADIUS server MUST transmit a packet with the Code field set
-      to 3 (Access-Reject).  It MAY include one or more Reply-Message
+      to 3 (<B>Access-Reject</B>).  It MAY include one or more <A HREF="#Reply-Message">Reply-Message</A>
       Attributes with a text message which the NAS MAY display to the
       user.
 
-   A summary of the Access-Reject packet format is shown below.  The
+   A summary of the <B>Access-Reject</B> packet format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1106,12 +1106,12 @@ RFC 2865                         RADIUS                        June 2000
 
    Code
 
-      3 for Access-Reject.
+      3 for <B>Access-Reject</B>.
 
    Identifier
 
       The Identifier field is a copy of the Identifier field of the
-      Access-Request which caused this Access-Reject.
+      <A HREF="#Access-Request">Access-Request</A> which caused this <B>Access-Reject</B>.
 
    Response Authenticator
 
@@ -1134,45 +1134,45 @@ Rigney, et al.              Standards Track                    [Page 20]
 RFC 2865                         RADIUS                        June 2000
 
 
-<H2>4.4.  Access-Challenge</H2>
+<A NAME="Access-Challenge"><H2>4.4.  Access-Challenge</H2></a>
 
 <B>   Description</B>
 
       If the RADIUS server desires to send the user a challenge
       requiring a response, then the RADIUS server MUST respond to the
-      Access-Request by transmitting a packet with the Code field set to
-      11 (Access-Challenge).
+      <A HREF="#Access-Request">Access-Request</A> by transmitting a packet with the Code field set to
+      11 (<B>Access-Challenge</B>).
 
-      The Attributes field MAY have one or more Reply-Message
-      Attributes, and MAY have a single State Attribute, or none.
-      Vendor-Specific, Idle-Timeout, Session-Timeout and Proxy-State
+      The Attributes field MAY have one or more <A HREF="#Reply-Message">Reply-Message</A>
+      Attributes, and MAY have a single <A HREF="#State">State</A> Attribute, or none.
+      <A HREF="#Vendor-Specific">Vendor-Specific</A>, <A HREF="#Idle-Timeout">Idle-Timeout</A>, <A HREF="#Session-Timeout">Session-Timeout</A> and <A HREF="#Proxy-State">Proxy-State</A>
       attributes MAY also be included.  No other Attributes defined in
-      this document are permitted in an Access-Challenge.
+      this document are permitted in an <B>Access-Challenge</B>.
 
-      On receipt of an Access-Challenge, the Identifier field is matched
-      with a pending Access-Request.  Additionally, the Response
+      On receipt of an <B>Access-Challenge</B>, the Identifier field is matched
+      with a pending <A HREF="#Access-Request">Access-Request</A>.  Additionally, the Response
       Authenticator field MUST contain the correct response for the
-      pending Access-Request.  Invalid packets are silently discarded.
+      pending <A HREF="#Access-Request">Access-Request</A>.  Invalid packets are silently discarded.
 
       If the NAS does not support challenge/response, it MUST treat an
-      Access-Challenge as though it had received an Access-Reject
+      <B>Access-Challenge</B> as though it had received an <A HREF="#Access-Reject">Access-Reject</A>
       instead.
 
       If the NAS supports challenge/response, receipt of a valid
-      Access-Challenge indicates that a new Access-Request SHOULD be
+      <B>Access-Challenge</B> indicates that a new <A HREF="#Access-Request">Access-Request</A> SHOULD be
       sent.  The NAS MAY display the text message, if any, to the user,
       and then prompt the user for a response.  It then sends its
-      original Access-Request with a new request ID and Request
-      Authenticator, with the User-Password Attribute replaced by the
-      user's response (encrypted), and including the State Attribute
-      from the Access-Challenge, if any.  Only 0 or 1 instances of the
-      State Attribute can be present in an Access-Request.
+      original <A HREF="#Access-Request">Access-Request</A> with a new request ID and Request
+      Authenticator, with the <A HREF="#User-Password">User-Password</A> Attribute replaced by the
+      user's response (encrypted), and including the <A HREF="#State">State</A> Attribute
+      from the <B>Access-Challenge</B>, if any.  Only 0 or 1 instances of the
+      <A HREF="#State">State</A> Attribute can be present in an <A HREF="#Access-Request">Access-Request</A>.
 
-      A NAS which supports PAP MAY forward the Reply-Message to the
+      A NAS which supports PAP MAY forward the <A HREF="#Reply-Message">Reply-Message</A> to the
       dialing client and accept a PAP response which it can use as
       though the user had entered the response.  If the NAS cannot do
-      so, it MUST treat the Access-Challenge as though it had received
-      an Access-Reject instead.
+      so, it MUST treat the <B>Access-Challenge</B> as though it had received
+      an <A HREF="#Access-Reject">Access-Reject</A> instead.
 
 
 
@@ -1190,7 +1190,7 @@ Rigney, et al.              Standards Track                    [Page 21]
 RFC 2865                         RADIUS                        June 2000
 
 
-   A summary of the Access-Challenge packet format is shown below.  The
+   A summary of the <B>Access-Challenge</B> packet format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1208,12 +1208,12 @@ RFC 2865                         RADIUS                        June 2000
 
    Code
 
-      11 for Access-Challenge.
+      11 for <B>Access-Challenge</B>.
 
    Identifier
 
       The Identifier field is a copy of the Identifier field of the
-      Access-Request which caused this Access-Challenge.
+      <A HREF="#Access-Request">Access-Request</A> which caused this <B>Access-Challenge</B>.
 
    Response Authenticator
 
@@ -1255,11 +1255,11 @@ RFC 2865                         RADIUS                        June 2000
 
    Where an Attribute's description limits which kinds of packet it can
    be contained in, this applies only to the packet types defined in
-   this document, namely Access-Request, Access-Accept, Access-Reject
-   and Access-Challenge (Codes 1, 2, 3, and 11).  Other documents
+   this document, namely <A HREF="#Access-Request">Access-Request</A>, <A HREF="#Access-Accept">Access-Accept</A>, <A HREF="#Access-Reject">Access-Reject</A>
+   and <A HREF="#Access-Challenge">Access-Challenge</A> (Codes 1, 2, 3, and 11).  Other documents
    defining other packet types may also use Attributes described here.
-   To determine which Attributes are allowed in Accounting-Request and
-   Accounting-Response packets (Codes 4 and 5) refer to the RADIUS
+   To determine which Attributes are allowed in <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> and
+   <A HREF="rfc2866.html#Accounting-Response">Accounting-Response</A> packets (Codes 4 and 5) refer to the RADIUS
    Accounting document [5].
 
    Likewise where packet types defined here state that only certain
@@ -1304,50 +1304,50 @@ RFC 2865                         RADIUS                        June 2000
 
       This specification concerns the following values:
 
-          1      User-Name
-          2      User-Password
-          3      CHAP-Password
-          4      NAS-IP-Address
-          5      NAS-Port
-          6      Service-Type
-          7      Framed-Protocol
-          8      Framed-IP-Address
-          9      Framed-IP-Netmask
-         10      Framed-Routing
-         11      Filter-Id
-         12      Framed-MTU
-         13      Framed-Compression
-         14      Login-IP-Host
-         15      Login-Service
-         16      Login-TCP-Port
+          1      <A HREF="#User-Name">User-Name</A>
+          2      <A HREF="#User-Password">User-Password</A>
+          3      <A HREF="#CHAP-Password">CHAP-Password</A>
+          4      <A HREF="#NAS-IP-Address">NAS-IP-Address</A>
+          5      <A HREF="#NAS-Port">NAS-Port</A>
+          6      <A HREF="#Service-Type">Service-Type</A>
+          7      <A HREF="#Framed-Protocol">Framed-Protocol</A>
+          8      <A HREF="#Framed-IP-Address">Framed-IP-Address</A>
+          9      <A HREF="#Framed-IP-Netmask">Framed-IP-Netmask</A>
+         10      <A HREF="#Framed-Routing">Framed-Routing</A>
+         11      <A HREF="#Filter-Id">Filter-Id</A>
+         12      <A HREF="#Framed-MTU">Framed-MTU</A>
+         13      <A HREF="#Framed-Compression">Framed-Compression</A>
+         14      <A HREF="#Login-IP-Host">Login-IP-Host</A>
+         15      <A HREF="#Login-Service">Login-Service</A>
+         16      <A HREF="#Login-TCP-Port">Login-TCP-Port</A>
          17      (unassigned)
-         18      Reply-Message
-         19      Callback-Number
-         20      Callback-Id
+         18      <A HREF="#Reply-Message">Reply-Message</A>
+         19      <A HREF="#Callback-Number">Callback-Number</A>
+         20      <A HREF="#Callback-Id">Callback-Id</A>
          21      (unassigned)
-         22      Framed-Route
-         23      Framed-IPX-Network
-         24      State
-         25      Class
-         26      Vendor-Specific
-         27      Session-Timeout
-         28      Idle-Timeout
-         29      Termination-Action
-         30      Called-Station-Id
-         31      Calling-Station-Id
-         32      NAS-Identifier
-         33      Proxy-State
-         34      Login-LAT-Service
-         35      Login-LAT-Node
-         36      Login-LAT-Group
-         37      Framed-AppleTalk-Link
-         38      Framed-AppleTalk-Network
-         39      Framed-AppleTalk-Zone
+         22      <A HREF="#Framed-Route">Framed-Route</A>
+         23      <A HREF="#Framed-IPX-Network">Framed-IPX-Network</A>
+         24      <A HREF="#State">State</A>
+         25      <A HREF="#Class">Class</A>
+         26      <A HREF="#Vendor-Specific">Vendor-Specific</A>
+         27      <A HREF="#Session-Timeout">Session-Timeout</A>
+         28      <A HREF="#Idle-Timeout">Idle-Timeout</A>
+         29      <A HREF="#Termination-Action">Termination-Action</A>
+         30      <A HREF="#Called-Station-Id">Called-Station-Id</A>
+         31      <A HREF="#Calling-Station-Id">Calling-Station-Id</A>
+         32      <A HREF="#NAS-Identifier">NAS-Identifier</A>
+         33      <A HREF="#Proxy-State">Proxy-State</A>
+         34      <A HREF="#Login-LAT-Service">Login-LAT-Service</A>
+         35      <A HREF="#Login-LAT-Node">Login-LAT-Node</A>
+         36      <A HREF="#Login-LAT-Group">Login-LAT-Group</A>
+         37      <A HREF="#Framed-AppleTalk-Link">Framed-AppleTalk-Link</A>
+         38      <A HREF="#Framed-AppleTalk-Network">Framed-AppleTalk-Network</A>
+         39      <A HREF="#Framed-AppleTalk-Zone">Framed-AppleTalk-Zone</A>
          40-59   (reserved for accounting)
-         60      CHAP-Challenge
-         61      NAS-Port-Type
-         62      Port-Limit
-         63      Login-LAT-Port
+         60      <A HREF="#CHAP-Challenge">CHAP-Challenge</A>
+         61      <A HREF="#NAS-Port-Type">NAS-Port-Type</A>
+         62      <A HREF="#Port-Limit">Port-Limit</A>
+         63      <A HREF="#Login-LAT-Port">Login-LAT-Port</A>
 
 
 
@@ -1362,11 +1362,11 @@ RFC 2865                         RADIUS                        June 2000
 
       The Length field is one octet, and indicates the length of this
       Attribute including the Type, Length and Value fields.  If an
-      Attribute is received in an Access-Request but with an invalid
-      Length, an Access-Reject SHOULD be transmitted.  If an Attribute
-      is received in an Access-Accept, Access-Reject or Access-Challenge
+      Attribute is received in an <A HREF="#Access-Request">Access-Request</A> but with an invalid
+      Length, an <A HREF="#Access-Reject">Access-Reject</A> SHOULD be transmitted.  If an Attribute
+      is received in an <A HREF="#Access-Accept">Access-Accept</A>, <A HREF="#Access-Reject">Access-Reject</A> or <A HREF="#Access-Challenge">Access-Challenge</A>
       packet with an invalid length, the packet MUST either be treated
-      as an Access-Reject or else silently discarded.
+      as an <A HREF="#Access-Reject">Access-Reject</A> or else silently discarded.
 
 <B>   Value</B>
 
@@ -1414,21 +1414,21 @@ Rigney, et al.              Standards Track                    [Page 25]
 RFC 2865                         RADIUS                        June 2000
 
 
-<H2>5.1.  User-Name</H2>
+<A NAME="User-Name"><H2>5.1.  User-Name</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the name of the user to be authenticated.
-      It MUST be sent in Access-Request packets if available.
+      It MUST be sent in <A HREF="#Access-Request">Access-Request</A> packets if available.
 
-      It MAY be sent in an Access-Accept packet, in which case the
-      client SHOULD use the name returned in the Access-Accept packet in
-      all Accounting-Request packets for this session.  If the Access-
-      Accept includes Service-Type = Rlogin and the User-Name attribute,
-      a NAS MAY use the returned User-Name when performing the Rlogin
+      It MAY be sent in an <A HREF="#Access-Accept">Access-Accept</A> packet, in which case the
+      client SHOULD use the name returned in the <A HREF="#Access-Accept">Access-Accept</A> packet in
+      all <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets for this session.  If the Access-
+      Accept includes <A HREF="#Service-Type">Service-Type</A> = Rlogin and the <B>User-Name</B> attribute,
+      a NAS MAY use the returned <B>User-Name</B> when performing the Rlogin
       function.
 
-   A summary of the User-Name Attribute format is shown below.  The
+   A summary of the <B>User-Name</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2
@@ -1439,7 +1439,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      1 for User-Name.
+      1 for <B>User-Name</B>.
 
 <B>   Length</B>
 
@@ -1448,7 +1448,7 @@ RFC 2865                         RADIUS                        June 2000
    String
 
       The String field is one or more octets.  The NAS may limit the
-      maximum length of the User-Name but the ability to handle at least
+      maximum length of the <B>User-Name</B> but the ability to handle at least
       63 octets is recommended.
 
       The format of the username MAY be one of several forms:
@@ -1470,13 +1470,13 @@ Rigney, et al.              Standards Track                    [Page 26]
 RFC 2865                         RADIUS                        June 2000
 
 
-<H2>5.2.  User-Password</H2>
+<A NAME="User-Password"><H2>5.2.  User-Password</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the password of the user to be
-      authenticated, or the user's input following an Access-Challenge.
-      It is only used in Access-Request packets.
+      authenticated, or the user's input following an <A HREF="#Access-Challenge">Access-Challenge</A>.
+      It is only used in <A HREF="#Access-Request">Access-Request</A> packets.
 
       On transmission, the password is hidden.  The password is first
       padded at the end with nulls to a multiple of 16 octets.  A one-
@@ -1529,7 +1529,7 @@ RFC 2865                         RADIUS                        June 2000
       On receipt, the process is reversed to yield the original
       password.
 
-   A summary of the User-Password Attribute format is shown below.  The
+   A summary of the <B>User-Password</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2
@@ -1540,7 +1540,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      2 for User-Password.
+      2 for <B>User-Password</B>.
 
 <B>   Length</B>
 
@@ -1550,20 +1550,20 @@ RFC 2865                         RADIUS                        June 2000
 
       The String field is between 16 and 128 octets long, inclusive.
 
-<H2>5.3.  CHAP-Password</H2>
+<A NAME="CHAP-Password"><H2>5.3.  CHAP-Password</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the response value provided by a PPP
       Challenge-Handshake Authentication Protocol (CHAP) user in
-      response to the challenge.  It is only used in Access-Request
+      response to the challenge.  It is only used in <A HREF="#Access-Request">Access-Request</A>
       packets.
 
-      The CHAP challenge value is found in the CHAP-Challenge Attribute
+      The CHAP challenge value is found in the <A HREF="#CHAP-Challenge">CHAP-Challenge</A> Attribute
       (60) if present in the packet, otherwise in the Request
       Authenticator field.
 
-   A summary of the CHAP-Password Attribute format is shown below.  The
+   A summary of the <B>CHAP-Password</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2
@@ -1584,7 +1584,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      3 for CHAP-Password.
+      3 for <B>CHAP-Password</B>.
 
 <B>   Length</B>
 
@@ -1600,23 +1600,23 @@ RFC 2865                         RADIUS                        June 2000
       The String field is 16 octets, and contains the CHAP Response from
       the user.
 
-<H2>5.4.  NAS-IP-Address</H2>
+<A NAME="NAS-IP-Address"><H2>5.4.  NAS-IP-Address</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the identifying IP Address of the NAS
       which is requesting authentication of the user, and SHOULD be
       unique to the NAS within the scope of the RADIUS server. NAS-IP-
-      Address is only used in Access-Request packets.  Either NAS-IP-
-      Address or NAS-Identifier MUST be present in an Access-Request
+      Address is only used in <A HREF="#Access-Request">Access-Request</A> packets.  Either NAS-IP-
+      Address or <A HREF="#NAS-Identifier">NAS-Identifier</A> MUST be present in an <A HREF="#Access-Request">Access-Request</A>
       packet.
 
-      Note that NAS-IP-Address MUST NOT be used to select the shared
+      Note that <B>NAS-IP-Address</B> MUST NOT be used to select the shared
       secret used to authenticate the request.  The source IP address of
-      the Access-Request packet MUST be used to select the shared
+      the <A HREF="#Access-Request">Access-Request</A> packet MUST be used to select the shared
       secret.
 
-   A summary of the NAS-IP-Address Attribute format is shown below.  The
+   A summary of the <B>NAS-IP-Address</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1629,7 +1629,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      4 for NAS-IP-Address.
+      4 for <B>NAS-IP-Address</B>.
 
 
 
@@ -1646,19 +1646,19 @@ RFC 2865                         RADIUS                        June 2000
 
       The Address field is four octets.
 
-<H2>5.5.  NAS-Port</H2>
+<A NAME="NAS-Port"><H2>5.5.  NAS-Port</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the physical port number of the NAS which
-      is authenticating the user.  It is only used in Access-Request
+      is authenticating the user.  It is only used in <A HREF="#Access-Request">Access-Request</A>
       packets.  Note that this is using "port" in its sense of a
       physical connection on the NAS, not in the sense of a TCP or UDP
-      port number.  Either NAS-Port or NAS-Port-Type (61) or both SHOULD
-      be present in an Access-Request packet, if the NAS differentiates
+      port number.  Either <B>NAS-Port</B> or <B>NAS-Port</B>-Type (61) or both SHOULD
+      be present in an <A HREF="#Access-Request">Access-Request</A> packet, if the NAS differentiates
       among its ports.
 
-   A summary of the NAS-Port Attribute format is shown below.  The
+   A summary of the <B>NAS-Port</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1671,7 +1671,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      5 for NAS-Port.
+      5 for <B>NAS-Port</B>.
 
 <B>   Length</B>
 
@@ -1694,18 +1694,18 @@ Rigney, et al.              Standards Track                    [Page 30]
 RFC 2865                         RADIUS                        June 2000
 
 
-<H2>5.6.  Service-Type</H2>
+<A NAME="Service-Type"><H2>5.6.  Service-Type</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the type of service the user has
       requested, or the type of service to be provided.  It MAY be used
-      in both Access-Request and Access-Accept packets.  A NAS is not
+      in both <A HREF="#Access-Request">Access-Request</A> and <A HREF="#Access-Accept">Access-Accept</A> packets.  A NAS is not
       required to implement all of these service types, and MUST treat
-      unknown or unsupported Service-Types as though an Access-Reject
+      unknown or unsupported <B>Service-Type</B>s as though an <A HREF="#Access-Reject">Access-Reject</A>
       had been received instead.
 
-   A summary of the Service-Type Attribute format is shown below.  The
+   A summary of the <B>Service-Type</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1718,7 +1718,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      6 for Service-Type.
+      6 for <B>Service-Type</B>.
 
 <B>   Length</B>
 
@@ -1751,7 +1751,7 @@ RFC 2865                         RADIUS                        June 2000
 
 
       The service types are defined as follows when used in an Access-
-      Accept.  When used in an Access-Request, they MAY be considered to
+      Accept.  When used in an <A HREF="#Access-Request">Access-Request</A>, they MAY be considered to
       be a hint to the RADIUS server that the NAS has reason to believe
       the user would prefer the kind of service indicated, but the
       server is not required to honor the hint.
@@ -1781,7 +1781,7 @@ RFC 2865                         RADIUS                        June 2000
 
       Authenticate Only   Only Authentication is requested, and no
                           authorization information needs to be returned
-                          in the Access-Accept (typically used by proxy
+                          in the <A HREF="#Access-Accept">Access-Accept</A> (typically used by proxy
                           servers rather than the NAS itself).
 
       Callback NAS Prompt The user should be disconnected and called
@@ -1789,13 +1789,13 @@ RFC 2865                         RADIUS                        June 2000
                           NAS from which non-privileged commands can be
                           executed.
 
-      Call Check          Used by the NAS in an Access-Request packet to
+      Call Check          Used by the NAS in an <A HREF="#Access-Request">Access-Request</A> packet to
                           indicate that a call is being received and
                           that the RADIUS server should send back an
-                          Access-Accept to answer the call, or an
-                          Access-Reject to not accept the call,
-                          typically based on the Called-Station-Id or
-                          Calling-Station-Id attributes.  It is
+                          <A HREF="#Access-Accept">Access-Accept</A> to answer the call, or an
+                          <A HREF="#Access-Reject">Access-Reject</A> to not accept the call,
+                          typically based on the <A HREF="#Called-Station-Id">Called-Station-Id</A> or
+                          <A HREF="#Calling-Station-Id">Calling-Station-Id</A> attributes.  It is
 
 
 
@@ -1807,8 +1807,8 @@ RFC 2865                         RADIUS                        June 2000
 
 
                           recommended that such Access-Requests use the
-                          value of Calling-Station-Id as the value of
-                          the User-Name.
+                          value of <A HREF="#Calling-Station-Id">Calling-Station-Id</A> as the value of
+                          the <A HREF="#User-Name">User-Name</A>.
 
       Callback Administrative
                           The user should be disconnected and called
@@ -1816,14 +1816,14 @@ RFC 2865                         RADIUS                        June 2000
                           administrative interface to the NAS from which
                           privileged commands can be executed.
 
-<H2>5.7.  Framed-Protocol</H2>
+<A NAME="Framed-Protocol"><H2>5.7.  Framed-Protocol</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the framing to be used for framed access.
-      It MAY be used in both Access-Request and Access-Accept packets.
+      It MAY be used in both <A HREF="#Access-Request">Access-Request</A> and <A HREF="#Access-Accept">Access-Accept</A> packets.
 
-   A summary of the Framed-Protocol Attribute format is shown below.
+   A summary of the <B>Framed-Protocol</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1836,7 +1836,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      7 for Framed-Protocol.
+      7 for <B>Framed-Protocol</B>.
 
 <B>   Length</B>
 
@@ -1862,17 +1862,17 @@ Rigney, et al.              Standards Track                    [Page 33]
 RFC 2865                         RADIUS                        June 2000
 
 
-<H2>5.8.  Framed-IP-Address</H2>
+<A NAME="Framed-IP-Address"><H2>5.8.  Framed-IP-Address</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the address to be configured for the
-      user.  It MAY be used in Access-Accept packets.  It MAY be used in
-      an Access-Request packet as a hint by the NAS to the server that
+      user.  It MAY be used in <A HREF="#Access-Accept">Access-Accept</A> packets.  It MAY be used in
+      an <A HREF="#Access-Request">Access-Request</A> packet as a hint by the NAS to the server that
       it would prefer that address, but the server is not required to
       honor the hint.
 
-   A summary of the Framed-IP-Address Attribute format is shown below.
+   A summary of the <B>Framed-IP-Address</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1885,7 +1885,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      8 for Framed-IP-Address.
+      8 for <B>Framed-IP-Address</B>.
 
 <B>   Length</B>
 
@@ -1900,13 +1900,13 @@ RFC 2865                         RADIUS                        June 2000
       addresses kept by the NAS).  Other valid values indicate that the
       NAS should use that value as the user's IP address.
 
-<H2>5.9.  Framed-IP-Netmask</H2>
+<A NAME="Framed-IP-Netmask"><H2>5.9.  Framed-IP-Netmask</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the IP netmask to be configured for the
       user when the user is a router to a network.  It MAY be used in
-      Access-Accept packets.  It MAY be used in an Access-Request packet
+      <A HREF="#Access-Accept">Access-Accept</A> packets.  It MAY be used in an <A HREF="#Access-Request">Access-Request</A> packet
       as a hint by the NAS to the server that it would prefer that
       netmask, but the server is not required to honor the hint.
 
@@ -1918,7 +1918,7 @@ Rigney, et al.              Standards Track                    [Page 34]
 RFC 2865                         RADIUS                        June 2000
 
 
-   A summary of the Framed-IP-Netmask Attribute format is shown below.
+   A summary of the <B>Framed-IP-Netmask</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1931,7 +1931,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      9 for Framed-IP-Netmask.
+      9 for <B>Framed-IP-Netmask</B>.
 
 <B>   Length</B>
 
@@ -1942,15 +1942,15 @@ RFC 2865                         RADIUS                        June 2000
       The Address field is four octets specifying the IP netmask of the
       user.
 
-<H2>5.10.  Framed-Routing</H2>
+<A NAME="Framed-Routing"><H2>5.10.  Framed-Routing</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the routing method for the user, when the
-      user is a router to a network.  It is only used in Access-Accept
+      user is a router to a network.  It is only used in <A HREF="#Access-Accept">Access-Accept</A>
       packets.
 
-   A summary of the Framed-Routing Attribute format is shown below.  The
+   A summary of the <B>Framed-Routing</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1963,7 +1963,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      10 for Framed-Routing.
+      10 for <B>Framed-Routing</B>.
 
 
 
@@ -1987,19 +1987,19 @@ RFC 2865                         RADIUS                        June 2000
        2      Listen for routing packets
        3      Send and Listen
 
-<H2>5.11.  Filter-Id</H2>
+<A NAME="Filter-Id"><H2>5.11.  Filter-Id</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the name of the filter list for this
-      user.  Zero or more Filter-Id attributes MAY be sent in an
-      Access-Accept packet.
+      user.  Zero or more <B>Filter-Id</B> attributes MAY be sent in an
+      <A HREF="#Access-Accept">Access-Accept</A> packet.
 
       Identifying a filter list by name allows the filter to be used on
       different NASes without regard to filter-list implementation
       details.
 
-   A summary of the Filter-Id Attribute format is shown below.  The
+   A summary of the <B>Filter-Id</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2
@@ -2010,7 +2010,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      11 for Filter-Id.
+      11 for <B>Filter-Id</B>.
 
 <B>   Length</B>
 
@@ -2030,18 +2030,18 @@ Rigney, et al.              Standards Track                    [Page 36]
 RFC 2865                         RADIUS                        June 2000
 
 
-<H2>5.12.  Framed-MTU</H2>
+<A NAME="Framed-MTU"><H2>5.12.  Framed-MTU</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the Maximum Transmission Unit to be
       configured for the user, when it is not negotiated by some other
-      means (such as PPP).  It MAY be used in Access-Accept packets.  It
-      MAY be used in an Access-Request packet as a hint by the NAS to
+      means (such as PPP).  It MAY be used in <A HREF="#Access-Accept">Access-Accept</A> packets.  It
+      MAY be used in an <A HREF="#Access-Request">Access-Request</A> packet as a hint by the NAS to
       the server that it would prefer that value, but the server is not
       required to honor the hint.
 
-   A summary of the Framed-MTU Attribute format is shown below.  The
+   A summary of the <B>Framed-MTU</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -2054,7 +2054,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      12 for Framed-MTU.
+      12 for <B>Framed-MTU</B>.
 
 <B>   Length</B>
 
@@ -2065,13 +2065,13 @@ RFC 2865                         RADIUS                        June 2000
       The Value field is four octets.  Despite the size of the field,
       values range from 64 to 65535.
 
-<H2>5.13.  Framed-Compression</H2>
+<A NAME="Framed-Compression"><H2>5.13.  Framed-Compression</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates a compression protocol to be used for the
-      link.  It MAY be used in Access-Accept packets.  It MAY be used in
-      an Access-Request packet as a hint to the server that the NAS
+      link.  It MAY be used in <A HREF="#Access-Accept">Access-Accept</A> packets.  It MAY be used in
+      an <A HREF="#Access-Request">Access-Request</A> packet as a hint to the server that the NAS
       would prefer to use that compression, but the server is not
       required to honor the hint.
 
@@ -2086,7 +2086,7 @@ Rigney, et al.              Standards Track                    [Page 37]
 RFC 2865                         RADIUS                        June 2000
 
 
-   A summary of the Framed-Compression Attribute format is shown below.
+   A summary of the <B>Framed-Compression</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -2099,7 +2099,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      13 for Framed-Compression.
+      13 for <B>Framed-Compression</B>.
 
 <B>   Length</B>
 
@@ -2114,17 +2114,17 @@ RFC 2865                         RADIUS                        June 2000
        2      IPX header compression
        3      Stac-LZS compression
 
-<H2>5.14.  Login-IP-Host</H2>
+<A NAME="Login-IP-Host"><H2>5.14.  Login-IP-Host</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the system with which to connect the user,
-      when the Login-Service Attribute is included.  It MAY be used in
-      Access-Accept packets.  It MAY be used in an Access-Request packet as
+      when the <A HREF="#Login-Service">Login-Service</A> Attribute is included.  It MAY be used in
+      <A HREF="#Access-Accept">Access-Accept</A> packets.  It MAY be used in an <A HREF="#Access-Request">Access-Request</A> packet as
       a hint to the server that the NAS would prefer to use that host, but
       the server is not required to honor the hint.
 
-   A summary of the Login-IP-Host Attribute format is shown below.  The
+   A summary of the <B>Login-IP-Host</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
 
@@ -2152,7 +2152,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      14 for Login-IP-Host.
+      14 for <B>Login-IP-Host</B>.
 
 <B>   Length</B>
 
@@ -2166,14 +2166,14 @@ RFC 2865                         RADIUS                        June 2000
       user to.  Other values indicate the address the NAS SHOULD connect
       the user to.
 
-<H2>5.15.  Login-Service</H2>
+<A NAME="Login-Service"><H2>5.15.  Login-Service</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the service to use to connect the user to
-      the login host.  It is only used in Access-Accept packets.
+      the login host.  It is only used in <A HREF="#Access-Accept">Access-Accept</A> packets.
 
-   A summary of the Login-Service Attribute format is shown below.  The
+   A summary of the <B>Login-Service</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -2186,7 +2186,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      15 for Login-Service.
+      15 for <B>Login-Service</B>.
 
 
 
@@ -2215,15 +2215,15 @@ RFC 2865                         RADIUS                        June 2000
        6   X25-T3POS
        8   TCP Clear Quiet (suppresses any NAS-generated connect string)
 
-<H2>5.16.  Login-TCP-Port</H2>
+<A NAME="Login-TCP-Port"><H2>5.16.  Login-TCP-Port</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the TCP port with which the user is to be
-      connected, when the Login-Service Attribute is also present.  It
-      is only used in Access-Accept packets.
+      connected, when the <A HREF="#Login-Service">Login-Service</A> Attribute is also present.  It
+      is only used in <A HREF="#Access-Accept">Access-Accept</A> packets.
 
-   A summary of the Login-TCP-Port Attribute format is shown below.  The
+   A summary of the <B>Login-TCP-Port</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -2236,7 +2236,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      16 for Login-TCP-Port.
+      16 for <B>Login-TCP-Port</B>.
 
 <B>   Length</B>
 
@@ -2260,26 +2260,26 @@ RFC 2865                         RADIUS                        June 2000
 
       ATTRIBUTE TYPE 17 HAS NOT BEEN ASSIGNED.
 
-<H2>5.18.  Reply-Message</H2>
+<A NAME="Reply-Message"><H2>5.18.  Reply-Message</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates text which MAY be displayed to the user.
 
-      When used in an Access-Accept, it is the success message.
+      When used in an <A HREF="#Access-Accept">Access-Accept</A>, it is the success message.
 
-      When used in an Access-Reject, it is the failure message.  It MAY
+      When used in an <A HREF="#Access-Reject">Access-Reject</A>, it is the failure message.  It MAY
       indicate a dialog message to prompt the user before another
-      Access-Request attempt.
+      <A HREF="#Access-Request">Access-Request</A> attempt.
 
-      When used in an Access-Challenge, it MAY indicate a dialog message
+      When used in an <A HREF="#Access-Challenge">Access-Challenge</A>, it MAY indicate a dialog message
       to prompt the user for a response.
 
-      Multiple Reply-Message's MAY be included and if any are displayed,
+      Multiple <B>Reply-Message</B>'s MAY be included and if any are displayed,
       they MUST be displayed in the same order as they appear in the
       packet.
 
-   A summary of the Reply-Message Attribute format is shown below.  The
+   A summary of the <B>Reply-Message</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2
@@ -2290,7 +2290,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      18 for Reply-Message.
+      18 for <B>Reply-Message</B>.
 
 <B>   Length</B>
 
@@ -2310,17 +2310,17 @@ Rigney, et al.              Standards Track                    [Page 41]
 RFC 2865                         RADIUS                        June 2000
 
 
-<H2>5.19.  Callback-Number</H2>
+<A NAME="Callback-Number"><H2>5.19.  Callback-Number</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates a dialing string to be used for callback.
-      It MAY be used in Access-Accept packets.  It MAY be used in an
-      Access-Request packet as a hint to the server that a Callback
+      It MAY be used in <A HREF="#Access-Accept">Access-Accept</A> packets.  It MAY be used in an
+      <A HREF="#Access-Request">Access-Request</A> packet as a hint to the server that a Callback
       service is desired, but the server is not required to honor the
       hint.
 
-   A summary of the Callback-Number Attribute format is shown below.
+   A summary of the <B>Callback-Number</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2
@@ -2331,7 +2331,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      19 for Callback-Number.
+      19 for <B>Callback-Number</B>.
 
 <B>   Length</B>
 
@@ -2346,12 +2346,12 @@ RFC 2865                         RADIUS                        June 2000
       The codification of the range of allowed usage of this field is
       outside the scope of this specification.
 
-<H2>5.20.  Callback-Id</H2>
+<A NAME="Callback-Id"><H2>5.20.  Callback-Id</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the name of a place to be called, to be
-      interpreted by the NAS.  It MAY be used in Access-Accept packets.
+      interpreted by the NAS.  It MAY be used in <A HREF="#Access-Accept">Access-Accept</A> packets.
 
 
 
@@ -2366,7 +2366,7 @@ Rigney, et al.              Standards Track                    [Page 42]
 RFC 2865                         RADIUS                        June 2000
 
 
-   A summary of the Callback-Id Attribute format is shown below.  The
+   A summary of the <B>Callback-Id</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2
@@ -2377,7 +2377,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      20 for Callback-Id.
+      20 for <B>Callback-Id</B>.
 
 <B>   Length</B>
 
@@ -2398,15 +2398,15 @@ RFC 2865                         RADIUS                        June 2000
 
       ATTRIBUTE TYPE 21 HAS NOT BEEN ASSIGNED.
 
-<H2>5.22.  Framed-Route</H2>
+<A NAME="Framed-Route"><H2>5.22.  Framed-Route</H2></a>
 
 <B>   Description</B>
 
       This Attribute provides routing information to be configured for
-      the user on the NAS.  It is used in the Access-Accept packet and
+      the user on the NAS.  It is used in the <A HREF="#Access-Accept">Access-Accept</A> packet and
       can appear multiple times.
 
-   A summary of the Framed-Route Attribute format is shown below.  The
+   A summary of the <B>Framed-Route</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2
@@ -2424,7 +2424,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      22 for Framed-Route.
+      22 for <B>Framed-Route</B>.
 
 <B>   Length</B>
 
@@ -2450,14 +2450,14 @@ RFC 2865                         RADIUS                        June 2000
       Whenever the gateway address is specified as "0.0.0.0" the IP
       address of the user SHOULD be used as the gateway address.
 
-<H2>5.23.  Framed-IPX-Network</H2>
+<A NAME="Framed-IPX-Network"><H2>5.23.  Framed-IPX-Network</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the IPX Network number to be configured
-      for the user.  It is used in Access-Accept packets.
+      for the user.  It is used in <A HREF="#Access-Accept">Access-Accept</A> packets.
 
-   A summary of the Framed-IPX-Network Attribute format is shown below.
+   A summary of the <B>Framed-IPX-Network</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -2480,7 +2480,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      23 for Framed-IPX-Network.
+      23 for <B>Framed-IPX-Network</B>.
 
 <B>   Length</B>
 
@@ -2494,27 +2494,27 @@ RFC 2865                         RADIUS                        June 2000
       Other values should be used as the IPX network for the link to the
       user.
 
-<H2>5.24.  State</H2>
+<A NAME="State"><H2>5.24.  State</H2></a>
 
 <B>   Description</B>
 
       This Attribute is available to be sent by the server to the client
-      in an Access-Challenge and MUST be sent unmodified from the client
-      to the server in the new Access-Request reply to that challenge,
+      in an <A HREF="#Access-Challenge">Access-Challenge</A> and MUST be sent unmodified from the client
+      to the server in the new <A HREF="#Access-Request">Access-Request</A> reply to that challenge,
       if any.
 
       This Attribute is available to be sent by the server to the client
-      in an Access-Accept that also includes a Termination-Action
+      in an <A HREF="#Access-Accept">Access-Accept</A> that also includes a <A HREF="#Termination-Action">Termination-Action</A>
       Attribute with the value of RADIUS-Request.  If the NAS performs
-      the Termination-Action by sending a new Access-Request upon
-      termination of the current session, it MUST include the State
-      attribute unchanged in that Access-Request.
+      the <A HREF="#Termination-Action">Termination-Action</A> by sending a new <A HREF="#Access-Request">Access-Request</A> upon
+      termination of the current session, it MUST include the <B>State</B>
+      attribute unchanged in that <A HREF="#Access-Request">Access-Request</A>.
 
       In either usage, the client MUST NOT interpret the attribute
-      locally.  A packet must have only zero or one State Attribute.
-      Usage of the State Attribute is implementation dependent.
+      locally.  A packet must have only zero or one <B>State</B> Attribute.
+      Usage of the <B>State</B> Attribute is implementation dependent.
 
-   A summary of the State Attribute format is shown below.  The fields
+   A summary of the <B>State</B> Attribute format is shown below.  The fields
    are transmitted from left to right.
 
     0                   1                   2
@@ -2525,7 +2525,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      24 for State.
+      24 for <B>State</B>.
 
 
 
@@ -2547,17 +2547,17 @@ RFC 2865                         RADIUS                        June 2000
       The codification of the range of allowed usage of this field is
       outside the scope of this specification.
 
-<H2>5.25.  Class</H2>
+<A NAME="Class"><H2>5.25.  Class</H2></a>
 
 <B>   Description</B>
 
       This Attribute is available to be sent by the server to the client
-      in an Access-Accept and SHOULD be sent unmodified by the client to
-      the accounting server as part of the Accounting-Request packet if
+      in an <A HREF="#Access-Accept">Access-Accept</A> and SHOULD be sent unmodified by the client to
+      the accounting server as part of the <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packet if
       accounting is supported.  The client MUST NOT interpret the
       attribute locally.
 
-   A summary of the Class Attribute format is shown below.  The fields
+   A summary of the <B>Class</B> Attribute format is shown below.  The fields
    are transmitted from left to right.
 
     0                   1                   2
@@ -2568,7 +2568,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      25 for Class.
+      25 for <B>Class</B>.
 
 <B>   Length</B>
 
@@ -2590,7 +2590,7 @@ Rigney, et al.              Standards Track                    [Page 46]
 RFC 2865                         RADIUS                        June 2000
 
 
-<H2>5.26.  Vendor-Specific</H2>
+<A NAME="Vendor-Specific"><H2>5.26.  Vendor-Specific</H2></a>
 
 <B>   Description</B>
 
@@ -2604,7 +2604,7 @@ RFC 2865                         RADIUS                        June 2000
       SHOULD make an attempt to operate without it, although they may do
       so (and report they are doing so) in a degraded mode.
 
-   A summary of the Vendor-Specific Attribute format is shown below.
+   A summary of the <B>Vendor-Specific</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -2617,7 +2617,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      26 for Vendor-Specific.
+      26 for <B>Vendor-Specific</B>.
 
 <B>   Length</B>
 
@@ -2649,7 +2649,7 @@ RFC 2865                         RADIUS                        June 2000
       It SHOULD be encoded as a sequence of vendor type / vendor length
       / value fields, as follows.  The Attribute-Specific field is
       dependent on the vendor's definition of that attribute.  An
-      example encoding of the Vendor-Specific attribute using this
+      example encoding of the <B>Vendor-Specific</B> attribute using this
       method follows:
 
        0                   1                   2                   3
@@ -2665,16 +2665,16 @@ RFC 2865                         RADIUS                        June 2000
       Multiple subattributes MAY be encoded within a single Vendor-
       Specific attribute, although they do not have to be.
 
-<H2>5.27.  Session-Timeout</H2>
+<A NAME="Session-Timeout"><H2>5.27.  Session-Timeout</H2></a>
 
 <B>   Description</B>
 
       This Attribute sets the maximum number of seconds of service to be
       provided to the user before termination of the session or prompt.
       This Attribute is available to be sent by the server to the client
-      in an Access-Accept or Access-Challenge.
+      in an <A HREF="#Access-Accept">Access-Accept</A> or <A HREF="#Access-Challenge">Access-Challenge</A>.
 
-   A summary of the Session-Timeout Attribute format is shown below.
+   A summary of the <B>Session-Timeout</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -2687,7 +2687,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      27 for Session-Timeout.
+      27 for <B>Session-Timeout</B>.
 
 <B>   Length</B>
 
@@ -2708,16 +2708,16 @@ RFC 2865                         RADIUS                        June 2000
       the maximum number of seconds this user should be allowed to
       remain connected by the NAS.
 
-<H2>5.28.  Idle-Timeout</H2>
+<A NAME="Idle-Timeout"><H2>5.28.  Idle-Timeout</H2></a>
 
 <B>   Description</B>
 
       This Attribute sets the maximum number of consecutive seconds of
       idle connection allowed to the user before termination of the
       session or prompt.  This Attribute is available to be sent by the
-      server to the client in an Access-Accept or Access-Challenge.
+      server to the client in an <A HREF="#Access-Accept">Access-Accept</A> or <A HREF="#Access-Challenge">Access-Challenge</A>.
 
-   A summary of the Idle-Timeout Attribute format is shown below.  The
+   A summary of the <B>Idle-Timeout</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -2730,7 +2730,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      28 for Idle-Timeout.
+      28 for <B>Idle-Timeout</B>.
 
 <B>   Length</B>
 
@@ -2742,12 +2742,12 @@ RFC 2865                         RADIUS                        June 2000
       the maximum number of consecutive seconds of idle time this user
       should be permitted before being disconnected by the NAS.
 
-<H2>5.29.  Termination-Action</H2>
+<A NAME="Termination-Action"><H2>5.29.  Termination-Action</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates what action the NAS should take when the
-      specified service is completed.  It is only used in Access-Accept
+      specified service is completed.  It is only used in <A HREF="#Access-Accept">Access-Accept</A>
       packets.
 
 
@@ -2758,7 +2758,7 @@ Rigney, et al.              Standards Track                    [Page 49]
 RFC 2865                         RADIUS                        June 2000
 
 
-   A summary of the Termination-Action Attribute format is shown below.
+   A summary of the <B>Termination-Action</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -2771,7 +2771,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      29 for Termination-Action.
+      29 for <B>Termination-Action</B>.
 
 <B>   Length</B>
 
@@ -2785,20 +2785,20 @@ RFC 2865                         RADIUS                        June 2000
        1      RADIUS-Request
 
       If the Value is set to RADIUS-Request, upon termination of the
-      specified service the NAS MAY send a new Access-Request to the
-      RADIUS server, including the State attribute if any.
+      specified service the NAS MAY send a new <A HREF="#Access-Request">Access-Request</A> to the
+      RADIUS server, including the <A HREF="#State">State</A> attribute if any.
 
-<H2>5.30.  Called-Station-Id</H2>
+<A NAME="Called-Station-Id"><H2>5.30.  Called-Station-Id</H2></a>
 
 <B>   Description</B>
 
-      This Attribute allows the NAS to send in the Access-Request packet
+      This Attribute allows the NAS to send in the <A HREF="#Access-Request">Access-Request</A> packet
       the phone number that the user called, using Dialed Number
       Identification (DNIS) or similar technology.  Note that this may
       be different from the phone number the call comes in on.  It is
-      only used in Access-Request packets.
+      only used in <A HREF="#Access-Request">Access-Request</A> packets.
 
-   A summary of the Called-Station-Id Attribute format is shown below.
+   A summary of the <B>Called-Station-Id</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2
@@ -2816,7 +2816,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      30 for Called-Station-Id.
+      30 for <B>Called-Station-Id</B>.
 
 <B>   Length</B>
 
@@ -2835,16 +2835,16 @@ RFC 2865                         RADIUS                        June 2000
       The codification of the range of allowed usage of this field is
       outside the scope of this specification.
 
-<H2>5.31.  Calling-Station-Id</H2>
+<A NAME="Calling-Station-Id"><H2>5.31.  Calling-Station-Id</H2></a>
 
 <B>   Description</B>
 
-      This Attribute allows the NAS to send in the Access-Request packet
+      This Attribute allows the NAS to send in the <A HREF="#Access-Request">Access-Request</A> packet
       the phone number that the call came from, using Automatic Number
       Identification (ANI) or similar technology.  It is only used in
-      Access-Request packets.
+      <A HREF="#Access-Request">Access-Request</A> packets.
 
-   A summary of the Calling-Station-Id Attribute format is shown below.
+   A summary of the <B>Calling-Station-Id</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2
@@ -2855,7 +2855,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      31 for Calling-Station-Id.
+      31 for <B>Calling-Station-Id</B>.
 
 <B>   Length</B>
 
@@ -2883,21 +2883,21 @@ RFC 2865                         RADIUS                        June 2000
       The codification of the range of allowed usage of this field is
       outside the scope of this specification.
 
-<H2>5.32.  NAS-Identifier</H2>
+<A NAME="NAS-Identifier"><H2>5.32.  NAS-Identifier</H2></a>
 
 <B>   Description</B>
 
       This Attribute contains a string identifying the NAS originating
-      the Access-Request.  It is only used in Access-Request packets.
-      Either NAS-IP-Address or NAS-Identifier MUST be present in an
-      Access-Request packet.
+      the <A HREF="#<A HREF="#Access-Request">Access-Request</A>"><A HREF="#Access-Request">Access-Request</A></A>.  It is only used in <A HREF="#<A HREF="#Access-Request">Access-Request</A>"><A HREF="#Access-Request">Access-Request</A></A> packets.
+      Either <A HREF="#NAS-IP-Address">NAS-IP-Address</A> or <B>NAS-Identifier</B> MUST be present in an
+      <A HREF="#Access-Request">Access-Request</A> packet.
 
-      Note that NAS-Identifier MUST NOT be used to select the shared
+      Note that <B>NAS-Identifier</B> MUST NOT be used to select the shared
       secret used to authenticate the request.  The source IP address of
-      the Access-Request packet MUST be used to select the shared
+      the <A HREF="#Access-Request">Access-Request</A> packet MUST be used to select the shared
       secret.
 
-   A summary of the NAS-Identifier Attribute format is shown below.  The
+   A summary of the <B>NAS-Identifier</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2
@@ -2908,7 +2908,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      32 for NAS-Identifier.
+      32 for <B>NAS-Identifier</B>.
 
 <B>   Length</B>
 
@@ -2930,7 +2930,7 @@ RFC 2865                         RADIUS                        June 2000
 
       The String field is one or more octets, and should be unique to
       the NAS within the scope of the RADIUS server.  For example, a
-      fully qualified domain name would be suitable as a NAS-Identifier.
+      fully qualified domain name would be suitable as a <B>NAS-Identifier</B>.
 
       The actual format of the information is site or application
       specific, and a robust implementation SHOULD support the field as
@@ -2939,30 +2939,30 @@ RFC 2865                         RADIUS                        June 2000
       The codification of the range of allowed usage of this field is
       outside the scope of this specification.
 
-<H2>5.33.  Proxy-State</H2>
+<A NAME="Proxy-State"><H2>5.33.  Proxy-State</H2></a>
 
 <B>   Description</B>
 
       This Attribute is available to be sent by a proxy server to
-      another server when forwarding an Access-Request and MUST be
-      returned unmodified in the Access-Accept, Access-Reject or
-      Access-Challenge.  When the proxy server receives the response to
-      its request, it MUST remove its own Proxy-State (the last Proxy-
-      State in the packet) before forwarding the response to the NAS.
+      another server when forwarding an <A HREF="#Access-Request">Access-Request</A> and MUST be
+      returned unmodified in the <A HREF="#Access-Accept">Access-Accept</A>, <A HREF="#Access-Reject">Access-Reject</A> or
+      <A HREF="#Access-Challenge">Access-Challenge</A>.  When the proxy server receives the response to
+      its request, it MUST remove its own <B>Proxy-State</B> (the last Proxy-
+      <A HREF="#State">State</A> in the packet) before forwarding the response to the NAS.
 
-      If a Proxy-State Attribute is added to a packet when forwarding
-      the packet, the Proxy-State Attribute MUST be added after any
-      existing Proxy-State attributes.
+      If a <B>Proxy-State</B> Attribute is added to a packet when forwarding
+      the packet, the <B>Proxy-State</B> Attribute MUST be added after any
+      existing <B>Proxy-State</B> attributes.
 
-      The content of any Proxy-State other than the one added by the
+      The content of any <B>Proxy-State</B> other than the one added by the
       current server should be treated as opaque octets and MUST NOT
       affect operation of the protocol.
 
-      Usage of the Proxy-State Attribute is implementation dependent.  A
+      Usage of the <B>Proxy-State</B> Attribute is implementation dependent.  A
       description of its function is outside the scope of this
       specification.
 
-   A summary of the Proxy-State Attribute format is shown below.  The
+   A summary of the <B>Proxy-State</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2
@@ -2973,7 +2973,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      33 for Proxy-State.
+      33 for <B>Proxy-State</B>.
 
 
 
@@ -2995,14 +2995,14 @@ RFC 2865                         RADIUS                        June 2000
       The codification of the range of allowed usage of this field is
       outside the scope of this specification.
 
-<H2>5.34.  Login-LAT-Service</H2>
+<A NAME="Login-LAT-Service"><H2>5.34.  Login-LAT-Service</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the system with which the user is to be
-      connected by LAT.  It MAY be used in Access-Accept packets, but
-      only when LAT is specified as the Login-Service.  It MAY be used
-      in an Access-Request packet as a hint to the server, but the
+      connected by LAT.  It MAY be used in <A HREF="#Access-Accept">Access-Accept</A> packets, but
+      only when LAT is specified as the <A HREF="#Login-Service">Login-Service</A>.  It MAY be used
+      in an <A HREF="#Access-Request">Access-Request</A> packet as a hint to the server, but the
       server is not required to honor the hint.
 
       Administrators use the service attribute when dealing with
@@ -3019,7 +3019,7 @@ RFC 2865                         RADIUS                        June 2000
       users to use certain machines as a primitive form of load
       balancing (although LAT knows how to do load balancing itself).
 
-   A summary of the Login-LAT-Service Attribute format is shown below.
+   A summary of the <B>Login-LAT-Service</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2
@@ -3040,7 +3040,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      34 for Login-LAT-Service.
+      34 for <B>Login-LAT-Service</B>.
 
 <B>   Length</B>
 
@@ -3055,17 +3055,17 @@ RFC 2865                         RADIUS                        June 2000
       ISO Latin-1 character set extension [11].  All LAT string
       comparisons are case insensitive.
 
-<H2>5.35.  Login-LAT-Node</H2>
+<A NAME="Login-LAT-Node"><H2>5.35.  Login-LAT-Node</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the Node with which the user is to be
-      automatically connected by LAT.  It MAY be used in Access-Accept
-      packets, but only when LAT is specified as the Login-Service.  It
-      MAY be used in an Access-Request packet as a hint to the server,
+      automatically connected by LAT.  It MAY be used in <A HREF="#Access-Accept">Access-Accept</A>
+      packets, but only when LAT is specified as the <A HREF="#Login-Service">Login-Service</A>.  It
+      MAY be used in an <A HREF="#Access-Request">Access-Request</A> packet as a hint to the server,
       but the server is not required to honor the hint.
 
-   A summary of the Login-LAT-Node Attribute format is shown below.  The
+   A summary of the <B>Login-LAT-Node</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2
@@ -3076,7 +3076,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      35 for Login-LAT-Node.
+      35 for <B>Login-LAT-Node</B>.
 
 <B>   Length</B>
 
@@ -3103,14 +3103,14 @@ RFC 2865                         RADIUS                        June 2000
       the ISO Latin-1 character set extension.  All LAT string
       comparisons are case insensitive.
 
-<H2>5.36.  Login-LAT-Group</H2>
+<A NAME="Login-LAT-Group"><H2>5.36.  Login-LAT-Group</H2></a>
 
 <B>   Description</B>
 
       This Attribute contains a string identifying the LAT group codes
       which this user is authorized to use.  It MAY be used in Access-
       Accept packets, but only when LAT is specified as the Login-
-      Service.  It MAY be used in an Access-Request packet as a hint to
+      Service.  It MAY be used in an <A HREF="#Access-Request">Access-Request</A> packet as a hint to
       the server, but the server is not required to honor the hint.
 
       LAT supports 256 different group codes, which LAT uses as a form
@@ -3124,7 +3124,7 @@ RFC 2865                         RADIUS                        June 2000
       these from the operating system, and uses these in its requests to
       the service providers.
 
-   A summary of the Login-LAT-Group Attribute format is shown below.
+   A summary of the <B>Login-LAT-Group</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2
@@ -3135,7 +3135,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      36 for Login-LAT-Group.
+      36 for <B>Login-LAT-Group</B>.
 
 <B>   Length</B>
 
@@ -3159,16 +3159,16 @@ RFC 2865                         RADIUS                        June 2000
       The codification of the range of allowed usage of this field is
       outside the scope of this specification.
 
-<H2>5.37.  Framed-AppleTalk-Link</H2>
+<A NAME="Framed-AppleTalk-Link"><H2>5.37.  Framed-AppleTalk-Link</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the AppleTalk network number which should
       be used for the serial link to the user, which is another
-      AppleTalk router.  It is only used in Access-Accept packets.  It
+      AppleTalk router.  It is only used in <A HREF="#Access-Accept">Access-Accept</A> packets.  It
       is never used when the user is not another router.
 
-   A summary of the Framed-AppleTalk-Link Attribute format is shown
+   A summary of the <B>Framed-AppleTalk-Link</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -3181,7 +3181,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      37 for Framed-AppleTalk-Link.
+      37 for <B>Framed-AppleTalk-Link</B>.
 
 <B>   Length</B>
 
@@ -3206,18 +3206,18 @@ Rigney, et al.              Standards Track                    [Page 57]
 RFC 2865                         RADIUS                        June 2000
 
 
-<H2>5.38.  Framed-AppleTalk-Network</H2>
+<A NAME="Framed-AppleTalk-Network"><H2>5.38.  Framed-AppleTalk-Network</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the AppleTalk Network number which the
       NAS should probe to allocate an AppleTalk node for the user.  It
-      is only used in Access-Accept packets.  It is never used when the
+      is only used in <A HREF="#Access-Accept">Access-Accept</A> packets.  It is never used when the
       user is another router.  Multiple instances of this Attribute
       indicate that the NAS may probe using any of the network numbers
       specified.
 
-   A summary of the Framed-AppleTalk-Network Attribute format is shown
+   A summary of the <B>Framed-AppleTalk-Network</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -3230,7 +3230,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      38 for Framed-AppleTalk-Network.
+      38 for <B>Framed-AppleTalk-Network</B>.
 
 <B>   Length</B>
 
@@ -3245,12 +3245,12 @@ RFC 2865                         RADIUS                        June 2000
       the AppleTalk Network the NAS should probe to find an address for
       the user.
 
-<H2>5.39.  Framed-AppleTalk-Zone</H2>
+<A NAME="Framed-AppleTalk-Zone"><H2>5.39.  Framed-AppleTalk-Zone</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the AppleTalk Default Zone to be used for
-      this user.  It is only used in Access-Accept packets.  Multiple
+      this user.  It is only used in <A HREF="#Access-Accept">Access-Accept</A> packets.  Multiple
       instances of this attribute in the same packet are not allowed.
 
 
@@ -3262,7 +3262,7 @@ Rigney, et al.              Standards Track                    [Page 58]
 RFC 2865                         RADIUS                        June 2000
 
 
-   A summary of the Framed-AppleTalk-Zone Attribute format is shown
+   A summary of the <B>Framed-AppleTalk-Zone</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2
@@ -3273,7 +3273,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      39 for Framed-AppleTalk-Zone.
+      39 for <B>Framed-AppleTalk-Zone</B>.
 
 <B>   Length</B>
 
@@ -3288,18 +3288,18 @@ RFC 2865                         RADIUS                        June 2000
       The codification of the range of allowed usage of this field is
       outside the scope of this specification.
 
-<H2>5.40.  CHAP-Challenge</H2>
+<A NAME="CHAP-Challenge"><H2>5.40.  CHAP-Challenge</H2></a>
 
 <B>   Description</B>
 
       This Attribute contains the CHAP Challenge sent by the NAS to a
       PPP Challenge-Handshake Authentication Protocol (CHAP) user.  It
-      is only used in Access-Request packets.
+      is only used in <A HREF="#Access-Request">Access-Request</A> packets.
 
       If the CHAP challenge value is 16 octets long it MAY be placed in
       the Request Authenticator field instead of using this attribute.
 
-   A summary of the CHAP-Challenge Attribute format is shown below.  The
+   A summary of the <B>CHAP-Challenge</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2
@@ -3320,7 +3320,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      60 for CHAP-Challenge.
+      60 for <B>CHAP-Challenge</B>.
 
 <B>   Length</B>
 
@@ -3330,18 +3330,18 @@ RFC 2865                         RADIUS                        June 2000
 
       The String field contains the CHAP Challenge.
 
-<H2>5.41.  NAS-Port-Type</H2>
+<A NAME="NAS-Port-Type"><H2>5.41.  NAS-Port-Type</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the type of the physical port of the NAS
       which is authenticating the user.  It can be used instead of or in
-      addition to the NAS-Port (5) attribute.  It is only used in
-      Access-Request packets.  Either NAS-Port (5) or NAS-Port-Type or
-      both SHOULD be present in an Access-Request packet, if the NAS
+      addition to the <A HREF="#NAS-Port">NAS-Port</A> (5) attribute.  It is only used in
+      <A HREF="#Access-Request">Access-Request</A> packets.  Either <A HREF="#NAS-Port">NAS-Port</A> (5) or <B><A HREF="#NAS-Port">NAS-Port</A>-Type</B> or
+      both SHOULD be present in an <A HREF="#Access-Request">Access-Request</A> packet, if the NAS
       differentiates among its ports.
 
-   A summary of the NAS-Port-Type Attribute format is shown below.  The
+   A summary of the <B>NAS-Port-Type</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -3354,7 +3354,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      61 for NAS-Port-Type.
+      61 for <B>NAS-Port-Type</B>.
 
 <B>   Length</B>
 
@@ -3374,8 +3374,8 @@ Rigney, et al.              Standards Track                    [Page 60]
 RFC 2865                         RADIUS                        June 2000
 
 
-      authenticate himself as an Outbound-User, the Access-Request might
-      include NAS-Port-Type = Virtual as a hint to the RADIUS server
+      authenticate himself as an Outbound-User, the <A HREF="#Access-Request">Access-Request</A> might
+      include <B>NAS-Port-Type</B> = Virtual as a hint to the RADIUS server
       that the user was not on a physical port.
 
       0       Async
@@ -3404,19 +3404,19 @@ RFC 2865                         RADIUS                        June 2000
       stands for PHS (Personal Handyphone System) Internet Access Forum
       Standard (PIAFS).
 
-<H2>5.42.  Port-Limit</H2>
+<A NAME="Port-Limit"><H2>5.42.  Port-Limit</H2></a>
 
 <B>   Description</B>
 
       This Attribute sets the maximum number of ports to be provided to
       the user by the NAS.  This Attribute MAY be sent by the server to
-      the client in an Access-Accept packet.  It is intended for use in
+      the client in an <A HREF="#Access-Accept">Access-Accept</A> packet.  It is intended for use in
       conjunction with Multilink PPP [12] or similar uses.  It MAY also
       be sent by the NAS to the server as a hint that that many ports
       are desired for use, but the server is not required to honor the
       hint.
 
-   A summary of the Port-Limit Attribute format is shown below.  The
+   A summary of the <B>Port-Limit</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
 
@@ -3440,7 +3440,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      62 for Port-Limit.
+      62 for <B>Port-Limit</B>.
 
 <B>   Length</B>
 
@@ -3452,17 +3452,17 @@ RFC 2865                         RADIUS                        June 2000
       the maximum number of ports this user should be allowed to connect
       to on the NAS.
 
-<H2>5.43.  Login-LAT-Port</H2>
+<A NAME="Login-LAT-Port"><H2>5.43.  Login-LAT-Port</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the Port with which the user is to be
-      connected by LAT.  It MAY be used in Access-Accept packets, but
-      only when LAT is specified as the Login-Service.  It MAY be used
-      in an Access-Request packet as a hint to the server, but the
+      connected by LAT.  It MAY be used in <A HREF="#Access-Accept">Access-Accept</A> packets, but
+      only when LAT is specified as the <A HREF="#Login-Service">Login-Service</A>.  It MAY be used
+      in an <A HREF="#Access-Request">Access-Request</A> packet as a hint to the server, but the
       server is not required to honor the hint.
 
-   A summary of the Login-LAT-Port Attribute format is shown below.  The
+   A summary of the <B>Login-LAT-Port</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2
@@ -3473,7 +3473,7 @@ RFC 2865                         RADIUS                        June 2000
 
 <B>   Type</B>
 
-      63 for Login-LAT-Port.
+      63 for <B>Login-LAT-Port</B>.
 
 <B>   Length</B>
 
@@ -3501,39 +3501,39 @@ RFC 2865                         RADIUS                        June 2000
    in which kinds of packets, and in what quantity.
 
    Request   Accept   Reject   Challenge   #    Attribute
-   0-1       0-1      0        0            1   User-Name
-   0-1       0        0        0            2   User-Password [Note 1]
-   0-1       0        0        0            3   CHAP-Password [Note 1]
-   0-1       0        0        0            4   NAS-IP-Address [Note 2]
-   0-1       0        0        0            5   NAS-Port
-   0-1       0-1      0        0            6   Service-Type
-   0-1       0-1      0        0            7   Framed-Protocol
-   0-1       0-1      0        0            8   Framed-IP-Address
-   0-1       0-1      0        0            9   Framed-IP-Netmask
-   0         0-1      0        0           10   Framed-Routing
-   0         0+       0        0           11   Filter-Id
-   0-1       0-1      0        0           12   Framed-MTU
-   0+        0+       0        0           13   Framed-Compression
-   0+        0+       0        0           14   Login-IP-Host
-   0         0-1      0        0           15   Login-Service
-   0         0-1      0        0           16   Login-TCP-Port
-   0         0+       0+       0+          18   Reply-Message
-   0-1       0-1      0        0           19   Callback-Number
-   0         0-1      0        0           20   Callback-Id
-   0         0+       0        0           22   Framed-Route
-   0         0-1      0        0           23   Framed-IPX-Network
-   0-1       0-1      0        0-1         24   State [Note 1]
-   0         0+       0        0           25   Class
-   0+        0+       0        0+          26   Vendor-Specific
-   0         0-1      0        0-1         27   Session-Timeout
-   0         0-1      0        0-1         28   Idle-Timeout
-   0         0-1      0        0           29   Termination-Action
-   0-1       0        0        0           30   Called-Station-Id
-   0-1       0        0        0           31   Calling-Station-Id
-   0-1       0        0        0           32   NAS-Identifier [Note 2]
-   0+        0+       0+       0+          33   Proxy-State
-   0-1       0-1      0        0           34   Login-LAT-Service
-   0-1       0-1      0        0           35   Login-LAT-Node
+   0-1       0-1      0        0            1   <A HREF="#User-Name">User-Name</A>
+   0-1       0        0        0            2   <A HREF="#User-Password">User-Password</A> [Note 1]
+   0-1       0        0        0            3   <A HREF="#CHAP-Password">CHAP-Password</A> [Note 1]
+   0-1       0        0        0            4   <A HREF="#NAS-IP-Address">NAS-IP-Address</A> [Note 2]
+   0-1       0        0        0            5   <A HREF="#NAS-Port">NAS-Port</A>
+   0-1       0-1      0        0            6   <A HREF="#Service-Type">Service-Type</A>
+   0-1       0-1      0        0            7   <A HREF="#Framed-Protocol">Framed-Protocol</A>
+   0-1       0-1      0        0            8   <A HREF="#Framed-IP-Address">Framed-IP-Address</A>
+   0-1       0-1      0        0            9   <A HREF="#Framed-IP-Netmask">Framed-IP-Netmask</A>
+   0         0-1      0        0           10   <A HREF="#Framed-Routing">Framed-Routing</A>
+   0         0+       0        0           11   <A HREF="#Filter-Id">Filter-Id</A>
+   0-1       0-1      0        0           12   <A HREF="#Framed-MTU">Framed-MTU</A>
+   0+        0+       0        0           13   <A HREF="#Framed-Compression">Framed-Compression</A>
+   0+        0+       0        0           14   <A HREF="#Login-IP-Host">Login-IP-Host</A>
+   0         0-1      0        0           15   <A HREF="#Login-Service">Login-Service</A>
+   0         0-1      0        0           16   <A HREF="#Login-TCP-Port">Login-TCP-Port</A>
+   0         0+       0+       0+          18   <A HREF="#Reply-Message">Reply-Message</A>
+   0-1       0-1      0        0           19   <A HREF="#Callback-Number">Callback-Number</A>
+   0         0-1      0        0           20   <A HREF="#Callback-Id">Callback-Id</A>
+   0         0+       0        0           22   <A HREF="#Framed-Route">Framed-Route</A>
+   0         0-1      0        0           23   <A HREF="#Framed-IPX-Network">Framed-IPX-Network</A>
+   0-1       0-1      0        0-1         24   <A HREF="#State">State</A> [Note 1]
+   0         0+       0        0           25   <A HREF="#Class">Class</A>
+   0+        0+       0        0+          26   <A HREF="#Vendor-Specific">Vendor-Specific</A>
+   0         0-1      0        0-1         27   <A HREF="#Session-Timeout">Session-Timeout</A>
+   0         0-1      0        0-1         28   <A HREF="#Idle-Timeout">Idle-Timeout</A>
+   0         0-1      0        0           29   <A HREF="#Termination-Action">Termination-Action</A>
+   0-1       0        0        0           30   <A HREF="#Called-Station-Id">Called-Station-Id</A>
+   0-1       0        0        0           31   <A HREF="#Calling-Station-Id">Calling-Station-Id</A>
+   0-1       0        0        0           32   <A HREF="#NAS-Identifier">NAS-Identifier</A> [Note 2]
+   0+        0+       0+       0+          33   <A HREF="#Proxy-State">Proxy-State</A>
+   0-1       0-1      0        0           34   <A HREF="#Login-LAT-Service">Login-LAT-Service</A>
+   0-1       0-1      0        0           35   <A HREF="#Login-LAT-Node">Login-LAT-Node</A>
 
 
 
@@ -3542,25 +3542,25 @@ Rigney, et al.              Standards Track                    [Page 63]
 RFC 2865                         RADIUS                        June 2000
 
 
-   0-1       0-1      0        0           36   Login-LAT-Group
-   0         0-1      0        0           37   Framed-AppleTalk-Link
-   0         0+       0        0           38   Framed-AppleTalk-Network
-   0         0-1      0        0           39   Framed-AppleTalk-Zone
-   0-1       0        0        0           60   CHAP-Challenge
-   0-1       0        0        0           61   NAS-Port-Type
-   0-1       0-1      0        0           62   Port-Limit
-   0-1       0-1      0        0           63   Login-LAT-Port
+   0-1       0-1      0        0           36   <A HREF="#Login-LAT-Group">Login-LAT-Group</A>
+   0         0-1      0        0           37   <A HREF="#Framed-AppleTalk-Link">Framed-AppleTalk-Link</A>
+   0         0+       0        0           38   <A HREF="#Framed-AppleTalk-Network">Framed-AppleTalk-Network</A>
+   0         0-1      0        0           39   <A HREF="#Framed-AppleTalk-Zone">Framed-AppleTalk-Zone</A>
+   0-1       0        0        0           60   <A HREF="#CHAP-Challenge">CHAP-Challenge</A>
+   0-1       0        0        0           61   <A HREF="#NAS-Port-Type">NAS-Port-Type</A>
+   0-1       0-1      0        0           62   <A HREF="#Port-Limit">Port-Limit</A>
+   0-1       0-1      0        0           63   <A HREF="#Login-LAT-Port">Login-LAT-Port</A>
    Request   Accept   Reject   Challenge   #    Attribute
 
-   [Note 1] An Access-Request MUST contain either a User-Password or a
-   CHAP-Password or State.  An Access-Request MUST NOT contain both a
-   User-Password and a CHAP-Password.  If future extensions allow other
+   [Note 1] An <A HREF="#Access-Request">Access-Request</A> MUST contain either a <A HREF="#User-Password">User-Password</A> or a
+   <A HREF="#CHAP-Password">CHAP-Password</A> or <A HREF="#State">State</A>.  An <A HREF="#Access-Request">Access-Request</A> MUST NOT contain both a
+   <A HREF="#User-Password">User-Password</A> and a <A HREF="#CHAP-Password">CHAP-Password</A>.  If future extensions allow other
    kinds of authentication information to be conveyed, the attribute for
-   that can be used in an Access-Request instead of User-Password or
-   CHAP-Password.
+   that can be used in an <A HREF="#Access-Request">Access-Request</A> instead of <A HREF="#User-Password">User-Password</A> or
+   <A HREF="#CHAP-Password">CHAP-Password</A>.
 
-   [Note 2] An Access-Request MUST contain either a NAS-IP-Address or a
-   NAS-Identifier (or both).
+   [Note 2] An <A HREF="#Access-Request">Access-Request</A> MUST contain either a <A HREF="#NAS-IP-Address">NAS-IP-Address</A> or a
+   <A HREF="#NAS-Identifier">NAS-Identifier</A> (or both).
 
    The following table defines the meaning of the above table entries.
 
@@ -3625,7 +3625,7 @@ RFC 2865                         RADIUS                        June 2000
    should require IETF Consensus.  It is recommended that attributes 17
    and 21 be used only after all others are exhausted.
 
-   Note that RADIUS defines a mechanism for Vendor-Specific extensions
+   Note that RADIUS defines a mechanism for <A HREF="#Vendor-Specific">Vendor-Specific</A> extensions
    (Attribute 26) and the use of that should be encouraged instead of
    allocation of global attribute types, for functions specific only to
    one vendor's implementation of RADIUS, where no interoperability is
@@ -3640,7 +3640,7 @@ RFC 2865                         RADIUS                        June 2000
    Therefore Attribute values 192-240 are considered Private Use, and
    values 241-255 require Standards Action.
 
-   Certain attributes (for example, NAS-Port-Type) in RADIUS define a
+   Certain attributes (for example, <A HREF="#NAS-Port-Type">NAS-Port-Type</A>) in RADIUS define a
    list of values to correspond with various meanings.  There can be 4
    billion (2^32) values for each attribute. Adding additional values to
    the list can be done on a First Come, First Served basis by the IANA.
@@ -3664,14 +3664,14 @@ RFC 2865                         RADIUS                        June 2000
 
 <H2>7.1.  User Telnet to Specified Host</H2>
 
-   The NAS at 192.168.1.16 sends an Access-Request UDP packet to the
+   The NAS at 192.168.1.16 sends an <A HREF="#Access-Request">Access-Request</A> UDP packet to the
    RADIUS Server for a user named nemo logging in on port 3 with
    password "arctangent".
 
    The Request Authenticator is a 16 octet random number generated by
    the NAS.
 
-   The User-Password is 16 octets of password padded at end with nulls,
+   The <A HREF="#User-Password">User-Password</A> is 16 octets of password padded at end with nulls,
    XORed with MD5(shared secret|Request Authenticator).
 
       01 00 00 38 0f 40 3f 94 73 97 80 57 bd 83 d5 cb
@@ -3679,18 +3679,18 @@ RFC 2865                         RADIUS                        June 2000
       93 d4 13 ce 31 96 e4 3f 78 2a 0a ee 04 06 c0 a8
       01 10 05 06 00 00 00 03
 
-       1 Code = Access-Request (1)
+       1 Code = <A HREF="#Access-Request">Access-Request</A> (1)
        1 ID = 0
        2 Length = 56
       16 Request Authenticator
 
       Attributes:
-       6  User-Name = "nemo"
-      18  User-Password
-       6  NAS-IP-Address = 192.168.1.16
-       6  NAS-Port = 3
+       6  <A HREF="#User-Name">User-Name</A> = "nemo"
+      18  <A HREF="#User-Password">User-Password</A>
+       6  <A HREF="#NAS-IP-Address">NAS-IP-Address</A> = 192.168.1.16
+       6  <A HREF="#NAS-Port">NAS-Port</A> = 3
 
-   The RADIUS server authenticates nemo, and sends an Access-Accept UDP
+   The RADIUS server authenticates nemo, and sends an <A HREF="#Access-Accept">Access-Accept</A> UDP
    packet to the NAS telling it to telnet nemo to host 192.168.1.3.
 
    The Response Authenticator is a 16-octet MD5 checksum of the code
@@ -3714,28 +3714,28 @@ RFC 2865                         RADIUS                        June 2000
       9b 55 e0 b2 06 06 00 00 00 01 0f 06 00 00 00 00
       0e 06 c0 a8 01 03
 
-       1 Code = Access-Accept (2)
-       1 ID = 0 (same as in Access-Request)
+       1 Code = <A HREF="#Access-Accept">Access-Accept</A> (2)
+       1 ID = 0 (same as in <A HREF="#Access-Request">Access-Request</A>)
        2 Length = 38
       16 Response Authenticator
 
       Attributes:
-       6  Service-Type (6) = Login (1)
-       6  Login-Service (15) = Telnet (0)
-       6  Login-IP-Host (14) = 192.168.1.3
+       6  <A HREF="#Service-Type">Service-Type</A> (6) = Login (1)
+       6  <A HREF="#Login-Service">Login-Service</A> (15) = Telnet (0)
+       6  <A HREF="#Login-IP-Host">Login-IP-Host</A> (14) = 192.168.1.3
 
 <H2>7.2.  Framed User Authenticating with CHAP</H2>
 
-   The NAS at 192.168.1.16 sends an Access-Request UDP packet to the
+   The NAS at 192.168.1.16 sends an <A HREF="#Access-Request">Access-Request</A> UDP packet to the
    RADIUS Server for a user named flopsy logging in on port 20 with PPP,
-   authenticating using CHAP.  The NAS sends along the Service-Type and
-   Framed-Protocol attributes as a hint to the RADIUS server that this
+   authenticating using CHAP.  The NAS sends along the <A HREF="#Service-Type">Service-Type</A> and
+   <A HREF="#Framed-Protocol">Framed-Protocol</A> attributes as a hint to the RADIUS server that this
    user is looking for PPP, although the NAS is not required to do so.
 
    The Request Authenticator is a 16 octet random number generated by
    the NAS, and is also used as the CHAP Challenge.
 
-   The CHAP-Password consists of a 1 octet CHAP ID, in this case 22,
+   The <A HREF="#CHAP-Password">CHAP-Password</A> consists of a 1 octet CHAP ID, in this case 22,
    followed by the 16 octet CHAP response.
 
       01 01 00 47 2a ee 86 f0 8d 0d 55 96 9c a5 97 8e
@@ -3744,18 +3744,18 @@ RFC 2865                         RADIUS                        June 2000
       06 c0 a8 01 10 05 06 00 00 00 14 06 06 00 00 00
       02 07 06 00 00 00 01
 
-       1 Code = 1     (Access-Request)
+       1 Code = 1     (<A HREF="#Access-Request">Access-Request</A>)
        1 ID = 1
        2 Length = 71
       16 Request Authenticator
 
       Attributes:
-       8  User-Name (1) = "flopsy"
-      19  CHAP-Password (3)
-       6  NAS-IP-Address (4) = 192.168.1.16
-       6  NAS-Port (5) = 20
-       6  Service-Type (6) = Framed (2)
-       6  Framed-Protocol (7) = PPP (1)
+       8  <A HREF="#User-Name">User-Name</A> (1) = "flopsy"
+      19  <A HREF="#CHAP-Password">CHAP-Password</A> (3)
+       6  <A HREF="#NAS-IP-Address">NAS-IP-Address</A> (4) = 192.168.1.16
+       6  <A HREF="#NAS-Port">NAS-Port</A> (5) = 20
+       6  <A HREF="#Service-Type">Service-Type</A> (6) = Framed (2)
+       6  <A HREF="#Framed-Protocol">Framed-Protocol</A> (7) = PPP (1)
 
 
 
@@ -3766,7 +3766,7 @@ Rigney, et al.              Standards Track                    [Page 67]
 RFC 2865                         RADIUS                        June 2000
 
 
-   The RADIUS server authenticates flopsy, and sends an Access-Accept
+   The RADIUS server authenticates flopsy, and sends an <A HREF="#Access-Accept">Access-Accept</A>
    UDP packet to the NAS telling it to start PPP service and assign an
    address for the user out of its dynamic address pool.
 
@@ -3779,22 +3779,22 @@ RFC 2865                         RADIUS                        June 2000
       08 06 ff ff ff fe 0a 06 00 00 00 02 0d 06 00 00
       00 01 0c 06 00 00 05 dc
 
-       1 Code = Access-Accept (2)
-       1 ID = 1 (same as in Access-Request)
+       1 Code = <A HREF="#Access-Accept">Access-Accept</A> (2)
+       1 ID = 1 (same as in <A HREF="#Access-Request">Access-Request</A>)
        2 Length = 56
       16 Response Authenticator
 
       Attributes:
-       6  Service-Type (6) = Framed (2)
-       6  Framed-Protocol (7) = PPP (1)
-       6  Framed-IP-Address (8) = 255.255.255.254
-       6  Framed-Routing (10) = None (0)
-       6  Framed-Compression (13) = VJ TCP/IP Header Compression (1)
-       6  Framed-MTU (12) = 1500
+       6  <A HREF="#Service-Type">Service-Type</A> (6) = Framed (2)
+       6  <A HREF="#Framed-Protocol">Framed-Protocol</A> (7) = PPP (1)
+       6  <A HREF="#Framed-IP-Address">Framed-IP-Address</A> (8) = 255.255.255.254
+       6  <A HREF="#Framed-Routing">Framed-Routing</A> (10) = None (0)
+       6  <A HREF="#Framed-Compression">Framed-Compression</A> (13) = VJ TCP/IP Header Compression (1)
+       6  <A HREF="#Framed-MTU">Framed-MTU</A> (12) = 1500
 
 <H2>7.3.  User with Challenge-Response card</H2>
 
-   The NAS at 192.168.1.16 sends an Access-Request UDP packet to the
+   The NAS at 192.168.1.16 sends an <A HREF="#Access-Request">Access-Request</A> UDP packet to the
    RADIUS Server for a user named mopsy logging in on port 7.  The user
    enters the dummy password "challenge" in this example.  The challenge
    and response generated by the smart card for this example are
@@ -3803,7 +3803,7 @@ RFC 2865                         RADIUS                        June 2000
    The Request Authenticator is a 16 octet random number generated by
    the NAS.
 
-   The User-Password is 16 octets of password, in this case "challenge",
+   The <A HREF="#User-Password">User-Password</A> is 16 octets of password, in this case "challenge",
    padded at the end with nulls, XORed with MD5(shared secret|Request
    Authenticator).
 
@@ -3822,28 +3822,28 @@ Rigney, et al.              Standards Track                    [Page 68]
 RFC 2865                         RADIUS                        June 2000
 
 
-       1 Code = Access-Request (1)
+       1 Code = <A HREF="#Access-Request">Access-Request</A> (1)
        1 ID = 2
        2 Length = 57
       16 Request Authenticator
 
       Attributes:
-       7 User-Name (1) = "mopsy"
-      18 User-Password (2)
-       6  NAS-IP-Address (4) = 192.168.1.16
-       6  NAS-Port (5) = 7
+       7 <A HREF="#User-Name">User-Name</A> (1) = "mopsy"
+      18 <A HREF="#User-Password">User-Password</A> (2)
+       6  <A HREF="#NAS-IP-Address">NAS-IP-Address</A> (4) = 192.168.1.16
+       6  <A HREF="#NAS-Port">NAS-Port</A> (5) = 7
 
    The RADIUS server decides to challenge mopsy, sending back a
    challenge string and looking for a response.  The RADIUS server
-   therefore and sends an Access-Challenge UDP packet to the NAS.
+   therefore and sends an <A HREF="#Access-Challenge">Access-Challenge</A> UDP packet to the NAS.
 
    The Response Authenticator is a 16-octet MD5 checksum of the code
    (11), id (2), length (78), the Request Authenticator from above, the
    attributes in this reply, and the shared secret.
 
-   The Reply-Message is "Challenge 32769430.  Enter response at prompt."
+   The <A HREF="#Reply-Message">Reply-Message</A> is "Challenge 32769430.  Enter response at prompt."
 
-   The State is a magic cookie to be returned along with user's
+   The <A HREF="#State">State</A> is a magic cookie to be returned along with user's
    response; in this example 8 octets of data (33 32 37 36 39 34 33 30
    in hex).
 
@@ -3853,21 +3853,21 @@ RFC 2865                         RADIUS                        June 2000
       20 72 65 73 70 6f 6e 73 65 20 61 74 20 70 72 6f
       6d 70 74 2e 18 0a 33 32 37 36 39 34 33 30
 
-       1 Code = Access-Challenge (11)
-       1 ID = 2 (same as in Access-Request)
+       1 Code = <A HREF="#Access-Challenge">Access-Challenge</A> (11)
+       1 ID = 2 (same as in <A HREF="#Access-Request">Access-Request</A>)
        2 Length = 78
       16 Response Authenticator
 
       Attributes:
-      48  Reply-Message (18)
-      10  State (24)
+      48  <A HREF="#Reply-Message">Reply-Message</A> (18)
+      10  <A HREF="#State">State</A> (24)
 
-   The user enters his response, and the NAS send a new Access-Request
-   with that response, and includes the State Attribute.
+   The user enters his response, and the NAS send a new <A HREF="#Access-Request">Access-Request</A>
+   with that response, and includes the <A HREF="#State">State</A> Attribute.
 
    The Request Authenticator is a new 16 octet random number.
 
-   The User-Password is 16 octets of the user's response, in this case
+   The <A HREF="#User-Password">User-Password</A> is 16 octets of the user's response, in this case
    "99101462", padded at the end with nulls, XORed with MD5(shared
    secret|Request Authenticator).
 
@@ -3878,7 +3878,7 @@ Rigney, et al.              Standards Track                    [Page 69]
 RFC 2865                         RADIUS                        June 2000
 
 
-   The state is the magic cookie from the Access-Challenge packet,
+   The state is the magic cookie from the <A HREF="#Access-Challenge">Access-Challenge</A> packet,
    unchanged.
 
       01 03 00 43 b1 22 55 6d 42 8a 13 d0 d6 25 38 07
@@ -3887,17 +3887,17 @@ RFC 2865                         RADIUS                        June 2000
       a8 01 10 05 06 00 00 00 07 18 10 33 32 37 36 39
       34 33 30
 
-       1 Code = Access-Request (1)
+       1 Code = <A HREF="#Access-Request">Access-Request</A> (1)
        1 ID = 3 (Note that this changes.)
        2 Length = 67
       16 Request Authenticator
 
       Attributes:
-       7  User-Name = "mopsy"
-      18  User-Password
-       6  NAS-IP-Address (4) = 192.168.1.16
-       6  NAS-Port (5) = 7
-      10  State (24)
+       7  <A HREF="#User-Name">User-Name</A> = "mopsy"
+      18  <A HREF="#User-Password">User-Password</A>
+       6  <A HREF="#NAS-IP-Address">NAS-IP-Address</A> (4) = 192.168.1.16
+       6  <A HREF="#NAS-Port">NAS-Port</A> (5) = 7
+      10  <A HREF="#State">State</A> (24)
 
    The Response was incorrect (for the sake of example), so the RADIUS
    server tells the NAS to reject the login attempt.
@@ -3909,13 +3909,13 @@ RFC 2865                         RADIUS                        June 2000
       03 03 00 14 a4 2f 4f ca 45 91 6c 4e 09 c8 34 0f
       9e 74 6a a0
 
-       1 Code = Access-Reject (3)
-       1 ID = 3 (same as in Access-Request)
+       1 Code = <A HREF="#Access-Reject">Access-Reject</A> (3)
+       1 ID = 3 (same as in <A HREF="#Access-Request">Access-Request</A>)
        2 Length = 20
       16 Response Authenticator
 
       Attributes:
-         (none, although a Reply-Message could be sent)
+         (none, although a <A HREF="#Reply-Message">Reply-Message</A> could be sent)
 
 
 
@@ -3966,7 +3966,7 @@ RFC 2865                         RADIUS                        June 2000
    experimentation.  The SNMP Security document [14] also has an
    excellent overview of threats to network protocols.
 
-   The User-Password hiding mechanism described in Section 5.2 has not
+   The <A HREF="#User-Password">User-Password</A> hiding mechanism described in Section 5.2 has not
    been subjected to significant amounts of cryptanalysis in the
    published literature.  Some in the IETF community are concerned that
    this method might not provide sufficient confidentiality protection
@@ -3990,28 +3990,28 @@ Rigney, et al.              Standards Track                    [Page 71]
 RFC 2865                         RADIUS                        June 2000
 
 
-   Updated list of attributes that can be included in Access-Challenge
+   Updated list of attributes that can be included in <A HREF="#Access-Challenge">Access-Challenge</A>
    to be consistent with the table of attributes.
 
-   User-Name mentions Network Access Identifiers.
+   <A HREF="#User-Name">User-Name</A> mentions Network Access Identifiers.
 
-   User-Name may now be sent in Access-Accept for use with accounting
+   <A HREF="#User-Name">User-Name</A> may now be sent in <A HREF="#Access-Accept">Access-Accept</A> for use with accounting
    and Rlogin.
 
 <B>   Values added for Service-Type, Login-Service, Framed-Protocol,</B>
-   Framed-Compression, and NAS-Port-Type.
+   <A HREF="#Framed-Compression">Framed-Compression</A>, and <A HREF="#NAS-Port-Type">NAS-Port-Type</A>.
 
-   NAS-Port can now use all 32 bits.
+   <A HREF="#NAS-Port">NAS-Port</A> can now use all 32 bits.
 
    Examples now include hexadecimal displays of the packets.
 
    Source UDP port must be used in conjunction with the Request
    Identifier when identifying duplicates.
 
-   Multiple subattributes may be allowed in a Vendor-Specific attribute.
+   Multiple subattributes may be allowed in a <A HREF="#Vendor-Specific">Vendor-Specific</A> attribute.
 
-   An Access-Request is now required to contain either a NAS-IP-Address
-   or NAS-Identifier (or may contain both).
+   An <A HREF="#Access-Request">Access-Request</A> is now required to contain either a <A HREF="#NAS-IP-Address">NAS-IP-Address</A>
+   or <A HREF="#NAS-Identifier">NAS-Identifier</A> (or may contain both).
 
    Added notes under "Operations" with more information on proxy,
    retransmissions, and keep-alives.
@@ -4019,7 +4019,7 @@ RFC 2865                         RADIUS                        June 2000
    If multiple Attributes with the same Type are present, the order of
    Attributes with the same Type MUST be preserved by any proxies.
 
-   Clarified Proxy-State.
+   Clarified <A HREF="#Proxy-State">Proxy-State</A>.
 
    Clarified that Attributes must not depend on position within the
    packet, as long as Attributes of the same type are kept in order.
@@ -4028,7 +4028,7 @@ RFC 2865                         RADIUS                        June 2000
 
    Updated section on "Proxy" under "Operations".
 
-   Framed-MTU can now be sent in Access-Request as a hint.
+   <A HREF="#Framed-MTU">Framed-MTU</A> can now be sent in <A HREF="#Access-Request">Access-Request</A> as a hint.
 
    Updated Security Considerations.
 

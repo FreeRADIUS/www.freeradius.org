@@ -208,20 +208,20 @@ RFC 6930                     RADIUS for 6rd                   April 2013
    the BNG receives the DHCPDISCOVER, it SHOULD initiate a RADIUS
    Access- Request message to the RADIUS server. In that message,
 
-   -  the User-Name attribute (1) SHOULD be filled by the 6rd CE MAC
+   -  the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute (1) SHOULD be filled by the 6rd CE MAC
       address, and
 
-   -  the User-Password attribute (2) SHOULD be filled by the shared 6rd
+   -  the <A HREF="rfc2865.html#User-Password">User-Password</A> attribute (2) SHOULD be filled by the shared 6rd
       password that has been preconfigured on the DHCP server.
 
    The BNG requests authentication, as defined in [RFC2865], with the
    IPv6-6rd-Configuration attribute (Section 4.1) in the desired
    attribute list.  If the authentication request is approved by the AAA
-   server, an Access-Accept message MUST be acknowledged with the
+   server, an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message MUST be acknowledged with the
    IPv6-6rd-Configuration attribute.  Then, the BNG SHOULD respond to
    the 6rd CE with a DHCPOFFER message, which contains a DHCP 6rd
    option.  The recommended format of the MAC address is as defined in
-   Calling-Station-Id ([RFC3580], Section 3.20) without the SSID
+   <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A> ([RFC3580], Section 3.20) without the SSID
    (Service Set Identifier) portion.
 
    Figure 2 describes another scenario -- later re-authorization -- in
@@ -254,29 +254,29 @@ RFC 6930                     RADIUS for 6rd                   April 2013
              Figure 2: The Cooperation between DHCP and RADIUS
                  When Decoupled from RADIUS Authentication
 
-   In this scenario, the Access-Request packet SHOULD contain a Service-
+   In this scenario, the <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet SHOULD contain a Service-
 <B>   Type attribute (6) with the value Authorize Only (17); thus,</B>
-   according to [RFC5080], the Access-Request packet MUST contain a
-   State attribute that it obtains from the previous authentication
+   according to [RFC5080], the <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet MUST contain a
+   <A HREF="rfc2865.html#State">State</A> attribute that it obtains from the previous authentication
    process.
 
-   In both above-mentioned scenarios, Message-Authenticator (type 80)
-   [RFC2865] SHOULD be used to protect both Access-Request and Access-
+   In both above-mentioned scenarios, <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> (type 80)
+   [RFC2865] SHOULD be used to protect both <A HREF="rfc2865.html#Access-Request">Access-Request</A> and Access-
    Accept messages.
 
    After receiving the IPv6-6rd-Configuration attribute in the initial
-   Access-Accept, the BNG SHOULD store the received 6rd configuration
+   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, the BNG SHOULD store the received 6rd configuration
    parameters locally.  When the 6rd CE sends a DHCP Request message to
    request an extension of the lifetime for the assigned address, the
-   BNG does not have to initiate a new Access-Request towards the AAA
+   BNG does not have to initiate a new <A HREF="rfc2865.html#Access-Request">Access-Request</A> towards the AAA
    server to request the 6rd configuration parameters.  The BNG could
    retrieve the previously stored 6rd configuration parameters and use
    them in its reply.
 
    If the BNG does not receive the IPv6-6rd-Configuration attribute in
-   the Access-Accept, it MAY fall back to a preconfigured default 6rd
+   the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, it MAY fall back to a preconfigured default 6rd
    configuration, if any.  If the BNG does not have any preconfigured
-   default 6rd configuration or if the BNG receives an Access-Reject,
+   default 6rd configuration or if the BNG receives an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>,
    the tunnel cannot be established.
 
    As specified in [RFC2131], Section 4.4.5 ("Reacquisition and
@@ -295,9 +295,9 @@ RFC 6930                     RADIUS for 6rd                   April 2013
 
 
    In this situation, the secondary BNG receiving the new DHCP message
-   MUST initiate a new Access-Request towards the AAA server.  The
+   MUST initiate a new <A HREF="rfc2865.html#Access-Request">Access-Request</A> towards the AAA server.  The
    secondary BNG MAY include the IPv6-6rd-Configuration attribute in its
-   Access-Request.
+   <A HREF="rfc2865.html#Access-Request">Access-Request</A>.
 
 <H2>4.  Attributes</H2>
 
@@ -426,7 +426,7 @@ RFC 6930                     RADIUS for 6rd                   April 2013
    be placed together.
 
    The IPv6-6rd-Configuration attribute is normally used in Access-
-   Accept messages.  It MAY be used in Access-Request packets as a hint
+   Accept messages.  It MAY be used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets as a hint
    to the RADIUS server; for example, if the BNG is preconfigured with a
    default 6rd configuration, these parameters MAY be inserted in the
    attribute.  The RADIUS server MAY ignore the hint sent by the BNG,
@@ -437,14 +437,14 @@ RFC 6930                     RADIUS for 6rd                   April 2013
    AAA server.
 
    If the BNG does not receive the IPv6-6rd-Configuration attribute in
-   the Access-Accept, it MAY fallback to a preconfigured default 6rd
+   the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, it MAY fallback to a preconfigured default 6rd
    configuration, if any.  If the BNG does not have any preconfigured
    default 6rd configuration, the 6rd tunnel cannot be established.
 
    If the BNG is pre-provisioned with a default 6rd configuration and
-   the 6rd configuration received in Access-Accept is different from the
+   the 6rd configuration received in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> is different from the
    configured default, then the 6rd configuration received in the
-   Access-Accept message MUST be used for the session.
+   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message MUST be used for the session.
 
    If the BNG cannot support the received 6rd configuration for any
    reason, the tunnel SHOULD NOT be established.
@@ -472,10 +472,10 @@ RFC 6930                     RADIUS for 6rd                   April 2013
                                     Request
     0-1     0-1     0      0         0-1      173  IPv6-6rd-
                                                    Configuration
-    0-1     0-1     0      0         0-1      1    User-Name
-    0-1     0       0      0         0-1      2    User-Password
-    0-1     0-1     0      0         0-1      6    Service-Type
-    0-1     0-1     0-1    0-1       0-1      80   Message-Authenticator
+    0-1     0-1     0      0         0-1      1    <A HREF="rfc2865.html#User-Name">User-Name</A>
+    0-1     0       0      0         0-1      2    <A HREF="rfc2865.html#User-Password">User-Password</A>
+    0-1     0-1     0      0         0-1      6    <A HREF="rfc2865.html#Service-Type">Service-Type</A>
+    0-1     0-1     0-1    0-1       0-1      80   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>
 
    The following key defines the meanings of the above table entries.
 

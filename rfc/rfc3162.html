@@ -49,7 +49,7 @@ Abstract
    [13] as well as the RADIUS attributes used to support IPv6 network
    access.
 
-   Note that a NAS sending a RADIUS Access-Request may not know a-priori
+   Note that a NAS sending a RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> may not know a-priori
    whether the host will be using IPv4, IPv6, or both.  For example,
    within PPP, IPv6CP [11] occurs after LCP, so that address assignment
    will not occur until after RADIUS authentication and authorization
@@ -89,19 +89,19 @@ RFC 3162                    RADIUS and IPv6                  August 2001
 
 <H2>2.  Attributes</H2>
 
-<H2>2.1.  NAS-IPv6-Address</H2>
+<A NAME="NAS-IPv6-Address"><H2>2.1.  NAS-IPv6-Address</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the identifying IPv6 Address of the NAS
       which is requesting authentication of the user, and SHOULD be
       unique to the NAS within the scope of the RADIUS server.  NAS-
-      IPv6-Address is only used in Access-Request packets.  NAS-IPv6-
-      Address and/or NAS-IP-Address MAY be present in an Access-Request
+      IPv6-Address is only used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets.  NAS-IPv6-
+      Address and/or <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> MAY be present in an <A HREF="rfc2865.html#Access-Request">Access-Request</A>
       packet; however, if neither attribute is present then NAS-
       Identifier MUST be present.
 
-   A summary of the NAS-IPv6-Address Attribute format is shown below.
+   A summary of the <B>NAS-IPv6-Address</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -128,7 +128,7 @@ RFC 3162                    RADIUS and IPv6                  August 2001
 
 <B>   Type</B>
 
-      95 for NAS-IPv6-Address
+      95 for <B>NAS-IPv6-Address</B>
 
 <B>   Length</B>
 
@@ -138,19 +138,19 @@ RFC 3162                    RADIUS and IPv6                  August 2001
 
       The Address field is 16 octets.
 
-<H2>3.2.  Framed-Interface-Id</H2>
+<A NAME="Framed-Interface-Id"><H2>3.2.  Framed-Interface-Id</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the IPv6 interface identifier to be
-      configured for the user.  It MAY be used in Access-Accept packets.
+      configured for the user.  It MAY be used in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.
       If the Interface-Identifier IPv6CP option [11] has been
       successfully negotiated, this Attribute MUST be included in an
-      Access-Request packet as a hint by the NAS to the server that it
+      <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet as a hint by the NAS to the server that it
       would prefer that value.  It is recommended, but not required,
       that the server honor the hint.
 
-   A summary of the Framed-Interface-Id Attribute format is shown below.
+   A summary of the <B>Framed-Interface-Id</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -165,7 +165,7 @@ RFC 3162                    RADIUS and IPv6                  August 2001
 
 <B>   Type</B>
 
-      96 for Framed-Interface-Id
+      96 for <B>Framed-Interface-Id</B>
 
 <B>   Length</B>
 
@@ -182,21 +182,21 @@ Aboba, et al.               Standards Track                     [Page 3]
 RFC 3162                    RADIUS and IPv6                  August 2001
 
 
-<H2>2.3.  Framed-IPv6-Prefix</H2>
+<A NAME="Framed-IPv6-Prefix"><H2>2.3.  Framed-IPv6-Prefix</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates an IPv6 prefix (and corresponding route)
-      to be configured for the user.  It MAY be used in Access-Accept
+      to be configured for the user.  It MAY be used in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
       packets, and can appear multiple times.  It MAY be used in an
-      Access-Request packet as a hint by the NAS to the server that it
+      <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet as a hint by the NAS to the server that it
       would prefer these prefix(es), but the server is not required to
       honor the hint.  Since it is assumed that the NAS will plumb a
       route corresponding to the prefix, it is not necessary for the
       server to also send a Framed-IPv6-Route attribute for the same
       prefix.
 
-   A summary of the Framed-IPv6-Prefix Attribute format is shown below.
+   A summary of the <B>Framed-IPv6-Prefix</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -215,7 +215,7 @@ RFC 3162                    RADIUS and IPv6                  August 2001
 
 <B>   Type</B>
 
-      97 for Framed-IPv6-Prefix
+      97 for <B>Framed-IPv6-Prefix</B>
 
 <B>   Length</B>
 
@@ -243,18 +243,18 @@ RFC 3162                    RADIUS and IPv6                  August 2001
       The Prefix field is up to 16 octets in length.  Bits outside of
       the Prefix-Length, if included, must be zero.
 
-<H2>2.4.  Login-IPv6-Host</H2>
+<A NAME="Login-IPv6-Host"><H2>2.4.  Login-IPv6-Host</H2></a>
 
 <B>   Description</B>
 
       This Attribute indicates the system with which to connect the
-      user, when the Login-Service Attribute is included.  It MAY be
-      used in Access-Accept packets.  It MAY be used in an Access-
+      user, when the <A HREF="rfc2865.html#Login-Service">Login-Service</A> Attribute is included.  It MAY be
+      used in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.  It MAY be used in an Access-
       Request packet as a hint to the server that the NAS would prefer
       to use that host, but the server is not required to honor the
       hint.
 
-   A summary of the Login-IPv6-Host Attribute format is shown below.
+   A summary of the <B>Login-IPv6-Host</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -273,7 +273,7 @@ RFC 3162                    RADIUS and IPv6                  August 2001
 
 <B>   Type</B>
 
-      98 for Login-IPv6-Host
+      98 for <B>Login-IPv6-Host</B>
 
 <B>   Length</B>
 
@@ -303,15 +303,15 @@ RFC 3162                    RADIUS and IPv6                  August 2001
       the user to.  Other values indicate the address the NAS SHOULD
       connect the user to.
 
-<H2>2.5.  Framed-IPv6-Route</H2>
+<A NAME="Framed-IPv6-Route"><H2>2.5.  Framed-IPv6-Route</H2></a>
 
 <B>   Description</B>
 
       This Attribute provides routing information to be configured for
-      the user on the NAS.  It is used in the Access-Accept packet and
+      the user on the NAS.  It is used in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet and
       can appear multiple times.
 
-   A summary of the Framed-IPv6-Route Attribute format is shown below.
+   A summary of the <B>Framed-IPv6-Route</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2
@@ -322,7 +322,7 @@ RFC 3162                    RADIUS and IPv6                  August 2001
 
 <B>   Type</B>
 
-      99 for Framed-IPv6-Route
+      99 for <B>Framed-IPv6-Route</B>
 
 <B>   Length</B>
 
@@ -355,7 +355,7 @@ RFC 3162                    RADIUS and IPv6                  August 2001
       unspecified address can be expressed in any of the acceptable
       formats described in [16].  For example, "2000:0:0:106::/64 :: 1".
 
-<H2>2.6.  Framed-IPv6-Pool</H2>
+<A NAME="Framed-IPv6-Pool"><H2>2.6.  Framed-IPv6-Pool</H2></a>
 
 <B>   Description</B>
 
@@ -363,7 +363,7 @@ RFC 3162                    RADIUS and IPv6                  August 2001
       be used to assign an IPv6 prefix for the user.  If a NAS does not
       support multiple prefix pools, the NAS MUST ignore this Attribute.
 
-   A summary of the Framed-IPv6-Pool Attribute format is shown below.
+   A summary of the <B>Framed-IPv6-Pool</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2
@@ -374,7 +374,7 @@ RFC 3162                    RADIUS and IPv6                  August 2001
 
 <B>   Type</B>
 
-      100 for Framed-IPv6-Pool
+      100 for <B>Framed-IPv6-Pool</B>
 
 <B>   Length</B>
 
@@ -393,7 +393,7 @@ RFC 3162                    RADIUS and IPv6                  August 2001
    Request Accept Reject Challenge Accounting  #  Attribute
                                    Request
    0-1     0      0      0         0-1        95  NAS-IPv6-Address
-   0-1     0-1    0      0         0-1        96  Framed-Interface-Id
+   0-1     0-1    0      0         0-1        96  <A HREF="#Framed-Interface-Id">Framed-Interface-Id</A>
    0+      0+     0      0         0+         97  Framed-IPv6-Prefix
    0+      0+     0      0         0+         98  Login-IPv6-Host
    0       0+     0      0         0+         99  Framed-IPv6-Route
@@ -484,9 +484,9 @@ RFC 3162                    RADIUS and IPv6                  August 2001
    improved scalability of public key infrastructure.
 
    Within RADIUS, a shared secret is used for hiding of attributes such
-   as User-Password [4] and Tunnel-Password [7].  In addition, the
+   as <A HREF="rfc2865.html#User-Password">User-Password</A> [4] and <A HREF="rfc2868.html#Tunnel-Password">Tunnel-Password</A> [7].  In addition, the
    shared secret is used in computation of the Response Authenticator
-   [4], as well as the Message-Authenticator attribute [8].  Therefore,
+   [4], as well as the <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute [8].  Therefore,
    in RADIUS a shared secret is used to provide confidentiality as well
    as integrity protection and authentication.  As a result, only use of
    IPSEC ESP with a non-null transform can provide security services
@@ -524,7 +524,7 @@ RFC 3162                    RADIUS and IPv6                  August 2001
    numbers for the following attributes:
 
       NAS-IPv6-Address
-      Framed-Interface-Id
+      <A HREF="#Framed-Interface-Id">Framed-Interface-Id</A>
       Framed-IPv6-Prefix
       Login-IPv6-Host
       Framed-IPv6-Route

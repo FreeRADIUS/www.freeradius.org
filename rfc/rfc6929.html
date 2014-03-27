@@ -99,7 +99,7 @@ Table of Contents
       3.4. Extended-Type-4 ...........................................24
       3.5. Long-Extended-Type-1 ......................................25
       3.6. Long-Extended-Type-2 ......................................26
-   4. Vendor-Specific Attributes .....................................27
+   4. <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attributes .....................................27
       4.1. Extended-Vendor-Specific-1 ................................28
       4.2. Extended-Vendor-Specific-2 ................................29
       4.3. Extended-Vendor-Specific-3 ................................30
@@ -184,7 +184,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
    need a standardized method of transporting large quantities of data.
    Finally, some vendors are close to allocating all of the Attributes
-   within their Vendor-Specific Attribute space.  It would be useful to
+   within their <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute space.  It would be useful to
    leverage changes to the base protocol for extending the Vendor-
    Specific Attribute space.
 
@@ -220,14 +220,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
      creates a standard way to group a set of Attributes (Section 2.3).
 
    * Defining a new "Extended-Vendor-Specific" (EVS) data type.  This
-     data type allows an attribute to carry Vendor-Specific Attributes
+     data type allows an attribute to carry <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attributes
      (VSAs) inside of the new Attribute formats (Section 2.4).
 
    * Defining a new "integer64" data type.  This data type allows
      counters that track more than 2^32 octets of data (Section 2.5).
 
    * Allocating 6 attributes using the new EVS data type.  This
-     allocation extends the Vendor-Specific Attribute Type space by over
+     allocation extends the <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute Type space by over
      1500 values (Sections 4.1 through 4.6).
 
 
@@ -238,7 +238,7 @@ DeKok &amp; Lior                 Standards Track                    [Page 4]
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-   * Defining the "Vendor-Id" for Vendor-Specific Attributes to
+   * Defining the "Vendor-Id" for <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attributes to
      encompass the entire 4 octets of the Vendor field.  [RFC2865]
      Section 5.26 defined it to be 3 octets, with the fourth octet being
      zero (Section 2.6).
@@ -659,7 +659,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       are specified according to the policies and rules described in
       Section 10.  Values 254-255 are "Reserved" for use by future
       extensions to RADIUS.  The value 26 has no special meaning and
-      MUST NOT be treated as a Vendor-Specific Attribute.
+      MUST NOT be treated as a <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute.
 
       As with the Extended-Type field defined above, the TLV-Type is
       meaningful only within the context defined by "Type" fields of the
@@ -720,11 +720,11 @@ RFC 6929                    RADIUS Extensions                 April 2013
       them inside of a TLV offers little additional value.
 
    This TLV definition is compatible with the suggested format of the
-   "String" field of the Vendor-Specific Attribute, as defined in
+   "String" field of the <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute, as defined in
    [RFC2865] Section 5.26, though that specification does not discuss
    nesting.
 
-   Vendors MAY use attributes of type "TLV" in any Vendor-Specific
+   Vendors MAY use attributes of type "TLV" in any <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A>
    Attribute.  It is RECOMMENDED to use type "TLV" for VSAs, in
    preference to any other format.
 
@@ -772,16 +772,16 @@ RFC 6929                    RADIUS Extensions                 April 2013
 <H2>2.4.  EVS Data Type</H2>
 
    We define a new data type in RADIUS, called "evs", for "Extended-
-   Vendor-Specific".  The "evs" data type is an encapsulation layer that
+   <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A>".  The "evs" data type is an encapsulation layer that
    permits the EVS-Value field of an Attribute to contain a Vendor-Id,
    followed by an EVS-Type, and then vendor-defined data.  This data can
    in turn contain valid RADIUS data types or any other data as
    determined by the vendor.
 
    This data type is intended for use in attributes that carry vendor-
-   specific information, as is done with the Vendor-Specific Attribute
+   specific information, as is done with the <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute
    (Attribute number 26).  It is RECOMMENDED that this data type be used
-   by a vendor only when the Vendor-Specific Attribute Type space has
+   by a vendor only when the <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute Type space has
    been fully allocated.
 
    Where [RFC2865] Section 5.26 makes a recommendation for the format of
@@ -868,7 +868,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
    This data type is intended to be used in any situation where there is
    a need to have counters that can count past 2^32.  The expected use
-   of this data type is within Accounting-Request packets, but this data
+   of this data type is within <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets, but this data
    type SHOULD be used in any packet where 32-bit integers are expected
    to be insufficient.
 
@@ -895,7 +895,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 <H2>2.6.  Vendor-Id Field</H2>
 
-   We define the Vendor-Id field of Vendor-Specific Attributes
+   We define the Vendor-Id field of <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attributes
    to encompass the entire 4 octets of the Vendor field.
    [RFC2865] Section 5.26 defined it to be 3 octets, with the fourth
    octet being zero.  This change has no immediate impact on RADIUS, as
@@ -918,7 +918,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 <H2>2.7.  Attribute Naming and Type Identifiers</H2>
 
    Attributes have traditionally been identified by a unique name and
-   number.  For example, the Attribute "User-Name" has been allocated
+   number.  For example, the Attribute "<A HREF="rfc2865.html#User-Name">User-Name</A>" has been allocated
    number one (1).  This scheme needs to be extended in order to be able
    to refer to attributes of "Extended Type", and to TLVs.  It will also
    be used by IANA for allocating RADIUS Attribute Type values.
@@ -932,7 +932,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 <H2>2.7.1.  Attribute and TLV Naming</H2>
 
    RADIUS specifications traditionally use names consisting of one or
-   more words, separated by hyphens, e.g., "User-Name".  However, these
+   more words, separated by hyphens, e.g., "<A HREF="rfc2865.html#User-Name">User-Name</A>".  However, these
    names are not allocated from a registry, and there is no restriction
    other than convention on their global uniqueness.
 
@@ -1008,7 +1008,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    provides a suggested practice but does not define a standard of any
    kind.
 
-   The Vendor-Specific Attribute has been assigned the Attribute
+   The <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute has been assigned the Attribute
    number 26.  It in turn carries a 32-bit Vendor-Id, and possibly
    additional VSAs.  Where the VSAs follow the format recommended
    by [RFC2865] Section 5.26, a VSA can be identified as
@@ -1029,7 +1029,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
    Note that there are few restrictions on the size of the numerical
    values in this notation.  The Vendor-Id is a 32-bit number, and the
-   VSA may have been assigned from a 16-bit Vendor-Specific Attribute
+   VSA may have been assigned from a 16-bit <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute
 <B>   Type space.  Implementations SHOULD be capable of handling 32-bit</B>
    numbers at each level of the "dotted number" notation.
 
@@ -1485,7 +1485,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type" to determine the interpretation
       of the "Value" field.
 
-<H2>4.  Vendor-Specific Attributes</H2>
+<A NAME="Vendor-Specific"><H2>4.  Vendor-Specific Attributes</H2></a>
 
    We define six new attributes that can carry vendor-specific
    information.  We define four (4) attributes of the "Extended Type"
@@ -1496,12 +1496,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
       Type.Extended-Type  Name
       ------------------  ----
-      241.26              Extended-Vendor-Specific-1
-      242.26              Extended-Vendor-Specific-2
-      243.26              Extended-Vendor-Specific-3
-      244.26              Extended-Vendor-Specific-4
-      245.26              Extended-Vendor-Specific-5
-      246.26              Extended-Vendor-Specific-6
+      241.26              Extended-<B>Vendor-Specific</B>-1
+      242.26              Extended-<B>Vendor-Specific</B>-2
+      243.26              Extended-<B>Vendor-Specific</B>-3
+      244.26              Extended-<B>Vendor-Specific</B>-4
+      245.26              Extended-<B>Vendor-Specific</B>-5
+      246.26              Extended-<B>Vendor-Specific</B>-6
 
    The rest of this section gives detailed definitions for each
    Attribute based on the above summary.
@@ -1526,14 +1526,14 @@ DeKok &amp; Lior                 Standards Track                   [Page 27]
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-4.1.  Extended-Vendor-Specific-1
+4.1.  Extended-<B>Vendor-Specific</B>-1
 
 <B>   Description</B>
 
       This attribute defines a RADIUS Type Code of 241.26, using the
       "evs" data type.
 
-   A summary of the Extended-Vendor-Specific-1 Attribute format is shown
+   A summary of the Extended-<B>Vendor-Specific</B>-1 Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1548,7 +1548,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 <B>   Type.Extended-Type</B>
 
-      241.26 for Extended-Vendor-Specific-1
+      241.26 for Extended-<B>Vendor-Specific</B>-1
 
 <B>   Length</B>
 
@@ -1589,14 +1589,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type.Vendor-Id.Vendor-Type" to
       determine the interpretation of the "Value" field.
 
-4.2.  Extended-Vendor-Specific-2
+4.2.  Extended-<B>Vendor-Specific</B>-2
 
 <B>   Description</B>
 
       This attribute defines a RADIUS Type Code of 242.26, using the
       "evs" data type.
 
-   A summary of the Extended-Vendor-Specific-2 Attribute format is shown
+   A summary of the Extended-<B>Vendor-Specific</B>-2 Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1611,7 +1611,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 <B>   Type.Extended-Type</B>
 
-      242.26 for Extended-Vendor-Specific-2
+      242.26 for Extended-<B>Vendor-Specific</B>-2
 
 <B>   Length</B>
 
@@ -1654,14 +1654,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type.Vendor-Id.Vendor-Type" to
       determine the interpretation of the "Value" field.
 
-4.3.  Extended-Vendor-Specific-3
+4.3.  Extended-<B>Vendor-Specific</B>-3
 
 <B>   Description</B>
 
       This attribute defines a RADIUS Type Code of 243.26, using the
       "evs" data type.
 
-   A summary of the Extended-Vendor-Specific-3 Attribute format is shown
+   A summary of the Extended-<B>Vendor-Specific</B>-3 Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1676,7 +1676,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 <B>   Type.Extended-Type</B>
 
-      243.26 for Extended-Vendor-Specific-3
+      243.26 for Extended-<B>Vendor-Specific</B>-3
 
 <B>   Length</B>
 
@@ -1715,14 +1715,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type.Vendor-Id.Vendor-Type" to
       determine the interpretation of the "Value" field.
 
-4.4.  Extended-Vendor-Specific-4
+4.4.  Extended-<B>Vendor-Specific</B>-4
 
 <B>   Description</B>
 
       This attribute defines a RADIUS Type Code of 244.26, using the
       "evs" data type.
 
-   A summary of the Extended-Vendor-Specific-4 Attribute format is shown
+   A summary of the Extended-<B>Vendor-Specific</B>-4 Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1737,7 +1737,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 <B>   Type.Extended-Type</B>
 
-      244.26 for Extended-Vendor-Specific-4
+      244.26 for Extended-<B>Vendor-Specific</B>-4
 
 <B>   Length</B>
 
@@ -1776,14 +1776,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type.Vendor-Id.Vendor-Type" to
       determine the interpretation of the "Value" field.
 
-4.5.  Extended-Vendor-Specific-5
+4.5.  Extended-<B>Vendor-Specific</B>-5
 
 <B>   Description</B>
 
       This attribute defines a RADIUS Type Code of 245.26, using the
       "evs" data type.
 
-   A summary of the Extended-Vendor-Specific-5 Attribute format is shown
+   A summary of the Extended-<B>Vendor-Specific</B>-5 Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1808,7 +1808,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 <B>   Type.Extended-Type</B>
 
-      245.26 for Extended-Vendor-Specific-5
+      245.26 for Extended-<B>Vendor-Specific</B>-5
 
 <B>   Length</B>
 
@@ -1862,14 +1862,14 @@ DeKok &amp; Lior                 Standards Track                   [Page 33]
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-4.6.  Extended-Vendor-Specific-6
+4.6.  Extended-<B>Vendor-Specific</B>-6
 
 <B>   Description</B>
 
       This attribute defines a RADIUS Type Code of 246.26, using the
       "evs" data type.
 
-   A summary of the Extended-Vendor-Specific-6 Attribute format is shown
+   A summary of the Extended-<B>Vendor-Specific</B>-6 Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1884,7 +1884,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 <B>   Type.Extended-Type</B>
 
-      246.26 for Extended-Vendor-Specific-6
+      246.26 for Extended-<B>Vendor-Specific</B>-6
 
 <B>   Length</B>
 
@@ -1963,7 +1963,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    configurable flag that indicates which type of attributes are being
    sent from the client.  If the flag is set to "Non-Standard
    Attributes", the conflicting attributes can be interpreted as being
-   improperly defined Vendor-Specific Attributes.  If the flag is set to
+   improperly defined <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attributes.  If the flag is set to
 
 
 
@@ -2011,7 +2011,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    following text in [RFC2865] Section 2.3:
 
       The forwarding server MUST NOT change the order of any attributes
-      of the same type, including Proxy-State.
+      of the same type, including <A HREF="rfc2865.html#Proxy-State">Proxy-State</A>.
 
    This requirement solves some of the issues related to proxying of the
    new format, but not all.  The reason is that proxy servers are
@@ -2337,7 +2337,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 <H2>6.9.  Vendor Guidelines</H2>
 
-   * Vendors SHOULD use the existing Vendor-Specific Attribute Type
+   * Vendors SHOULD use the existing <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute Type
      space in preference to the new Extended-Vendor-Specific Attributes,
      as this specification may take time to become widely deployed.
 
@@ -2425,7 +2425,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    Manual inspection of the dictionaries shows that approximately 20 (or
    0.5%) attributes have the ability to transport more than 253 octets
    of data.  These attributes are divided between VSAs and a small
-   number of standard Attributes such as EAP-Message.
+   number of standard Attributes such as <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>.
 
    The results of this audit and analysis are reflected in the design of
    the extended attributes.  The extended format has minimal overhead,
@@ -2510,8 +2510,8 @@ RFC 6929                    RADIUS Extensions                 April 2013
    for RADIUS data types; it can be used to encode attributes with
    invalid data fields; and there is no requirement for consistency from
    one example to the next.  For example, it can be used to encode a
-   User-Name attribute that contains non-UTF8 data or a
-   Framed-IP-Address that contains 253 octets of ASCII data.  As a
+   <A HREF="rfc2865.html#User-Name">User-Name</A> attribute that contains non-UTF8 data or a
+   <A HREF="rfc2865.html#Framed-IP-Address">Framed-IP-Address</A> that contains 253 octets of ASCII data.  As a
    result, it MUST NOT be used to create RADIUS attributes for transport
    in a RADIUS message.
 

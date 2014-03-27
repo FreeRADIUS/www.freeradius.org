@@ -51,15 +51,15 @@ Abstract
 <H2>2.  Attributes</H2>
 
    The following sections describe sub-attributes which may be
-   transmitted in one or more RADIUS attributes of type Vendor-Specific
+   transmitted in one or more RADIUS attributes of type <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A>
    [3].  More than one sub-attribute MAY be transmitted in a single
-   Vendor-Specific Attribute; if this is done, the sub-attributes SHOULD
+   <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute; if this is done, the sub-attributes SHOULD
    be packed as a sequence of Vendor-Type/Vendor-Length/Value triples
    following the inital Type, Length and Vendor-ID fields.  The Length
-   field of the Vendor-Specific Attribute MUST be set equal to the sum
+   field of the <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute MUST be set equal to the sum
    of the Vendor-Length fields of the sub-attributes contained in the
-   Vendor-Specific Attribute, plus six.  The Vendor-ID field of the
-   Vendor-Specific Attribute(s) MUST be set to decimal 311 (Microsoft).
+   <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute, plus six.  The Vendor-ID field of the
+   <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> Attribute(s) MUST be set to decimal 311 (Microsoft).
 
 
 
@@ -101,15 +101,15 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 
    The attributes defined in this section reflect these differences.
 
-<H2>2.1.2.  MS-CHAP-Challenge</H2>
+<A NAME="MS-CHAP-Challenge"><H2>2.1.2.  MS-CHAP-Challenge</H2></a>
 
 <B>   Description</B>
 
       This Attribute contains the challenge sent by a NAS to a Microsoft
       Challenge-Handshake Authentication Protocol (MS-CHAP) user.  It
-      MAY be used in both Access-Request and Access-Challenge packets.
+      MAY be used in both <A HREF="rfc2865.html#Access-Request">Access-Request</A> and <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets.
 
-   A summary of the MS-CHAP-Challenge Attribute format is shown below.
+   A summary of the <B>MS-CHAP-Challenge</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
 
@@ -133,7 +133,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      11 for MS-CHAP-Challenge.
+      11 for <B>MS-CHAP-Challenge</B>.
 
    Vendor-Length
       &gt; 2
@@ -141,7 +141,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    String
       The String field contains the MS-CHAP challenge.
 
-<H2>2.1.3.  MS-CHAP-Response</H2>
+<A NAME="MS-CHAP-Response"><H2>2.1.3.  MS-CHAP-Response</H2></a>
 
 <B>   Description</B>
 
@@ -150,7 +150,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       user in response to the challenge.  It is only used in Access-
       Request packets.
 
-   A summary of the MS-CHAP-Response Attribute format is shown below.
+   A summary of the <B>MS-CHAP-Response</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
 
@@ -213,7 +213,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      1 for MS-CHAP-Response.
+      1 for <B>MS-CHAP-Response</B>.
 
    Vendor-Length
       52
@@ -249,15 +249,15 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       function of the password and the received challenge.  If this
       field is empty, it SHOULD be zero-filled.
 
-<H2>2.1.4.  MS-CHAP-Domain</H2>
+<A NAME="MS-CHAP-Domain"><H2>2.1.4.  MS-CHAP-Domain</H2></a>
 
 <B>   Description</B>
 
-      The MS-CHAP-Domain Attribute indicates the Windows NT domain in
+      The <B>MS-CHAP-Domain</B> Attribute indicates the Windows NT domain in
       which the user was authenticated.  It MAY be included in both
-      Access-Accept and Accounting-Request packets.
+      <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> and <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets.
 
-   A summary of the MS-CHAP-Domain Attribute format is given below.  The
+   A summary of the <B>MS-CHAP-Domain</B> Attribute format is given below.  The
    fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -267,7 +267,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      10 for MS-CHAP-Domain.
+      10 for <B>MS-CHAP-Domain</B>.
 
    Vendor-Length
       &gt; 3
@@ -294,16 +294,16 @@ Zorn                         Informational                      [Page 5]
 RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 
 
-<H2>2.1.5.  MS-CHAP-Error</H2>
+<A NAME="MS-CHAP-Error"><H2>2.1.5.  MS-CHAP-Error</H2></a>
 
 <B>   Description</B>
 
-      The MS-CHAP-Error Attribute contains error data related to the
+      The <B>MS-CHAP-Error</B> Attribute contains error data related to the
       preceding MS-CHAP exchange.  This Attribute may be used in both
       MS-CHAP-V1 and MS-CHAP-V2 (see below) exchanges.  It is only used
-      in Access-Reject packets.
+      in <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packets.
 
-   A summary of the MS-CHAP-Error Attribute format is given below.  The
+   A summary of the <B>MS-CHAP-Error</B> Attribute format is given below.  The
    fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -313,7 +313,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      2 for MS-CHAP-Error.
+      2 for <B>MS-CHAP-Error</B>.
 
    Vendor-Length
       &gt; 3
@@ -331,10 +331,10 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 <B>   Description</B>
 
       This Attribute allows the user to change their password if it has
-      expired.  This Attribute is only used in Access-Request packets, and
-      should only be included if an MS-CHAP-Error attribute was included in
-      the immediately preceding Access-Reject packet, the String field of
-      the MS-CHAP-Error attribute indicated that the user password had
+      expired.  This Attribute is only used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets, and
+      should only be included if an <B>MS-CHAP-Error</B> attribute was included in
+      the immediately preceding <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet, the String field of
+      the <B>MS-CHAP-Error</B> attribute indicated that the user password had
       expired, and the MS-CHAP version is less than 2.
 
    A summary of the MS-CHAP-CPW-1  Attribute format is shown below.  The
@@ -443,10 +443,10 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 <B>   Description</B>
 
       This Attribute allows the user to change their password if it has
-      expired.  This Attribute is only used in Access-Request packets,
-      and should only be included if an MS-CHAP-Error attribute was
-      included in the immediately preceding Access-Reject packet, the
-      String field of the MS-CHAP-Error attribute indicated that the
+      expired.  This Attribute is only used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets,
+      and should only be included if an <B>MS-CHAP-Error</B> attribute was
+      included in the immediately preceding <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet, the
+      String field of the <B>MS-CHAP-Error</B> attribute indicated that the
       user password had expired, and the MS-CHAP version is equal to 2.
 
    A summary of the MS-CHAP-CPW-2  Attribute format is shown below.  The
@@ -530,7 +530,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    Ident
       The Ident field is one octet and aids in matching requests and
       replies.  The value of this field MUST be identical to that in the
-      Ident field in all instances of the MS-CHAP-LM-Enc-PW, MS-CHAP-NT-
+      Ident field in all instances of the <A HREF="#MS-CHAP-LM-Enc-PW">MS-CHAP-LM-Enc-PW</A>, MS-CHAP-NT-
       Enc-PW and MS-CHAP-PW-2 attributes contained in a single Access-
       Request packet.
 
@@ -563,7 +563,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       field is zero, the NT-Response field MUST be ignored and the LM-
       Response field used instead.  If bit 1 of the Flags field is one,
       the Old-LM-Hash field is valid and SHOULD be used.  If this bit is
-      set, at least one instance of the MS-CHAP-LM-Enc-PW attribute MUST
+      set, at least one instance of the <A HREF="#MS-CHAP-LM-Enc-PW">MS-CHAP-LM-Enc-PW</A> attribute MUST
       be included in the packet.
 
 
@@ -574,7 +574,7 @@ Zorn                         Informational                     [Page 10]
 RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 
 
-<H2>2.1.8.  MS-CHAP-LM-Enc-PW</H2>
+<A NAME="MS-CHAP-LM-Enc-PW"><H2>2.1.8.  MS-CHAP-LM-Enc-PW</H2></a>
 
 <B>   Description</B>
 
@@ -586,14 +586,14 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       number is included in the attribute to help preserve ordering of
       the password fragments.
 
-      This Attribute is only used in Access-Request packets, in
+      This Attribute is only used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets, in
       conjunction with the MS-CHAP-CPW-2 attribute.  It should only be
-      included if an MS-CHAP-Error attribute was included in the
-      immediately preceding Access-Reject packet, the String field of
-      the MS-CHAP-Error attribute indicated that the user password had
+      included if an <A HREF="#MS-CHAP-Error">MS-CHAP-Error</A> attribute was included in the
+      immediately preceding <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet, the String field of
+      the <A HREF="#MS-CHAP-Error">MS-CHAP-Error</A> attribute indicated that the user password had
       expired, and the MS-CHAP version is 2 or greater.
 
-   A summary of the MS-CHAP-LM-Enc-PW Attribute format is shown below.
+   A summary of the <B>MS-CHAP-LM-Enc-PW</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -605,7 +605,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      5 for MS-CHAP-LM-Enc-PW
+      5 for <B>MS-CHAP-LM-Enc-PW</B>
 
    Vendor-Length
       &gt; 6
@@ -615,8 +615,8 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    Ident
       The Ident field is one octet and aids in matching requests and
       replies.  The value of this field MUST be identical in all
-      instances of the MS-CHAP-LM-Enc-PW, MS-CHAP-NT-Enc-PW and MS-
-      CHAP-PW-2 attributes which are present in the same Access-Request
+      instances of the <B>MS-CHAP-LM-Enc-PW</B>, <A HREF="#MS-CHAP-NT-Enc-PW">MS-CHAP-NT-Enc-PW</A> and MS-
+      CHAP-PW-2 attributes which are present in the same <A HREF="rfc2865.html#Access-Request">Access-Request</A>
       packet.
 
 
@@ -637,7 +637,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 
    String The String field contains a portion of the encrypted password.
 
-<H2>2.2.  MS-CHAP-NT-Enc-PW</H2>
+<A NAME="MS-CHAP-NT-Enc-PW"><H2>2.2.  MS-CHAP-NT-Enc-PW</H2></a>
 
 <B>   Description</B>
 
@@ -649,14 +649,14 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       number is included in the attribute to help preserve ordering of
       the password fragments.
 
-      This Attribute is only used in Access-Request packets, in conjunc-
+      This Attribute is only used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets, in conjunc-
       tion with the MS-CHAP-CPW-2 and MS-CHAP2-CPW attributes.  It
-      should only be included if an MS-CHAP-Error attribute was included
-      in the immediately preceding Access-Reject packet, the String
-      field of the MS-CHAP-Error attribute indicated that the user
+      should only be included if an <A HREF="#MS-CHAP-Error">MS-CHAP-Error</A> attribute was included
+      in the immediately preceding <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet, the String
+      field of the <A HREF="#MS-CHAP-Error">MS-CHAP-Error</A> attribute indicated that the user
       password had expired, and the MS-CHAP version is 2 or greater.
 
-   A summary of the MS-CHAP-NT-Enc-PW Attribute format is shown below.
+   A summary of the <B>MS-CHAP-NT-Enc-PW</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -668,7 +668,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      6 for MS-CHAP-NT-Enc-PW
+      6 for <B>MS-CHAP-NT-Enc-PW</B>
 
    Vendor-Length
       &gt; 6
@@ -689,8 +689,8 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    Ident
       The Ident field is one octet and aids in matching requests and
       replies.  The value of this field MUST be identical in all
-      instances of the MS-CHAP-LM-Enc-PW, MS-CHAP-NT-Enc-PW and MS-
-      CHAP-PW-2 attributes which are present in the same Access-Request
+      instances of the <A HREF="#MS-CHAP-LM-Enc-PW">MS-CHAP-LM-Enc-PW</A>, <B>MS-CHAP-NT-Enc-PW</B> and MS-
+      CHAP-PW-2 attributes which are present in the same <A HREF="rfc2865.html#Access-Request">Access-Request</A>
       packet.
 
    Sequence-Number
@@ -744,15 +744,15 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 
    The attributes defined in this section reflect these differences.
 
-<H2>2.3.2.  MS-CHAP2-Response</H2>
+<A NAME="MS-CHAP2-Response"><H2>2.3.2.  MS-CHAP2-Response</H2></a>
 
 <B>   Description</B>
 
       This Attribute contains the response value provided by an MS-
       CHAP-V2 peer in response to the challenge.  It is only used in
-      Access-Request packets.
+      <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets.
 
-   A summary of the MS-CHAP2-Response Attribute format is shown below.
+   A summary of the <B>MS-CHAP2-Response</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -786,7 +786,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      25 for MS-CHAP2-Response.
+      25 for <B>MS-CHAP2-Response</B>.
 
    Vendor-Length
       52
@@ -816,16 +816,16 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       function of the password, the Peer-Challenge field and the
       received challenge.
 
-<H2>2.3.3.  MS-CHAP2-Success</H2>
+<A NAME="MS-CHAP2-Success"><H2>2.3.3.  MS-CHAP2-Success</H2></a>
 
 <B>   Description</B>
 
       This Attribute contains a 42-octet authenticator response string.
       This string MUST be included in the Message field of the MS-CHAP-
       V2 Success packet sent from the NAS to the peer.  This Attribute
-      is only used in Access-Accept packets.
+      is only used in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.
 
-   A summary of the MS-CHAP2-Success Attribute format is shown below.
+   A summary of the <B>MS-CHAP2-Success</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -835,7 +835,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      26 for MS-CHAP2-Success.
+      26 for <B>MS-CHAP2-Success</B>.
 
    Vendor-Length
       45
@@ -854,16 +854,16 @@ Zorn                         Informational                     [Page 15]
 RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 
 
-<H2>2.3.4.  MS-CHAP2-CPW</H2>
+<A NAME="MS-CHAP2-CPW"><H2>2.3.4.  MS-CHAP2-CPW</H2></a>
 
 <B>   Description</B>
 
       This Attribute allows the user to change their password if it has
       expired.  This Attribute is only used in conjunction with the MS-
-      CHAP-NT-Enc-PW attribute in Access-Request packets, and should
-      only be included if an MS-CHAP-Error attribute was included in the
-      immediately preceding Access-Reject packet, the String field of
-      the MS-CHAP-Error attribute indicated that the user password had
+      CHAP-NT-Enc-PW attribute in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets, and should
+      only be included if an <A HREF="#MS-CHAP-Error">MS-CHAP-Error</A> attribute was included in the
+      immediately preceding <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet, the String field of
+      the <A HREF="#MS-CHAP-Error">MS-CHAP-Error</A> attribute indicated that the user password had
       expired, and the MS-CHAP version is equal to 3.
 
    A summary of the MS-CHAP-CPW-2 Attribute format is shown below.   The
@@ -969,8 +969,8 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    Ident
       The Ident field is one octet and aids in matching requests and
       replies.  The value of this field MUST be identical to that in the
-      Ident field in all instances of the MS-CHAP-NT-Enc-PW contained in
-      the Access-Request packet.
+      Ident field in all instances of the <A HREF="#MS-CHAP-NT-Enc-PW">MS-CHAP-NT-Enc-PW</A> contained in
+      the <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet.
 
    Encrypted-Hash
       The Encrypted-Hash field is 16 octets in length.  It contains the
@@ -997,15 +997,15 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    supports 40 bit and 128 bit session keys.  MPPE is negotiated within
    option 18 in the PPP Compression Control Protocol (CCP)[9], [10].
 
-<H2>2.4.1.  MS-CHAP-MPPE-Keys</H2>
+<A NAME="MS-CHAP-MPPE-Keys"><H2>2.4.1.  MS-CHAP-MPPE-Keys</H2></a>
 
 <B>   Description</B>
 
-      The MS-CHAP-MPPE-Keys Attribute contains two session keys for use
+      The <B>MS-CHAP-MPPE-Keys</B> Attribute contains two session keys for use
       by the Microsoft Point-to-Point Encryption Protocol (MPPE).  This
-      Attribute is only included in Access-Accept packets.
+      Attribute is only included in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.
 
-   A summary of the MS-CHAP-MPPE-Keys Attribute format is given below.
+   A summary of the <B>MS-CHAP-MPPE-Keys</B> Attribute format is given below.
    The fields are transmitted left to right.
 
 
@@ -1045,7 +1045,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      12 for MS-CHAP-MPPE-Keys.
+      12 for <B>MS-CHAP-MPPE-Keys</B>.
 
    Vendor-Length
       34
@@ -1099,25 +1099,25 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
       The Keys field MUST be encrypted by the RADIUS server using the
-      same method defined for the User-Password Attribute [3].  Padding
+      same method defined for the <A HREF="rfc2865.html#User-Password">User-Password</A> Attribute [3].  Padding
       is required because the method referenced above requires the field
       to be encrypted to be a multiple of sixteen octets in length.
 
    Implementation Note
          This attribute should only be returned in response to an
-         Access-Request packet containing MS-CHAP attributes.
+         <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet containing MS-CHAP attributes.
 
-<H2>2.4.2.  MS-MPPE-Send-Key</H2>
+<A NAME="MS-MPPE-Send-Key"><H2>2.4.2.  MS-MPPE-Send-Key</H2></a>
 
 <B>   Description</B>
 
-      The MS-MPPE-Send-Key Attribute contains a session key for use by
+      The <B>MS-MPPE-Send-Key</B> Attribute contains a session key for use by
       the Microsoft Point-to-Point Encryption Protocol (MPPE).  As the
       name implies, this key is intended for encrypting packets sent
       from the NAS to the remote host.  This Attribute is only included
-      in Access-Accept packets.
+      in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.
 
-   A summary of the MS-MPPE-Send-Key Attribute format is given below.
+   A summary of the <B>MS-MPPE-Send-Key</B> Attribute format is given below.
    The fields are transmitted left to right.
 
 
@@ -1143,7 +1143,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      16 for MS-MPPE-Send-Key.
+      16 for <B>MS-MPPE-Send-Key</B>.
 
    Vendor-Length
       &gt; 4
@@ -1151,9 +1151,9 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    Salt
       The Salt field is two octets in length and is used to ensure the
       uniqueness of the keys used to encrypt each of the encrypted
-      attributes occurring in a given Access-Accept packet.  The most
+      attributes occurring in a given <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet.  The most
       significant bit (leftmost) of the Salt field MUST be set (1).  The
-      contents of each Salt field in a given Access-Accept packet MUST
+      contents of each Salt field in a given <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet MUST
       be unique.
 
    String
@@ -1175,7 +1175,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
          used for padding.  Call this plaintext P.
 
          Call the shared secret S, the pseudo-random 128-bit Request
-         Authenticator (from the corresponding Access-Request packet) R,
+         Authenticator (from the corresponding <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet) R,
          and the contents of the Salt field A.  Break P into 16 octet
          chunks p(1), p(2)...p(i), where i = len(P)/16.  Call the
          ciphertext blocks c(1), c(2)...c(i) and the final ciphertext C.
@@ -1217,21 +1217,21 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       SHOULD be done.  When the RADIUS server receives the attribute
       from the external server, it MUST correctly set the Salt field and
       encrypt the String field before transmitting it to the RADIUS
-      client.  If the channel used to communicate the MS-MPPE-Send-Key
+      client.  If the channel used to communicate the <B>MS-MPPE-Send-Key</B>
       attribute is not secure from eavesdropping, the attribute MUST be
       cryptographically protected.
 
-<H2>2.4.3.  MS-MPPE-Recv-Key</H2>
+<A NAME="MS-MPPE-Recv-Key"><H2>2.4.3.  MS-MPPE-Recv-Key</H2></a>
 
 <B>   Description</B>
 
-      The MS-MPPE-Recv-Key Attribute contains a session key for use by
+      The <B>MS-MPPE-Recv-Key</B> Attribute contains a session key for use by
       the Microsoft Point-to-Point Encryption Protocol (MPPE).  As the
       name implies, this key is intended for encrypting packets received
       by the NAS from the remote host.  This Attribute is only included
-      in Access-Accept packets.
+      in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.
 
-   A summary of the MS-MPPE-Recv-Key Attribute format is given below.
+   A summary of the <B>MS-MPPE-Recv-Key</B> Attribute format is given below.
    The fields are transmitted left to right.
 
 
@@ -1255,7 +1255,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      17 for MS-MPPE-Recv-Key.
+      17 for <B>MS-MPPE-Recv-Key</B>.
 
    Vendor-Length
       &gt; 4
@@ -1263,9 +1263,9 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    Salt
       The Salt field is two octets in length and is used to ensure the
       uniqueness of the keys used to encrypt each of the encrypted
-      attributes occurring in a given Access-Accept packet.  The most
+      attributes occurring in a given <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet.  The most
       significant bit (leftmost) of the Salt field MUST be set (1).  The
-      contents of each Salt field in a given Access-Accept packet MUST
+      contents of each Salt field in a given <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet MUST
       be unique.
 
    String
@@ -1287,7 +1287,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
          be used for padding.  Call this plaintext P.
 
          Call the shared secret S, the pseudo-random 128-bit Request
-         Authenticator (from the corresponding Access-Request packet) R,
+         Authenticator (from the corresponding <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet) R,
          and the contents of the Salt field A.  Break P into 16 octet
          chunks p(1), p(2)...p(i), where i = len(P)/16.  Call the
          ciphertext blocks c(1), c(2)...c(i) and the final ciphertext C.
@@ -1329,24 +1329,24 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       SHOULD be done.  When the RADIUS server receives the attribute
       from the external server, it MUST correctly set the Salt field and
       encrypt the String field before transmitting it to the RADIUS
-      client.  If the channel used to communicate the MS-MPPE-Recv-Key
+      client.  If the channel used to communicate the <B>MS-MPPE-Recv-Key</B>
       attribute is not secure from eavesdropping, the attribute MUST be
       cryptographically protected.
 
-<H2>2.4.4.  MS-MPPE-Encryption-Policy</H2>
+<A NAME="MS-MPPE-Encryption-Policy"><H2>2.4.4.  MS-MPPE-Encryption-Policy</H2></a>
 
 <B>   Description</B>
 
-      The MS-MPPE-Encryption-Policy Attribute may be used to signify
+      The <B>MS-MPPE-Encryption-Policy</B> Attribute may be used to signify
       whether the use of encryption is allowed or required.  If the
       Policy field is equal to 1 (Encryption-Allowed), any or none of
-      the encryption types specified in the MS-MPPE-Encryption-Types
+      the encryption types specified in the <A HREF="#MS-MPPE-Encryption-Types">MS-MPPE-Encryption-Types</A>
       Attribute MAY be used.  If the Policy field is equal to 2
       (Encryption-Required), any of the encryption types specified in
-      the MS-MPPE-Encryption-Types Attribute MAY be used, but at least
+      the <A HREF="#MS-MPPE-Encryption-Types">MS-MPPE-Encryption-Types</A> Attribute MAY be used, but at least
       one MUST be used.
 
-   A summary of the MS-MPPE-Encryption-Policy Attribute format is given
+   A summary of the <B>MS-MPPE-Encryption-Policy</B> Attribute format is given
    below.  The fields are transmitted left to right.
 
 
@@ -1367,7 +1367,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      7 for MS-MPPE-Encryption-Policy.
+      7 for <B>MS-MPPE-Encryption-Policy</B>.
 
    Vendor-Length
       6
@@ -1377,15 +1377,15 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 
          1      Encryption-Allowed 2      Encryption-Required
 
-<H2>2.4.5.  MS-MPPE-Encryption-Types</H2>
+<A NAME="MS-MPPE-Encryption-Types"><H2>2.4.5.  MS-MPPE-Encryption-Types</H2></a>
 
 <B>   Description</B>
 
-      The MS-MPPE-Encryption-Types Attribute is used to signify the
+      The <B>MS-MPPE-Encryption-Types</B> Attribute is used to signify the
       types of encryption available for use with MPPE.  It is a four
       octet integer that is interpreted as a string of bits.
 
-   A summary of the MS-MPPE-Encryption-Policy Attribute format is given
+   A summary of the <A HREF="#MS-MPPE-Encryption-Policy">MS-MPPE-Encryption-Policy</A> Attribute format is given
    below.  The fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -1397,7 +1397,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      8 for MS-MPPE-Encryption-Types.
+      8 for <B>MS-MPPE-Encryption-Types</B>.
 
    Vendor-Length
       6
@@ -1436,15 +1436,15 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    eligible to be dropped, and the length of time (in seconds) that a
    link must be under-utilized before it is dropped.
 
-<H2>2.5.1.  MS-BAP-Usage</H2>
+<A NAME="MS-BAP-Usage"><H2>2.5.1.  MS-BAP-Usage</H2></a>
 
 <B>   Description</B>
 
       This Attribute describes whether the use of BAP is allowed,
       disallowed or required on new multilink calls.  It MAY be used in
-      Access-Accept packets.
+      <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.
 
-   A summary of the MS-BAP-Usage Attribute format is shown below.  The
+   A summary of the <B>MS-BAP-Usage</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1456,7 +1456,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      13 for MS-BAP-Usage.
+      13 for <B>MS-BAP-Usage</B>.
 
    Vendor-Length
       6
@@ -1477,7 +1477,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
          1      BAP usage allowed
          2      BAP usage required
 
-<H2>2.5.2.  MS-Link-Utilization-Threshold</H2>
+<A NAME="MS-Link-Utilization-Threshold"><H2>2.5.2.  MS-Link-Utilization-Threshold</H2></a>
 
 <B>   Description</B>
 
@@ -1485,9 +1485,9 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       utilization below which the link must fall before the link is
       eligible for termination.  Permissible values for the MS-Link-
       Utilization-Threshold Attribute are in the range 1-100, inclusive.
-      It is only used in Access-Accept packets.
+      It is only used in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.
 
-   A summary of the MS-Link-Utilization-Threshold Attribute format is
+   A summary of the <B>MS-Link-Utilization-Threshold</B> Attribute format is
    shown below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1499,7 +1499,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      14 for MS-Link-Utilization-Threshold
+      14 for <B>MS-Link-Utilization-Threshold</B>
 
    Vendor-Length 6
 
@@ -1508,15 +1508,15 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       must fall before the link is eligible for termination.
       Permissible values are in the range 1-100, inclusive.
 
-<H2>2.5.3.  MS-Link-Drop-Time-Limit</H2>
+<A NAME="MS-Link-Drop-Time-Limit"><H2>2.5.3.  MS-Link-Drop-Time-Limit</H2></a>
 
 <B>   Description</B>
 
-      The MS-Link-Drop-Time-Limit Attribute indicates the length of time
+      The <B>MS-Link-Drop-Time-Limit</B> Attribute indicates the length of time
       (in seconds) that a link must be underutilized before it is
-      dropped.  It MAY only be included in Access-Accept packets.
+      dropped.  It MAY only be included in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.
 
-   A summary of the MS-Link-Drop-Time-Limit Attribute format is given
+   A summary of the <B>MS-Link-Drop-Time-Limit</B> Attribute format is given
    below.  The fields are transmitted left to right.
 
 
@@ -1535,7 +1535,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      15 for MS-Link-Drop-Time-Limit
+      15 for <B>MS-Link-Drop-Time-Limit</B>
 
    Vendor-Length
       6
@@ -1543,7 +1543,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 <B>   Value</B>
       The Value field represents the number of seconds that a link must
       be underutilized (i.e., display bandwidth utilization below the
-      threshold specified in the MS-Link-Utilization-Threshold
+      threshold specified in the <A HREF="#MS-Link-Utilization-Threshold">MS-Link-Utilization-Threshold</A>
       Attribute) before the link is dropped.
 
 <H2>2.6.  Attributes for ARAP Support</H2>
@@ -1551,15 +1551,15 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    This section describes a set of Attributes designed to support the
    Apple Remote Access Protocol (ARAP).
 
-<H2>2.6.1.  MS-Old-ARAP-Password</H2>
+<A NAME="MS-Old-ARAP-Password"><H2>2.6.1.  MS-Old-ARAP-Password</H2></a>
 
 <B>   Description</B>
 
-      The MS-Old-ARAP-Password Attribute is used to transmit the old
+      The <B>MS-Old-ARAP-Password</B> Attribute is used to transmit the old
       ARAP password during an ARAP password change operation.  It MAY be
-      included in Access-Request packets.
+      included in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets.
 
-   A summary of the MS-Old-ARAP-Password Attribute Attribute format is
+   A summary of the <B>MS-Old-ARAP-Password</B> Attribute Attribute format is
    given below.  The fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -1569,7 +1569,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      19 for MS-Old-ARAP-Password Attribute
+      19 for <B>MS-Old-ARAP-Password</B> Attribute
 
    Vendor-Length
       &gt; 3
@@ -1586,15 +1586,15 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       The String field is one or more octets.  It contains the old ARAP
       password DES-encrypted using itself as the key.
 
-<H2>2.6.2.  MS-New-ARAP-Password</H2>
+<A NAME="MS-New-ARAP-Password"><H2>2.6.2.  MS-New-ARAP-Password</H2></a>
 
 <B>   Description</B>
 
-      The MS-New-ARAP-Password Attribute is used to transmit the new
+      The <B>MS-New-ARAP-Password</B> Attribute is used to transmit the new
       ARAP password during an ARAP password change operation.  It MAY be
-      included in Access-Request packets.
+      included in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets.
 
-   A summary of the MS-New-ARAP-Password Attribute Attribute format is
+   A summary of the <B>MS-New-ARAP-Password</B> Attribute Attribute format is
    given below.  The fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -1604,7 +1604,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      20 for MS-New-ARAP-Password Attribute
+      20 for <B>MS-New-ARAP-Password</B> Attribute
 
    Vendor-Length
       &gt; 3
@@ -1613,15 +1613,15 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       The  String field is one or more octets.  It contains the new ARAP
       password DES-encrypted using the old ARAP password as the key.
 
-<H2>2.6.3.  MS-ARAP-Password-Change-Reason</H2>
+<A NAME="MS-ARAP-Password-Change-Reason"><H2>2.6.3.  MS-ARAP-Password-Change-Reason</H2></a>
 
 <B>   Description</B>
 
-      The MS-ARAP-Password-Change-Reason Attribute is used to indicate
+      The <B>MS-ARAP-Password-Change-Reason</B> Attribute is used to indicate
       reason for a server-initiated password change.  It MAY be included
-      in Access-Challenge packets.
+      in <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets.
 
-   A summary of the MS-ARAP-Password-Change-Reason Attribute format is
+   A summary of the <B>MS-ARAP-Password-Change-Reason</B> Attribute format is
    given below.  The fields are transmitted left to right.
 
 
@@ -1647,7 +1647,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      21 for MS-ARAP-Password-Change-Reason
+      21 for <B>MS-ARAP-Password-Change-Reason</B>
 
    Vendor-Length
       6
@@ -1660,14 +1660,14 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
          Admin-Requires-Password-Change  3
          Password-Too-Short              4
 
-<H2>2.6.4.  MS-ARAP-Challenge</H2>
+<A NAME="MS-ARAP-Challenge"><H2>2.6.4.  MS-ARAP-Challenge</H2></a>
 
 <B>   Description</B>
 
-      This attribute is only present in an Access-Request packet
-      containing a Framed-Protocol Attribute with the value 3 (ARAP).
+      This attribute is only present in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet
+      containing a <A HREF="rfc2865.html#Framed-Protocol">Framed-Protocol</A> Attribute with the value 3 (ARAP).
 
-   A summary of the MS-ARAP-Challenge Attribute format is given below.
+   A summary of the <B>MS-ARAP-Challenge</B> Attribute format is given below.
    The fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -1681,7 +1681,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      33 for MS-ARAP-Challenge
+      33 for <B>MS-ARAP-Challenge</B>
 
    Vendor-Length
       10
@@ -1704,15 +1704,15 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    particular category, but are used in the identification and operation
    of Microsoft remote access products.
 
-<H2>2.7.1.  MS-RAS-Vendor</H2>
+<A NAME="MS-RAS-Vendor"><H2>2.7.1.  MS-RAS-Vendor</H2></a>
 
 <B>   Description</B>
 
-      The MS-RAS-Vendor Attribute is used to indicate the manufacturer
+      The <B>MS-RAS-Vendor</B> Attribute is used to indicate the manufacturer
       of the RADIUS client machine.  It MAY be included in both Access-
-      Request and Accounting-Request packets.
+      Request and <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets.
 
-   A summary of the MS-RAS-Vendor Attribute format is given below.  The
+   A summary of the <B>MS-RAS-Vendor</B> Attribute format is given below.  The
    fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -1724,7 +1724,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      9 for MS-RAS-Vendor
+      9 for <B>MS-RAS-Vendor</B>
 
    Vendor-Length
       6
@@ -1735,13 +1735,13 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       Private Enterprise Code of the Vendor in network byte order, as
       defined in the Assigned Numbers RFC [13].
 
-<H2>2.7.2.  MS-RAS-Version</H2>
+<A NAME="MS-RAS-Version"><H2>2.7.2.  MS-RAS-Version</H2></a>
 
 <B>   Description</B>
 
-      The MS-RAS-Version Attribute is used to indicate the version of
+      The <B>MS-RAS-Version</B> Attribute is used to indicate the version of
       the RADIUS client software.  This attribute SHOULD be included in
-      packets containing an MS-RAS-Vendor Attribute; it SHOULD NOT be
+      packets containing an <A HREF="#MS-RAS-Vendor">MS-RAS-Vendor</A> Attribute; it SHOULD NOT be
 
 
 
@@ -1750,11 +1750,11 @@ Zorn                         Informational                     [Page 31]
 RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 
 
-      sent in packets which do not contain an MS-RAS-Vendor Attribute.
-      It MAY be included in both Access-Request and Accounting-Request
+      sent in packets which do not contain an <A HREF="#MS-RAS-Vendor">MS-RAS-Vendor</A> Attribute.
+      It MAY be included in both <A HREF="rfc2865.html#Access-Request">Access-Request</A> and <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A>
       packets.
 
-   A summary of the MS-RAS-Version Attribute format is given below.  The
+   A summary of the <B>MS-RAS-Version</B> Attribute format is given below.  The
    fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -1764,7 +1764,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      18 for MS-RAS-Version
+      18 for <B>MS-RAS-Version</B>
 
    Vendor-Length
       &gt; 3
@@ -1774,19 +1774,19 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       information is vendor specific, and a robust implementation SHOULD
       support the field as undistinguished octets.
 
-<H2>2.7.3.  MS-Filter</H2>
+<A NAME="MS-Filter"><H2>2.7.3.  MS-Filter</H2></a>
 
 <B>   Description</B>
 
-      The MS-Filter Attribute is used to transmit traffic filters.  It
-      MAY be included in both Access-Accept and Accounting-Request
+      The <B>MS-Filter</B> Attribute is used to transmit traffic filters.  It
+      MAY be included in both <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> and <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A>
       packets.
 
-      If multiple MS-Filter Attributes are contained within a packet,
+      If multiple <B>MS-Filter</B> Attributes are contained within a packet,
       they MUST be in order and they MUST be consecutive attributes in
       the packet.
 
-   A summary of the MS-Filter Attribute format is given below.  The
+   A summary of the <B>MS-Filter</B> Attribute format is given below.  The
    fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -1796,7 +1796,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      22 for MS-Filter Attribute
+      22 for <B>MS-Filter</B> Attribute
 
 
 
@@ -1813,19 +1813,19 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       The Filter field is one or more octets.  It contains a sequence of
       undifferentiated octets.
 
-      If multiple MS-Filter Attributes occur in a single Access-Accept
+      If multiple <B>MS-Filter</B> Attributes occur in a single <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
       packet, the Filter field from each MUST be concatenated in the
       order received to form the actual filter.
 
-<H2>2.7.4.  MS-Acct-Auth-Type</H2>
+<A NAME="MS-Acct-Auth-Type"><H2>2.7.4.  MS-Acct-Auth-Type</H2></a>
 
 <B>   Description</B>
 
-      The MS-Acct-Auth-Type Attribute is used to represent the method
+      The <B>MS-Acct-Auth-Type</B> Attribute is used to represent the method
       used to authenticate the dial-up user.  It MAY be included in
-      Accounting-Request packets.
+      <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets.
 
-   A summary of the MS-Acct-Auth-Type Attribute format is given below.
+   A summary of the <B>MS-Acct-Auth-Type</B> Attribute format is given below.
    The fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -1837,7 +1837,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      23 for MS-Acct-Auth-Type
+      23 for <B>MS-Acct-Auth-Type</B>
 
    Vendor-Length
       6
@@ -1862,15 +1862,15 @@ Zorn                         Informational                     [Page 33]
 RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 
 
-<H2>2.7.5.  MS-Acct-EAP-Type</H2>
+<A NAME="MS-Acct-EAP-Type"><H2>2.7.5.  MS-Acct-EAP-Type</H2></a>
 
 <B>   Description</B>
 
-      The MS-Acct-EAP-Type Attribute is used to represent the Extensible
+      The <B>MS-Acct-EAP-Type</B> Attribute is used to represent the Extensible
       Authentication Protocol (EAP) [15] type used to authenticate the
-      dial-up user.  It MAY be included in Accounting-Request packets.
+      dial-up user.  It MAY be included in <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets.
 
-   A summary of the MS-Acct-EAP-Type Attribute format is given below.
+   A summary of the <B>MS-Acct-EAP-Type</B> Attribute format is given below.
    The fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -1882,7 +1882,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      24 for MS-Acct-EAP-Type
+      24 for <B>MS-Acct-EAP-Type</B>
 
    Vendor-Length
       6
@@ -1896,16 +1896,16 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
          Generic Token Card     6
          TLS                    13
 
-<H2>2.7.6.  MS-Primary-DNS-Server</H2>
+<A NAME="MS-Primary-DNS-Server"><H2>2.7.6.  MS-Primary-DNS-Server</H2></a>
 
 <B>   Description</B>
 
-      The MS-Primary-DNS-Server Attribute is used to indicate the
+      The <B>MS-Primary-DNS-Server</B> Attribute is used to indicate the
       address of the primary Domain Name Server (DNS) [16, 17] server to
-      be used by the PPP peer.  It MAY be included in both Access-Accept
-      and Accounting-Request packets.
+      be used by the PPP peer.  It MAY be included in both <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
+      and <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets.
 
-   A summary of the MS-Primary-DNS-Server Attribute format is given
+   A summary of the <B>MS-Primary-DNS-Server</B> Attribute format is given
    below.  The fields are transmitted left to right.
 
 
@@ -1927,7 +1927,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      28 for MS-Primary-DNS-Server
+      28 for <B>MS-Primary-DNS-Server</B>
 
    Vendor-Length
       6
@@ -1936,16 +1936,16 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       The IP-Address field is 4 octets in length.  It contains the IP
       address of the primary DNS server.
 
-<H2>2.7.7.  MS-Secondary-DNS-Server</H2>
+<A NAME="MS-Secondary-DNS-Server"><H2>2.7.7.  MS-Secondary-DNS-Server</H2></a>
 
 <B>   Description</B>
 
-      The MS-Secondary-DNS-Server Attribute is used to indicate the
+      The <B>MS-Secondary-DNS-Server</B> Attribute is used to indicate the
       address of the secondary DNS server to be used by the PPP peer.
-      It MAY be included in both Access-Accept and Accounting-Request
+      It MAY be included in both <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> and <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A>
       packets.
 
-   A summary of the MS-Secondary-DNS-Server Attribute format is given
+   A summary of the <B>MS-Secondary-DNS-Server</B> Attribute format is given
    below.  The fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -1957,7 +1957,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      29 for MS-Secondary-DNS-Server
+      29 for <B>MS-Secondary-DNS-Server</B>
 
    Vendor-Length
       6
@@ -1974,14 +1974,14 @@ Zorn                         Informational                     [Page 35]
 RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 
 
-<H2>2.7.8.  MS-Primary-NBNS-Server</H2>
+<A NAME="MS-Primary-NBNS-Server"><H2>2.7.8.  MS-Primary-NBNS-Server</H2></a>
 
 <B>   Description</B>
 
-      The MS-Primary-NBNS-Server Attribute is used to indicate the
+      The <B>MS-Primary-NBNS-Server</B> Attribute is used to indicate the
       address of the primary NetBIOS Name Server (NBNS) [18] server to
-      be used by the PPP peer.  It MAY be included in both Access-Accept
-      and Accounting-Request packets.
+      be used by the PPP peer.  It MAY be included in both <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
+      and <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets.
 
    A summary of the MS-Primary-MBNS-Server Attribute format is given
    below.  The fields are transmitted left to right.
@@ -1995,7 +1995,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      30 for MS-Primary-NBNS-Server
+      30 for <B>MS-Primary-NBNS-Server</B>
 
    Vendor-Length
       6
@@ -2004,16 +2004,16 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       The IP-Address field is 4 octets in length.  It contains the IP
       address of the primary NBNS server.
 
-<H2>2.7.9.  MS-Secondary-NBNS-Server</H2>
+<A NAME="MS-Secondary-NBNS-Server"><H2>2.7.9.  MS-Secondary-NBNS-Server</H2></a>
 
 <B>   Description</B>
 
-      The MS-Secondary-NBNS-Server Attribute is used to indicate the
+      The <B>MS-Secondary-NBNS-Server</B> Attribute is used to indicate the
       address of the secondary DNS server to be used by the PPP peer.
-      It MAY be included in both Access-Accept and Accounting-Request
+      It MAY be included in both <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> and <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A>
       packets.
 
-   A summary of the MS-Secondary-NBNS-Server Attribute format is given
+   A summary of the <B>MS-Secondary-NBNS-Server</B> Attribute format is given
    below.  The fields are transmitted left to right.
 
 
@@ -2039,7 +2039,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
    Vendor-Type
-      31 for MS-Secondary-NBNS-Server
+      31 for <B>MS-Secondary-NBNS-Server</B>
 
    Vendor-Length
       6
@@ -2054,28 +2054,28 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    may be found in which kinds of packets, and in what quantity.
 
  Request Accept Reject Challenge Acct-Request #  Attribute
- 0-1     0      0      0         0             1 MS-CHAP-Response
- 0       0      0-1    0         0             2 MS-CHAP-Error
+ 0-1     0      0      0         0             1 <A HREF="#MS-CHAP-Response">MS-CHAP-Response</A>
+ 0       0      0-1    0         0             2 <A HREF="#MS-CHAP-Error">MS-CHAP-Error</A>
  0-1     0      0      0         0             3 MS-CHAP-CPW-1
  0-1     0      0      0         0             4 MS-CHAP-CPW-2
- 0+      0      0      0         0             5 MS-CHAP-LM-Enc-PW
- 0+      0      0      0         0             6 MS-CHAP-NT-Enc-PW
+ 0+      0      0      0         0             5 <A HREF="#MS-CHAP-LM-Enc-PW">MS-CHAP-LM-Enc-PW</A>
+ 0+      0      0      0         0             6 <A HREF="#MS-CHAP-NT-Enc-PW">MS-CHAP-NT-Enc-PW</A>
  0       0-1    0      0         0             7 MS-MPPE-Encryption-
                                                  Policy
  0       0-1    0      0         0             8 MS-MPPE-Encryption-Type
- 0-1     0      0      0         0-1           9 MS-RAS-Vendor
- 0       0-1    0      0         0-1          10 MS-CHAP-Domain
- 0-1     0      0      0-1       0            11 MS-CHAP-Challenge
- 0       0-1    0      0         0            12 MS-CHAP-MPPE-Keys
- 0       0-1    0      0         0            13 MS-BAP-Usage
+ 0-1     0      0      0         0-1           9 <A HREF="#MS-RAS-Vendor">MS-RAS-Vendor</A>
+ 0       0-1    0      0         0-1          10 <A HREF="#MS-CHAP-Domain">MS-CHAP-Domain</A>
+ 0-1     0      0      0-1       0            11 <A HREF="#MS-CHAP-Challenge">MS-CHAP-Challenge</A>
+ 0       0-1    0      0         0            12 <A HREF="#MS-CHAP-MPPE-Keys">MS-CHAP-MPPE-Keys</A>
+ 0       0-1    0      0         0            13 <A HREF="#MS-BAP-Usage">MS-BAP-Usage</A>
  0       0-1    0      0         0            14 MS-Link-Utilization-
                                                  Threshold
- 0       0-1    0      0         0            15 MS-Link-Drop-Time-Limit
- 0       0-1    0      0         0            16 MS-MPPE-Send-Key
- 0       0-1    0      0         0            17 MS-MPPE-Recv-Key
- 0-1     0      0      0         0-1          18 MS-RAS-Version
- 0-1     0      0      0         0            19 MS-Old-ARAP-Password
- 0-1     0      0      0         0            20 MS-New-ARAP-Password
+ 0       0-1    0      0         0            15 <A HREF="#MS-Link-Drop-Time-Limit">MS-Link-Drop-Time-Limit</A>
+ 0       0-1    0      0         0            16 <A HREF="#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A>
+ 0       0-1    0      0         0            17 <A HREF="#MS-MPPE-Recv-Key">MS-MPPE-Recv-Key</A>
+ 0-1     0      0      0         0-1          18 <A HREF="#MS-RAS-Version">MS-RAS-Version</A>
+ 0-1     0      0      0         0            19 <A HREF="#MS-Old-ARAP-Password">MS-Old-ARAP-Password</A>
+ 0-1     0      0      0         0            20 <A HREF="#MS-New-ARAP-Password">MS-New-ARAP-Password</A>
  0       0      0      0-1       0            21 MS-ARAP-PW-Change-
                                                  Reason
 
@@ -2086,18 +2086,18 @@ Zorn                         Informational                     [Page 37]
 RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 
 
- 0       0+     0      0         0+           22 MS-Filter
- 0       0      0      0         0-1          23 MS-Acct-Auth-Type
- 0       0      0      0         0-1          24 MS-Acct-EAP-Type
+ 0       0+     0      0         0+           22 <A HREF="#MS-Filter">MS-Filter</A>
+ 0       0      0      0         0-1          23 <A HREF="#MS-Acct-Auth-Type">MS-Acct-Auth-Type</A>
+ 0       0      0      0         0-1          24 <A HREF="#MS-Acct-EAP-Type">MS-Acct-EAP-Type</A>
  0-1     0      0      0         0            25 MS-CHAP2-Response
  0       0-1    0      0         0            26 MS-CHAP2-Success
  0-1     0      0      0         0            27 MS-CHAP2-CPW
- 0       0-1    0      0         0-1          28 MS-Primary-DNS-Server
- 0       0-1    0      0         0-1          29 MS-Secondary-DNS-Server
- 0       0-1    0      0         0-1          30 MS-Primary-NBNS-Server
+ 0       0-1    0      0         0-1          28 <A HREF="#MS-Primary-DNS-Server">MS-Primary-DNS-Server</A>
+ 0       0-1    0      0         0-1          29 <A HREF="#MS-Secondary-DNS-Server">MS-Secondary-DNS-Server</A>
+ 0       0-1    0      0         0-1          30 <A HREF="#MS-Primary-NBNS-Server">MS-Primary-NBNS-Server</A>
  0       0-1    0      0         0-1          31 MS-Secondary-NBNS-
                                                  Server
- 0-1     0      0      0         0            33 MS-ARAP-Challenge
+ 0-1     0      0      0         0            33 <A HREF="#MS-ARAP-Challenge">MS-ARAP-Challenge</A>
 
 The following table defines the meaning of the above table entries.
 
@@ -2112,7 +2112,7 @@ The following table defines the meaning of the above table entries.
    deter easy guessing.
 
    Although the scheme used to protect the Keys field of the MS-CHAP-
-   MPPE-Keys, MS-MPPE-Send-Key and MS-MPPE-Recv-Key Attributes is
+   MPPE-Keys, <A HREF="#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A> and <A HREF="#MS-MPPE-Recv-Key">MS-MPPE-Recv-Key</A> Attributes is
    believed to be relatively secure on the wire, RADIUS proxies will
    decrypt and re-encrypt the field for forwarding.  Therefore, these
    attributes SHOULD NOT be used on networks where untrusted RADIUS

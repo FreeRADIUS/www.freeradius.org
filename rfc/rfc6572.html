@@ -133,8 +133,8 @@ Table of Contents
    3. Solution Overview ...............................................5
    4. Attribute Definitions ...........................................9
       4.1. MIP6-Feature-Vector ........................................9
-      4.2. Mobile-Node-Identifier ....................................11
-      4.3. Service-Selection .........................................12
+      4.2. <A HREF="#Mobile-Node-Identifier">Mobile-Node-Identifier</A> ....................................11
+      4.3. <A HREF="#Service-Selection">Service-Selection</A> .........................................12
       4.4. PMIP6-Home-LMA-IPv6-Address ...............................12
       4.5. PMIP6-Visited-LMA-IPv6-Address ............................13
       4.6. PMIP6-Home-LMA-IPv4-Address ...............................14
@@ -149,8 +149,8 @@ Table of Contents
       4.15. PMIP6-Visited-DHCP4-Server-Address .......................22
       4.16. PMIP6-Home-DHCP6-Server-Address ..........................22
       4.17. PMIP6-Visited-DHCP6-Server-Address .......................23
-      4.18. Calling-Station-Id .......................................24
-      4.19. Chargeable-User-Identity .................................24
+      4.18. <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A> .......................................24
+      4.19. <A HREF="#Chargeable-User-Identity">Chargeable-User-Identity</A> .................................24
       4.20. PMIP6-Home-IPv4-Gateway ..................................25
       4.21. PMIP6-Visited-IPv4-Gateway ...............................25
    5. MAG to RADIUS AAA Interface ....................................26
@@ -538,7 +538,7 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
       This capability bit is used for determination of the authorized
       PMIPv6 mobility mode.  When this bit is set by the AAA, it
       indicates PMIPv6 mobility with IPv4 support has only been
-      authorized for the MN.  As a result, the RADIUS Access-Accept
+      authorized for the MN.  As a result, the RADIUS <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
       SHOULD NOT carry the IPv6 Home Network Prefix (IPv6 HNP).  When
       this bit is set, the PMIP6_SUPPORTED flag MUST also be set and the
       IP4_HOA_SUPPORTED flag MUST NOT be set.
@@ -563,7 +563,7 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    mechanism during authorization of the received PBU against the AAA to
    check individual PMIPv6 feature permissions for a particular MN.
 
-   If the RADIUS Access-Accept contains a contradicting combination of
+   If the RADIUS <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> contains a contradicting combination of
    the capability flag bits such as both the IP4_HOA_ONLY_SUPPORTED and
    the IP4_HOA_SUPPORTED flags being set, then the RADIUS client MUST
 
@@ -574,21 +574,21 @@ Xia, et al.                  Standards Track                   [Page 10]
 RFC 6572                      RADIUS PMIPv6                    June 2012
 
 
-   treat the Access-Accept as an Access-Reject and SHOULD log the event.
-   Similarly, if the RADIUS Access-Request contains a contradicting
+   treat the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> as an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> and SHOULD log the event.
+   Similarly, if the RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> contains a contradicting
    combination of the capability flag bits, then the RADIUS server MUST
-   reply with an Access-Reject message and SHOULD log the event.
+   reply with an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> message and SHOULD log the event.
 
-<H2>4.2.  Mobile-Node-Identifier</H2>
+<A NAME="Mobile-Node-Identifier"><H2>4.2.  Mobile-Node-Identifier</H2></a>
 
-   The Mobile-Node-Identifier attribute (Type value 145) is of type
+   The <B>Mobile-Node-Identifier</B> attribute (Type value 145) is of type
    String and contains the mobile node identifier (MN-Identifier), see
    [RFC5213], in a form of a Network Access Identifier (NAI) [RFC4282].
    This identifier and the identifier used for access authentication may
    be different; however, there needs to be a mapping between the two
    identities as specified in Section 6.6 of [RFC5213].  This attribute
    is used on the interface between the MAG and the AAA server.  The
-   Mobile-Node-Identifier attribute is designed for deployments where
+   <B>Mobile-Node-Identifier</B> attribute is designed for deployments where
    the identity used during network access authentication and the
    identity used for mobility management is decoupled.  It may also be
    the case where the MAG does not have means to find out the MN
@@ -597,8 +597,8 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    the network access authentication) or when the HAAA wants to assign
    periodically changing identities to the MN.
 
-   The Mobile-Node-Identifier attribute MAY be returned by the HAAA in
-   the RADIUS Access-Accept message that completes a successful
+   The <B>Mobile-Node-Identifier</B> attribute MAY be returned by the HAAA in
+   the RADIUS <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message that completes a successful
    authentication and authorization exchange between the MAG and the
    HAAA.  The MAG MUST use the received MN-Identifier.
 
@@ -609,7 +609,7 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 <B>   Type:</B>
-     Mobile-Node-Identifier 145.
+     <B>Mobile-Node-Identifier</B> 145.
 
 <B>   Length:</B>
       In octets, including Type and Length fields (&gt;= 3).
@@ -630,9 +630,9 @@ Xia, et al.                  Standards Track                   [Page 11]
 RFC 6572                      RADIUS PMIPv6                    June 2012
 
 
-<H2>4.3.  Service-Selection</H2>
+<A NAME="Service-Selection"><H2>4.3.  Service-Selection</H2></a>
 
-   The Service-Selection attribute (Type value 146) is of type UTF-8
+   The <B>Service-Selection</B> attribute (Type value 146) is of type UTF-8
    text and contains the name of the service or the external network
    with which the mobility service for the particular MN SHOULD be
    associated [RFC5149].  The identifier MUST be unique within the
@@ -640,17 +640,17 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    [UNF] for the particular PMIPv6 Domain deployment.  For instance,
    [RFC5149] uses the Normalization Form KC (NFKC).
 
-   The MAG MUST include the Service-Selection attribute in the Access-
+   The MAG MUST include the <B>Service-Selection</B> attribute in the Access-
    Request sent to the AAA if the information was acquired, e.g., by
    operator-specific configuration.  The AAA MAY include the Service-
-   Selection attribute in the Access-Accept response message to the MAG
-   even if it was not included in the Access-Request as a means of
+   Selection attribute in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> response message to the MAG
+   even if it was not included in the <A HREF="rfc2865.html#Access-Request">Access-Request</A> as a means of
    indicating the MN's default service.
 
    The Service Selection mobility option defined in [RFC5149] can be
    used in PBU/PBA messages between the MAG and LMA.  On the LMA-to-AAA
-   interface, the LMA MAY populate the Service-Selection attribute in
-   the Access-Request message using the service information found in the
+   interface, the LMA MAY populate the <B>Service-Selection</B> attribute in
+   the <A HREF="rfc2865.html#Access-Request">Access-Request</A> message using the service information found in the
    received PBU, if such a mobility option were included.  The Service-
    Selection identifier should be used to assist the PBU authorization,
    the assignment of the MN-HNP, and the IPv4-MN-HoA as described in
@@ -663,7 +663,7 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 <B>   Type:</B>
-      Service-Selection 146.
+      <B>Service-Selection</B> 146.
 
 <B>   Length:</B>
       In octets, including Type and Length fields (&gt;= 3).
@@ -724,7 +724,7 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    local network.
 
    PMIP6-Visited-LMA-IPv6-Address attribute MAY be included by the MAG
-   in the RADIUS Access-Request message.  The LMA in the visited/local
+   in the RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> message.  The LMA in the visited/local
    network may be assigned by the [VL]AAA as the result of retrieved
    policy profile.  If included by the [VL]AAA in the RADIUS Access-
    Accept sent to the MAG, the use of the LMA in the visited/local
@@ -773,7 +773,7 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    between MAG and LMA using the IPv4 transport.
 
    When the LMA is located in the home network, this attribute MAY be
-   sent by the HAAA to the MAG in the RADIUS Access-Accept message.
+   sent by the HAAA to the MAG in the RADIUS <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message.
 
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -809,7 +809,7 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    network.
 
    PMIP6-Visited-LMA-IPv4-Address attribute MAY be included by the MAG
-   in the RADIUS Access-Request message.  The LMA in the visited/local
+   in the RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> message.  The LMA in the visited/local
    network may be assigned by the [VL]AAA as the result of retrieved
    policy profile.  If included by the [VL]AAA in the RADIUS Access-
    Accept sent to the MAG, the use of the LMA in the visited/local
@@ -857,8 +857,8 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    The PMIP6-Home-HN-Prefix attribute is also used on the LMA-to-HAAA
    interface containing the prefix assigned to the MN.  If the LMA
    delegates the MN-HNP assignment to the HAAA, the attribute MUST
-   contain all zeroes in the address of (i.e., '::') the Access-Request
-   message.  The attribute MUST be present in the RADIUS Access-Accept
+   contain all zeroes in the address of (i.e., '::') the <A HREF="rfc2865.html#Access-Request">Access-Request</A>
+   message.  The attribute MUST be present in the RADIUS <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
    message if the prior request already included one and SHOULD carry
    the MN-HNP the HAAA assigned to the MN.
 
@@ -919,7 +919,7 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    interface containing the IPv6 prefix assigned to the MN.  If the LMA
    delegates the assignment of the MN-HNP to the VAAA, the attribute
    MUST contain an address of all zeroes (i.e., '::') in the RADIUS
-   Access-Request message.  The attribute MUST be present in Access-
+   <A HREF="rfc2865.html#Access-Request">Access-Request</A> message.  The attribute MUST be present in Access-
    Accept message if the prior request already included one and SHOULD
    carry the MN-HNP the VAAA assigned to the MN.
 
@@ -984,8 +984,8 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    such.
 
    This attribute MAY be sent by the LMA or the MAG to the HAAA in the
-   RADIUS Access-Request packet as a proposal.  This attribute MAY be
-   sent by the HAAA to the LMA or to the MAG in an Access-Accept packet;
+   RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet as a proposal.  This attribute MAY be
+   sent by the HAAA to the LMA or to the MAG in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet;
    however, it MUST be present if the prior request already included
    one.
 
@@ -1028,8 +1028,8 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    technologies are examples of such.
 
    This attribute MAY be sent by the LMA or the MAG to the VAAA in the
-   RADIUS Access-Request packet as a proposal.  This attribute MAY be
-   sent by the VAAA to the LMA or to the MAG in an Access-Accept packet;
+   RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet as a proposal.  This attribute MAY be
+   sent by the VAAA to the LMA or to the MAG in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet;
    however, it MUST be present if the prior request already included
    one.
 
@@ -1063,8 +1063,8 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    The PMIP6-Home-IPv4-HoA is also used on the LMA-to-HAAA interface.
    If the LMA in the home network delegates the assignment of the
    IPv4-HoA to the HAAA, the attribute MUST contain an address of all
-   zeroes (i.e., 0.0.0.0) in the Access-Request message.  The attribute
-   MUST be included in by HAAA in the Access-Accept message if the
+   zeroes (i.e., 0.0.0.0) in the <A HREF="rfc2865.html#Access-Request">Access-Request</A> message.  The attribute
+   MUST be included in by HAAA in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message if the
    previous request included it, and it contains the IPv4-HoA assigned
    to the MN.
 
@@ -1117,7 +1117,7 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    The PMIP6-Visited-IPv4-HoA is also used on the LMA-to-VAAA interface.
    If the LMA delegates the assignment of the IPv4-HoA to the VAAA, the
    attribute MUST contain an address of all zeroes (i.e., 0.0.0.0) in
-   the RADIUS Access-Request message.  The Access-Accept message MUST
+   the RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> message.  The <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message MUST
    have the attribute present if the prior request to the VAAA already
    included one.
 
@@ -1326,27 +1326,27 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
       This field is of type Address and contains the 16-octet IPv6
       address of the DHCPv6 server.
 
-<H2>4.18.  Calling-Station-Id</H2>
+<A NAME="Calling-Station-Id"><H2>4.18.  Calling-Station-Id</H2></a>
 
-   The Calling-Station-Id attribute (Type value 31) is of type String.
+   The <B>Calling-Station-Id</B> attribute (Type value 31) is of type String.
    When used within PMIPv6 deployments, the attribute contains the MN
    Link-Layer Identifier option of the MN as defined in [RFC5213],
    Sections 2.2 and 8.6.
 
-<H2>4.19.  Chargeable-User-Identity</H2>
+<A NAME="Chargeable-User-Identity"><H2>4.19.  Chargeable-User-Identity</H2></a>
 
-   The Chargeable-User-Identity attribute, or CUI, (Type value 89) is a
+   The <B>Chargeable-User-Identity</B> attribute, or CUI, (Type value 89) is a
    unique, temporary handle used as means to, for example, correlate
    authentication, accounting, and bill post-processing for a particular
    chargeable subscriber.  The CUI format and use follows guidelines
    defined by [RFC4372].
 
    In the scope of this document, the CUI attribute MAY be present in
-   the Access-Request.  The CUI MAY also be present in the Access-
-   Accept.  The CUI MUST be present in the Access-Accept if it was
-   present in the Access-Request.  If the use of the Chargeable-User-
+   the <A HREF="rfc2865.html#Access-Request">Access-Request</A>.  The CUI MAY also be present in the Access-
+   Accept.  The CUI MUST be present in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> if it was
+   present in the <A HREF="rfc2865.html#Access-Request">Access-Request</A>.  If the use of the Chargeable-User-
    Identity attribute is supported, then the MAG and/or the LMA commits
-   to include the Chargeable-User-Identity attribute in all subsequent
+   to include the <B>Chargeable-User-Identity</B> attribute in all subsequent
    RADIUS Accounting packets they send for the given user.
 
 
@@ -1470,7 +1470,7 @@ Xia, et al.                  Standards Track                   [Page 26]
 RFC 6572                      RADIUS PMIPv6                    June 2012
 
 
-   The User-Name attribute MUST be present in the Access-Request.  It
+   The <A HREF="rfc2865.html#User-Name">User-Name</A> attribute MUST be present in the <A HREF="rfc2865.html#Access-Request">Access-Request</A>.  It
    MUST carry a correctly formed identifier that SHOULD correspond to an
    MN identity unless the identity is being suppressed for policy
    reasons, for example, when identity hiding is in effect.  The MN
@@ -1479,17 +1479,17 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    available at the MAG when the network access authentication takes
    place.  Otherwise, the MAG is not able to route RADIUS request
    messages towards the correct HAAA.  The MN identity used on the MAG-
-   to-HAAA interface and in the User-Name attribute MAY entirely be
+   to-HAAA interface and in the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute MAY entirely be
    related to the network access authentication and, therefore, not be
    suitable to be used as the MN-Identifier mobility option value in the
    subsequent PBU/PBA messages.  In this case, the HAAA MUST provide the
-   MN-Identifier for PBU/PBA messages using the Mobile-Node-Identifier
+   MN-Identifier for PBU/PBA messages using the <A HREF="#Mobile-Node-Identifier">Mobile-Node-Identifier</A>
    attribute (see Section 4.2).
 
-   At least one of the NAS-IP-Address, NAS-IPv6-Address, or
-   NAS-Identifier attributes MUST be present in the Access-Request.  The
-   Service-Type attribute SHOULD be set to value 1 (Login) and the NAS-
-   Port-Type attribute SHOULD be present in the Access-Request.
+   At least one of the <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A>, NAS-IPv6-Address, or
+   <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A> attributes MUST be present in the <A HREF="rfc2865.html#Access-Request">Access-Request</A>.  The
+   <A HREF="rfc2865.html#Service-Type">Service-Type</A> attribute SHOULD be set to value 1 (Login) and the NAS-
+   Port-Type attribute SHOULD be present in the <A HREF="rfc2865.html#Access-Request">Access-Request</A>.
 
 <H2>5.2.  Table of Attributes</H2>
 
@@ -1528,24 +1528,24 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
 
    Request Accept Reject Challenge #  Attribute
 
-   1       0-1    0      0         1  User-Name
-   0-1     0      0      0         4  NAS-IP-Address
-   0-1     0-1    0      0         5  NAS-Port
-   0-1     0-1    0      0         6  Service-Type
-   0-1     0-1    0      0-1      24  State
-   0       0-1    0      0        25  Class
-   0       0-1    0      0-1      27  Session-Timeout
-   0-1     0      0      0        31  Calling-Station-Id
-   0-1     0      0      0        32  NAS-Identifier
-   0+      0+     0+     0+       33  Proxy-State
-   0-1     0      0      0        69  NAS-Port-Type
-   0+      0+     0+     0+       79  EAP-Message
-   1       1      1      1        80  Message-Authenticator
-   0-1     0-1    0      0        89  Chargeable-User-Identity
+   1       0-1    0      0         1  <A HREF="rfc2865.html#User-Name">User-Name</A>
+   0-1     0      0      0         4  <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A>
+   0-1     0-1    0      0         5  <A HREF="rfc2865.html#NAS-Port">NAS-Port</A>
+   0-1     0-1    0      0         6  <A HREF="rfc2865.html#Service-Type">Service-Type</A>
+   0-1     0-1    0      0-1      24  <A HREF="rfc2865.html#State">State</A>
+   0       0-1    0      0        25  <A HREF="rfc2865.html#Class">Class</A>
+   0       0-1    0      0-1      27  <A HREF="rfc2865.html#Session-Timeout">Session-Timeout</A>
+   0-1     0      0      0        31  <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A>
+   0-1     0      0      0        32  <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A>
+   0+      0+     0+     0+       33  <A HREF="rfc2865.html#Proxy-State">Proxy-State</A>
+   0-1     0      0      0        69  <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A>
+   0+      0+     0+     0+       79  <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>
+   1       1      1      1        80  <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>
+   0-1     0-1    0      0        89  <A HREF="#Chargeable-User-Identity">Chargeable-User-Identity</A>
    0-1     0      0      0        95  NAS-IPv6-Address
    0-1     0-1    0      0       124  MIP6-Feature-Vector
-   0       1      0      0       145  Mobile-Node-Identifier
-   0-1     0-1    0      0       146  Service-Selection
+   0       1      0      0       145  <A HREF="#Mobile-Node-Identifier">Mobile-Node-Identifier</A>
+   0-1     0-1    0      0       146  <A HREF="#Service-Selection">Service-Selection</A>
    0       0-1    0      0       147  PMIP6-Home-LMA-IPv6-Address
    0-1     0-1    0      0       148  PMIP6-Visited-LMA-IPv6-Address
    0       0-1    0      0       149  PMIP6-Home-LMA-IPv4-Address
@@ -1586,9 +1586,9 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    exchange the MN address assignment information between the LMA and
    the HAAA.
 
-   Whenever the LMA sends an Access-Request message to the HAAA, the
-   User-Name attribute SHOULD contain the MN's identity.  The LMA-
-   provided identity in the User-Name attribute is strongly RECOMMENDED
+   Whenever the LMA sends an <A HREF="rfc2865.html#Access-Request">Access-Request</A> message to the HAAA, the
+   <A HREF="rfc2865.html#User-Name">User-Name</A> attribute SHOULD contain the MN's identity.  The LMA-
+   provided identity in the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute is strongly RECOMMENDED
    to be the same as the MN's identity information in the PBU MN-
    Identifier mobility option.  The identity SHOULD also be the same as
    used on the MAG-to-HAAA interface; however, in case those identities
@@ -1600,16 +1600,16 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    Station-Id attribute SHOULD be included in the request message
    containing the received MN Link-Layer Identifier option.
    Furthermore, if the PBU contains the Service Selection mobility
-   option [RFC5149], the Service-Selection attribute SHOULD be included
+   option [RFC5149], the <A HREF="#Service-Selection">Service-Selection</A> attribute SHOULD be included
    in the request message containing the received service identifier.
    Both the MN Link-Layer Identifier option and the service selection
    can be used to provide more information for the PBU authorization
    step in the HAAA.
 
-   The Service-Type attribute MUST be set to the value 17 (Authorize
+   The <A HREF="rfc2865.html#Service-Type">Service-Type</A> attribute MUST be set to the value 17 (Authorize
    Only).  If the HAAA is not able to authorize the subscriber's
-   mobility service session, then the Access-Reject message to the LMA
-   MAY contain the Reply-Message attribute describing the reason for
+   mobility service session, then the <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> message to the LMA
+   MAY contain the <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> attribute describing the reason for
    rejecting the authorization.  A failed authorization obviously
    results in a rejection of the PBU, and a PBA with an appropriate
    error Status Value MUST be sent back to the MAG.
@@ -1661,7 +1661,7 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    MN-HNP/IPv4-MN-HoA are set to undefined addresses in the Access-
    Request message sent from the LMA to the HAAA.  The LMA expects to
    receive the HAAA assigned HNP/IPv4-MN-HoA in the corresponding
-   Access-Accept message.
+   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message.
 
 <H2>6.2.  Table of Attributes</H2>
 
@@ -1696,22 +1696,22 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
 
    Request Accept Reject Challenge #   Attribute
 
-   1       0-1    0      0         1   User-Name
-   0-1     0-1    0      0         4   NAS-IP-Address
-   0-1     0-1    0      0         5   NAS-Port
-   1       0-1    0      0         6   Service-Type
-   0       0-1    0      0        25   Class
-   0       0-1    0      0-1      27   Session-Timeout
-   0-1     0      0      0        31   Calling-Station-Id
-   1       0      0      0        32   NAS-Identifier
-   0+      0+     0+     0+       33   Proxy-State
-   1       0      0      0        69   NAS-Port-Type
-   1       1      1      1        80   Message-Authenticator
-   0-1     0-1    0      0        89   Chargeable-User-Identity
+   1       0-1    0      0         1   <A HREF="rfc2865.html#User-Name">User-Name</A>
+   0-1     0-1    0      0         4   <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A>
+   0-1     0-1    0      0         5   <A HREF="rfc2865.html#NAS-Port">NAS-Port</A>
+   1       0-1    0      0         6   <A HREF="rfc2865.html#Service-Type">Service-Type</A>
+   0       0-1    0      0        25   <A HREF="rfc2865.html#Class">Class</A>
+   0       0-1    0      0-1      27   <A HREF="rfc2865.html#Session-Timeout">Session-Timeout</A>
+   0-1     0      0      0        31   <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A>
+   1       0      0      0        32   <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A>
+   0+      0+     0+     0+       33   <A HREF="rfc2865.html#Proxy-State">Proxy-State</A>
+   1       0      0      0        69   <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A>
+   1       1      1      1        80   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>
+   0-1     0-1    0      0        89   <A HREF="#Chargeable-User-Identity">Chargeable-User-Identity</A>
    0-1     0-1    0      0        95   NAS-IPv6-Address
    0-1     0-1    0      0       124   MIP6-Feature-Vector
-   1       0      0      0       145   Mobile-Node-Identifier
-   0-1     0-1    0      0       146   Service-Selection
+   1       0      0      0       145   <A HREF="#Mobile-Node-Identifier">Mobile-Node-Identifier</A>
+   0-1     0-1    0      0       146   <A HREF="#Service-Selection">Service-Selection</A>
    0-1     0      0      0       147   PMIP6-Home-LMA-IPv6-Address
    0-1     0      0      0       148   PMIP6-Visited-LMA-IPv6-Address
    0-1     0      0      0       149   PMIP6-Home-LMA-IPv4-Address
@@ -1776,8 +1776,8 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    Accounting
    Request       #  Attribute
 
-   0-1         145  Mobile-Node-Identifier
-   0-1         146  Service-Selection
+   0-1         145  <A HREF="#Mobile-Node-Identifier">Mobile-Node-Identifier</A>
+   0-1         146  <A HREF="#Service-Selection">Service-Selection</A>
    0-1         147  PMIP6-Home-LMA-IPv6-Address
    0-1         148  PMIP6-Visited-LMA-IPv6-Address
    0-1         149  PMIP6-Home-LMA-IPv4-Address
@@ -1786,9 +1786,9 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    0+          152  PMIP6-Visited-HN-Prefix
    0-1         155  PMIP6-Home-IPv4-HoA
    0-1         156  PMIP6-Visited-IPv4-HoA
-   0-1          31  Calling-Station-Id
-   0-1          80  Message-Authenticator
-   0-1          89  Chargeable-User-Identity
+   0-1          31  <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A>
+   0-1          80  <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>
+   0-1          89  <A HREF="#Chargeable-User-Identity">Chargeable-User-Identity</A>
    0-1         124  MIP6-Feature-Vector
 
 <H2>8.  Security Considerations</H2>
@@ -1823,8 +1823,8 @@ RFC 6572                      RADIUS PMIPv6                    June 2012
    This specification defines the following new RADIUS attribute type
    values:
 
-           Mobile-Node-Identifier              145
-           Service-Selection                   146
+           <A HREF="#Mobile-Node-Identifier">Mobile-Node-Identifier</A>              145
+           <A HREF="#Service-Selection">Service-Selection</A>                   146
            PMIP6-Home-LMA-IPv6-Address         147
            PMIP6-Visited-LMA-IPv6-Address      148
            PMIP6-Home-LMA-IPv4-Address         149

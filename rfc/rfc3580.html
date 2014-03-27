@@ -76,40 +76,40 @@ Table of Contents
        1.1.  Terminology. . . . . . . . . . . . . . . . . . . . . . .  3
        1.2.  Requirements Language. . . . . . . . . . . . . . . . . .  4
    2.  RADIUS Accounting Attributes . . . . . . . . . . . . . . . . .  5
-       2.1.  Acct-Terminate-Cause . . . . . . . . . . . . . . . . . .  5
-       2.2.  Acct-Multi-Session-Id. . . . . . . . . . . . . . . . . .  6
-       2.3.  Acct-Link-Count. . . . . . . . . . . . . . . . . . . . .  7
+       2.1.  <A HREF="rfc2866.html#Acct-Terminate-Cause">Acct-Terminate-Cause</A> . . . . . . . . . . . . . . . . . .  5
+       2.2.  <A HREF="rfc2866.html#Acct-Multi-Session-Id">Acct-Multi-Session-Id</A>. . . . . . . . . . . . . . . . . .  6
+       2.3.  <A HREF="rfc2866.html#Acct-Link-Count">Acct-Link-Count</A>. . . . . . . . . . . . . . . . . . . . .  7
    3.  RADIUS Authentication. . . . . . . . . . . . . . . . . . . . .  7
-       3.1.  User-Name. . . . . . . . . . . . . . . . . . . . . . . .  8
-       3.2.  User-Password, CHAP-Password, CHAP-Challenge . . . . . .  8
-       3.3.  NAS-IP-Address, NAS-IPv6-Address . . . . . . . . . . . .  8
-       3.4.  NAS-Port . . . . . . . . . . . . . . . . . . . . . . . .  8
-       3.5.  Service-Type . . . . . . . . . . . . . . . . . . . . . .  8
-       3.6.  Framed-Protocol. . . . . . . . . . . . . . . . . . . . .  9
-       3.7.  Framed-IP-Address, Framed-IP-Netmask . . . . . . . . . .  9
-       3.8.  Framed-Routing . . . . . . . . . . . . . . . . . . . . .  9
-       3.9.  Filter-ID. . . . . . . . . . . . . . . . . . . . . . . .  9
-       3.10. Framed-MTU . . . . . . . . . . . . . . . . . . . . . . .  9
-       3.11. Framed-Compression . . . . . . . . . . . . . . . . . . . 10
+       3.1.  <A HREF="rfc2865.html#User-Name">User-Name</A>. . . . . . . . . . . . . . . . . . . . . . . .  8
+       3.2.  <A HREF="rfc2865.html#User-Password">User-Password</A>, <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A>, <A HREF="rfc2865.html#CHAP-Challenge">CHAP-Challenge</A> . . . . . .  8
+       3.3.  <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A>, NAS-IPv6-Address . . . . . . . . . . . .  8
+       3.4.  <A HREF="rfc2865.html#NAS-Port">NAS-Port</A> . . . . . . . . . . . . . . . . . . . . . . . .  8
+       3.5.  <A HREF="rfc2865.html#Service-Type">Service-Type</A> . . . . . . . . . . . . . . . . . . . . . .  8
+       3.6.  <A HREF="rfc2865.html#Framed-Protocol">Framed-Protocol</A>. . . . . . . . . . . . . . . . . . . . .  9
+       3.7.  <A HREF="rfc2865.html#Framed-IP-Address">Framed-IP-Address</A>, <A HREF="rfc2865.html#Framed-IP-Netmask">Framed-IP-Netmask</A> . . . . . . . . . .  9
+       3.8.  <A HREF="rfc2865.html#Framed-Routing">Framed-Routing</A> . . . . . . . . . . . . . . . . . . . . .  9
+       3.9.  <A HREF="#Filter-ID">Filter-ID</A>. . . . . . . . . . . . . . . . . . . . . . . .  9
+       3.10. <A HREF="rfc2865.html#Framed-MTU">Framed-MTU</A> . . . . . . . . . . . . . . . . . . . . . . .  9
+       3.11. <A HREF="rfc2865.html#Framed-Compression">Framed-Compression</A> . . . . . . . . . . . . . . . . . . . 10
        3.12. Displayable Messages . . . . . . . . . . . . . . . . . . 10
-       3.13. Callback-Number, Callback-ID . . . . . . . . . . . . . . 10
-       3.14. Framed-Route, Framed-IPv6-Route. . . . . . . . . . . . . 11
-       3.15. State, Class, Proxy-State. . . . . . . . . . . . . . . . 11
-       3.16. Vendor-Specific. . . . . . . . . . . . . . . . . . . . . 11
-       3.17. Session-Timeout. . . . . . . . . . . . . . . . . . . . . 11
-       3.18. Idle-Timeout . . . . . . . . . . . . . . . . . . . . . . 12
-       3.19. Termination-Action . . . . . . . . . . . . . . . . . . . 12
-       3.20. Called-Station-Id. . . . . . . . . . . . . . . . . . . . 12
-       3.21. Calling-Station-Id . . . . . . . . . . . . . . . . . . . 12
-       3.22. NAS-Identifier . . . . . . . . . . . . . . . . . . . . . 12
-       3.23. NAS-Port-Type. . . . . . . . . . . . . . . . . . . . . . 12
-       3.24. Port-Limit . . . . . . . . . . . . . . . . . . . . . . . 13
-       3.25. Password-Retry . . . . . . . . . . . . . . . . . . . . . 13
-       3.26. Connect-Info . . . . . . . . . . . . . . . . . . . . . . 13
-       3.27. EAP-Message. . . . . . . . . . . . . . . . . . . . . . . 13
-       3.28. Message-Authenticator. . . . . . . . . . . . . . . . . . 13
-       3.29. NAS-Port-Id. . . . . . . . . . . . . . . . . . . . . . . 13
-       3.30. Framed-Pool, Framed-IPv6-Pool. . . . . . . . . . . . . . 14
+       3.13. <A HREF="rfc2865.html#Callback-Number">Callback-Number</A>, Callback-ID . . . . . . . . . . . . . . 10
+       3.14. <A HREF="rfc2865.html#Framed-Route">Framed-Route</A>, Framed-IPv6-Route. . . . . . . . . . . . . 11
+       3.15. <A HREF="rfc2865.html#State">State</A>, <A HREF="rfc2865.html#Class">Class</A>, Proxy-<A HREF="rfc2865.html#State">State</A>. . . . . . . . . . . . . . . . 11
+       3.16. <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A>. . . . . . . . . . . . . . . . . . . . . 11
+       3.17. <A HREF="rfc2865.html#Session-Timeout">Session-Timeout</A>. . . . . . . . . . . . . . . . . . . . . 11
+       3.18. <A HREF="rfc2865.html#Idle-Timeout">Idle-Timeout</A> . . . . . . . . . . . . . . . . . . . . . . 12
+       3.19. <A HREF="rfc2865.html#Termination-Action">Termination-Action</A> . . . . . . . . . . . . . . . . . . . 12
+       3.20. <A HREF="rfc2865.html#Called-Station-Id">Called-Station-Id</A>. . . . . . . . . . . . . . . . . . . . 12
+       3.21. <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A> . . . . . . . . . . . . . . . . . . . 12
+       3.22. <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A> . . . . . . . . . . . . . . . . . . . . . 12
+       3.23. <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A>. . . . . . . . . . . . . . . . . . . . . . 12
+       3.24. <A HREF="rfc2865.html#Port-Limit">Port-Limit</A> . . . . . . . . . . . . . . . . . . . . . . . 13
+       3.25. <A HREF="rfc2869.html#Password-Retry">Password-Retry</A> . . . . . . . . . . . . . . . . . . . . . 13
+       3.26. <A HREF="rfc2869.html#Connect-Info">Connect-Info</A> . . . . . . . . . . . . . . . . . . . . . . 13
+       3.27. <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>. . . . . . . . . . . . . . . . . . . . . . . 13
+       3.28. <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>. . . . . . . . . . . . . . . . . . 13
+       3.29. <A HREF="rfc2869.html#NAS-Port-Id">NAS-Port-Id</A>. . . . . . . . . . . . . . . . . . . . . . . 13
+       3.30. <A HREF="rfc2869.html#Framed-Pool">Framed-Pool</A>, Framed-IPv6-Pool. . . . . . . . . . . . . . 14
        3.31. Tunnel Attributes. . . . . . . . . . . . . . . . . . . . 14
    4.  RC4 EAPOL-Key Descriptor . . . . . . . . . . . . . . . . . . . 15
    5.  Security Considerations. . . . . . . . . . . . . . . . . . . . 18
@@ -247,11 +247,11 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
    Attributes requiring more discussion include:
 
-      Acct-Terminate-Cause
-      Acct-Multi-Session-Id
-      Acct-Link-Count
+      <A HREF="rfc2866.html#Acct-Terminate-Cause">Acct-Terminate-Cause</A>
+      <A HREF="rfc2866.html#Acct-Multi-Session-Id">Acct-Multi-Session-Id</A>
+      <A HREF="rfc2866.html#Acct-Link-Count">Acct-Link-Count</A>
 
-<H2>2.1.  Acct-Terminate-Cause</H2>
+<A NAME="Acct-Terminate-Cause"><H2>2.1.  Acct-Terminate-Cause</H2></a>
 
    This attribute indicates how the session was terminated, as described
    in [RFC2866].  [IEEE8021X] defines the following termination cause
@@ -259,7 +259,7 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    the next page.
 
    IEEE 802.1X                       RADIUS
-   dot1xAuthSessionTerminateCause    Acct-Terminate-Cause
+   dot1xAuthSessionTerminateCause    <B>Acct-Terminate-Cause</B>
 <B>   Value                             Value</B>
    -------------                     --------------------
    SupplicantLogoff(1)               User Request (1)
@@ -328,7 +328,7 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    A Port Administratively Disabled (22) termination cause indicates
    that the Port has been administratively disabled.
 
-<H2>2.2.  Acct-Multi-Session-Id</H2>
+<A NAME="Acct-Multi-Session-Id"><H2>2.2.  Acct-Multi-Session-Id</H2></a>
 
    The purpose of this attribute is to make it possible to link together
    multiple related sessions.  While [IEEE8021X] does not act on
@@ -336,7 +336,7 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    Access Points to cause multiple RADIUS accounting packets to be sent
    by different Access Points.
 
-   Where supported by the Access Points, the Acct-Multi-Session-Id
+   Where supported by the Access Points, the <B>Acct-Multi-Session-Id</B>
    attribute can be used to link together the multiple related sessions
    of a roaming Supplicant.  In such a situation, if the session context
    is transferred between Access Points, accounting packets MAY be sent
@@ -351,16 +351,16 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
 
    provided that Association has occurred.  However, in such a situation
-   it is assumed that the Acct-Multi-Session-Id is transferred between
+   it is assumed that the <B>Acct-Multi-Session-Id</B> is transferred between
    the Access Points as part of the Inter-Access Point Protocol (IAPP).
 
-   If the Acct-Multi-Session-Id were not unique between Access Points,
-   then it is possible that the chosen Acct-Multi-Session-Id will
+   If the <B>Acct-Multi-Session-Id</B> were not unique between Access Points,
+   then it is possible that the chosen <B>Acct-Multi-Session-Id</B> will
    overlap with an existing value allocated on that Access Point, and
    the Accounting Server would therefore be unable to distinguish a
    roaming session from a multi-link session.
 
-   As a result, the Acct-Multi-Session-Id attribute is unique among all
+   As a result, the <B>Acct-Multi-Session-Id</B> attribute is unique among all
    the bridges or Access Points, Supplicants and sessions.  In order to
    provide this uniqueness, it is suggested that the Acct-Multi-
    Session-Id be of the form:
@@ -371,24 +371,24 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    MAC address of the bridge or Access Point at which the session
    started, and the 64-bit NTP timestamp indicates the beginning of the
    original session.  In order to provide for consistency of the Acct-
-   Multi-Session-Id between roaming sessions, the Acct-Multi-Session-Id
+   Multi-Session-Id between roaming sessions, the <B>Acct-Multi-Session-Id</B>
    may be moved between Access Points as part of IAPP or another handoff
    scheme.
 
-   The use of an Acct-Multi-Session-Id of this form guarantees
+   The use of an <B>Acct-Multi-Session-Id</B> of this form guarantees
    uniqueness among all Access Points, Supplicants and sessions.  Since
    the NTP timestamp does not wrap on reboot, there is no possibility
-   that a rebooted Access Point could choose an Acct-Multi-Session-Id
+   that a rebooted Access Point could choose an <B>Acct-Multi-Session-Id</B>
    that could be confused with that of a previous session.
 
-   Since the Acct-Multi-Session-Id is of type String as defined in
+   Since the <B>Acct-Multi-Session-Id</B> is of type String as defined in
    [RFC2866], for use with IEEE 802.1X, it is encoded as an ASCII string
    of Hex digits.  Example:  "00-10-A4-23-19-C0-00-12-B2-
    14-23-DE-AF-23-83-C0-76-B8-44-E8"
 
-<H2>2.3.  Acct-Link-Count</H2>
+<A NAME="Acct-Link-Count"><H2>2.3.  Acct-Link-Count</H2></a>
 
-   The Acct-Link-Count attribute may be used to account for the number
+   The <B>Acct-Link-Count</B> attribute may be used to account for the number
    of ports that have been aggregated.
 
 <H2>3.  RADIUS Authentication</H2>
@@ -406,54 +406,54 @@ Congdon, et al.              Informational                      [Page 7]
 RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
 
-<H2>3.1.  User-Name</H2>
+<A NAME="User-Name"><H2>3.1.  User-Name</H2></a>
 
    In IEEE 802.1X, the Supplicant typically provides its identity via an
    EAP-Response/Identity message.  Where available, the Supplicant
-   identity is included in the User-Name attribute, and included in the
-   RADIUS Access-Request and Access-Reply messages as specified in
+   identity is included in the <B>User-Name</B> attribute, and included in the
+   RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> and Access-Reply messages as specified in
    [RFC2865] and [RFC3579].
 
-   Alternatively, as discussed in [RFC3579] Section 2.1., the User-Name
+   Alternatively, as discussed in [RFC3579] Section 2.1., the <B>User-Name</B>
    attribute may contain the Calling-Station-ID value, which is set to
    the Supplicant MAC address.
 
 <H2>3.2.  User-Password, CHAP-Password, CHAP-Challenge</H2>
 
    Since IEEE 802.1X does not support PAP or CHAP authentication, the
-   User-Password, CHAP-Password or CHAP-Challenge attributes are not
+   <A HREF="rfc2865.html#User-Password">User-Password</A>, <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A> or <A HREF="rfc2865.html#CHAP-Challenge">CHAP-Challenge</A> attributes are not
    used by IEEE 802.1X Authenticators acting as RADIUS clients.
 
 <H2>3.3.  NAS-IP-Address, NAS-IPv6-Address</H2>
 
-   For use with IEEE 802.1X, the NAS-IP-Address contains the IPv4
+   For use with IEEE 802.1X, the <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> contains the IPv4
    address of the bridge or Access Point acting as an Authenticator, and
    the NAS-IPv6-Address contains the IPv6 address.  If the IEEE 802.1X
    Authenticator has more than one interface, it may be desirable to use
    a loopback address for this purpose so that the Authenticator will
    still be reachable even if one of the interfaces were to fail.
 
-<H2>3.4.  NAS-Port</H2>
+<A NAME="NAS-Port"><H2>3.4.  NAS-Port</H2></a>
 
-   For use with IEEE 802.1X the NAS-Port will contain the port number of
+   For use with IEEE 802.1X the <B>NAS-Port</B> will contain the port number of
    the bridge, if this is available.  While an Access Point does not
    have physical ports, a unique "association ID" is assigned to every
    mobile Station upon a successful association exchange.  As a result,
    for an Access Point, if the association exchange has been completed
-   prior to authentication, the NAS-Port attribute will contain the
+   prior to authentication, the <B>NAS-Port</B> attribute will contain the
    association ID, which is a 16-bit unsigned integer.  Where IEEE
-   802.1X authentication occurs prior to association, a unique NAS-Port
+   802.1X authentication occurs prior to association, a unique <B>NAS-Port</B>
    value may not be available.
 
-<H2>3.5.  Service-Type</H2>
+<A NAME="Service-Type"><H2>3.5.  Service-Type</H2></a>
 
    For use with IEEE 802.1X, the Framed (2), Authenticate Only (8), and
    Call Check (10) values are most commonly used.
 
-   A Service-Type of Framed indicates that appropriate 802 framing
-   should be used for the connection.  A Service-Type of Authenticate
+   A <B>Service-Type</B> of Framed indicates that appropriate 802 framing
+   should be used for the connection.  A <B>Service-Type</B> of Authenticate
    Only (8) indicates that no authorization information needs to be
-   returned in the Access-Accept.  As described in [RFC2865], a
+   returned in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>.  As described in [RFC2865], a
 
 
 
@@ -462,35 +462,35 @@ Congdon, et al.              Informational                      [Page 8]
 RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
 
-   Service-Type of Call Check is included in an Access-Request packet to
+   <B>Service-Type</B> of Call Check is included in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet to
    request that the RADIUS server accept or reject the connection
    attempt, typically based on the Called-Station-ID (set to the bridge
    or Access Point MAC address) or Calling-Station-ID attributes (set to
    the Supplicant MAC address).  As noted in [RFC2865], it is
-   recommended that in this case, the User-Name attribute be given the
-   value of Calling-Station-Id.
+   recommended that in this case, the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute be given the
+   value of <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A>.
 
-<H2>3.6.  Framed-Protocol</H2>
+<A NAME="Framed-Protocol"><H2>3.6.  Framed-Protocol</H2></a>
 
-   Since there is no value for IEEE 802 media, the Framed-Protocol
+   Since there is no value for IEEE 802 media, the <B>Framed-Protocol</B>
    attribute is not used by IEEE 802.1X Authenticators.
 
 <H2>3.7.  Framed-IP-Address, Framed-IP-Netmask</H2>
 
    IEEE 802.1X does not provide a mechanism for IP address assignment.
-   Therefore the Framed-IP-Address and Framed-IP-Netmask attributes can
+   Therefore the <A HREF="rfc2865.html#Framed-IP-Address">Framed-IP-Address</A> and <A HREF="rfc2865.html#Framed-IP-Netmask">Framed-IP-Netmask</A> attributes can
    only be used by IEEE 802.1X Authenticators that support IP address
    assignment mechanisms.  Typically this capability is supported by
    layer 3 devices.
 
-<H2>3.8.  Framed-Routing</H2>
+<A NAME="Framed-Routing"><H2>3.8.  Framed-Routing</H2></a>
 
-   The Framed-Routing attribute indicates the routing method for the
+   The <B>Framed-Routing</B> attribute indicates the routing method for the
    Supplicant.  It is therefore only relevant for IEEE 802.1X
    Authenticators that act as layer 3 devices, and cannot be used by a
    bridge or Access Point.
 
-<H2>3.9.  Filter-ID</H2>
+<A NAME="Filter-ID"><H2>3.9.  Filter-ID</H2></a>
 
    This attribute indicates the name of the filter list to be applied to
    the Supplicant's session.  For use with an IEEE 802.1X Authenticator,
@@ -498,16 +498,16 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    3 filters are typically only supported on IEEE 802.1X Authenticators
    that act as layer 3 devices.
 
-<H2>3.10.  Framed-MTU</H2>
+<A NAME="Framed-MTU"><H2>3.10.  Framed-MTU</H2></a>
 
    This attribute indicates the maximum size of an IP packet that may be
    transmitted over the wire between the Supplicant and the
    Authenticator.  IEEE 802.1X Authenticators set this to the value
    corresponding to the relevant 802 medium, and include it in the
-   RADIUS Access-Request.  The RADIUS server may send an EAP packet as
-   large as Framed-MTU minus four (4) octets, taking into account the
+   RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>.  The RADIUS server may send an EAP packet as
+   large as <B>Framed-MTU</B> minus four (4) octets, taking into account the
    additional overhead for the IEEE 802.1X Version (1), Type (1) and
-   Body Length (2) fields.  For EAP over IEEE 802 media, the Framed-MTU
+   Body Length (2) fields.  For EAP over IEEE 802 media, the <B>Framed-MTU</B>
    values (which do not include LLC/SNAP overhead) and maximum frame
    length values (not including the preamble) are as follows:
 
@@ -519,7 +519,7 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
 
                                         Maximum Frame
-   Media             Framed-MTU            Length
+   Media             <B>Framed-MTU</B>            Length
    =========        ===============     ==============
    Ethernet              1500              1522
    802.3                 1500              1522
@@ -534,27 +534,27 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    802.12 (Token Ring)   4502              4528
    FDDI                  4479              4500
 
-   NOTE - the Framed-MTU size for IEEE 802.11 media may change as a
+   NOTE - the <B>Framed-MTU</B> size for IEEE 802.11 media may change as a
    result of ongoing work being undertaken in the IEEE 802.11 Working
    Group.  Since some 802.11 stations cannot handle an MTU larger than
    1500 octets, it is recommended that RADIUS servers encountering a
-   NAS-Port-Type value of 802.11 send EAP packets no larger than 1496
+   <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> value of 802.11 send EAP packets no larger than 1496
    octets.
 
-<H2>3.11.  Framed-Compression</H2>
+<A NAME="Framed-Compression"><H2>3.11.  Framed-Compression</H2></a>
 
    [IEEE8021X] does not include compression support.  Therefore this
    attribute is not understood by [IEEE8021X] Authenticators.
 
 <H2>3.12.  Displayable Messages</H2>
 
-   The Reply-Message attribute, defined in section 5.18 of [RFC2865],
+   The <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> attribute, defined in section 5.18 of [RFC2865],
    indicates text which may be displayed to the user.  This is similar
    in concept to the EAP Notification Type, defined in [RFC2284].  As
    noted in [RFC3579], Section 2.6.5, when sending a displayable message
    to an [IEEE8021X] Authenticator, displayable messages are best sent
    within EAP-Message/EAP-Request/Notification attribute(s), and not
-   within Reply-Message attribute(s).
+   within <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> attribute(s).
 
 <H2>3.13.  Callback-Number, Callback-ID</H2>
 
@@ -576,7 +576,7 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
 <H2>3.14.  Framed-Route, Framed-IPv6-Route</H2>
 
-   The Framed-Route and Framed-IPv6-Route attributes provide routes that
+   The <A HREF="rfc2865.html#Framed-Route">Framed-Route</A> and Framed-IPv6-Route attributes provide routes that
    are to be configured for the Supplicant.  These attributes are
    therefore only relevant for IEEE 802.1X Authenticators that act as
    layer 3 devices, and cannot be understood by a bridge or Access
@@ -587,39 +587,39 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    These attributes are used for the same purposes as described in
    [RFC2865].
 
-<H2>3.16.  Vendor-Specific</H2>
+<A NAME="Vendor-Specific"><H2>3.16.  Vendor-Specific</H2></a>
 
    Vendor-specific attributes are used for the same purposes as
-   described in [RFC2865].  The MS-MPPE-Send-Key and MS-MPPE-Recv-Key
+   described in [RFC2865].  The <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A> and <A HREF="rfc2548.html#MS-MPPE-Recv-Key">MS-MPPE-Recv-Key</A>
    attributes, described in section 2.4 of [RFC2548], MAY be used to
    encrypt and authenticate the RC4 EAPOL-Key descriptor [IEEE8021X,
-   Section 7.6].  Examples of the derivation of the MS-MPPE-Send-Key and
-   MS-MPPE-Recv-Key attributes from the master key negotiated by an EAP
+   Section 7.6].  Examples of the derivation of the <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A> and
+   <A HREF="rfc2548.html#MS-MPPE-Recv-Key">MS-MPPE-Recv-Key</A> attributes from the master key negotiated by an EAP
    method are given in [RFC2716].  Details of the EAPOL-Key descriptor
    are provided in Section 4.
 
-<H2>3.17.  Session-Timeout</H2>
+<A NAME="Session-Timeout"><H2>3.17.  Session-Timeout</H2></a>
 
-   When sent along in an Access-Accept without a Termination-Action
-   attribute or with a Termination-Action attribute set to Default, the
-   Session-Timeout attribute specifies the maximum number of seconds of
+   When sent along in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> without a <A HREF="rfc2865.html#Termination-Action">Termination-Action</A>
+   attribute or with a <A HREF="rfc2865.html#Termination-Action">Termination-Action</A> attribute set to Default, the
+   <B>Session-Timeout</B> attribute specifies the maximum number of seconds of
    service provided prior to session termination.
 
-   When sent in an Access-Accept along with a Termination-Action value
-   of RADIUS-Request, the Session-Timeout attribute specifies the
+   When sent in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> along with a <A HREF="rfc2865.html#Termination-Action">Termination-Action</A> value
+   of RADIUS-Request, the <B>Session-Timeout</B> attribute specifies the
    maximum number of seconds of service provided prior to re-
-   authentication.  In this case, the Session-Timeout attribute is used
+   authentication.  In this case, the <B>Session-Timeout</B> attribute is used
    to load the reAuthPeriod constant within the Reauthentication Timer
-   state machine of 802.1X.  When sent with a Termination-Action value
-   of RADIUS-Request, a Session-Timeout value of zero indicates the
+   state machine of 802.1X.  When sent with a <A HREF="rfc2865.html#Termination-Action">Termination-Action</A> value
+   of RADIUS-Request, a <B>Session-Timeout</B> value of zero indicates the
    desire to perform another authentication (possibly of a different
    type) immediately after the first authentication has successfully
    completed.
 
-   When sent in an Access-Challenge, this attribute represents the
+   When sent in an <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>, this attribute represents the
    maximum number of seconds that an IEEE 802.1X Authenticator should
    wait for an EAP-Response before retransmitting.  In this case, the
-   Session-Timeout attribute is used to load the suppTimeout constant
+   <B>Session-Timeout</B> attribute is used to load the suppTimeout constant
    within the backend state machine of IEEE 802.1X.
 
 
@@ -630,24 +630,24 @@ Congdon, et al.              Informational                     [Page 11]
 RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
 
-<H2>3.18.  Idle-Timeout</H2>
+<A NAME="Idle-Timeout"><H2>3.18.  Idle-Timeout</H2></a>
 
-   The Idle-Timeout attribute is described in [RFC2865].  For IEEE 802
+   The <B>Idle-Timeout</B> attribute is described in [RFC2865].  For IEEE 802
    media other than 802.11 the media are always on.  As a result the
-   Idle-Timeout attribute is typically only used with wireless media
+   <B>Idle-Timeout</B> attribute is typically only used with wireless media
    such as IEEE 802.11.  It is possible for a wireless device to wander
-   out of range of all Access Points.  In this case, the Idle-Timeout
+   out of range of all Access Points.  In this case, the <B>Idle-Timeout</B>
    attribute indicates the maximum time that a wireless device may
    remain idle.
 
-<H2>3.19.  Termination-Action</H2>
+<A NAME="Termination-Action"><H2>3.19.  Termination-Action</H2></a>
 
    This attribute indicates what action should be taken when the service
    is completed.  The value RADIUS-Request (1) indicates that re-
    authentication should occur on expiration of the Session-Time.  The
    value Default (0) indicates that the session should terminate.
 
-<H2>3.20.  Called-Station-Id</H2>
+<A NAME="Called-Station-Id"><H2>3.20.  Called-Station-Id</H2></a>
 
    For IEEE 802.1X Authenticators, this attribute is used to store the
    bridge or Access Point MAC address in ASCII format (upper case only),
@@ -656,20 +656,20 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    Access Point MAC address, separated from the MAC address with a ":".
    Example "00-10-A4-23-19-C0:AP1".
 
-<H2>3.21.  Calling-Station-Id</H2>
+<A NAME="Calling-Station-Id"><H2>3.21.  Calling-Station-Id</H2></a>
 
    For IEEE 802.1X Authenticators, this attribute is used to store the
    Supplicant MAC address in ASCII format (upper case only), with octet
    values separated by a "-".  Example: "00-10-A4-23-19-C0".
 
-<H2>3.22.  NAS-Identifier</H2>
+<A NAME="NAS-Identifier"><H2>3.22.  NAS-Identifier</H2></a>
 
    This attribute contains a string identifying the IEEE 802.1X
-   Authenticator originating the Access-Request.
+   Authenticator originating the <A HREF="rfc2865.html#Access-Request">Access-Request</A>.
 
-<H2>3.23.  NAS-Port-Type</H2>
+<A NAME="NAS-Port-Type"><H2>3.23.  NAS-Port-Type</H2></a>
 
-   For use with IEEE 802.1X, NAS-Port-Type values of Ethernet (15)
+   For use with IEEE 802.1X, <B>NAS-Port-Type</B> values of Ethernet (15)
    Wireless - IEEE 802.11 (19), Token Ring (20) and FDDI (21) may be
    used.
 
@@ -686,18 +686,18 @@ Congdon, et al.              Informational                     [Page 12]
 RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
 
-<H2>3.24.  Port-Limit</H2>
+<A NAME="Port-Limit"><H2>3.24.  Port-Limit</H2></a>
 
    This attribute has no meaning when sent to an [IEEE8021X]
    Authenticator.
 
-<H2>3.25.  Password-Retry</H2>
+<A NAME="Password-Retry"><H2>3.25.  Password-Retry</H2></a>
 
    In IEEE 802.1X, the Authenticator always transitions to the HELD
    state after an authentication failure.  Thus this attribute does not
    make sense for IEEE 802.1X.
 
-<H2>3.26.  Connect-Info</H2>
+<A NAME="Connect-Info"><H2>3.26.  Connect-Info</H2></a>
 
    This attribute is sent by a bridge or Access Point to indicate the
    nature of the Supplicant's connection.  When sent in the Access-
@@ -706,30 +706,30 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    format is recommended: "CONNECT 11Mbps 802.11b".  If sent in the
    Accounting STOP, this attribute may be used to summarize statistics
    relating to session quality.  For example, in IEEE 802.11, the
-   Connect-Info attribute may contain information on the number of link
+   <B>Connect-Info</B> attribute may contain information on the number of link
    layer retransmissions.  The exact format of this attribute is
    implementation specific.
 
-<H2>3.27.  EAP-Message</H2>
+<A NAME="EAP-Message"><H2>3.27.  EAP-Message</H2></a>
 
    Since IEEE 802.1X provides for encapsulation of EAP as described in
-   [RFC2284] and [IEEE8021X], the EAP-Message attribute defined in
+   [RFC2284] and [IEEE8021X], the <B>EAP-Message</B> attribute defined in
    [RFC3579] is used to encapsulate EAP packets for transmission from
    the IEEE 802.1X Authenticator to the Authentication Server. [RFC3579]
    Section 2.2. describes how the Authentication Server handles invalid
    EAP packets passed to it by the Authenticator.
 
-<H2>3.28.  Message-Authenticator</H2>
+<A NAME="Message-Authenticator"><H2>3.28.  Message-Authenticator</H2></a>
 
-   As noted in [RFC3579] Section 3.1., the Message-Authenticator
+   As noted in [RFC3579] Section 3.1., the <B>Message-Authenticator</B>
    attribute MUST be used to protect packets within a RADIUS/EAP
    conversation.
 
-<H2>3.29.  NAS-Port-Id</H2>
+<A NAME="NAS-Port-Id"><H2>3.29.  NAS-Port-Id</H2></a>
 
    This attribute is used to identify the IEEE 802.1X Authenticator port
-   which authenticates the Supplicant.  The NAS-Port-Id differs from the
-   NAS-Port in that it is a string of variable length whereas the NAS-
+   which authenticates the Supplicant.  The <B>NAS-Port-Id</B> differs from the
+   <A HREF="rfc2865.html#NAS-Port">NAS-Port</A> in that it is a string of variable length whereas the NAS-
    Port is a 4 octet value.
 
 
@@ -745,7 +745,7 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
 <H2>3.30.  Framed-Pool, Framed-IPv6-Pool</H2>
 
    IEEE 802.1X does not provide a mechanism for IP address assignment.
-   Therefore the Framed-Pool and Framed-IPv6-Pool attributes can only be
+   Therefore the <A HREF="rfc2869.html#Framed-Pool">Framed-Pool</A> and Framed-IPv6-Pool attributes can only be
    used by IEEE 802.1X Authenticators that support IP address assignment
    mechanisms.  Typically this capability is supported by layer 3
    devices.
@@ -765,7 +765,7 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    campus network.
 
    The RADIUS server typically indicates the desired VLAN by including
-   tunnel attributes within the Access-Accept.  However, the IEEE 802.1X
+   tunnel attributes within the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>.  However, the IEEE 802.1X
    Authenticator may also provide a hint as to the VLAN to be assigned
    to the Supplicant by including Tunnel attributes within the Access-
    Request.
@@ -773,11 +773,11 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    For use in VLAN assignment, the following tunnel attributes are used:
 
    Tunnel-Type=VLAN (13)
-   Tunnel-Medium-Type=802
+   <A HREF="rfc2868.html#Tunnel-Medium-Type">Tunnel-Medium-Type</A>=802
    Tunnel-Private-Group-ID=VLANID
 
    Note that the VLANID is 12-bits, taking a value between 1 and 4094,
-   inclusive.  Since the Tunnel-Private-Group-ID is of type String as
+   inclusive.  Since the <A HREF="rfc2868.html#Tunnel-Private-Group-ID">Tunnel-Private-Group-ID</A> is of type String as
    defined in [RFC2868], for use with IEEE 802.1X, the VLANID integer
    value is encoded as a string.
 
@@ -798,10 +798,10 @@ Congdon, et al.              Informational                     [Page 14]
 RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
 
-   For use with Tunnel-Client-Endpoint, Tunnel-Server-Endpoint, Tunnel-
-   Private-Group-ID, Tunnel-Assignment-ID, Tunnel-Client-Auth-ID or
-   Tunnel-Server-Auth-ID attributes (but not Tunnel-Type, Tunnel-
-   Medium-Type, Tunnel-Password, or Tunnel-Preference), a tag field of
+   For use with <A HREF="rfc2868.html#Tunnel-Client-Endpoint">Tunnel-Client-Endpoint</A>, <A HREF="rfc2868.html#Tunnel-Server-Endpoint">Tunnel-Server-Endpoint</A>, Tunnel-
+   Private-Group-ID, <A HREF="rfc2868.html#Tunnel-Assignment-ID">Tunnel-Assignment-ID</A>, <A HREF="rfc2868.html#Tunnel-Client-Auth-ID">Tunnel-Client-Auth-ID</A> or
+   <A HREF="rfc2868.html#Tunnel-Server-Auth-ID">Tunnel-Server-Auth-ID</A> attributes (but not <A HREF="rfc2868.html#Tunnel-Type">Tunnel-Type</A>, Tunnel-
+   Medium-Type, <A HREF="rfc2868.html#Tunnel-Password">Tunnel-Password</A>, or <A HREF="rfc2868.html#Tunnel-Preference">Tunnel-Preference</A>), a tag field of
    greater than 0x1F is interpreted as the first octet of the following
    field.
 
@@ -921,14 +921,14 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
       of length Key Length.  This is 5 octets (40 bits) for WEP, and 13
       octets (104 bits) for WEP-128.  If Packet Body Length = 44, then
       the Key field is absent, and Key Length represents the number of
-      least significant octets from the MS-MPPE-Send-Key attribute
+      least significant octets from the <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A> attribute
       [RFC2548] to be used as the keying material.  Note that the MS-
-      MPPE-Send-Key and MS-MPPE-Recv-Key attributes are defined from the
+      MPPE-Send-Key and <A HREF="rfc2548.html#MS-MPPE-Recv-Key">MS-MPPE-Recv-Key</A> attributes are defined from the
       point of view of the Authenticator.  From the Supplicant point of
-      reference, the terms are reversed.  Thus the MS-MPPE-Recv-Key on
-      the Supplicant corresponds to the MS-MPPE-Send-Key on the
-      Authenticator, and the MS-MPPE-Send-Key on the Supplicant
-      corresponds to the MS-MPPE-Recv-Key on the Authenticator.
+      reference, the terms are reversed.  Thus the <A HREF="rfc2548.html#MS-MPPE-Recv-Key">MS-MPPE-Recv-Key</A> on
+      the Supplicant corresponds to the <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A> on the
+      Authenticator, and the <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A> on the Supplicant
+      corresponds to the <A HREF="rfc2548.html#MS-MPPE-Recv-Key">MS-MPPE-Recv-Key</A> on the Authenticator.
 
    Replay Counter
       The Replay Counter field is 8 octets.  It does not repeat within
@@ -955,7 +955,7 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
       message integrity check computed over the EAPOL-Key descriptor,
       starting from the Version field, with the Key field filled in if
       present, but with the Key Signature field set to zero.  For the
-      computation, the 32 octet (256 bit) MS-MPPE-Send-Key [RFC2548] is
+      computation, the 32 octet (256 bit) <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A> [RFC2548] is
       used as the HMAC-MD5 key.
 
 
@@ -970,11 +970,11 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
       If Packet Body Length = 44 + Key Length, then the Key Field
       contains the key in encrypted form, of length Key Length.  If
       Packet Body Length = 44, then the Key field is absent, and the
-      least significant Key Length octets from the MS-MPPE-Send-Key
+      least significant Key Length octets from the <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A>
       attribute is used as the keying material.  Where the Key field is
       encrypted using RC4, the RC4 encryption key used to encrypt this
       field is formed by concatenating the 16 octet (128 bit) Key-IV
-      field with the 32 octet MS-MPPE-Recv-Key attribute.  This yields a
+      field with the 32 octet <A HREF="rfc2548.html#MS-MPPE-Recv-Key">MS-MPPE-Recv-Key</A> attribute.  This yields a
       48 octet RC4 key (384 bits).
 
 <H2>5.  Security Considerations</H2>
@@ -1001,9 +1001,9 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    be authenticated or integrity protected.  However, IEEE 802.1X is
    based on EAP.  As described in [3579], Section 3.1.:
 
-      The Message-Authenticator attribute MUST be used to protect all
-      Access-Request, Access-Challenge, Access-Accept, and Access-Reject
-      packets containing an EAP-Message attribute.
+      The <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute MUST be used to protect all
+      <A HREF="rfc2865.html#Access-Request">Access-Request</A>, <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>, <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, and <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>
+      packets containing an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute.
 
    As a result, when used with IEEE 802.1X, all RADIUS packets MUST be
    authenticated and integrity protected.  In addition, as described in
@@ -1030,7 +1030,7 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
    As discussed in [RFC3579] Section 4.3.3., the RADIUS shared secret is
    vulnerable to offline dictionary attack, based on capture of the
-   Response Authenticator or Message-Authenticator attribute.  In order
+   Response Authenticator or <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute.  In order
    to decrease the level of vulnerability, [RFC2865], Section 3
    recommends:
 
@@ -1047,7 +1047,7 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
 <H2>5.3.  Known Plaintext Attacks</H2>
 
    Since IEEE 802.1X is based on EAP, which does not support PAP, the
-   RADIUS User-Password attribute is not used to carry hidden user
+   RADIUS <A HREF="rfc2865.html#User-Password">User-Password</A> attribute is not used to carry hidden user
    passwords.  The hiding mechanism utilizes MD5, defined in [RFC1321],
    in order to generate a key stream based on the RADIUS shared secret
    and the Request Authenticator.  Where PAP is in use, it is possible
@@ -1060,11 +1060,11 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    The vulnerability is described in detail in [RFC3579], Section 4.3.4.
    Even though IEEE 802.1X Authenticators do not support PAP
    authentication, a security vulnerability can still exist where the
-   same RADIUS shared secret is used for hiding User-Password as well as
+   same RADIUS shared secret is used for hiding <A HREF="rfc2865.html#User-Password">User-Password</A> as well as
    other attributes.  This can occur, for example, if the same RADIUS
    proxy handles authentication requests for both IEEE 802.1X (which may
-   hide the Tunnel-Password, MS-MPPE-Send-Key and MS-MPPE-Recv-Key
-   attributes) and GPRS (which may hide the User-Password attribute).
+   hide the <A HREF="rfc2868.html#Tunnel-Password">Tunnel-Password</A>, <A HREF="rfc2548.html#MS-MPPE-Send-Key">MS-MPPE-Send-Key</A> and <A HREF="rfc2548.html#MS-MPPE-Recv-Key">MS-MPPE-Recv-Key</A>
+   attributes) and GPRS (which may hide the <A HREF="rfc2865.html#User-Password">User-Password</A> attribute).
 
    The threat can be mitigated by protecting RADIUS with IPsec ESP with
    a non-null transform, as described in [RFC3579], Section 4.2.  In
@@ -1087,24 +1087,24 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    Section 4.2.
 
    As with the Request Authenticator, for use with IEEE 802.1X
-   Authenticators, the Acct-Session-Id SHOULD be globally and temporally
+   Authenticators, the <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> SHOULD be globally and temporally
    unique.
 
 <H2>5.5.  Outcome Mismatches</H2>
 
    [RFC3579] Section 2.6.3. discusses the issues that arise when the EAP
-   packet encapsulated in an EAP-Message attribute does not agree with
+   packet encapsulated in an <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attribute does not agree with
    the RADIUS Packet Type.  For example, an EAP Success packet might be
-   encapsulated within an Access-Reject; an EAP Failure might be sent
-   within an Access-Accept; or an EAP Success or Failure might be sent
-   within an Access-Challenge.
+   encapsulated within an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>; an EAP Failure might be sent
+   within an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>; or an EAP Success or Failure might be sent
+   within an <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>.
 
    As described in [RFC3579] Section 2.6.3., these conflicting messages
    are likely to cause confusion.  To ensure that access decisions made
    by IEEE 802.1X Authenticators conform to the wishes of the RADIUS
    server, it is necessary for the Authenticator to make the decision
    solely based on the authentication result (Access-Accept/Reject) and
-   not based on the contents of EAP-Message attributes, if present.
+   not based on the contents of <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> attributes, if present.
 
 <H2>5.6.  802.11 Integration</H2>
 
@@ -1167,7 +1167,7 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
         [Fluhrer], and [Stubbl].
 
    [2]  Reuse of keying material.  The EAPOL-Key descriptor specified in
-        section 4 uses the same keying material (MS-MPPE-Recv-Key) both
+        section 4 uses the same keying material (<A HREF="rfc2548.html#MS-MPPE-Recv-Key">MS-MPPE-Recv-Key</A>) both
         to encrypt the Key field within the EAPOL-Key descriptor, and to
         encrypt data passed between the Station and Access Point.
         Multi-purpose keying material is frowned upon, since multiple
@@ -1207,9 +1207,9 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
    Attribute              Values Required
    =========              ===============
-   NAS-Port-Type          Token-Ring (20), FDDI (21)
-   Tunnel-Type            VLAN (13)
-   Acct-Terminate-Cause   Supplicant Restart (19)
+   <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A>          Token-Ring (20), FDDI (21)
+   <A HREF="rfc2868.html#Tunnel-Type">Tunnel-Type</A>            VLAN (13)
+   <A HREF="rfc2866.html#Acct-Terminate-Cause">Acct-Terminate-Cause</A>   Supplicant Restart (19)
                           Reauthentication Failure (20)
                           Port Reinitialized (21)
                           Port Administratively Disabled (22)
@@ -1367,40 +1367,40 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
    provides the definitive information on usage.
 
    802.1X        #   Attribute
-     X           1   User-Name [RFC2865]
-                 2   User-Password [RFC2865]
-                 3   CHAP-Password [RFC2865]
-     X           4   NAS-IP-Address [RFC2865]
-     X           5   NAS-Port [RFC2865]
-     X           6   Service-Type [RFC2865]
-                 7   Framed-Protocol [RFC2865]
-     L3          8   Framed-IP-Address [RFC2865]
-     L3          9   Framed-IP-Netmask [RFC2865]
-     L3         10   Framed-Routing [RFC2865]
-     X          11   Filter-Id [RFC2865]
-     X          12   Framed-MTU [RFC2865]
-                13   Framed-Compression [RFC2865]
-     L3         14   Login-IP-Host [RFC2865]
-     L3         15   Login-Service [RFC2865]
-     L3         16   Login-TCP-Port [RFC2865]
-                18   Reply-Message [RFC2865]
-                19   Callback-Number [RFC2865]
-                20   Callback-Id [RFC2865]
-     L3         22   Framed-Route [RFC2865]
-     L3         23   Framed-IPX-Network [RFC2865]
-     X          24   State [RFC2865]
-     X          25   Class [RFC2865]
-     X          26   Vendor-Specific [RFC2865]
-     X          27   Session-Timeout [RFC2865]
-     X          28   Idle-Timeout [RFC2865]
-     X          29   Termination-Action [RFC2865]
-     X          30   Called-Station-Id [RFC2865]
-     X          31   Calling-Station-Id [RFC2865]
-     X          32   NAS-Identifier [RFC2865]
-     X          33   Proxy-State [RFC2865]
-                34   Login-LAT-Service [RFC2865]
-                35   Login-LAT-Node [RFC2865]
-                36   Login-LAT-Group [RFC2865]
+     X           1   <A HREF="rfc2865.html#User-Name">User-Name</A> [RFC2865]
+                 2   <A HREF="rfc2865.html#User-Password">User-Password</A> [RFC2865]
+                 3   <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A> [RFC2865]
+     X           4   <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> [RFC2865]
+     X           5   <A HREF="rfc2865.html#NAS-Port">NAS-Port</A> [RFC2865]
+     X           6   <A HREF="rfc2865.html#Service-Type">Service-Type</A> [RFC2865]
+                 7   <A HREF="rfc2865.html#Framed-Protocol">Framed-Protocol</A> [RFC2865]
+     L3          8   <A HREF="rfc2865.html#Framed-IP-Address">Framed-IP-Address</A> [RFC2865]
+     L3          9   <A HREF="rfc2865.html#Framed-IP-Netmask">Framed-IP-Netmask</A> [RFC2865]
+     L3         10   <A HREF="rfc2865.html#Framed-Routing">Framed-Routing</A> [RFC2865]
+     X          11   <A HREF="rfc2865.html#Filter-Id">Filter-Id</A> [RFC2865]
+     X          12   <A HREF="rfc2865.html#Framed-MTU">Framed-MTU</A> [RFC2865]
+                13   <A HREF="rfc2865.html#Framed-Compression">Framed-Compression</A> [RFC2865]
+     L3         14   <A HREF="rfc2865.html#Login-IP-Host">Login-IP-Host</A> [RFC2865]
+     L3         15   <A HREF="rfc2865.html#Login-Service">Login-Service</A> [RFC2865]
+     L3         16   <A HREF="rfc2865.html#Login-TCP-Port">Login-TCP-Port</A> [RFC2865]
+                18   <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> [RFC2865]
+                19   <A HREF="rfc2865.html#Callback-Number">Callback-Number</A> [RFC2865]
+                20   <A HREF="rfc2865.html#Callback-Id">Callback-Id</A> [RFC2865]
+     L3         22   <A HREF="rfc2865.html#Framed-Route">Framed-Route</A> [RFC2865]
+     L3         23   <A HREF="rfc2865.html#Framed-IPX-Network">Framed-IPX-Network</A> [RFC2865]
+     X          24   <A HREF="rfc2865.html#State">State</A> [RFC2865]
+     X          25   <A HREF="rfc2865.html#Class">Class</A> [RFC2865]
+     X          26   <A HREF="rfc2865.html#Vendor-Specific">Vendor-Specific</A> [RFC2865]
+     X          27   <A HREF="rfc2865.html#Session-Timeout">Session-Timeout</A> [RFC2865]
+     X          28   <A HREF="rfc2865.html#Idle-Timeout">Idle-Timeout</A> [RFC2865]
+     X          29   <A HREF="rfc2865.html#Termination-Action">Termination-Action</A> [RFC2865]
+     X          30   <A HREF="rfc2865.html#Called-Station-Id">Called-Station-Id</A> [RFC2865]
+     X          31   <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A> [RFC2865]
+     X          32   <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A> [RFC2865]
+     X          33   <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> [RFC2865]
+                34   <A HREF="rfc2865.html#Login-LAT-Service">Login-LAT-Service</A> [RFC2865]
+                35   <A HREF="rfc2865.html#Login-LAT-Node">Login-LAT-Node</A> [RFC2865]
+                36   <A HREF="rfc2865.html#Login-LAT-Group">Login-LAT-Group</A> [RFC2865]
    802.1X        #   Attribute
 
 
@@ -1415,49 +1415,49 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
 
    802.1X        #   Attribute
-     L3         37   Framed-AppleTalk-Link [RFC2865]
-     L3         38   Framed-AppleTalk-Network [RFC2865]
-     L3         39   Framed-AppleTalk-Zone [RFC2865]
-     X          40   Acct-Status-Type [RFC2866]
-     X          41   Acct-Delay-Time [RFC2866]
-     X          42   Acct-Input-Octets [RFC2866]
-     X          43   Acct-Output-Octets [RFC2866]
-     X          44   Acct-Session-Id [RFC2866]
-     X          45   Acct-Authentic [RFC2866]
-     X          46   Acct-Session-Time [RFC2866]
-     X          47   Acct-Input-Packets [RFC2866]
-     X          48   Acct-Output-Packets [RFC2866]
-     X          49   Acct-Terminate-Cause [RFC2866]
-     X          50   Acct-Multi-Session-Id [RFC2866]
-     X          51   Acct-Link-Count [RFC2866]
-     X          52   Acct-Input-Gigawords [RFC2869]
-     X          53   Acct-Output-Gigawords [RFC2869]
-     X          55   Event-Timestamp [RFC2869]
-                60   CHAP-Challenge [RFC2865]
-     X          61   NAS-Port-Type [RFC2865]
-                62   Port-Limit [RFC2865]
-                63   Login-LAT-Port [RFC2865]
-     X          64   Tunnel-Type [RFC2868]
-     X          65   Tunnel-Medium-Type [RFC2868]
-     L3         66   Tunnel-Client-Endpoint [RFC2868]
-     L3         67   Tunnel-Server-Endpoint [RFC2868]
-     L3         68   Acct-Tunnel-Connection [RFC2867]
-     L3         69   Tunnel-Password [RFC2868]
-                70   ARAP-Password [RFC2869]
-                71   ARAP-Features [RFC2869]
-                72   ARAP-Zone-Access [RFC2869]
-                73   ARAP-Security [RFC2869]
-                74   ARAP-Security-Data [RFC2869]
-                75   Password-Retry [RFC2869]
+     L3         37   <A HREF="rfc2865.html#Framed-AppleTalk-Link">Framed-AppleTalk-Link</A> [RFC2865]
+     L3         38   <A HREF="rfc2865.html#Framed-AppleTalk-Network">Framed-AppleTalk-Network</A> [RFC2865]
+     L3         39   <A HREF="rfc2865.html#Framed-AppleTalk-Zone">Framed-AppleTalk-Zone</A> [RFC2865]
+     X          40   <A HREF="rfc2866.html#Acct-Status-Type">Acct-Status-Type</A> [RFC2866]
+     X          41   <A HREF="rfc2866.html#Acct-Delay-Time">Acct-Delay-Time</A> [RFC2866]
+     X          42   <A HREF="rfc2866.html#Acct-Input-Octets">Acct-Input-Octets</A> [RFC2866]
+     X          43   <A HREF="rfc2866.html#Acct-Output-Octets">Acct-Output-Octets</A> [RFC2866]
+     X          44   <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> [RFC2866]
+     X          45   <A HREF="rfc2866.html#Acct-Authentic">Acct-Authentic</A> [RFC2866]
+     X          46   <A HREF="rfc2866.html#Acct-Session-Time">Acct-Session-Time</A> [RFC2866]
+     X          47   <A HREF="rfc2866.html#Acct-Input-Packets">Acct-Input-Packets</A> [RFC2866]
+     X          48   <A HREF="rfc2866.html#Acct-Output-Packets">Acct-Output-Packets</A> [RFC2866]
+     X          49   <A HREF="rfc2866.html#Acct-Terminate-Cause">Acct-Terminate-Cause</A> [RFC2866]
+     X          50   <A HREF="rfc2866.html#Acct-Multi-Session-Id">Acct-Multi-Session-Id</A> [RFC2866]
+     X          51   <A HREF="rfc2866.html#Acct-Link-Count">Acct-Link-Count</A> [RFC2866]
+     X          52   <A HREF="rfc2869.html#Acct-Input-Gigawords">Acct-Input-Gigawords</A> [RFC2869]
+     X          53   <A HREF="rfc2869.html#Acct-Output-Gigawords">Acct-Output-Gigawords</A> [RFC2869]
+     X          55   <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A> [RFC2869]
+                60   <A HREF="rfc2865.html#CHAP-Challenge">CHAP-Challenge</A> [RFC2865]
+     X          61   <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> [RFC2865]
+                62   <A HREF="rfc2865.html#Port-Limit">Port-Limit</A> [RFC2865]
+                63   <A HREF="rfc2865.html#Login-LAT-Port">Login-LAT-Port</A> [RFC2865]
+     X          64   <A HREF="rfc2868.html#Tunnel-Type">Tunnel-Type</A> [RFC2868]
+     X          65   <A HREF="rfc2868.html#Tunnel-Medium-Type">Tunnel-Medium-Type</A> [RFC2868]
+     L3         66   <A HREF="rfc2868.html#Tunnel-Client-Endpoint">Tunnel-Client-Endpoint</A> [RFC2868]
+     L3         67   <A HREF="rfc2868.html#Tunnel-Server-Endpoint">Tunnel-Server-Endpoint</A> [RFC2868]
+     L3         68   <A HREF="rfc2867.html#Acct-Tunnel-Connection">Acct-Tunnel-Connection</A> [RFC2867]
+     L3         69   <A HREF="rfc2868.html#Tunnel-Password">Tunnel-Password</A> [RFC2868]
+                70   <A HREF="rfc2869.html#ARAP-Password">ARAP-Password</A> [RFC2869]
+                71   <A HREF="rfc2869.html#ARAP-Features">ARAP-Features</A> [RFC2869]
+                72   <A HREF="rfc2869.html#ARAP-Zone-Access">ARAP-Zone-Access</A> [RFC2869]
+                73   <A HREF="rfc2869.html#ARAP-Security">ARAP-Security</A> [RFC2869]
+                74   <A HREF="rfc2869.html#ARAP-Security-Data">ARAP-Security-Data</A> [RFC2869]
+                75   <A HREF="rfc2869.html#Password-Retry">Password-Retry</A> [RFC2869]
                 76   Prompt [RFC2869]
-     X          77   Connect-Info [RFC2869]
-     X          78   Configuration-Token [RFC2869]
-     X          79   EAP-Message [RFC3579]
-     X          80   Message-Authenticator [RFC3579]
-     X          81   Tunnel-Private-Group-ID [RFC2868]
-     L3         82   Tunnel-Assignment-ID [RFC2868]
-     X          83   Tunnel-Preference [RFC2868]
-                84   ARAP-Challenge-Response [RFC2869]
+     X          77   <A HREF="rfc2869.html#Connect-Info">Connect-Info</A> [RFC2869]
+     X          78   <A HREF="rfc2869.html#Configuration-Token">Configuration-Token</A> [RFC2869]
+     X          79   <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> [RFC3579]
+     X          80   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> [RFC3579]
+     X          81   <A HREF="rfc2868.html#Tunnel-Private-Group-ID">Tunnel-Private-Group-ID</A> [RFC2868]
+     L3         82   <A HREF="rfc2868.html#Tunnel-Assignment-ID">Tunnel-Assignment-ID</A> [RFC2868]
+     X          83   <A HREF="rfc2868.html#Tunnel-Preference">Tunnel-Preference</A> [RFC2868]
+                84   <A HREF="rfc2869.html#ARAP-Challenge-Response">ARAP-Challenge-Response</A> [RFC2869]
    802.1X        #   Attribute
 
 
@@ -1471,19 +1471,19 @@ RFC 3580                   IEEE 802.1X RADIUS             September 2003
 
 
    802.1X        #   Attribute
-     X          85   Acct-Interim-Interval [RFC2869]
-     X          86   Acct-Tunnel-Packets-Lost [RFC2867]
-     X          87   NAS-Port-Id [RFC2869]
-     L3         88   Framed-Pool [RFC2869]
-     L3         90   Tunnel-Client-Auth-ID [RFC2868]
-     L3         91   Tunnel-Server-Auth-ID [RFC2868]
+     X          85   <A HREF="rfc2869.html#Acct-Interim-Interval">Acct-Interim-Interval</A> [RFC2869]
+     X          86   <A HREF="rfc2867.html#Acct-Tunnel-Packets-Lost">Acct-Tunnel-Packets-Lost</A> [RFC2867]
+     X          87   <A HREF="rfc2869.html#NAS-Port-Id">NAS-Port-Id</A> [RFC2869]
+     L3         88   <A HREF="rfc2869.html#Framed-Pool">Framed-Pool</A> [RFC2869]
+     L3         90   <A HREF="rfc2868.html#Tunnel-Client-Auth-ID">Tunnel-Client-Auth-ID</A> [RFC2868]
+     L3         91   <A HREF="rfc2868.html#Tunnel-Server-Auth-ID">Tunnel-Server-Auth-ID</A> [RFC2868]
      X          95   NAS-IPv6-Address [RFC3162]
-                96   Framed-Interface-Id [RFC3162]
+                96   <A HREF="rfc3162.html#Framed-Interface-Id">Framed-Interface-Id</A> [RFC3162]
      L3         97   Framed-IPv6-Prefix [RFC3162]
      L3         98   Login-IPv6-Host [RFC3162]
      L3         99   Framed-IPv6-Route [RFC3162]
      L3        100   Framed-IPv6-Pool [RFC3162]
-     X         101   Error-Cause [RFC3576]
+     X         101   <A HREF="rfc5176.html#Error-Cause">Error-Cause</A> [RFC3576]
    802.1X        #   Attribute
 
    Key
