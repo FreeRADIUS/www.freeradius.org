@@ -17,8 +17,15 @@
 
 
 RFC	= rfc2548.txt rfc2865.txt rfc2866.txt rfc2867.txt rfc2868.txt \
-	  rfc2869.txt rfc3162.txt rfc3576.txt rfc3579.txt rfc3580.txt \
-	  rfc4590.txt rfc4818.txt rfc4849.txt
+	  rfc2869.txt rfc3162.txt rfc3579.txt rfc3580.txt \
+	  rfc4590.txt rfc4818.txt rfc4849.txt rfc5090.txt rfc5176.txt \
+	  rfc5607.txt rfc5904.txt rfc6519.txt rfc6572.txt rfc6911.txt \
+	  rfc6929.txt rfc6930.txt
+
+HTML	= $(RFC:.txt=.html)
+
+ATTRS	= $(addprefix attributes-,$(HTML));
+
 
 all:
 
@@ -27,14 +34,20 @@ html: refs
 	./per-rfc.pl $(RFC)
 	@touch .rewrite
 
+git-add: $(RFC) $(HTML) $(ATTRS)
+	@git add $^
+
 index.html: html
 	./update.sh
 
 refs: $(RFC)
-	./genref.pl $(RFC) > refs
+	@./genref.pl $(RFC) > refs
 	@echo 'rfc2865 Class' >> refs
 	@echo 'rfc2865 State' >> refs
 	@echo 'rfc4818 Delegated-IPv6-Prefix' >> refs
+
+letters.html: refs genletters.pl
+	@./genletters.pl < $^ > $@
 
 clean:
 	rm -f refs *rfc*.html *~ .rewrite index.html

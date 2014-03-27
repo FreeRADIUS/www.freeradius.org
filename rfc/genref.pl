@@ -7,17 +7,16 @@ foreach $file (@ARGV) {
 
     while (<FILE>) {
 	next if (!/^(\d+\.)+\s+([a-zA-Z]+-)+[a-zA-Z]/);
+	next if (/,/);
 
 	chop;
-	split;
+	s/^.*?\s+//;
 
-	next if ($_[1] =~ /,/);
+	next if (defined($file{$_}));
 
-	next if (defined($file{$_[1]}));
+	print $ref, "\t", $_, "\n";
 
-	print $ref, "\t", $_[1], "\n";
-
-	$file{$_[1]} = $ref;
+	$file{$_} = $ref;
     }
 
     close FILE;
