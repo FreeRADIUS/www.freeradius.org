@@ -146,32 +146,32 @@ RFC 4849                 Filter Rule Attribute                April 2007
    and the pre-existing configuration remains unchanged.  As a result,
    no accounting packets should be generated because of the CoA-Request.
 
-<A NAME="NAS-Filter-Rule"><H2>2.  NAS-Filter-Rule Attribute</H2></a>
+<H2>2.  NAS-Filter-Rule Attribute</H2>
 
 <B>   Description</B>
 
    This attribute indicates filter rules to be applied for this user.
-   Zero or more <B>NAS-Filter-Rule</B> attributes MAY be sent in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>,
+   Zero or more <A HREF="#NAS-Filter-Rule">NAS-Filter-Rule</A> attributes MAY be sent in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>,
    CoA-Request, or <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets.
 
-   The <B>NAS-Filter-Rule</B> attribute is not intended to be used concurrently
+   The <A HREF="#NAS-Filter-Rule">NAS-Filter-Rule</A> attribute is not intended to be used concurrently
    with any other filter rule attribute, including <A HREF="rfc2865.html#Filter-Id">Filter-Id</A> (11) and
-   NAS-Traffic-Rule [Traffic] attributes.  <B>NAS-Filter-Rule</B> and NAS-
+   NAS-Traffic-Rule [Traffic] attributes.  <A HREF="#NAS-Filter-Rule">NAS-Filter-Rule</A> and NAS-
    Traffic-Rule attributes MUST NOT appear in the same RADIUS packet.
    If a NAS-Traffic-Rule attribute is present, a NAS implementing this
-   specification MUST silently discard any <B>NAS-Filter-Rule</B> attributes
-   that are present.  <A HREF="rfc2865.html#Filter-Id">Filter-Id</A> and <B>NAS-Filter-Rule</B> attributes SHOULD
+   specification MUST silently discard any <A HREF="#NAS-Filter-Rule">NAS-Filter-Rule</A> attributes
+   that are present.  <A HREF="rfc2865.html#Filter-Id">Filter-Id</A> and <A HREF="#NAS-Filter-Rule">NAS-Filter-Rule</A> attributes SHOULD
    NOT appear in the same RADIUS packet.  Given the absence in [RFC4005]
    of well-defined precedence rules for combining <A HREF="rfc2865.html#Filter-Id">Filter-Id</A> and NAS-
    Filter-Rule attributes into a single rule set, the behavior of NASes
    receiving both attributes is undefined, and therefore a RADIUS server
    implementation cannot assume a consistent behavior.
 
-   Where multiple <B>NAS-Filter-Rule</B> attributes are included in a RADIUS
+   Where multiple <A HREF="#NAS-Filter-Rule">NAS-Filter-Rule</A> attributes are included in a RADIUS
    packet, the String field of the attributes are to be concatenated to
    form a set of filter rules.  As noted in [RFC2865], Section 2.3, "the
    forwarding server MUST NOT change the order of any attributes of the
-   same type", so that RADIUS proxies will not reorder <B>NAS-Filter-Rule</B>
+   same type", so that RADIUS proxies will not reorder <A HREF="#NAS-Filter-Rule">NAS-Filter-Rule</A>
    attributes.
 
 
@@ -182,7 +182,7 @@ Congdon, et al.             Standards Track                     [Page 3]
 RFC 4849                 Filter Rule Attribute                April 2007
 
 
-   A summary of the <B>NAS-Filter-Rule</B> Attribute format is shown below.
+   A summary of the <A HREF="#NAS-Filter-Rule">NAS-Filter-Rule</A> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -209,12 +209,12 @@ RFC 4849                 Filter Rule Attribute                April 2007
       boundaries, so implementations cannot assume that individual
       filter rules begin or end on attribute boundaries.
 
-      The set of <B>NAS-Filter-Rule</B> attributes SHOULD be created by
+      The set of <A HREF="#NAS-Filter-Rule">NAS-Filter-Rule</A> attributes SHOULD be created by
       concatenating the individual filter rules, separated by a NUL
       (0x00) octet.  The resulting data should be split on 253-octet
-      boundaries to obtain a set of <B>NAS-Filter-Rule</B> attributes.  On
+      boundaries to obtain a set of <A HREF="#NAS-Filter-Rule">NAS-Filter-Rule</A> attributes.  On
       reception, the individual filter rules are determined by
-      concatenating the contents of all <B>NAS-Filter-Rule</B> attributes, and
+      concatenating the contents of all <A HREF="#NAS-Filter-Rule">NAS-Filter-Rule</A> attributes, and
       then splitting individual filter rules with the NUL octet (0x00)
       as a delimiter.
 

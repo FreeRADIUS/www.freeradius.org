@@ -70,7 +70,7 @@ Zorn                         Informational                      [Page 1]
 RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
 
 
-2.1.  Attributes for Support of MS-CHAP Version 1
+<H2>2.1.  Attributes for Support of MS-CHAP Version 1</H2>
 
 <H2>2.1.1.  Introduction</H2>
 
@@ -326,18 +326,18 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       This field contains specially formatted ASCII text, which is
       interpreted by the authenticating peer.
 
-2.1.6.  MS-CHAP-CPW-1
+<A NAME="MS-CHAP-CPW-1"><H2>2.1.6.  MS-CHAP-CPW-1</H2></a>
 
 <B>   Description</B>
 
       This Attribute allows the user to change their password if it has
       expired.  This Attribute is only used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets, and
-      should only be included if an <B>MS-CHAP-Error</B> attribute was included in
+      should only be included if an <A HREF="#MS-CHAP-Error">MS-CHAP-Error</A> attribute was included in
       the immediately preceding <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet, the String field of
-      the <B>MS-CHAP-Error</B> attribute indicated that the user password had
+      the <A HREF="#MS-CHAP-Error">MS-CHAP-Error</A> attribute indicated that the user password had
       expired, and the MS-CHAP version is less than 2.
 
-   A summary of the MS-CHAP-CPW-1  Attribute format is shown below.  The
+   A summary of the <B>MS-CHAP-CPW-1</B>  Attribute format is shown below.  The
    fields are transmitted from left to right.
 
 
@@ -438,18 +438,18 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
       Otherwise,  the LM-New-Password and LM-Old-Password fields MUST be
       used.
 
-2.1.7.  MS-CHAP-CPW-2
+<A NAME="MS-CHAP-CPW-2"><H2>2.1.7.  MS-CHAP-CPW-2</H2></a>
 
 <B>   Description</B>
 
       This Attribute allows the user to change their password if it has
       expired.  This Attribute is only used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets,
-      and should only be included if an <B>MS-CHAP-Error</B> attribute was
+      and should only be included if an <A HREF="#MS-CHAP-Error">MS-CHAP-Error</A> attribute was
       included in the immediately preceding <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet, the
-      String field of the <B>MS-CHAP-Error</B> attribute indicated that the
+      String field of the <A HREF="#MS-CHAP-Error">MS-CHAP-Error</A> attribute indicated that the
       user password had expired, and the MS-CHAP version is equal to 2.
 
-   A summary of the MS-CHAP-CPW-2  Attribute format is shown below.  The
+   A summary of the <B>MS-CHAP-CPW-2</B>  Attribute format is shown below.  The
    fields are transmitted from left to right.
 
 
@@ -701,7 +701,7 @@ RFC 2548      Microsoft Vendor-specific RADIUS Attributes     March 1999
    String
       The String field contains a portion of the encrypted password.
 
-2.3.  Attributes for Support of MS-CHAP Version 2
+<H2>2.3.  Attributes for Support of MS-CHAP Version 2</H2>
 
 <H2>2.3.1.  Introduction</H2>
 

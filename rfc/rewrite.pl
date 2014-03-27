@@ -60,14 +60,14 @@ EOF
 	}
 	
 	chomp;
-	
+
 	#
 	#  Attribute name header.
 	#
-	if (/^\d+\./ && !/\d$/) {
+	if (/^\d+\./ && !/\.\./) {
 	    @x = split ' ', $_;
 
-	    if ($refs{$x[1]} ne "") {
+	    if (($#x == 1) && ($refs{$x[1]} ne "")) {
 		$attribute = $x[1];
 		
 		print OUTPUT "<A NAME=\"$attribute\"><H2>$_</H2></a>\n";

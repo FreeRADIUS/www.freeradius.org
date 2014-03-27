@@ -2169,13 +2169,13 @@ RFC 2869                   RADIUS Extensions                   June 2000
    this document have no additional security considerations beyond those
    already identified in [1].
 
-<A NAME="Message-Authenticator"><H2>7.1.  Message-Authenticator Security</H2></a>
+<H2>7.1.  Message-Authenticator Security</H2>
 
    <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets with a <A HREF="rfc2865.html#User-Password">User-Password</A> establish the identity of
    both the user and the NAS sending the <A HREF="rfc2865.html#Access-Request">Access-Request</A>, because of the
    way the shared secret between NAS and RADIUS server is used.
    <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets with <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A> or <A HREF="#EAP-Message">EAP-Message</A> do not have
-   a <A HREF="rfc2865.html#User-Password">User-Password</A> attribute, so the <B>Message-Authenticator</B> attribute
+   a <A HREF="rfc2865.html#User-Password">User-Password</A> attribute, so the <A HREF="#Message-Authenticator">Message-Authenticator</A> attribute
    should be used in access-request packets that do not have a User-
    Password, in order to establish the identity of the NAS sending the
    request.
