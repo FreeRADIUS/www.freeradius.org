@@ -29,11 +29,6 @@ ATTRS	= $(addprefix attributes-,$(HTML));
 
 all:
 
-html: refs
-	./rewrite.pl $(RFC)
-	./per-rfc.pl $(RFC)
-	@touch .rewrite
-
 git-add: $(RFC) $(HTML) $(ATTRS)
 	@git add $^
 
@@ -50,10 +45,12 @@ letters.html: refs genletters.pl
 	@./genletters.pl < $^ > $@
 
 clean:
-	rm -f refs *rfc*.html *~ .rewrite index.html
+	rm -f refs *rfc*.html *~ index.html
 
-%.html: %.txt refs
-	./rewrite.pl $<
-	./per-rfc.pl $<
+html: $(HTML)
+
+%.html: %.txt refs rewrite.pl per-rfc.pl
+	@./rewrite.pl $<
+	@./per-rfc.pl $<
 
 .PHONY: all clean install html
