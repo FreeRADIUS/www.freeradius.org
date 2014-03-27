@@ -5,11 +5,11 @@
 #
 open FILE, "<refs" || die "Error opening refs: $!\n";
 while (<FILE>) {
-    chop;
-    split;
+    chomp;
+    @x = split ' ', $_;
     
-    $refs{$_[1]} = $_[0];
-    $defs{$_[0]}{$_[1]}++;
+    $refs{$x[1]} = $x[0];
+    $defs{$x[0]}{$x[1]}++;
 }
 close FILE;
 

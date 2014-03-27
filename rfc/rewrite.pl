@@ -5,10 +5,10 @@
 #
 open FILE, "<refs" || die "Error opening refs: $!\n";
 while (<FILE>) {
-    chop;
-    split;
-    
-    $refs{$_[1]} = $_[0];
+    chomp;
+    @x = split ' ' , $_;
+
+    $refs{$x[1]} = $x[0];
 }
 close FILE;
 
@@ -59,16 +59,16 @@ EOF
 	    next;
 	}
 	
-	chop;
+	chomp;
 	
 	#
 	#  Attribute name header.
 	#
 	if (/^\d+\./ && !/\d$/) {
-	    split;
+	    @x = split ' ', $_;
 
-	    if ($refs{$_[1]} ne "") {
-		$attribute = $_[1];
+	    if ($refs{$x[1]} ne "") {
+		$attribute = $x[1];
 		
 		print OUTPUT "<A NAME=\"$attribute\"><H2>$_</H2></a>\n";
 		
@@ -93,12 +93,12 @@ EOF
 	# Make the current attribute name bold
 	s/$attribute/<B>$attribute<\/B>/g;
 
-	split;
+	@x = split ' ', $_;
 
 	#
 	#  Re-write the output with links to where-ever
 	#
-	foreach $word (@_) {
+	foreach $word (@x) {
 	    $word =~ s/[^-a-zA-Z]//g;
 
 	    if ($refs{$word} ne "") {
