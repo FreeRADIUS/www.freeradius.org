@@ -42,6 +42,71 @@ LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
 and put in reverse-chronological order.
        -->
 
+<li><span class="date">2014.04.08</span> <a name="heartbleed"> - OpenSSL <a href="heartbleed.com">heartbleed</a> bug.
+<p>
+OpenSSL has a major security issue, seen in
+to <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0160
+">CVE-2014-0160</a>.  The issue mainly affects servers such as SMTPS
+or HTTPS, which allow random IP addresses to connect to them via TLS.
+Those sites must assume that all information available to the system
+using TLS has been compromised.</p>
+
+<p>FreeRADIUS is <em>not vulnerable</em> in any EAP method, for any
+version of FreeRADIUS.  All of the certificates, keys, and passwords
+used by FreeRADIUS for EAP are safe and secure.</p>
+
+<p>The code in FreeRADIUS which interacts with TLS expects to see TLS
+alerts, handshakes, and application data.  Any other TLS content (such
+as a heartbeat) is treated as an error, and the session is terminated.
+In version 3,
+see <a href="https://github.com/FreeRADIUS/freeradius-server/blob/v3.0.x/src/main/tls.c">tls.c</a>,
+function tls_ack_handler().  In version 2, the code is
+in <a href="https://github.com/FreeRADIUS/freeradius-server/blob/v2.x.x/src/modules/rlm_eap/libeap/eap_tls.c">eap_tls.c</a>.
+</p>
+
+<p>Version 3 also
+implements <a href="https://tools.ietf.org/html/rfc6614">RADIUS over
+TLS</a>, which opens up new vectors for attack.  However, the incoming
+connection handler re-uses the TLS code mentioned above.  Therefore a
+FreeRADIUS server accepting RADIUS over TLS connections is <em>not
+vulnerable</em> to this issue.</p>
+
+<p>However, the outgoing connection handler uses a different code
+path, which calls SSL_read().  The implementation of SSL_Read() allows
+any content, including the problematic heartbeats.  Therefore, a
+FreeRADIUS server which opens outgoing RADIUS over TLS
+connections <b>is vulnerable</b> to this attack.  A malicious home
+server could exploit this issue to steal secrets from the FreeRADIUS
+proxy.</p>
+
+<p>Our belief is that this is a relatively minor issue for FreeRADIUS
+administrators.  Most versions of the server, and most configurations
+are not vulnerable to any issue.  For the ones which are vulnerable
+(version 2, outgoing RADIUS over TLS), the connections are made only
+to pre-configured, and well-known home servers.</p>
+
+<p>That is, the only people who can exploit this issue are people who
+are already known to you, and who are trusted to a certain extent.</p>
+
+<p>Administrators can detect "heartbleed" attacks by looking in their
+logs for a message containing the text <tt>Invalid ACK received:
+24</tt>.  If such a message is seen, it means that the attack was
+prevented.</p>
+
+<p>We suggest that all administrators upgrade all of their systems to
+a version of OpenSSL which is not vulnerable to this attack.  Sites
+which allow random IPs to connect to a TLS server (e.g. SMTPS or
+HTTPS) should assume that all information available to those servers
+has been stolen from those systems.  This information includes user
+credentials, keys for private certificates, cookies sent over HTTPS,
+etc.</p>
+
+<p>We have updated FreeRADIUS (all versions) so that it refuses to
+start when it detects the vulnerable versions of OpenSSL.
+Administrators can over-ride this check by
+setting <tt>allow_vulnerable_openssl = yes</tt> in
+the <tt>security</tt> subsection of radiusd.conf.</p>
+
 <li><span class="date">2012.11.10</span> <a name="CVE-2011-4966"> - Unix module allows expired passwords
 <p>
 The CVE notification
