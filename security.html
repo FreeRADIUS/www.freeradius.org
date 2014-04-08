@@ -51,47 +51,26 @@ or HTTPS, which allow random IP addresses to connect to them via TLS.
 Those sites must assume that all information available to the system
 using TLS has been compromised.</p>
 
-<p>FreeRADIUS is <em>not vulnerable</em> in any EAP method, for any
-version of FreeRADIUS.  All of the certificates, keys, and passwords
-used by FreeRADIUS for EAP are safe and secure.</p>
+<p>Based on further information from Jouni Malinen, it appears that
+both Version 2 and Version 3 of FreeRADIUS are vulnerable to the
+attack.  It is likely that earlier versions of the server are
+vulnerable, too.</p>
 
-<p>The code in FreeRADIUS which interacts with TLS expects to see TLS
-alerts, handshakes, and application data.  Any other TLS content (such
-as a heartbeat) is treated as an error, and the session is terminated.
-In version 3,
-see <a href="https://github.com/FreeRADIUS/freeradius-server/blob/v3.0.x/src/main/tls.c">tls.c</a>,
-function tls_ack_handler().  In version 2, the code is
-in <a href="https://github.com/FreeRADIUS/freeradius-server/blob/v2.x.x/src/modules/rlm_eap/libeap/eap_tls.c">eap_tls.c</a>.
-</p>
+<p>The problem appears to be that OpenSSL has already allowed invalid
+reads by the time that FreeRADIUS detects the invalid heartbeat, and
+closes the connection.  The benefit of the way FreeRADIUS uses OpenSSL
+is that the attack appears to be limited to reading ~1K of data from
+the stack, when the server receives the malicious heartbeat.  This
+limitation mitigates the attack, but does not remove the possibility
+of exposing private information.</p>
 
-<p>Version 3 also
-implements <a href="https://tools.ietf.org/html/rfc6614">RADIUS over
-TLS</a>, which opens up new vectors for attack.  The incoming
-connection handler re-uses the TLS code mentioned above.  Therefore a
-FreeRADIUS server accepting RADIUS over TLS connections is <em>not
-vulnerable</em> to this issue.</p>
-
-<p>However, the outgoing connection handler uses a different code
-path, which calls SSL_read().  The implementation of SSL_Read() allows
-any content, including the problematic heartbeats.  Therefore, a
-FreeRADIUS server which opens outgoing RADIUS over TLS
-connections <b>is vulnerable</b> to this attack.  A malicious home
-server could exploit this issue to steal secrets from the FreeRADIUS
-proxy.</p>
-
-<p>Our belief is that this is a relatively minor issue for FreeRADIUS
-administrators.  Most versions of the server, and most configurations
-are not vulnerable to any issue.  For the ones which are vulnerable
-(version 3, outgoing RADIUS over TLS), the connections are made only
-to pre-configured, and well-known home servers.</p>
-
-<p>That is, the only people who can exploit this issue are people who
-are already known to you, and who are trusted to a certain extent.</p>
+<p>We recommend that all administrators upgrade OpenSSL
+immediately.</p>
 
 <p>Administrators can detect "heartbleed" attacks by looking in their
 logs for a message containing the text <tt>Invalid ACK received:
-24</tt>.  If such a message is seen, it means that the attack was
-prevented.</p>
+24</tt>.  If such a message is seen, it means that the attack has been
+attempted.</p>
 
 <p>We suggest that all administrators upgrade all of their systems to
 a version of OpenSSL which is not vulnerable to this attack.  Sites
