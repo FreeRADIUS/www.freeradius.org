@@ -27,6 +27,60 @@ All security related information or notifications should be sent to
 that address.  Security notifications may be signed with the pgp key
 <a href="pgp/aland@freeradius.org">aland@freeradius.org</a>
 
+<h2>FreeRADIUS Security</h2>
+
+<p>We do our best to ensure that the server has no security problems.
+The tools we use to help ensure security are:</p>
+
+<ul>
+<li> Defensive programming.  All input is sanity checked before use.
+</li>
+
+<li> Clean code.  There are no C compiler warnings in the build.
+Builds performed by developers have -Werror set, so that new errors
+are not introduced.
+</li>
+
+<li> Builds with multiple compilers.  We use GCC and CLANG for all
+builds.  Each compiler produces a slightly different set of warnings.
+As seen above, no warnings from <em>any</em> compiler are allowed in the build.
+</li>
+
+<li> Builds on multiple operating systems.  We always build on Mac OSX
+and Ubuntu.  We are in the process of adding FreeBSD and CentOS.
+</li>
+
+<li> Builds are done with every single module, and multiple feature
+permutations.  There is no portion of the server which has "code rot"
+because it has not been built for years.
+</li>
+
+<li> Continuous testing.  The <tt>src/tests/</tt> directory has a
+growing set of tests for server functionality.  These tests help
+ensure that new commits do not accidentally break existing
+functionality.
+</li>
+
+<li> Continuous integration.  Commits are built and tested
+via <a href="https://travis-ci.org/FreeRADIUS/freeradius-server">travis</a>
+</li>
+
+<li> Static analysis.  Builds are performed weekly
+with <a href="https://scan.coverity.com/">Coverity</a>.  Builds are
+performed daily with <a href="http://clang-analyzer.llvm.org/">Clang
+static analyzer</a>.  The server must build with no clang analyzer
+warnings before it can be released.
+</li>
+
+</ul>
+
+<p>These practices are not perfect.  The test suite is growing, but
+does not cover all of the servers functionality.  As a result, the
+latest releases may still have bugs.  The version 2 "stable" release
+undergoes less code churn, and is the "long term support" stable and
+bug-free release.  The version 3 "feature" release has significantly
+more code churn, and therefore may have more issues than version 2</p>
+
 <h2>Security of the RADIUS Protocol</h2>
 
 The <a href="related/papers.html">security papers</a> page lists some
@@ -70,7 +124,7 @@ immediately.</p>
 <p>Administrators can detect "heartbleed" attacks by looking in their
 logs for a message containing the text <tt>Invalid ACK received:
 24</tt>.  If such a message is seen, it means that the attack has been
-attempted.</p>
+attempted.  You should upgrade your version of OpenSSL immediately.</p>
 
 <p>We suggest that all administrators upgrade all of their systems to
 a version of OpenSSL which is not vulnerable to this attack.  Sites
