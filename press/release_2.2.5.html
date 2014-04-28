@@ -1,0 +1,23 @@
+<h3>Feature improvements</h3>
+<ul>
+<li>Update dictionary.terena and dictionary.zte.
+</li>
+<li>Expose server version via %v.  Patch from Alan Buxey.
+</li>
+<li>Forbid running with vulnerable versions of OpenSSL.
+See "allow_vulnerable_openssl" in the "security"
+subsection of "radiusd.conf"
+</li>
+<li> Catch underlying "heartbleed" problem, so that nothing bad
+happens with EAP even when using a vulnerable version of OpenSSL.
+</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li>Minor changes to build on Sun.
+</li>
+<li>Print non-ASCII characters as octal in linelog.  Closes <a href="https://github.com/FreeRADIUS/freeradius-server/issues/578">#578</a>.
+</li>
+<li> Fix zombie period calculation.  Closes <a href="https://github.com/FreeRADIUS/freeradius-server/issues/579">#579</a>
+</li>
+</ul>
