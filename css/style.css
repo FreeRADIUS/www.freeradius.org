@@ -31,10 +31,10 @@ body {
 
 #menu-top ul {
 	margin: 0 20px;
-	padding: 1em 0 0 0;
+	padding: 5em 0 0 0;
 	list-style: none;
 	font-size: 85%;
-	float: left;
+	float: right;
 }
 
 #menu-top li {
@@ -76,15 +76,14 @@ body {
 
 #wrapper-header3 {
 	background: transparent url('images/bg02-blue-right.png') top right no-repeat;
+	height: 40px;
 }
 
-#header h1 {
-	margin: 0 20px;
-	padding: 0;
-	height: 80px;
-	line-height: 3em;
-	color: #eee;
-	font-size: 150%;
+img#logo {
+	float: left;
+	vertical-align: top;
+	padding-left: 2.5em;
+	padding-top: 0.9em;
 }
 
 #wrapper-content {
@@ -95,7 +94,7 @@ body {
 
 #content {
 	background: transparent url('images/bg02-white-right.png') no-repeat right top;
-	padding: 5px 245px 5px 40px;
+	padding: 5px 245px 50px 40px;
 }
 
 #wrapper-menu-page {
@@ -137,14 +136,23 @@ body {
 	text-align: center;
 }
 
-#footer {
-	margin: 0 20px;
+div#footer {
+	position: fixed;
+	bottom: 0;
+	width: 82%;
+	left: 46.5%;
+	margin: 0 0 0 -37.5%;
+	font-size: 80%;
+	text-align: center;
 	background-color: #e5f0fc;
 	border: 1px solid #ccc;
-	border-bottom: 0;
-	clear: both;
 }
 
+h1 {
+	font-size: 1.95em;
+	padding-top: 0.5em;
+	padding-bottom: 0.05em;
+}
 h2 { font-size: 110%; }
 h3 { font-size: 100%; }
 
