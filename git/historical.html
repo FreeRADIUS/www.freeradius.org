@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>FreeRADIUS: Source code</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<meta name="keywords" content="cvs" />
+	<meta name="description" content="Historical CVS access">
+	<meta name="robots" content="noodp">
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>Historical Files</h1>
+
+<p>The git tree available here was imported from the FreeRADIUS CVS
+tree at cvs.freeradius.org.  For speed, a local copy was used:</p>
+
+<pre id="config">
+<a href="radiusd-cvs.freeradius.org.tar.gz">radiusd-cvs.freeradius.org.tar.gz</a> (10 MB)
+<a href="radiusd-cvs.freeradius.org.tar.gz.sig">radiusd-cvs.freeradius.org.tar.gz.sig</a>
+</pre>
+
+<p>The git import command was:</p>
+
+<pre id="config">
+$ git cvsimport -kam -d ./source -C ./freeradius-server.git radiusd
+</pre>
+
+<p>If you want to reproduce the git tree yourself, you will need to
+create a CVSROOT directory with the appropriate information in it.</p>
+
+<p>This archive is strictly for historical purposes, and should be of
+little interest to most people.  The same information is available in
+the git tree.</p>
+
+<h2>cvs.freeradius.org</h2>
+
+<p>For now, the original source tree at cvs.freeradius.org is still
+available.</p>
+
+</div><!--content-->
+
+<!--#include virtual="/footer.html" -->
+
+</body>
+</html>

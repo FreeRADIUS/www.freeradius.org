@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>FreeRADIUS: Submitting Patches</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<meta name="keywords" content="git,cvs" />
+	<meta name="description" content="Git, patches, diff, email">
+	<meta name="robots" content="noodp">
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>Submitting Patches</h1>
+
+<p>The guiding principal is typically expressed as "one change per
+patch; one patch per change".  That is, the fundamental property of
+interest is not size, but the number of logically separate changes
+which are part of the same patch.  The correct number is always
+exactly one.<p>
+
+<p>Multiple related edits like changing a function's prototype, making
+the corresponding change to its definition, and updating all of the
+call sites are really a single change, and should be part of the same
+patch, and thus the same commit.<p>
+
+<p>The same goes for a group of edits spread across the tree that
+introduce a new feature or fix a bug.  If they're part of one logical
+change, they should be part of one commit.  A good rule to use here is
+to combine things that are syntactically or semantically
+interdependent, such that applying only part of the change results in
+a tree that doesn't build or that no longer works correctly.<p>
+
+<p>The flip side is that unrelated things should generally not be part
+of the same patch.  Don't fix a bug and add a feature in the same
+patch.  Or fix two bugs, or add two features.  That goes triple for
+keeping cosmetic/stylistic changes such as a reindent separate from
+warning elimination, and both separate from actual functional changes.
+Similarly, any new code should follow the same formatting conventions
+as the existing code, for indentation, location of braces, etc.</p>
+
+<p>Putting unrelated changes in the same patch makes that patch harder to
+review, makes it harder to accept one change but not the other (which
+may result in the whole thing being rejected), and makes it harder to
+track down what happened if one of those changes introduced a bug.
+"git bisect" is a powerful tool for tracking down when a problem was
+introduced, but can't split the difference between two changes that
+were part of the same commit.</p>
+
+<p>It is often be possible to take a large set of changes to add a
+complex new feature, and break it down into smaller parts, each
+building on the last.  Such things are often easier to review and
+test, which is always a good thing.</p>
+
+<p>The
+patch <a href="http://github.com/guides/fork-a-project-and-submit-your-modifications">guide
+on github</a> has good instructions for submitting changes.  If the
+patch is small, it can be submitted to the list.  See the
+file <a href="https://github.com/FreeRADIUS/freeradius-server/blob/master/doc/DIFFS.rst">doc/DIFFS.rst</a>
+for additional instructions.</p>
+
+</div><!--content-->
+
+<!--#include virtual="/footer.html" -->
+
+</body>
+</html>
