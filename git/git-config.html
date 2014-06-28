@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>FreeRADIUS: Git configuration</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<meta name="keywords" content="git,cvs" />
+	<meta name="description" content="Git and anonymous CVS access">
+	<meta name="robots" content="noodp">
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>Git and CVS Server configuration</h1>
+
+<p>There are number of HOWTO's for Git.  Some are (unfortunately)
+wrong.  This is what we use here.</p>
+
+<h2>/etc/xinetd.d/git</h2>
+<pre>
+service git
+{
+	disable = no
+	type            = UNLISTED
+	port            = 9418
+	socket_type     = stream
+	wait            = no
+	user            = nobody
+	server          = /usr/bin/git-daemon
+	server_args     = --inetd --base-path=/srv/freeradius.org/git
+	log_on_failure  += USERID
+}
+</pre>
+
+<h2>/srv/freeradius.org/<em>project</em>.git</h2>
+
+<p>The bare git files.  Enable git export via:</p>
+
+<pre>
+$ cd /srv/freeradius.org/git
+$ touch <em>project</em>.git/git-daemon-export-ok
+</pre>
+
+<hr />
+
+<h2>/etc/xinetd.d/cvsserver</h2>
+<pre>
+service git
+{
+	disable = no
+	type            = UNLISTED
+	port            = 2401
+	socket_type     = stream
+	wait            = no
+	user            = nobody
+	server          = /usr/bin/git-cvsserver
+	server_args     = --base-path=/srv/freeradius.org/git/ pserver
+	log_on_failure  += USERID
+}
+</pre>
+
+<h2><em>project</em>.git/config</h2>
+
+<p>Edit this file to enable CVS pserver access (if desired)</p>
+
+<pre>
+...
+[gitcvs "pserver"]
+	enabled=1
+	### Uncomment the next line for lots of output...
+	# logfile=/var/log/gitcvs
+	dbname=/srv/freeradius.org/cvs/gitcvs.%m.sqlite
+...
+</pre>
+
+<h2>/srv/freeradius.org/cvs</h2>
+
+<p>We don't want to give anonymous git or CVS access write permission
+to the <em>project</em>.git directories, so we create a separate
+directory for the CVS databases needed by git-cvsserver:</p>
+
+<pre>
+$ cd /srv/freeradius.org
+$ mkdir cvs
+$ chown nobody cvs
+$ chgrp freeradius.org cvs
+$ chmod u+w,go-w,a+r cvs
+</pre>
+
+<hr />
+
+<h2>HTTP Access to the git repositories</h2>
+
+<p>Enable post-update hooks:</p>
+
+<pre>
+$ cd /srv/freeradius.org/git
+$ chmod +x <em>project</em>.git/hooks/post-update
+</pre>
+
+<hr />
+
+<h2>Allowing other users to push to the repositories</h2>
+
+<pre>
+$ addgroup git
+$ addgroup <em>user</em> git
+$ cd /srv/freeradius.org/git
+$ chgrp -R git <em>project</em>.git
+$ chmod -R g+w <em>project</em>.git
+$ chmod g+s `find <em>project</em>.git -type d -print`
+</pre>
+
+</div><!--content-->
+
+<!--#include virtual="/footer.html" -->
+
+</body>
+</html>

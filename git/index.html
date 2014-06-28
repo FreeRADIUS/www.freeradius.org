@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>FreeRADIUS: Source code</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<meta name="keywords" content="git,cvs" />
+	<meta name="description" content="Git and anonymous CVS access">
+	<meta name="robots" content="noodp">
+	<!--[if lt IE 7.]>
+	<script defer type="text/javascript" src="/pngfix.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<!--#include virtual="/header.html" -->
+
+<div id="content">
+
+<h1>The FreeRADIUS Project</h1>
+
+<h2>Anonymous Git Access</h2>
+
+Anonymous git access is available for the following trees, with HTTP
+access provided via <a href="http://github.com">GitHub</a>:
+
+<ul>
+<li> <a href="https://github.com/FreeRADIUS/freeradius-server/tree/v3.0.x">v3.0.x</a> - The next "major" release, which will have new features and other changes.</li>
+<pre class="config">
+$ git clone git://git.freeradius.org/freeradius-server.git
+$ cd freeradius-server
+$ git checkout -b v3.0.x origin/v3.0.x
+</pre>
+
+<li> <a href="http://github.com/FreeRADIUS/freeradius-server/tree/v2.x.x">v2.x.x</a> - The "long term support" release.  The only changes to this code will be minor bug fixes.  All new development is done in the "stable" branch.</li>
+<pre class="config">
+$ git clone git://git.freeradius.org/freeradius-server.git
+$ cd freeradius-server
+$ git checkout -b v2.x.x origin/v2.x.x
+</pre>
+
+</ul>
+
+<p>Followed by the usual</p>
+
+<pre class="config">
+$ ./configure
+$ make
+$ make install
+</pre>
+
+<p>The <a href="http://github.com">GitHub</a> links above support:</p>
+
+<ul>
+<li>gitweb access,</li>
+<li>support for cloning via HTTP,</li>
+<li>support for downloading "tar" files of the git tree.</li>
+</ul>
+
+<p>Please read the <a href="howto.html">howto</a> page for the
+suggested git work flow.</p>
+
+<h2>Repositories</h2>
+
+<p>The repositories available on this server are:</p>
+
+<ul>
+<li>git://git.freeradius.org/freeradius-server.git - The FreeRADIUS Server</li>
+<li>git://git.freeradius.org/mod_auth_radius.git - The FreeRADIUS Apache Module for RADIUS Authentication</li>
+</ul>
+
+<p>These repositories are also available on <a href="http://github.com/FreeRADIUS/">github</a></p>
+
+<h2>Submitting Patches</h2>
+
+<p>See the <a href="/patches.html">patch page</a> for instructions</p>
+
+<h2>Anonymous CVS Access</h2>
+
+<pre class="config">
+$ cvs -d :pserver:anonymous@git.freeradius.org:/freeradius-server.git checkout <em>-d radiusd</em> master
+</pre>
+
+<p>Where <tt><em>radiusd</em></tt> is the local directory that the checkout
+goes into.  The <tt><em>-d radiusd</em></tt> option can also be omitted.</p>
+
+<p>The rest of the text in that command (including the reference to
+"master") is git magic, and should be ignored by most people using
+anonymous CVS.</p>
+
+<p>The original CVS tree is available on
+the <a href="/historical.html">historical</a> page.
+
+<h2>Commit Access</h2>
+
+<p>Instructions for core team members are on
+the <a href="commit.html">commit access</a> page.</p>
+
+<h2>Old Git branches</h2>
+
+<p>As of June 2010, the old "master" branch has been moved to
+"old-dev".  It contained a line of development which did not work out.
+Therefore, the old "stable" branch has become the new "master" branch.  The old "stable" branch still exists, but should not be used</p>
+
+<p>Anyone who was using the old "master" branch should discard it, and
+base all of their work on the new "master" branch.  Since we
+discouraged anyone from using the "master" branch, this change should
+not cause problems for anyone.</p>
+
+</div><!--content-->
+
+<!--#include virtual="/footer.html" -->
+
+</body>
+</html>
