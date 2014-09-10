@@ -1,0 +1,213 @@
+<h3>Feature improvements</h3>
+<ul>
+<li>Home server &quot;response_window&quot; can now take fractions of a
+second.  See proxy.conf.
+</li>
+<li>radmin now supports &quot;show module status&quot;, as the counterpart
+to &quot;set module status&quot;
+</li>
+<li>Added dictionary ericsson.packet.ccore.networks, bluecoat,
+citrix, compatible, riverbed, ruckus, and RFC 7268.
+</li>
+<li>Add %{tag:} expansion to get the tag value of an attribute.
+</li>
+<li>Report 'application_name' in connections to PostgreSQL servers.
+FreeRADIUS connections will now appear as
+'FreeRADIUS &lt;version&gt; - &lt;name&gt;' in pg_stat_activity.
+</li>
+<li>All config item fields are now type checked at compile time
+to prevent issues similar to #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/634">634</a> occuring again.
+</li>
+<li>Modify pairparsevalue to deal with embedded NULLs better,
+and use the binary versions of attribute values in rlm_ldap.
+</li>
+<li>&quot;ipaddr&quot; will now use v6 if no v4 address is present.  You should
+use &quot;ipv4addr&quot; or &quot;ipv6addr&quot; to force v4/v6 addresses.
+</li>
+<li>The above applies to &quot;listen&quot;, &quot;home_server&quot;, and &quot;client&quot; sections.
+</li>
+<li>&quot;client&quot; sections will allow &quot;ipaddr = 192.192.0/24&quot;.  The old
+&quot;netmask&quot; is still accepted, but the new format is preferred.
+</li>
+<li>Allow custom HTTP headers to be set for rlm_rest requests using
+control:REST-HTTP-Header (attributes consumed after use).
+</li>
+<li>Extend format of %{rest:} expansion to allow HTTP method and POST
+data to be specified
+e.g. %{rest:POST http://example.org/api foo=bar&amp;baz=boink}.
+</li>
+<li>Add %{hmacsha1:&amp;data &amp;key} and %{hmacmd5:&amp;data &amp;key} expansions
+for signing data in requests.
+</li>
+<li>rlm_cache now consumes its control attributes to make runtime
+configuration easier.
+</li>
+<li>Add control:Cache-Read-Only which when set to 'yes' will make the
+cache module merge existing cache data, but not create new entries.
+</li>
+<li>Add %{unescape:} and %{urlunquote:} expansions to reverse escaping
+and urlquoting.
+</li>
+<li>Add support for aliases in rlm_ldap.
+</li>
+<li>Add support for connection pool sharing to all modules that use
+the connection pool (pool = &lt;instance&gt;).
+</li>
+<li>&quot;tls&quot; sections now have a &quot;psk_query&quot; configuration item, for dynamic
+queries to discover a key from a PSK identity.
+</li>
+<li>Preliminary support for EAP channel bindings.
+</li>
+<li>Foundational work for dynamic home servers.  They do not yet work,
+but this is now only a matter of updating the &quot;realm&quot; module in
+a future release.
+</li>
+<li>Support &amp;attr[*] syntax to copy all instances of an attribute when
+used with the += operator in an update section. May be qualified with
+a tag.
+</li>
+<li>The logintime and expiration modules can now be listed in the
+post-auth section.  This makes some configurations simpler.
+</li>
+<li>Allow comparison of integer attributes of different sizes,
+without requiring a cast.
+</li>
+<li>rlm_sqlippool is now IPV6 capable.  Set &quot;ipv6 = yes&quot; to get
+Framed-IPv6-Prefix returned.  The SQL queries have NOT been updated.
+Please submit patches.
+</li>
+<li>The debian build now checks for the OpenSSL package with the heartbleed
+fix, and if found, sets: allow_vulnerable_openssl = 'CVE-2014-0160'
+</li>
+<li>allow bootstrap from multiple files in sqlite driver.
+</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li>make case-insensitive regular expressions work again, and add tests
+for them.
+</li>
+<li>A few more talloc parenting issues
+</li>
+<li>Fix delayed proxy reply handling.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/637">637</a>
+</li>
+<li>Fix OpenSSL initialization order when using
+RADIUS/TLS.  Fixes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/646">646</a>
+</li>
+<li>Don't double-quote strings in debugging messages
+</li>
+<li>Fix foreach / break.  Fixes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/639">639</a>
+</li>
+<li>Chargeable-User-Identifier, ADSL-Agent-Circuit-Id and
+ADSL-Agent-Remote-Id should be &quot;octets&quot; types in the default
+dictionary.
+</li>
+<li>Fix typo in mainconfig.  Fixes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/634">634</a>
+</li>
+<li>More rlm_perl fixes.  Fixes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/635">635</a>
+</li>
+<li>Free OpenSSL memory on clean exit.
+</li>
+<li>Fix &lt;attr&gt;[0] !* ANY - Was removing all instances of &lt;attr&gt;
+</li>
+<li>Fix case where multiple attributes were returned from RHS of
+mapping, as with rlm_ldap. Fixes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/652">652</a>
+</li>
+<li>Fix corner case in cursor where using fr_cursor_next_by_da
+after calling fr_cursor_remove may of resulted in a read of
+uninitialised memory.
+</li>
+<li>Don't SEGV if all connections to a database server go away.
+Fixes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/651">651</a>.
+</li>
+<li>Fix issue where &lt;attr&gt; -= &lt;value&gt; was not removing tagged
+instances of &lt;attr&gt; equal to &lt;value&gt; (only untagged).
+</li>
+<li>Fix issue where tag values were not being set on attributes
+created with unlang/ldap update blocks.
+</li>
+<li>Create rlm_sqlcounter attributes as integer64 types instead
+of integer types, so large counter values can be specified.
+</li>
+<li>Fix issue where specifying a dynamic client IP addresss using
+FreeRADIUS-Client-IPv6-Prefix or FreeRADIUS-Client-IP-Prefix
+may have caused a validation error.
+</li>
+<li>Don't print two &quot;&amp;&quot; for messages about attribute or list
+references in debug output.
+</li>
+<li>Fix urlquote and escape to encode Unicode characters correctly.
+</li>
+<li>Fix redundant-load-balance blocks to try other modules in
+the group if one fails.
+</li>
+<li>Fix issue with rlm_pap password normalisation where
+'known good' password strings stored in octets type attributes,
+would be sometimes misnormalised as base64.
+</li>
+<li>Don't stop processing DHCP options if we find a 0x00 padding
+option.
+</li>
+<li>Fix issue where modifying the value of an attribute created
+from a template with a literal value, may have resulted in the
+template literal being freed.
+</li>
+<li>Fix parenting issues in tls code which may have resulted in
+memory corruption and crashes.
+</li>
+<li>Fix issue in radsniff where writing to PCAP files and using
+-R response filters, where the requests would still be written
+to the PCAP for non matching responses.
+</li>
+<li>Define __APPLE_USE_RFC_2292 so that the server builds with IPv6
+support on OSX.
+</li>
+<li>Fix LDAP group lookups for named rlm_ldap instances.
+Note that attribute references should be used when
+checking LDAP-Group attributes. e.g. if (&amp;LDAP-Group == 'foo').
+</li>
+<li>Delayed attribute references can now be used in unlang
+existence checks.  i.e. if (&amp;Attribute-Name) { ... }
+</li>
+<li>Fix issues in EAP-PWD.  CVE-2014-4731, CVE-2014-4732, and
+CVE-2014-4733.  There is no external authentication bypass.
+</li>
+<li>Fix a number of uses of the talloc parent/child reference.
+</li>
+<li>Release connection used for reading bulk clients in rlm_ldap.
+</li>
+<li>rlm_rest is now fail-safe if it's used without any configuration
+</li>
+<li>Pull in build fixes for FreeBSD from ports.
+</li>
+<li>Fix error in sqlite postauth query
+</li>
+<li>Evaluate argument to &quot;switch&quot; statements once, instead of for each
+&quot;case&quot; statement.
+</li>
+<li>Define sig_t on systems without it.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/765">765</a>.
+</li>
+<li>Fix boundary issue with rlm_rest.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/768">768</a>
+</li>
+<li>Optimize &quot;%{Attribute-Name}&quot; in comparisons only if the dictionary
+types match.
+</li>
+<li>Don't do chmod() in rad_mkdir() if the directory already exists.
+We might not have permission to change it.
+</li>
+<li>Use getpwnam_r() and getgrnam_r() on systems which support it.
+Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/775">775</a>.
+</li>
+<li>Clients loaded from SQL are now tied to the &quot;listen&quot; section
+of a virtual server, instead of being global.
+</li>
+<li>Check for -lpcre.  The system might have pcre.h without -lpcre.
+</li>
+<li>When proxying to a virtual server, use the proxy_reply instead
+of ignoring it.
+</li>
+<li>Fixed typos in DHCP SQL IPPool.
+</li>
+<li>Fix crash when passing multiple arguments to Perl xlat.
+</li>
+</ul>
