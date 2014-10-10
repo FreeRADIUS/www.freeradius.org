@@ -135,7 +135,14 @@ credentials, keys for private certificates, cookies sent over HTTPS,
 etc.</p>
 
 <p>We have updated FreeRADIUS (all versions) so that it refuses to
-start when it detects the vulnerable versions of OpenSSL.
+start when it detects the vulnerable versions of OpenSSL.</p>
+
+<p><b>v3.0.x -</b>
+Administrators can over-ride this check by
+setting <tt>allow_vulnerable_openssl = CVE-2014-0160</tt> in
+the <tt>security</tt> subsection of radiusd.conf.</p>
+
+<p><b>v2.2.x -</b>
 Administrators can over-ride this check by
 setting <tt>allow_vulnerable_openssl = yes</tt> in
 the <tt>security</tt> subsection of radiusd.conf.</p>
