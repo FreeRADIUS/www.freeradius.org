@@ -96,6 +96,22 @@ LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
 and put in reverse-chronological order.
        -->
 
+<li><span class="date">2014.09.24</span> <a name="heartbleed"> - SSLv3 <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security#POODLE_attack">POODLE</a> attack.
+<p>
+FreeRADIUS is <em>not</em> vulnerable to this issue.  All version to
+at least 1.0.0 (and possibly earlier) require TLSv1.
+</p>
+
+
+<li><span class="date">2014.09.24</span> <a name="heartbleed"> - Bash <a href="http://en.wikipedia.org/wiki/Shellshock_(software_bug)">Shellshock</a> bug.
+<p>
+Systems running FreeRADIUS <em>may be</em> vulnerable to this bug.
+The default configuration does not execute any external programs or
+shell scripts.  However, administrators who have configured the server
+to execute shell scripts <b>must</b> upgrade their version
+of <code>bash</code> to a version which is not vulnerable.
+</p>
+
 <li><span class="date">2014.04.08</span> <a name="heartbleed"> - OpenSSL <a href="heartbleed.com">heartbleed</a> bug.
 <p>
 OpenSSL has a major security issue, seen in
