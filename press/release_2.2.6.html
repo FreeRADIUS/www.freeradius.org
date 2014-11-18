@@ -1,0 +1,31 @@
+<h3>Feature improvements</h3>
+<ul>
+<li>When supported by OpenSSL, allow TLS 1.1 and TLS 1.2
+in EAP methods.
+</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li>Fix redundant-load-balance blocks to try other modules in
+the group if one fails.
+</li>
+<li>Fix potential read into uninitialised memory in rlm_pap
+when normalising octet type attributes containing password
+hashes. This is very unlikely to happen in the wild.
+</li>
+<li>Don't stop decoding DHCP options if we find a padding
+option.
+</li>
+<li>Define sig_t on systems which don't have it.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/765">765</a>
+</li>
+<li>When clients are loaded from SQL, allow them to be tied
+to a virtual server.
+</li>
+<li>Prevent race conditions between fork and wait for child.
+Patch from James Rouzier.
+</li>
+<li>Allow UTF-8 characters in SQL.
+</li>
+<li>Back-port udpfromto fixes from v3
+</li>
+</ul>
