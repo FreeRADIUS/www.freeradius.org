@@ -1,0 +1,177 @@
+<h3>Feature improvements</h3>
+<ul>
+<li>Large update to Huawei dictionary.
+</li>
+<li>Added dictionary.rfc7155
+</li>
+<li>Regular expressions like /%{User-Name}/ are now parsed
+and validated when the server starts.
+</li>
+<li>All configuration items which are dynamically expanded
+are now parsed and validated when the server starts.
+</li>
+<li>%{expr:...} expressions can now do bit shifting and more.
+See raddb/mods-available/expr.
+</li>
+<li>The detail file reader can now track packets which have
+had replies, so they are never re-transmitted.  See
+raddb/sites-available/buffered-sql, the &quot;track&quot; config item.
+</li>
+<li>CoA and Disconnect packets can now be sent to a specific
+home server by setting control:Packet-Dst-IP-Address and
+(optionally) control:Packet-Dst-Port.
+</li>
+<li>Allow CoA and Disconnect packets to be read from the
+detail file.
+</li>
+<li>Allow LDAP to specify arbitrary attributes for dynamic
+clients.
+</li>
+<li>Convert all unused attributes in the control: list to config
+pairs in dynamic clients. This allows arbitrary client
+attributes to be set for dynamic clients too.
+</li>
+<li>rlm_couchbase now supports bulk loading of clients on startup
+in a similar way to rlm_ldap. Contributed by Aaron Hurt.
+</li>
+<li>Allow one level of backslashes (finally).  See radiusd.conf,
+&quot;correct_escapes&quot; setting.
+</li>
+<li>Rename dictionary.redback to dictionary.ericsson.ab
+</li>
+<li>Add --disable-openssl-version-check option to configure.
+So vendors can disable the check.  Patch from
+Nikolai Kondrashov.
+</li>
+<li>Do context-specific indenting in debug messages.  This makes
+the debug output easier to read.
+</li>
+<li>Make configuration a separate RPM, just like for Debian.
+</li>
+<li>better decoding of unknown VSAs
+</li>
+<li>When supported by OpenSSL, allow TLS 1.1 and TLS 1.2
+in EAP methods.
+</li>
+<li>Allow multiple new connections to be spawned simultaneously
+in the connection pool, to cope with spikes in traffic.
+</li>
+<li>Document retry_delay in connection pools.
+</li>
+<li>Allow checksimul in rlm_couchbase.
+</li>
+<li>Use kqueue on systems which support it.  This allows for
+better scaling when using many sockets.
+</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li>Parse list qualifiers in generic LDAP 'valuepair_attribute'
+attributes correctly.
+</li>
+<li>Fix issue where prefix length would be ignored for dynamic
+or static clients if the address matched INADDR_ANY
+(0.0.0.0).
+</li>
+<li>Allow null user object filter in rlm_ldap, it's valid to
+specify a complete object DN and use the base scope.
+</li>
+<li>Don't SEGV if a received attribute value in a JSON structure
+is null, or a value can't be stringified.
+</li>
+<li>Don't assert if the server returns a JSON content-type and
+the server hasn't been built with support for JSON.
+Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/808">808</a>.
+</li>
+<li>Set CURLOPT_NOSIGNAL to prevent curl from handling signals
+and causing a longjmp error when the server was running with
+threads.
+</li>
+<li>Allow tabs after attribute names in the &quot;users&quot; file.
+Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/796">796</a>.
+</li>
+<li>Free unknown DICT_ATTRs.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/795">795</a>
+</li>
+<li>Handle unknown attributes in the conditions and &quot;update&quot;
+sections.  e.g. Attr-1.2.3.4 = foo.
+</li>
+<li>Use correct array size for MS-CHAP new password.
+</li>
+<li>In rlm_rest, check for older versions of libraries at start
+time, rather than when a packet comes in.
+</li>
+<li>Don't call detach on parse error in rlm_perl.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/802">802</a>.
+</li>
+<li>Integer fixes for big-endian systems.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/803">803</a>.
+</li>
+<li>Don't optimize %{Packet-Src-IP-Address}.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/804">804</a>.
+</li>
+<li>dhcpclient loads dictionaries correclty.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/805">805</a>.
+</li>
+<li>double quotes are no longer escaped in single-quoted
+strings.  e.g. 'foo &quot;hello&quot; bar'.
+</li>
+<li>Fixes for proxying to virtual servers broke the detail file
+reader.  Now they both work.
+</li>
+<li>Typos and fixes from Nikolai Kondrashov.
+</li>
+<li>Fixes to OpenSSL version checks, for cross-platform issues.
+</li>
+<li>cppcheck fixes from Herwin Weststrate.
+</li>
+<li>Fix build for OSX Yosemite
+</li>
+<li>Merge DHCP sub-options.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/812">812</a>.
+</li>
+<li>Fix decoding of Starent attributes.
+</li>
+<li>When a module asks for a connection, don't return idle
+connections.
+</li>
+<li>LDAP connection timeouts will now retry, instead of failing.
+</li>
+<li>Prevent race conditions between fork and wait for child.
+Patch from James Rouzier.
+</li>
+<li>Fix triggers for connection pools.  Patches from
+Nikolai Kondrashov.
+</li>
+<li>Fix SEGV when comparing non string type check items.
+</li>
+<li>Build with newer versions of libmysqlclient.
+</li>
+<li>make the %{escape:} and %{unescape:} xlat functions UTF8
+safe.
+</li>
+<li>Don't escape UTF8 chars in SQL query strings.
+</li>
+<li>Fix issue in cached LDAP group comparisons, which caused
+checks to sometimes fail.
+</li>
+<li>Fix use after free issue in unlang switch evaluation.
+</li>
+<li>Respect operators in rlm_cache when merging into the current
+request.
+</li>
+<li>Update Cache-Entry-Hits each time rlm_cache is called.
+</li>
+<li>Produce WARN messages if SQL queries are empty strings.
+</li>
+<li>Fix invalid assertion when proxying CoA requests.
+</li>
+<li>Allow empty strings in &quot;case&quot; statements.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/836">836</a>.
+</li>
+<li>Normalize escaping for string expansions.  i.e. don't do
+double escaping in rare situations.
+</li>
+<li>Normalize LDAP escaping.  LDAP servers have multiple ways
+to escape things, so the data has to be normalized before
+we can compare two LDAP DNs.
+</li>
+<li>Don't go to high debug level if we're proxying inner EAP
+as EAP.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/839">839</a>.
+</li>
+<li>Fix rlm_rest state handling.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/835">835</a>.
+</li>
+</ul>
