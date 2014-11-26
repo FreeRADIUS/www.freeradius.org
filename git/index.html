@@ -27,14 +27,14 @@ access provided via <a href="http://github.com">GitHub</a>:
 <ul>
 <li> <a href="https://github.com/FreeRADIUS/freeradius-server/tree/v3.0.x">v3.0.x</a> - The next "major" release, which will have new features and other changes.</li>
 <pre class="config">
-$ git clone git://git.freeradius.org/freeradius-server.git
+$ git clone git@github.com:FreeRADIUS/freeradius-server.git
 $ cd freeradius-server
 $ git checkout -b v3.0.x origin/v3.0.x
 </pre>
 
 <li> <a href="http://github.com/FreeRADIUS/freeradius-server/tree/v2.x.x">v2.x.x</a> - The "long term support" release.  The only changes to this code will be minor bug fixes.  All new development is done in the "stable" branch.</li>
 <pre class="config">
-$ git clone git://git.freeradius.org/freeradius-server.git
+$ git clone git@github.com:FreeRADIUS/freeradius-server.git 
 $ cd freeradius-server
 $ git checkout -b v2.x.x origin/v2.x.x
 </pre>
@@ -65,7 +65,6 @@ suggested git work flow.</p>
 <p>The repositories available on this server are:</p>
 
 <ul>
-<li>git://git.freeradius.org/freeradius-server.git - The FreeRADIUS Server</li>
 <li>git://git.freeradius.org/mod_auth_radius.git - The FreeRADIUS Apache Module for RADIUS Authentication</li>
 </ul>
 
@@ -74,22 +73,6 @@ suggested git work flow.</p>
 <h2>Submitting Patches</h2>
 
 <p>See the <a href="patches.html">patch page</a> for instructions</p>
-
-<h2>Anonymous CVS Access</h2>
-
-<pre class="config">
-$ cvs -d :pserver:anonymous@git.freeradius.org:/freeradius-server.git checkout <em>-d radiusd</em> master
-</pre>
-
-<p>Where <tt><em>radiusd</em></tt> is the local directory that the checkout
-goes into.  The <tt><em>-d radiusd</em></tt> option can also be omitted.</p>
-
-<p>The rest of the text in that command (including the reference to
-"master") is git magic, and should be ignored by most people using
-anonymous CVS.</p>
-
-<p>The original CVS tree is available on
-the <a href="historical.html">historical</a> page.
 
 <h2>Commit Access</h2>
 
