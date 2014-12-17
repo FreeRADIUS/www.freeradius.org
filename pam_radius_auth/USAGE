@@ -3,9 +3,9 @@ is not implemented, as the RADIUS protocol does not support it.
 
   The pam configuration can be:
 ...
-auth       sufficient   /lib/security/pam_radius_auth.so [options]
+auth       sufficient   pam_radius_auth.so [options]
 ...
-account    sufficient   /lib/security/pam_radius_auth.so
+account    sufficient   pam_radius_auth.so
 
 ---------------------------------------------------------------------------
 
@@ -62,8 +62,9 @@ client_id=bar  - send a NAS-Identifier RADIUS attribute with string
                  This feature may be disabled by using 'client_id='.
                  i.e. A blank client ID.
 
-retry = #      - allow a number of retries before continuing to the next
-                 authentication module
+retry = #      - How many times to re-send a packet if there is no
+		 response.  Once the retry count has been reached,
+		 the module fails, and PAM continues to the next module.
 
 use_authtok    - force the use of a previously entered password.
                  This is  needed for pluggable password strength checking
@@ -82,6 +83,22 @@ localifdown    - This option tells pam_radius to return PAM_IGNORE instead
 accounting_bug - When used, the accounting response vector is NOT
                  validated.  This option will probably only be necessary
                  on REALLY OLD (i.e. Livingston 1.16) servers.
+
+prompt=string  - Specifies the prompt, without the ': ', that PAM should
+                 display when prompting for the password. This is useful
+                 when using hardware tokens as part of multi-factor
+                 authentication and presenting the same prompt twice would
+                 confuse users.  Use prompt=TokenCode (or some other
+                 relevant string different from Password) in this
+                 situation.
+
+force_prompt   - Request a new password and not using the previously entered
+                 password. This usefull for multi-factor authentication
+                 when used with a Token.
+
+max_challenge=# - configure maximum number of challenges that a server
+                  may request. This is a workaround for broken servers
+                  and disabled by default.
 
 ---------------------------------------------------------------------------
 
