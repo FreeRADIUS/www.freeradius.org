@@ -1,0 +1,169 @@
+<h3>Feature improvements</h3>
+<ul>
+<li>Allow coa home_servers to be derived from client
+sections if a coa_server section is provided.
+</li>
+<li>Automatically determine the correct port if no port is
+provided for a home server.
+</li>
+<li>Allow foreach to operate over lists.
+</li>
+<li>Add compile time features to ${feature.*} and versions
+of core libraries to ${version.*}.  Feature and version
+names match output of radiud -xv. %v is now deprecated.
+</li>
+<li>Add support for PATCH method in rlm_rest.
+</li>
+<li>Validate more module xlats on startup, and warn if an
+xlat expansion is found in a double quoted config item
+which will not be expanded.
+</li>
+<li>Add support for sub-second timeouts in rlm_rest.
+</li>
+<li>Add support for connection timeouts in rlm_rest.
+</li>
+<li>Add %{jsonquote:&lt;str&gt;} xlat to escape strings for insertion
+into json documents.
+</li>
+<li>Add %{ldapquote:&lt;str&gt;} xlat to escape strings for insertion
+into ldap DNs.
+</li>
+<li>Add %{explode:&amp;ref &lt;char&gt;}, splits value of &amp;ref on
+&lt;char&gt; and creates new &amp;ref type attributes with the
+fragments.
+</li>
+<li>Allow rlm_ldap to use attribute references for base_dn and
+filter config items. The attribute references are not
+escaped, allowing DNs and filters to be created dynamically.
+</li>
+<li>Add %{nexttime:[&lt;int&gt;]h|d|w|y} to calculate the number of
+seconds before the next &lt;int&gt; hour(s), day(s), week(s),
+or year(s).
+</li>
+<li>Allow the left side of update sections to be xlat expansions.
+The result of the expansion is then used to reference the
+attribute to be modified.
+</li>
+<li>Added %{lpad:&amp;Attribute-Name 7 x} and rpad.  These produce
+fixed-width output strings, with padding to the left (lpad)
+or the right (rpad).
+</li>
+<li>For some SQL drivers (MySQL, sqlite) distinguish between
+constraints violations (on insert), invalid queries, and
+server errors, and return noop, invalid, and error respectively.
+</li>
+<li>Call SHOW WARNINGS in the MySQL driver and write them to
+the request log, if libmysqlclient indicates warnings are
+available on the server.
+</li>
+<li>Forbid the creation of Vendor-Specific for non-standard
+VSAs.  Use Attr-26 = 0x... instead.
+</li>
+<li>Make dhcpclient work with raw sockets and various other
+improvements - Contributed by nchaigne
+</li>
+<li>Add support for SSHA2 - Contributed by PDD.
+</li>
+<li>Add perle dictionary - Contributed by Hachmer
+</li>
+<li>Modernise init scripts for RHEL, SUSE and Debian.
+</li>
+<li>radmin now tracks the return code of commands, and exits
+with status &quot;1&quot; if any command failed to execute.
+</li>
+<li>radmin now sends error messages from the server to
+stderr, instead of to stdout.
+</li>
+<li>radmin now looks for sockets matching it's UID and GID,
+rather than just always using the first one it finds.
+</li>
+<li>radmin can how delete clients which are tied to a listener.
+</li>
+<li>Moved RADIUS attribute definitions to src/include/rfc*.h
+</li>
+<li>Move to talloc pools for requests.  For in-memory tests
+(default config, 'users' file), performance increases by 30%.
+</li>
+<li>In rlm_ldap allow sasl_mech to be specified for admin and
+user binds. Only non-interactive mechs (like EXTERNAL)
+are currently supported.
+</li>
+<li>Remove support for ephemeral RSA keys.  They were &quot;export only&quot;,
+and should not be used by anyone.
+</li>
+<li>Syntax errors in the &quot;users&quot; file now produce better
+error messages.
+</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li>Fix issues parsing LDAP hostnames with non-standard ports.
+</li>
+<li>Fix issues with realms containing regular expressions.
+</li>
+<li>Allow unary negation before parantheses in rlm_expr.
+</li>
+<li>Fix infinite loop in kevent event loop code. Issue only
+presented on FreeBSD.
+</li>
+<li>Be more careful to define Auth-Types before loading modules.
+</li>
+<li>Link libfreeradius-radius against OpenSSL too, to avoid
+multi-version symbols in SSL libraries.
+</li>
+<li>When rlm_ldap rebinds a connection, it should use bind
+credentials from the module that created the connection
+pool, not credentials from the module referencing it.
+</li>
+<li>Empty server config pairs should be allowed in rlm_ldap
+instances that reference another module's connection pool.
+</li>
+<li>Mark rlm_always as huppable, so its rcode can be changed
+via radmin (allows policy toggles).
+</li>
+<li>Emit warnings when ignoring user configured pool values.
+</li>
+<li>Fix issue that would cause radclient to complain
+intermittently about differing numbers of filters and
+requests.
+</li>
+<li>Fix cosmetic issues in connection pool logging, that made
+it appear as if the same connection was being opened
+multiple times.
+</li>
+<li>Fix threadsafety issues in SQL drivers, where a static
+buffer was used to store error messages.
+</li>
+<li>Log RERROR, RWARN, RINFO to the global log if request
+logging is not enabled.
+</li>
+<li>Link to libldap instead of libldap_r. libldap_r
+is not supported for use by projects outside of OpenLDAP.
+</li>
+<li>Set connection timeout correctly in rlm_sql_mysql.
+</li>
+<li>Build with older versions of libcurl, and use CFLAGS from
+curl-config.
+</li>
+<li>Honour Packet-Src-Port and Packet-Src-IP-address in radclient.
+</li>
+<li>Initialise ldapai_info_version field, so libldap will report
+its vendor and version.
+</li>
+<li>Fix log rotation scripts by using the copyrotate option.
+</li>
+<li>Fix issue that caused opening control sockets to always
+fail on non-Linux systems, if a user or group was set.
+</li>
+<li>Save Session-State after proxying.
+</li>
+<li>Additional fixes for reading CoA/DM requests from detail
+files.
+</li>
+<li>Create dynamic clients if the dynamic clients virtual server
+returns ok *or* updated. Emit useful messages for other codes.
+</li>
+<li>Compile bare &quot;authorize&quot; statements, and issue errors saying
+using them isn't a good idea.
+</li>
+</ul>
