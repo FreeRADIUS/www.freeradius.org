@@ -65,11 +65,12 @@ functionality.
 via <a href="https://travis-ci.org/FreeRADIUS/freeradius-server">travis</a>
 </li>
 
-<li> Static analysis.  Builds are performed weekly
+<li> Static analysis (3x!).  Builds are performed weekly
 with <a href="https://scan.coverity.com/">Coverity</a>.  Builds are
 performed daily with <a href="http://clang-analyzer.llvm.org/">Clang
-static analyzer</a>.  The server must build with no clang analyzer
-warnings before it can be released.
+static analyzer</a>
+and <a href="http://cppcheck.sourceforge.net/">cppcheck</a>.  The
+server must build with no errors before it can be released.
 </li>
 
 </ul>
