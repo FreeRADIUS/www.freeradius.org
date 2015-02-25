@@ -164,6 +164,21 @@ Administrators can over-ride this check by
 setting <tt>allow_vulnerable_openssl = yes</tt> in
 the <tt>security</tt> subsection of radiusd.conf.</p>
 
+<li><span class="date">2014.02.17</span> <a name="CVE-2014-2015"> - Stack overflow in the PAP module.
+<p>
+The CVE notification
+is <a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-2015">CVE-2014-2015</a>
+</p>
+<p>
+The PAP module takes a "known good" password (e.g. Crypt-Password),
+and compares it to the password entered by the user
+(e.g. User-Password).  In cases where the "known good" password was
+very long, insufficient input validation was performed.  An
+administrator who controlled the password store could enter long
+passwords, and cause the server to crash.
+</p>
+</li>
+
 <li><span class="date">2012.11.10</span> <a name="CVE-2011-4966"> - Unix module allows expired passwords
 <p>
 The CVE notification
