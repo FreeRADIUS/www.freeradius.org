@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>FreeRADIUS -- getting the code</title>
+        <link type="text/css" rel="stylesheet" href="/css/style.css" />
+        <meta name="keywords" content="download,server" />
+        <!--[if lt IE 7.]>
+        <script defer type="text/javascript" src="/pngfix.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!--#include file="/header.html" -->
+        <div id="content">
+            <h1>Enterprise Wi-Fi / IEEE 802.1X</h1>
+            <h2>Deficiencies of PSK networks</h2>
+            <p>Common home-use Wi-Fi networks do not need a RADIUS server because
+                they “secure” the network with <strong>one single network key</strong>, the 
+                “WPA/WPA2 Pre-Shared Key” (PSK). That key is the same for every user, 
+                is often guessable, and <strong>can’t be revoked for one user</strong> (if one user should be 
+                denied access, the key needs to be changed for the entire network
+                and every user needs to be given the new key). When a network is
+                sniffed, an attacker can perform <strong>offline attacks</strong> to guess the key.</p>
+            <p><strong>All this makes PSK networks unfit for enterprise use.</strong></p>
+            <h2>IEEE 802.1X and RADIUS Authentication</h2>
+            <p>The IEEE standards for Wi-Fi (IEEE 802.11) foresee an “Enterprise”
+                mode which is fundamentally different from PSK networks because
+                the Wi-Fi encryption keys are provisioned <strong>per user</strong>
+                and <strong>per session</strong>. Every user needs to authenticate
+                with his <strong>personal credentials</strong>; at that moment a 
+                key is generated and is communicated to the user’s device and the
+                NAS he connects to.</p>
+            <p>Before sending his authentication credentials,
+                the <strong>network must authenticate to the user</strong>, proving
+                that it is indeed genuine; only then is the client’s credential
+                released. The IEEE standard IEEE 802.1X (using RADIUS and the
+                Extensible Authentication Protocol, EAP) is used for authentication
+                and key management.</p>
+            <p>Enterprise Wi-Fi authentication also enables advanced features
+                such as putting users dynamically into a specific VLAN (e.g. 
+                separate “guest” and “staff” logins into different IP networks
+                even though being on the same SSID).</p>
+            <p>Enterprise Wi-Fi requires</p>
+            <ol>
+                <li>a RADIUS server which can do EAP authentication</li>
+                <li>Wi-Fi equipment which is correctly configured to use RADIUS authentication</li>
+                <li>user devices configured to do Enterprise Wi-Fi correctly</li>
+            </ol>
+            <h1>RADIUS Server</h1>
+            (FreeRADIUS advertising :-) )
+
+            <h1>Wi-Fi</h1>
+            <p>The access point / Wi-Fi controller needs to be capable of the WPA2 Enterprise
+                operation mode; configuration options in the device are often
+                called “IEEE 802.1X Authentication” “RADIUS” “or WPA Enterprise”.
+                In this operation mode, the device becomes a NAS (i.e. RADIUS
+                client), so needs to be configured with the IP address of the
+                RADIUS server to connect to and the corresponding shared secret
+                for the RADIUS communication as configured on the RADIUS server.</p>
+            <p>The aforementioned per-user VLAN assignment is not part of IEEE 
+                802.1X; it is an extra feature which the Wi-Fi access point or
+                controller may support or not, despite its RADIUS capability. If
+                you are provisioning devices and find this feature valuable, you
+                should look for features called “Dynamic VLAN Assignment” “VLAN
+                Override” or similar. To make use of the feature, the last RADIUS
+                packet sent from the RADIUS Server to the Access Point, the 
+                Access-Accept packet, needs to include VLAN assignment attributes.</p>
+            <h1>User Device Configuration</h1>
+            <p>After having completed the RADIUS server and Wi-Fi equipment
+                setup, it is <i>possible</i> for users to authenticate
+                securely to the network and to verify that they are not
+                connected to an attacker network (“evil twin”).</p>
+            <p>For this possibility to actually happen, the network operator
+                needs to communicate his RADIUS server settings to all end
+                users, and he needs to ensure that the end users transform
+                these server-side settings into a proper client-side
+                configuration.</p>
+            <p>This typically involves to:</p>
+            <ul>
+                <li>import or mark as trusted the CA certificate to validate the RADIUS server’s certificate</li>
+                <li>configure the expected server name of the server certificate</li>
+                <li>select an EAP type on the client device which matches one of the configured EAP types on the server</li>
+                <li>optionally enable extra features such as enhanced privacy protection (use of anonymous outer identities) etc.</li>
+            </ul>
+            <p>Network administrators should be aware that neglecting to 
+                secure the client-side setup puts the security of the
+                enterprise network at risk - badly configured user devices
+                can be tricked to connect to a rogue AP / evil twin network! 
+                Such an attacher network can learn their credentials as they 
+                authenticate - and the attacker can from then on log into the
+                genuine network with those same credentials.
+                The attacker can also inspect their payload - with the false
+                feeling of being connected to the own enterprise network,
+                some users or their applications may use unencrypted
+                communication where they should not.</p>
+            <p>Manual setup instructions in e.g. PDF “click here and there”
+                instructions have proven to be error-prone, time-consuming
+                and typically trigger significant helpdesk activity.</p>
+            <p>There are automatic deployment tools for various platforms on
+                the market; e.g the “Apple Configurator” application can
+                produce configuration files for iOS devices and Mac OS
+                computers.</p>
+            <p>There are also web services which cater for a variety of
+                platforms at the same time. Many of those are commercial,
+                but some provide their services for free or freemium. One 
+                such example is the 
+                <a href="https://802.1x-config.org">Enterprise Network Configuration Assistant Tool (CAT)</a>
+                at 
+                <a href="https://802.1x-config.org">https://802.1x-config.org</a> - all
+                basic end-user device provisioning functionality on all
+                supported platforms (Windows, Mac OS, iOS, Linux) is free;
+                extra features such as custom branding or digitally signed
+                installation programs are a paid-for extra.
+            </p>
+            <p>And if your interest in reading this page is because you are
+                part of the "eduroam" roaming consortium: you get a full-service
+                client-side installer generator (and more!) at <a href="https://cat.eduroam.org">eduroam CAT</a>.</p>
+        </div>
+
+        <!--#include virtual="/footer.html" -->
+
+    </body>
+</html>
+
+<!-- vim: set ts=2 sw=2 et tw=79: -->
