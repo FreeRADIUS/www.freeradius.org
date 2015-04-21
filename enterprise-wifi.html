@@ -48,8 +48,29 @@
                 <li>user devices configured to do Enterprise Wi-Fi correctly</li>
             </ol>
             <h2>RADIUS Server</h2>
-            (FreeRADIUS advertising :-) )
-
+            <p>The central component in an IEEE 802.1X / Enterprise Wi-Fi environment
+            is the RADIUS server: it receives RADIUS packets from the Wi-Fi Access
+            Point / Controller (see below), processes those by either proxying it
+            to another server (in a roaming environment) or by processing the
+            packet and authenticating the user itself.</p>
+            <p>
+            To authenticate the user, the RADIUS server extracts the EAP
+            authentication data from the EAP-Message attribute of the RADIUS
+            packet and acts on the contents: it takes the role of an EAP server.</p>
+            <p>EAP authentication typically involves establishing a TLS tunnel
+            with a server certificate (i.e. authenticating the server to the user)
+            and then exchanging user credentials (i.e. the user authenticating to
+            the server). After the authentication with EAP, the RADIUS server adds
+            VLAN assignment attributes and other authorisation data, and sends
+            those in the final RADIUS packet.</p>
+            <p>
+            FreeRADIUS excels not only at RADIUS, but also in its role as EAP 
+            server. It supports a wide variety of EAP authentication methods and
+            allows sending additional authorisation data. It supports RADIUS
+            proxying of EAP authentication traffic and thus enables roaming; 
+            and it supports altering authorisation parameters after the initial
+            authentication has taken place (CoA).
+            </p>
             <h2>Wi-Fi</h2>
             <p>The access point / Wi-Fi controller needs to be capable of the WPA2 Enterprise
                 operation mode; configuration options in the device are often
