@@ -1,0 +1,129 @@
+<h3>Feature improvements</h3>
+<ul>
+      * Allow syslog_severity to be set in rlm_linelog.
+<li>Allow defaults to be set for bulk clients in LDAP and couchbase.
+</li>
+<li>Updates to dhcpclient.  Patches from Nicolas C.
+</li>
+<li>rlm_mschap now supports direct connections to winbind, which
+is faster than ntlm_auth.  See raddb/mods-available/mschap.
+Patch from Matthew Newton.
+</li>
+<li>Recommend /dev/urandom for TLS randomness, instead of
+${certdir}/random
+</li>
+<li>Allow TLSv1 to be disabled via &quot;disable_tlsv1&quot; in tls{}.
+</li>
+<li>Allow Expanded EAP types where vendor is 0 (IETF) and
+type is normal EAP type.  Supplicants sending Expanded
+EAP types like this are broken.
+</li>
+<li>Add support for server side sort controls when searching for
+user objects in rlm_ldap.
+</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li>Don't complain about &quot;authorize&quot; in &quot;server {}&quot; blocks, but
+only if there's no &quot;server&quot; block.
+</li>
+<li>Fix cosmetic issue where debug from the first packet read by
+a detail reader thread would be emited during config parsing.
+</li>
+<li>Fix ASSERT on truncated detail packets.
+</li>
+<li>Don't use main server log functions from within panic_action,
+as in the case of syslog this would cause deadlocks if the
+fault was triggered from within a malloc.
+</li>
+<li>Fix issue in &quot;switch&quot; when &quot;correct_escapes = false&quot;.
+Fixes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/911">911</a>.
+</li>
+<li>Fix sqlcounter configuration to use &quot;%%b&quot; instead of &quot;%b&quot;,
+otherwise the new syntax validation will fail.
+</li>
+<li>Allow forward references in configuration items.  Modules
+aren't always loaded in a sane order.
+</li>
+<li>Fix more escaping issues.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/912">912</a>.
+</li>
+<li>Decode MAC addresses correctly for VMPS.
+</li>
+<li>Fix memory leak with TLS connections.
+</li>
+<li>Fix state machine threading issues for conflicting packets.
+</li>
+<li>Fix copy_request_to_tunnel issues for tagged attributes.
+</li>
+<li>Allow &quot;ok&quot; to over-ride &quot;updated&quot; inside of Auth-Type sections.
+</li>
+<li>Update state machine so that post-proxy is run though child
+threads for performance, instead of blocking the main thread.
+</li>
+<li>Allow &quot;netmask&quot; to work again in client definitions.
+</li>
+<li>Relax restrictions on SQL group queries.
+</li>
+<li>track outgoing proxy sockets and clean them up more aggressively.
+</li>
+<li>track proxy statistics, including CoA and Disconnect.
+</li>
+<li>If radmin has a connection failure when running a command,
+it re-connects and runs the command again.
+</li>
+<li>mark home servers &quot;unknown&quot; less aggressively.
+</li>
+<li>Fix potential SEGV in PostgreSQL driver on error.
+</li>
+<li>Fix issue where fields like nas_type would not be accessible via
+the %{client:} xlat, for dynamic clients.
+</li>
+<li>Set default busy_timeout (of 200ms) in the sqlite driver, so writes
+don't cause selects to fail in multithreaded mode. This is user
+configurable, and may be increased if required.
+</li>
+<li>Convert Password-With-Header attributes to binary (from hex or
+base64), in the authorize method of rlm_pap.
+</li>
+<li>Fix invalid assert in state.c, that could cause abort in
+post-auth.
+</li>
+<li>Fix double free when -m flag is used, and connection pools are
+referenced by multiple modules.
+</li>
+<li>RADIUS over TLS accounting uses the same port as authentication.
+</li>
+<li>Regularized return codes from radmin commands.
+</li>
+<li>Fix RHEL spec file so it works correctly for Centos7 which uses
+systemd, and didn't like the SystemV init script.
+</li>
+<li>radwho and radlast now have a -D option to load dictionaries
+</li>
+<li>DHCP packets are no longer checked for duplicates.
+</li>
+<li>Don't crash in sql module group comparisons in corner case.
+</li>
+<li>Calculate MPPE keys correctly when using TLS 1.2.
+</li>
+<li>Fix load-balance sections.  Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/945">945</a>
+</li>
+<li>TLS certificates are available again in the post-auth section.
+They are not available for session resumption.
+</li>
+<li>radclient encodes CHAP-Password properly when using -c.
+Closes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/955">955</a>.
+</li>
+<li>Fix issue in rlm_cache_memcached driver that caused variable
+length values to be truncated.
+</li>
+<li>Fix track functionality in detail reader, so it no longer
+fails with a &quot;Failed marking detail request as done: Bad file
+descriptor&quot; error.
+</li>
+<li>Actually add the peer identity (as User-Name) to the inner
+tunnel in EAP-PWD requests, so it's available for lookups.
+</li>
+<li>Fixes to PostfreSQL queries.  Patches from Santiago Gimeno.
+</li>
+</ul>
