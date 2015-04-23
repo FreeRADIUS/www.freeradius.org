@@ -19,35 +19,28 @@
 
 <h1>Version 2</h1>
 
-<p>The "stable release" of FreeRADIUS is
-<a href="version2.html">version 2</a>.  The goal of this version is
-<b>stability</b>.  No new features will be added.</p>
-
-<p>If your needs are a basic RADIUS server which runs without fail, we
-recommend the "stable" release.  It should run for years without an
-issue.</p>
-
 <p><b>The 2.2.x release series is now End Of Life.  Only security
 fixes will be applied to 2.2.x.</b></p>
 
-<p>It is safe to continue using version 2 for the forseeable future.
-If you already have version 2 running in production, we recommend that
-you stay with version 2 until the systems are replaced or
-upgraded.</p>
-
+<h3>New users</h3>
 <p>We recommend that all new installations of FreeRADIUS
 use <a href="version3.html">version 3</a>.  It has better error
 messages, it does more sanity checks on the configuration, the
 configuration is more consistent, and it is all-round better than
 version 2.</p>
 
+<h3>Existing users</h3>
+<p>Support for version 2 is now being phased out.  Only critical
+security fixes will be applied.  We recommend all existing users
+upgrade to version 3, as soon as an upgrade is practicable.</p>
+
 <h2>Latest Release</h2>
 
-<p><span class="date">2014.11.18</span> Version <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
+<p><span class="date"><!--#echo var="freeradius_release" --></span> Version <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius_version" -->.tar.bz2"><!--#echo var="freeradius_version" --></a>
 <a href="ftp://ftp.freeradius.org:/pub/freeradius/freeradius-server-<!--#echo var="freeradius_version" -->.tar.bz2.sig">(sig)</a>
 has been released.  The focus of this release is stability.</p>
 
-<!--#include virtual="/press/release_2.2.6.html" -->
+<!--#include virtual="/press/release_<!--#echo var="freeradius_version" -->.html" -->
 
 </div><!--content-->
 
