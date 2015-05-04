@@ -97,14 +97,43 @@ LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
 and put in reverse-chronological order.
        -->
 
-<li><span class="date">2014.09.24</span> <a name="heartbleed"> - SSLv3 <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security#POODLE_attack">POODLE</a> attack.
+<li><span class="date">2015.04.04</span> <a name="eap-pwd-2015">EAP-PWD</p> Vulnerabilities.
+<p>
+The EAP-PWD module performed insufficient validation on packets
+received from an EAP peer.  This module is <em>not</em> enabled in the
+default configuration.  Administrators must manually enable it for
+their server to be vulnerable.  Only versions 3.0 up to 3.0.8 are
+affected.
+</p>
+
+<p>These issues were found by Jouni Malinen as part of
+investigating <a href="http://w1.fi/security/2015-4/">2015-4</a> for
+HostAP.</p>
+
+<ul>
+<li>The EAP-PWD packet length is not checked before the first byte is
+dereferenced.  A zero-length EAP-PWD packet will cause the module to
+dereference a NULL pointer, and will cause the server to crash.
+</li>
+<li>The commit message payload length is not validated before the
+packet is decoded.  This can result in a read overflow in the server.
+</li>
+<li>The confirm message payload length is not validated before the
+packet is decoded.  This can result in a read overflow in the server.
+</li>
+<li>A strcpy() was used to pack a C string into an EAP-PWD packet.
+This would result in an over-run of the destination buffer by one
+byte.
+</li>
+</ul>
+
+<li><span class="date">2014.09.24</span> <a name="poodle"> - SSLv3 <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security#POODLE_attack">POODLE</a> attack.
 <p>
 FreeRADIUS is <em>not</em> vulnerable to this issue.  All version to
 at least 1.0.0 (and possibly earlier) require TLSv1.
 </p>
 
-
-<li><span class="date">2014.09.24</span> <a name="heartbleed"> - Bash <a href="http://en.wikipedia.org/wiki/Shellshock_(software_bug)">Shellshock</a> bug.
+<li><span class="date">2014.09.24</span> <a name="shellshock"> - Bash <a href="http://en.wikipedia.org/wiki/Shellshock_(software_bug)">Shellshock</a> bug.
 <p>
 Systems running FreeRADIUS <em>may be</em> vulnerable to this bug.
 The default configuration does not execute any external programs or
