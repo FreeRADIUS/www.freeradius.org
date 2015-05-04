@@ -110,6 +110,7 @@ affected.
 investigating <a href="http://w1.fi/security/2015-4/">2015-4</a> for
 HostAP.</p>
 
+<p>
 <ul>
 <li>The EAP-PWD packet length is not checked before the first byte is
 dereferenced.  A zero-length EAP-PWD packet will cause the module to
@@ -126,6 +127,7 @@ This would result in an over-run of the destination buffer by one
 byte.
 </li>
 </ul>
+</p>
 
 <li><span class="date">2014.09.24</span> <a name="poodle"> - SSLv3 <a href="http://en.wikipedia.org/wiki/Transport_Layer_Security#POODLE_attack">POODLE</a> attack.
 <p>
