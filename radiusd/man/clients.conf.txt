@@ -9,7 +9,7 @@ DESCRIPTION
        The clients.conf file contains definitions of RADIUS clients.
 
        The  information in this file overrides any information provided in the
-       deprecated clients(5) and naslist(5) files.
+       deprecated clients and naslist files.
 
        The file format is  the	same  as  that	used  for  radiusd.conf.   See
        radiusd.conf(5) for more details.
@@ -20,65 +20,9 @@ DESCRIPTION
 		     <attribute> = <value>
 	       }
 
-ATTRIBUTES
-       The  attributes	that  can appear in a client section are listed below.
-       Required attributes are labelled as  such.  All	other  attributes  are
-       optional.
-
-       ipaddr [Required]
-	    The IP address of the client.  For IPv6, use "ipv6addr"
-
-       secret [Required]
-	    The  RADIUS  shared  secret  used  for  communication  between the
-	    client/NAS and the RADIUS server.
-
-       shortname [optional]
-	    A short alias that can be used in place of the IP address or fully
-	    qualified hostname provided in the first line of the section.
-
-       nastype
-	    The nastype attribute is used to tell the checkrad.pl script which
-	    NAS-specific method it should use when checking simultaneous  use.
-
-	    The following values are currently recognized:
-	    cisco
-	    computone
-	    livingston
-	    max40xx
-	    multitech
-	    netserver
-	    pathras
-	    patton
-	    portslave
-	    tc
-	    usrhiper
-	    other
-
-       login
-	    Reserved for future use.
-
-       password
-	    Reserved for future use.
-
-EXAMPLES
-	      client localhost {
-		      ipaddr	      = 127.0.0.1
-		      secret	      = testing123
-		      shortname       = localhost
-		      nastype	      = other
-	      }
-
-       This  adds a client for the loopback address. This is useful in testing
-       the server locally, for example with radclient(1).
-
-	      client private-network-1 {
-		      ipaddr	      = 192.168.0.0
-		      netmask	      = 24
-		      secret	      = testing123-1
-		      shortname       = private-network-1
-	      }
-
-       This entry represents any client from the 192.168.0.0/24 network.
+       Clients	have many configuration parameters. Most are documented in the
+       file itself as comments. This page documents only  the  format  of  the
+       file. Please read the clients.conf file itself for more information.
 
        The old-style format from 1.x is still accepted by the server, but that
        form is deprecated.
@@ -89,7 +33,7 @@ FILES
        /etc/raddb/radiusd.conf
 
 SEE ALSO
-       radiusd(8), radiusd.conf(5), clients(5), naslist(5)
+       radiusd(8), radiusd.conf(5)
 
 
 AUTHOR

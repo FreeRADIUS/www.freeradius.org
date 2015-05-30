@@ -1,8 +1,8 @@
 
 <HTML><HEAD><TITLE>Manpage of rlm_detail</TITLE>
-<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include file="/header.html" --><div id="content">
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>rlm_detail</H1>
-Section: FreeRADIUS Module (5)<BR>Updated: 5 February 2004<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Module (5)<BR>Updated: 27 June 2013<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -23,7 +23,7 @@ many 'detail' file parsers should work with FreeRADIUS.
 
 The main configuration items to be aware of are:
 <DL COMPACT>
-<DT>detailfile<DD>
+<DT>file<DD>
 The file name in which to store the radius packet records.  NOTE: this
 variable is run through dynamic string expansion, and can include
 FreeRADIUS variables to create a dynamic filename.
@@ -39,8 +39,8 @@ FreeRADIUS variables to create a dynamic filename.
 <P>
 
 <DL COMPACT>
-<DT>detailperm<DD>
-The file permissions of the detailfile.  
+<DT>perm<DD>
+The file permissions of the file.  
 If omitted, the default is 0600.
 <DT>dirperm<DD>
 The directory permissions of the directory where the detail files are
@@ -64,11 +64,11 @@ modules {
 <BR>
   detail {
 <BR>
-    detailfile = %A/%{Client-IP-Address}/detail-%Y%m
+    filename = %A/%{Client-IP-Address}/detail-%Y%m
 <BR>
-    detailperm = 0600
+    permissions = 0600
 <BR>
-    dirperm = 0755
+    dir_permissions = 0755
 <BR>
     locking = no
 <BR>
@@ -145,6 +145,6 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 17:17:31 GMT, February 06, 2011
+Time: 01:21:55 GMT, May 30, 2015
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

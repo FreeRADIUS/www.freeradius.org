@@ -6,8 +6,8 @@ NAME
        radmin - FreeRADIUS Administration tool
 
 SYNOPSIS
-       radmin	[-d   config_directory]  [-e  command]	[-f  socket_file]  [-i
-       input_file] [-n name] [-o output_file] [-q]
+       radmin  [-d  config_directory]  [-e command] [-E] [-f socket_file] [-h]
+       [-i input_file] [-n name] [-q]
 
 DESCRIPTION
        FreeRADIUS Server administration tool  that  connects  to  the  control
@@ -34,9 +34,13 @@ OPTIONS
        -e command
 	      Run command and exit.
 
+       -E     Echo commands as they are being executed.
+
        -f socket_file
 	      Specify the socket filename directly.  The radiusd.conf file  is
 	      not read.
+
+       -h     Print usage help information.
 
        -i input_file
 	      Reads input from the specified file.  If not specified, stdin is
@@ -45,14 +49,10 @@ OPTIONS
        -n mname
 	      Read raddb/name.conf instead of raddb/radiusd.conf.
 
-       -o output_file
-	      Write output to the specified file.  If not specified, stdout is
-	      used.  This also sets "-q".
-
        -q     Quiet mode.
 
 COMMANDS
-       The  commands implemented by the command-line interface are almost com-
+       The commands implemented by the command-line interface are almost  com-
        pletely controlled by the server.  There are a few commands interpreted
        locally by radmin:
 
@@ -63,30 +63,30 @@ COMMANDS
 
        exit   Exit from radmin.
 
-       The  other  commands are implemented by the server.  Type "help" at the
+       The other commands are implemented by the server.  Type "help"  at  the
        prompt for more information.
 
 EXAMPLES
        debug file /var/log/radius/bob.log
 	      Set debug logs to /var/log/radius/bob.log.  There is very little
 	      checking of this filename.  Rogue administrators may be able use
-	      this command to over-write almost any file on  the  system.   If
-	      those  administrators  have  write access to "radius.conf", they
+	      this  command  to  over-write almost any file on the system.  If
+	      those administrators have write access  to  "radius.conf",  they
 	      can do the same thing without radmin, too.
 
        debug condition '(User-Name == "bob")'
-	      Enable debugging output for all requests that match  the	condi-
-	      tion.   Any  "unlang" condition is valid here.  The condition is
-	      parsed as a string, so it must be enclosed in single  or	double
-	      quotes.	Strings  enclosed  in  double-quotes  must  have back-
+	      Enable  debugging  output for all requests that match the condi-
+	      tion.  Any "unlang" condition is valid here.  The  condition  is
+	      parsed  as  a string, so it must be enclosed in single or double
+	      quotes.  Strings	enclosed  in  double-quotes  must  have  back-
 	      slashes and the quotation marks escaped inside of the string.
 
 	      Only one debug condition can be active at a time.
 
        debug condition '((User-Name == "bob") || (Packet-Src-IP-
        Address == 192.0.2.22))'
-	      A more complex  condition  that  enables	debugging  output  for
-	      requests	containing User-Name "bob", or requests that originate
+	      A  more  complex	condition  that  enables  debugging output for
+	      requests containing User-Name "bob", or requests that  originate
 	      from source IP address 192.0.2.22.
 
        debug condition
@@ -114,8 +114,30 @@ FULL LIST OF COMMANDS
        debug file [filename]
 	      Send all debugging output to [filename]
 
+       del <command>
+	      do sub-command of del
+
+       del client <command>
+	      Delete client configuration commands
+
+       del client ipaddr <ipaddr>
+	      Delete a dynamically created client
+
        hup [module]
 	      sends a HUP signal to the server, or optionally to one module
+
+       inject <command>
+	      commands to inject packets into a running server
+
+       inject to <ipaddr> <port>
+	      Inject packets to the destination IP and port.
+
+       inject from <ipaddr>
+	      Inject packets as if they came from <ipaddr>
+
+       inject file <input-file> <output-file>
+	      Inject  packet  from  input-file>, with results sent to <output-
+	      file>
 
        reconnect
 	      reconnect to a running server
@@ -131,6 +153,9 @@ FULL LIST OF COMMANDS
 
        set module config <module> variable value
 	      set configuration for <module>
+
+       set module status [alive|dead]
+	      set the module to be alive or dead (always return "fail")
 
        set home_server <command>
 	      set home server commands
@@ -202,10 +227,15 @@ FULL LIST OF COMMANDS
 	      do sub-command of stats
 
        stats client [auth/acct] <ipaddr>
-	      show statistics for client
+	      show statistics for given client, or for all  clients  (auth  or
+	      acct)
 
-       stats home_server <ipaddr> <port>
-	      show statistics for home server
+       stats home_server [<ipaddr>/auth/acct] <port>
+	      show  statistics for given home server (ipaddr and port), or for
+	      all home servers (auth or acct)
+
+       stats detail <filename>
+	      show statistics for the given detail file
 
 SEE ALSO
        unlang(5), radiusd.conf(5), raddb/sites-available/control-socket
@@ -215,4 +245,4 @@ AUTHOR
 
 
 
-				  19 Jul 2010			     RADMIN(8)
+				  03 Feb 2015			     RADMIN(8)

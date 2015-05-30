@@ -7,59 +7,76 @@ NAME
 
 DESCRIPTION
        The  rlm_always module provides a simple way to "always" return a value
-       during the processing of a  configuration  section.   The  module  does
-       nothing other than return a configured value.
+       during the processing of a configuration section.
 
+       The main configuration item is rcode, which sets the return  code  that
+       this  instantiation  of	the  module  will return. The default, if none
+       specified, is 'fail'.
 
-       The main configuration item to be aware of is:
+       The valid options for rcode are as follows:
 
-       rcode  This  module  will  always return with the rcode specified.  The
-	      default, if none specified is: fail (RLM_MODULE_FAIL).
+	      reject reject the user;
 
-       The valid options are:
+	      fail   a failure has occurred;
 
-       reject RLM_MODULE_REJECT
+	      ok     success;
 
-       fail   RLM_MODULE_FAIL
+	      handled
+		     the  request  has	been  handled:	processing  should  be
+		     stopped and the response sent;
 
-       ok     RLM_MODULE_OK
+	      invalid
+		     request is invalid;
 
-       handled
-	      RLM_MODULE_HANDLED
+	      userlock
+		     the user account has been locked out;
 
-       invalid
-	      RLM_MODULE_INVALID
+	      notfound
+		     the user account cannot be found;
 
-       userlock
-	      RLM_MODULE_USERLOCK
+	      noop   no-op: nothing has happened;
 
-       notfound
-	      RLM_MODULE_NOTFOUND
-
-       noop   RLM_MODULE_NOOP
-
-       updated
-	      RLM_MODULE_UPDATED
+	      updated
+		     the request has been updated.
 
 CONFIGURATION
+       rcode = <code>
+	      This  module  will  always  return  with	the code specified, as
+	      listed in the table  above.   If	unspecified,  the  default  is
+	      'fail'.
+
+       simulcount = <n>
+	      If  this module is used in the session{} section, the simulcount
+	      option simulates the  user  having  'n'  current	sessions.  The
+	      default is to not override the number of sessions.
+
+       mpp = <yes|no>
+	      If set to yes, and this module is used in the session{} section,
+	      this simulates the user having multilink sessions.  The  default
+	      is 'no'.
+
+
+EXAMPLE
 	      modules {
 		...
+		# instantiate the "always" module with the name "ok"
 		always ok {
+		   # return code for this instantiation is "ok":
 		   rcode = ok
 		}
 		...
 	      }
-	       ...
+
 	      authorize {
 		...
 		redundant {
 		   sql1 	 # try to find the user in sql1
 		   sql2 	 # try to find the user in sql2
+		   # the default here would be to fail, but...
 		   ok		 # if still not found, it's OK.
 		}
 		...
 	      }
-
 
 
 SECTIONS
@@ -68,15 +85,19 @@ SECTIONS
 
 
 FILES
-       /etc/raddb/radiusd.conf
+       /etc/raddb/mods-available/always
 
 
 SEE ALSO
-       radiusd(8), radiusd.conf(5)
+       radiusd(8), radiusd.conf(5), unlang(5)
+
+       Further details of how module return codes  operate  can  be  found  at
+       <http://wiki.freeradius.org/config/Fail-over>.
 
 AUTHOR
-       Chris Parker, cparker@segv.org
+       Chris  Parker <cparker@segv.org>, Matthew Newton <matthew@newtoncomput-
+       ing.co.uk>.
 
 
 
-				3 February 2004 		 rlm_always(5)
+				10 January 2015 		 rlm_always(5)

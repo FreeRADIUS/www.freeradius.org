@@ -1,6 +1,6 @@
 
 <HTML><HEAD><TITLE>Manpage of rlm_files</TITLE>
-<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include file="/header.html" --><div id="content">
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>rlm_files</H1>
 Section: FreeRADIUS Module (5)<BR>Updated: 5 February 2004<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
@@ -35,7 +35,7 @@ The default is 'no'.  If you need to parse an old style Cistron
 file, set this option to 'cistron'.
 <DT>key<DD>
 This option lets you set the attribute to use as a key to find
-entries.  The default is &quot;%{Stripped-User-Name:-%{User-Name}}&quot;.  Note
+entries.  The default is &quot;%{%{Stripped-User-Name}:-%{User-Name}}&quot;.  Note
 that the key MUST supply real data.  Dynamic attributes like &quot;Group&quot;
 will not work, because the &quot;Group&quot; attribute can only be used as a
 comparison, to see if a user is in a Unix group.  It will not return
@@ -43,7 +43,7 @@ the name of the Unix group that a user is in.
 </DL>
 <P>
 
-If you want to use groups as a key, see the <I>rlm_passed</I>, which
+If you want to use groups as a key, see the <I>rlm_passwd</I>, which
 will create a real attribute that contains the group name.
 <P>
 
@@ -76,7 +76,7 @@ modules {
 <BR>
     compat = no
 <BR>
-    key = %{Stripped-User-Name:-%{User-Name}}
+    key = %{%{Stripped-User-Name}:-%{User-Name}}
 <BR>
   }
 <BR>
@@ -146,6 +146,6 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 17:17:31 GMT, February 06, 2011
+Time: 01:21:55 GMT, May 30, 2015
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

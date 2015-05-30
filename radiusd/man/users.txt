@@ -6,10 +6,10 @@ NAME
        users - user authorization file for the FreeRADIUS server
 
 DESCRIPTION
-       The  users  file  resides  in the RADIUS database directory, by default
-       /etc/raddb.  It contains a series of configuration directives which are
-       used  by  the  files module to decide how to authorize and authenticate
-       each user request.
+       The  users files reside in the files module configuration directory, by
+       default /etc/raddb/mods-config/files/.  It contains a series of config-
+       uration	directives which are used by the files module to decide how to
+       authorize and authenticate each user request.
 
        Every line starting with a hash sign ('#') is treated  as  comment  and
        ignored.
@@ -33,7 +33,7 @@ DESCRIPTION
 
 
 CAVEATS
-       The special username DEFAULT matches any usernames.
+       The special keyword DEFAULT matches any usernames.
 
        The  entries are processed in order, from the top of the users file, on
        down.  If an entry contains the special item Fall-Through  =  No  as  a
@@ -123,20 +123,6 @@ OPERATORS
 	    Not allowed as a reply item.
 
 
-       Attribute =~ Expression
-	    As	a  check item, it matches if the request contains an attribute
-	    which matches the given regular  expression.   This  operator  may
-	    only be applied to string attributes.
-	    Not allowed as a reply item.
-
-
-       Attribute !~ Expression
-	    As	a  check item, it matches if the request contains an attribute
-	    which does not match the given regular expression.	This  operator
-	    may only be applied to string attributes.
-	    Not allowed as a reply item.
-
-
        Attribute =* Value
 	    As	a  check  item,  it  matches if the request contains the named
 	    attribute, no matter what the value is.
@@ -204,10 +190,10 @@ HINTS
 
 
 FILES
-       /etc/raddb/users
+       /etc/raddb/mods-config/files/
 
 SEE ALSO
-       radclient(1), radiusd(8), dictionary(5), naslist(5)
+       radclient(1), radiusd(8), dictionary(5),
 
 
 AUTHOR

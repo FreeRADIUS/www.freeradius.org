@@ -1,8 +1,8 @@
 
 <HTML><HEAD><TITLE>Manpage of rlm_attr_filter</TITLE>
-<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include file="/header.html" --><div id="content">
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>rlm_attr_filter</H1>
-Section: FreeRADIUS Module (5)<BR>Updated: 12 February 2008<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Module (5)<BR>Updated: 27 June 2013<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -107,7 +107,7 @@ sample rule ordering and how to use the different operators.
 
 The configuration items are:
 <DL COMPACT>
-<DT>attrsfile<DD>
+<DT>file<DD>
 This specifies the location of the file used to load the filter rules.
 This file is used to filter the accounting response, packet before it
 is proxied, proxy response from the home server, or our response to
@@ -116,6 +116,11 @@ the NAS.
 Usually %{Realm} (the default).  Can also be %{User-Name}, or other
 attribute that exists in the request.  Note that the module always
 keys off of attributes in the request, and NOT in any other packet.
+<DT>relaxed<DD>
+If set to 'yes', then attributes which do not match any filter rules
+explicitly, will also be allowed. This behaviour may be overridden 
+for an individual filter block using the Relax-Filter check item.
+The default for this configuration item is 'no'.
 </DL>
 <P>
 
@@ -145,7 +150,7 @@ Filters Access-Accept or Access-Reject packets.
 
 <I>/etc/raddb/radiusd.conf</I>
 
-<I>/etc/raddb/attrs</I>
+<I>/etc/raddb/filter/*</I>
 
 <P>
 
@@ -177,6 +182,6 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 17:17:31 GMT, February 06, 2011
+Time: 01:21:55 GMT, May 30, 2015
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

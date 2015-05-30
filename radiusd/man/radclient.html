@@ -1,8 +1,8 @@
 
 <HTML><HEAD><TITLE>Manpage of RADCLIENT</TITLE>
-<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include file="/header.html" --><div id="content">
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>RADCLIENT</H1>
-Section: FreeRADIUS Daemon (1)<BR>Updated: 2 April 2009<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 28 March 2014<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -14,17 +14,29 @@ radclient - send packets to a RADIUS server, show reply
 
 <B>radclient</B>
 
-[<B>-d</B>
+[<B>-4</B>]
 
-<I>raddb_directory</I>]
+[<B>-6</B>]
 
 [<B>-c</B>
 
 <I>count</I>]
 
+[<B>-d</B>
+
+<I>raddb_directory</I>]
+
+[<B>-D</B>
+
+<I>dictionary_directory</I>]
+
 [<B>-f</B>
 
 <I>file</I>]
+
+[<B>-F</B>]
+
+[<B>-h</B>]
 
 [<B>-i</B>
 
@@ -37,6 +49,8 @@ radclient - send packets to a RADIUS server, show reply
 [<B>-p</B>
 
 <I>num_requests_in_parallel</I>]
+
+[<B>-q</B>]
 
 [<B>-r</B>
 
@@ -52,7 +66,9 @@ radclient - send packets to a RADIUS server, show reply
 
 <I>timeout</I>]
 
-[<B>-qvx</B>]
+[<B>-v</B>]
+
+[<B>-x</B>]
 
 <I>server {acct|auth|status|disconnect|auto} secret</I>
 <A NAME="lbAD">&nbsp;</A>
@@ -78,17 +94,32 @@ automatically encrypted before the packet is sent to the server.
 
 <P>
 <DL COMPACT>
+<DT>-4<DD>
+Use IPv4 (default)
+<DT>-6<DD>
+Use IPv6
 <DT>-c&nbsp;<I>count</I><DD>
 Send each packet <I>count</I> times.
 <DT>-d&nbsp;<I>raddb_directory</I><DD>
-The directory that contains the RADIUS dictionary files. Defaults to
+The directory that contains the user dictionary file. Defaults to
 <I>/etc/raddb</I>.
-<DT>-f&nbsp;<I>file</I><DD>
+<DT>-D&nbsp;<I>dictionary_directory</I><DD>
+The directory that contains the main dictionary file. Defaults to
+<I>/usr/share/freeradius</I>.
+<DT>-f&nbsp;<I>file[:file]</I><DD>
 File to read the attribute/value pairs from. If this is not specified,
 they are read from stdin.  This option can be specified multiple
 times, in which case packets are sent in order by file, and within
 each file, by first packet to last packet.  A blank line separates
-logical packets within a file.
+logical packets within a file.  If a pair of files separated by a
+colon is specified, the second file will be used to filter the
+responses to requests from the first. The number of requests and
+filters must be the same.  A summary of filter results will be displayed
+if -s is passed.
+<DT>-F<DD>
+Print the file name, packet number and reply code.
+<DT>-h<DD>
+Print usage help information.
 <DT>-i&nbsp;<I>id</I><DD>
 Use <I>id</I> as the RADIUS request Id.
 <DT>-n&nbsp;<I>num_requests_per_second</I><DD>
@@ -110,6 +141,9 @@ requests to time out), before sending any more packets.
 <P>
 This option permits you to discover the maximum load accepted by a
 RADIUS server.
+<DT>-P&nbsp;<I>proto</I><DD>
+Use <I>proto</I> transport protocol (&quot;tcp&quot; or &quot;udp&quot;).
+Only available if FreeRADIUS is compiled with TCP transport support.
 <DT>-q<DD>
 Go to quiet mode, and do not print out anything.
 <DT>-r&nbsp;<I>num_retries</I><DD>
@@ -184,9 +218,9 @@ configurable support for it).
 <DL COMPACT><DT><DD>
 <P>
 <PRE>
-$ echo &quot;Message-Authenticator = 0x00&quot; | radclient 192682 status s3cr3t
-Sending request to server 192682, port 1812.
-radrecv: Packet from host 192682 code=2, id=140, length=54
+$ echo &quot;Message-Authenticator = 0x00&quot; | radclient 1922 status s3cr3t
+Sending request to server 1922, port 1812.
+radrecv: Packet from host 1922 code=2, id=140, length=54
     Reply-Message = &quot;FreeRADIUS up 21 days, 02:05&quot;
 </PRE>
 
@@ -220,6 +254,6 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 17:17:31 GMT, February 06, 2011
+Time: 01:21:55 GMT, May 30, 2015
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

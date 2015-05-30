@@ -29,14 +29,14 @@ DESCRIPTION
 	      Cistron file, set this option to 'cistron'.
 
        key    This option lets you set the attribute to use as a key  to  find
-	      entries.	 The default is "%{Stripped-User-Name:-%{User-Name}}".
-	      Note that the key MUST supply  real  data.   Dynamic  attributes
-	      like  "Group"  will  not work, because the "Group" attribute can
-	      only be used as a comparison, to see if a  user  is  in  a  Unix
-	      group.   It  will  not  return the name of the Unix group that a
-	      user is in.
+	      entries.	  The	default  is  "%{%{Stripped-User-Name}:-%{User-
+	      Name}}".	Note that the key  MUST  supply  real  data.   Dynamic
+	      attributes  like	"Group"  will  not  work,  because the "Group"
+	      attribute can only be used as a comparison, to see if a user  is
+	      in  a Unix group.  It will not return the name of the Unix group
+	      that a user is in.
 
-       If you want to use groups as a key, see the rlm_passed, which will cre-
+       If you want to use groups as a key, see the rlm_passwd, which will cre-
        ate a real attribute that contains the group name.
 
        This  configuration  entry enables you to have configurations that per-
@@ -54,7 +54,7 @@ CONFIGURATION
 		  acctusersfile = %{confdir}/acct_users
 		  preproxy_usersfile = %{confdir}/preproxy_users
 		  compat = no
-		  key = %{Stripped-User-Name:-%{User-Name}}
+		  key = %{%{Stripped-User-Name}:-%{User-Name}}
 		}
 		... stuff here ...
 	      }

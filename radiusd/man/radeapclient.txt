@@ -6,18 +6,19 @@ NAME
        radeapclient - send EAP packets to a RADIUS server, calculate responses
 
 SYNOPSIS
-       radeapclient [-d raddb_directory] [-f file] [-i source_ip] [-xy] server
-       {acct|auth} secret
+       radeapclient [-4] [-6] [-c count] [-d raddb_directory] [-f  file]  [-h]
+       [-i  source_ip] [-q] [-s] [-r retries] [-S file] [-t timeout] [-v] [-x]
+       server {acct|auth} secret
 
 DESCRIPTION
-       radeapclient  is  a radius client program. It can send arbitrary radius
-       packets to a radius server, then shows the reply. Radeapclient  differs
-       from  radclient	in that if there is an EAP-MD5 challenge, then it will
+       radeapclient is a radius client program. It can send  arbitrary	radius
+       packets	to a radius server, then shows the reply. Radeapclient differs
+       from radclient in that if there is an EAP-MD5 challenge, then  it  will
        be responded to.
 
        radeapclient is otherwise identical to radclient.
 
-       The EAP-Identity attribute, if present is  used	to  construct  an  EAP
+       The  EAP-Identity  attribute,  if  present  is used to construct an EAP
        Identity message.
 
 
@@ -25,6 +26,43 @@ DESCRIPTION
        challenge.
 
        No other EAP types are currently supported.
+
+
+OPTIONS
+       -4     Use IPv4 (default)
+
+       -6     Use IPv6
+
+       -c count
+	      Send each packet count times.
+
+       -d raddb
+	      Set dictionary directory.
+
+       -f file
+	      Read packets from file, not stdin.
+
+       -r retries
+	      If timeout, retry sending the packet retries times.
+
+       -t timeout
+	      Wait  timeout  seconds  before retrying (may be a floating point
+	      number).
+
+       -h     Print usage help information.
+
+       -i id  Set request id to 'id'.  Values may be 0..255
+
+       -S file
+	      Read secret from file, not command line.
+
+       -q     Quiet, do not print anything out.
+
+       -s     Print out summary information of auth results.
+
+       -v     Show program version information.
+
+       -x     Enable debugging mode.
 
 
 EXAMPLE

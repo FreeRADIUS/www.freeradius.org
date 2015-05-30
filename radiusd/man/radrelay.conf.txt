@@ -61,9 +61,9 @@ USAGE
 
 
 		   detail radrelay-detail {
-			detailfile = ${radacctdir}/radrelay/detail
-			detailperm = 0600
-			dirperm = 0755
+			filename = ${radacctdir}/radrelay/detail
+			permissions = 0600
+			dir_permissions = 0755
 			locking = yes
 		   }
 		   ...
@@ -88,7 +88,7 @@ RADRELAY.CONF EXAMPLE
 
 		   listen {
 			type = detail
-			detail = ${radacctdir}/radrelay/detail
+			filename = ${radacctdir}/radrelay/detail
 			max_outstanding = 100
 			identity = radrelay
 		   }

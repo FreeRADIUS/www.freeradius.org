@@ -1,8 +1,8 @@
 
 <HTML><HEAD><TITLE>Manpage of RADMIN</TITLE>
-<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include file="/header.html" --><div id="content">
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>RADMIN</H1>
-Section: FreeRADIUS Server Administration Tool (8)<BR>Updated: 19 Jul 2010<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Server Administration Tool (8)<BR>Updated: 03 Feb 2015<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -22,9 +22,13 @@ radmin - FreeRADIUS Administration tool
 
 <I>command</I>]
 
+[<B>-E</B>]
+
 [<B>-f</B>
 
 <I>socket_file</I>]
+
+[<B>-h</B>]
 
 [<B>-i</B>
 
@@ -33,10 +37,6 @@ radmin - FreeRADIUS Administration tool
 [<B>-n</B>
 
 <I>name</I>]
-
-[<B>-o</B>
-
-<I>output_file</I>]
 
 [<B>-q</B>]
 
@@ -67,16 +67,17 @@ configuration files to find the &quot;listen&quot; section that defines the
 control socket filename.
 <DT>-e <I>command</I><DD>
 Run <I>command</I> and exit.
+<DT>-E<DD>
+Echo commands as they are being executed.
 <DT>-f <I>socket_file</I><DD>
 Specify the socket filename directly.  The radiusd.conf file is not read.
+<DT>-h<DD>
+Print usage help information.
 <DT>-i <I>input_file</I><DD>
 Reads input from the specified file.  If not specified, stdin is used.
 This also sets &quot;-q&quot;.
 <DT>-n <I>mname</I><DD>
 Read <I>raddb/name.conf</I> instead of <I>raddb/radiusd.conf</I>.
-<DT>-o <I>output_file</I><DD>
-Write output to the specified file.  If not specified, stdout is used.
-This also sets &quot;-q&quot;.
 <DT>-q<DD>
 Quiet mode.
 </DL>
@@ -141,8 +142,22 @@ Enable debugging for requests matching [condition]
 Set debug level to &lt;number&gt;.  Higher is more debugging.
 <DT>debug&nbsp;file&nbsp;[filename]<DD>
 Send all debugging output to [filename]
+<DT>del&nbsp;&lt;command&gt;<DD>
+do sub-command of del
+<DT>del&nbsp;client&nbsp;&lt;command&gt;<DD>
+Delete client configuration commands
+<DT>del&nbsp;client&nbsp;ipaddr&nbsp;&lt;ipaddr&gt;<DD>
+Delete a dynamically created client
 <DT>hup&nbsp;[module]<DD>
 sends a HUP signal to the server, or optionally to one module
+<DT>inject&nbsp;&lt;command&gt;<DD>
+commands to inject packets into a running server
+<DT>inject&nbsp;to&nbsp;&lt;ipaddr&gt;&nbsp;&lt;port&gt;<DD>
+Inject packets to the destination IP and port.
+<DT>inject&nbsp;from&nbsp;&lt;ipaddr&gt;<DD>
+Inject packets as if they came from &lt;ipaddr&gt;
+<DT>inject&nbsp;file&nbsp;&lt;input-file&gt;&nbsp;&lt;output-file&gt;<DD>
+Inject packet from input-file&gt;, with results sent to &lt;output-file&gt;
 <DT>reconnect<DD>
 reconnect to a running server
 <DT>terminate<DD>
@@ -153,6 +168,8 @@ do sub-command of set
 set module commands
 <DT>set&nbsp;module&nbsp;config&nbsp;&lt;module&gt;&nbsp;variable&nbsp;value<DD>
 set configuration for &lt;module&gt;
+<DT>set&nbsp;module&nbsp;status&nbsp;[alive|dead]<DD>
+set the module to be alive or dead (always return &quot;fail&quot;)
 <DT>set&nbsp;home_server&nbsp;&lt;command&gt;<DD>
 set home server commands
 <DT>set&nbsp;home_server&nbsp;state&nbsp;&lt;ipaddr&gt;&nbsp;&lt;port&gt;&nbsp;[alive|dead]<DD>
@@ -200,9 +217,11 @@ Prints out configuration as XML
 <DT>stats&nbsp;&lt;command&gt;<DD>
 do sub-command of stats
 <DT>stats&nbsp;client&nbsp;[auth/acct]&nbsp;&lt;ipaddr&gt;<DD>
-show statistics for client
-<DT>stats&nbsp;home_server&nbsp;&lt;ipaddr&gt;&nbsp;&lt;port&gt;<DD>
-show statistics for home server
+show statistics for given client, or for all clients (auth or acct)
+<DT>stats&nbsp;home_server&nbsp;[&lt;ipaddr&gt;/auth/acct]&nbsp;&lt;port&gt;<DD>
+show statistics for given home server (ipaddr and port), or for all home servers (auth or acct)
+<DT>stats&nbsp;detail&nbsp;&lt;filename&gt;<DD>
+show statistics for the given detail file
 </DL>
 <A NAME="lbAJ">&nbsp;</A>
 <H2>SEE ALSO</H2>
@@ -232,6 +251,6 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 17:17:31 GMT, February 06, 2011
+Time: 01:21:56 GMT, May 30, 2015
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

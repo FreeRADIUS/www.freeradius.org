@@ -7,8 +7,8 @@ NAME
 
 
 SYNOPSIS
-       radsqlrelay [-d sql_driver] [-b database] [-f file] [-h host] [-u user]
-       [-p password] [-1] file_path
+       radsqlrelay [-?]  [-d sql_driver] [-b database] [-f file] [-h host] [-u
+       user] [-P port] [-p password] [-1] [-x] file_path
 
 
 DESCRIPTION
@@ -21,6 +21,8 @@ DESCRIPTION
 
 
 OPTIONS
+       -?     Print usage help information.
+
        -d sql_driver
 	      Driver to use: mysql, pg, oracle.
 
@@ -36,10 +38,15 @@ OPTIONS
        -u user
 	      User for login.
 
+       -P port
+	      Port number to use for connection.
+
        -p password
 	      Password to use when connecting to server.
 
        -1     One-shot mode: push the file to database and exit.
+
+       -x     Turn on debugging.
 
        file_path
 	      The pathname of the SQL logfile to use.

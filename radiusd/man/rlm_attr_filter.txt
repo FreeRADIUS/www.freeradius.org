@@ -83,8 +83,7 @@ DESCRIPTION
 
        The configuration items are:
 
-       attrsfile
-	      This  specifies the location of the file used to load the filter
+       file   This  specifies the location of the file used to load the filter
 	      rules.  This file is used to  filter  the  accounting  response,
 	      packet  before  it  is  proxied,	proxy  response  from the home
 	      server, or our response to the NAS.
@@ -93,6 +92,12 @@ DESCRIPTION
 	      other  attribute that exists in the request.  Note that the mod-
 	      ule always keys off of attributes in the request, and NOT in any
 	      other packet.
+
+       relaxed
+	      If  set  to 'yes', then attributes which do not match any filter
+	      rules explicitly, will also be allowed. This  behaviour  may  be
+	      overridden for an individual filter block using the Relax-Filter
+	      check item.  The default for this configuration item is 'no'.
 
 
 SECTIONS
@@ -103,11 +108,11 @@ SECTIONS
 	      Filters Accounting-Response packets.
 
        pre-proxy
-	      Filters  Accounting-Request  or  Access-Request packets prior to
+	      Filters Accounting-Request or Access-Request  packets  prior  to
 	      proxying them.
 
        post-proxy
-	      Filters Accounting-Response,  Access-Accept,  Access-Reject,  or
+	      Filters  Accounting-Response,  Access-Accept,  Access-Reject, or
 	      Access-Challenge responses from a home server.
 
        authorize
@@ -118,7 +123,7 @@ SECTIONS
 
 
 FILES
-       /etc/raddb/radiusd.conf /etc/raddb/attrs
+       /etc/raddb/radiusd.conf /etc/raddb/filter/*
 
 
 SEE ALSO
@@ -130,4 +135,4 @@ AUTHOR
 
 
 
-			       12 February 2008 	    rlm_attr_filter(5)
+				 27 June 2013		    rlm_attr_filter(5)

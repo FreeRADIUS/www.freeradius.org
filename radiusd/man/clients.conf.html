@@ -1,6 +1,6 @@
 
 <HTML><HEAD><TITLE>Manpage of clients.conf</TITLE>
-<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include file="/header.html" --><div id="content">
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>clients.conf</H1>
 Section: FreeRADIUS client configuration (5)<BR>Updated: 13 June 2005<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
@@ -20,10 +20,10 @@ file contains definitions of RADIUS clients.
 
 The information in this file overrides any information provided in
 the deprecated 
-<B><A HREF="/radiusd/man/clients.html">clients</A></B>(5)
+<B>clients</B>
 
 and 
-<B><A HREF="/radiusd/man/naslist.html">naslist</A></B>(5)
+<B>naslist</B>
 
 files.
 <P>
@@ -47,104 +47,15 @@ client &lt;short-name&gt; {
 </PRE>
 
 </DL>
-<A NAME="lbAD">&nbsp;</A>
-<H2>ATTRIBUTES</H2>
-
-The attributes that can appear in a 
-<B>client</B>
-
-section are listed below. Required attributes are labelled as
-such. All other attributes are optional.
-<DL COMPACT>
-<DT><B>ipaddr [Required]</B>
-
-<DD>
-The IP address of the client.  For IPv6, use &quot;ipv6addr&quot;
-<DT><B>secret [Required]</B>
-
-<DD>
-The RADIUS shared secret used for communication between the client/NAS
-and the RADIUS server.
-<DT><B>shortname [optional]</B>
-
-<DD>
-A short alias that can be used in place of the IP address or fully
-qualified hostname provided in the first line of the section.
-<DT><B>nastype</B>
-
-<DD>
-The nastype attribute is used to tell the 
-<B>checkrad.pl</B>
-
-script which NAS-specific method it should use when checking
-simultaneous use.
-<P>
-The following values are currently recognized:
-<PRE>
-cisco
-computone
-livingston
-max40xx
-multitech
-netserver
-pathras
-patton
-portslave
-tc
-usrhiper
-other
-</PRE>
-
-<DT><B>login</B>
-
-<DD>
-Reserved for future use.
-<DT><B>password</B>
-
-<DD>
-Reserved for future use.
-</DL>
-<A NAME="lbAE">&nbsp;</A>
-<H2>EXAMPLES</H2>
-
-<DL COMPACT>
-<DT><DD>
-<PRE>
-client localhost {
-        ipaddr          = 127
-        secret          = testing123
-        shortname       = localhost
-        nastype         = other     
-}
-</PRE>
-
-</DL>
 <P>
 
-This adds a client for the loopback address. This is useful in testing
-the 
-server locally, for example with 
-<B><A HREF="/radiusd/man/radclient.html">radclient</A></B>(1).
-
-<DL COMPACT>
-<DT><DD>
-<PRE>
-client private-network-1 {
-        ipaddr          = 19268
-        netmask         = 24
-        secret          = testing123-1
-        shortname       = private-network-1
-}
-</PRE>
-
-</DL>
-<P>
-
-This entry represents any client from the 19268/24 network. 
+Clients have many configuration parameters. Most are documented in the file
+itself as comments. This page documents only the format of the file. Please
+read the <B>clients.conf</B> file itself for more information.
 <P>
 The old-style format from 1.x is still accepted by the server, but
 that form is deprecated.
-<A NAME="lbAF">&nbsp;</A>
+<A NAME="lbAD">&nbsp;</A>
 <H2>FILES</H2>
 
 <I>/etc/raddb/clients.conf</I>
@@ -152,19 +63,15 @@ that form is deprecated.
 <P>
 <I>/etc/raddb/radiusd.conf</I>
 
-<A NAME="lbAG">&nbsp;</A>
+<A NAME="lbAE">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
 <B><A HREF="/radiusd/man/radiusd.html">radiusd</A></B>(8),
 
-<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5),
-
-<B><A HREF="/radiusd/man/clients.html">clients</A></B>(5),
-
-<B><A HREF="/radiusd/man/naslist.html">naslist</A></B>(5)
+<B><A HREF="/radiusd/man/radiusd.conf.html">radiusd.conf</A></B>(5)
 
 <P>
-<A NAME="lbAH">&nbsp;</A>
+<A NAME="lbAF">&nbsp;</A>
 <H2>AUTHOR</H2>
 
 FreeRADIUS is authored by the FreeRADIUS team. 
@@ -176,16 +83,14 @@ FreeRADIUS is authored by the FreeRADIUS team.
 <DL>
 <DT><A HREF="#lbAB">NAME</A><DD>
 <DT><A HREF="#lbAC">DESCRIPTION</A><DD>
-<DT><A HREF="#lbAD">ATTRIBUTES</A><DD>
-<DT><A HREF="#lbAE">EXAMPLES</A><DD>
-<DT><A HREF="#lbAF">FILES</A><DD>
-<DT><A HREF="#lbAG">SEE ALSO</A><DD>
-<DT><A HREF="#lbAH">AUTHOR</A><DD>
+<DT><A HREF="#lbAD">FILES</A><DD>
+<DT><A HREF="#lbAE">SEE ALSO</A><DD>
+<DT><A HREF="#lbAF">AUTHOR</A><DD>
 </DL>
 <HR>
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 17:17:31 GMT, February 06, 2011
+Time: 01:21:55 GMT, May 30, 2015
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>
