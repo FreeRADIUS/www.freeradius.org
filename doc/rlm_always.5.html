@@ -1,0 +1,183 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of rlm_always</TITLE>
+</HEAD><BODY>
+<H1>rlm_always</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 10 January 2015<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_always - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_always</I> module provides a simple way to &quot;always&quot; return a
+value during the processing of a configuration section.
+<P>
+
+The main configuration item is <I>rcode</I>, which sets the return code that
+this instantiation of the module will return. The default, if none
+specified, is 'fail'.
+<P>
+
+The valid options for rcode are as follows:
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT>reject<DD>
+reject the user;
+<DT>fail<DD>
+a failure has occurred;
+<DT>ok<DD>
+success;
+<DT>handled<DD>
+the request has been handled: processing should be stopped and the response
+sent;
+<DT>invalid<DD>
+request is invalid;
+<DT>userlock<DD>
+the user account has been locked out;
+<DT>notfound<DD>
+the user account cannot be found;
+<DT>noop<DD>
+no-op: nothing has happened;
+<DT>updated<DD>
+the request has been updated.
+</DL>
+</DL>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+<P>
+
+<DL COMPACT>
+<DT>rcode = &lt;code&gt;<DD>
+This module will always return with the code specified, as listed in the
+table above.  If unspecified, the default is 'fail'.
+<DT>simulcount = &lt;n&gt;<DD>
+If this module is used in the session{} section, the simulcount option
+simulates the user having 'n' current sessions. The default is to not
+override the number of sessions.
+<DT>mpp = &lt;yes|no&gt;<DD>
+If set to yes, and this module is used in the session{} section, this
+simulates the user having multilink sessions.  The default is 'no'.
+</DL>
+<P>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>EXAMPLE</H2>
+
+<P>
+
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+modules {
+  ...
+<BR>
+  # instantiate the &quot;always&quot; module with the name &quot;ok&quot;
+<BR>
+  always ok {
+<BR>
+        # return code for this instantiation is &quot;ok&quot;:
+<BR>
+        rcode = ok
+<BR>
+  }
+<BR>
+  ...
+<BR>
+}
+<BR>
+
+<BR>
+authorize {
+  ...
+<BR>
+  redundant {
+     sql1          # try to find the user in sql1
+<BR>
+     sql2          # try to find the user in sql2
+<BR>
+     # the default here would be to fail, but...
+<BR>
+     ok            # if still not found, it's OK.
+<BR>
+  }
+  ...
+<BR>
+}
+
+</PRE>
+
+</DL>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>authorization,</B>
+
+<B>authentication,</B>
+
+<B>postauthentication,</B>
+
+<B>preaccounting,</B>
+
+<B>accounting,</B>
+
+<B>preproxy,</B>
+
+<B>postproxy</B>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/mods-available/always</I>
+
+<P>
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?8+radiusd">radiusd</A></B>(8),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+radiusd.conf">radiusd.conf</A></B>(5),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+unlang">unlang</A></B>(5)
+
+<P>
+
+Further details of how module return codes operate can be found at &lt;<A HREF="http://wiki.freeradius.org/config/Fail-over">http://wiki.freeradius.org/config/Fail-over</A>&gt;.
+<A NAME="lbAI">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Chris Parker &lt;<A HREF="mailto:cparker@segv.org">cparker@segv.org</A>&gt;, Matthew Newton
+&lt;<A HREF="mailto:matthew@newtoncomputing.co.uk">matthew@newtoncomputing.co.uk</A>&gt;.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAE">EXAMPLE</A><DD>
+<DT><A HREF="#lbAF">SECTIONS</A><DD>
+<DT><A HREF="#lbAG">FILES</A><DD>
+<DT><A HREF="#lbAH">SEE ALSO</A><DD>
+<DT><A HREF="#lbAI">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 01:15:27 GMT, May 30, 2015
+</BODY>
+</HTML>

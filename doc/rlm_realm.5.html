@@ -1,0 +1,147 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of rlm_realm</TITLE>
+</HEAD><BODY>
+<H1>rlm_realm</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 14 March 2004<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_realm - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_realm</I> module parses the User-Name attribute into a
+User section and a Realm section.  This is used primarily in a
+proxy situation, however, Realms can also be used locally to provide
+different service profiles based on the Realm being used.
+<P>
+
+The main configuration items to be aware of are:
+<DL COMPACT>
+<DT>format<DD>
+This can be either 'prefix' or 'suffix'.  It specifies whether the
+Realm is before or after the User portion in the User-Name string.
+<DT>delimiter<DD>
+A single character in quotes, which is used as the delimiting
+character that separates the Realm and User sections of the string.
+<DT>ignore_default<DD>
+This is set to either 'yes' or 'no'.  If set to 'yes', this will
+prevent the module instance from matching a realm against the DEFAULT
+entry.  This may be useful if you have multiple realm module instances.
+The default is 'no'.
+<DT>ignore_null<DD>
+This is set to either 'yes' or 'no'.  If set to 'yes', this will
+prevent the module instance from matching a realm against the NULL
+entry.  This may be useful if you have multiple realm module instances.
+The default is 'no'.
+</DL>
+<P>
+
+This module parses the realm from the User-Name attrbiute according
+to the instance configuration, and then performs a lookup to find a
+matching realm in the '/etc/raddb/proxy.conf' file.  Depending on the
+configuration of the Realm as matched in the file, the username may
+be rewritten in a 'stripped' format, or with the Realm portion
+removed.  In either case, a Realm attribute is created and added to
+the packet on a match, which can be used by other modules.
+<A NAME="lbAD">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+<P>
+
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+modules {
+  ... stuff here ...
+<BR>
+<BR>
+  # <A HREF="mailto:useranme@realm">useranme@realm</A> syntax
+<BR>
+  realm suffix {
+<BR>
+    format = suffix
+<BR>
+    delimiter = &quot;@&quot;
+<BR>
+  }
+<BR>
+<BR>
+   # realm/username syntax
+<BR>
+   realm prefix {
+<BR>
+    format = prefix
+<BR>
+    delimiter = &quot;/&quot;
+<BR>
+  }
+<BR>
+<BR>
+  ... stuff here ...
+<BR>
+}
+
+</PRE>
+
+</DL>
+
+<P>
+
+<P>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>authorization,</B>
+
+<B>pre-accounting</B>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf,</I>
+
+<I>/etc/raddb/proxy.conf</I>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?8+radiusd">radiusd</A></B>(8),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+radiusd.conf">radiusd.conf</A></B>(5),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+proxy.conf">proxy.conf</A></B>(5)
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAE">SECTIONS</A><DD>
+<DT><A HREF="#lbAF">FILES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHORS</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 01:15:27 GMT, May 30, 2015
+</BODY>
+</HTML>

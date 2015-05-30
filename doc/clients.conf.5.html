@@ -1,0 +1,97 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of clients.conf</TITLE>
+</HEAD><BODY>
+<H1>clients.conf</H1>
+Section: FreeRADIUS client configuration (5)<BR>Updated: 13 June 2005<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+clients.conf - FreeRADIUS client configuration
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The
+<I>clients.conf</I>
+
+file contains definitions of RADIUS clients.
+<P>
+
+The information in this file overrides any information provided in
+the deprecated
+<B>clients</B>
+
+and
+<B>naslist</B>
+
+files.
+<P>
+
+The file format is the same as that used for
+<I>radiusd.conf.</I>
+
+See
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+radiusd.conf">radiusd.conf</A></B>(5)
+
+for more details.
+<P>
+
+Each RADIUS client entry has the following basic form:
+<DL COMPACT>
+<DT><DD>
+<PRE>
+client &lt;short-name&gt; {
+       &lt;attribute&gt; = &lt;value&gt;
+ }
+</PRE>
+
+</DL>
+<P>
+
+Clients have many configuration parameters. Most are documented in the file
+itself as comments. This page documents only the format of the file. Please
+read the <B>clients.conf</B> file itself for more information.
+<P>
+The old-style format from 1.x is still accepted by the server, but
+that form is deprecated.
+<A NAME="lbAD">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/clients.conf</I>
+
+<P>
+<I>/etc/raddb/radiusd.conf</I>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?8+radiusd">radiusd</A></B>(8),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+radiusd.conf">radiusd.conf</A></B>(5)
+
+<P>
+<A NAME="lbAF">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+FreeRADIUS is authored by the FreeRADIUS team.
+<A HREF="http://freeradius.org/">http://freeradius.org/</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">FILES</A><DD>
+<DT><A HREF="#lbAE">SEE ALSO</A><DD>
+<DT><A HREF="#lbAF">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 01:15:27 GMT, May 30, 2015
+</BODY>
+</HTML>
