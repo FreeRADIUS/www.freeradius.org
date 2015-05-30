@@ -32,26 +32,49 @@ supported, and Version 2 is EOL</p>
 
 <h2>Where the Documentation is located</h2>
 
-<p>The server comes with documentation.  The "doc/" direc
+<p>The server comes with documentation.  The <tt>doc/</tt> directory
+contains a number of files, named for their functionality.  The
+configuration files contain <strong>enormous</strong> amounts of
+documentation.  Each configuration directive is documented in comments
+where it is used.  The <tt>raddb/sites-available</tt> directory
+contains many example "virtual servers".  Each example has comments
+describing what it does, when it should be used, and how to configure
+it.</p>
+
+<p>Many people try to find documentation by typing keywords into
+google. This method is not generally productive.  Most of the links
+are to other people asking the same question, or to out-dated third
+party documentation. Most people can easily get lost in a mess of
+contradictory and confusing documentation, leading to frustration and
+a badly configured server.</p>
 
 <hr />
-<em>Nearly all other documentation and How-To's on third party web
-sites are wrong and outdated.  We <b>strongly</b> suggest that you do
-not follow any documentation which is more than 4 years old.  If you
-do follow such ancient documentation, the result will likely be a
-server that does not work.
+<em>Nearly all third-party documentation and How-To's are wrong and
+outdated.  We <b>strongly</b> suggest that you do not follow any
+documentation which is more than 4 years old.  If you do follow such
+ancient documentation, the result will likely be a server that does
+not work.
 </em><hr />
 
 <h3>Wiki</h3>
 
 <p>The <a href="http://wiki.freeradius.org">Wiki</a> has a fair amount
-of documentation and How-To's.  It is also searchable.  It is a good
-starting resource.</p>
+of documentation and How-To's.  It is a good starting resource.</p>
+
+<p>The Wiki is searchable.  Simply type in a few keywords, and you
+will get pages which often answer your questions and help you solve
+problems.</p>
 
 <h3>Manual pages</h3>
 
-The on-line <a href="/radiusd/man/">man</a> pages contain documentation for
-<a href="/radiusd/man/index.html#programs">programs</a>, <a href="/radiusd/man/index.html#files">configuration files</a>, and <a href="/radiusd/man/index.html#modules">modules.</a>
+<p>The on-line <a href="/radiusd/man/">man</a> pages contain documentation for
+<a href="/radiusd/man/index.html#programs">programs</a>, <a href="/radiusd/man/index.html#files">configuration
+files</a>,
+and <a href="/radiusd/man/index.html#modules">modules.</a></p>
+
+<p>All of the "man" pages are available on any system running
+FreeRADIUS.  We suggest typing <tt>man radiusd</tt>, and reading it.
+It contains instructions for configuring and debugging the server.</p>
 
 <h3>Useful How-To's</h3>
 
@@ -68,12 +91,6 @@ describing which authentication protocols are compatible with back-end
 databases and password storage methods.</li>
 </ul>
 
-<h3>Doxygen</h3>
-
-<p>The <a href="http://doc.freeradius.org">Doxygen</a> doc site has a copy
-of the code documentation.  This is primarily for developers, but may also
-be useful for notes describing hidden or advanced options.</p>
-
 <h3>Older Documents</h3>
 
 <ul>
@@ -84,15 +101,43 @@ Another <A HREF="http://www.missl.cs.umd.edu/wireless/eaptls/?tag=missl-802-1">e
 
 <h3>Novell eDirectory Integration</h3>
 
-An administration guide to <a href="radiusadmin.pdf">FreeRADIUS and Novell eDirectory</a>
-is available.  For the latest version of the "Integrating Novell eDirectory
-with FreeRADIUS" administration guide, refer to
-http://www.novell.com/documentation/edir_radius/index.html
+<p>An administration guide to <a href="radiusadmin.pdf">FreeRADIUS and
+Novell eDirectory</a> is available.  For the latest version of the
+"Integrating Novell eDirectory with FreeRADIUS" administration guide,
+refer
+to <a href="http://www.novell.com/documentation/edir_radius/index.html">Novell's
+site</a>.</p>
 
-To edit the document, use the XML version of the document at
-http://www.novell.com/documentation/edir_radius/xml/edir_radius_xml.zip.
+<h3>Full Server Documentation</h3>
 
-<h3>Getting Started</h3>
+<p>The <a href="http://networkradius.com/doc.html">Network RADIUS</a>
+site has full server documentation.  It is a work in process, and is
+as yet incomplete.  However, it has exensive documentation on:</p>
+
+<ul>
+<li><a href="http://networkradius.com/doc/current/upgrading/">upgrading to 3.0</a>
+</li>
+<li><a href="http://networkradius.com/doc/current/unlang/keywords.html">Unlang keywords</a>.  i.e. "if", "update", etc.
+</li>
+<li><a href="http://networkradius.com/doc/current/unlang/condition.html">conditional syntax</a>.  i.e. how to use "if" statements in unlang.
+</li>
+<li><a href="http://networkradius.com/doc/current/raddb/mods-available/expansions.html">string expansions</a>.  i.e. <tt>"%{User-Name}"</tt>
+</li>
+<li><a href="http://networkradius.com/doc/current/raddb/mods-available/">modules</a>.  About three quarters of the modules are documented.  e.g. <a href="http://networkradius.com/doc/current/raddb/mods-available/eap.html">eap</a>.
+</li>
+</ul>
+
+<h3>API Documentation</h3>
+
+<p>The <a href="http://doc.freeradius.org">Doxygen</a> doc site has a
+copy of the API documentation.  This is primarily for developers, but
+may also be useful for notes describing hidden or advanced
+options.</p>
+
+<p>The API documentation site is not useful for people who want to
+configure FreeRADIUS.</p>
+
+<h2>Getting Started</h2>
 
 <p>A number of "getting started" guides are available
 from <a href="http://networkradius.com/doc.html">Network RADIUS</a>.
