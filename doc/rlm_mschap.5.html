@@ -1,0 +1,163 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of rlm_mschap</TITLE>
+</HEAD><BODY>
+<H1>rlm_mschap</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 13 March 2004<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_mschap - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_mschap</I> module provides MS-CHAP and MS-CHAPv2
+authentication support.
+<P>
+
+This module validates a user with MS-CHAP or MS-CHAPv2
+authentication.
+If called in Authorize, it will look for MS-CHAP Challenge/Response
+attributes in the Acess-Request and adds an Auth-Type
+attribute set to MS-CHAP in the Config-Items list unless
+Auth-Type has already set.
+<P>
+
+The module can authenticate the MS-CHAP session via plain-text
+passwords (User-Password attribute), or NT passwords (NT-Password
+attribute).  The module cannot perform authentication against an NT
+domain.
+<P>
+
+The module also enforces the SMB-Account-Ctrl attribute.  See the
+Samba documentation for the meaning of SMB account control.  The
+module does not read Samba password files.  Instead, the fIrlm_passwd
+module can be used to read a Samba password file, and supply an
+NT-Password attribute which this module can use.
+<P>
+
+The main configuration items to be aware of are:
+<DL COMPACT>
+<DT>authtype<DD>
+This is the string used to set the authtype.  Normally it should be
+left to the default value of MS-CHAP.
+<DT>use_mppe<DD>
+Unless this is set to 'no', FreeRADIUS will add MS-CHAP-MPPE-Keys for
+MS-CHAPv1 and MS-MPPE-Recv-Key/MS-MPPE-Send-Key for MS-CHAPv2.  The
+default is 'yes'.
+<DT>require_encryption<DD>
+If MPPE is enabled, setting this attribute to 'yes' will cause the
+MS-MPPE-Encryption-Policy attribute to be set to require encryption.
+The default is 'no'.
+<DT>require_strong<DD>
+If MPPE is enabled, setting this attribute to 'yes' will cause the
+MS-MPPE-Encryption-Types attribute to be set to require a 128 bit key.
+The default is 'no'.
+<DT>with_ntdomain_hack<DD>
+Windows clients send User-Name in the form of &quot;DOMAIN\User&quot;, but send the
+challenge/response based only on the User portion.  Setting this value
+to yes, enables a work-around for this error.  The default is 'no'.
+</DL>
+<P>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+modules {
+  ...
+<BR>
+  mschap {
+<BR>
+        authtype = MS-CHAP
+<BR>
+        use_mppe = yes
+<BR>
+  }
+<BR>
+  ...
+<BR>
+}
+<BR>
+ ...
+<BR>
+authorize {
+  ...
+<BR>
+  mschap
+<BR>
+  ...
+<BR>
+}
+ ...
+<BR>
+authenticate {
+  ...
+<BR>
+  mschap
+<BR>
+  ...
+<BR>
+}
+
+</PRE>
+
+</DL>
+
+<P>
+
+<P>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>authorization,</B>
+
+<B>authentication</B>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf</I>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?8+radiusd">radiusd</A></B>(8),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+radiusd.conf">radiusd.conf</A></B>(5)
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
+<P>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAE">SECTIONS</A><DD>
+<DT><A HREF="#lbAF">FILES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 01:15:27 GMT, May 30, 2015
+</BODY>
+</HTML>

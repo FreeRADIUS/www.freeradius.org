@@ -1,0 +1,82 @@
+Content-type: text/html
+
+<HTML><HEAD><TITLE>Manpage of rlm_idn</TITLE>
+</HEAD><BODY>
+<H1>rlm_idn</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 8 May 2013<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_idn - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+When instantiated, the <I>rlm_idn</I> module provides an xlat
+for performing IDNA encoding of internationalized domain names.
+Decoding and other similar encodings like plain punycode are not
+currently supported.
+<P>
+
+For example, the following unlang expression would evaluate to TRUE:
+<P>
+&quot;%{idn:fūbar.site}&quot; == &quot;xn--fbar-v7a.site&quot;
+<P>
+<P>
+
+Each instance of rlm_idn may take the following parameters:
+<DL COMPACT>
+<DT>use_std3_ascii_rules<DD>
+This boolean is set by default and prohibits e.g. underscores in domain names.
+<DT>allow_unassigned<DD>
+This boolean is unset by default, which prohibits use of unassigned Unicode points.
+</DL>
+<P>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf</I>
+
+<P>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>REFERENCES</H2>
+
+RFC 3490
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?8+radiusd">radiusd</A></B>(8),
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+radiusd.conf">radiusd.conf</A></B>(5)
+
+<B><A HREF="http://localhost/cgi-bin/man/man2html?3+idna_to_ascii_8z">idna_to_ascii_8z</A></B>(3)
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Brian S. Julin, <A HREF="mailto:bjulin@clarku.edu">bjulin@clarku.edu</A>
+<P>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">FILES</A><DD>
+<DT><A HREF="#lbAE">REFERENCES</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
+using the manual pages.<BR>
+Time: 01:15:27 GMT, May 30, 2015
+</BODY>
+</HTML>

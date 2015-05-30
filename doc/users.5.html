@@ -1,8 +1,10 @@
+Content-type: text/html
+
 <HTML><HEAD><TITLE>Manpage of USERS</TITLE>
-</HEAD><BODY BGCOLOR=#ffffff>
+</HEAD><BODY>
 <H1>USERS</H1>
-Section: FreeRADIUS user authorization file (5)<BR>Updated: 08 September 2001<BR><A HREF="#index">Index</A>
-<A HREF="/">Return to Main Contents</A><HR>
+Section: FreeRADIUS user authorization file (5)<BR>Updated: 04 Jan 2004<BR><A HREF="#index">Index</A>
+<A HREF="http://localhost/cgi-bin/man/man2html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
 <H2>NAME</H2>
@@ -11,10 +13,10 @@ users - user authorization file for the FreeRADIUS server
 <A NAME="lbAC">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
-The <B>users</B> file resides in the RADIUS database directory, by
-default <B>/etc/raddb</B>.  It contains a series of configuration
-directives which are used by the <I>files</I> module to decide how to
-authorize and authenticate each user request.
+The <B>users</B> files reside in the files module configuration directory,
+by default <B>/etc/raddb/mods-config/files/</B>.  It contains a series
+of configuration directives which are used by the <I>files</I>
+module to decide how to authorize and authenticate each user request.
 <P>
 Every line starting with a hash sign
 ('<B>#</B>')
@@ -43,7 +45,7 @@ rejected.
 <A NAME="lbAD">&nbsp;</A>
 <H2>CAVEATS</H2>
 
-The special username <B>DEFAULT</B> matches any usernames.
+The special keyword <B>DEFAULT</B> matches any usernames.
 <P>
 The entries are processed in order, from the top of the <B>users</B> file,
 on down.  If an entry contains the special item <B>Fall-Through =
@@ -79,7 +81,10 @@ operators, and their meaning.
 <DT><B>Attribute = Value</B>
 
 <DD>
-Not allowed as a check item.
+Not allowed as a check item for RADIUS protocol attributes.  It is
+allowed for server configuration attributes (Auth-Type, etc), and sets
+the value of on attribute, only if there is no other item of the
+same attribute.
 <BR>
 
 As a reply item, it means &quot;add the item
@@ -161,22 +166,20 @@ a value less than, or equal to the one given.
 
 Not allowed as a reply item.
 <P>
-<DT><B>Attribute =~ Expression</B>
+<DT><B>Attribute =* Value</B>
 
 <DD>
-As a check item, it matches if the request contains an attribute which
-matches the given regular expression.  This operator may only be
-applied to string attributes.
+As a check item, it matches if the request contains the named
+attribute, no matter what the value is.
 <BR>
 
 Not allowed as a reply item.
 <P>
-<DT><B>Attribute !~ Expression</B>
+<DT><B>Attribute !* Value</B>
 
 <DD>
-As a check item, it matches if the request contains an attribute which
-does not match the given regular expression.  This operator may only be
-applied to string attributes.
+As a check item, it matches if the request does not contain the named
+attribute, no matter what the value is.
 <BR>
 
 Not allowed as a reply item.
@@ -187,40 +190,64 @@ Not allowed as a reply item.
 
 <P>
 
-bob<TT>&nbsp;&nbsp;&nbsp;&nbsp;</TT>Auth-Type := Local, User-Password == &quot;bob&quot;<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+bob     Cleartext-Password := &quot;hello&quot;
+
+
+</PRE>
+
+</DL>
+
 <P>
 
 <DL COMPACT><DT><DD>
 Requests containing the User-Name attribute, with value &quot;bob&quot;, will be
-authenticated using the local password &quot;bob&quot;.  There are no reply
-items, so the reply will be empty.
+authenticated using the &quot;known good&quot; password &quot;hello&quot;.  There are no
+reply items, so the reply will be empty.
 </DL>
 
 <P>
 
-DEFAULT<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Auth-Type := System<BR>
-<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Fall-Through = Yes<BR>
+DEFAULT Auth-Type = System
+<BR>
+        Fall-Through = Yes
+
+
+</PRE>
+
+</DL>
+
 <P>
 
 <DL COMPACT><DT><DD>
 For all users reaching this entry, perform authentication against the
-system.  Also, process any following entries which may match.
+system, unless Auth-Type has already been set.  Also, process any
+following entries which may match.
 </DL>
 
 <P>
 
-DEFAULT Service-Type==Framed-User, Framed-Protocol==PPP
-<BR>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Service-Type = Framed-User,<BR>
+DEFAULT Service-Type == Framed-User, Framed-Protocol == PPP
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Framed-Protocol = PPP,<BR>
+        Service-Type = Framed-User,
 <BR>
+        Framed-Protocol = PPP,
+<BR>
+        Fall-Through = Yes
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Fall-Through = Yes<BR>
+
+</PRE>
+
+</DL>
+
 <P>
 
 <DL COMPACT><DT><DD>
@@ -260,17 +287,15 @@ entries that set reply attributes.
 <A NAME="lbAH">&nbsp;</A>
 <H2>FILES</H2>
 
-/etc/raddb/users
+/etc/raddb/mods-config/files/
 <A NAME="lbAI">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><A HREF="radclient.1.html">radclient</A></B>(1),
+<B><A HREF="http://localhost/cgi-bin/man/man2html?1+radclient">radclient</A></B>(1),
 
-<B><A HREF="radiusd.8.html">radiusd</A></B>(8),
+<B><A HREF="http://localhost/cgi-bin/man/man2html?8+radiusd">radiusd</A></B>(8),
 
-<B><A HREF="dictionary.5.html">dictionary</A></B>(5),
-
-<B><A HREF="naslist.5.html">naslist</A></B>(5)
+<B><A HREF="http://localhost/cgi-bin/man/man2html?5+dictionary">dictionary</A></B>(5),
 
 <P>
 <A NAME="lbAJ">&nbsp;</A>
@@ -294,8 +319,8 @@ The FreeRADIUS team.
 </DL>
 <HR>
 This document was created by
-<A HREF="/">man2html</A>,
+<A HREF="http://localhost/cgi-bin/man/man2html">man2html</A>,
 using the manual pages.<BR>
-Time: 22:43:21 GMT, June 03, 2002
+Time: 01:15:27 GMT, May 30, 2015
 </BODY>
 </HTML>
