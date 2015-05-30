@@ -80,36 +80,76 @@ KEYWORDS
 		   }
 
 
+       foreach
+	      Loops over values of an attribute, running the  block  for  each
+	      value.  The return value of the block is the return value of the
+	      last statement executed.	The loop can be exited early by  using
+	      the "break" keyword.  Unlike other languages, "break" here means
+	      "exit the loop at the next iteration", not "exit the loop  now".
+	      The result is that any statements after the "break" keyword will
+	      still be executed.  We recommend using "break" only when	it  is
+	      the last statement in a "foreach" block.
+
+	      Inside  of  the  "foreach"  block,  the attribute which is being
+	      looped over can be referenced  as  "Foreach-Variable-#".	 Where
+	      "#"  is  the depth of the loop, starting at "0".	e.g. "Foreach-
+	      Variable-0".  The loops can be nested  up  to  eight  (8)  deep,
+	      though this is not recommended.
+
+
+		   foreach &Attribute-Reference {
+			...
+		   }
+
+
        switch
-	      Evaluate the given string, and choose the first matching	"case"
-	      statement  inside  of  the current block.  If the string is sur-
-	      rounded by double quotes, it is expanded	as  described  in  the
-	      DATA TYPES section, below.
+	      A  "switch"  statement takes one argument, and contains a series
+	      of "case" statements.  When a "switch" statement is encountered,
+	      the  argument from the "switch" is evaluated in turn against the
+	      argument from each "case" statement.  The first "case" statement
+	      which  matches  is  executed.   All  other "case" statements are
+	      ignored.	A default "case" statement can be defined, by omitting
+	      its argument.
+
+	      If the argument is a double quoted string (e.g. "%{exec:1 + 2}",
+	      it is expanded as described in the DATA  TYPES  section,	below.
+	      The  match  is  then  performed  on the string returned from the
+	      expansion.  If the argument  is  an  attribute  reference  (e.g.
+	      &User-Name),  then  the  match is performed on the value of that
+	      attribute.  Otherwise, the argument is taken  to	be  a  literal
+	      string, and and matching is done via simple comparison.
 
 	      No statement other than "case" can appear in a "switch" block.
 
 
-		   switch "string" {
+		   switch <argument> {
 			...
 		   }
 
 
        case
-	      Define  a  static  string  to match a parent "switch" statement.
-	      The strings given here are not expanded as is done with the par-
-	      ent "switch" statement.
+	      Provides	a  place-holder which matches the argument of a parent
+	      "switch" statment.
 
 	      A "case" statement cannot appear outside of a "switch" block.
 
+	      If the argument is a double quoted string (e.g. "%{exec:1 + 2}",
+	      it  is  expanded	as described in the DATA TYPES section, below.
+	      The match is then performed on  the  string  returned  from  the
+	      expansion.   If  the  argument  is  an attribute reference (e.g.
+	      &User-Name), then the match is performed on the  value  of  that
+	      attribute.   Otherwise,  the  argument  is taken to be a literal
+	      string, and and matching is done via simple comparison.
 
-		   case string {
+
+		   case <argument> {
 			...
 		   }
 
 
-       A  default  entry  can  be defined by omitting the static string.  This
-       entry will be used if no other "case" entry matches.  Only one  default
-       entry can exist in a "switch" section.
+       A default entry can be defined  by  omitting  the  argument,  as  given
+       below.  This entry will be used if no other "case" entry matches.  Only
+       one default entry can exist in a "switch" section.
 
 
 		   case {
@@ -118,26 +158,24 @@ KEYWORDS
 
 
        update
-	      Update  a  particular  attribute	list,  based on the attributes
+	      Update a particular attribute  list,  based  on  the  attributes
 	      given in the current block.
 
 
 		   update <list> {
-			attribute = value
+			&Attribute-Reference = value
 			...
 		   }
 
 
-       The <list> can be one of "request", "reply",  "proxy-request",  "proxy-
-       reply",	"coa",	"disconnect", or "control".  The "control" list is the
-       list of attributes maintainted internally by the server	that  controls
-       how  the  server processes the request.	Any attribute that does not go
-       in a packet on the network will generally be placed  in	the  "control"
-       list.
+       The  <list>  can be one of "request", "reply", "proxy-request", "proxy-
+       reply", "coa", "disconnect", "session-state", or "control".  As of Ver-
+       sion  3, the <list> can be omitted, in which case "request" is assumed.
 
-       For backwards compatibility with older versions, "check" is accepted as
-       a synonym for "control".  The use of "check" is deprecated, and will be
-       removed in a future release.
+       The "control" list is the list of attributes maintainted internally  by
+       the  server  that  controls  how the server processes the request.  Any
+       attribute that does not go in a packet on the network will generally be
+       placed in the "control" list.
 
        For  EAP  methods  with tunneled authentication sessions (i.e. PEAP and
        EAP-TTLS), the inner tunnel session can also reference "outer.request",
@@ -155,22 +193,27 @@ KEYWORDS
        Accounting-Request has been finished, and a reply sent to the NAS.  See
        raddb/sites-available/originate-coa for additional information.
 
-       The  only  contents permitted in an "update" section are attributes and
-       values.	The contents of the "update"  section  are  described  in  the
-       ATTRIBUTES section below.
+       The  "session-state"  list  is  primarily used for EAP.	Attributes put
+       into the "session-state" list are saved for the next packet in the ses-
+       sion.   They  are  automatically  retreived  when  the  next  packet is
+       received.
+
+       The only contents permitted in an "update" section are  attributes  and
+       values.	 The  contents	of  the  "update" section are described in the
+       ATTRIBUTE REFERENCE and ATTRIBUTE ASSIGNMENT sections below.
 
        redundant
-	      This  section contains a simple list of modules.	The first mod-
+	      This section contains a simple list of modules.  The first  mod-
 	      ule is called when the section is being processed.  If the first
 	      module succeeds in its operation, then the server stops process-
 	      ing the section, and returns to the parent section.
 
-	      If, however, the module fails, then the next module in the  list
-	      is  tried,  as  described above.	The processing continues until
+	      If,  however, the module fails, then the next module in the list
+	      is tried, as described above.  The  processing  continues  until
 	      one module succeeds, or until the list has been exhausted.
 
-	      Redundant sections can contain only a list of modules, and  can-
-	      not  contain  keywords  that perform conditional operations (if,
+	      Redundant  sections can contain only a list of modules, and can-
+	      not contain keywords that perform  conditional  operations  (if,
 	      else, etc) or update an attribute list.
 
 
@@ -182,14 +225,14 @@ KEYWORDS
 
 
        load-balance
-	      This section contains a simple list of modules.  When  the  sec-
-	      tion  is	entered, one module is chosen at random to process the
+	      This  section  contains a simple list of modules.  When the sec-
+	      tion is entered, one module is chosen at random to  process  the
 	      request.	All of the modules in the list should be the same type
-	      (e.g.  ldap  or  sql).   All  of	the modules in the list should
-	      behave identically,  otherwise  the  load-balance  section  will
+	      (e.g. ldap or sql).  All of  the	modules  in  the  list	should
+	      behave  identically,  otherwise  the  load-balance  section will
 	      return different results for the same request.
 
-	      Load-balance  sections  can  contain only a list of modules, and
+	      Load-balance sections can contain only a list  of  modules,  and
 	      cannot contain keywords that perform conditional operations (if,
 	      else, etc) or update an attribute list.
 
@@ -200,24 +243,24 @@ KEYWORDS
 		   }
 
 
-       In  general,  we  recommend  using  "redundant-load-balance" instead of
+       In general, we  recommend  using  "redundant-load-balance"  instead  of
        "load-balance".
 
        redundant-load-balance
-	      This section contains a simple list of modules.  When  the  sec-
-	      tion  is	entered, one module is chosen at random to process the
-	      request.	If that module succeeds, then the  server  stops  pro-
+	      This  section  contains a simple list of modules.  When the sec-
+	      tion is entered, one module is chosen at random to  process  the
+	      request.	 If  that  module succeeds, then the server stops pro-
 	      cessing the section.  If, however, the module fails, then one of
-	      the remaining  modules  is  chosen  at  random  to  process  the
-	      request.	 This  process	repeats  until one module succeeds, or
+	      the  remaining  modules  is  chosen  at  random  to  process the
+	      request.	This process repeats until  one  module  succeeds,  or
 	      until the list has been exhausted.
 
-	      All of the modules in the list should be	the  same  type  (e.g.
-	      ldap  or	sql).	All  of  the modules in the list should behave
+	      All  of  the  modules  in the list should be the same type (e.g.
+	      ldap or sql).  All of the modules  in  the  list	should	behave
 	      identically, otherwise the load-balance section will return dif-
 	      ferent results for the same request.
 
-	      Load-balance  sections  can  contain only a list of modules, and
+	      Load-balance sections can contain only a list  of  modules,  and
 	      cannot contain keywords that perform conditional operations (if,
 	      else, etc) or update an attribute list.
 
@@ -228,8 +271,82 @@ KEYWORDS
 		   }
 
 
+
+       return
+	      Returns from the current top-level section, e.g. "authorize"  or
+	      "authenticate".	This keyword is mainly used to avoid layers of
+	      nested "if" and "else" statements.
+
+
+		   authorize {
+			if (...) {
+			     ...
+			     return
+			}
+			...  # this is never reached when the "if"
+			...  # statement is executed
+		   }
+
+
+ATTRIBUTE REFERENCES
+       Attributes may be referenced via the following syntax:
+
+		   &Attribute-Name
+		   &Attribute-Name:TAG
+		   &Attribute-Name[NUM]
+		   &<list>:Attribute-Name
+		   &<list>:Attribute-Name:TAG[NUM]
+
+       Where <list> is one of "request", "reply", "control",  "proxy-request",
+       "proxy-reply",	or  "outer.request",  "outer.reply",  "outer.control",
+       "outer.proxy-request",  or  "outer.proxy-reply".  just  as   with   the
+       "update"  section,  above.   The  "<list>:"  prefix is optional, and if
+       omitted, is assumed to refer to the "request" list.
+
+       The TAG portion is a decimal integer between 1 and 31.  Please see  RFC
+       2868  for  more	information  about  tags.   Tags  can only be used for
+       attributes which are marked in the dictionary as "has_tag".
+
+       The NUM portion is used when there are multiple attributes of the  same
+       name  in  a list.  The "Attribute-Name" reference will return the first
+       attribute.  Using an array offset allows the policy  to	refer  to  the
+       second and subsequent attributes.
+
+       If '*' is used in the NUM portion, it evaluates to all instances of the
+       attribute in the request.
+
+       If 'n' is used in the NUM portion, it evaluates to the last instance of
+       the attribute in the request.
+
+       When  an  attribute name is encountered, the given list is examined for
+       an attribute of the given name.	Some examples are:
+
+		   User-Name
+		   request:User-Name # same as above
+		   reply:User-Name
+		   Tunnel-Password:1
+		   Cisco-AVPAir[2]
+		   outer.request:User-Name # from inside of a TTLS/PEAP tunnel
+
+       Note that unlike C, there is no way to define new  attributes  at  run-
+       time.   They MUST be declared in a dictionary file, and loaded when the
+       server starts.
+
+       All attributes are defined  in  the  dictionaries  that	accompany  the
+       server.	 These	definitions  define only the name and type, and do not
+       define the value of the attribute.  When the server receives a  packet,
+       it  uses  the packet contents to look up entries in the dictionary, and
+       instantiates attributes with a name taken from the dictionaries, and  a
+       value  taken  from  the packet contents.  This process means that if an
+       attribute does not exist, it is usually because it was not contained in
+       a packet that the server received.
+
+       Once the attribute is instantiated, it is added to a list.  It can then
+       be referenced, updated, replaced, etc.
+
+
 CONDITIONS
-       The  conditions	are  similar  to C conditions in syntax, though quoted
+       The conditions are similar to C conditions  in  syntax,	though	quoted
        strings are supported, as with the Unix shell.
 
        Simple conditions
@@ -237,20 +354,20 @@ CONDITIONS
 		   (foo)
 
 
-       Evalutes to true if 'foo' is a non-empty string (single quotes,	double
+       Evalutes  to true if 'foo' is a non-empty string (single quotes, double
        quotes, or back-quoted).  Also evaluates to true if 'foo' is a non-zero
-       number.	Note that the language is poorly typed, so the	string	"0000"
-       can  be	interpreted as a numerical zero.  This issue can be avoided by
-       comparings strings to an empty string, rather than  by  evaluating  the
+       number.	 Note  that the language is poorly typed, so the string "0000"
+       can be interpreted as a numerical zero.	This issue can be  avoided  by
+       comparings  strings  to	an empty string, rather than by evaluating the
        string by itself.
 
-       If  the	word  'foo'  is not a quoted string, then it can be taken as a
-       reference to a named attribute.	 See  "Referencing  attribute  lists",
-       below,  for  examples of attribute references.  The condition evaluates
+       If the word 'foo' is not a quoted string, then it can  be  taken  as  a
+       reference  to  a  named	attribute.  See "Referencing attribute lists",
+       below, for examples of attribute references.  The  condition  evaluates
        to true if the named attribute exists.
 
-       Otherwise, if the word 'foo' is not a quoted  string,  and  is  not  an
-       attribute  reference, then it is interpreted as a reference to a module
+       Otherwise,  if  the  word  'foo'  is not a quoted string, and is not an
+       attribute reference, then it is interpreted as a reference to a	module
        return code.  The condition evaluates to true if the most recent module
        return code matches the name given here.  Valid module return codes are
        given in MODULE RETURN CODES, below.
@@ -268,9 +385,9 @@ CONDITIONS
 			  (foo && bar)
 
 
-	      "&&" and "||" are short-circuit operators.  "&&"	evaluates  the
-	      first  condition, and evaluates the second condition if and only
-	      if the result of the first condition is true.  "||" is  similar,
+	      "&&"  and  "||" are short-circuit operators.  "&&" evaluates the
+	      first condition, and evaluates the second condition if and  only
+	      if  the result of the first condition is true.  "||" is similar,
 	      but executes the second command if and only if the result of the
 	      first condition is false.
 
@@ -279,158 +396,198 @@ CONDITIONS
 		   (foo == bar)
 
 
-       Compares 'foo' to 'bar', and evaluates to true if the comparison  holds
+       Compares  'foo' to 'bar', and evaluates to true if the comparison holds
        true.  Valid comparison operators are "==", "!=", "<", "<=", ">", ">=",
-       "=~", and "!~", all with  their	usual  meanings.   Invalid  comparison
+       "=~",  and  "!~",  all  with  their usual meanings.  Invalid comparison
        operators are ":=" and "=".
+
+       Attribute
+
+		   (&User-Name == "foo")
+
+
+       Compares the value of the User-Name attribute to the string 'foo',  and
+       evaluates to true if the comparison holds true.	The comparison is done
+       by printing the attribute to a string, and then doing a string compari-
+       son of the two sides of the condition.
+
+       Inter-Attribute
+
+		   (&User-Name == &Filter-Id)
+
+
+       Compares  the  value  of the User-Name attribute to the contents of the
+       Filter-Id attribute, and evaluates to  true  if	the  comparison  holds
+       true.   Unlike the previous example, this comparison is done in a type-
+       safe  way.   For  example,  comparing  the  IP  addresses  1.2.3.4  and
+       127.0.0.1  as strings will return different results than comparing them
+       as IP addresses.
+
+       The "&" character in the condition means that the  comparison  "refers"
+       to  the	Filter-Id attribute.  If left off, it means that the User-Name
+       attribute is compared to the literal string "Filter-Id".
+
+       Where the left-hand side is an attribute, the "&" can be omitted.  How-
+       ever,  it  is allowed for backwards compatibility.  e.g. The comparison
+       "(&User-Name == &Filter-Id)" is equivalent to the example above.
+
+       We recommend using attribute references instead of printing  attributes
+       to  a string, e.g. (User-Name == "%{Filter-Id}").  Attribute references
+       will be faster and more efficient.
+
+       The conditions will check only the first occurance of an attribute.  If
+       there  is  more than one instance of an attribute, the following syntax
+       should be used:
+
+
+		   (&Attribute-Name[*] == "foo")
+
+
+       Using the "[*]" syntax means that it checks all of the instances of the
+       named attribute.  If one attribute matches, the condition succeeds.  If
+       none match, the condition fails.
+
+
+       Casts
+
+		   (<type>foo == bar)
+
+
+       The left-hand-side of a condition can be  "cast"  to  a	specific  data
+       type.   The  data type must be one which is valid for the dictionaries.
+       e.g. "integer", "ipaddr", etc.
+
+       The comparison is  performed  in  a  type-safe  way,  as  with  "Inter-
+       Attribute  Comparisons", above.	Both sides of the condition are parsed
+       into temporary attributes, and the attributes  compared	via  type-spe-
+       cific  methods.	The temporary attributes have no other effect, and are
+       not saved anywhere.
+
+       Casting allows conditions to  perform  type-specific  comparisons.   In
+       previous  versions  of  the  server, the data would have to be manually
+       placed into an intermediate attribute (or  attributes),	and  then  the
+       attribute  (or attributes) compared.  The use of a cast allows for sim-
+       pler policies.
+
+       Casts are allowed only on the left-hand side argument of a condition.
 
        Conditions may be nested to any depth, subject only to line length lim-
        itations (8192 bytes).
 
 DATA TYPES
-       There are only a few data types supported in the  language.   Reference
-       to  attributes,	numbers,  and  strings.   Any  data type can appear in
+       There  are  only a few data types supported in the language.  Reference
+       to attributes, numbers, and strings.   Any  data  type  can  appear  in
        stand-alone condition, in which case they are evaluated as described in
        "Simple conditions", above.  They can also appear (with some exceptions
-       noted below) on the left-hand or on the right-hand side of  a  compari-
+       noted  below)  on the left-hand or on the right-hand side of a compari-
        son.
 
        numbers
-	      Numbers  are  composed  of decimal digits.  Floating point, hex,
-	      and octal numbers are not supported.  The maximum  value	for  a
-	      number  is  machine-dependent, but is usually 32-bits, including
+	      Numbers are composed of decimal digits.	Floating  point,  hex,
+	      and  octal  numbers  are not supported.  The maximum value for a
+	      number is machine-dependent, but is usually  32-bits,  including
 	      one bit for a sign value.
 
        word
-	      Text that is not enclosed in quotes is  interpreted  differently
-	      depending  on  where it occurs in a condition.  On the left hand
-	      side of a condition, it is interpreted  as  a  reference	to  an
-	      attribute.   On the right hand side, it is interpreted as a sim-
+	      Text  that  is not enclosed in quotes is interpreted differently
+	      depending on where it occurs in a condition.  On the  left  hand
+	      side  of	a  condition,  it  is interpreted as a reference to an
+	      attribute.  On the right hand side, it is interpreted as a  sim-
 	      ple string, in the same manner as a single-quoted string.
 
 	      Using attribute references permits limited type-specific compar-
 	      isons, as seen in the examples below.
 
 
-			  if (User-Name == "bob") {
+			  if (&User-Name == "bob") {
 			       ...
-			  if (Framed-IP-Address > 127.0.0.1) {
+			  if (&Framed-IP-Address > 127.0.0.1) {
 			       ...
-			  if (Service-Type == Login-User) {
+			  if (&Service-Type == Login-User) {
 
 
        "strings"
 	      Double-quoted strings are expanded by inserting the value of any
-	      variables (see VARIABLES, below) before being evaluated.	If the
-	      result is a number it is evaluated in a numerical context.
+	      attributes  (see	VARIABLES,  below) before being evaluated.  If
+	      the result is a number it is evaluated in a numerical context.
 
-	      String  length  is  limited  by  line-length, usually about 8000
-	      characters.  A double quote character can be used  in  a	string
-	      via  the normal back-slash escaping method.  ("like \"this\" !")
+	      String length is limited	by  line-length,  usually  about  8000
+	      characters.   A  double  quote character can be used in a string
+	      via the normal back-slash escaping method.  ("like \"this\"  !")
 
        'strings'
 	      Single-quoted strings are evaluated as-is.  Their values are not
-	      expanded	as  with double-quoted strings above, and they are not
+	      expanded as with double-quoted strings above, and they  are  not
 	      interpreted as attribute references.
 
        `strings`
-	      Back-quoted strings are evaluated by expanding the  contents  of
-	      the  string,  as described above for double-quoted strings.  The
+	      Back-quoted  strings  are evaluated by expanding the contents of
+	      the string, as described above for double-quoted	strings.   The
 	      resulting command given inside of the string in a sub-shell, and
-	      taking  the  output as a string.	This behavior is much the same
+	      taking the output as a string.  This behavior is much  the  same
 	      as that of Unix shells.
 
-	      Note that for security reasons, the input string is  split  into
-	      command and arguments before variable expansion is done.
+	      Note  that  for security reasons, the input string is split into
+	      command and arguments before string expansion is done.
 
-	      For  performance reasons, we suggest that the use of back-quoted
-	      strings be kept to a minimum.  Executing	external  programs  is
-	      relatively  expensive,  and executing a large number of programs
-	      for every request can quickly use all  of  the  CPU  time  in  a
-	      server.	If you believe that you need to execute many programs,
-	      we suggest finding alternative ways to achieve the same  result.
+	      For performance reasons, we suggest that the use of  back-quoted
+	      strings  be  kept  to a minimum.	Executing external programs is
+	      relatively expensive, and executing a large number  of  programs
+	      for  every  request  can	quickly  use  all of the CPU time in a
+	      server.  If you believe that you need to execute many  programs,
+	      we  suggest finding alternative ways to achieve the same result.
 	      In some cases, using a real language may be sufficient.
 
-       /regex/i
+
+       /regex/im
 	      These strings are valid only on the right-hand side of a compar-
-	      ison, and then only when the  comparison	operator  is  "=~"  or
+	      ison,  and  then	only  when  the comparison operator is "=~" or
 	      "!~".  They are regular expressions, as implemented by the local
 	      regular expression library on the system.  This is usually Posix
 	      regular expressions.
 
-	      The  trailing  'i'  is  optional, and indicates that the regular
+	      The trailing 'i' is optional, and  indicates  that  the  regular
 	      expression match should be done in a case-insensitive fashion.
 
+	      The trailing 'm' is also optional, and indicates that carrot '^'
+	      and dollar '$' anchors should match on new lines as well	as  at
+	      the start and end of the subject string.
+
 	      If the comparison operator is "=~", then parantheses in the reg-
-	      ular  expression	will  define variables containing the matching
+	      ular expression will define variables  containing  the  matching
 	      text, as described below in the VARIABLES section.
 
-VARIABLES
-       Run-time variables are referenced using the following syntax
+EXPANSIONS
+       Attributes  are expanded using the ATTRIBUTE REFERENCE syntax described
+       above, and surrounding the reference with "%{...}"
 
 
-		   %{Variable-Name}
+		   %{Attribute-Reference}
 
 
-       Note that unlike C, there is no way to declare variables, or  to  refer
-       to  them outside of a string context.  All references to variables MUST
-       be contained inside of a double-quoted or back-quoted string.
-
-       Many potential variables are defined in the dictionaries that accompany
-       the  server.   These  definitions define only the name and type, and do
-       not define the value of the  variable.	When  the  server  receives  a
-       packet,	it  uses the packet contents to look up entries in the dictio-
-       nary, and instantiates variables with a name taken from the  dictionar-
-       ies,  and  a  value taken from the packet contents.  This process means
-       that if a variable does not exist, it is usually  because  it  was  not
-       mentioned in a packet that the server received.
-
-       Once  the  variable  is	instantiated,  it  is  added to an appropriate
-       attribute list, as described below.   In  many  cases,  attributes  and
-       variables  are  inter-changeble,  and  are often talked about that way.
-       However, variables can also refer to run-time calls to  modules,  which
-       may  perform  operations  like  SQL  SELECTs,  and which may return the
-       result as the value of the variable.
-
-       Referencing attribute lists
-	      Attribute lists may be referenced via the following syntax
-
-
-			  %{<list>:Attribute-Name}
-
-
-	      Where <list> is one of "request",  "reply",  "control",  "proxy-
-	      request",   "proxy-reply",  or  "outer.request",	"outer.reply",
-	      "outer.control", "outer.proxy-request", or  "outer.proxy-reply".
-	      just  as with the "update" section, above.  The "<list>:" prefix
-	      is optional,  and  if  omitted,  is  assumed  to	refer  to  the
-	      "request" list.
-
-	      When  a  variable is encountered, the given list is examined for
-	      an attribute of the given name.  If found, the  variable	refer-
-	      ence in the string is replaced with the value of that attribute.
-	      Some examples are:
-
-
-			  %{User-Name}
-			  %{request:User-Name} # same as above
-			  %{reply:User-Name}
-			  %{outer.reqest:User-Name} # from inside of a TTLS/PEAP tunnel
-
+       The result will be a string which contains the value of	the  attribute
+       which was referenced, as a printable string.  If the attribute does not
+       exist, the result will be an empty string.
 
        Results of regular expression matches
 	      If a regular expression match  has  previously  been  performed,
-	      then  the special variable %{0} will contain a copy of the input
-	      string.  The variables %{1} through %{8} will contain  the  sub-
-	      string  matches,	starting  from	the left-most parantheses, and
-	      onwards.	If there are more than 8 parantheses,  the  additional
-	      results will not be placed into any variables.
+	      then  the  special  variable  %{0}  will	contain  a copy of the
+	      matched portion of the input string.  The variables %{1} through
+	      %{32}  will  contain  the  substring  matches, starting from the
+	      left-most capture group, onwards.  If there  are	more  than  32
+	      capture  groups,	the additional results will not be accessible.
+	      If the server is built with libpcre, the results of  named  cap-
+	      ture  groups  are  available  using the "%{regex:capture group}"
+	      expansion.  They will also be  accessible  using	the  variables
+	      described  above.  Every time a regular expression is evaluated,
+	      whether it matches or not, the  capture  group  values  will  be
+	      cleared.
 
        Obtaining results from databases
 	      It  is  useful  to query a database for some information, and to
 	      use the result in a condition.  The following syntax will call a
-	      module,  pass it the given string, and replace the variable ref-
-	      erence with the resulting string returned from the module.
+	      module,  pass it the given string, and replace the string expan-
+	      sion with the resulting string returned from the module.
 
 
 			  %{module: string ...}
@@ -457,164 +614,198 @@ VARIABLES
        String lengths and arrays
 	      Similar  to  a  Unix  shell,  there are ways to reference string
 	      lenths, and the second or more instance of  an  attribute  in  a
-	      list.  If you need this functionality, we recommend using a real
-	      language.
+	      list.   If  you  need  more  than this functionality, we suggest
+	      using a real language.
 
-	      %{#string}
-		     The number of characters in %{string}.  If  %{string}  is
-		     not set, then the length is not set.
+	      %{strlen:string}
+		     The number of characters in "string".  If	"string"  does
+		     not  exist,  then the length also does not exist, instead
+		     of being zero.
 
-		     e.g. %{#Junk-junk:-foo} will yeild the string "foo".
+		     The "string" is expanded before the length is taken.
 
-	      %{Attribute-Name#}
-		     Will  print  the  integer	value of the attribute, rather
-		     than a decoded VALUE or date.  This feature applies  only
-		     to  attributes  of  type  "date",	"integer", "byte", and
-		     "short".  It has no effect on any other  attributes.   It
-		     is  used  when  the  numerical value is needed (e.g. Unix
-		     seconds), rather than a humanly-readable string.
 
-		     e.g. If a request contains "Service-Type  =  Login-User",
-		     the expansion of %{Service-Type#} will yeild "1".
+	      %{integer:Attribute-Name}
+		     The integer value of the Attribute-Name, instead  of  the
+		     enumerated name.
 
-	      %{Attribute-Name[index]}
-		     Reference the N'th occurance of the given attribute.  The
-		     syntax %{<list>:Attribute-Name[index]} may also be  used.
-		     The indexes start at zero.  This feature is NOT available
-		     for non-attribute dynamic translations, like  %{sql:...}.
+		     e.g.  If  a request contains "Service-Type = Login-User",
+		     the expansion of %{integer:Service-Type} will yeild  "1".
 
-		     For example, %{User-Name[0]} is the same as %{User-Name}
 
-		     The  variable %{Cisco-AVPair[2]} will reference the value
-		     of the THIRD Cisco-AVPair attribute (if it exists) in the
-		     request packet,
+	      %{hex:Attribute-Name}
+		     The  hex  value of the Attribute-Name, as a series of hex
+		     digits.
+
+		     e.g.  If  a   request   contains	"Framed-IP-Address   =
+		     127.0.0.1",  the  expansion  of  %{hex:Framed-IP-Address}
+		     will yeild "0x7f000001".
+
 
 	      %{Attribute-Name[#]}
-		     Returns  the  total  number of attributes of that name in
-		     the relevant attribute list.  The number will usually  be
-		     between 0 and 200.
+		     The number of instances of Attribute-Name.
 
-		     For most requests, %{request:User-Name[#]} == 1
+		     e.g. If a request contains "User-Name = bob", the	expan-
+		     sion of %{User-Name[#]} will yeild "1".
+
 
 	      %{Attribute-Name[*]}
-		     Expands  to a single string, with the value of each array
-		     member separated by a newline.
+		     All  values of Attribute-Name, concatenated together with
+		     \n as the separator.
 
-	      %{#Attribute-Name[index]}
-		     Expands  to  the  length  of  the	 string   %{Attribute-
-		     Name[index]}.
 
-ATTRIBUTES
-       The  attribute  lists  described  above may be edited by listing one or
-       more attributes in an "update" section.	Once the attributes have  been
-       defined,  they  may  be	referenced as described above in the VARIABLES
+	      %{List-Name:[#]}
+		     The number of attributes in the named list.
+
+
+	      %{List-Name:[*]}
+		     All values of attributes in the named-list,  concatenated
+		     together with \n as the separator. Use the %{pairs:} xlat
+		     to get a list of attributes and values.
+
+		     e.g. If a response  contains  "Reply-Message  =  'Hello',
+		     Reply-Message = 'bob' the expnsion of "%{reply:Reply-Mes-
+		     sage[*]} will yield "Hello\nbob"
+
+
+ATTRIBUTE ASSIGNMENTS
+       The attribute lists described above may be edited  by  listing  one  or
+       more  attributes in an "update" section.  Once the attributes have been
+       defined, they may be referenced as described  above  in	the  VARIABLES
        section.
 
-       The following syntax defines attributes in an "update"  section.   Each
-       attribute  and  value  has  to  be all on one line in the configuration
+       The  following  syntax defines attributes in an "update" section.  Each
+       attribute and value has to be all on  one  line	in  the  configuration
        file.  There is no need for commas or semi-colons after the value.
 
 
-		   Attribute-Name = value
+		   Attribute-Reference = value
 
 
-       Attribute names
-	      The Attribute-Name must be a name previously defined in  a  dic-
-	      tionary.	 If  an undefined name is used, the server will return
-	      an error, and will not start.
+       Attribute Reference
+	      The Attribute-Reference must be a reference (see above), using a
+	      name previously defined in a dictionary.	If an  undefined  name
+	      is used, the server will return an error, and will not start.
+
 
        Operators
-	      The operator used to assign the value of the  attribute  may  be
+	      The  operator  used  to assign the value of the attribute may be
 	      one of the following, with the given meaning.
 
-	      =      Add  the  attribute  to  the  list,  if  and  only  if an
+	      =      Add the  attribute  to  the  list,  if  and  only	if  an
 		     attribute of the same name is not already present in that
 		     list.
 
-	      :=     Add  the  attribute to the list.  If any attribute of the
-		     same name is already present in that list, its  value  is
+	      :=     Add the attribute to the list.  If any attribute  of  the
+		     same  name  is already present in that list, its value is
 		     replaced with the value of the current attribute.
 
-	      +=     Add  the  attribute  to  the  tail  of  the list, even if
-		     attributes of the same name are already  present  in  the
-		     list.
+	      +=     Add the attribute to  the	tail  of  the  list,  even  if
+		     attributes  of  the  same name are already present in the
+		     list. When the right hand side of the expression resolves
+		     to  multiple  values, it means add all values to the tail
+		     of the list.
 
        Enforcement and Filtering Operators
 	      The following operators may also be used in addition to the ones
-	      listed above.  Their function is to perform enforcement or  fil-
+	      listed  above.  Their function is to perform enforcement or fil-
 	      tering on attributes in a list.
 
-	      -=     Remove  all  matching attributes from the list.  Both the
-		     attribute name and value have to match in order  for  the
+	      -=     Remove all matching attributes from the list.   Both  the
+		     attribute	name  and value have to match in order for the
 		     attribute to be removed from the list.
 
-	      ==     Keep  all	matching  attributes.  Both the attribute name
-		     and value have to match in order  for  the  attribute  to
+	      ==     Keep all matching attributes.  Both  the  attribute  name
+		     and  value  have  to  match in order for the attribute to
 		     remain in the list.
 
-		     Note  that  this  operator is very different than the '='
+		     Note that this operator is very different	than  the  '='
 		     operator listed above!
 
 	      <=     Keep all attributes having values less than, or equal to,
-		     the  value  given	here.  Any larger value is replaced by
-		     the value given here.  If	no  attribute  exists,	it  is
+		     the value given here.  Any larger value  is  replaced  by
+		     the  value  given	here.	If  no attribute exists, it is
 		     added with the value given here, as with "+=".
 
-		     This  operator  is  valid	only for attributes of integer
+		     This operator is valid only  for  attributes  of  integer
 		     type.
 
-	      >=     Keep all attributes having values greater than, or  equal
-		     to,  the  value given here.  Any larger value is replaced
-		     by the value given here.  If no attribute exists,	it  is
+	      >=     Keep  all attributes having values greater than, or equal
+		     to, the value given here.	Any larger value  is  replaced
+		     by  the  value given here.  If no attribute exists, it is
 		     added with the value given here, as with "+=".
 
-		     This  operator  is  valid	only for attributes of integer
+		     This operator is valid only  for  attributes  of  integer
 		     type.
 
-	      !*     Delete all occurances of the named attribute,  no	matter
+	      !*     Delete  all  occurances of the named attribute, no matter
 		     what the value.
 
        Values
-	      The  format of the value is attribute-specific, and is usually a
-	      string, integer, IP address, etc.  Prior to the attribute  being
-	      instantiated,  the  value  may be expanded as described above in
-	      the DATA TYPES section, above.  This flexibility means that, for
-	      example,	you  can assign an IP address value to an attribute by
-	      specifying the IP address directly, or  by  having  the  address
-	      returned	from  a  database  query,  or  by  having  the address
-	      returned as the output of a program that is executed.
+	      The value can be an attribute reference,	or  an	attribute-spe-
+	      cific string.
 
-	      When string values are finally assigned to a variable, they  can
-	      have  a  maximum length of 253 characters.  This limit is due in
-	      part to both protocol and internal  server  requirements.   That
-	      is,  the strings in the language can be nearly 8k in length, say
-	      for a long SQL query.  However, the output  of  that  SQL  query
+	      When  the  value	is an an attribute reference, it must take the
+	      form of "&Attribute-Name".  The leading "&" signifies  that  the
+	      value  is  a  reference.	 The  "Attribute-Name" is an attribute
+	      name, such  as  "User-Name"  or  "request:User-Name".   When  an
+	      attribute  reference is used, both attributes must have the same
+	      data type.  For example, "User-Name :=  &NAS-Port"  is  invalid,
+	      because "User-Name" is a string, and "NAS-Port" is an integer.
+
+	      We  recommend  using  the  form "Attribute-1 = &Attribute-2" for
+	      updates, instead of "Attribute-1 = "%{Attribute-2}".  The  first
+	      version  will  copy the attribute data, no matter what its form.
+	      The second version will print the Attribute-2 to a  string,  and
+	      then  parse it to create the value for Attribute-1.  This second
+	      version is slower and more fragile than the first one.
+
+	      When the value is an attribute-specific  string,	it  can  be  a
+	      string,  integer, IP address, etc.  The value may be expanded as
+	      described above in the DATA TYPES section, above.  For  example,
+	      specifying   "Framed-IP-Address  =  127.0.0.1"  will  cause  the
+	      "Framed-IP-Address" attribute  to  be  set  to  the  IP  address
+	      "127.0.0.1".   However, using "Framed-IP-Address := module to be
+	      run with a string "127.0.0.1".  The output of the "echo"	module
+	      will  then  be  parsed  as  an  IP  address, and placed into the
+	      Framed-IP-Address attribute.
+
+	      This flexibility means that you can  assign  an  IP  address  by
+	      specifying it directly, or by having the address returned from a
+	      database query, or by having the address returned as the	output
+	      of a program that is executed.
+
+	      When  string  values  are finally assigned to an attribute, they
+	      can have a maximum length of 253 characters.  This limit is  due
+	      in part to both protocol and internal server requirements.  That
+	      is, the strings in the language can be nearly 8k in length,  say
+	      for  a  long  SQL  query.  However, the output of that SQL query
 	      should be no more than 253 characters in length.
 
 OTHER KEYWORDS
-       Other  keywords	in  the  language  are taken from the names of modules
-       loaded by the server.  These keywords are dependent on  both  the  mod-
+       Other keywords in the language are taken  from  the  names  of  modules
+       loaded  by  the	server.  These keywords are dependent on both the mod-
        ules, and the local configuration.
 
-       Some  use  keywords  that are defined in the default configuration file
+       Some use keywords that are defined in the  default  configuration  file
        are:
 
-       fail   Cause the request to be treated as if  a	database  failure  had
+       fail   Cause  the  request  to  be treated as if a database failure had
 	      occurred.
 
-       noop   Do  nothing.   This also serves as an instruction to the config-
-	      urable failover tracking that nothing was done  in  the  current
+       noop   Do nothing.  This also serves as an instruction to  the  config-
+	      urable  failover	tracking  that nothing was done in the current
 	      section.
 
-       ok     Instructs  the  server  that the request was processed properly.
-	      This keyword can be used to over-ride earlier failures,  if  the
-	      local  administrator  determines	that the faiures are not cata-
+       ok     Instructs the server that the request  was  processed  properly.
+	      This  keyword  can be used to over-ride earlier failures, if the
+	      local administrator determines that the faiures  are  not  cata-
 	      strophic.
 
        reject Causes the request to be immediately rejected
 
 MODULE RETURN CODES
-       When a module is called, it returns  one  of  the  following  codes  to
+       When  a	module	is  called,  it  returns one of the following codes to
        "unlang", with the following meaning.
 
 
@@ -632,7 +823,7 @@ MODULE RETURN CODES
        These return codes can be tested for in a condition, as described above
        in the CONDITIONS section.
 
-       See also the file doc/configurable_failover for additional  methods  of
+       See  also  the file doc/configurable_failover for additional methods of
        trapping and modifying module return codes.
 
 FILES
@@ -646,4 +837,4 @@ AUTHOR
 
 
 
-				  19 May 2010			     unlang(5)
+			       24 November 2014 		     unlang(5)

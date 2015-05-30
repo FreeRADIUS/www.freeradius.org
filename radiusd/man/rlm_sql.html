@@ -1,6 +1,6 @@
 
 <HTML><HEAD><TITLE>Manpage of rlm_sql</TITLE>
-<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include file="/header.html" --><div id="content">
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>rlm_sql</H1>
 Section: FreeRADIUS Module (5)<BR>Updated: 5 February 2004<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
@@ -83,11 +83,10 @@ This option is set to 'yes' or 'no'.  If you are doing
 Simultaneous-Use checking, and this is set to yes, stale sessions (
 defined as sessions for which a Stop record was not received ) will be
 cleared.
-<DT>sqltrace<DD>
-<DT>sqltracefile<DD>
-These two options are useful for debugging sql problems.  If sqltrace
-is set to yes, then all sql queries being executed are written to the
-file listed in sqltracefile.  This is disabled in normal operation.
+<DT>logfile<DD>
+This option is useful for debugging sql problems.  If logfile is set
+then all sql queries for the containing section are written to the
+file specified.  This is useful for debugging and bulk inserts.
 <DT>num_sql_socks<DD>
 The number of sql connections to make to the database.
 <DT>connect_failure_retry_delay<DD>
@@ -202,6 +201,6 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 17:17:31 GMT, February 06, 2011
+Time: 01:21:55 GMT, May 30, 2015
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

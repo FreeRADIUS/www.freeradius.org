@@ -1,8 +1,8 @@
 
 <HTML><HEAD><TITLE>Manpage of RADWHO</TITLE>
-<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include file="/header.html" --><div id="content">
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>RADWHO</H1>
-Section: FreeRADIUS Daemon (1)<BR>Updated: 7 April 2005<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 17 Feb 2013<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -20,7 +20,9 @@ radwho - show online users
 
 <I>raddb_directory</I>]
 
-[<B>-f</B>]
+[<B>-F</B>
+
+<I>radutmp_file</I>]
 
 [<B>-i</B>]
 
@@ -69,9 +71,9 @@ Shows caller ID (if available) instead of the full name.
 <DT>-d&nbsp;<I>raddb_directory</I><DD>
 The directory that contains the RADIUS configuration files. Defaults to
 <I>/etc/raddb</I>.
-<DT>-f<DD>
-Behave as the 'fingerd' daemon - waits for one line of input, then
-prints the output with lines \r\n terminated.
+<DT>-F&nbsp;<I>radutmp_file</I><DD>
+The file that contains the radutmp file.  If this is specified, -d is
+not necessary.
 <DT>-i<DD>
 Shows the session ID instead of the full name.
 <DT>-n<DD>
@@ -156,6 +158,6 @@ Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 17:17:31 GMT, February 06, 2011
+Time: 01:21:55 GMT, May 30, 2015
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

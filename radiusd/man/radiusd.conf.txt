@@ -131,12 +131,47 @@ REFERENCES
        which contains the current section.
 
 
-		   blogs = ${modules.detail.detailfile}
+		   blogs = ${modules.detail.filename}
 
 
-       Will  set  variable  blogs  to the value of variable detailfile, of the
+       Will  set  variable  blogs  to  the  value of variable filename, of the
        detail module, which is in the modules  section	of  the  configuration
        file.
+
+       Properties  of  anonymous  parent sections may also be referenced, cur-
+       rently name and instance are supported.
+
+
+		   modules {
+			example foo {
+			     file = ${.:name}
+			}
+		   }
+
+
+       Will set variable file to the name of the containing section (example).
+
+
+		   modules {
+			example foo {
+			     file = ${.:instance}
+			}
+		   }
+
+
+       Will  set  variable file to the instance name of the containing section
+       (foo).
+
+
+		   modules {
+			example foo {
+			     file = ${..:name}
+			}
+		   }
+
+
+       Will set variable file to the name of the parent of the containing sec-
+       tion (modules).
 
 FILES
        /etc/raddb/radiusd.conf
@@ -149,4 +184,4 @@ AUTHOR
 
 
 
-				  12 Jun 2007		       radiusd.conf(5)
+				  28 Jun 2013		       radiusd.conf(5)

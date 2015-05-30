@@ -15,8 +15,7 @@ DESCRIPTION
 
        The main configuration items to be aware of are:
 
-       detailfile
-	      The file name in which  to  store  the  radius  packet  records.
+       file   The file name in which  to  store  the  radius  packet  records.
 	      NOTE: this variable is run through dynamic string expansion, and
 	      can include FreeRADIUS variables to create a dynamic filename.
 
@@ -27,9 +26,8 @@ DESCRIPTION
 	    within the server.
 
 
-       detailperm
-	      The file permissions of the detailfile.  If omitted, the default
-	      is 0600.
+       perm   The file permissions of the file.  If omitted,  the  default  is
+	      0600.
 
        dirperm
 	      The  directory  permissions  of  the  directory where the detail
@@ -44,9 +42,9 @@ CONFIGURATION
 	      modules {
 		...
 		detail {
-		  detailfile = %A/%{Client-IP-Address}/detail-%Y%m
-		  detailperm = 0600
-		  dirperm = 0755
+		  filename = %A/%{Client-IP-Address}/detail-%Y%m
+		  permissions = 0600
+		  dir_permissions = 0755
 		  locking = no
 		}
 		...
@@ -76,4 +74,4 @@ AUTHORS
 
 
 
-				5 February 2004 		 rlm_detail(5)
+				 27 June 2013			 rlm_detail(5)

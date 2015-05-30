@@ -1,8 +1,8 @@
 
 <HTML><HEAD><TITLE>Manpage of radiusd.conf</TITLE>
-<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include file="/header.html" --><div id="content">
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>radiusd.conf</H1>
-Section: FreeRADIUS configuration file (5)<BR>Updated: 12 Jun 2007<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS configuration file (5)<BR>Updated: 28 Jun 2013<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -242,7 +242,7 @@ section which contains the current section.
 <DL COMPACT><DT><DD>
 <PRE>
 
-        blogs = ${modules.detail.detailfile}
+        blogs = ${modules.detail.filename}
 
 
 </PRE>
@@ -251,9 +251,71 @@ section which contains the current section.
 
 <P>
 
-Will set variable <B>blogs</B> to the value of variable <B>detailfile</B>,
+Will set variable <B>blogs</B> to the value of variable <B>filename</B>,
 of the <B>detail</B> module, which is in the <B>modules</B> section of
 the configuration file.
+<P>
+Properties of anonymous parent sections may also be referenced, currently
+<B>name</B> and <B>instance</B> are supported.
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        modules {
+                example foo {
+                        file = ${.:name}
+                }
+        }
+        
+
+</PRE>
+
+</DL>
+
+<P>
+
+Will set variable <B>file</B> to the name of the containing section (example).
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        modules {
+                example foo {
+                        file = ${.:instance}
+                }
+        }
+        
+
+</PRE>
+
+</DL>
+
+<P>
+
+Will set variable <B>file</B> to the instance name of the containing 
+section (foo).
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        modules {
+                example foo {
+                        file = ${..:name}
+                }
+        }
+        
+
+</PRE>
+
+</DL>
+
+<P>
+
+Will set variable <B>file</B> to the name of the parent of the containing
+section (modules).
 <A NAME="lbAG">&nbsp;</A>
 <H2>FILES</H2>
 
@@ -287,6 +349,6 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 17:17:31 GMT, February 06, 2011
+Time: 01:21:55 GMT, May 30, 2015
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>
