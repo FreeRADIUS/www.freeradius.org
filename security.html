@@ -97,7 +97,32 @@ LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
 and put in reverse-chronological order.
        -->
 
-<li><span class="date">2015.04.04</span> <a name="eap-pwd-2015">EAP-PWD</p> Vulnerabilities.
+<li><span class="date">2015.06.22</span> <a name="oCert-2015-4680">Revoked
+intermediate certificates</p> are not properly validated.
+
+<p>
+All versions which implement EAP-TLS, prior to 2.2.8 and 3.0.9 do not
+check intermediate CAs for revocation.  We have put patches into the
+version 2 and version 3 branches to fix these issues.
+<p>
+
+<p>We expect that this issue has minimal effect on the majority of
+RADIUS systems.  If you are using a self-signed CA for 802.1X, this
+issue does not affect you.  If you are using certificates from a
+public CA, then your system will likely permit third parties to issue
+certificates which can be accepted by your RADIUS server.  In that
+case, the intentional configuration of the system has security
+problems which overshadow this one.
+</p>
+
+<p>The original reporter disagreed with our description of affected
+systems, and the impact.  We requested additional information, and
+were told "no".  We can only conclude that the description above is
+correct, and that the reporter is incorrect.
+</p>
+
+<li><span class="date">2015.04.04</span> <a name="eap-pwd-2015">EAP-PWD</p>
+Vulnerabilities.
 <p>
 The EAP-PWD module performed insufficient validation on packets
 received from an EAP peer.  This module is <em>not</em> enabled in the
