@@ -97,6 +97,34 @@ LI, SPAN, "YYYY.MM.DD" comma /SPAN A "v.VERSION /A (CODENAME)" /LI
 and put in reverse-chronological order.
        -->
 
+<li><span class="date">2015.09.16</span> <a name="tunnel-password-2015">Tunnel-Password</p>
+Vulnerabilities.
+<p>
+Denis Andzakovic found issues with the decryption of very long
+Tunnel-Passwords.  The decryption routines could walk off of the end
+of a buffer, and write to adjacent addresses.  The data being written
+is not under control of an attacker.  The end result is usually a
+crash of the server.
+</p>
+
+<p>The initial report was for version 3.0.  We determined that the
+v3.1.x branch in git is also vulnerable.  Version 2 has similar code
+for Tunnel-Password, which we were not able to exploit.  However, for
+safety, all currently supported versions of the server were fixed.
+</p>
+
+<p>The packet decoder in FreeRADIUS ensures that the only time this
+issue is exploitable is when a proxy server receives a long
+Tunnel-Password attribute in the reply from a home server.  The attack
+cannot be performed by a RADIUS client, or an end user.  As such, the
+exploitability of the attack is limited to systems within the trusted
+RADIUS environment.
+</p>
+
+<p>We are releasing version 2.2.9 and version 3.0.10 to correct the
+issue.</p>
+</li>
+
 <li><span class="date">2015.06.22</span> <a name="oCert-2015-4680">Revoked
 intermediate certificates</p> are not properly validated.  oCert-CVE
 2015-4680.
