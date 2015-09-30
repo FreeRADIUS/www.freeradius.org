@@ -1,0 +1,22 @@
+<h3>Feature improvements</h3>
+<ul>
+<li>None.
+</li>
+</ul>
+<h3>Bug Fixes</h3>
+<ul>
+<li>Fix Tunnel-Password crash from home server.
+Found by Denis Andzakovic.
+</li>
+<li>Fix timer issue when proxying.
+</li>
+<li>Update EAP-TTLS so that MPPE keys are correctly
+calculated with TLSv1.2.
+</li>
+<li>Always delete MS-MPPE-* from the TTLS inner tunnel.
+This allows TTLS / EAP-MSCHAPv2 to work.
+</li>
+<li>Don't fall through in empty &quot;case&quot; statements.
+Fixes #<a href="https://github.com/FreeRADIUS/freeradius-server/issues/1274">1274</a>.
+</li>
+</ul>
