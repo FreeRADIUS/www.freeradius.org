@@ -70,6 +70,11 @@ conditions result in problems for RADIUS server administrators.
 Sessions may be marked stopped when they are actually ongoing,
 sessions for multiple users may be confused, 
 
+<p>FreeRADIUS works around this issue by creating
+a <a href="http://freeradius.org/radiusd/man/rlm_acct_unique.txt">unique-Acct-Session-ID</a>
+attribute.  This attribute is used internally and in the SQL schema,
+but is not sent in any packet.</p>
+
 <p>There is an RFC
 Editor <a href="http://www.rfc-editor.org/errata_search.php?eid=4487">errata</a>
 filed for this problem statement.</p>
