@@ -35,7 +35,7 @@ the RADIUS server that multiple users are offline.  However, sending
 one accounting packet for each user is not scalable.</p>
 
 <p>Some implementations send an accounting packet,
-with <code>Acct-Status-Type = On</code>, to indicate that the
+with <code>Acct-Status-Type = Accounting-On</code>, to indicate that the
 subsystem has rebooted.  The problem is that RFC 2866 is largely
 silent on what constitutes a "session".  The question for the RADIUS
 server is "which users, if any, should be marked 'offline' when
@@ -55,12 +55,12 @@ filed for this problem statement.</p>
 <p>We have a number of recommendations.</p>
 
 <ol>
-<li><code>Acct-Status-Type = On</code> should not be used to indicate sub-system reboot.</li>
+<li><code>Acct-Status-Type = Accounting-On</code> should not be used to indicate sub-system reboot.</li>
 
 <li>IANA should allocate two new values
 for <code>Acct-Status-Type</code>: <code>Subsystem-On</code>,
 and <code>Subsystem-Off</code>.  These values have meaning similar
-to <code>On</code> and <code>Off</code>, except that they apply to a
+to <code>Accounting-On</code> and <code>Accounting-Off</code>, except that they apply to a
 subystem of the NAS.</li>
 
 <li>NASes should use these new values to indicate subsystem on/off.</li>
@@ -69,7 +69,7 @@ subystem of the NAS.</li>
 unique to each subsystem.</li>
 
 <li>The NAS should signal that the entire system has rebooted by using
-the existing <code>On</code> and <code>Off</code> values, with a value
+the existing <code>Accounting-On</code> and <code>Accounting-Off</code> values, with a value
 for <code>Called-Station-Id</code> that is global to the NAS</li>
 </ul>
 
