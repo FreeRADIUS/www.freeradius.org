@@ -21,18 +21,20 @@ useful to the RADIUS community.</p>
 
 <h2>Problem Statement</h2>
 
-<p>The Acct-Status-Type attribute has only a few values defined.
-These values do not fully match new practices in RADIUS.  In
-particular, some wireless access points are composed of multiple
-subsystems.  For example, an access point may have a controller which
-manages all network traffic, and multiple radios in physically remote
-locations.  This design has a number of practical benefits, and causes
-at least one open problem with RADIUS.</p>
+<p>The Acct-Status-Type attribute has only a few values defined. These
+values do not fully match new practices in RADIUS. In particular, some
+wireless access points are composed of multiple subsystems. For
+example, an access point may have a controller that manages all
+network traffic, and multiple Basic Service Sets on multiple radios in
+physically remote locations. This design has a number of practical
+benefits, and causes at least one open problem with RADIUS.
+</p>
 
-<p>The problem is that a radio may reboot, which causes a loss of
-connectivity for multiple users.  The NAS would like to indicate to
-the RADIUS server that multiple users are offline.  However, sending
-one accounting packet for each user is not scalable.</p>
+<p>The problem is that a basic service set may come online or go
+offline, which causes a loss of connectivity for multiple users.  The
+NAS would like to indicate to the RADIUS server that multiple users
+are offline.  However, sending one accounting packet for each user is
+not scalable.</p>
 
 <p>Some implementations send an accounting packet,
 with <code>Acct-Status-Type = Accounting-On</code>, to indicate that the
