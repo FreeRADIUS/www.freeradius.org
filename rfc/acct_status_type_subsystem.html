@@ -72,16 +72,15 @@ unique to each subsystem.</li>
 
 <li>The NAS should signal that the entire system has rebooted by using
 the existing <code>Accounting-On</code> and <code>Accounting-Off</code> values, with a value
-for <code>Called-Station-Id</code> that is global to the NAS</li>
+for <code>Called-Station-Id</code> that is global to the NAS, or to omit it entirely.</li>
 </ul>
 
 <p>The last two recommendations are unfortunately imprecise, as we
 wish to maintain compatibility with existing systems.</p>
 
-<p>One method of implementing them is to have a unique MAC address per
-radio, and to put that MAC (and the SSID)
-into <code>Called-Station-Id</code>.  When the entire NAS reboots,
-the <code>Called-Station-Id</code> attribute can be omitted
+<p>One method of implementing them is to put the BSSID and SSID into
+the <code>Called-Station-Id</code> attribute.  When the entire NAS
+reboots, the <code>Called-Station-Id</code> attribute can be omitted
 entirely.</p>
 
 </div><!--content-->
