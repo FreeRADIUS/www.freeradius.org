@@ -27,7 +27,7 @@ for how RADIUS servers should manage EAP sessions.  As of Version 2.0,
 it supports more EAP methods than <b>any other RADIUS server</b>,
 commercial or Open Source.</p>
 
-<p>The following EAP methods are supported by FreeRADIUS 2.0 for
+<p>The following EAP methods are supported by FreeRADIUS 2.0 and later for
 wired, or for <a href="http://wiki.freeradius.org/WiFi">WiFi</a>
 authentication.</p>
 
@@ -35,7 +35,7 @@ authentication.</p>
 <li>EAP-AKA<sup><a href="#note-1">1</a></sup></li>
 <li>EAP-FAST<sup><a href="#note-1">1</a></sup></li>
 <li>EAP-GPSK<sup><a href="#note-1">1</a></sup></li>
-<li>EAP-IKEv2 <sup><a href="#note-2">3</a></sup> (experimental)</li>
+<li>EAP-IKEv2 <sup><a href="#note-2">3</a></sup></li>
 <li>Cisco LEAP<sup><a href="#note-2">2</a></sup></li>
 <li>EAP-PAX<sup><a href="#note-1">1</a></sup></li>
 <li>EAP-PEAPv0</li>
@@ -78,7 +78,7 @@ authentication.</p>
 <li>EAP-SAKE<sup><a href="#note-1">1</a></sup></li>
 <li>EAP-TLS<sup><a href="#note-2">2</a></sup></li>
 </ul>
-<li>EAP-TNC<sup><a href="#note-2">2</a></sup> (experimental)</li>
+<li>EAP-TNC<sup><a href="#note-2">2</a></sup></li>
 </ul>
 
 <p>The following methods are also supported, but cannot be used with
@@ -93,19 +93,20 @@ WPA or IEEE 802.1X WEP keying.</p>
 <hr />
 <h3>Notes</h3>
 
-<p><sup><a name="note-1">1</a></sup> &nbsp; Via the "eap2" module, by
-using the <a href="http://hostap.epitest.fi/hostapd/">hostapd</a>
-<tt>libeap.so</tt> library.  This module is experimental, and may not
-be ready for use in a production environment.  This module is only
-available in FreeRADIUS versions 2.0 and later.  It is not available
-in earlier versions of the server.</p>
+<p><sup><a name="note-1">1</a></sup> &nbsp; Considered stable in
+FreeRADIUS 3.0 and later. In FreeRADIUS 2.x only via the "eap2" module, by
+using the library <tt>libeap.so</tt> from
+<a href="http://hostap.epitest.fi/hostapd/">hostapd</a>. This module was
+available in FreeRADIUS versions 2.x and and removed with the release
+of version 3.0.0. "eap2" was considered experimental and not production ready.</p>
 
 <p><sup><a name="note-2">2</a></sup> &nbsp; Via the "eap" module,
 using the native FreeRADIUS EAP implementation.</p>
 
-<p><sup><a name="note-3">3</a></sup> &nbsp; Via both of the "eap" and
-"eap2" modules.  Some functionality may differ between the two
-implementations.  See the configuration files for more details.</p>
+<p><sup><a name="note-3">3</a></sup> &nbsp; Supported via the "eap" module with
+FreeRADIUS 3.0 and later. In FreeRADIUS >= 2.0 < 3.0 both the "eap" and "eap2"
+could beused but some of their functionality may have been different between the
+two implementations. See their configuration files for more details.</p>
 
 
 
