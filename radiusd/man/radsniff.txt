@@ -1,0 +1,68 @@
+RADSNIFF(8)							   RADSNIFF(8)
+
+
+
+NAME
+       radsniff - dump radius protocol
+
+SYNOPSIS
+       radsniff [-c count] [-d directory] [-F] [-f filter] [-h] [-i interface]
+       [-I filename] [-m] [-p port] [-r filter] [-s  secret]  [-S]  [-w  file]
+       [-x]
+
+
+DESCRIPTION
+       radsniff is a simple wrapper around libpcap.  It can also print out the
+       contents of RADIUS packets using the FreeRADIUS dictionaries.
+
+
+OPTIONS
+       -c count
+	      Number of packets to capture.
+
+       -d directory
+	      Directory where the dictionaries are found.
+
+       -F     Filter PCAP file from stdin to stdout.  Output file will contain
+	      RADIUS packets.
+
+       -f filter
+	      PCAP filter. (default is udp port 1812 or 1813)
+
+       -h     Print usage help information.
+
+       -i interface
+	      Interface to capture.
+
+       -I filename
+	      Read packets from filename.
+
+       -m     Print packet headers only, not contents.
+
+       -p port
+	      Listen for packets on port.
+
+       -r filter
+	      RADIUS attribute filter.
+
+       -s secret
+	      RADIUS secret.
+
+       -S     Sort  attributes in the packet.  Used to compare server results.
+
+       -w file
+	      Write output packets to file.
+
+       -x     Print out debugging information.
+
+
+
+SEE ALSO
+       radiusd(8),pcap(3)
+
+AUTHORS
+       Nicolas Baradakis <nicolas.baradakis@cegetel.net>
+
+
+
+								   RADSNIFF(8)

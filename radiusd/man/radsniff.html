@@ -1,0 +1,134 @@
+
+<HTML><HEAD><TITLE>Manpage of RADSNIFF</TITLE>
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
+<H1>RADSNIFF</H1>
+Section: Maintenance Commands (8)<BR><A HREF="#index">Index</A>
+<A HREF="index.html">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+radsniff - dump radius protocol
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>radsniff</B>
+
+[<B>-c</B>
+
+<I>count</I>]
+
+[<B>-d</B>
+
+<I>directory</I>]
+
+[<B>-F</B>]
+
+[<B>-f</B>
+
+<I>filter</I>]
+
+[<B>-h</B>]
+
+[<B>-i</B>
+
+<I>interface</I>]
+
+[<B>-I</B>
+
+<I>filename</I>]
+
+[<B>-m</B>]
+
+[<B>-p</B>
+
+<I>port</I>]
+
+[<B>-r</B>
+
+<I>filter</I>]
+
+[<B>-s</B>
+
+<I>secret</I>]
+
+[<B>-S</B>]
+
+[<B>-w</B>
+
+<I>file</I>]
+
+[<B>-x</B>]
+
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>radsniff</B> is a simple wrapper around libpcap.  It can also print
+out the contents of RADIUS packets using the FreeRADIUS dictionaries.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<P>
+<DL COMPACT>
+<DT>-c&nbsp;<I>count</I><DD>
+Number of packets to capture.
+<DT>-d&nbsp;<I>directory</I><DD>
+Directory where the dictionaries are found.
+<DT>-F<DD>
+Filter PCAP file from stdin to stdout.
+Output file will contain RADIUS packets.
+<DT>-f&nbsp;<I>filter</I><DD>
+PCAP filter. (default is udp port 1812 or 1813)
+<DT>-h<DD>
+Print usage help information.
+<DT>-i&nbsp;<I>interface</I><DD>
+Interface to capture.
+<DT>-I&nbsp;<I>filename</I><DD>
+Read packets from filename.
+<DT>-m<DD>
+Print packet headers only, not contents.
+<DT>-p&nbsp;<I>port</I><DD>
+	Listen for packets on port.
+<DT>-r&nbsp;<I>filter</I><DD>
+RADIUS attribute filter.
+<DT>-s&nbsp;<I>secret</I><DD>
+RADIUS secret.
+<DT>-S<DD>
+Sort attributes in the packet.
+Used to compare server results.
+<DT>-w&nbsp;<I>file</I><DD>
+Write output packets to file.
+<DT>-x<DD>
+Print out debugging information.
+<P>
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<A HREF="/radiusd/man/radiusd.html">radiusd</A>(8),<A HREF="../man/pcap.html">pcap</A>(3)
+<A NAME="lbAG">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+Nicolas Baradakis &lt;<A HREF="mailto:nicolas.baradakis@cegetel.net">nicolas.baradakis@cegetel.net</A>&gt;
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">AUTHORS</A><DD>
+</DL>
+<HR>
+This document was created by
+<A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
+using the manual pages.<BR>
+Time: 01:21:56 GMT, May 30, 2015
+</div><!--#include virtual="/footer.html" --></BODY>
+</HTML>
