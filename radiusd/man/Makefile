@@ -17,6 +17,11 @@ MODS	:= $(filter rlm_%,$(FILES))
 CONFIG	:= $(filter %.5,$(FILES))
 CONFIG	:= $(filter-out rlm_%,$(CONFIG))
 
+
+BIN	:= $(sort $(BIN))
+MODS	:= $(sort $(MODS))
+CONFIG	:= $(sort $(CONFIG))
+
 %.txt:%.1
 	nroff -man -Tascii $< | col -b > $@
 
