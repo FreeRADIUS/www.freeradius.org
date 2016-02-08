@@ -46,7 +46,11 @@ radsniff - dump radius protocol
 
 [<B>-r</B>
 
-<I>filter</I>]
+<I>request</I>filter]
+
+[<B>-R</B>
+
+<I>response</I>filter<I>]</I>
 
 [<B>-s</B>
 
@@ -91,8 +95,10 @@ Read packets from filename.
 Print packet headers only, not contents.
 <DT>-p&nbsp;<I>port</I><DD>
 	Listen for packets on port.
-<DT>-r&nbsp;<I>filter</I><DD>
-RADIUS attribute filter.
+<DT>-r&nbsp;<I>response-filter</I><DD>
+RADIUS attribute request filter.
+<DT>-R&nbsp;<I>request-filter</I><DD>
+RADIUS attribute response filter.
 <DT>-s&nbsp;<I>secret</I><DD>
 RADIUS secret.
 <DT>-S<DD>
@@ -129,6 +135,6 @@ Nicolas Baradakis &lt;<A HREF="mailto:nicolas.baradakis@cegetel.net">nicolas.bar
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 01:21:56 GMT, May 30, 2015
+Time: 15:28:09 GMT, February 08, 2016
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

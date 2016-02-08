@@ -2,7 +2,7 @@
 <HTML><HEAD><TITLE>Manpage of unlang</TITLE>
 <link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>unlang</H1>
-Section: FreeRADIUS Processing un-language (5)<BR>Updated: 24 November 2014<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Processing un-language (5)<BR>Updated: 05 February 2016<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -41,12 +41,14 @@ organized into lists.  Processing of the language is line by line,
 from the start of the list to the end.  Actions are executed
 per-keyword.
 <DL COMPACT>
-<DT>module-name<DD>
+<DT>module-name[.section-name]<DD>
 A reference to the named module.  When processing reaches this point,
 the pre-compiled module is called.  The module may succeed or fail,
 and will return a status to &quot;unlang&quot; if so.  This status can be tested
 in a condition.  See the &quot;Simple Conditions&quot; text in the CONDITIONS
 section, and MODULE RETURN CODES, below.
+If a section-name is provided, it will cause the module to execute 
+as if it were listed in the named section.
 <P>
 
 <DL COMPACT><DT><DD>
@@ -307,7 +309,7 @@ See raddb/sites-available/originate-coa for additional information.
 <P>
 The &quot;session-state&quot; list is primarily used for EAP.  Attributes put
 into the &quot;session-state&quot; list are saved for the next packet in the
-session.  They are automatically retreived when the next packet is
+session.  They are automatically retrieved when the next packet is
 received.
 <P>
 The only contents permitted in an &quot;update&quot; section are attributes and
@@ -636,7 +638,7 @@ true.  Valid comparison operators are &quot;==&quot;, &quot;!=&quot;, &quot;&lt;
 &quot;&gt;=&quot;, &quot;=~&quot;, and &quot;!~&quot;, all with their usual meanings.  Invalid
 comparison operators are &quot;:=&quot; and &quot;=&quot;.
 
-<DT>Attribute<DD>
+<DT>Attribute Comparisons<DD>
 
 <DL COMPACT><DT><DD>
 <PRE>
@@ -655,7 +657,7 @@ evaluates to true if the comparison holds true.  The comparison is
 done by printing the attribute to a string, and then doing a string
 comparison of the two sides of the condition.
 
-<DT>Inter-Attribute<DD>
+<DT>Inter-Attribute Comparisons<DD>
 
 <DL COMPACT><DT><DD>
 <PRE>
@@ -970,19 +972,19 @@ e.g. If a request contains &quot;User-Name = bob&quot;, the expansion
 of %{User-Name[#]} will yeild &quot;1&quot;.
 <P>
 <DT>%{Attribute-Name[*]}<DD>
-All values of Attribute-Name, concatenated together with \n as the
+All values of Attribute-Name, concatenated together with ',' as the
 separator.
 <P>
 <DT>%{List-Name:[#]}<DD>
 The number of attributes in the named list.
 <P>
 <DT>%{List-Name:[*]}<DD>
-All values of attributes in the named-list, concatenated together with \n
+All values of attributes in the named-list, concatenated together with ','
 as the separator. Use the %{pairs:} xlat to get a list of attributes and
 values.
 <P>
 e.g. If a response contains &quot;Reply-Message = 'Hello', Reply-Message = 'bob'
-the expnsion of &quot;%{reply:Reply-Message[*]} will yield &quot;Hello\nbob&quot;
+the expansion of &quot;%{reply:Reply-Message[*]} will yield &quot;Hello\nbob&quot;
 <P>
 </DL>
 </DL>
@@ -1077,6 +1079,12 @@ This operator is valid only for attributes of integer type.
 <DT>!*<DD>
 Delete all occurances of the named attribute, no matter what the
 value.
+<DT>=~<DD>
+Keep all attributes having values which match the given regular
+expression.  If no attribute matches, nothing else is done.
+<DT>!~<DD>
+Keep all attributes having values which fail to match the given
+regular expression.  If no attribute matches, nothing else is done.
 </DL>
 </DL>
 
@@ -1223,6 +1231,6 @@ Alan DeKok &lt;<A HREF="mailto:aland@deployingradius.com">aland@deployingradius.
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 01:21:56 GMT, May 30, 2015
+Time: 15:28:09 GMT, February 08, 2016
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

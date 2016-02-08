@@ -135,9 +135,6 @@ FORMAT
 	    length octets (i.e. the second digit) are 0, 1, and 2.  Any combi-
 	    nation of those values will work.
 
-	    You  can  also  use  "format=Extended-Vendor-Specific-1",  through
-	    "format=Extended-Vendor-Specific-6".   These  define  VSAs	in the
-	    "extended vendor-specific" space.
 
        BEGIN-VENDOR vendor-name
 	    Define the start of a block of Vendor-Specific attributes.	All of
@@ -147,6 +144,12 @@ FORMAT
 
 	    This  practice  is preferred to placing the vendor name at the end
 	    of an ATTRIBUTE  definition.
+
+	    For VSAs in the RFC 6929 "Extended vendor-specific" space, a  for-
+	    mat  can  be  specified  following	the "vendor-name".  The format
+	    should  be	"format=Extended-Vendor-Specific-1",   through	 "for-
+	    mat=Extended-Vendor-Specific-6".  The matching "END-VENDOR" should
+	    just have the "vendor-name", without the format string.
 
        END-VENDOR vendor-name
 	    End a previously defined BEGIN-VENDOR  block.   The  "vendor-name"
@@ -172,8 +175,8 @@ FILES
        /etc/raddb/dictionary, /usr/share/freeradius/dictionary.*
 
 SEE ALSO
-       radiusd(8), RFC2865, RFC2866, RFC2868
+       radiusd(8), RFC2865, RFC2866, RFC2868 RFC6929
 
 
 
-				  16 Mar 2011			 dictionary(5)
+				  12 Jun 2015			 dictionary(5)

@@ -26,16 +26,13 @@ DESCRIPTION
 	    within the server.
 
 
-       perm   The file permissions of the file.  If omitted,  the  default  is
+       permissions
+	      The file permissions of the file.  If omitted,  the  default  is
 	      0600.
 
-       dirperm
-	      The  directory  permissions  of  the  directory where the detail
-	      files are created.  The default is 0755.
-
        locking
-	      This option is set to 'yes' or 'no'.  By	default  it  is  'no'.
-	      Set  this  to yes to enable file locking, which is used with the
+	      This  option  is	set  to 'yes' or 'no'.	By default it is 'no'.
+	      Set this to yes to enable file locking, which is used  with  the
 	      'radrelay' program.
 
 CONFIGURATION

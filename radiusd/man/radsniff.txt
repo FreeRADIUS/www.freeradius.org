@@ -7,8 +7,8 @@ NAME
 
 SYNOPSIS
        radsniff [-c count] [-d directory] [-F] [-f filter] [-h] [-i interface]
-       [-I filename] [-m] [-p port] [-r filter] [-s  secret]  [-S]  [-w  file]
-       [-x]
+       [-I filename] [-m] [-p port] [-r requestfilter] [-R responsefilter] [-s
+       secret] [-S] [-w file] [-x]
 
 
 DESCRIPTION
@@ -42,8 +42,11 @@ OPTIONS
        -p port
 	      Listen for packets on port.
 
-       -r filter
-	      RADIUS attribute filter.
+       -r response-filter
+	      RADIUS attribute request filter.
+
+       -R request-filter
+	      RADIUS attribute response filter.
 
        -s secret
 	      RADIUS secret.

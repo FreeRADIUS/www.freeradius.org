@@ -170,7 +170,7 @@ BACKGROUND
 
        The access server also sends login and logout  records  to  the	radius
        server  so accounting can be done. These records are kept for each ter-
-       minal server seperately in a file called detail, and in the  wtmp  com-
+       minal server separately in a file called detail, and in the  wtmp  com-
        patible logfile /var/log/radwtmp.
 
 CONFIGURATION

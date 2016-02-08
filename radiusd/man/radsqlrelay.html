@@ -1,6 +1,6 @@
 
 <HTML><HEAD><TITLE>Manpage of RADSQLRELAY</TITLE>
-<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include file="/header.html" --><div id="content">
+<link rel="stylesheet" type="text/css" href="/css/style.css" /></HEAD><BODY><!--#include virtual="/header.html" --><div id="content">
 <H1>RADSQLRELAY</H1>
 Section: FreeRADIUS helper program (8)<BR>Updated: 19 June 2005<BR><A HREF="#index">Index</A>
 <A HREF="index.html">Return to Main Contents</A><HR>
@@ -15,6 +15,8 @@ radsqlrelay - relay SQL queries to a central database server
 <H2>SYNOPSIS</H2>
 
 <B>radsqlrelay</B>
+
+[<B>-?</B>]
 
 [<B>-d</B>
 
@@ -36,11 +38,17 @@ radsqlrelay - relay SQL queries to a central database server
 
 <I>user</I>]
 
+[<B>-P</B>
+
+<I>port</I>]
+
 [<B>-p</B>
 
 <I>password</I>]
 
 [<B>-1</B>]
+
+[<B>-x</B>]
 
 <I>file_path</I>
 <P>
@@ -60,6 +68,8 @@ must be configured in the <B>radiusd</B> server before you can use
 <H2>OPTIONS</H2>
 
 <DL COMPACT>
+<DT>-?<DD>
+Print usage help information.
 <DT>-d <I>sql_driver</I><DD>
 Driver to use: mysql, pg, oracle.
 <DT>-b <I>database</I><DD>
@@ -70,10 +80,14 @@ Read password from file, instead of command line.
 Connect to host.
 <DT>-u <I>user</I><DD>
 User for login.
+<DT>-P <I>port</I><DD>
+Port number to use for connection.
 <DT>-p <I>password</I><DD>
 Password to use when connecting to server.
 <DT>-1<DD>
 One-shot mode: push the file to database and exit.
+<DT>-x<DD>
+Turn on debugging.
 <DT>file_path<DD>
 The pathname of the SQL logfile to use.
 <P>
@@ -139,6 +153,6 @@ Nicolas Baradakis &lt;<A HREF="mailto:nicolas.baradakis@cegetel.net">nicolas.bar
 This document was created by
 <A HREF="http://localhost/cgi-bin/man/manhtml">manhtml</A>,
 using the manual pages.<BR>
-Time: 17:17:31 GMT, February 06, 2011
+Time: 15:28:09 GMT, February 08, 2016
 </div><!--#include virtual="/footer.html" --></BODY>
 </HTML>

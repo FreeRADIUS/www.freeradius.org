@@ -77,7 +77,7 @@ DESCRIPTION
 
 	      !~     Regular Expression Not Equal
 
-	      See the default /etc/raddb/attrs for working examples of
+	      See the default /etc/raddb/mods-config/attr_filter/ for working examples of
 	      sample rule ordering and how to use the different operators.
 
 
@@ -123,7 +123,7 @@ SECTIONS
 
 
 FILES
-       /etc/raddb/radiusd.conf /etc/raddb/filter/*
+       /etc/raddb/radiusd.conf /etc/raddb/mods-config/attr_filter/*
 
 
 SEE ALSO

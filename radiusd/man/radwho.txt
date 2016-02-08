@@ -72,7 +72,7 @@ OPTIONS
        RADIUS server, which tells the server that the NAS rebooted.   i.e.  It
        "zaps" all of the users on that NAS.
 
-       To "zap" one user, specifiy NAS, username, and NAS port:
+       To "zap" one user, specify NAS, username, and NAS port:
 
 	      $ radwho -ZRN 10.0.0.1 -u user -P 10 | radclient -f - radius.example.net acct testing123
 

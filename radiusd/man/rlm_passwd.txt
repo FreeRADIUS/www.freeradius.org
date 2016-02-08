@@ -75,10 +75,11 @@ FORMAT
        added as a control attribute list.
 
        To  add	an attribute to the RADIUS request (as though it had been sent
-       by the NAS), prefix the attribute name in the "format" string with the
+       by the NAS), prefix the attribute name in the "format" string with  the
+       '~' character.
 
-       To add an attribute to the RADIUS reply (to be sent back to  the  NAS),
-       prefix  the  attribute name in the "format" string with the '=' charac-
+       To  add	an attribute to the RADIUS reply (to be sent back to the NAS),
+       prefix the attribute name in the "format" string with the  '='  charac-
        ter.
 
 
@@ -86,10 +87,10 @@ EXAMPLES
 	      format = "*User-Name:Crypt-Password:"
 
 
-	      For a file the looks similar to /etc/passwd.  The  first	field,
+	      For  a  file  the looks similar to /etc/passwd. The first field,
 	      User-Name, is the key to look up in the file. When the record is
 	      found, a control attribute, 'Crypt-Password', will be added with
-	      the  contents of the second field. (Note this will not work with
+	      the contents of the second field. (Note this will not work  with
 	      shadow passwords.)
 
 
@@ -97,26 +98,26 @@ EXAMPLES
 
 
 	      Parse a file similar to the /etc/group file.  An entry matches a
-	      request  when  the  name	in a User-Name attribute exists in the
-	      comma-separated list of a line  in  the  file.   When  an  entry
+	      request when the name in a User-Name  attribute  exists  in  the
+	      comma-separated  list  of  a  line  in  the file.  When an entry
 	      matches, a "My-Group" attribute will be created and added to the
 	      control items for the request.  The value of that attribute will
-	      be  taken from the first field of the matching line in the file.
+	      be taken from the first field of the matching line in the  file.
 
-	      The ":::" in the format string means that there  are  extra  two
-	      fields  in  the line, in between the group name and list of user
+	      The  ":::"  in  the format string means that there are extra two
+	      fields in the line, in between the group name and list  of  user
 	      names.  Those fields do not map to any RADIUS attribute, and are
 	      therefore ignored.
 
-	      For  this  example to work in practice, you will have to add the
-	      My-Group attribute to the dictionary  file.   See  dictionary(5)
+	      For this example to work in practice, you will have to  add  the
+	      My-Group	attribute  to  the dictionary file.  See dictionary(5)
 	      for details on how this may be done.
 
 
 	      format = "~My-Group:::*,User-Name"
 
 
-	      Similar  to the previous entry, except the My-Group attribute is
+	      Similar to the previous entry, except the My-Group attribute  is
 	      added to the request, as though it was sent by the NAS.
 
 
@@ -132,7 +133,7 @@ SEE ALSO
        radiusd(8), radiusd.conf(5), radmin(8), dictionary(5), rlm_unix(5)
 
 AUTHOR
-       Alan DeKok <aland@freeradius.org>, Matthew  Newton  <matthew@newtoncom-
+       Alan  DeKok  <aland@freeradius.org>, Matthew Newton <matthew@newtoncom-
        puting.co.uk>.
 
 
