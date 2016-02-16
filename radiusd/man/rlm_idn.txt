@@ -1,0 +1,46 @@
+rlm_idn(5)		       FreeRADIUS Module		    rlm_idn(5)
+
+
+
+NAME
+       rlm_idn - FreeRADIUS Module
+
+DESCRIPTION
+       When  instantiated,  the rlm_idn module provides an xlat for performing
+       IDNA encoding of internationalized domain names.   Decoding  and  other
+       similar encodings like plain punycode are not currently supported.
+
+       For example, the following unlang expression would evaluate to TRUE:
+
+       "%{idn:fA<<bar.site}" == "xn--fbar-v7a.site"
+
+
+       Each instance of rlm_idn may take the following parameters:
+
+       use_std3_ascii_rules
+	      This boolean is set by default and prohibits e.g. underscores in
+	      domain names.
+
+       allow_unassigned
+	      This boolean is unset by default, which prohibits use  of  unas-
+	      signed Unicode points.
+
+
+FILES
+       /etc/raddb/radiusd.conf
+
+
+REFERENCES
+       RFC 3490
+
+
+SEE ALSO
+       radiusd(8), radiusd.conf(5) idna_to_ascii_8z(3)
+
+AUTHOR
+       Brian S. Julin, bjulin@clarku.edu
+
+
+
+
+				  8 May 2013			    rlm_idn(5)

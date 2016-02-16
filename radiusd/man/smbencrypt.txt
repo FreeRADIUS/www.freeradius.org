@@ -1,0 +1,29 @@
+SMBENCRYPT(1)							 SMBENCRYPT(1)
+
+
+
+NAME
+       smbencrypt - produce LM & NT password hashes from cleartext passwords
+
+SYNOPSIS
+       smbencrypt password [password ...]
+
+
+DESCRIPTION
+       smbencrypt  For each cleartext password passed on the command line emit
+       the LM-Password and NT-Password hashes for that password.
+
+
+EXAMPLE
+       $ smbencrypt foo bar
+       LM Hash				  NT Hash
+       --------------------------------   --------------------------------
+       5BFAFBEBFB6A0942AAD3B435B51404EE   AC8E657F83DF82BEEA5D43BDAF7800CC
+       A6428F2551EDEE1BAAD3B435B51404EE   86C156FC198B358CCCF6278D8BD49B6A
+
+
+SEE ALSO
+       radiusd(8)
+
+AUTHORS
+								 SMBENCRYPT(1)
