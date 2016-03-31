@@ -8,6 +8,14 @@ local read_body = false
 common.srv_path = "/srv/www/www.freeradius.org/api/info/srv"
 common.base_url = "/api/info"
 
+--[[Function: pagenate
+Get a range of elements from a table and return them in a new table
+
+@param table The input table.
+@param first index in the table.
+@param last index in the table.
+@return slice of input table.
+--]]
 function common.pagenate(table, first, last)
   local sliced = {}
 
@@ -20,7 +28,7 @@ end
 
 --[[Function: get_json
 @param url to fetch.
-@return the result of the subrequest decoded as JSON
+@return the retult of the subrequest decoded as JSON
 --]]
 function common.get_json(url)
    -- Apparently we need to do this before calling location capture...
@@ -30,20 +38,20 @@ function common.get_json(url)
    end
 
    -- Make internal request to resolve URLs
-   local res = ngx.location.capture(url)
-   if res.status ~= ngx.HTTP_OK then
-      ngx.log(ngx.ERR, "Subrequest for " .. url .. " failed with code " .. tostring(res.status))
-      return res.status
+   local ret = ngx.location.capture(url)
+   if ret.status ~= ngx.HTTP_OK then
+      ngx.log(ngx.ERR, "Subrequest for " .. url .. " failed with code " .. tostring(ret.status))
+      return ret.status
    end
 
-   -- Decode JSON response
-   local json, err = cjson.decode(" " .. res.body)
+   -- Decode JSON retponse
+   local json, err = cjson.decode(" " .. ret.body)
    if not json then
       ngx.log(ngx.ERR, "Subrequest for " .. url .. " failed.  Can't decode JSON: " .. err)
       return ngx.NGX_ERR
    end
 
-   return ngx.NGX_OK, json
+   return ngx.OK, json
 end
 
 --[[Function: resolve_urls
@@ -51,18 +59,24 @@ end
 Produces aggregated output to return to the client.
 
 Whenever a table with a URL element is found, the URL is fetched with a subrequest,
-the keys in the existing table are moved, and the response from the subrequest is inserted.
+the keys in the existing table are moved, and the retponse from the subrequest is inserted.
 
-@param json_index The result of the data from the previous GET operation
+@note Not idempotent.  Input table will be left in a possibly mangled state on failure.
+
+@param json_index The retult of the data from the previous GET operation
 @param max_nest   The maximum number of times we recurse to resolve additional URL keys
 @return an ngx.NGX_* code
 
 --]]
 function common.resolve_urls(json_index, max_nest)
    local k, v
+   local ret, json
 
    if max_nest > 0 and json_index["url"] ~= nil then
-      local res, new = common.get_json(json_index["url"])
+      ret, json = common.get_json(json_index["url"])
+      if ret ~= ngx.OK then
+          return ret
+      end
 
       -- Clear out the old table entries
       for k, v in pairs(json_index) do
@@ -80,14 +94,14 @@ function common.resolve_urls(json_index, max_nest)
    -- Recurse to deal with tables
    for k, v in pairs(json_index) do
       if type(v) == "table" then
-         local status = common.resolve_urls(v, max_nest)
-         if status ~= ngx.NGX_OK then
-            return status
+         ret = common.resolve_urls(v, max_nest)
+         if ret ~= ngx.OK then
+            return ret
          end
       end
    end
 
-   return ngx.NGX_OK
+   return ngx.OK
 end
 
 --[[Function: get_files
