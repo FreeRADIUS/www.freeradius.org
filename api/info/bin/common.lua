@@ -84,7 +84,7 @@ function common.resolve_urls(json_index, max_nest)
       end
 
       -- Insert our decoded ones
-      for k, v in pairs(new) do
+      for k, v in pairs(json) do
           json_index[k] = v
       end
 
