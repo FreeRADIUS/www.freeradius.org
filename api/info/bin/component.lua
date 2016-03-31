@@ -31,6 +31,10 @@ if max_nest > 0 then
    end
 
    local res = common.resolve_urls(json, max_nest)
+   if res == ngx.HTTP_NOT_FOUND then
+      ngx.say("{ \"error\": \"Couldn't find resource referenced by expansion URL\" }")
+      ngx.exit(res)
+   end
    if res ~= ngx.OK then
       ngx.exit(res)
    end

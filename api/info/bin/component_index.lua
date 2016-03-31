@@ -81,6 +81,10 @@ end
 -- Server side expansion of URL fields using subrequests
 if max_nest > 0 then
    local res = common.resolve_urls(index, max_nest)
+   if res == ngx.HTTP_NOT_FOUND then
+      ngx.say("{ \"error\": \"Couldn't find resource referenced by expansion URL\" }")
+      ngx.exit(res)
+   end
    if res ~= ngx.OK then
       ngx.exit(res)
    end
