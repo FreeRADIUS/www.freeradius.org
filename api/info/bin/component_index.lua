@@ -51,16 +51,15 @@ if get_args.by_category then
       end
 
       if not category then
-         -- Send subrequest to get the component
          local res, json = common.get_json(v["url"])
-         if res ~= ngx.NGX_OK then
+         if res ~= ngx.OK then
             return res
          end
 
          -- Get the category key
          if not json["category"] then
             ngx.log(ngx.ERR, "Component " .. v["name"] .. " missing category key")
-            return ngx.NGX_ERR
+            return ngx.ERROR
          end
 
          -- Cache the category (as that was all pretty expensive)
@@ -82,7 +81,7 @@ end
 -- Server side expansion of URL fields using subrequests
 if max_nest > 0 then
    local res = common.resolve_urls(index, max_nest)
-   if res ~= ngx.NGX_OK then
+   if res ~= ngx.OK then
       ngx.exit(res)
    end
 end

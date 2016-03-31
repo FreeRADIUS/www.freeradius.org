@@ -27,16 +27,16 @@ if max_nest > 0 then
 
    if not json then
       ngx.log(ngx.ERR, "Failed decoding JSON for component " .. component .. ": " .. err)
-      ngx.exit(ngx.NGX_ERROR)
+      ngx.exit(ngx.ERROR)
    end
 
    local res = common.resolve_urls(json, max_nest)
-   if res ~= ngx.NGX_OK then
+   if res ~= ngx.OK then
       ngx.exit(res)
    end
 
    ngx.say(cjson.encode(json));
-   ngx.exit(ngx.NGX_OK)
+   ngx.exit(ngx.OK)
 end
 
 -- Don't bother decoding the JSON if we're not resolving anything
