@@ -1,36 +1,15 @@
 local cjson     = require "cjson"
 local ngx       = require "ngx"
-local common    = require "common"
+local common    = require "lib.common"
 
 local index     = common.get_index(common.srv_path .. "/component/", common.base_url .. "/component")
 
 local get_args  = ngx.req.get_uri_args()
-local max_nest  = 0
-local pagenate_start
-local pagenate_end
 
--- Check it's a number...
-if get_args.expansion_depth then
-   max_nest = tonumber(get_args.expansion_depth)
-   if not max_nest then
-      ngx.exit(ngx.HTTP_BAD_REQUEST)
-   end
-end
-
-if get_args.pagenate_start then
-   pagenate_start = tonumber(get_args.pagenate_start)
-   if not pagenate_start then
-      ngx.exit(ngx.HTTP_BAD_REQUEST)
-   end
-   pagenate_start = pagenate_start + 1
-end
-
-if get_args.pagenate_end then
-   pagenate_end = tonumber(get_args.pagenate_end)
-   if not pagenate_end then
-      ngx.exit(ngx.HTTP_BAD_REQUEST)
-   end
-   pagenate_end = pagenate_end + 1
+-- Process common arguments
+local ret, expansion_depth, pagenate_start, pagenate_end = common.common_get_args(get_args)
+if ret ~= ngx.OK then
+   ngx.exit(ret)
 end
 
 -- Filter by category
@@ -40,7 +19,7 @@ if get_args.by_category then
    local filtered = {}
 
    if not cache then
-      ngx.log(ngx.ERR, "Cache not declared.  Declare with lua_shared_dict in http {}")
+      ngx.log(ngx.ERR, "Cache not declared.  Declare with 'lua_shared_dict info_api_component_category;' in http {}")
    end
 
    for i, v in pairs(index) do
@@ -51,7 +30,7 @@ if get_args.by_category then
       end
 
       if not category then
-         local res, json = common.get_json(v["url"])
+         local res, json = common.get_json_file(v["url"])
          if res ~= ngx.OK then
             return res
          end
@@ -78,9 +57,20 @@ if get_args.by_category then
    index = filtered
 end
 
+-- Filter by keyword can't cache this one easily
+if get_args.by_pattern then
+   local filtered = {}
+
+   strfind(common.base_url)
+
+   for i, v in pairs(index) do
+      m, err = ngx.re.match
+   end
+end
+
 -- Server side expansion of URL fields using subrequests
-if max_nest > 0 then
-   local res = common.resolve_urls(index, max_nest)
+if expansion_depth > 0 then
+   local res = common.resolve_urls(index, expansion_depth)
    if res == ngx.HTTP_NOT_FOUND then
       ngx.say("{ \"error\": \"Couldn't find resource referenced by expansion URL\" }")
       ngx.exit(res)
@@ -90,6 +80,7 @@ if max_nest > 0 then
    end
 end
 
+-- Pagenate last (for stable pagenation)
 if pagenate_start or pagenate_end then
    index = common.pagenate(index, pagenate_start, pagenate_end)
 end
