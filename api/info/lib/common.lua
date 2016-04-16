@@ -8,48 +8,70 @@ local common = {} -- Module table
 
 local read_body = false
 
-common.srv_path                = "/srv/www/www.freeradius.org/api/info/srv"
+if os.getenv('TEST_DATA') then
+   common.under_test	       = true
+   common.srv_path             = os.getenv('TEST_DATA')
+else
+   common.srv_path             = ngx.var.document_root .. "/api/info/srv"
+end
+
 common.base_url                = "/api/info"
 common.file_cache_exp          = 300 * 1000      -- 5 Minute file cache
-common.keyword_search_limit    = 10000
-common.keyword_search_interval = 30 * 1000       -- 10,000 complex keyword searches every 30 seconds
 common.keyword_search_max_len  = 256
 
 -- Configuration cache
-common.base_url_len = strlen(common.base_url) -- Don't edit manually
+common.base_url_len = string.len(common.base_url) -- Don't edit manually
+
+function common.get_last_error()
+   local err = last_error
+   last_error = nil
+   return err
+end
 
 --[[Function: common_get_args
 Validates get_args common to most pages
 
 @param get_args Table of get_args
-@return rcode, expansion_depth, pagenate_start, pagenate_end
+@return rcode, msg, expansion_depth, pagenate_start, pagenate_end
 --]]
 function common.common_get_args(get_args)
-   -- Check it's a number...
+   local expansion_depth, keyword_expansion_depth, pagenate_end, pagenate_start
+
    if get_args.expansion_depth then
-      max_nest = tonumber(get_args.expansion_depth)
-      if not max_nest then
-         return ngx.HTTP_BAD_REQUEST
+      expansion_depth = tonumber(get_args.expansion_depth)
+      if not expansion_depth or expansion_depth < 0 then
+         return ngx.HTTP_BAD_REQUEST, 'expansion_depth must be a positive integer'
       end
+   else
+      expansion_depth = 0
+   end
+
+   if get_args.keyword_expansion_depth then
+      keyword_expansion_depth = tonumber(get_args.keyword_expansion_depth)
+      if not keyword_expansion_depth or keyword_expansion_depth < 0 then
+         return ngx.HTTP_BAD_REQUEST, 'keyword_expansion_depth must be a positive integer'
+      end
+   else
+      keyword_expansion_depth = 0
    end
 
    if get_args.pagenate_start then
       pagenate_start = tonumber(get_args.pagenate_start)
-      if not pagenate_start then
-         return ngx.HTTP_BAD_REQUEST
+      if not pagenate_start or pagenate_start < 0 then
+         return ngx.HTTP_BAD_REQUEST, 'pagenate_start must be a positive integer'
       end
       pagenate_start = pagenate_start + 1
    end
 
    if get_args.pagenate_end then
       pagenate_end = tonumber(get_args.pagenate_end)
-      if not pagenate_end then
-         return ngx.HTTP_BAD_REQUEST
+      if not pagenate_end or pagenate_end < 0 then
+         return ngx.HTTP_BAD_REQUEST, 'pagenate_end must be a positive integer'
       end
       pagenate_end = pagenate_end + 1
    end
 
-   return ngx.OK, expansion_depth, pagenate_start, pagenate_end
+   return ngx.OK, "OK", expansion_depth, keyword_expansion_depth, pagenate_start, pagenate_end
 end
 
 --[[Function: pagenate
@@ -70,11 +92,12 @@ function common.pagenate(table, first, last)
   return sliced
 end
 
---[[Function: get_json
+--[[Function: get_json_subrequest
 
 @param url to fetch.
-@return the retult of the subrequest decoded as JSON
-
+@return
+   - A HTTP status code, either ngx.OK, or ngx.NGX_ERR
+   - On ngx.OK the result of the subrequest decoded as JSON
 --]]
 function common.get_json_subrequest(url)
    local cache = ngx.shared.info_api_file_cache
@@ -87,8 +110,8 @@ function common.get_json_subrequest(url)
    -- internally using sub-requests and retrieving them directly.
    if cache then
       -- Can only cache local files
-      if json_index["url"]:strfind(common.base_url) == 0 then
-         local_path = json_index["url"]:strsub(common.base_len + 1)
+      if string.find(url, common.base_url) == 0 then
+         local_path = string.sub(url, common.base_len + 1)
          json = cache:get(local_path)
          if json then
             return ngx.OK, json
@@ -105,8 +128,10 @@ function common.get_json_subrequest(url)
    end
 
    -- Make internal request to resolve URLs
-   local ret = ngx.location.capture(url)
-   if ret.status ~= ngx.HTTP_OK then
+   local ret = ngx.location.capture(url, {args = {expansion_depth = 0}})
+   if ret.status == ngx.HTTP_NOT_FOUND then
+      return ret.status
+   elseif ret.status ~= ngx.HTTP_OK then
       ngx.log(ngx.ERR, "Subrequest for " .. url .. " failed with code " .. tostring(ret.status))
       return ret.status
    end
@@ -136,17 +161,18 @@ the keys in the existing table are moved, and the retponse from the subrequest i
 @note Not idempotent.  Input table will be left in a possibly mangled state on failure.
 
 @param json_index The result of the data from the previous GET operation.
-@param max_nest   The maximum number of times we recurse to resolve additional URL keys.
+@param expansion_depth   The maximum number of times we recurse to resolve additional URL keys.
 @return an ngx.NGX_* code
 
 --]]
-function common.resolve_urls(json_index, max_nest)
+function common.resolve_urls(json_index, expansion_depth)
    local k, v
    local ret, json
 
-   if max_nest > 0 and json_index["url"] ~= nil then
+   -- Table with a URL field
+   if expansion_depth > 0 and json_index["url"] ~= nil then
       -- Send a sub-request to ourselves (or another site hosted on the same server)
-      ret, json = common.get_json(json_index["url"])
+      ret, json = common.get_json_subrequest(json_index["url"])
       if ret ~= ngx.OK then
          return ret
       end
@@ -161,13 +187,16 @@ function common.resolve_urls(json_index, max_nest)
           json_index[k] = v
       end
 
-      max_nest = max_nest - 1
+      expansion_depth = (expansion_depth - 1)
+      if expansion_depth == 0 then
+         return ngx.OK
+      end
    end
 
    -- Recurse to deal with tables
    for k, v in pairs(json_index) do
       if type(v) == "table" then
-         ret = common.resolve_urls(v, max_nest)
+         ret = common.resolve_urls(v, expansion_depth)
          if ret ~= ngx.OK then
             return ret
          end
@@ -177,191 +206,117 @@ function common.resolve_urls(json_index, max_nest)
    return ngx.OK
 end
 
-function keyword_search_regex(value, pattern, ctx)
-
+--[[Function: keyword_search_regex
+Case insensitive match using libpcre.
+--]]
+function keyword_search_regex(value, pattern)
+   return not not ngx.re.find(value, pattern, "jio")
 end
 
-function keyword_search_match(value, pattern, ctx)
-
+--[[Function: keyword_search_find
+Case sensitive match using Lua's pattern matching
+--]]
+function keyword_search_find(value, pattern)
+   return not not string.find(value, pattern)
 end
 
-function keyword_search_cond(value, pattern, ctx)
+--[[Function: keyword_search
+Pattern match on fields
 
+@param json       object to search (recursively).
+@param fields     Array of fields to search.
+@param type       Pattern matching function to use, 'regex', 'match' or 'substr'.
+@return
+   - false no match.
+   - true match.
+   - nil, msg - on error.
+--]]
+function common.keyword_search(json, func, pattern, fields)
+   local k, v
+
+	assert(json)
+	assert(func)
+	assert(pattern)
+
+   -- Check for default fields at this level
+   for k, v in ipairs(fields) do
+      if json[v] ~= nil and type(json[v]) == "string" then
+         local ret, err = func(json[v], pattern, ctx)
+         if ret == nil then
+            return nil, err
+         elseif ret == true then
+            return true
+         end
+      end
+   end
+
+   -- Recurse to deal with tables
+   for k, v in pairs(json) do
+      if type(v) == "table" then
+         local ret, err = common.keyword_search(v, func, pattern, fields)
+         if ret == nil then
+            return nil, err
+         elseif ret == true then
+            return true
+         end
+      end
+   end
+
+   return false
 end
 
-function keyword_search_strfind(value, pattern, ctx)
+--[[Function: keyword_validate
+Check that the pattern is valid, producing a end-user friendly error message if not
 
-end
-
-function keyword_search_priv(json, fields, pattern, ctx, cmp)
-
-end
-
--- remember mappings from original table to proxy table
-local proxies = setmetatable( {}, { __mode = "k" } )
-
-function readOnly( t )
-  if type( t ) == "table" then
-    -- check whether we already have a readonly proxy for this table
-    local p = proxies[ t ]
-    if not p then
-      -- create new proxy table for t
-      p = setmetatable( {}, {
-        __index = function( _, k )
-          -- apply `readonly` recursively to field `t[k]`
-          return readOnly( t[ k ] )
-        end,
-        __newindex = function()
-          error( "table is readonly", 2 )
-        end,
-      } )
-      proxies[ t ] = p
-    end
-    return p
-  else
-    -- non-tables are returned as is
-    return t
-  end
-end
-
-function common.keyword_search(json_index, pattern, dflt_fields)
-   local cmp
-   local op
-   local ctx
+@param pattern to check
+@return
+   - nil, err - on error.
+   - match func, trimmed pattern on success.
+--]]
+function common.keyword_validate(pattern)
+   local op, pattern_type, func, trim
 
    -- Protect against obvious fuzzing
-   if not utf8.validate(pattern) or strlen(pattern) > common.keyword_search_max_len then
+   if not utf8.validate(pattern) or string.len(pattern) > common.keyword_search_max_len then
       ngx.log(ngx.INFO, "Client sent invalid keyword string")
-      return ngx.HTTP_BAD_REQIEST
+      return nil
    end
 
-   op = pattern:strfind(':')
-   if op and op > 0 then
-      local cache = ngx.shared.info_api_cond_rate_limit
-
-      -- Rate limiting for complex searches
-      if cache then
-         if common.keyword_search_limit > 0 then
-            local limit
-            limit = cache:incr("limit")
-            if not limit then
-               local ok, err = cache:set("limit", 0, common.keyword_search_interval)
-               if not ok then
-                  ngx.log(ngx.ERR, "Error setting limit key: " .. err)
-                  return ngx.HTTP_SERVICE_UNAVAILABLE
-               end
-            else if limit > common.keyword_search_limit then
-               ngx.log(ngx.ERR, "Over keyword search limit")
-               return ngx.HTTP_SERVICE_UNAVAILABLE
-            end
-         end
-      else
-         ngx.log(ngx.ERR, "Cache not declared.  Declare with 'lua_shared_dict info_api_keyword_rate_limit;' in http {}")
-      end
-
+   -- Figure out what type of pattern this is
+   op = string.find(pattern, ':')
+   if op ~= nil and op > 0 then
       -- Determine what filter we'll be using to search
-      op = pattern:substr(0, op - 1)
-      -- PCRE regex
-      if op == 'regex' then
-         cmp = keyword_search_regex
-         ctx = {}
-      -- Lua match
-      else if op == 'match' then
-         cmp = keyword_search_match
-
-      -- Lua expression
-      else if op == 'expr' then
-
-         -- Lua 5.2
-         if _ENV then
-
-         -- Lua 5.1
-         else
-            local env = {}
-            local func_str
-
-            func_str =
-[[
-   local global, env
-
-   local index_func = function(t, k)
-      return global[k]
+      pattern_type = string.sub(pattern, 0, op - 1)
    end
 
-   local func = function(json)
-      global = json
-      return not not (]] .. pattern .. [[) end
-   end
-   -- Allows unqualified attribute access e.g.
-   -- category == 'datastore'
-   setmetatable(env, {__index = index_func})
-   setfenv(func, env)
-]]
-
-         end
-      else
-         cmp = keyword_search_strfind
+   -- Lua pattern type
+   if pattern_type == 'lua' then
+      local ret, err
+      pattern = string.sub(pattern, op + 1)
+      ret, err = pcall(string.find, pattern , pattern)
+      if not ret and err then
+         err = err:gsub("^%l", string.upper)
+         return nil, err
       end
+
+      return keyword_search_find, pattern
    end
 
-   if max_nest > 0 and json_index["url"] ~= nil then
-      -- Send a sub-request to ourselves (or another site hosted on the same server)
-      ret, json = common.get_json(json_index["url"])
-      if ret ~= ngx.OK then
-         return ret
-      end
-
-      -- Clear out the old table entries
-      for k, v in pairs(json_index) do
-         json_index[k] = nil
-      end
-
-      -- Insert our decoded ones
-      for k, v in pairs(json) do
-          json_index[k] = v
-      end
-
-      max_nest = max_nest - 1
+   -- Regex pattern type
+   if pattern_type == 'regex' then
+      pattern = string.sub(pattern, op + 1)
    end
 
-   -- Recurse to deal with tables
-   for k, v in pairs(json_index) do
-      if type(v) == "table" then
-         ret = common.resolve_urls(v, max_nest)
-         if ret ~= ngx.OK then
-            return ret
-         end
-      end
+   local from, to , err = ngx.re.find("", pattern, "jio")
+   -- Make error more end-user friendly...
+   if err then
+      err = err:match("^.+failed: (.+)")
+      err = err:gsub("^%l", string.upper)
+
+      return nil, err
    end
 
-   return ngx.OK
-end
-
---[[Function: get_files
-Return a list of files in a directory
-
-@param path to search
-@return array of files
---]]
-function common.get_files(path)
-   local file
-   local out = {}
-
-   for file in lfs.dir(path) do
-      local abs = path .. "/" ..file
-      local attrs, err = lfs.attributes(abs)
-
-      if not attrs then
-         ngx.log(ngx.ERR, err)
-         return nil
-      end
-
-      if attrs.mode == "file" then
-         table.insert(out, abs)
-      end
-   end
-
-   return out
+   return keyword_search_regex, pattern
 end
 
 --[[Function: get_index
@@ -385,10 +340,18 @@ Return an array of tables in the form
 function common.get_index(path, base_url)
    local index = {}
 
-   -- Loop over all the files, decoding them and putting them in our output table
-   for i, v in ipairs(common.get_files(path)) do
-      local name = v:match("^.+/([^.]+)")
-      if name then
+   for file in lfs.dir(path) do
+      local attrs, err = lfs.attributes(path .. "/" ..file)
+
+      if not attrs then
+         ngx.log(ngx.ERR, err)
+         return nil
+      end
+
+      if attrs.mode == "file" then
+      	local m, err = ngx.re.match(file, "^(.*)\\.[^.]+?$", "jo")
+         local name = m[1]
+
          table.insert(index, { name = name, url = base_url .. "/" .. name .. "/" })
       end
    end
@@ -396,50 +359,134 @@ function common.get_index(path, base_url)
    return index
 end
 
---[[Function: get_file
+--[[Function: get_json_file
 Return the contents of a file
 
 @param file to open
-@return contents of the file as decoded JSON
+@return
+   - A HTTP status code, either ngx.OK, or ngx.NGX_ERR
+   - On ngx.OK the result of the subrequest decoded as JSON
 --]]
 function common.get_json_file(file)
-   local file, err
+   local err
    local cache = ngx.shared.info_api_file_cache
-   local content
+   local content, cached = false
    local json
 
    -- First check the file cache
    if cache then
       content = cache:get(file)
-      if content then
-         return content
-      end
+      cached = true
    else
       ngx.log(ngx.ERR, "Cache not declared.  Declare with 'lua_shared_dict info_api_file_cache;' in http {}")
    end
 
    -- Otherwise we need to populate the cache
-   local path = common.srv_path .. '/' .. file
-   file, err = io.open(path, "r")
-   if not file then
-      ngx.log(ngx.ERR, "Failed reading " .. path .. ": " .. err)
-      return nil
-   end
+   if not content then
+      fandle, err = io.open(file, "r")
+      if not fandle then
+         return ngx.HTTP_NOT_FOUND
+      end
 
-   content = file:read("*a")
-   file:close()
+      content = fandle:read("*a")
+      fandle:close()
+   end
 
    json, err = cjson.decode(content)
    if not json then
-      ngx.log(ngx.ERR, "Decoding " .. path .. " as json failed: " .. err)
+      ngx.log(ngx.ERR, "Decoding " .. file .. " as json failed: " .. err)
       return ngx.NGX_ERR
    end
 
-   if cache then
-      cache:set(file, json)
+   -- Now we know the content is good, populate the cache
+   if cache and not cached then
+      cache:set(file, content)
    end
 
-   return json
+   return ngx.OK, json
+end
+
+--[[Function: version_to_int
+Convert version string into an integer for comparison
+
+@param version to process.
+@return integer representing version or nil
+--]]
+function common.version_to_int(version)
+	   local m, err = ngx.re.match(version, "^([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{1,2})(?:-(pre|beta|alpha)([0-9]{1,2}))?$", "jo")
+		local int = 0
+		local w = 4
+
+		if err or not m then
+			ngx.log(ngx.ERR, err or "Bad version " .. version)
+			return nil
+		end
+
+		-- Need 5 bytes
+
+		int = (tonumber(m[1]) * (2 ^ 4))
+		int = (tonumber(m[2]) * (2 ^ 3)) + int
+		int = (tonumber(m[3]) * (2 ^ 2)) + int
+
+		if m[4] then
+			if m[4] == 'pre' then
+				w = 3
+			elseif m[4] == 'beta' then
+				w = 2
+			elseif m[4] == 'alpha' then
+				w = 1
+			else
+				ngx.log(ngx.ERR, "Unknown unstable release type \"" .. m[4] '' "\"")
+				return nil
+			end
+		end
+
+		int = (w * 2) + int
+		if m[5] then
+			int = int + tonumber(m[5])
+		end
+
+		return int
+end
+
+--[[Function: table_copy
+Perform a deep copy on a table_including metadata
+
+@param table to copy.
+@return copied table.
+--]]
+function common.table_copy(table)
+    local table_type = type(table)
+    local copy
+    local table_key, table_value
+
+    if table_type == 'table' then
+        copy = {}
+        for table_key, table_value in next, table, nil do
+            copy[common.table_copy(table_key)] = common.table_copy(table_value)
+        end
+        setmetatable(copy, common.table_copy(getmetatable(table)))
+    else -- number, string, boolean, etc
+        copy = table
+    end
+    return copy
+end
+
+--[[Function: fatal_error
+Raise a fatal error and exit.
+
+@note This function does not return.
+
+@param http_code one of the ngx.HTTP_* constants.  Defaults to HTTP_INTERNAL_SERVER_ERROR if nil
+@param msg       Defaults to "Internal error" if nil.
+--]]
+function common.fatal_error(http_code, msg)
+   http_code = http_code or ngx.HTTP_INTERNAL_SERVER_ERROR
+   msg = msg or "Internal error"
+
+   ngx.status = http_code
+   ngx.say(cjson.encode({ error = msg }))
+   ngx.exit(ngx.HTTP_OK)
 end
 
 return common

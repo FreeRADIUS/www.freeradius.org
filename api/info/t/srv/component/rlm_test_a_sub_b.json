@@ -1,0 +1,21 @@
+{
+	"name": "rlm_test_a_sub_b",
+	"description": "rlm_test_a_sub_b description",
+	"category": "authentication",
+	"documentation_link": "http://networkradius.com/doc/current/raddb/mods-available/rlm_test_a_sub_b",
+	"available": [
+		{
+			"branch": "v2.2.x",
+			"start": {
+				"major": 2,
+				"minor": 0,
+				"release": 0
+			},
+			"end": {
+				"major": 2,
+				"minor": 2,
+				"release": 9
+			}
+		}
+	]
+}

@@ -31,18 +31,18 @@
 			}
 		}
 	],
-	"submodules": [
+	"dependents": [
 		{
 			"name": "rlm_cache_memcached",
-			"url": "/api/components/rlm_cache_memcached"
+			"url": "/api/info/component/rlm_cache_memcached"
 		},
 		{
 			"name": "rlm_cache_redis",
-			"url": "/api/components/rlm_cache_redis"
+			"url": "/api/info/component/rlm_cache_redis"
 		},
 		{
 			"name": "rlm_cache_rbtree",
-			"url": "/api/components/rlm_cache_rbtree"
+			"url": "/api/info/component/rlm_cache_rbtree"
 		}
 	]
 }
