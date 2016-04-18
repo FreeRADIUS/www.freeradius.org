@@ -18,7 +18,7 @@
             <p>Common home-use Wi-Fi networks do not need a RADIUS server because
                 they "secure" the network with <strong>one single network key</strong>, the
                 "WPA/WPA2 Pre-Shared Key" (PSK). That key is the same for every user,
-                is often guessable, and <strong>can’t be revoked for one user</strong> (if one user should be
+                is often guessable, and <strong>can't be revoked for one user</strong> (if one user should be
                 denied access, the key needs to be changed for the entire network
                 and every user needs to be given the new key). When a network is
                 sniffed, an attacker can perform <strong>offline attacks</strong> to guess the key.</p>
@@ -100,7 +100,7 @@
                 configuration.</p>
             <p>This typically involves:</p>
             <ul>
-                <li>Import or mark as trusted the CA certificate to validate the RADIUS server’s certificate.</li>
+                <li>Import or mark as trusted the CA certificate to validate the RADIUS server's certificate.</li>
                 <li>Configure the expected server name of the server certificate.</li>
                 <li>Select an EAP type on the client device which matches one of the configured EAP types on the server.</li>
                 <li>Optionally enable extra features such as enhanced privacy protection (use of anonymous outer identities) etc.</li>
