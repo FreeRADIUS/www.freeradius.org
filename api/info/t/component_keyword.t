@@ -194,6 +194,68 @@ GET /api/info/component/?keyword_expansion_depth=1&expansion_depth=1&by_keyword=
 --- no_error_log
 [error]
 
+=== TEST 7: Component keyword search with expansion depth and greater keyword_expansion_depth
+Return entries with fields matching the specified pattern
+
+--- main_config
+env TEST_DATA;
+--- http_config
+lua_shared_dict info_api_file_cache 5m;
+--- config
+root $TEST_NGINX_REPOSITORY_ROOT;
+location ~ ^/api/info/component/$  {
+   content_by_lua_file $document_root/api/info/bin/component_index.lua;
+}
+location ~ ^/api/info/component/[.0-9a-z_-]+/$ {
+   content_by_lua_file $document_root/api/info/bin/component.lua;
+}
+--- request
+GET /api/info/component/?keyword_expansion_depth=2&expansion_depth=1&by_keyword=data
+--- response_body_json_eval
+[
+   {
+      'name'         => 'rlm_test_b',
+      'description'      => 'rlm_test_b description',
+      'documentation_link'   => 'http://networkradius.com/doc/current/raddb/mods-available/rlm_test_b',
+      'category'      => 'datastore',
+      'available'      =>
+         [
+            {
+               'branch' => 'v2.2.x',
+               'start' => {
+                  'major' => 2,
+                  'minor' => 0,
+                  'release' => 0
+               },
+
+               'end' => {
+                  'major' => 2,
+                  'minor' => 2,
+                  'release' => 9
+               }
+            },
+            {
+               'branch' => 'v3.0.x',
+               'start' => {
+                  'major' => 3,
+                  'minor' => 0,
+                  'release' => 0
+               },
+
+               'end' => {
+                  'major' => 3,
+                  'minor' => 0,
+                  'release' => 12
+               }
+            }
+         ]
+   }
+];
+--- error_code: 200
+--- no_error_log
+[error]
+
+
 === TEST 7: Component keyword search without expansion depth
 Return entries with fields matching the specified pattern
 
