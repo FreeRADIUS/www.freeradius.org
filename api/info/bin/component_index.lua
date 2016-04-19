@@ -124,7 +124,6 @@ if get_args.by_keyword then
 
       if keyword_expansion_depth > expansion_depth then
          to_expand = common.table_copy(v)
-		assert(to_expand)
       else
          to_expand = v
       end
@@ -153,7 +152,7 @@ end
 ---
 ---   Server side expansion of URLs
 ---
-if expansion_depth > 0 and expansion_depth > keyword_expansion_depth then
+if expansion_depth > 0 and expansion_depth != keyword_expansion_depth then
    local ret = common.resolve_urls(index, expansion_depth)
    if ret == ngx.HTTP_NOT_FOUND then
       common.fatal_error(ret, "Couldn't find resource referenced by expansion URL")
