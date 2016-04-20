@@ -22,6 +22,15 @@ location ~ ^/api/info/component/$  {
 location ~ ^/api/info/component/[.0-9a-z_-]+/$ {
    content_by_lua_file $document_root/api/info/bin/component.lua;
 }
+location ~ ^/api/info/branch/[.0-9a-z_-]+/$ {
+   content_by_lua_file $document_root/api/info/bin/branch.lua;
+}
+location ~ ^/api/info/branch/[.0-9a-z_-]+/release/$ {
+   content_by_lua_file $document_root/api/info/bin/release_index.lua;
+}
+location ~ ^/api/info/branch/[.0-9a-z_-]+/release/[.0-9a-z_-]+/$ {
+   content_by_lua_file $document_root/api/info/bin/release.lua;
+}
 --- request
 GET /api/info/component/?expansion_depth=1
 --- response_body_json_eval
@@ -32,22 +41,36 @@ GET /api/info/component/?expansion_depth=1
       'documentation_link'   => 'http://networkradius.com/doc/current/raddb/mods-available/rlm_test_a',
       'category'      => 'authentication',
       'available'      =>
-         [
-            {
-               'branch' => 'v2.2.x',
-               'start' => {
-                  'major' => 2,
-                  'minor' => 0,
-                  'release' => 0
-               },
-
-               'end' => {
-                  'major' => 2,
-                  'minor' => 2,
-                  'release' => 9
-               }
-            }
-         ],
+	[
+		{
+			"branch" => {
+				"name" => "test_branch_a",
+				"url" => "/api/info/branch/test_branch_a/"
+			},
+			"start" => {
+				"name" => "0.0.1",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.1/"
+			},
+			"end" => {
+				"name" => "0.0.2",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.2/"
+			}
+		},
+		{
+			"branch" => {
+				"name" => "test_branch_b",
+				"url" => "/api/info/branch/test_branch_b/"
+			},
+			"start" => {
+				"name" => "0.0.0",
+				"url" => "/api/info/branch/test_branch_b/release/0.0.0/"
+			},
+			"end" => {
+				"name" => "0.0.0",
+				"url" => "/api/info/branch/test_branch_b/release/0.0.0/"
+			}
+		}
+	],
       'dependents'      =>
          [
             {
@@ -66,22 +89,22 @@ GET /api/info/component/?expansion_depth=1
       'documentation_link'   => 'http://networkradius.com/doc/current/raddb/mods-available/rlm_test_a_sub_a',
       'category'      => 'authentication',
       'available'      =>
-         [
-            {
-               'branch' => 'v2.2.x',
-               'start' => {
-                  'major' => 2,
-                  'minor' => 0,
-                  'release' => 0
-               },
-
-               'end' => {
-                  'major' => 2,
-                  'minor' => 2,
-                  'release' => 9
-               }
-            }
-         ]
+[
+		{
+			"branch" => {
+				"name" => "test_branch_a",
+				"url" => "/api/info/branch/test_branch_a/"
+			},
+			"start" => {
+				"name" => "0.0.1",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.1/"
+			},
+			"end" => {
+				"name" => "0.0.2",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.2/"
+			}
+		}
+	]
    },
    {
       'name'         => 'rlm_test_a_sub_b',
@@ -89,22 +112,22 @@ GET /api/info/component/?expansion_depth=1
       'documentation_link'   => 'http://networkradius.com/doc/current/raddb/mods-available/rlm_test_a_sub_b',
       'category'      => 'authentication',
       'available'      =>
-         [
-            {
-               'branch' => 'v2.2.x',
-               'start' => {
-                  'major' => 2,
-                  'minor' => 0,
-                  'release' => 0
-               },
-
-               'end' => {
-                  'major' => 2,
-                  'minor' => 2,
-                  'release' => 9
-               }
-            }
-         ]
+	[
+		{
+			"branch" => {
+				"name" => "test_branch_a",
+				"url" => "/api/info/branch/test_branch_a/"
+			},
+			"start" => {
+				"name" => "0.0.1",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.1/"
+			},
+			"end" => {
+				"name" => "0.0.2",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.2/"
+			}
+		}
+	]
    },
    {
       'name'         => 'rlm_test_b',
@@ -112,36 +135,22 @@ GET /api/info/component/?expansion_depth=1
       'documentation_link'   => 'http://networkradius.com/doc/current/raddb/mods-available/rlm_test_b',
       'category'      => 'datastore',
       'available'      =>
-         [
-            {
-               'branch' => 'v2.2.x',
-               'start' => {
-                  'major' => 2,
-                  'minor' => 0,
-                  'release' => 0
-               },
-
-               'end' => {
-                  'major' => 2,
-                  'minor' => 2,
-                  'release' => 9
-               }
-            },
-            {
-               'branch' => 'v3.0.x',
-               'start' => {
-                  'major' => 3,
-                  'minor' => 0,
-                  'release' => 0
-               },
-
-               'end' => {
-                  'major' => 3,
-                  'minor' => 0,
-                  'release' => 12
-               }
-            }
-         ]
+[
+		{
+			"branch" => {
+				"name" => "test_branch_a",
+				"url" => "/api/info/branch/test_branch_a/"
+			},
+			"start" => {
+				"name" => "1.0.0-beta1",
+				"url" => "/api/info/branch/test_branch_a/release/1.0.0-beta1/"
+			},
+			"end" => {
+				"name" => "1.0.0-pre0",
+				"url" => "/api/info/branch/test_branch_a/release/1.0.0-pre0/"
+			}
+		}
+	]
    }
 ];
 --- error_code: 200
@@ -164,31 +173,170 @@ location ~ ^/api/info/component/$  {
 location ~ ^/api/info/component/[.0-9a-z_-]+/$ {
    content_by_lua_file $document_root/api/info/bin/component.lua;
 }
+location ~ ^/api/info/branch/[.0-9a-z_-]+/$ {
+   content_by_lua_file $document_root/api/info/bin/branch.lua;
+}
+location ~ ^/api/info/branch/[.0-9a-z_-]+/release/$ {
+   content_by_lua_file $document_root/api/info/bin/release_index.lua;
+}
+location ~ ^/api/info/branch/[.0-9a-z_-]+/release/[.0-9a-z_-]+/$ {
+   content_by_lua_file $document_root/api/info/bin/release.lua;
+}
 --- request
 GET /api/info/component/?expansion_depth=2
 --- response_body_json_eval
+
+my $test_branch_a = {
+	"name" => "test_branch_a",
+	"description" => "test_branch_a description",
+	"status" => "end of life",
+	"last_release" => {
+		"name" => "1.0.0-pre0",
+		"url" => "/api/info/branch/test_branch_a/release/1.0.0-pre0/"
+	}
+};
+
+my $test_branch_b = {
+	"name" => "test_branch_b",
+	"description" => "test_branch_b description",
+	"status" => "stable",
+	"last_release" => {
+		"name" => "0.0.0",
+		"url" => "/api/info/branch/test_branch_b/release/0.0.0/"
+	}
+};
+
+
+my $release_0_0_1 = {
+	"name" => "0.0.1",
+	"summary" => "The focus of this release is testing",
+	"features" => [
+		{
+			"description" => "Test feature",
+			"component" => [
+				{
+					"name" => "rlm_test_a",
+					"url" => "/api/info/component/rlm_test_a/"
+				},
+				{
+					"name" => "rlm_test_b",
+					"url" => "/api/info/component/rlm_test_b/"
+				}
+			]
+		}
+	],
+	"defects" => [
+		{
+			"description" => "Test issue",
+			"exploit" => JSON::true,
+			"component" => [
+				{
+					"name" => "rlm_test_a",
+					"url" => "/api/info/component/rlm_test_a/"
+				},
+				{
+					"name" => "rlm_test_b",
+					"url" => "/api/info/component/rlm_test_b/"
+				}
+			]
+		}
+	]
+};
+
+my $release_0_0_2 = {
+	"name" => "0.0.2",
+	"summary" => "The focus of this release is testing",
+	"features" => [
+		{
+			"description" => "Test feature",
+			"component" => [
+				{
+					"name" => "rlm_test_a",
+					"url" => "/api/info/component/rlm_test_a/"
+				},
+				{
+					"name" => "rlm_test_b",
+					"url" => "/api/info/component/rlm_test_b/"
+				}
+			]
+		}
+	],
+	"defects" => [
+		{
+			"description" => "Test issue",
+			"exploit" => JSON::true,
+			"component" => [
+				{
+					"name" => "rlm_test_a",
+					"url" => "/api/info/component/rlm_test_a/"
+				},
+				{
+					"name" => "rlm_test_b",
+					"url" => "/api/info/component/rlm_test_b/"
+				}
+			]
+		}
+	]
+};
+
+my $release_0_0_0 = {
+	"name" => "0.0.0",
+	"summary" => "The focus of this release is testing",
+	"features" => [
+		{
+			"description" => "Test feature",
+			"component" => [
+				{
+					"name" => "rlm_test_a",
+					"url" => "/api/info/component/rlm_test_a/"
+				},
+				{
+					"name" => "rlm_test_b",
+					"url" => "/api/info/component/rlm_test_b/"
+				}
+			]
+		}
+	],
+	"defects" => [
+		{
+			"description" => "Test issue",
+			"exploit" => JSON::true,
+			"component" => [
+				{
+					"name" => "rlm_test_a",
+					"url" => "/api/info/component/rlm_test_a/"
+				},
+				{
+					"name" => "rlm_test_b",
+					"url" => "/api/info/component/rlm_test_b/"
+				}
+			]
+		}
+	]
+};
+
 my $sub_a = {
    'name'         => 'rlm_test_a_sub_a',
    'description'      => 'rlm_test_a_sub_a description',
    'documentation_link'   => 'http://networkradius.com/doc/current/raddb/mods-available/rlm_test_a_sub_a',
    'category'      => 'authentication',
    'available'      =>
-      [
-         {
-            'branch' => 'v2.2.x',
-            'start' => {
-               'major' => 2,
-               'minor' => 0,
-               'release' => 0
-            },
-
-            'end' => {
-               'major' => 2,
-               'minor' => 2,
-               'release' => 9
-            }
-         }
-      ]
+[
+		{
+			"branch" => {
+				"name" => "test_branch_a",
+				"url" => "/api/info/branch/test_branch_a/"
+			},
+			"start" => {
+				"name" => "0.0.1",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.1/"
+			},
+			"end" => {
+				"name" => "0.0.2",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.2/"
+			}
+		}
+	]
 };
 
 my $sub_b = {
@@ -197,22 +345,70 @@ my $sub_b = {
    'documentation_link'   => 'http://networkradius.com/doc/current/raddb/mods-available/rlm_test_a_sub_b',
    'category'      => 'authentication',
    'available'      =>
-      [
-         {
-            'branch' => 'v2.2.x',
-            'start' => {
-               'major' => 2,
-               'minor' => 0,
-               'release' => 0
-            },
+	[
+		{
+			"branch" => {
+				"name" => "test_branch_a",
+				"url" => "/api/info/branch/test_branch_a/"
+			},
+			"start" => {
+				"name" => "0.0.1",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.1/"
+			},
+			"end" => {
+				"name" => "0.0.2",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.2/"
+			}
+		}
+	]
+};
 
-            'end' => {
-               'major' => 2,
-               'minor' => 2,
-               'release' => 9
-            }
-         }
-      ]
+my $sub_a_exp = {
+   'name'         => 'rlm_test_a_sub_a',
+   'description'      => 'rlm_test_a_sub_a description',
+   'documentation_link'   => 'http://networkradius.com/doc/current/raddb/mods-available/rlm_test_a_sub_a',
+   'category'      => 'authentication',
+   'available'      =>
+[
+		{
+			"branch" => {
+				"name" => "test_branch_a",
+				"url" => "/api/info/branch/test_branch_a/"
+			},
+			"start" => {
+				"name" => "0.0.1",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.1/"
+			},
+			"end" => {
+				"name" => "0.0.2",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.2/"
+			}
+		}
+	]
+};
+
+my $sub_b_exp = {
+   'name'         => 'rlm_test_a_sub_b',
+   'description'      => 'rlm_test_a_sub_b description',
+   'documentation_link'   => 'http://networkradius.com/doc/current/raddb/mods-available/rlm_test_a_sub_b',
+   'category'      => 'authentication',
+   'available'      =>
+	[
+		{
+			"branch" => {
+				"name" => "test_branch_a",
+				"url" => "/api/info/branch/test_branch_a/"
+			},
+			"start" => {
+				"name" => "0.0.1",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.1/"
+			},
+			"end" => {
+				"name" => "0.0.2",
+				"url" => "/api/info/branch/test_branch_a/release/0.0.2/"
+			}
+		}
+	]
 };
 
 [
@@ -222,22 +418,18 @@ my $sub_b = {
       'documentation_link'   => 'http://networkradius.com/doc/current/raddb/mods-available/rlm_test_a',
       'category'      => 'authentication',
       'available'      =>
-         [
-            {
-               'branch' => 'v2.2.x',
-               'start' => {
-                  'major' => 2,
-                  'minor' => 0,
-                  'release' => 0
-               },
-
-               'end' => {
-                  'major' => 2,
-                  'minor' => 2,
-                  'release' => 9
-               }
-            }
-         ],
+	[
+		{
+			"branch" => $test_branch_a,
+			"start" => $release_0_0_1,
+			"end" => $release_0_0_2
+		},
+		{
+			"branch" => $test_branch_b,
+			"start" => $release_0_0_0,
+			"end" => $release_0_0_0
+		}
+	],
       'dependents'      =>
          [
             $sub_a,
@@ -252,36 +444,19 @@ my $sub_b = {
       'documentation_link'   => 'http://networkradius.com/doc/current/raddb/mods-available/rlm_test_b',
       'category'      => 'datastore',
       'available'      =>
-         [
-            {
-               'branch' => 'v2.2.x',
-               'start' => {
-                  'major' => 2,
-                  'minor' => 0,
-                  'release' => 0
-               },
-
-               'end' => {
-                  'major' => 2,
-                  'minor' => 2,
-                  'release' => 9
-               }
-            },
-            {
-               'branch' => 'v3.0.x',
-               'start' => {
-                  'major' => 3,
-                  'minor' => 0,
-                  'release' => 0
-               },
-
-               'end' => {
-                  'major' => 3,
-                  'minor' => 0,
-                  'release' => 12
-               }
-            }
-         ]
+	[
+		{
+			"branch" => $test_branch_a,
+			"start" => {
+				"name" => "1.0.0-beta1",
+				"url" => "/api/info/branch/test_branch_a/release/1.0.0-beta1/"
+			},
+			"end" => {
+				"name" => "1.0.0-pre0",
+				"url" => "/api/info/branch/test_branch_a/release/1.0.0-pre0/"
+			}
+		}
+	]
    }
 ];
 --- error_code: 200
@@ -357,4 +532,6 @@ GET /api/info/component/?expansion_depth=0
       'url'   => '/api/info/component/rlm_test_b/'
    }
 ];
-
+--- error_code: 200
+--- no_error_log
+[error]

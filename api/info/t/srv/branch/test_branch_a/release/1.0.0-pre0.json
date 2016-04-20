@@ -1,0 +1,62 @@
+{
+	"name": "1.0.0-pre0",
+	"summary": "The focus of this release is testing",
+	"features": [
+		{
+			"description": "Test feature 0",
+			"component": [
+				{
+					"name": "rlm_test_a",
+					"url": "/api/info/component/rlm_test_a/"
+				},
+				{
+					"name": "rlm_test_b",
+					"url": "/api/info/component/rlm_test_b/"
+				}
+			]
+		},
+		{
+			"description": "Test feature 1",
+			"component": [
+				{
+					"name": "rlm_test_a",
+					"url": "/api/info/component/rlm_test_a/"
+				},
+				{
+					"name": "rlm_test_b",
+					"url": "/api/info/component/rlm_test_b/"
+				}
+			]
+		}
+	],
+	"defects": [
+		{
+			"description": "Test issue 0",
+			"exploit": true,
+			"component": [
+				{
+					"name": "rlm_test_a",
+					"url": "/api/info/component/rlm_test_a/"
+				},
+				{
+					"name": "rlm_test_b",
+					"url": "/api/info/component/rlm_test_b/"
+				}
+			]
+		},
+		{
+			"description": "Test issue 1",
+			"exploit": true,
+			"component": [
+				{
+					"name": "rlm_test_a",
+					"url": "/api/info/component/rlm_test_a/"
+				},
+				{
+					"name": "rlm_test_b",
+					"url": "/api/info/component/rlm_test_b/"
+				}
+			]
+		}
+	]
+}

@@ -5,29 +5,17 @@
 	"documentation_link": "http://networkradius.com/doc/current/raddb/mods-available/expiration",
 	"available": [
 		{
-			"branch:": "v2.2.x",
+			"branch": {
+				"name": "test_branch_a",
+				"url": "/api/info/branch/test_branch_a/"
+			},
 			"start": {
-				"major": 2,
-				"minor": 0,
-				"release": 0
+				"name": "0.0.1",
+				"url": "/api/info/branch/test_branch_a/release/0.0.1/"
 			},
 			"end": {
-				"major": 2,
-				"minor": 2,
-				"release": 9
-			}
-		},
-		{
-			"branch:": "v3.0.x",
-			"start": {
-				"major": 3,
-				"minor": 0,
-				"release": 0
-			},
-			"end": {
-				"major": 3,
-				"minor": 0,
-				"release": 12
+				"name": "0.0.2",
+				"url": "/api/info/branch/test_branch_a/release/0.0.2/"
 			}
 		}
 	]

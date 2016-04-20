@@ -19,6 +19,15 @@ end
 
 -- Add link to releases to allow expansion
 json.release = { url = common.base_url .. "/branch/" .. branch .. "/release/" }
+ret, json.last_release = common.get_json_subrequest(json.release.url .. "?pagenate_start=0&pagenate_end=0")
+if ret == ngx.HTTP_NOT_FOUND then
+   json.last_release = nil
+elseif ret ~= ngx.OK then
+   common.fatal(ret, "Error retrieving resource")
+else
+   json.last_release = json.last_release[1]
+end
+
 
 -- Server side expansion of URL fields using subrequests
 if expansion_depth and expansion_depth > 0 then

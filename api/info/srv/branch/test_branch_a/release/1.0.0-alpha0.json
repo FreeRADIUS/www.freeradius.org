@@ -1,6 +1,7 @@
 {
 	"name": "1.0.0-alpha0",
 	"summary": "The focus of this release is testing",
+	"date": "2016-04-20T03:23:30Z",
 	"features": [
 		{
 			"description": "Test feature",

@@ -18,6 +18,9 @@ root $TEST_NGINX_REPOSITORY_ROOT;
 location ~ ^/api/info/branch/[.0-9a-z_-]+/$ {
    content_by_lua_file $document_root/api/info/bin/branch.lua;
 }
+location ~ ^/api/info/branch/[.0-9a-z_-]+/release/$ {
+   content_by_lua_file $document_root/api/info/bin/release_index.lua;
+}
 --- request
 GET /api/info/branch/test_branch_a/
 --- response_body_json_eval
@@ -25,6 +28,10 @@ GET /api/info/branch/test_branch_a/
 	'name'		=> 'test_branch_a',
 	'description'	=> 'test_branch_a description',
 	'status'	=> 'end of life',
+	'last_release'  => {
+		'name' => '1.0.0-pre0',
+		'url' => '/api/info/branch/test_branch_a/release/1.0.0-pre0/'
+	},
 	'release'	=> {
 		'url'	=> '/api/info/branch/test_branch_a/release/'
 	}
