@@ -2,14 +2,15 @@ local cjson  = require "cjson"
 local ngx    = require "ngx"
 local lfs    = require "lfs"
 local io     = require "io"
-local utf8   = require "lib.utf8_validator"
+
+local keyword_search    = require "lib.keyword_search"
 
 local common = {} -- Module table
 
 local read_body = false
 
 if os.getenv('TEST_DATA') then
-   common.under_test	       = true
+   common.under_test           = true
    common.srv_path             = os.getenv('TEST_DATA')
 else
    common.srv_path             = ngx.var.document_root .. "/api/info/srv"
@@ -18,78 +19,83 @@ end
 common.base_url                = "/api/info"
 common.file_cache_exp          = 300 * 1000      -- 5 Minute file cache
 common.keyword_search_max_len  = 256
+common.max_expansion_depth     = 3
 
 -- Configuration cache
 common.base_url_len = string.len(common.base_url) -- Don't edit manually
-
-function common.get_last_error()
-   local err = last_error
-   last_error = nil
-   return err
-end
 
 --[[Function: common_get_args
 Validates get_args common to most pages
 
 @param get_args Table of get_args
-@return rcode, msg, expansion_depth, pagenate_start, pagenate_end
+@return
+   - nil, msg on error
+   - table of sane arguments on success
 --]]
 function common.common_get_args(get_args)
-   local expansion_depth, keyword_expansion_depth, pagenate_end, pagenate_start
+   local out = {}
 
    if get_args.expansion_depth then
-      expansion_depth = tonumber(get_args.expansion_depth)
-      if not expansion_depth or expansion_depth < 0 then
-         return ngx.HTTP_BAD_REQUEST, 'expansion_depth must be a positive integer'
+      if type(get_args.keyword_expansion_depth) == 'table' then
+         return nil, 'exactly one instance of expansion_depth allowed'
+      end
+
+      out.expansion_depth = tonumber(get_args.expansion_depth)
+      if not out.expansion_depth or out.expansion_depth < 0 then
+         return nil, 'expansion_depth must be a positive integer'
+      end
+
+      if out.expansion_depth > common.max_expansion_depth then
+         return nil, 'expansion_depth must be between 0-' ..
+            tostring(common.max_expansion_depth)
       end
    else
-      expansion_depth = 0
+      out.expansion_depth = 0
    end
 
    if get_args.keyword_expansion_depth then
-      keyword_expansion_depth = tonumber(get_args.keyword_expansion_depth)
-      if not keyword_expansion_depth or keyword_expansion_depth < 0 then
-         return ngx.HTTP_BAD_REQUEST, 'keyword_expansion_depth must be a positive integer'
+      if type(get_args.keyword_expansion_depth) == 'table' then
+         return nil, 'exactly one instance of keyword_expansion_depth allowed'
+      end
+
+      out.keyword_expansion_depth = tonumber(get_args.keyword_expansion_depth)
+      if not out.keyword_expansion_depth or out.keyword_expansion_depth < 0 then
+         return nil, 'keyword_expansion_depth must be a positive integer'
+      end
+
+      if out.keyword_expansion_depth > common.max_expansion_depth then
+         return nil, 'keyword_expansion_depth must be between 0-' ..
+            tostring(common.keyword_expansion_depth)
       end
    else
-      keyword_expansion_depth = 0
+      out.keyword_expansion_depth = 0
    end
 
    if get_args.pagenate_start then
-      pagenate_start = tonumber(get_args.pagenate_start)
-      if not pagenate_start or pagenate_start < 0 then
-         return ngx.HTTP_BAD_REQUEST, 'pagenate_start must be a positive integer'
+      if type(get_args.pagenate_start) == 'table' then
+         return nil, 'exactly one instance of pagenate_start allowed'
       end
-      pagenate_start = pagenate_start + 1
+
+      out.pagenate_start = tonumber(get_args.pagenate_start)
+      if not out.pagenate_start or out.pagenate_start < 0 then
+         return nil, 'pagenate_start must be a positive integer'
+      end
+      out.pagenate_start = out.pagenate_start + 1
    end
 
    if get_args.pagenate_end then
-      pagenate_end = tonumber(get_args.pagenate_end)
-      if not pagenate_end or pagenate_end < 0 then
-         return ngx.HTTP_BAD_REQUEST, 'pagenate_end must be a positive integer'
+      if type(get_args.pagenate_end) == 'table' then
+         return nil, 'exactly one instance of pagenate_start allowed'
       end
-      pagenate_end = pagenate_end + 1
+
+      out.pagenate_end = tonumber(get_args.pagenate_end)
+      if not out.pagenate_end or out.pagenate_end < 0 then
+         return nil, 'pagenate_end must be a positive integer'
+      end
+      out.pagenate_end = out.pagenate_end + 1
    end
 
-   return ngx.OK, "OK", expansion_depth, keyword_expansion_depth, pagenate_start, pagenate_end
-end
-
---[[Function: pagenate
-Get a range of elements from a table and return them in a new table
-
-@param table The input table.
-@param first index in the table.
-@param last index in the table.
-@return slice of input table.
---]]
-function common.pagenate(table, first, last)
-  local sliced = {}
-
-  for i = first or 1, last or #table, 1 do
-    sliced[#sliced+1] = table[i]
-  end
-
-  return sliced
+   return out
 end
 
 --[[Function: get_json_subrequest
@@ -102,7 +108,6 @@ end
 function common.get_json_subrequest(url)
    local cache = ngx.shared.info_api_file_cache
    local local_path
-   local json, err
 
    -- Check if the file cache is enabled
    -- Yes the OS should shadow the data, so the get_files cache probably isn't
@@ -128,7 +133,7 @@ function common.get_json_subrequest(url)
    end
 
    -- Make internal request to resolve URLs
-   local ret = ngx.location.capture(url, {args = {expansion_depth = 0}})
+   local ret = ngx.location.capture(url, {args = {}})
    if ret.status == ngx.HTTP_NOT_FOUND then
       return ret.status
    elseif ret.status ~= ngx.HTTP_OK then
@@ -137,7 +142,7 @@ function common.get_json_subrequest(url)
    end
 
    -- Decode JSON response
-   json, err = cjson.decode(" " .. ret.body)
+   local json, err = cjson.decode(" " .. ret.body)
    if not json then
       ngx.log(ngx.ERR, "Subrequest for " .. url .. " failed.  Can't decode JSON: " .. err)
       return ngx.NGX_ERR
@@ -160,203 +165,51 @@ the keys in the existing table are moved, and the retponse from the subrequest i
 
 @note Not idempotent.  Input table will be left in a possibly mangled state on failure.
 
-@param json_index The result of the data from the previous GET operation.
-@param expansion_depth   The maximum number of times we recurse to resolve additional URL keys.
+@param json The result of the data from the previous GET operation.
+@param depth   The maximum number of times we recurse to resolve additional URL keys.
 @return an ngx.NGX_* code
 
 --]]
-function common.resolve_urls(json_index, expansion_depth)
+function common.resolve_urls(json, depth)
    local k, v
-   local ret, json
+   local ret, sub
 
    -- Table with a URL field
-   if expansion_depth > 0 and json_index["url"] ~= nil then
+   if depth > 0 and json["url"] ~= nil then
+
       -- Send a sub-request to ourselves (or another site hosted on the same server)
-      ret, json = common.get_json_subrequest(json_index["url"])
+      ret, sub = common.get_json_subrequest(json["url"])
       if ret ~= ngx.OK then
          return ret
       end
 
       -- Clear out the old table entries
-      for k, v in pairs(json_index) do
-         json_index[k] = nil
+      for k, v in pairs(json) do
+         json[k] = nil
       end
 
       -- Insert our decoded ones
-      for k, v in pairs(json) do
-          json_index[k] = v
+      for k, v in pairs(sub) do
+          json[k] = v
       end
 
-      expansion_depth = (expansion_depth - 1)
-      if expansion_depth == 0 then
+      depth = (depth - 1)
+      if depth == 0 then
          return ngx.OK
       end
    end
 
    -- Recurse to deal with tables
-   for k, v in pairs(json_index) do
-      if type(v) == "table" then
-         ret = common.resolve_urls(v, expansion_depth)
+   for k, v in pairs(json) do
+      if type(v) == 'table' then
+         ret = common.resolve_urls(v, depth)
          if ret ~= ngx.OK then
             return ret
          end
       end
    end
 
-   return ngx.OK
-end
-
---[[Function: keyword_search_regex
-Case insensitive match using libpcre.
---]]
-function keyword_search_regex(value, pattern)
-   return not not ngx.re.find(value, pattern, "jio")
-end
-
---[[Function: keyword_search_find
-Case sensitive match using Lua's pattern matching
---]]
-function keyword_search_find(value, pattern)
-   return not not string.find(value, pattern)
-end
-
---[[Function: keyword_search
-Pattern match on fields
-
-@param json       object to search (recursively).
-@param fields     Array of fields to search.
-@param type       Pattern matching function to use, 'regex', 'match' or 'substr'.
-@return
-   - false no match.
-   - true match.
-   - nil, msg - on error.
---]]
-function common.keyword_search(json, func, pattern, fields)
-   local k, v
-
-	assert(json)
-	assert(func)
-	assert(pattern)
-
-   -- Check for default fields at this level
-   for k, v in ipairs(fields) do
-      if json[v] ~= nil and type(json[v]) == "string" then
-         local ret, err = func(json[v], pattern, ctx)
-         if ret == nil then
-            return nil, err
-         elseif ret == true then
-            return true
-         end
-      end
-   end
-
-   -- Recurse to deal with tables
-   for k, v in pairs(json) do
-      if type(v) == "table" then
-         local ret, err = common.keyword_search(v, func, pattern, fields)
-         if ret == nil then
-            return nil, err
-         elseif ret == true then
-            return true
-         end
-      end
-   end
-
-   return false
-end
-
---[[Function: keyword_validate
-Check that the pattern is valid, producing a end-user friendly error message if not
-
-@param pattern to check
-@return
-   - nil, err - on error.
-   - match func, trimmed pattern on success.
---]]
-function common.keyword_validate(pattern)
-   local op, pattern_type, func, trim
-
-   -- Protect against obvious fuzzing
-   if not utf8.validate(pattern) or string.len(pattern) > common.keyword_search_max_len then
-      ngx.log(ngx.INFO, "Client sent invalid keyword string")
-      return nil
-   end
-
-   -- Figure out what type of pattern this is
-   op = string.find(pattern, ':')
-   if op ~= nil and op > 0 then
-      -- Determine what filter we'll be using to search
-      pattern_type = string.sub(pattern, 0, op - 1)
-   end
-
-   -- Lua pattern type
-   if pattern_type == 'lua' then
-      local ret, err
-      pattern = string.sub(pattern, op + 1)
-      ret, err = pcall(string.find, pattern , pattern)
-      if not ret and err then
-         err = err:gsub("^%l", string.upper)
-         return nil, err
-      end
-
-      return keyword_search_find, pattern
-   end
-
-   -- Regex pattern type
-   if pattern_type == 'regex' then
-      pattern = string.sub(pattern, op + 1)
-   end
-
-   local from, to , err = ngx.re.find("", pattern, "jio")
-   -- Make error more end-user friendly...
-   if err then
-      err = err:match("^.+failed: (.+)")
-      err = err:gsub("^%l", string.upper)
-
-      return nil, err
-   end
-
-   return keyword_search_regex, pattern
-end
-
---[[Function: get_index
-Return an array of tables in the form
-
-{
-   {
-      "name" = <filename without extension>
-      "url"  = <relative url>
-   },
-   {
-      "name" = <filename without extension>
-      "url"  = <relative url>
-   }
-}
-
-@param path to search
-@param base_url to prepend to the file name
-@return array of files
---]]
-function common.get_index(path, base_url)
-   local index = {}
-
-   for file in lfs.dir(path) do
-      local attrs, err = lfs.attributes(path .. "/" ..file)
-
-      if not attrs then
-         ngx.log(ngx.ERR, err)
-         return nil
-      end
-
-      if attrs.mode == "file" then
-      	local m, err = ngx.re.match(file, "^(.*)\\.[^.]+?$", "jo")
-         local name = m[1]
-
-         table.insert(index, { name = name, url = base_url .. "/" .. name .. "/" })
-      end
-   end
-
-   return index
+   return ngx.OK, json
 end
 
 --[[Function: get_json_file
@@ -368,10 +221,8 @@ Return the contents of a file
    - On ngx.OK the result of the subrequest decoded as JSON
 --]]
 function common.get_json_file(file)
-   local err
    local cache = ngx.shared.info_api_file_cache
    local content, cached = false
-   local json
 
    -- First check the file cache
    if cache then
@@ -383,7 +234,7 @@ function common.get_json_file(file)
 
    -- Otherwise we need to populate the cache
    if not content then
-      fandle, err = io.open(file, "r")
+      local fandle, err = io.open(file, "r")
       if not fandle then
          return ngx.HTTP_NOT_FOUND
       end
@@ -392,7 +243,7 @@ function common.get_json_file(file)
       fandle:close()
    end
 
-   json, err = cjson.decode(content)
+   local json, err = cjson.decode(content)
    if not json then
       ngx.log(ngx.ERR, "Decoding " .. file .. " as json failed: " .. err)
       return ngx.NGX_ERR
@@ -404,49 +255,6 @@ function common.get_json_file(file)
    end
 
    return ngx.OK, json
-end
-
---[[Function: version_to_int
-Convert version string into an integer for comparison
-
-@param version to process.
-@return integer representing version or nil
---]]
-function common.version_to_int(version)
-	   local m, err = ngx.re.match(version, "^([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{1,2})(?:-(pre|beta|alpha)([0-9]{1,2}))?$", "jo")
-		local int = 0
-		local w = 4
-
-		if err or not m then
-			ngx.log(ngx.ERR, err or "Bad version " .. version)
-			return nil
-		end
-
-		-- Need 5 bytes
-
-		int = (tonumber(m[1]) * (2 ^ 4))
-		int = (tonumber(m[2]) * (2 ^ 3)) + int
-		int = (tonumber(m[3]) * (2 ^ 2)) + int
-
-		if m[4] then
-			if m[4] == 'pre' then
-				w = 3
-			elseif m[4] == 'beta' then
-				w = 2
-			elseif m[4] == 'alpha' then
-				w = 1
-			else
-				ngx.log(ngx.ERR, "Unknown unstable release type \"" .. m[4] '' "\"")
-				return nil
-			end
-		end
-
-		int = (w * 2) + int
-		if m[5] then
-			int = int + tonumber(m[5])
-		end
-
-		return int
 end
 
 --[[Function: table_copy
@@ -472,6 +280,44 @@ function common.table_copy(table)
     return copy
 end
 
+--[[Function: search_from_args
+Factory for keyword_search class.
+
+@param pattern to search for.
+@param fields to search in.
+@param default fields to use.
+--]]
+function common.search_from_args(pattern, fields, dflt_fields)
+   if not pattern then
+      return nil
+   end
+
+   if fields and type(fields) ~= 'table' then
+      fields = { tostring(fields) }
+   end
+
+   local search = keyword_search.new()
+
+   -- Get the list of keywords we're going to search for
+   if fields and (table.getn(fields) > 0) then
+      local ret, err = search:set_fields(fields)
+      if ret == false then
+         return ngx.HTTP_BAD_REQUEST, err
+      end
+   else
+      assert(dflt_fields and (table.getn(dflt_fields) > 0))
+      search:set_fields_default(dflt_fields)
+   end
+
+   -- Set and validate the keyword pattern
+  local ret, err = search:set_pattern(pattern)
+   if ret == false then
+      return ngx.HTTP_BAD_REQUEST, err
+   end
+
+   return search
+end
+
 --[[Function: fatal_error
 Raise a fatal error and exit.
 
@@ -483,6 +329,10 @@ Raise a fatal error and exit.
 function common.fatal_error(http_code, msg)
    http_code = http_code or ngx.HTTP_INTERNAL_SERVER_ERROR
    msg = msg or "Internal error"
+
+   if http_code == ngx.HTTP_INTERNAL_SERVER_ERROR then
+      ngx.log(ngx.ERR, string.gsub(debug.traceback(), "[\n\r]", ">"))
+   end
 
    ngx.status = http_code
    ngx.say(cjson.encode({ error = msg }))

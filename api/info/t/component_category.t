@@ -23,7 +23,7 @@ location ~ ^/api/info/component/[.0-9a-z_-]+/$ {
 	content_by_lua_file $document_root/api/info/bin/component.lua;
 }
 --- request
-GET /api/info/component/?by_category=authentication
+GET /api/info/component/?by_category=authentication&order_by=name
 --- response_body_json_eval
 [
         {

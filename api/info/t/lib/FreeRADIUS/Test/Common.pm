@@ -28,7 +28,7 @@ BEGIN {
 		# Only evaluate is we have a 'response_body_json_eval' block
 		return unless defined($block->response_body_json_eval);
 
-		my $json = JSON->new()->escape_slash(1)->canonical(1);
+		my $json = JSON->new()->escape_slash([ 1 ])->canonical([ 1 ]);
 		my $expected = eval($block->response_body_json_eval) or die("Failed evaluating response_body_json_eval: " . $@);
 
 		eval {
@@ -40,8 +40,13 @@ BEGIN {
 			return
 		}
 
-		is_str($json->encode($decoded), $json->encode($expected),
-		       "$name - resp_title (req $repeated_req_idx)");
+
+
+		if (!is_str($json->encode($decoded), $json->encode($expected),
+		       "$name - resp_title (req $repeated_req_idx)")) {
+		 	print STDERR "\n" . $json->encode($decoded) . "\n";
+		 	print STDERR "\n" . $json->encode($expected) . "\n";
+		}
 	});
 }
 

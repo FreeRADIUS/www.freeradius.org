@@ -159,34 +159,20 @@ GET /api/info/component/?keyword_expansion_depth=1&expansion_depth=1&by_keyword=
       'category'      => 'datastore',
       'available'      =>
          [
-            {
-               'branch' => 'v2.2.x',
-               'start' => {
-                  'major' => 2,
-                  'minor' => 0,
-                  'release' => 0
-               },
-
-               'end' => {
-                  'major' => 2,
-                  'minor' => 2,
-                  'release' => 9
-               }
-            },
-            {
-               'branch' => 'v3.0.x',
-               'start' => {
-                  'major' => 3,
-                  'minor' => 0,
-                  'release' => 0
-               },
-
-               'end' => {
-                  'major' => 3,
-                  'minor' => 0,
-                  'release' => 12
-               }
-            }
+         	{
+			"branch" => {
+				"name" => "test_branch_a",
+				"url" => "\/api\/info\/branch\/test_branch_a\/"
+			},
+			"end" => {
+				"name" => "1.0.0-pre0",
+				"url" => "\/api\/info\/branch\/test_branch_a\/release\/1.0.0-pre0\/"
+			},
+			"start" => {
+				"name" => "1.0.0-beta1",
+				"url" => "\/api\/info\/branch\/test_branch_a\/release\/1.0.0-beta1\/"
+			}
+		}
          ]
    }
 ];
@@ -209,6 +195,18 @@ location ~ ^/api/info/component/$  {
 location ~ ^/api/info/component/[.0-9a-z_-]+/$ {
    content_by_lua_file $document_root/api/info/bin/component.lua;
 }
+location ~ ^/api/info/branch/$ {
+   content_by_lua_file $document_root/api/info/bin/branch_index.lua;
+}
+location ~ ^/api/info/branch/[.0-9a-z_-]+/$ {
+   content_by_lua_file $document_root/api/info/bin/branch.lua;
+}
+location ~ ^/api/info/branch/[.0-9a-z_-]+/release/$ {
+   content_by_lua_file $document_root/api/info/bin/release_index.lua;
+}
+location ~ ^/api/info/branch/[.0-9a-z_-]+/release/[.0-9a-z_-]+/$ {
+   content_by_lua_file $document_root/api/info/bin/release.lua;
+}
 --- request
 GET /api/info/component/?keyword_expansion_depth=2&expansion_depth=1&by_keyword=data
 --- response_body_json_eval
@@ -220,34 +218,20 @@ GET /api/info/component/?keyword_expansion_depth=2&expansion_depth=1&by_keyword=
       'category'      => 'datastore',
       'available'      =>
          [
-            {
-               'branch' => 'v2.2.x',
-               'start' => {
-                  'major' => 2,
-                  'minor' => 0,
-                  'release' => 0
-               },
-
-               'end' => {
-                  'major' => 2,
-                  'minor' => 2,
-                  'release' => 9
-               }
-            },
-            {
-               'branch' => 'v3.0.x',
-               'start' => {
-                  'major' => 3,
-                  'minor' => 0,
-                  'release' => 0
-               },
-
-               'end' => {
-                  'major' => 3,
-                  'minor' => 0,
-                  'release' => 12
-               }
-            }
+         	{
+			"branch" => {
+				"name" => "test_branch_a",
+				"url" => "\/api\/info\/branch\/test_branch_a\/"
+			},
+			"end" => {
+				"name" => "1.0.0-pre0",
+				"url" => "\/api\/info\/branch\/test_branch_a\/release\/1.0.0-pre0\/"
+			},
+			"start" => {
+				"name" => "1.0.0-beta1",
+				"url" => "\/api\/info\/branch\/test_branch_a\/release\/1.0.0-beta1\/"
+			}
+		}
          ]
    }
 ];
@@ -255,8 +239,7 @@ GET /api/info/component/?keyword_expansion_depth=2&expansion_depth=1&by_keyword=
 --- no_error_log
 [error]
 
-
-=== TEST 7: Component keyword search without expansion depth
+=== TEST 8: Component keyword search without expansion depth
 Return entries with fields matching the specified pattern
 
 --- main_config

@@ -1,22 +1,83 @@
-local cjson     = require "cjson"
-local ngx       = require "ngx"
-local common    = require "lib.common"
+local cjson             = require "cjson"
+local ngx               = require "ngx"
 
-local uri       = ngx.var.uri
-local get_args  = ngx.req.get_uri_args()
-local releases	 = {}
+local common            = require "lib.common"
+local keyword_search    = require "lib.keyword_search"
+local indexer           = require "lib.indexer"
+
+local uri               = ngx.var.uri
+local releases	         = {}
 local i, v
-local high_version_v, high_version = 0
-local index
 
-function version_compare(a, b)
+local get_args          = ngx.req.get_uri_args()
+local sane_args
+local ret, err
+
+-- Process common arguments
+sane_args, err = common.common_get_args(get_args)
+if not sane_args then
+   common.fatal_error(ngx.HTTP_BAD_REQUEST, err)
+end
+
+local search, err = common.search_from_args(get_args.by_keyword,
+                                            get_args.keyword_field,
+                                            { 'name', 'description', 'branch', 'category' })
+if err then
+   common.fatal_error(search, err)
+end
+
+--[[Function: version_to_int
+Convert version string into an integer for comparison
+
+@param version to process.
+@return integer representing version or nil
+--]]
+local function version_to_int(version)
+	   local m, err = ngx.re.match(version, "^([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{1,2})(?:-(pre|beta|alpha)([0-9]{1,2}))?$", "jo")
+		local int = 0
+		local w = 4
+
+		if err or not m then
+			ngx.log(ngx.ERR, err or "Bad version " .. version)
+			return nil
+		end
+
+		-- Need 5 bytes
+
+		int = (tonumber(m[1]) * (2 ^ 4))
+		int = (tonumber(m[2]) * (2 ^ 3)) + int
+		int = (tonumber(m[3]) * (2 ^ 2)) + int
+
+		if m[4] then
+			if m[4] == 'pre' then
+				w = 3
+			elseif m[4] == 'beta' then
+				w = 2
+			elseif m[4] == 'alpha' then
+				w = 1
+			else
+				ngx.log(ngx.ERR, "Unknown unstable release type \"" .. m[4] '' "\"")
+				return nil
+			end
+		end
+
+		int = (w * 2) + int
+		if m[5] then
+			int = int + tonumber(m[5])
+		end
+
+		return int
+end
+
+-- Compare versions for ordering purposes
+local function version_sort(a, b)
 	local a_int, b_int
 
-	a_int = common.version_to_int(a.name)
+	a_int = version_to_int(a.name)
 	if not a_int then
 		common.fatal_error()
 	end
-	b_int = common.version_to_int(b.name)
+	b_int = version_to_int(b.name)
 	if not b_int then
 		common.fatal_error()
 	end
@@ -24,29 +85,18 @@ function version_compare(a, b)
 	return a_int > b_int
 end
 
--- Process common arguments
-local ret, msg, expansion_depth, keyword_expansion_depth, pagenate_start, pagenate_end = common.common_get_args(get_args)
-if ret ~= ngx.OK then
-   common.fatal_error(ret, msg)
-end
-
 local branch = uri:match("^" .. common.base_url .. "/branch/([^/]+)/")
 
--- Determine the last release in this branch
-index = common.get_index(common.srv_path .. "/branch/" .. branch .. "/release/", common.base_url .. "/branch/" .. branch .. "/release")
-table.sort(index, version_compare)
+local index = indexer.new({}, common.base_url .. "/branch/" .. branch .. "/release", sane_args.expansion_depth)
+index:build(common.srv_path .. "/branch/" .. branch .. "/release/")
 
--- Server side expansion of URL fields using subrequests
-if expansion_depth and expansion_depth > 0 then
-   local ret = common.resolve_urls(index, expansion_depth)
-   if ret ~= ngx.OK then
-      common.fatal_error(ret, "Error retrieving resource referenced by expansion URL")
-   end
-end
+-- Filter by keyword
+ret = search and index:filter(search, keyword_expansion_depth)
 
--- Pagenate last (for stable pagenation)
-if pagenate_start or pagenate_end then
-   index = common.pagenate(index, pagenate_start, pagenate_end)
-end
+-- Sort by user specified field or by version
+ret = get_args.order_by and index:sort(get_args.order_by) or index:sort_with(version_sort)
 
-ngx.say(table.getn(index) > 0 and cjson.encode(index) or "[]");
+-- Pagenate
+index:pagenate(pagenate_start, pagenate_end)
+
+ngx.say(tostring(index));

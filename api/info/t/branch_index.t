@@ -19,7 +19,7 @@ location ~ ^/api/info/branch/$ {
    content_by_lua_file $document_root/api/info/bin/branch_index.lua;
 }
 --- request
-GET /api/info/branch/
+GET /api/info/branch/?order_by=name
 --- response_body_json_eval
 [
 	{

@@ -19,7 +19,7 @@ location ~ ^/api/info/component/$  {
 	content_by_lua_file $document_root/api/info/bin/component_index.lua;
 }
 --- request
-GET /api/info/component/
+GET /api/info/component/?order_by=name
 --- response_body_json_eval
 [
    {
