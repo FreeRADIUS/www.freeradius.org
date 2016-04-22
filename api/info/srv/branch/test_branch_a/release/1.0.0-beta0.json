@@ -7,12 +7,12 @@
 			"description": "Test feature",
 			"component": [
 				{
-					"name": "rlm_test_a",
-					"url": "/api/info/component/rlm_test_a/"
+					"name": "rlm_always",
+					"url": "/api/info/component/rlm_always/"
 				},
 				{
-					"name": "rlm_test_b",
-					"url": "/api/info/component/rlm_test_b/"
+					"name": "rlm_sql",
+					"url": "/api/info/component/rlm_sql/"
 				}
 			]
 		}
@@ -23,14 +23,13 @@
 			"exploit": true,
 			"component": [
 				{
-					"name": "rlm_test_a",
-					"url": "/api/info/component/rlm_test_a/"
+					"name": "rlm_rest",
+					"url": "/api/info/component/rlm_rest/"
 				},
 				{
-					"name": "rlm_test_b",
-					"url": "/api/info/component/rlm_test_b/"
+					"name": "rlm_cache",
+					"url": "/api/info/component/rlm_cache/"
 				}
 			]
 		}
 	]
-}
