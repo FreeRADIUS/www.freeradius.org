@@ -18,7 +18,7 @@
 				"url": "/api/info/branch/test_branch_a/release/0.0.2/"
 			}
 		}
-	]
+	],
 	"dependents": [
 		{
 			"name": "rlm_cache_memcached",
