@@ -20,7 +20,6 @@
 	"defects": [
 		{
 			"description": "Test issue",
-			"exploit": true,
 			"component": [
 				{
 					"name": "rlm_rest",
