@@ -1,4 +1,4 @@
-package FreeRADIUS::Test::Common;
+package FreeRADIUS::Test::helper;
 
 use strict;
 use warnings;
@@ -22,8 +22,8 @@ BEGIN {
 	#
 	add_response_body_check(sub {
 		my ($block, $body, $req_idx, $repeated_req_idx, $dry_run) = @_;
-           	my $name = $block->name;
-           	my $decoded;
+		my $name = $block->name;
+		my $decoded;
 
 		# Only evaluate is we have a 'response_body_json_eval' block
 		return unless defined($block->response_body_json_eval);

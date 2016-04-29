@@ -1,6 +1,6 @@
 use FindBin qw/$Bin/;
 use lib "$Bin/lib";
-use FreeRADIUS::Test::Common;
+use FreeRADIUS::Test::helper;
 
 run_tests();
 
