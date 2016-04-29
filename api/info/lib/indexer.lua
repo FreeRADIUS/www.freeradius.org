@@ -2,7 +2,7 @@ local ngx    = require "ngx"
 local cjson  = require "cjson"
 local lfs    = require "lfs"
 
-local common = require "lib.common"
+local helper = require "lib.helper"
 
 local _m = {} -- Module table
 
@@ -101,11 +101,11 @@ function _m:expand()
    -- else updates are lost in some circumstances.
    -- Seems like a bug.
    local work = self.index
-   local ret = common.resolve_urls(work, self.need_depth)
+   local ret = helper.resolve_urls(work, self.need_depth)
    self.index = work
 
    if ret ~= ngx.OK then
-      common.fatal_error(ret, "Error retrieving nested object (" .. tostring(ret) .. ")")
+      helper.fatal_error(ret, "Error retrieving nested object (" .. tostring(ret) .. ")")
    end
 
    self.done_depth = self.need_depth
@@ -120,41 +120,54 @@ Only keep entries that match the filter object
 
 --]]
 function _m:filter(search, search_depth)
-   local filter = {}
+   local searches
 
    assert(type(search) == 'table')
-   assert(type(search_depth) == 'number')
 
-   for i, v in ipairs(self.index) do
-      local to_search
+   -- Who needs type checking
+   if search.execute then
+      searches = { search }
+   else
+      searches = search
+   end
 
-      if search_depth > self.need_depth then
-         to_search = common.table_copy(v)
-      else
-         to_search = v
-      end
+   for i, v in ipairs(searches) do
+      local filter = {}
 
-      if search_depth > self.done_depth then
-         local ret = common.resolve_urls(to_search, search_depth - self.done_depth)
-         if ret ~= ngx.OK then
-            common.fatal_error(ret, "Error retrieving nested object (" .. tostring(ret) .. ")")
+      assert(type(v) == 'table')
+      assert(type(search_depth) == 'number')
+
+      for ii, vv in ipairs(self.index) do
+         local to_search
+
+         if search_depth > self.need_depth then
+            to_search = helper.table_copy(vv)
+         else
+            to_search = vv
+         end
+
+         if search_depth > self.done_depth then
+            local ret = helper.resolve_urls(to_search, search_depth - self.done_depth)
+            if ret ~= ngx.OK then
+               helper.fatal_error(ret, "Error retrieving nested object (" .. tostring(ret) .. ")")
+            end
+         end
+
+         local ret, msg = v:execute(to_search)
+         if ret == nil then
+            helper.fatal_error(ngx.HTTP_BAD_REQUEST, msg)
+         elseif ret == true then
+            table.insert(filter, vv)
          end
       end
 
-      local ret, msg = search:execute(to_search)
-      if ret == nil then
-         common.fatal_error(ngx.HTTP_BAD_REQUEST, msg)
-      elseif ret == true then
-         table.insert(filter, v)
+      -- We expanded some entries during the search
+      if search_depth > self.done_depth and search_depth <= self.need_depth then
+         self.done_depth = search_depth
       end
-   end
 
-   -- We expanded some entries during the search
-   if search_depth > self.done_depth and search_depth <= self.need_depth then
-      self.done_depth = search_depth
+      self.index = filter
    end
-
-   self.index = filter
 end
 
 --[[Function: sort
@@ -237,6 +250,10 @@ function _m:pagenate(first, last)
    end
 
    self.index = sliced
+end
+
+function _m:is_a(class)
+   return class == _m
 end
 
 return _m

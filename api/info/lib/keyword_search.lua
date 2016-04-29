@@ -3,14 +3,15 @@ local utf8   = require "lib.utf8_validator"
 
 local _m = {}
 
-_m.max_search_pattern_len = 128
-_m.max_search_fields = 5
-_m.max_search_field_len = 128
+_m.config = require "etc.info_api"
+_m.max_search_pattern_len = _m.config.max_search_pattern_len
+_m.max_search_fields = _m.config.max_search_fields
+_m.max_search_field_len = _m.config.max_search_field_len
 
 --[[Function: new
 Instantiate a new keyword search class
 --]]
-function _m.new(self)
+function _m:new()
    self = self or {}   -- create object if user does not provide one
    setmetatable(self, { __index = _m})
    return self
@@ -208,6 +209,10 @@ function _m:set_pattern(pattern)
    self.search_pattern = pattern
 
    return true
+end
+
+function _m:is_a(class)
+   return class == _m
 end
 
 return _m

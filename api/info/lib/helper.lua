@@ -5,34 +5,21 @@ local io     = require "io"
 
 local keyword_search    = require "lib.keyword_search"
 
-local common = {} -- Module table
+local helper = {} -- Module table
 
 local read_body = false
 
-if os.getenv('TEST_DATA') then
-   common.under_test           = true
-   common.srv_path             = os.getenv('TEST_DATA')
-else
-   common.srv_path             = ngx.var.document_root .. "/api/info/srv"
-end
+helper.config = require "etc.info_api"
 
-common.base_url                = "/api/info"
-common.file_cache_exp          = 300 * 1000      -- 5 Minute file cache
-common.keyword_search_max_len  = 256
-common.max_expansion_depth     = 3
-
--- Configuration cache
-common.base_url_len = string.len(common.base_url) -- Don't edit manually
-
---[[Function: common_get_args
-Validates get_args common to most pages
+--[[Function: helper_get_args
+Validates get_args helper to most pages
 
 @param get_args Table of get_args
 @return
    - nil, msg on error
    - table of sane arguments on success
 --]]
-function common.common_get_args(get_args)
+function helper.helper_get_args(get_args)
    local out = {}
 
    if get_args.expansion_depth then
@@ -45,9 +32,9 @@ function common.common_get_args(get_args)
          return nil, 'expansion_depth must be a positive integer'
       end
 
-      if out.expansion_depth > common.max_expansion_depth then
+      if out.expansion_depth > helper.config.max_expansion_depth then
          return nil, 'expansion_depth must be between 0-' ..
-            tostring(common.max_expansion_depth)
+            tostring(helper.config.max_expansion_depth)
       end
    else
       out.expansion_depth = 0
@@ -63,9 +50,9 @@ function common.common_get_args(get_args)
          return nil, 'keyword_expansion_depth must be a positive integer'
       end
 
-      if out.keyword_expansion_depth > common.max_expansion_depth then
+      if out.keyword_expansion_depth > helper.config.max_expansion_depth then
          return nil, 'keyword_expansion_depth must be between 0-' ..
-            tostring(common.keyword_expansion_depth)
+            tostring(helper.keyword_expansion_depth)
       end
    else
       out.keyword_expansion_depth = 0
@@ -105,7 +92,7 @@ end
    - A HTTP status code, either ngx.OK, or ngx.NGX_ERR
    - On ngx.OK the result of the subrequest decoded as JSON
 --]]
-function common.get_json_subrequest(url)
+function helper.get_json_subrequest(url)
    local cache = ngx.shared.info_api_file_cache
    local local_path
 
@@ -115,8 +102,8 @@ function common.get_json_subrequest(url)
    -- internally using sub-requests and retrieving them directly.
    if cache then
       -- Can only cache local files
-      if string.find(url, common.base_url) == 0 then
-         local_path = string.sub(url, common.base_len + 1)
+      if string.find(url, helper.config.base_url) == 0 then
+         local_path = string.sub(url, helper.base_len + 1)
          json = cache:get(local_path)
          if json then
             return ngx.OK, json
@@ -170,7 +157,7 @@ the keys in the existing table are moved, and the retponse from the subrequest i
 @return an ngx.NGX_* code
 
 --]]
-function common.resolve_urls(json, depth)
+function helper.resolve_urls(json, depth)
    local k, v
    local ret, sub
 
@@ -178,7 +165,7 @@ function common.resolve_urls(json, depth)
    if depth > 0 and json["url"] ~= nil then
 
       -- Send a sub-request to ourselves (or another site hosted on the same server)
-      ret, sub = common.get_json_subrequest(json["url"])
+      ret, sub = helper.get_json_subrequest(json["url"])
       if ret ~= ngx.OK then
          return ret
       end
@@ -202,7 +189,7 @@ function common.resolve_urls(json, depth)
    -- Recurse to deal with tables
    for k, v in pairs(json) do
       if type(v) == 'table' then
-         ret = common.resolve_urls(v, depth)
+         ret = helper.resolve_urls(v, depth)
          if ret ~= ngx.OK then
             return ret
          end
@@ -220,7 +207,7 @@ Return the contents of a file
    - A HTTP status code, either ngx.OK, or ngx.NGX_ERR
    - On ngx.OK the result of the subrequest decoded as JSON
 --]]
-function common.get_json_file(file)
+function helper.get_json_file(file)
    local cache = ngx.shared.info_api_file_cache
    local content, cached = false
 
@@ -251,7 +238,7 @@ function common.get_json_file(file)
 
    -- Now we know the content is good, populate the cache
    if cache and not cached then
-      cache:set(file, content)
+      cache:set(file, content, helper.config.file_cache_exp)
    end
 
    return ngx.OK, json
@@ -263,7 +250,7 @@ Perform a deep copy on a table_including metadata
 @param table to copy.
 @return copied table.
 --]]
-function common.table_copy(table)
+function helper.table_copy(table)
     local table_type = type(table)
     local copy
     local table_key, table_value
@@ -271,9 +258,9 @@ function common.table_copy(table)
     if table_type == 'table' then
         copy = {}
         for table_key, table_value in next, table, nil do
-            copy[common.table_copy(table_key)] = common.table_copy(table_value)
+            copy[helper.table_copy(table_key)] = helper.table_copy(table_value)
         end
-        setmetatable(copy, common.table_copy(getmetatable(table)))
+        setmetatable(copy, helper.table_copy(getmetatable(table)))
     else -- number, string, boolean, etc
         copy = table
     end
@@ -287,35 +274,46 @@ Factory for keyword_search class.
 @param fields to search in.
 @param default fields to use.
 --]]
-function common.search_from_args(pattern, fields, dflt_fields)
-   if not pattern then
+function helper.search_from_args(patterns, fields, dflt_fields)
+   local k, v
+   local out = {}
+
+   if not patterns then
       return nil
    end
 
    if fields and type(fields) ~= 'table' then
-      fields = { tostring(fields) }
+      fields = { fields }
    end
 
-   local search = keyword_search.new()
+   if patterns and type(patterns) ~= 'table' then
+      patterns = { patterns }
+   end
 
-   -- Get the list of keywords we're going to search for
-   if fields and (table.getn(fields) > 0) then
-      local ret, err = search:set_fields(fields)
+   for k, v in ipairs(patterns) do
+      local search = keyword_search.new()
+
+      -- Get the list of keywords we're going to search for
+      if fields and fields[k] then
+         local ret, err = search:set_fields(fields[k])
+         if ret == false then
+            return ngx.HTTP_BAD_REQUEST, err
+         end
+      else
+         assert(dflt_fields and (table.getn(dflt_fields) > 0))
+         search:set_fields_default(dflt_fields)
+      end
+
+      -- Set and validate the keyword pattern
+      local ret, err = search:set_pattern(v)
       if ret == false then
          return ngx.HTTP_BAD_REQUEST, err
       end
-   else
-      assert(dflt_fields and (table.getn(dflt_fields) > 0))
-      search:set_fields_default(dflt_fields)
+
+      table.insert(out, search)
    end
 
-   -- Set and validate the keyword pattern
-  local ret, err = search:set_pattern(pattern)
-   if ret == false then
-      return ngx.HTTP_BAD_REQUEST, err
-   end
-
-   return search
+   return out
 end
 
 --[[Function: fatal_error
@@ -326,7 +324,7 @@ Raise a fatal error and exit.
 @param http_code one of the ngx.HTTP_* constants.  Defaults to HTTP_INTERNAL_SERVER_ERROR if nil
 @param msg       Defaults to "Internal error" if nil.
 --]]
-function common.fatal_error(http_code, msg)
+function helper.fatal_error(http_code, msg)
    http_code = http_code or ngx.HTTP_INTERNAL_SERVER_ERROR
    msg = msg or "Internal error"
 
@@ -339,4 +337,4 @@ function common.fatal_error(http_code, msg)
    ngx.exit(ngx.HTTP_OK)
 end
 
-return common
+return helper
