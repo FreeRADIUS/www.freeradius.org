@@ -30,6 +30,13 @@ local function keyword_search_find(value, pattern)
    return not not string.find(value, pattern)
 end
 
+--[[Function: keyword_search_literal
+Case sensitive match string comparisons
+--]]
+local function keyword_search_literal(value, pattern)
+   return not not (value == pattern)
+end
+
 --[[Function: keyword_search
 Pattern match on fields
 
@@ -176,18 +183,28 @@ function _m:set_pattern(pattern)
    -- Regex pattern type
    if pattern_type == 'regex' then
       pattern = string.sub(pattern, op + 1)
+
+      local from, to, err = ngx.re.find("", pattern, "jio")
+      -- Make error more end-user friendly...
+      if err then
+         err = err:match("^.+failed: (.+)")
+         err = err:gsub("^%l", string.upper)
+
+         return false, err
+      end
+
+      self.search_func = keyword_search_regex
+      self.search_pattern = pattern
+
+      return true
    end
 
-   local from, to, err = ngx.re.find("", pattern, "jio")
-   -- Make error more end-user friendly...
-   if err then
-      err = err:match("^.+failed: (.+)")
-      err = err:gsub("^%l", string.upper)
-
-      return false, err
+   -- Literal pattern type
+   if pattern_type == 'literal' then
+        pattern = string.sub(pattern, op + 1)
    end
 
-   self.search_func = keyword_search_regex
+   self.search_func = keyword_search_literal
    self.search_pattern = pattern
 
    return true

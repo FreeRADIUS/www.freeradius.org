@@ -19,7 +19,7 @@ location ~ ^/api/info/component/$  {
 	content_by_lua_file $document_root/api/info/bin/component_index.lua;
 }
 --- request
-GET /api/info/component/?by_keyword=_su[b]_
+GET /api/info/component/?by_keyword=regex:_su[b]_
 --- response_body_json_eval
 [
    {
@@ -149,7 +149,7 @@ location ~ ^/api/info/component/[.0-9a-z_-]+/$ {
    content_by_lua_file $document_root/api/info/bin/component.lua;
 }
 --- request
-GET /api/info/component/?keyword_expansion_depth=1&expansion_depth=1&by_keyword=data
+GET /api/info/component/?keyword_expansion_depth=1&expansion_depth=1&by_keyword=regex:data
 --- response_body_json_eval
 [
    {
@@ -208,7 +208,7 @@ location ~ ^/api/info/branch/[.0-9a-z_-]+/release/[.0-9a-z_-]+/$ {
    content_by_lua_file $document_root/api/info/bin/release.lua;
 }
 --- request
-GET /api/info/component/?keyword_expansion_depth=2&expansion_depth=1&by_keyword=data
+GET /api/info/component/?keyword_expansion_depth=2&expansion_depth=1&by_keyword=regex:data
 --- response_body_json_eval
 [
    {
@@ -255,7 +255,63 @@ location ~ ^/api/info/component/[.0-9a-z_-]+/$ {
    content_by_lua_file $document_root/api/info/bin/component.lua;
 }
 --- request
-GET /api/info/component/?keyword_expansion_depth=1&by_keyword=data
+GET /api/info/component/?keyword_expansion_depth=1&by_keyword=regex:data
+--- response_body_json_eval
+[
+   {
+      'name'  => 'rlm_test_b',
+      'url'   => '/api/info/component/rlm_test_b/'
+   }
+];
+--- error_code: 200
+--- no_error_log
+[error]
+
+=== TEST 9: Component keyword search with string comparison
+Return entries with fields matching the specified pattern
+
+--- main_config
+env TEST_DATA;
+--- http_config
+lua_shared_dict info_api_file_cache 5m;
+--- config
+root $TEST_NGINX_REPOSITORY_ROOT;
+location ~ ^/api/info/component/$  {
+   content_by_lua_file $document_root/api/info/bin/component_index.lua;
+}
+location ~ ^/api/info/component/[.0-9a-z_-]+/$ {
+   content_by_lua_file $document_root/api/info/bin/component.lua;
+}
+--- request
+GET /api/info/component/?keyword_expansion_depth=1&by_keyword=datastore
+--- response_body_json_eval
+[
+   {
+      'name'  => 'rlm_test_b',
+      'url'   => '/api/info/component/rlm_test_b/'
+   }
+];
+--- error_code: 200
+--- no_error_log
+[error]
+
+=== TEST 10: Component keyword search with string comparison
+Return entries with fields matching the specified pattern
+
+--- main_config
+env TEST_DATA;
+--- http_config
+lua_shared_dict info_api_file_cache 5m;
+--- config
+root $TEST_NGINX_REPOSITORY_ROOT;
+location ~ ^/api/info/component/$  {
+   content_by_lua_file $document_root/api/info/bin/component_index.lua;
+}
+location ~ ^/api/info/component/[.0-9a-z_-]+/$ {
+   content_by_lua_file $document_root/api/info/bin/component.lua;
+}
+--- request
+GET /api/info/component/?keyword_expansion_depth=1&by_keyword=literal:datastore
 --- response_body_json_eval
 [
    {
