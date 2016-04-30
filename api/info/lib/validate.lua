@@ -1,9 +1,9 @@
-local utf8        = require "lib.utf8"
-local ngx         = require "ngx"
-local helper      = require "lib.helper"
+local utf8        = require 'lib.utf8'
+local ngx         = require 'ngx'
+local helper      = require 'lib.helper'
 
 local _m = {}
-_m.config         = require "etc.info_api"
+_m.config         = require 'etc.info_api'
 
 --[[Function: get_args
 Validate common get_arguments for most pages
@@ -84,15 +84,19 @@ function _m.get_args(get_args)
       get_args.pagenate_end = nil
    end
 
-   -- _m order by
+   -- Validate order by
    if get_args.order_by then
       if type(get_args.order_by) ~= 'table' then
          get_args.order_by = { get_args.order_by }
       end
 
+      if table.getn(get_args.order_by) > _m.config.max_order_by then
+         return nil, 'too many order_by arguments (> ' .. _m.config.max_order_by .. ')'
+      end
+
       for i, v in ipairs(get_args.order_by) do
-         if not ngx.re.find(v, "^[a-z-]+$", "jio") then
-            return nil, "category names are restricted to [a-z-]"
+         if not ngx.re.find(v, '^[a-z-]+$', 'jio') then
+            return nil, 'category names are restricted to [a-z-]'
          end
       end
 
@@ -118,17 +122,17 @@ function _m.get_args_keyword(get_args, out)
 
       -- Ensure we don't have too many search patterns
       if table.getn(get_args.by_keyword) > _m.config.max_search_pattern_args then
-            return nil, "too many by_keyword arguments (> " .. _m.config.max_search_pattern_args .. ")"
+            return nil, 'too many by_keyword arguments (> ' .. _m.config.max_search_pattern_args .. ')'
       end
 
       for i, v in ipairs(get_args.by_keyword) do
          if not utf8.validate(v) then
-            return nil, "by_keyword argument is not a valid UTF8 stirng"
+            return nil, 'by_keyword argument is not a valid UTF8 stirng'
          end
 
          -- Ensure none of the search patterns are too long
          if string.len(v) > _m.config.max_search_pattern_len then
-            return nil, "by_keyword string too long (> " .. _m.config.max_search_pattern_len .. ")"
+            return nil, 'by_keyword string too long (> ' .. _m.config.max_search_pattern_len .. ')'
          end
       end
 
@@ -142,7 +146,7 @@ function _m.get_args_keyword(get_args, out)
       end
 
       if not out.by_keyword then
-         return nil, "keyword_field argument not valid without by_keyword argument"
+         return nil, 'keyword_field argument not valid without by_keyword argument'
       end
 
       local field_num = table.getn(get_args.keyword_field)
@@ -150,25 +154,25 @@ function _m.get_args_keyword(get_args, out)
 
       -- Ensure we don't have more keyword_field args than by_keyword args
       if field_num > keyword_num then
-         return nil, field_num .. " keyword_field vs " .. keyword_num .. " by_keyword arguments"
+         return nil, field_num .. ' keyword_field vs ' .. keyword_num .. ' by_keyword arguments'
       end
 
       -- Validate each of the keyword fields
       for i, v in ipairs(get_args.keyword_field) do
          if not utf8.validate(v) then
-            return nil, "keyword_field argument is not a valid UTF8 stirng"
+            return nil, 'keyword_field argument is not a valid UTF8 stirng'
          end
 
          -- Split keyword fields (and make sure there aren't too many)
          get_args.keyword_field[i] = helper.split(v, ', ?') -- Split on commas
          if table.getn(get_args.keyword_field[i]) > _m.config.max_search_fields then
-            return nil, "too many search fields (> " .. _m.config.max_search_fields .. ")"
+            return nil, 'too many search fields (> ' .. _m.config.max_search_fields .. ')'
          end
 
          -- Ensure none of the keyword fields are too long
          for ii, vv in ipairs(get_args.keyword_field[i]) do
             if string.len(vv) > _m.config.max_search_field_len then
-               return false, "search field too long (> " .. _m.config.max_search_field_len .. ")"
+               return false, 'search field too long (> ' .. _m.config.max_search_field_len .. ')'
             end
          end
       end
@@ -192,8 +196,8 @@ function _m.get_args_category(get_args, out)
       if type(get_args.by_category) == 'table' then
          return nil, 'exactly one instance of by_category allowed'
       end
-      if not ngx.re.find(get_args.by_category, "^[a-z-]+$", "jio") then
-         return nil, "category names are restricted to [a-z-]"
+      if not ngx.re.find(get_args.by_category, '^[a-z-]+$', 'jio') then
+         return nil, 'category names are restricted to [a-z-]'
       end
 
       out.by_category = get_args.by_category
@@ -204,8 +208,8 @@ function _m.get_args_category(get_args, out)
       if type(get_args.by_dependency_on) == 'table' then
          return nil, 'exactly one instance of by_dependency_on allowed'
       end
-      if not ngx.re.find(get_args.by_dependency_on, "^[a-z_]+$", "jio") then
-         return nil, "component names are restricted to [a-z_]"
+      if not ngx.re.find(get_args.by_dependency_on, '^[a-z_]+$', 'jio') then
+         return nil, 'component names are restricted to [a-z_]'
       end
 
       out.by_dependency_on = get_args.by_dependency_on
@@ -225,7 +229,7 @@ Check to see that all the get arguments were consumed
 --]]
 function _m.get_args_unknown(get_args)
    for k, v in pairs(get_args) do
-      return false, "get argument " .. k .. "=" .. v .. " not recognised"
+      return false, 'get argument ' .. k .. '=' .. v .. ' not recognised'
    end
 
    return true
