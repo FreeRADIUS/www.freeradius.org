@@ -7,6 +7,7 @@ local indexer           = require "lib.indexer"
 
 local get_args          = ngx.req.get_uri_args()
 local sane_args         = {}
+
 local ret, err
 
 -- Process helper arguments

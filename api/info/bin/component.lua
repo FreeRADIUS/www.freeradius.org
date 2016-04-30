@@ -7,7 +7,8 @@ local validate          = require "lib.validate"
 local uri 			      = ngx.var.uri
 
 local get_args          = ngx.req.get_uri_args()
-local sane_args
+local sane_args         = {}
+
 local ret, err
 
 -- Process helper arguments

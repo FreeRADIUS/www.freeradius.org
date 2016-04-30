@@ -7,7 +7,8 @@ local keyword           = require "lib.keyword"
 local indexer           = require "lib.indexer"
 
 local get_args          = ngx.req.get_uri_args()
-local sane_args
+local sane_args         = {}
+
 local ret, err
 
 -- Process helper arguments
@@ -35,6 +36,9 @@ if sane_args.by_dependency_on and sane_args.by_category then
    helper.fatal_error(ngx.HTTP_BAD_REQUEST, "by_category and by_dependency_on filters are mutually exclusive")
 end
 
+--
+--    Build search objects we use to filter the result
+--
 local search, err = helper.search_from_args(sane_args.by_keyword,
                                             sane_args.keyword_field,
                                             { 'name', 'description', 'branch', 'category' })

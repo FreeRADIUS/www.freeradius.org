@@ -6,11 +6,11 @@ local validate          = require "lib.validate"
 local indexer           = require "lib.indexer"
 
 local uri               = ngx.var.uri
-local releases	         = {}
-local i, v
 
 local get_args          = ngx.req.get_uri_args()
 local sane_args
+
+local releases	         = {}
 local ret, err
 
 -- Process helper arguments
@@ -79,7 +79,15 @@ local function version_to_int(version)
 		return int
 end
 
--- Compare versions for ordering purposes
+--[[Function: version_sort
+Sort result by version.
+
+@param a first version.
+@param b second version.
+@return
+   - true if a > b
+   - false if a <= b
+--]]
 local function version_sort(a, b)
 	local a_int, b_int
 

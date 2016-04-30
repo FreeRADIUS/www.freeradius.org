@@ -171,22 +171,25 @@ function _m:filter(search, search_depth)
 end
 
 --[[Function: sort
-Sort table entries lexicographically on specified v
+Sort table entries lexicographically on specified field
+
+@fixme Lua docs claim this isn't a stable sort, so ordering by multiple
+   fields is pretty useless.
 
 @param v(s) to sort on.
 --]]
-function _m:sort(v)
+function _m:sort(field)
    local vs;
 
    self:expand()
 
-   if type(v) ~= 'table' then
-      vs = { v }
+   if type(field) ~= 'table' then
+      fields = { field }
    else
-      vs = v
+      fields = field
    end
 
-   for k, v in ipairs(vs) do
+   for k, v in ipairs(fields) do
       local op = string.find(v, ':')
       if op ~= nil and op > 0 then
          desc = (string.sub(v, op + 1) == 'desc')

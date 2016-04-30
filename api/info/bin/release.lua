@@ -41,4 +41,3 @@ if sane_args.expansion_depth and sane_args.expansion_depth > 0 then
 end
 
 ngx.say(cjson.encode(json));
-ngx.exit(ngx.OK)

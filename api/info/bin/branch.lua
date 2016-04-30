@@ -7,7 +7,8 @@ local validate          = require "lib.validate"
 local uri		         = ngx.var.uri
 
 local get_args          = ngx.req.get_uri_args()
-local sane_args
+local sane_args         = {}
+
 local ret, err
 
 -- Process helper arguments
@@ -51,4 +52,3 @@ if sane_args.expansion_depth and sane_args.expansion_depth > 0 then
 end
 
 ngx.say(cjson.encode(json));
-ngx.exit(ngx.OK)
