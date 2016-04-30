@@ -267,6 +267,36 @@ function helper.table_copy(table)
     return copy
 end
 
+--[[Function: split
+Split a string into a table of components
+
+@param string to split
+@param pattern to split on
+@return table of components split on pattern
+--]]
+function helper.split(str, pat)
+   local t = {}
+   local fpat = "(.-)" .. pat
+   local last_end = 1
+   local s, e, cap = str:find(fpat, 1)
+
+   while s do
+      if s ~= 1 or cap ~= "" then
+         table.insert(t,cap)
+      end
+
+      last_end = e + 1
+      s, e, cap = str:find(fpat, last_end)
+   end
+
+   if last_end <= #str then
+      cap = str:sub(last_end)
+      table.insert(t, cap)
+   end
+
+   return t
+end
+
 --[[Function: search_from_args
 Factory for keyword_search class.
 
@@ -295,7 +325,7 @@ function helper.search_from_args(patterns, fields, dflt_fields)
 
       -- Get the list of keywords we're going to search for
       if fields and fields[k] then
-         local ret, err = search:set_fields(fields[k])
+         local ret, err = search:set_fields(helper.split(fields[k], ', ?'))
          if ret == false then
             return ngx.HTTP_BAD_REQUEST, err
          end
