@@ -1,7 +1,7 @@
-local utf8_validator = {
+local utf8 = {
   __VERSION     = '0.0.1',
   __DESCRIPTION = 'Library for easily validating UTF-8 strings in pure Lua',
-  __URL         = 'https://github.com/kikito/utf8_validator.lua',
+  __URL         = 'https://github.com/kikito/utf8.lua',
   __LICENSE     = [[
     MIT LICENSE
     Copyright (c) 2013 Enrique García Cota
@@ -28,7 +28,7 @@ local find = string.find
 
 -- Numbers taken from table 3-7 in www.unicode.org/versions/Unicode6.2.0/UnicodeStandard-6.2.pdf
 -- find-based solution inspired by http://notebook.kulchenko.com/programming/fixing-malformed-utf8-in-lua
-function utf8_validator.validate(str)
+function utf8.validate(str)
   local i, len = 1, #str
   while i <= len do
     if     i == find(str, "[%z\1-\127]", i) then i = i + 1
@@ -48,6 +48,6 @@ function utf8_validator.validate(str)
   return true
 end
 
-setmetatable(utf8_validator, {__call = function(_, ...) return utf8_validator.validate(...) end})
+setmetatable(utf8, {__call = function(_, ...) return utf8.validate(...) end})
 
-return utf8_validator
+return utf8

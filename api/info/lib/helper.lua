@@ -1,89 +1,14 @@
-local cjson  = require "cjson"
-local ngx    = require "ngx"
-local lfs    = require "lfs"
-local io     = require "io"
+local cjson       = require "cjson"
+local ngx         = require "ngx"
+local lfs         = require "lfs"
+local io          = require "io"
 
-local keyword_search    = require "lib.keyword_search"
+local search      = require "lib.keyword"
 
-local helper = {} -- Module table
+local helper      = {} -- Module table
+helper.config     = require "etc.info_api"
 
-local read_body = false
-
-helper.config = require "etc.info_api"
-
---[[Function: helper_get_args
-Validates get_args helper to most pages
-
-@param get_args Table of get_args
-@return
-   - nil, msg on error
-   - table of sane arguments on success
---]]
-function helper.helper_get_args(get_args)
-   local out = {}
-
-   if get_args.expansion_depth then
-      if type(get_args.keyword_expansion_depth) == 'table' then
-         return nil, 'exactly one instance of expansion_depth allowed'
-      end
-
-      out.expansion_depth = tonumber(get_args.expansion_depth)
-      if not out.expansion_depth or out.expansion_depth < 0 then
-         return nil, 'expansion_depth must be a positive integer'
-      end
-
-      if out.expansion_depth > helper.config.max_expansion_depth then
-         return nil, 'expansion_depth must be between 0-' ..
-            tostring(helper.config.max_expansion_depth)
-      end
-   else
-      out.expansion_depth = 0
-   end
-
-   if get_args.keyword_expansion_depth then
-      if type(get_args.keyword_expansion_depth) == 'table' then
-         return nil, 'exactly one instance of keyword_expansion_depth allowed'
-      end
-
-      out.keyword_expansion_depth = tonumber(get_args.keyword_expansion_depth)
-      if not out.keyword_expansion_depth or out.keyword_expansion_depth < 0 then
-         return nil, 'keyword_expansion_depth must be a positive integer'
-      end
-
-      if out.keyword_expansion_depth > helper.config.max_expansion_depth then
-         return nil, 'keyword_expansion_depth must be between 0-' ..
-            tostring(helper.keyword_expansion_depth)
-      end
-   else
-      out.keyword_expansion_depth = 0
-   end
-
-   if get_args.pagenate_start then
-      if type(get_args.pagenate_start) == 'table' then
-         return nil, 'exactly one instance of pagenate_start allowed'
-      end
-
-      out.pagenate_start = tonumber(get_args.pagenate_start)
-      if not out.pagenate_start or out.pagenate_start < 0 then
-         return nil, 'pagenate_start must be a positive integer'
-      end
-      out.pagenate_start = out.pagenate_start + 1
-   end
-
-   if get_args.pagenate_end then
-      if type(get_args.pagenate_end) == 'table' then
-         return nil, 'exactly one instance of pagenate_start allowed'
-      end
-
-      out.pagenate_end = tonumber(get_args.pagenate_end)
-      if not out.pagenate_end or out.pagenate_end < 0 then
-         return nil, 'pagenate_end must be a positive integer'
-      end
-      out.pagenate_end = out.pagenate_end + 1
-   end
-
-   return out
-end
+local read_body   = false
 
 --[[Function: get_json_subrequest
 
@@ -298,7 +223,7 @@ function helper.split(str, pat)
 end
 
 --[[Function: search_from_args
-Factory for keyword_search class.
+Factory for search class.
 
 @param pattern to search for.
 @param fields to search in.
@@ -312,26 +237,18 @@ function helper.search_from_args(patterns, fields, dflt_fields)
       return nil
    end
 
-   if fields and type(fields) ~= 'table' then
-      fields = { fields }
-   end
-
-   if patterns and type(patterns) ~= 'table' then
-      patterns = { patterns }
-   end
-
    for k, v in ipairs(patterns) do
-      local search = keyword_search.new()
+      local search = search.new()
 
       -- Get the list of keywords we're going to search for
       if fields and fields[k] then
-         local ret, err = search:set_fields(helper.split(fields[k], ', ?'))
+         local ret, err = search:set_fields(fields[k])
          if ret == false then
             return ngx.HTTP_BAD_REQUEST, err
          end
       else
          assert(dflt_fields and (table.getn(dflt_fields) > 0))
-         search:set_fields_default(dflt_fields)
+         search:set_fields(dflt_fields)
       end
 
       -- Set and validate the keyword pattern

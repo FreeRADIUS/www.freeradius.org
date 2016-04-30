@@ -59,4 +59,3 @@ GET /api/info/branch/test_branch_a/release/0.0.1/
 --- error_code: 200
 --- no_error_log
 [error]
-

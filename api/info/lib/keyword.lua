@@ -1,12 +1,6 @@
 local ngx    = require "ngx"
-local utf8   = require "lib.utf8_validator"
 
 local _m = {}
-
-_m.config = require "etc.info_api"
-_m.max_search_pattern_len = _m.config.max_search_pattern_len
-_m.max_search_fields = _m.config.max_search_fields
-_m.max_search_field_len = _m.config.max_search_field_len
 
 --[[Function: new
 Instantiate a new keyword search class
@@ -17,28 +11,28 @@ function _m:new()
    return self
 end
 
---[[Function: keyword_search_regex
+--[[Function: search_regex
 Case insensitive jit'd match using libpcre.
 --]]
-local function keyword_search_regex(value, pattern)
+local function search_regex(value, pattern)
    return not not ngx.re.find(value, pattern, "jio")
 end
 
---[[Function: keyword_search_find
+--[[Function: search_find
 Case sensitive match using Lua's pattern matching
 --]]
-local function keyword_search_find(value, pattern)
+local function search_find(value, pattern)
    return not not string.find(value, pattern)
 end
 
---[[Function: keyword_search_literal
+--[[Function: search_literal
 Case sensitive match string comparisons
 --]]
-local function keyword_search_literal(value, pattern)
+local function search_literal(value, pattern)
    return not not (value == pattern)
 end
 
---[[Function: keyword_search
+--[[Function: search
 Pattern match on fields
 
 @param json       object to search (recursively).
@@ -83,44 +77,11 @@ function _m:execute(json)
 end
 
 --[[Function: set_fields
-Check fields look sane and don't exceed configured limits
-
-@param one or path strings to check
-@return
-   - false, err - on error.
-   - true - on success.
---]]
-function _m:set_fields(fields)
-   if type(fields) ~= 'table' then
-      fields = { fields }
-   end
-
-   if table.getn(fields) > self.max_search_fields then
-      ngx.log(ngx.INFO, "Client attempted to search on " .. table.getn(fields) ..
-              "fields.  Max is " .. self.max_search_fields)
-      return false, "Too many search fields"
-   end
-
-   for k, v in ipairs(fields) do
-      assert(type(v) == 'string')
-
-      if not utf8.validate(v) or string.len(v) > self.max_search_field_len then
-         ngx.log(ngx.INFO, "Client sent overly long search field \"" .. v .. "\"")
-         return false, "Search field too long"
-      end
-   end
-
-   self.search_fields = fields
-
-   return true
-end
-
---[[Function: set_fields_default
 Set fields directly (without validation checks)
 
 @param fields to set.
 --]]
-function _m:set_fields_default(fields)
+function _m:set_fields(fields)
    if type(fields) ~= 'table' then
       fields = { fields }
    end
@@ -151,12 +112,6 @@ function _m:set_pattern(pattern)
       pattern = tostring(pattern)
    end
 
-   -- Protect against obvious fuzzing
-   if not utf8.validate(pattern) or string.len(pattern) > self.max_search_pattern_len then
-      ngx.log(ngx.INFO, "Client sent invalid keyword string")
-      return false, "Bad keyword string"
-   end
-
    -- Figure out what type of pattern _m is
    op = string.find(pattern, ':')
    if op ~= nil and op > 0 then
@@ -175,7 +130,7 @@ function _m:set_pattern(pattern)
          return false, err
       end
 
-      self.search_func = keyword_search_find
+      self.search_func = search_find
       self.search_pattern = pattern
 
       return true
@@ -194,7 +149,7 @@ function _m:set_pattern(pattern)
          return false, err
       end
 
-      self.search_func = keyword_search_regex
+      self.search_func = search_regex
       self.search_pattern = pattern
 
       return true
@@ -205,7 +160,7 @@ function _m:set_pattern(pattern)
         pattern = string.sub(pattern, op + 1)
    end
 
-   self.search_func = keyword_search_literal
+   self.search_func = search_literal
    self.search_pattern = pattern
 
    return true

@@ -1,8 +1,8 @@
 local cjson             = require "cjson"
 local ngx               = require "ngx"
 
-local helper            = require "lib.helper"
-local keyword_search    = require "lib.keyword_search"
+local helper   	      = require "lib.helper"
+local validate          = require "lib.validate"
 local indexer           = require "lib.indexer"
 
 local uri               = ngx.var.uri
@@ -14,13 +14,23 @@ local sane_args
 local ret, err
 
 -- Process helper arguments
-sane_args, err = helper.helper_get_args(get_args)
+sane_args, err = validate.get_args(get_args)
 if not sane_args then
    helper.fatal_error(ngx.HTTP_BAD_REQUEST, err)
 end
 
-local search, err = helper.search_from_args(get_args.by_keyword,
-                                            get_args.keyword_field,
+sane_args, err = validate.get_args_keyword(get_args, sane_args)
+if not sane_args then
+   helper.fatal_error(ngx.HTTP_BAD_REQUEST, err)
+end
+
+ret, err = validate.get_args_unknown(get_args)
+if not ret then
+   helper.fatal_error(ngx.HTTP_BAD_REQUEST, err)
+end
+
+local search, err = helper.search_from_args(sane_args.by_keyword,
+                                            sane_args.keyword_field,
                                             { 'name', 'description', 'branch', 'category' })
 if err then
    helper.fatal_error(search, err)
@@ -94,7 +104,7 @@ index:build(helper.config.srv_path .. "/branch/" .. branch .. "/release/")
 ret = search and index:filter(search, sane_args.keyword_expansion_depth)
 
 -- Sort by user specified field or by version
-ret = get_args.order_by and index:sort(get_args.order_by) or index:sort_with(version_sort)
+ret = sane_args.order_by and index:sort(sane_args.order_by) or index:sort_with(version_sort)
 
 -- Pagenate
 index:pagenate(pagenate_start, pagenate_end)

@@ -114,7 +114,7 @@ location ~ ^/api/info/component/[.0-9a-z_-]+/$ {
 --- request
 GET /api/info/component/?by_category=|authenticate
 --- response_body_json_eval
-{ "error" => 'Category names are restricted to [a-z-]' }
+{ "error" => 'category names are restricted to [a-z-]' }
 --- error_code: 400
 --- no_error_log
 [error]

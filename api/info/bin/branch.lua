@@ -1,7 +1,8 @@
 local cjson    	      = require "cjson"
 local ngx      	      = require "ngx"
 
-local helper            = require "lib.helper"
+local helper   	      = require "lib.helper"
+local validate          = require "lib.validate"
 
 local uri		         = ngx.var.uri
 
@@ -10,12 +11,19 @@ local sane_args
 local ret, err
 
 -- Process helper arguments
-sane_args, err = helper.helper_get_args(get_args)
+sane_args, err = validate.get_args(get_args)
 if not sane_args then
    helper.fatal_error(ngx.HTTP_BAD_REQUEST, err)
 end
 
-local branch = uri:match("^" .. helper.config.base_url .. "/branch/([^/]+)/")
+ret, err = validate.get_args_unknown(get_args)
+if not ret then
+   helper.fatal_error(ngx.HTTP_BAD_REQUEST, err)
+end
+
+local branch = ngx.re.match(uri, "^" .. helper.config.base_url .. "/branch/([^/]+)/", "jo")
+branch = branch[1]
+
 local ret, json = helper.get_json_file(helper.config.srv_path .. "/branch/" .. branch .. ".json")
 if ret == ngx.HTTP_NOT_FOUND then
    helper.fatal_error(ret, "Branch \"" .. branch .. "\" not found")

@@ -115,7 +115,7 @@ end
 
 Only keep entries that match the filter object
 
-@param search        Instance of keyword_search to use for filtering.
+@param search        Instance of search to use for filtering.
 @param search_exp    How many levels to expand for the search.
 
 --]]
@@ -171,48 +171,50 @@ function _m:filter(search, search_depth)
 end
 
 --[[Function: sort
-Sort table entries lexicographically on specified field
+Sort table entries lexicographically on specified v
 
-@param field(s) to sort on.
+@param v(s) to sort on.
 @param desc Sort in descending order.
 --]]
-function _m:sort(field, desc)
-   local fields;
+function _m:sort(v, desc)
+   local vs;
 
    self:expand()
 
-   if type(field) ~= 'table' then
-      fields = { field }
+   if type(v) ~= 'table' then
+      vs = { v }
+   else
+      vs = v
    end
 
-   for k, v in ipairs(fields) do
+   for k, v in ipairs(vs) do
       if desc then
          table.sort(self.index, function (a, b)
-            if not a[field] and not b[field] then
+            if not a[v] and not b[v] then
                return false
             end
-            if not a[field] then
+            if not a[v] then
                return true
             end
-            if not b[field] then
+            if not b[v] then
                return false
             end
 
-            return a[field] > b[field]
+            return a[v] > b[v]
          end)
       else
          table.sort(self.index, function (a, b)
-            if not a[field] and not b[field] then
+            if not a[v] and not b[v] then
                return true
             end
-            if not a[field] then
+            if not a[v] then
                return false
             end
-            if not b[field] then
+            if not b[v] then
                return true
             end
 
-            return a[field] < b[field]
+            return a[v] < b[v]
          end)
       end
    end
@@ -223,7 +225,7 @@ end
 --[[Function: sort_with
 Sort table entries using func
 
-@param field to sort on.
+@param v to sort on.
 --]]
 function _m:sort_with(func)
    self:expand()
