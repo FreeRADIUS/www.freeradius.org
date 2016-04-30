@@ -227,7 +227,6 @@ Sort table entries using func
 --]]
 function _m:sort_with(func)
    self:expand()
-
    table.sort(self.index, func)
 end
 
@@ -250,10 +249,6 @@ function _m:pagenate(first, last)
    end
 
    self.index = sliced
-end
-
-function _m:is_a(class)
-   return class == _m
 end
 
 return _m

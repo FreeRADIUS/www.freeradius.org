@@ -211,8 +211,4 @@ function _m:set_pattern(pattern)
    return true
 end
 
-function _m:is_a(class)
-   return class == _m
-end
-
 return _m
