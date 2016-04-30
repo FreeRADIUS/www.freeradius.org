@@ -95,8 +95,8 @@ function _m.get_args(get_args)
       end
 
       for i, v in ipairs(get_args.order_by) do
-         if not ngx.re.find(v, '^[a-z-]+$', 'jio') then
-            return nil, 'category names are restricted to [a-z-]'
+         if not ngx.re.find(v, '^[a-z0-9:_.-]+$', 'jio') then
+            return nil, 'field names are restricted to [a-zA-Z0-9:_.-]'
          end
       end
 

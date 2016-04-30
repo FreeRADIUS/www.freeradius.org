@@ -174,9 +174,8 @@ end
 Sort table entries lexicographically on specified v
 
 @param v(s) to sort on.
-@param desc Sort in descending order.
 --]]
-function _m:sort(v, desc)
+function _m:sort(v)
    local vs;
 
    self:expand()
@@ -188,34 +187,44 @@ function _m:sort(v, desc)
    end
 
    for k, v in ipairs(vs) do
-      if desc then
-         table.sort(self.index, function (a, b)
-            if not a[v] and not b[v] then
-               return false
-            end
-            if not a[v] then
-               return true
-            end
-            if not b[v] then
-               return false
-            end
+      local op = string.find(v, ':')
+      if op ~= nil and op > 0 then
+         desc = (string.sub(v, op + 1) == 'desc')
+         v = string.sub(v, 0, op - 1)
+      end
 
-            return a[v] > b[v]
-         end)
-      else
-         table.sort(self.index, function (a, b)
-            if not a[v] and not b[v] then
-               return true
-            end
-            if not a[v] then
-               return false
-            end
-            if not b[v] then
-               return true
-            end
+      assert(v)
 
-            return a[v] < b[v]
-         end)
+      if string.len(v) > 0 then
+         if desc then
+            table.sort(self.index, function (a, b)
+               if not a[v] and not b[v] then
+                  return false
+               end
+               if not a[v] then
+                  return true
+               end
+               if not b[v] then
+                  return false
+               end
+
+               return a[v] > b[v]
+            end)
+         else
+            table.sort(self.index, function (a, b)
+               if not a[v] and not b[v] then
+                  return true
+               end
+               if not a[v] then
+                  return false
+               end
+               if not b[v] then
+                  return true
+               end
+
+               return a[v] < b[v]
+            end)
+         end
       end
    end
 

@@ -49,7 +49,7 @@ function _m:execute(json)
    assert(self.search_pattern)
    assert(self.search_fields and table.getn(self.search_fields) > 0)
 
-   -- Check for fields starting at _m level
+   -- Check for fields at this level
    for k, v in ipairs(self.search_fields) do
       if json[v] ~= nil and type(json[v]) == "string" then
          local ret, err = self.search_func(json[v], self.search_pattern)
@@ -112,7 +112,7 @@ function _m:set_pattern(pattern)
       pattern = tostring(pattern)
    end
 
-   -- Figure out what type of pattern _m is
+   -- Figure out what type of pattern it is
    op = string.find(pattern, ':')
    if op ~= nil and op > 0 then
       -- Determine what filter we'll be using to search

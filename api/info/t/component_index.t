@@ -60,3 +60,40 @@ GET /api/info/component/?by_category=unknown&by_dependency_on=rlm_test
 --- error_code: 400
 --- no_error_log
 [error]
+
+=== TEST 3: Component index desc
+Verify we get entries representing all the components in the component directory
+
+--- main_config
+env TEST_DATA;
+--- http_config
+lua_shared_dict info_api_file_cache 5m;
+--- config
+root $TEST_NGINX_REPOSITORY_ROOT;
+location ~ ^/api/info/component/$  {
+	content_by_lua_file $document_root/api/info/bin/component_index.lua;
+}
+--- request
+GET /api/info/component/?order_by=name:desc
+--- response_body_json_eval
+[
+   {
+      'name'  => 'rlm_test_b',
+      'url'   => '/api/info/component/rlm_test_b/'
+   },
+   {
+      'name'  => 'rlm_test_a_sub_b',
+      'url'   => '/api/info/component/rlm_test_a_sub_b/'
+   },
+   {
+      'name'  => 'rlm_test_a_sub_a',
+      'url'   => '/api/info/component/rlm_test_a_sub_a/'
+   },
+   {
+      'name'  => 'rlm_test_a',
+      'url'   => '/api/info/component/rlm_test_a/'
+   }
+];
+--- error_code: 200
+--- no_error_log
+[error]
