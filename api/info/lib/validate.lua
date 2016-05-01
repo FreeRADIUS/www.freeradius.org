@@ -115,6 +115,13 @@ Process args specific to endpoints that perform keyword filtering
 @return sane arguments
 --]]
 function _m.get_args_keyword(get_args, out)
+   -- Strip out any empty strings
+   for k, v in pairs(get_args) do
+      if v == "" then
+         get_args[k] = nil
+      end
+   end
+
    if get_args.by_keyword then
       if type(get_args.by_keyword) ~= 'table' then
          get_args.by_keyword = { get_args.by_keyword }
