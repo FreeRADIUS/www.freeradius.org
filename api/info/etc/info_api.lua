@@ -14,7 +14,7 @@ config.base_url_len            = string.len(config.base_url) -- Don't edit manua
 config.file_cache_exp          = 300 * 1000      -- 5 Minute file cache
 config.search_max_len          = 256
 
-config.max_expansion_depth     = 3
+config.max_expansion_depth     = 4
 
 config.max_search_pattern_args = 5
 config.max_search_pattern_len  = 128

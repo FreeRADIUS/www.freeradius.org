@@ -61,7 +61,9 @@ sudo make install
 sudo make boostrap
 ```
 
-### Install luafilesystem using special OpenResty / LuaJIT version of LuaRocks
+### Install lua dependencies using special OpenResty / LuaJIT version of LuaRocks
 ```bash
 sudo /usr/local/openresty/luajit/bin/luarocks install luafilesystem
+sudo /usr/local/openresty/luajit/bin/luarocks install lua-resty-http
+sudo /usr/local/openresty/luajit/bin/luarocks install lua-zlib
 ```
