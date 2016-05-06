@@ -2,6 +2,18 @@
 	"name": "1.0.0-beta0",
 	"summary": "The focus of this release is testing",
 	"date": "2016-04-20T04:23:30Z",
+	"download": [
+		{
+			"name": "tar.gz",
+			"url": "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.gz",
+			"sig_url": "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.gz.sig"
+		},
+		{
+			"name": "tar.bz2",
+			"url": "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.bz2",
+			"sig_url": "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.bz2.sig"
+		}
+	],
 	"features": [
 		{
 			"description": "Test feature",
