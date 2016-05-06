@@ -1,0 +1,108 @@
+{
+	"name": "v3.1.0",
+	"summary": "This is the nightly snapshot of the v3.1.x branch",
+	"date": "2016-05-05T16:32:30Z",
+	"download": [
+		{
+			"name": "tar.gz",
+			"url": "https://github.com/FreeRADIUS/freeradius-server/archive/v3.1.x.tar.gz"
+		},
+		{
+			"name": "zip",
+			"url": "https://github.com/FreeRADIUS/freeradius-server/archive/v3.1.x.zip"
+		}
+	],
+	"features": [
+		{
+			"description": "Dropped support for -i and -p flags in radiusd"
+		},
+		{
+			"description": "New \"map\" function in unlang.  See \"man unlang\""
+		},
+		{
+			"description": "The EAP module tracks certificates in a different list.  See the upgrade instructions.",
+			"component": [
+				{
+					"name": "rlm_eap",
+					"url": "/api/info/component/rlm_eap/"
+				}
+			]
+		},
+		{
+			"description": "The EAP module produces much better messages when using TLS",
+			"component": [
+				{
+					"name": "rlm_eap_tls",
+					"url": "/api/info/component/rlm_eap_tls/"
+				},
+				{
+					"name": "rlm_eap_peap",
+					"url": "/api/info/component/rlm_eap_peap/"
+				},
+				{
+					"name": "rlm_eap_peap",
+					"url": "/api/info/component/rlm_eap_ttls/"
+				}
+			]
+		},
+		{
+			"description": "The MySQL and Postgresql modules now call the database string escape functions, instead of using \"safe_characters\"",
+			"component": [
+				{
+					"name": "rlm_sql_mysql",
+					"url": "/api/info/component/rlm_sql_mysql/"
+				},
+				{
+					"name": "rlm_sql_postgresql",
+					"url": "/api/info/component/rlm_sql_postgresql/"
+				}
+			]
+		},
+		{
+			"description": "radmin / raddebug can now stream debug output directly to radmin, instead of using an intermediary file"
+		},
+		{
+			"description": "radsniff stats (-W) now operates on PCAP files too"
+		},
+		{
+			"description": "radsniff stats can be printed in CSV format"
+		},
+		{
+			"description": "Improved internal state API, to simplify multiround authentication",
+			"component": [
+				{
+					"name": "rlm_eap",
+					"url": "/api/info/component/rlm_eap/"
+				}
+			]
+		},
+		{
+			"description": "ipaddr = * 'just works' for most DHCP configurations",
+			"component": [
+				{
+					"name": "rlm_proto_dhcp",
+					"url": "/api/info/component/rlm_proto_dhcp/"
+				}
+			]
+		},
+		{
+			"description": "Redis cluster support for all Redis modules",
+			"component": [
+				{
+					"name": "rlm_redis",
+					"url": "/api/info/component/rlm_redis/"
+				},
+				{
+					"name": "rlm_redis_ippool",
+					"url": "/api/info/component/rlm_redis_ippool/"
+				}
+			]
+		},
+		{
+			"description": "TLV Attributes can now be nested to nearly any depth"
+		},
+		{
+			"description": "radsnmp client which can listen on Net-SNMP \"pass persist\" and translate that into queries to the server"
+		}
+	]
+}
