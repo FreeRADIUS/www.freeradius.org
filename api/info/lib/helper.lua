@@ -50,14 +50,14 @@ function helper.get_json_subrequest(url)
       return ret.status
    elseif ret.status ~= ngx.HTTP_OK then
       ngx.log(ngx.ERR, "Subrequest for " .. url .. " failed with code " .. tostring(ret.status))
-      return ret.status
+      return ret.status, url
    end
 
    -- Decode JSON response
    local json, err = cjson.decode(" " .. ret.body)
    if not json then
       ngx.log(ngx.ERR, "Subrequest for " .. url .. " failed.  Can't decode JSON: " .. err)
-      return ngx.NGX_ERR
+      return ngx.NGX_ERR, url
    end
 
    -- Update the cache

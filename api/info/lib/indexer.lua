@@ -101,11 +101,11 @@ function _m:expand()
    -- else updates are lost in some circumstances.
    -- Seems like a bug.
    local work = self.index
-   local ret = helper.resolve_urls(work, self.need_depth)
+   local ret, url = helper.resolve_urls(work, self.need_depth)
    self.index = work
 
    if ret ~= ngx.OK then
-      helper.fatal_error(ret, "Error retrieving nested object (" .. tostring(ret) .. ")")
+      helper.fatal_error(ret, "Error retrieving nested object \"" .. url .. "\" (" .. tostring(ret) .. ")")
    end
 
    self.done_depth = self.need_depth
