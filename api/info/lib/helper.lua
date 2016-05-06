@@ -92,7 +92,7 @@ function helper.resolve_urls(json, depth)
       -- Send a sub-request to ourselves (or another site hosted on the same server)
       ret, sub = helper.get_json_subrequest(json["url"])
       if ret ~= ngx.OK then
-         return ret
+         return ret, sub
       end
 
       -- Clear out the old table entries
@@ -114,9 +114,9 @@ function helper.resolve_urls(json, depth)
    -- Recurse to deal with tables
    for k, v in pairs(json) do
       if type(v) == 'table' then
-         ret = helper.resolve_urls(v, depth)
+         ret, url = helper.resolve_urls(v, depth)
          if ret ~= ngx.OK then
-            return ret
+            return ret, sub
          end
       end
    end
