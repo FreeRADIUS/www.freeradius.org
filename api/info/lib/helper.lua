@@ -27,7 +27,7 @@ function helper.get_json_subrequest(url)
    -- internally using sub-requests and retrieving them directly.
    if cache then
       -- Can only cache local files
-      if string.find(url, helper.config.base_url) == 0 then
+      if string.find(url, helper.config.base_url) == 1 then
          local_path = string.sub(url, helper.base_len + 1)
          json = cache:get(local_path)
          if json then
@@ -89,7 +89,7 @@ function helper.resolve_urls(json, depth)
    -- Table with a URL field
    if depth > 0 and json["url"] ~= nil then
       -- Send a sub-request to ourselves (or another site hosted on the same server)
-      if string.find(json["url"], helper.config.base_url) ~= 0 then
+      if string.find(json["url"], "https?://") == 1 then
          return ngx.OK
       end
 
