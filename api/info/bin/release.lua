@@ -27,7 +27,7 @@ local release = match[2]
 
 local ret, json  = helper.get_json_file(helper.config.srv_path .. "/branch/" .. branch.. "/release/" .. release .. ".json")
 if ret == ngx.HTTP_NOT_FOUND then
-   helper.fatal_error(ret, "Release \"" .. rlease .. "\" not found")
+   helper.fatal_error(ret, "Release \"" .. release .. "\" not found")
 elseif ret ~= ngx.OK then
    helper.fatal_error(ret)
 end
