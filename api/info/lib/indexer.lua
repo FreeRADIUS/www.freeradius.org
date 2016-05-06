@@ -149,7 +149,7 @@ function _m:filter(search, search_depth)
          if search_depth > self.done_depth then
             local ret = helper.resolve_urls(to_search, search_depth - self.done_depth)
             if ret ~= ngx.OK then
-               helper.fatal_error(ret, "Error retrieving nested object (" .. tostring(ret) .. ")")
+               helper.fatal_error(ret, "Error retrieving nested object \"" .. url .. "\" (" .. tostring(ret) .. ")")
             end
          end
 
