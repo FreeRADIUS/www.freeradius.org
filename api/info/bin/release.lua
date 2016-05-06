@@ -34,9 +34,9 @@ end
 
 -- Server side expansion of URL fields using subrequests
 if sane_args.expansion_depth and sane_args.expansion_depth > 0 then
-   local ret = helper.resolve_urls(json, sane_args.expansion_depth)
+   local ret, url = helper.resolve_urls(json, sane_args.expansion_depth)
    if ret ~= ngx.OK then
-      helper.fatal_error(ret, "Error retrieving nested object (" .. tostring(ret) .. ")")
+      helper.fatal_error(ret, "Error retrieving nested object \"" .. url .. "\" (" .. tostring(ret) .. ")")
    end
 end
 
