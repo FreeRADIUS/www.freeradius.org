@@ -90,7 +90,7 @@ function helper.resolve_urls(json, depth)
    if depth > 0 and json["url"] ~= nil then
 
       -- Send a sub-request to ourselves (or another site hosted on the same server)
-      if string.find(json["url"]), helper.config.base_url) == 0 then
+      if string.find(json["url"], helper.config.base_url) == 0 then
          ret, sub = helper.get_json_subrequest(json["url"])
          if ret ~= ngx.OK then
             return ret, sub
