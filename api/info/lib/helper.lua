@@ -89,7 +89,7 @@ function helper.resolve_urls(json, depth)
    -- Table with a URL field
    if depth > 0 and json["url"] ~= nil then
       -- Send a sub-request to ourselves (or another site hosted on the same server)
-      if string.find(json["url"], "https?://") == 1 then
+      if string.find(json["url"], "%a+://") == 1 then
          return ngx.OK
       end
 
