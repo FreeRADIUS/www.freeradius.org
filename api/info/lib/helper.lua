@@ -47,7 +47,7 @@ function helper.get_json_subrequest(url)
    -- Make internal request to resolve URLs
    local ret = ngx.location.capture(url, {args = {}})
    if ret.status == ngx.HTTP_NOT_FOUND then
-      return ret.status
+      return ret.status, url
    elseif ret.status ~= ngx.HTTP_OK then
       ngx.log(ngx.ERR, "Subrequest for " .. url .. " failed with code " .. tostring(ret.status))
       return ret.status, url
