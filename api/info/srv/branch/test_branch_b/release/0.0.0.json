@@ -2,7 +2,7 @@
 	"name": "0.0.0",
 	"summary": "The focus of this release is testing",
 	"date": "2015-04-20T12:23:30Z",
-	[
+	"download": [
 		{
 			"name": "tar.gz",
 			"url": "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.gz",
