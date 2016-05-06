@@ -158,8 +158,8 @@ function helper.get_json_file(file)
       fandle:close()
    end
 
-   local json, err = pcall(cjson.decode, content)
-   if not json then
+   local ret, json, err = pcall(cjson.decode, content)
+   if not ret then
       ngx.log(ngx.ERR, "Decoding " .. file .. " as json failed: " .. err)
       return ngx.NGX_ERR
    end
