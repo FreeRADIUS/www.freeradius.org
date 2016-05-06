@@ -40,7 +40,7 @@
 					"url": "/api/info/component/rlm_eap_peap/"
 				},
 				{
-					"name": "rlm_eap_peap",
+					"name": "rlm_eap_ttls",
 					"url": "/api/info/component/rlm_eap_ttls/"
 				}
 			]
@@ -80,8 +80,8 @@
 			"description": "ipaddr = * 'just works' for most DHCP configurations",
 			"component": [
 				{
-					"name": "rlm_proto_dhcp",
-					"url": "/api/info/component/rlm_proto_dhcp/"
+					"name": "proto_dhcp",
+					"url": "/api/info/component/proto_dhcp/"
 				}
 			]
 		},
