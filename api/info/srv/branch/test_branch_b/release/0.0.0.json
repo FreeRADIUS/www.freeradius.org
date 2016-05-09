@@ -14,6 +14,16 @@
 			"sig_url": "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.bz2.sig"
 		}
 	],
+	"mirror": [
+		{
+			"name": "Mirror 1 (foo)",
+			"url": "https://github.com/FreeRADIUS/freeradius-server/archive/v3.1.x.tar.gz"
+		},
+		{
+			"name": "Mirror 2 (bar)",
+			"url": "https://github.com/FreeRADIUS/freeradius-server/archive/v3.1.x.tar.gz"
+		}
+	],
 	"features": [
 		{
 			"description": "Test feature",
