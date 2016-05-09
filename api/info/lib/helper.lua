@@ -28,7 +28,7 @@ function helper.get_json_subrequest(url)
    if cache then
       -- Can only cache local files
       if string.find(url, helper.config.base_url) == 1 then
-         local_path = string.sub(url, helper.base_len + 1)
+         local_path = string.sub(url, helper.config.base_url_len + 1)
          json = cache:get(local_path)
          if json then
             return ngx.OK, json
@@ -62,7 +62,7 @@ function helper.get_json_subrequest(url)
 
    -- Update the cache
    if cache and local_path then
-      cache.set(local_path, json)
+      cache:set(local_path, json)
    end
 
    return ngx.OK, json
