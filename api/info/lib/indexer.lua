@@ -179,7 +179,7 @@ Sort table entries lexicographically on specified field
 @param v(s) to sort on.
 --]]
 function _m:sort(field)
-   local vs;
+   local i, v
 
    self:expand()
 
@@ -189,50 +189,40 @@ function _m:sort(field)
       fields = field
    end
 
-   for k, v in ipairs(fields) do
-      local op = string.find(v, ':')
-      if op ~= nil and op > 0 then
-         desc = (string.sub(v, op + 1) == 'desc')
-         v = string.sub(v, 0, op - 1)
-      end
+   table.sort(self.index, function (a, b)
+      for i, v in ipairs(fields) do
+         local desc
+         local op = string.find(v, ':')
 
-      assert(v)
+         if string.len(v) > 0 then
+            if op ~= nil and op > 0 then
+               desc = (string.sub(v, op + 1) == 'desc')
+               v = string.sub(v, 0, op - 1)
+            end
 
-      if string.len(v) > 0 then
-         if desc then
-            table.sort(self.index, function (a, b)
-               if not a[v] and not b[v] then
-                  return false
-               end
-               if not a[v] then
-                  return true
-               end
-               if not b[v] then
-                  return false
-               end
+            if not a[v] and not b[v] then
+               return desc
+            end
+            if not a[v] then
+               return not desc
+            end
+            if not b[v] then
+               return desc
+            end
 
-               return a[v] > b[v]
-            end)
-         else
-            table.sort(self.index, function (a, b)
-               if not a[v] and not b[v] then
-                  return true
+            if a[v] ~= b[v] then
+               if desc then
+                  return a[v] > b[v]
+               else
+                  return a[v] < b[v]
                end
-               if not a[v] then
-                  return false
-               end
-               if not b[v] then
-                  return true
-               end
-
-               return a[v] < b[v]
-            end)
+            end
          end
       end
-   end
-
+   end)
    return true
 end
+
 
 --[[Function: sort_with
 Sort table entries using func
