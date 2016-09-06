@@ -1,0 +1,11 @@
+2016/04/30 13:51:35 [notice] 7975#0: using the "kqueue" event method
+2016/04/30 13:51:35 [notice] 7975#0: openresty/1.9.7.4
+2016/04/30 13:51:35 [notice] 7975#0: built by clang 7.3.0 (clang-703.0.29)
+2016/04/30 13:51:35 [notice] 7975#0: OS: Darwin 15.4.0
+2016/04/30 13:51:35 [notice] 7975#0: hw.ncpu: 8
+2016/04/30 13:51:35 [notice] 7975#0: net.inet.tcp.sendspace: 131072
+2016/04/30 13:51:35 [notice] 7975#0: kern.ipc.somaxconn: 128
+2016/04/30 13:51:35 [notice] 7975#0: getrlimit(RLIMIT_NOFILE): 256:9223372036854775807
+2016/04/30 13:51:35 [notice] 7976#0: signal 3 (SIGQUIT) received, shutting down
+2016/04/30 13:51:35 [info] 7976#0: kevent() failed (4: Interrupted system call)
+2016/04/30 13:51:35 [notice] 7976#0: exit

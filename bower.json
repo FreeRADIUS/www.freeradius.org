@@ -1,0 +1,19 @@
+{
+  "name": "free-radius",
+  "version": "0.0.0",
+  "homepage": "https://github.com/PilotInteractive/free-radius",
+  "authors": [
+    "Dillon Headley <dillonbheadley@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation-sites": "^6.1.2"
+  }
+}

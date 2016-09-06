@@ -1,0 +1,29 @@
+input[type="text"],
+select,
+textarea,
+{
+    background: $block-light;
+    border: 0;
+    padding: $baseSpacing / 2;
+    &.search {
+        background: $block-light url("../img/search.svg") no-repeat right;
+        padding-right: 40px;
+        width: 300px;
+        max-width: 100%;
+        border-radius: 6px;
+        border: 1px solid $stroke-light;
+    }
+}
+select {
+    height: 50px;
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+    background-image: url("../img/selectarrows.svg");
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 8px) center;
+    padding-right: 30px;
+    border: 1px solid $stroke-light;
+
+}

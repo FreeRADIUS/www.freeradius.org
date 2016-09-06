@@ -1,0 +1,83 @@
+
+/**
+ * Colours
+ */
+
+$text-dark: #333333;
+$text-mid: #666666;
+$text-light: #A3A3A3;
+$text-white: #FFFFFF;
+$text-link: #01A5E0;
+$text-alert: #E53528;
+
+$text-nav: #505f66;
+
+$accent-blue: #01A5E0;
+$accent-light-blue: #67c9ec;
+$accent-dark-blue: #093448;
+$accent-yellow: #F4D642;
+$accent-green: #39B790;
+$accent-red: #E53528;
+$accent-orange: #E5772F;
+$accent-purple: #7056DB;
+$accent-grey: #B5C3C6;
+
+$block-dark: #051A24;
+$block-mid: #666666;
+$block-navy: $accent-dark-blue;
+$block-light: #FCFCFC;
+$block-hero: #F0FBFC;
+
+$stroke-light: #E1E7E8;
+
+/**
+ * Typography
+ */
+
+$h1Size: 36px;
+$h2Size: 28px;
+$h3Size: 28px;
+$h4Size: 21px;
+$h5Size: 14px;
+$h6Size: 14px;
+$bodyFontSize: 18px;
+$linkFontSize: 14px;
+$smallFontSize: 12px;
+
+/**
+ * Spacing
+ */
+$baseSpacing: 30px;
+$smSpacing: 20px;
+// $lgSpacing: 60px;
+
+/**
+ * Grid Variables
+ */
+
+$breakpoints: (
+  small: 0,
+  smallish: 480px,
+  medium: 640px,
+  large: 1024px,
+  xlarge: 1200px,
+  xxlarge: 1440px,
+);
+$breakpoint-classes: (small smallish medium large);
+
+// The Grid
+// -----------
+$global-text-direction: ltr !default;
+
+$global-width: rem-calc(1100) !default;
+$global-left: if($global-text-direction == rtl, right, left);
+$global-right: if($global-text-direction == rtl, left, right);
+
+$grid-row-width: $global-width;
+$grid-column-count: 12;
+$grid-column-responsive-gutter: (
+  small: 20px,
+  medium: 30px,
+);
+$grid-column-align-edge: true;
+$block-grid-max: 8;

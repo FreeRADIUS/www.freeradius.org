@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html ng-app="freeradius">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>About Us</title>
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="freeradius.surge.sh/about/">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.surge.sh/feed.xml">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
+    <meta name="msapplication-TileColor" content="#da532c ">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+</head>
+
+
+  <body>
+
+    <div class="global-nav">
+  <div class="global_links pull_right">
+    <div class="global_link global_link_label h5 text">Our sites:</div>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>radius</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>radius</div></a>
+  </div>
+</div>
+
+<header class="site-header" global-header ng-class="{fixed: fixNav}">
+  <div class="site-header-wrapper">
+
+    <a class="site-title" href="/"><img src="../img/wordmark.svg"></a>
+    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
+      <svg viewBox="0 0 18 15">
+        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+      </svg>
+    </button>
+
+    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
+
+      <div class="get-release">
+      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
+      </div>
+
+      <ul class="site-nav-list">
+        
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/releases/">Releases</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/documentation/">Documentation</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/modules/">Modules</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/community/">Community</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/about/">About</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/support/">Support</a>
+              </li>
+            
+          
+        
+      </ul>
+
+    </nav>
+
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+
+        <article class="post">
+  <header class="post-header">
+    <div class="post-hero hero-about">
+      <div class="wrapper">
+      	<h1 class="post-title">About Us</h1>
+      	<p class="post-subtitle">The FreeRADIUS Server Project</p> 
+      </div>
+    </div>
+  </header>
+  
+  	<div class="sub-nav">
+	<div class="wrapper">
+        <nav class="inline_nav" sub-nav>
+            <ul>
+                
+                
+        			<li class="active">
+                        <a class="subnav_link" href="#project">The Project</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="#usage_statistics">Usage Statistics</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="#team">Team</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="#security">Security</a>
+                    </li>
+        		
+            </ul>
+        </nav>
+	</div>
+</div>
+
+  
+
+  <div class="post-content">
+      <div class="wrapper" id="project">
+	<section class="lg_padding_h base_padding_v">
+		<h3 class="section-title text_centered">The FreeRadius Server Project</h3>
+		<p>FreeRADIUS was founded in June 1999 by Miquel van Smoorenburg and Alan DeKok. The first public "alpha" release of the code was in August 1999, with 0.1 being released in May 2001. Since then, new versions have been released every few months.</p>
+
+		<div class="text_centered lg_padding_h base_padding_v">
+			<img src="../img/quote.svg" alt="" class="icon_small">
+			<h3>FreeRadius is used daily by 100 million people to access the Internet.</h3>
+			<img src="../img/octo-bright.svg" alt="" class="icon_medium block">
+		</div>
+
+		<p>Since then, the project has grown to include support for more authentication types than any other open source server. It is used daily by <a href="#usage_statistics">100 million people</a> to access the Internet. There are over 50 thousand sites using FreeRADIUS, ranging in size from 10 users to over 10 million users.</p>
+
+		<p>Since its founding, the project has expanded to include a number of other RADIUS related products, including:</p>
+		<p>
+		<a href="/sub_projects/">freeradius-client</a>	A BSD licensed RADIUS client library.<br>
+		<a href="/sub_projects/">mod_auth_radius</a> 	A RADIUS module for Apache 1.x and 2.x.<br>
+		<a href="/sub_projects/">pam_radius_auth</a> 	A Pluggable Authentication Module (PAM) for RADIUS authenticationand accounting.</p>
+	</section>
+</div>
+
+<div class="about_stats_bg" id="usage_statistics">
+	<div class="wrapper">
+		<h2 class="text_centered">By the numbers</h2>
+		<p class="text_centered lg_padding_h">We recently commissioned a survey of FreeRADIUS users, in order to see how people are using the server. Here’s what the results showed:</p>
+		<div class="row about_stats_tabs">
+			<div class="stat-tab" ng-class="{active: trigger_active == '#tab-1'}" tab-trigger ng-click="toggle('#tab-1')" ng-init="trigger_active = '#tab-1'">No. of Users authenticated via FreeRADIUS</div>
+			<div class="stat-tab" ng-class="{active: trigger_active == '#tab-2'}" tab-trigger ng-click="toggle('#tab-2')">No. of RADIUS servers at each site</div>
+			<div class="stat-tab" ng-class="{active: trigger_active == '#tab-3'}" tab-trigger ng-click="toggle('#tab-3')">Databases where user information is stored</div>
+			<div class="stat-tab" ng-class="{active: trigger_active == '#tab-4'}" tab-trigger ng-click="toggle('#tab-4')">Authentication Protocols</div>
+			<div class="stat-tab" ng-class="{active: trigger_active == '#tab-5'}" tab-trigger ng-click="toggle('#tab-5')">Other RADIUS Servers</div>
+		</div>
+	</div>
+</div>
+
+<div class="wrapper base_margin_b" content-group>
+
+	<section id="tab-1" tab-content ng-show="active == '#tab-1'" ng-init="active = '#tab-1'">
+		<div class="row">
+			<div class="columns medium-8">
+				<p><span class="emphasis">Most sites using FreeRADIUS are intermediate in size,</span> and are probably running the server in enterprise (i.e. corporate) environments, or in small ISPs. Over 90% of the sites have less than 100,000 users.</p>
+
+			 	<div class="row base_padding_v">
+			 		<div class="columns medium-3"><img src="../img/world.svg"></div>
+			 		<div class="columns medium-9 h3">FreeRadius is responsible for authenticating  a third of all users on the Internet.</div>
+			 	</div>
+
+				<p><span class="emphasis">There are a small percentage of sites have over 10,000,000 (that's 10 MILLION) users.</span> When we add up all of the sites, the total comes to about 100,000,000 users who are authenticated via FreeRADIUS. And that number includes only the sites that filled out the survey!</p>
+
+				<p><span class="emphasis">In total it is estimated that FreeRadius is responsible for authenticating more than &frac13; of users on the internet.</span> Other users are split between Cisco ACS and Microsoft IAS (each with an equal share); and all the other Radius servers combined. </p>
+			</div>
+			<div class="columns medium-4">
+				<h1 class="h5 stats-head text_accent-blue">Number of Users</h1>
+				<table class="stats-table">
+				<tr><td>1 &ndash; 10</td><td>14&percnt;</td></tr>
+				<tr><td>11 &ndash; 100</td><td>17&percnt;</td></tr>
+				<tr><td>&hellip; &ndash; 10&Hat;3</td><td>25&percnt;</td></tr>
+				<tr><td>&hellip; &ndash; 10&Hat;4</td><td>25&percnt;</td></tr>
+				<tr><td>&hellip; &ndash; 10&Hat;5</td><td>13&percnt;</td></tr>
+				<tr><td>&hellip; &ndash; 10&Hat;6</td><td>4&percnt;</td></tr>
+				<tr><td>&hellip; &ndash; 10&Hat;7</td><td>&lt; 1&percnt;</td></tr>
+				<tr><td>10&Hat;7 or more</td><td>1&percnt;</td></tr>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section id="tab-2" tab-content ng-show="active == '#tab-2'">
+		<div class="row">
+			<div class="columns medium-8">
+				<p><span class="emphasis">Not surprisingly, most sites have a very small number of servers. A few sites (likely the biggest ones) have a large number of servers.</span></p>
+
+				<p>It looks like most sites under 10000 users have one or two servers. As the number of users grows, so does the number of servers used. A few sites have more than 50 servers, likely because they are placing servers at multiple locations.</p>
+			</div>
+			<div class="columns medium-4">
+				<h1 class="h5 stats-head text_accent-blue">Number of Servers</h1>
+				<table class="stats-table">
+					<tr><td>1 &ndash; 2</td><td>70&percnt;</td></tr>
+					<tr><td>3 &ndash; 5</td><td>19&percnt;</td></tr>
+					<tr><td>6 &ndash; 10</td><td>6&percnt;</td></tr>
+					<tr><td>11 &ndash; 20</td><td>2&percnt;</td></tr>
+					<tr><td>21 or more</td><td>&lt; 2&percnt;</td></tr>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section id="tab-3" tab-content ng-show="active == '#tab-3'">
+		<div class="row">
+			<div class="columns medium-8">
+				<p><span class="emphasis">Taken together the various SQL modules account for nearly 50% of deployments.</span> The only surprise is that Active Directory has such a low ranking, as it is the database used in most internal corporate (i.e. enterprise) environments. The conclusion that we can reach from this is that the people filling out this survey are probably ISP's and resellers rather than enterprise IT administrators.</p>
+
+				<p>Another conclusion is that if you have to store a few million users in a database, Active Directory probably isn't your first choice.</p>
+			</div>
+			<div class="columns medium-4">
+				<h1 class="h5 stats-head text_accent-blue">Databases used</h1>
+				<table class="stats-table">
+					<tr><td>MySQL</td><td>32&percnt;</td></tr>
+					<tr><td>users file</td><td>22&percnt;</td></tr>
+					<tr><td>OpenLDAP</td><td>15&percnt;</td></tr>
+					<tr><td>Active Directory</td><td>13&percnt;</td></tr>
+					<tr><td>PostgreSQL</td><td>8&percnt;</td></tr>
+					<tr><td>Oracle</td><td>5&percnt;</td></tr>
+					<tr><td>Other</td><td>&lt;4&percnt;</td></tr>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section id="tab-4" tab-content ng-show="active == '#tab-4'">
+		<div class="row">
+			<div class="columns medium-8">
+				<p>Most sites are using RADIUS for dial-in user authentication. e.g. Telephone dial-up, ADSL, etc. The number of wireless deployments is large, though, at just over a third. We expect that there will be more new wireless deployments in the future.</p>
+
+				<p>While we haven't broken the numbers out here, PEAP, EAP-TLS, and EAP-TTLS all have about the same share of the wireless space.</p>
+			</div>
+			<div class="columns medium-4">
+				<h1 class="h5 stats-head text_accent-blue">Authentication Protocols</h1>
+				<table class="stats-table">
+					<tr><td>PAP, etc.</td><td>61&percnt;</td></tr>
+					<tr><td>Wireless (EAP)</td><td>35&percnt;</td></tr>
+					<tr><td>Digest (VOIP)</td><td>4&percnt;</td></tr>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section id="tab-5" tab-content ng-show="active == '#tab-5'">
+		<div class="row">
+			<div class="columns medium-8">
+				<p>Not everyone uses FreeRADIUS, so we also asked what other RADIUS servers people have used.</p>
+
+				<p>As mentioned above, ACS and IAS have about an equal market share, and together account for about 50% of other servers. Another 40% is shared pretty much equally between a few well-known RADIUS servers. The last 10% is a jumble of old servers (some very old), or servers that are targetted towards niche markets.</p>
+
+				<p>The numbers for Funk and Radiator are probably too low, because the survey was focussed on sites that have chosen to deploy Open Source. For the same reasons mentioned before, we expect that enterprises who have chosen to use a commercial product have also not filled out the survey.</p>
+			</div>
+			<div class="columns medium-4">
+				<h1 class="h5 stats-head text_accent-blue">Other servers</h1>
+				<table class="stats-table">
+					<tr><td>Cisco ACS</td><td>24&percnt;</td></tr>
+					<tr><td>Microsoft IAS</td><td>23&percnt;</td></tr>
+					<tr><td>Cistron</td><td>12&percnt;</td></tr>
+					<tr><td>Funk</td><td>11&percnt;</td></tr>
+					<tr><td>OpenRADIUS</td><td>10&percnt;</td></tr>
+					<tr><td>Radiator</td><td>10&percnt;</td></tr>
+					<tr><td>Other</td><td>10&percnt;</td></tr>
+				</table>
+			</div>
+		</div>
+	</section>
+
+
+</div>
+
+<div class="grey-block">
+	<div class="wrapper">
+		<p class="small-print text_centered lg_padding_h">The survey was commissioned because RADIUS servers are usally hidden inside of private networks (for very good reasons), and are not publicly accessibly like HTTP or DNS servers. That is, <a href="http://httpd.apache.org/">Apache</a> can say that it is the number one HTTP server in the Internet because of public results from <a href="http://news.netcraft.com/archives/web_server_survey.html">Netcraft</a>. In order to get the same data, we have to go ask site administrators what they are using. The good news is that over 500 responses to the survey were received, with the results as of November 2006 summarized as shown above.</p>
+	</div>
+</div>
+
+<div class="wrapper base_padding_v" id="team">
+	<h2 class="text_centered">Meet The Team</h2>
+	<div class="row base_padding_v">
+		<div class="column medium-6">
+			<img src="../img/profile-temp.png" class="base_margin_b">
+			<h1 class="h4">Alan DeKok <small class="italic text-mid">Project Leader</small></h1>
+			<p>Alan Dekok co-founded FreeRADIUS in 1999 and continues to lead the project today. He is recognized as one of the world's leading experts on remote network and AAA frameworks, and he has co-authored numerous AAA and RADIUS related RFCs. Alan is the CEO of <a href="http://networkradius.com/">NetwokRADIUS SARL</a>.</p>
+			<a href="#"><img class="icon_xsmall" src="../img/github.svg"></a>
+			<a href="#"><img class="icon_xsmall" src="../img/twitter.svg"></a>
+			<a href="http://deployingradius.com/blog/" class="headline-link text-mid uppercase">deployingradius.com/blog/</a>
+		</div>
+		<div class="column medium-6">
+			<img src="../img/profile-temp.png" class="base_margin_b">
+			<h1 class="h4">Arran Cudbard-Bell <small class="italic text-mid">Principal Architect</small></h1>
+			<p>Arran has a penchant for policy driven networking. He has been a contributor since 2007 and core team member since 2012, and has authored and rewritten many modules. He contributes heavily to code documentation, modernisation, re-architecture, and cleanup efforts. Arran is a member of the Janet 802.1X SIG, and Director of <a href="#">RM-RF LTD</a>.</p>
+			<a href="#"><img class="icon_xsmall" src="../img/github.svg"></a>
+			<a href="#"><img class="icon_xsmall" src="../img/twitter.svg"></a>
+			<a href="#" class="headline-link text-mid uppercase">rm-rfi.com/blog/</a>
+		</div>
+	</div>
+	<img src="../img/team-temp.png">
+</div>
+
+<div class="about_team_block">
+	<div class="wrapper text-white">
+		<div class="row base_padding_v">
+			<div class="column medium-4 italic">Core Team</div>
+			<div class="column medium-4 emphasis">Phil Mayers</div>
+			<div class="column medium-4 emphasis">Matthew Newton</div>
+		</div>
+		<div class="row base_padding_v base_margin_b">
+			<div class="column medium-4 italic">Former Core Members</div>
+			<div class="column medium-4 emphasis">
+				Nicolas Baradakis<br>
+				Frank Cusack<br>
+				Kostas Kalevras<br>
+			</div>
+			<div class="column medium-4 emphasis">
+				Peter Nixon<br>
+				Chris Parker
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="wrapper lg_padding_v" id="security">
+	<h3 class="section-title">Security Contact</h3>
+	<div class="row">
+		<div class="columns medium-8">
+			<p>The FreeRADIUS security contact is <a href="mailto:security@freeradius.org">security@freeradius.org</a>. All security related information or notifications should be sent to that address. Security notifications may be signed with the pgp key <a href="mailto:aland@freeradius.org">aland@freeradius.org</a>.</p>
+
+		</div>
+		<div class="quick-links columns medium-4 text_accent-blue">
+			<a href="/security_issues/">
+				<div class="link block">
+	                <img src="../img/security.svg" alt="" class="icon">
+	                <span class="h5 text-mid">Security issues Updates</span><img class="arrow" src="../img/arrow-right.svg">
+	            </div>
+            </a>
+		</div>
+	</div>
+</div>
+  </div>
+
+</article>
+
+
+    </div>
+
+    <footer class="global_footer bg_block-dark lg_padding_v">
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <div class="footer_main">
+                    <img class="footer_logo" width="150" src="../img/wordmark-white.svg" alt="">
+                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
+                    <div class="footer-social">
+                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
+                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
+                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
+                    </div>
+                    <p>&copy; 2015 The FreeRADIUS Server Project Support and Contributors</p>
+                </div>
+            </div>
+            <div class="columns medium-8">
+                <nav class="footer_nav h6 row small-up-2">
+                    <ul>
+                        <li><a href="/documentation/">Docs</a></li>
+                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
+                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
+                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
+                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
+                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/modules/">Modules</a></li>
+                        <li><a href="/modules/">Packages</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/community/">Community</a></li>
+                        <li><a href="/support/">Mailing Lists</a></li>
+                        <li><a href="/community/#contributing">Contribute</a></li>
+                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/about/#project">The Project</a></li>
+                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
+                        <li><a href="/about/#security">Security</a></li>
+                        <li><a href="/about/#team">Team</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/support/">Support</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
+                        <li><a href="/security_issues/">Security Issues</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
+                        <li><a href="/support/">Newsletters</a></li>
+                        <li><a href="/commercial_support/">Commercial</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/app.js"></script>
+
+  </body>
+
+</html>

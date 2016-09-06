@@ -1,0 +1,110 @@
+---
+layout: page
+title: Community
+subtitle: Get involved, connect with us
+permalink: /community/
+navorder: 400
+hero: community
+
+subnav:
+ - text: Mailing list
+   link: '#mailing_list'
+ - text: Contributing modules
+   link: '#contributing'
+ - text: Developer docs
+   link: '#developer_docs'
+ - text: Connect with us
+   link: '#connect'
+---
+<div class="wrapper" id="mailing_list">
+    <div class="base_padding_v">
+    <h3 class="section-title">Stay up to date with Mailing Lists</h3>
+        <div class="row base_margin_b">
+            <div class="columns medium-8">
+                <p>Our mailing lists keep you up to date with current issues, technical developements and general announcements for users and developers.</p>
+            </div>
+            <div class="quick-links columns medium-4 text_accent-blue">
+                <a href="/support/">
+                    <div class="link block">
+                        <img src="../img/mail.svg" alt="" class="icon">
+                        <span class="h5 text-mid">Join mailing lists</span><img class="arrow" src="../img/arrow-right.svg">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="map_section text_centered bg_block-hero" id="contributing">
+    <div class="wrapper base_margin_b">
+        <div id='map'></div>
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
+        <script>
+
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZGlsbG9uLXBpbG90IiwiYSI6ImNpbHNobzk3dDAwMTV0eWtyNTdzM3hueTMifQ.rs8ORrHG7Y9Rg2WjB9glEg';
+            // mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZXJhZGl1cyIsImEiOiJjaWx0ZmtneXMwMDM3dnFtNmhheXA5N3FlIn0.rWA-VJLxadgsto6tjRSPnw';
+            var map = new mapboxgl.Map({
+                container: 'map', // container id
+                style: 'mapbox://styles/dillon-pilot/cilshysxr009va7lt1rvuqiu6', //stylesheet location
+                // style: 'mapbox://styles/freeradius/ciltjr1ei00l2c3lw552jyufy', //stylesheet location
+                center: [10, 40], // starting position
+                zoom: 1.03, // starting zoom
+                scrollZoom: false,
+            });
+        </script>
+    </div>
+    <div class="wrapper base_padding_v">
+        <h3 class="h4">Our community is making commits worldwide – see how you can get involved below</h3>
+        <img src="../img/arrow-down.svg" class="icon_xsmall">
+    </div>
+</section>
+
+<section class="text_centered lg_padding_v">
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <img class="icon_medium" src="../img/develop-modules.svg" alt="">
+                <p class="h5">Develop new modules</p>
+                <p>API documentation, C code examples, and anything else you need to get up-to-speed and writing modules for FreeRADIUS.</p>
+                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+            </div>
+            <div class="columns medium-4">
+                <img class="icon_medium" src="../img/submit-modules.svg" alt="">
+                <p class="h5">Submit new modules</p>
+                <p>Developed your own module? Great! Submit your code back to the project and have it maintained by the community.</p>
+                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+            </div>
+            <div class="columns medium-4">
+                <img class="icon_medium" src="../img/patch-issues.svg" alt="">
+                <p class="h5">Patch issues</p>
+                <p>Found an issue? We accept patches for everything, from code, to documentation, to this website!  </p>
+                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="wrapper" id="developer_docs">
+    <div class="base_padding_v">
+        <h3 class="section-title">Documentation: Showing what’s possible</h3>
+        <div class="row base_margin_b">
+                <div class="columns medium-8">
+                    <p>Our <a href="http://networkradius.com/doc/current">official documentation</a> provides a comprehensive guide to configuring and deploying FreeRADIUS, but it is the user contributions to the <a href="http://wiki.freeradius.org/Home">Wiki</a> that build on the official documentation and demonstrate the server's true flexibility and utility. Even if you can't code, cookbook recipes and deployment guides are great ways to give back to the community!</p>
+                </div>
+                <div class="quick-links columns medium-4 text_accent-blue">
+                    <a href="http://wiki.freeradius.org/Home">
+                        <div class="link block">
+                            <img src="../img/wiki.svg" alt="" class="icon">
+                            <span class="h5 text-mid">Visit Wiki</span><img class="arrow" src="../img/arrow-right.svg">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg_block-light base_padding_v">
+    <div class="wrapper text_centered" id="connect">
+        {% include social_feeds.html %}
+    </div>
+</div>

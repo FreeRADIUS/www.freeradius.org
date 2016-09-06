@@ -1,0 +1,164 @@
+---
+layout: page
+title: Releases
+permalink: /release_notes/
+subtitle: Version downloads and complete release notes
+subpage: true
+hero: releases
+
+subnav:
+    data: releases_subnav
+
+---
+<div ng-controller="ReleaseNotesPage">
+    <header class="modules_header">
+        <div class="wrapper base_padding_v">
+            <div class="row">
+                <div class="columns medium-4">
+                    <h3 class="section-title">Release Notes</h3>
+                </div>
+                <div class="modules_search columns medium-8">
+                    <input class="h5 search" type="text" placeholder="Search" ng-model="search" ng-model-options="{ debounce: 300 }" ng-value="searchString" ng-change="changeLocationSearch(search)">
+
+                    <select class="h5 bg_block-light text-dark" ng-model="searchDate" ng-change="getBranchesByDate(searchDate)" ng-init="searchdate = ''">
+                        <option value="">Filter by year</option>
+                        <option value="2016">Released 2016</option>
+                        <option value="2015">Released 2015</option>
+                        <option value="2014">Released 2014</option>
+                        <option value="2013">Released 2013</option>
+                        <option value="2012">Released 2012</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <section class="modules_section base_padding_v">
+        <div class="wrapper">
+
+            <div ng-repeat="release_note in release_notes">
+                <div class="release_note base_padding_v" ng-repeat="branch in release_note.release" ng-cloak>
+                    <div class="row">
+                        <div class="columns medium-2"><h4 tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">{% raw %}{{branch.date | date : 'yyyy.MM.dd'}}{% endraw %}</h4></div>
+                        <div class="columns medium-5">
+                            <h4 tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">Version {% raw %}{{branch.name}}{% endraw %} has been released. <img ng-if="isCritical(branch)" class="icon_xsmall" src="/img/alert-red.svg" alt=""></h4>
+                            <span>{% raw %}{{branch.summary}}{% endraw %}.</span>
+                        </div>
+                        <div class="columns medium-4">
+                            <ul class="release_module_list h5" ng-init="things = getAffectedModulesByCategory(branch)">
+                                <li class="release_module_item" ng-repeat="(key, modules) in things" tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">
+
+                                    <span class="release_module_item_inner">
+                                        <span class="icon_xsmall release_module_icon text_accent-blue"><img ng-src="/img/mod-{% raw %}{{key}}{% endraw %}.svg" alt=""></span> {% raw %}{{key}}{% endraw %} <span class="text-light">({% raw %}{{modules.length}}{% endraw %})</span>
+                                        <ul class="release_module_sub_items">
+                                            <li ng-repeat="module in modules">{% raw %}{{module.name}}{% endraw %}</li>
+                                        </ul>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="columns medium-1" tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">
+                            <img ng-show="active == '#release' + branch.name.split('.').join('-')" src="../img/close.svg" class="icon_xsmall open-toggle">
+                            <img ng-hide="active == '#release' + branch.name.split('.').join('-')" src="../img/open.svg" class="icon_xsmall open-toggle">
+                        </div>
+                    </div>
+                    <div class="release_details"
+                        id="release{% raw %}{{branch.name.split('.').join('-')}}{% endraw %}"
+                        tab-content
+                        transition="slide"
+                        ng-class="{branch_active: active == '#release' + branch.name.split('.').join('-')}">
+                        <p class="bg_block-light sm_padding text_accent-red emphasis" ng-if="isCritical(branch)"><img class="icon_small" src="/img/alert-red.svg" alt=""> This release addresses critical security issues</p>
+
+                        <div ng-if="branch.features">
+                            <h5>Feature Improvements</h5>
+                            <ul class="release_features">
+                                <li ng-repeat="feature in branch.features">
+                                    <span class="{% raw %}{{getComponents(feature).join(' ')}}{% endraw %}" ng-class="{highlight_point: compareArrays(getComponents(feature), affectedClasses)}">{% raw %}{{feature.description}}{% endraw %}.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div ng-if="branch.defects">
+                            <h5>Bug Fixes</h5>
+                            <ul class="release_defects">
+                                <li ng-repeat="defect in branch.defects">
+                                    <span class="{% raw %}{{getComponents(defect).join(' ')}}{% endraw %}" ng-class="{highlight_point: compareArrays(getComponents(defect), affectedClasses)}">{% raw %}{{defect.description}}{% endraw %}.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <h5>Related Modules</h5>
+
+                        <div class="row" content-group>
+                            <!-- <div class="module module-{% raw %}{{module.category}}{% endraw %}" ng-repeat="module in getAffectedModules(branch) track by $index"> -->
+                                <div class="module module-{% raw %}{{module.category}}{% endraw %}"
+                                    ng-class="{active: active == '#module-details-{% raw %}{{module.name}}{% endraw %}'}"
+                                    ng-repeat="module in getAffectedModules(branch)"
+                                    ng-init="dormant = true"
+                                    mod
+                                    ng-cloak>
+                                    <div class="link box {% raw %}{{module.name}}{% endraw %}"
+                                        ng-click="toggle('#module-details-' + module.name, true); fixMargin();"
+                                        ng-mouseenter="showAffected($event)" ng-mouseleave="hideAffected()"
+                                        >
+                                        <!-- ^ ng-class="{highlight_point: compareArrays([module.name], affectedClasses)}" ^ -->
+                                        <span class="module_icon pull_right">
+                                            <img ng-hide="active == '#module-details-{% raw %}{{module.name}}{% endraw %}'" ng-src="/img/mod-{% raw %}{{module.category}}{% endraw %}.svg" alt="">
+                                            <img ng-show="active == '#module-details-{% raw %}{{module.name}}{% endraw %}'" ng-src="/img/mod-{% raw %}{{module.category}}{% endraw %}-white.svg" alt="">
+                                        </span>
+                                        <span class="h5 module_category">{% raw %}{{module.category}}{% endraw %}</span>
+                                        <span class="module_title h4">{% raw %}{{module.name}}{% endraw %}</span>
+                                    </div>
+                                    <div class="module_details base_padding_v block" id="module-details-{% raw %}{{module.name}}{% endraw %}">
+
+                                        <div class="wrapper">
+                                            <div class="row">
+                                                <div class="columns medium-3">
+                                                    <div class="module_details_linkwrap">
+                                                        <span class="module_icon pull_right">
+                                                            <img ng-src="/img/mod-{% raw %}{{module.category}}{% endraw %}.svg" alt="">
+                                                        </span>
+                                                        <span class="h5 module_category">{% raw %}{{module.category}}{% endraw %}</span>
+                                                        <a ng-href="/modules/?cat={% raw %}{{module.category}}{% endraw %}&mod={% raw %}{{module.name}}{% endraw %}" class="module_title h4">{% raw %}{{module.name}}{% endraw %}</a>
+                                                    </div>
+                                                    <a class="h5 button bg_accent-grey" target="_blank" href="{% raw %}{{module.documentation_link}}{% endraw %}">View documentation</a>
+                                                </div>
+                                                <div class="columns medium-6 text-mid">
+                                                    <p>{% raw %}{{module.description}}{% endraw %}</p>
+                                                    <div ng-if="module.dependents">
+                                                        <h5 class="text_accent-grey">Sub-modules</h5>
+                                                        <ul class="h6">
+                                                            <li ng-repeat="submodule in module.dependents"><a class="undecorate" ng-href="/modules/?cat={% raw %}{{submodule.category}}{% endraw %}&mod={% raw %}{{submodule.name}}{% endraw %}">{% raw %}{{submodule.name}}{% endraw %}</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="columns medium-3 text_accent-grey">
+                                                    <div ng-repeat="available in module.available">
+                                                        <div class="link">
+                                                            <p class="h5 text_accent-grey">Availability</p>
+                                                            <span class="h6">{% raw %}{{available.start.name}}{% endraw %} - {% raw %}{{available.end.name}}{% endraw %}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="link">
+                                    <span class="module_icon pull_right">
+                                        <img ng-src="/img/mod-{% raw %}{{module.category}}{% endraw %}.svg" alt="">
+                                    </span>
+                                    <span class="h5 module_category">{% raw %}{{module.category}}{% endraw %}</span>
+                                    <span class="module_title h4"><a class="undecorate text-dark" href="/modules/?s={% raw %}{{module.name}}{% endraw %}">{% raw %}{{module.name}}{% endraw %}</a></span>
+                                </div> -->
+                            <!-- </div> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+</div>

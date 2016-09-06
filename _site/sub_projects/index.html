@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html ng-app="freeradius">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Releases</title>
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="freeradius.surge.sh/sub_projects/">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.surge.sh/feed.xml">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
+    <meta name="msapplication-TileColor" content="#da532c ">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+</head>
+
+
+  <body>
+
+    <div class="global-nav">
+  <div class="global_links pull_right">
+    <div class="global_link global_link_label h5 text">Our sites:</div>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>radius</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>radius</div></a>
+  </div>
+</div>
+
+<header class="site-header" global-header ng-class="{fixed: fixNav}">
+  <div class="site-header-wrapper">
+
+    <a class="site-title" href="/"><img src="../img/wordmark.svg"></a>
+    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
+      <svg viewBox="0 0 18 15">
+        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+      </svg>
+    </button>
+
+    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
+
+      <div class="get-release">
+      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
+      </div>
+
+      <ul class="site-nav-list">
+        
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/releases/">Releases</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/documentation/">Documentation</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/modules/">Modules</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/community/">Community</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/about/">About</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/support/">Support</a>
+              </li>
+            
+          
+        
+      </ul>
+
+    </nav>
+
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+
+        <article class="post">
+  <header class="post-header">
+    <div class="post-hero hero-releases">
+      <div class="wrapper">
+      	<h1 class="post-title">Releases</h1>
+      	<p class="post-subtitle">Version downloads and complete release notes</p> 
+      </div>
+    </div>
+  </header>
+  
+  	<div class="sub-nav">
+	<div class="wrapper">
+        <nav class="inline_nav" sub-nav>
+            <ul>
+                
+                
+        			<li class="">
+                        <a class="subnav_link" href="/releases/">Downloads</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="/releases/#binary_packages">Binary Packages</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="/releases/#source_control">Source Control</a>
+                    </li>
+        		
+        			<li class="active">
+                        <a class="subnav_link" href="/sub_projects/">Sub-projects</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="/release_notes/">Release notes</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="/older_releases/">Older releases</a>
+                    </li>
+        		
+            </ul>
+        </nav>
+	</div>
+</div>
+
+  
+
+  <div class="post-content">
+      <div class="wrapper base_padding_v">
+    <div class="row">
+        <div class="columns medium-8 end">
+            <h3 class="section-title">Sub-Projects</h3>
+            <p>The FreeRADIUS project maintains a number of sub-projects to add RADIUS capabilities to popular web servers and authentication services. </p>
+            <p>If your favourite application isn't supported, creating glue code is simple! Linking against libfreeradius-radius provides a complete toolkit for developing RADIUS authenticated services.</p>
+        </div>
+    </div>
+
+    <!-- Sub-project tab navigation -->
+    <nav class="inline_nav">
+      <ul>
+        <li><a class="subnav_link undecorate" ng-class="{active: trigger_active == '#pam-radius'}" tab-trigger ng-click="toggle('#pam-radius')" ng-init="trigger_active = '#pam-radius'">pam_radius </a></li>
+        <li><a class="subnav_link undecorate" ng-class="{active: trigger_active == '#mod-auth-radius'}" tab-trigger ng-click="toggle('#mod-auth-radius')">Mod_auth_radius</a></li>
+        <li><a class="subnav_link undecorate" ng-class="{active: trigger_active == '#freeradius-client'}" tab-trigger ng-click="toggle('#freeradius-client')">Freeradius-client</a></li>
+      </ul>
+    </nav>
+
+    <hr>
+
+    <div>
+
+      <!--Pam_radius content -->
+      <section id="pam-radius" tab-content ng-show="active == '#pam-radius'" ng-init="active = '#pam-radius'">
+
+        <a href="ftp://ftp.freeradius.org/pub/radius/pam_radius-1.4.0.tar.gz" class="button bg_accent-blue detailed base_margin_b">
+          <span class="h4 right-border">PAM Authentication and Accounting module</span>
+          <span class="h5">Download v 1.4.0</span>
+          <img class="icon_xsmall" src="/img/arrow-download.svg" alt="">
+        </a>
+        <a href="ftp://ftp.freeradius.org/pub/radius/pam_radius-1.4.0.tar.gz.sig" class="h5 spaced-link">(sig)</a>
+
+        <p>This is the PAM to RADIUS authentication module. It allows any PAM-capable machine to become a RADIUS client for authentication and accounting requests. You will need a RADIUS server to perform the actual authentication.</p>
+
+        <h5>Files included with the module</h5>
+        <p>
+        <a href="http://freeradius.org/pam_radius_auth/README">README</a>
+          <span class="italic">Introduction and documentation</span><br>
+        <a href="http://freeradius.org/pam_radius_auth/INSTALL">INSTALL</a>
+          <span class="italic">Installation instructions</span><br>
+        <a href="http://freeradius.org/pam_radius_auth/USAGE">USAGE</a>
+          <span class="italic">Module configuration and usage documentation</span><br>
+        <a href="http://freeradius.org/pam_radius_auth/Changelog">Changelog</a>
+          <span class="italic">What's changed</span></br>
+        <a href="http://freeradius.org/pam_radius_auth/pam_radius_auth.conf">pam_radius_auth.conf</a>
+          <span class="italic">Sample configuration file for telling the client the location of the RADIUS server.</span>
+        </p>
+
+      </section>
+
+       <!--mod_auth_radius content -->
+      <section id="mod-auth-radius" tab-content ng-show="active == '#mod-auth-radius'">
+
+        <a href="ftp://ftp.freeradius.org/pub/radius/mod_auth_radius-1.5.8.tar" class="button bg_accent-blue detailed base_margin_b">
+          <span class="h4 right-border">The Authentication Module for Apache</span>
+          <span class="h5">Download v 1.5.8</span>
+          <img class="icon_xsmall" src="/img/arrow-download.svg" alt="">
+        </a>
+
+        <p>This is the <a href="http://www.apache.org/">Apache</a> RADIUS authentication module. It allows any Apache web-serve to become a RADIUS client for authentication and accounting requests.</p>
+
+        <h5>Module building and configuration</h5>
+        <p>Configure this module into Apache by going to the Apache root directory, and typing:</p>
+
+        <pre>
+           <span class="h5 pull_right block">Lang</span>
+          ./configure --add-module=LOCATION/mod_auth_radius.c
+        </pre>
+
+        <p>where LOCATION is the directory where the module source file resides. Then, type:</p>
+
+        <pre>
+          <span class="h5 pull_right block">Lang</span>
+          make
+        </pre>
+
+        <p>Alternatively, if you've already built and installed Apache with dynamic modules, you should be able to install this module via:</p>
+
+        <pre>
+          <span class="h5 pull_right block">Lang</span>
+          apxs -i -a -c mod_auth_radius.c
+        </pre>
+
+        <p>You should add your additional site configuration options to the configure line, above. Please read the README file for further information.</p>
+
+
+        <h5>Files included with the module</h5>
+        <p>
+        <a href="http://freeradius.org/mod_auth_radius/README">README</a>
+          <span class="italic">Introduction and documentation</span><br>
+        <a href="http://freeradius.org/mod_auth_radius/httpd.conf">httpd.conf</a>
+          <span class="italic">Sample HTTPD configuration file for RADIUS attributes, with additional comments and documentation.</span><br>
+        <a href="http://freeradius.org/mod_auth_radius/htaccess">htaccess</a>
+          <span class="italic">Sample .htaccess file</span><br>
+        <a href="http://freeradius.org/mod_auth_radius/mod_auth_radius.c">mod_auth_radius.c</a>
+          <span class="italic">C source file for Apache 1.3.x</span><br>
+        <a href="http://freeradius.org/mod_auth_radius/mod_auth_radius-2.0.c">mod_auth_radius-2.0.c</a>
+          <span class="italic">C source file for Apache 2.0</span>
+        </p>
+
+        <h5>Updates</h5>
+
+        <p>The latest version of the module is 1.5.8.<br>
+        For the latest source code, see the main web or ftp site:<br>
+        <a href="http://www.freeradius.org/mod_auth_radius/">http://www.freeradius.org/mod_auth_radius/</a><br>
+        <a href="ftp://ftp.freeradius.org/pub/radius/mod_auth_radius-1.5.8.tar">ftp://ftp.freeradius.org/pub/radius/mod_auth_radius-1.5.8.tar</a></p>
+
+        <h5>Author contact</h5>
+
+        <p>Alan DeKok &lt;<a href="mailto:aland@freeradius.org">aland@freeradius.org</a>&gt;</p>
+
+        <h5>Related pages</h5>
+        <p>
+        <a href="http://www.apache.org/httpd.html">The Apache HTTP server project</a><br>
+        <a href="http://modules.apache.org/">The Apache Module Registry</a><br>
+        mod_auth_radius: <a href="http://www.wede.de/sw/mod_auth_radius/">another variant</a>
+        </p>
+      </section>
+
+      <!--freeradius-server content -->
+      <section id="freeradius-client" tab-content ng-show="active == '#freeradius-client'">
+        <a href="ftp://ftp.freeradius.org/pub/freeradius/freeradius-client-1.1.7.tar.gz" class="button bg_accent-blue detailed base_margin_b">
+          <span class="h4 right-border">The FreeRADIUS Client Library</span>
+          <span class="h5">Download v 1.1.7</span>
+          <img class="icon_xsmall" src="/img/arrow-download.svg" alt="">
+        </a>
+
+        <p>FreeRADIUS Client is a framework and library for writing RADIUS Clients which additionally includes radlogin, a flexible RADIUS aware login replacement, a command line program to send RADIUS accounting records and a utility to query the status of a RADIUS server. All of these programs are based on a library that lets you develop a RADIUS-aware application in less than 50 lines of C code. It is highly portable and runs on Linux, many BSD variants and Solaris.</p>
+
+        <p>See the <a href="http://wiki.freeradius.org/Radiusclient">Wiki</a> for more information, including <a href="ftp://ftp.freeradius.org/pub/freeradius/freeradius-client-1.1.7.tar.gz">download links</a>.</p>
+
+        <h5>Version 1.1.7</h5>
+
+        <p>After many years, version 1.1.7 has been released. It has a large number of fixes, but is still compatible with the code from 1.1.6. The ChangeLog is:</p>
+
+        <ul>
+          <li>Allow "configure --with-nettle" to use nettle MD5 implementation. Patch from Nikos Mavrogiannopoulos.</li>
+          <li>Clean up generation of random numbers. Patch from Nikos Mavrogiannopoulos.</li>
+          <li>Update BSD license as permitted by Christos Zoulas.</li>
+          <li>Define PW_MAX_MSG_SIZE for maximum message sice. Patch from Nikos Mavrogiannopoulos.</li>
+          <li>Allow the dictionary file parser to understand BEGIN-VENDOR / END-VENDOR as with FreeRADIUS server. Patch from Nikos Mavrogiannopoulos.</li>
+          <li>Added support for IPv6. Patch from Nikos Mavrogiannopoulos.</li>
+          <li>Don't crash if a config option is unset. Patch from Nikos Mavrogiannopoulos.</li>
+          <li>Fix encoding of "date" attributes. Patch from Christian Schoch.</li>
+          <li>Build fixes from Sven Neuhaus, Ghennadi Procopciuc, Daniel Pocock, and gureedo.</li>
+          <li>Fix memory leaks. Patches from Alex Massover, William King, gureedo, and FreeSWITCH.</li>
+          <li>Fixes to retry algorithm. Patch from Lewis Adam.</li>
+          <li>Zero out secret fields. Patch from Scott Neugroschl.</li>
+          <li>Update the dictionaries. Patches from Bogdan-Andrei Iancu and gureedo.</li>
+          <li>Make the library thread-safe. Based on a patch from Alex Massover.</li>
+          <li>Made rc_avpair_log thread-safe by using a buffer supplied by the caller. Patch from Alex Massover.</li>
+          <li>Removed lock file for sequence number. It isn't needed.</li>
+          <li>Use poll() where possible to avoid issues with FD_SETSIZE. Patch from Alfred E. Heggestad.</li>
+          <li>Set Acct-Delay-Time in Accounting-Request packets. Patch from Alfred E. Heggestad.</li>
+        </ul>
+
+          <h5>License</h5>
+
+          <p>Unlike the FreeRADIUS Server which is available under the GPL, or libfreeradius which is available under the LGPL, the FreeRADIUS Client library is distributed under the BSD license. This is to facilitate the maximum possible use of correct, up-to-date, maintained code in as many other RADIUS Client implementations as possible.</p>
+
+          <p>The FreeRADIUS team collectively has decades of RADIUS experience, and is active in defining new <a href="http://freeradius.org/press/2007.html#rfc5080">RADIUS standards</a>. We have worked with many different RADIUS servers and clients, and know what it takes to make a client that is robust, feature-rich, and inter-operable. To that end, we are releasing this library under the BSD license, to lower your costs in developing a RADIUS client, and to increase the likelihood that your client will inter-operate with every other implementation.</p>
+
+          <p class="italic">We want you use this code in your application whether it is Open Source or not.</p>
+
+          <p>Please see the COPYRIGHT file in the radiusclient source code for more details.</p>
+
+          <h5>History</h5>
+
+          <p>Radiusclient used to live at http://www.cityline.net/~lf/radius/ but seems to be no longer maintained (Tarballs are still available from ftp://ftp.cityline.net/pub/radiusclient/). It does however still ship with some Linux distributions including SUSE Linux.</p>
+
+          <p>A fork of the original radiusclient called radiusclient-ng is used as the basis of the RADIUS support in SER and OpenSER.</p>
+
+          <p>In late 2006 it was decided that the FreeRADIUS Project should adopt the latest code from radiusclient-ng cvs as the basis of a new FreeRADIUS client package. The intention is to roll some of the client functionality of the FreeRADIUS server into this separate client package and to make the FreeRADIUS suite a one stop shop for all people wishing to use and develop RADIUS related applications.</p>
+
+          <p>The first version released by the FreeRADIUS project is 1.1.5. This version fixes an MD5 related endian issue and introduces a client configuration framework to the library which lends itself to allowing embedded radius client functionality. Development of the codebase is ongoing.</p>
+
+      </section>
+    </div>
+</div>
+
+
+  </div>
+
+</article>
+
+
+    </div>
+
+    <footer class="global_footer bg_block-dark lg_padding_v">
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <div class="footer_main">
+                    <img class="footer_logo" width="150" src="../img/wordmark-white.svg" alt="">
+                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
+                    <div class="footer-social">
+                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
+                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
+                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
+                    </div>
+                    <p>&copy; 2015 The FreeRADIUS Server Project Support and Contributors</p>
+                </div>
+            </div>
+            <div class="columns medium-8">
+                <nav class="footer_nav h6 row small-up-2">
+                    <ul>
+                        <li><a href="/documentation/">Docs</a></li>
+                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
+                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
+                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
+                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
+                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/modules/">Modules</a></li>
+                        <li><a href="/modules/">Packages</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/community/">Community</a></li>
+                        <li><a href="/support/">Mailing Lists</a></li>
+                        <li><a href="/community/#contributing">Contribute</a></li>
+                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/about/#project">The Project</a></li>
+                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
+                        <li><a href="/about/#security">Security</a></li>
+                        <li><a href="/about/#team">Team</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/support/">Support</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
+                        <li><a href="/security_issues/">Security Issues</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
+                        <li><a href="/support/">Newsletters</a></li>
+                        <li><a href="/commercial_support/">Commercial</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/app.js"></script>
+
+  </body>
+
+</html>

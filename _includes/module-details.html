@@ -1,0 +1,33 @@
+<div class="module_details base_padding_v block" id="module-details-{% raw %}{{module.name}}{% endraw %}">
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-3">
+                <div class="module_details_linkwrap">
+                    <span class="module_icon pull_right">
+                        <img ng-src="/img/mod-{% raw %}{{module.category}}{% endraw %}.svg" alt="">
+                    </span>
+                    <span class="h5 module_category">{% raw %}{{module.category}}{% endraw %}</span>
+                    <span class="module_title h4">{% raw %}{{module.name}}{% endraw %}</span>
+                </div>
+                <a class="h5 button bg_accent-grey" target="_blank" href="{% raw %}{{module.documentation_link}}{% endraw %}">View documentation</a>
+            </div>
+            <div class="columns medium-6 text-mid">
+                <p>{% raw %}{{module.description}}{% endraw %}</p>
+                <div ng-if="module.dependents">
+                    <h5 class="text_accent-grey">Sub-modules</h5>
+                    <ul class="h6">
+                        <li ng-repeat="submodule in module.dependents"><a class="" ng-click="getModules(submodule.category, submodule.name);">{% raw %}{{submodule.name}}{% endraw %}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="columns medium-3 text_accent-grey">
+                <div ng-repeat="available in module.available">
+                    <div class="link">
+                        <p class="h5 text_accent-grey">Availability</p>
+                        <span class="h6">{% raw %}{{available.start.name}}{% endraw %} - {% raw %}{{available.end.name}}{% endraw %}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

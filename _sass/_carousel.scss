@@ -1,0 +1,44 @@
+.owl-carousel .owl-item .carousel_item_icon {
+    display: inline-block;
+    width: auto;
+    img {
+        width: auto;
+        display: inline-block;
+    }
+}
+.carousel_item_inner {
+    text-align: center;
+}
+.carousel_item_icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: $baseSpacing;
+    + .carousel_item_text {
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+.carousel_item_text {
+    text-align: left;
+    img .security{
+        width: auto;
+        display: inline-block;
+    }
+}
+.owl-nav {
+    @extend .wrapper;
+    position: relative;
+    // transform: translateY(-50%);
+
+}
+.owl-prev, .owl-next {
+    position: absolute;
+    top: -75px;
+    &.disabled {
+        opacity: .5;
+        cursor: initial !important;
+    }
+}
+.owl-next {
+    right: $baseSpacing;
+}

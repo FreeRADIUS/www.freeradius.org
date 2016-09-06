@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html ng-app="freeradius">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Styles</title>
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="freeradius.surge.sh/styles/">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.surge.sh/feed.xml">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
+    <meta name="msapplication-TileColor" content="#da532c ">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+</head>
+
+
+  <body>
+
+    <div class="global-nav">
+  <div class="global_links pull_right">
+    <div class="global_link global_link_label h5 text">Our sites:</div>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>radius</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>radius</div></a>
+  </div>
+</div>
+
+<header class="site-header" global-header ng-class="{fixed: fixNav}">
+  <div class="site-header-wrapper">
+
+    <a class="site-title" href="/"><img src="../img/wordmark.svg"></a>
+    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
+      <svg viewBox="0 0 18 15">
+        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+      </svg>
+    </button>
+
+    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
+
+      <div class="get-release">
+      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
+      </div>
+
+      <ul class="site-nav-list">
+        
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/releases/">Releases</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/documentation/">Documentation</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/modules/">Modules</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/community/">Community</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/about/">About</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/support/">Support</a>
+              </li>
+            
+          
+        
+      </ul>
+
+    </nav>
+
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+
+        <article class="post">
+  <header class="post-header">
+    <div class="post-hero hero-support">
+      <div class="wrapper">
+      	<h1 class="post-title">Styles</h1>
+      	<p class="post-subtitle">Reference document for basic styling</p> 
+      </div>
+    </div>
+  </header>
+  
+  	<div class="sub-nav">
+	<div class="wrapper">
+        <nav class="inline_nav" sub-nav>
+            <ul>
+                
+                
+        			<li class="">
+                        <a class="subnav_link" href="\#the_link">A Link</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="\#the_otherlink">Another Link</a>
+                    </li>
+        		
+            </ul>
+        </nav>
+	</div>
+</div>
+
+  
+
+  <div class="post-content">
+    <div class="wrapper base_margin_b">
+      <h5 id="pure-markdown-elements">Pure Markdown elements</h5>
+
+<h1 id="h1-fast-feature-rich-modular-and-scalable">H1 Fast, feature-rich, modular, and scalable.</h1>
+
+<h2 id="h2-version-3010-has-been-released">H2 Version 3.0.10 has been released.</h2>
+
+<h3 id="h3-version-3010-has-been-released">H3 Version 3.0.10 has been released.</h3>
+
+<h4 id="h4-october-7-2015">H4 October 7, 2015</h4>
+
+<h5 id="h5-full-release-notes">H5 Full release notes</h5>
+
+<h6 id="h6-securing-byod-with-smart-network-access-policies-and-agentless-posture-assessment">H6 Securing BYOD with smart network access policies, and agentless posture assessment.</h6>
+
+<p>Basic paragraph the FreeRADIUS project maintains the following components: a multi protocol policy server (radiusd) that implements RADIUS, DHCP, BFD, and ARP; a BSD licensed RADIUS client library; a RADIUS PAM library; and an Apache RADIUS module.</p>
+
+<blockquote>
+  <p>Blockquote the FreeRADIUS project maintains the following components: a multi protocol policy server (radiusd) that implements RADIUS, DHCP, BFD, and ARP; a BSD licensed RADIUS client library; a RADIUS PAM library; and an Apache RADIUS module.</p>
+</blockquote>
+
+<p><strong>Bold lorem ipsum dolor sit amet,</strong> <em>italic consectetur adipiscing elit.</em> <a href="http://www.freeradius.org">Default body anchor</a> in context. Integer cursus magna eget risus lobortis, <code class="highlighter-rouge">inline code here</code> non sodales arcu cursus.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pre content here
+$ echo "Message-Authenticator = 0x00" | radclient 1922 status s3cr3t
+Sending request to server 1922, port 1812.
+radrecv: Packet from host 1922 code=2, id=140, length=54
+	Reply-Message = "FreeRADIUS up 21 days, 02:05"
+</code></pre>
+</div>
+
+<hr />
+
+<h5 id="colours">Colours</h5>
+
+<h6 id="block-amp-accent-colour-classes">Block &amp; Accent Colour Classes</h6>
+
+<p>
+	<div class="bg_block-dark" style="height: 50px; width: 100px; display: inline-block;"></div>
+	<div class="bg_block-navy" style="height: 50px; width: 100px; display: inline-block;"></div>
+	<div class="bg_accent-blue" style="height: 50px; width: 100px; display: inline-block;"></div>
+	<div class="bg_accent-grey" style="height: 50px; width: 100px; display: inline-block;"></div>
+	<div class="bg_stroke-light" style="height: 50px; width: 100px; display: inline-block;"></div>
+	<div class="bg_block-light" style="height: 50px; width: 100px; display: inline-block;"></div>
+<br />
+	<div class="bg_accent-light-blue" style="height: 50px; width: 100px; display: inline-block;"></div>
+	<div class="bg_accent-green" style="height: 50px; width: 100px; display: inline-block;"></div>
+	<div class="bg_accent-red" style="height: 50px; width: 100px; display: inline-block;"></div>
+	<div class="bg_accent-purple" style="height: 50px; width: 100px; display: inline-block;"></div>
+	<div class="bg_accent-orange" style="height: 50px; width: 100px; display: inline-block;"></div>
+	<div class="bg_accent-yellow" style="height: 50px; width: 100px; display: inline-block;"></div>
+</p>
+
+<h6 id="text-colour-classes">Text Colour Classes</h6>
+
+<table>
+  <tbody>
+    <tr>
+      <td><span class="text-dark h4">Dark Text</span></td>
+      <td><span class="text-mid h4">Mid Text</span></td>
+      <td><span class="text-light h4">Light Text</span></td>
+      <td><span class="text-link h4">Link Text</span></td>
+      <td><span class="text-alert h4">Alert Text</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h5 id="grid">Grid</h5>
+
+<div class="row">
+	<div class="column medium-4">
+		<h2>Grid System</h2>
+		We've used <a href="http://foundation.zurb.com/sites/docs/grid.html">Foundation Grid</a> to style layout throughout the site. Its a basic 12-column grid system with the ability to nest and build semantically. <a href="http://foundation.zurb.com/sites/docs/grid.html">Documentation available here</a>.
+	</div>
+	<div class="column medium-4">
+		<h2>Column Two</h2>
+		Alan Dekok co-founded FreeRADIUS in 1999 and continues to lead the project today. He is recognized as one of the world's leading experts on remote network and AAA frameworks, and he has co-authored numerous AAA and RADIUS related RFCs.
+	</div>
+	<div class="column medium-4">
+		<h2>Column Three</h2>
+		Alan Dekok co-founded FreeRADIUS in 1999 and continues to lead the project today. He is recognized as one of the world's leading experts on remote network and AAA frameworks, and he has co-authored numerous AAA and RADIUS related RFCs.
+	</div>
+</div>
+
+<hr />
+
+<h5 id="buttons">Buttons</h5>
+
+<h6 id="basic-buttons">Basic buttons</h6>
+
+<p><a class="button bg_accent-blue h5" href="#">Blue Button</a>
+<a class="button bg_accent-light-blue h5" href="#">Light Blue Button</a>
+<a class="button bg_accent-dark-blue h5" href="#">Dark Blue Button</a>
+<a class="button bg_accent-green h5" href="#">Green Button</a></p>
+
+<h6 id="detailed-button---apply-any-of-the-colour-classes-above">Detailed button - apply any of the colour classes above</h6>
+
+<p><a class="button detailed bg_accent-blue">
+	<span class="h4 right-border">freeradius-devel@lists.freeradius.org</span>
+	<span class="h5">Subscribe to this list</span>
+</a></p>
+
+<h6 id="link-with-accent-border-accent-defined-by-currentcolour">Link with accent border (accent defined by currentColour)</h6>
+
+<p><a class="link h5"><img class="icon" src="../img/wiki.svg" />Inline link <img class="arrow" src="../img/arrow-right.svg" /></a> <a class="link h5"><img class="icon" src="../img/support.svg" />Inline link <img class="arrow" src="../img/arrow-right.svg" /></a></p>
+
+<p><a class="link block h5"><img class="icon" src="../img/security.svg" />Block link <img class="arrow" src="../img/arrow-right.svg" /></a></p>
+
+<hr />
+
+<h5 id="icon-sizing">Icon sizing</h5>
+
+<table>
+  <tbody>
+    <tr>
+      <td><img class="icon_large" src="../img/wiki.svg" /></td>
+      <td><img class="icon_medium" src="../img/wiki.svg" /></td>
+      <td><img class="icon_small" src="../img/wiki.svg" /></td>
+      <td><img class="icon_xsmall" src="../img/wiki.svg" /></td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+  </div>
+
+</article>
+
+
+    </div>
+
+    <footer class="global_footer bg_block-dark lg_padding_v">
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <div class="footer_main">
+                    <img class="footer_logo" width="150" src="../img/wordmark-white.svg" alt="">
+                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
+                    <div class="footer-social">
+                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
+                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
+                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
+                    </div>
+                    <p>&copy; 2015 The FreeRADIUS Server Project Support and Contributors</p>
+                </div>
+            </div>
+            <div class="columns medium-8">
+                <nav class="footer_nav h6 row small-up-2">
+                    <ul>
+                        <li><a href="/documentation/">Docs</a></li>
+                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
+                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
+                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
+                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
+                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/modules/">Modules</a></li>
+                        <li><a href="/modules/">Packages</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/community/">Community</a></li>
+                        <li><a href="/support/">Mailing Lists</a></li>
+                        <li><a href="/community/#contributing">Contribute</a></li>
+                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/about/#project">The Project</a></li>
+                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
+                        <li><a href="/about/#security">Security</a></li>
+                        <li><a href="/about/#team">Team</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/support/">Support</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
+                        <li><a href="/security_issues/">Security Issues</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
+                        <li><a href="/support/">Newsletters</a></li>
+                        <li><a href="/commercial_support/">Commercial</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/app.js"></script>
+
+  </body>
+
+</html>
