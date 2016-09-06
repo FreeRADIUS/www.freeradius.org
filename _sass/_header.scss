@@ -1,0 +1,152 @@
+/**
+ * Site header
+ */
+
+.global-nav {
+    background-color: $accent-blue;
+    height: 20px;
+    @include clearfix;
+}
+.global_link_label {
+    display: none;
+    opacity: 0.8;
+    @include breakpoint(smallish) {
+        display: block;
+    }
+}
+.global_links {
+    border-radius: 20px 0 0 20px;
+    background-color: $accent-blue;
+    // overflow: hidden;
+}
+.global_link {
+    color: white;
+    font-size: $smallFontSize;
+    letter-spacing: 1px;
+    float: left;
+    border-right: 1px solid white;
+    text-decoration: none;
+    padding: 10px;
+    &.text, .text{
+        text-transform: none;
+    }
+    &:not(:first-child) {
+        &:hover, &.active{
+            // color: white;
+            // background-color: #505f66;
+        }
+    }
+}
+.site-header {
+    @include clearfix;
+    // Positioning context for the mobile navigation icon
+    box-shadow: 0 5px 0px darken($block-light, 5%);
+    transition: box-shadow 200ms;
+    &.fixed {
+        position: fixed;
+        width: 100%;
+        background-color: white;
+        z-index: 900;
+        top: 0;
+    }
+}
+.site-header-wrapper {
+    padding: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    @include clearfix;
+    position: relative;
+}
+
+.site-title {
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 56px;
+    letter-spacing: -1px;
+    margin-bottom: 0;
+
+    width: 190px;
+    float: left;
+    &,
+    &:visited {
+        color: $grey-color-dark;
+    }
+}
+
+.site-nav {
+    margin: 0 auto;
+    text-align: center;
+    clear: left;
+    color: $text-mid;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    z-index: 100;
+    &.active {
+        display: block;
+    }
+    @include breakpoint(medium) {
+        position: static;
+        display: block;
+        clear: none;
+    }
+    @include breakpoint(large) {
+        float: left;
+        width: calc(100% - 190px);
+        margin-top: 5px;
+    }
+    a:not(.button) {
+        text-decoration: none;
+        color: currentColor;
+        display: block;
+        padding: 15px 20px;
+        @include breakpoint(medium) {
+            padding: 10px 20px;
+        }
+
+    }
+}
+.site-nav-list {
+    @include breakpoint(medium) {
+        clear: both;
+    }
+    @include breakpoint(large) {
+        clear: none;
+        width: calc(100% - 190px);
+        margin-top: 6px;
+    }
+}
+.site-nav-item {
+    display: block;
+    @include breakpoint(small) {
+    }
+    @include breakpoint(medium) {
+        display: inline-block;
+        width: calc(33.33% - 4px);
+    }
+    @include breakpoint(large) {
+        // width: auto;
+    }
+    @include breakpoint(xlarge) {
+        width: auto;
+    }
+}
+.menu-icon {
+    width: 70px;
+    padding: 20px 20px 0;
+    float: right;
+    display: inline-block;
+    @include breakpoint(medium) {
+        display: none;
+    }
+}
+
+.get-release {
+    display: inline-block;
+    @include breakpoint(medium) {
+        float: right;
+    }
+}

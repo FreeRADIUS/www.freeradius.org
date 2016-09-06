@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html ng-app="freeradius">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Releases</title>
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="freeradius.surge.sh/release_notes/">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.surge.sh/feed.xml">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
+    <meta name="msapplication-TileColor" content="#da532c ">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+</head>
+
+
+  <body>
+
+    <div class="global-nav">
+  <div class="global_links pull_right">
+    <div class="global_link global_link_label h5 text">Our sites:</div>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>radius</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>radius</div></a>
+  </div>
+</div>
+
+<header class="site-header" global-header ng-class="{fixed: fixNav}">
+  <div class="site-header-wrapper">
+
+    <a class="site-title" href="/"><img src="../img/wordmark.svg"></a>
+    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
+      <svg viewBox="0 0 18 15">
+        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+      </svg>
+    </button>
+
+    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
+
+      <div class="get-release">
+      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
+      </div>
+
+      <ul class="site-nav-list">
+        
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/releases/">Releases</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/documentation/">Documentation</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/modules/">Modules</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/community/">Community</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/about/">About</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/support/">Support</a>
+              </li>
+            
+          
+        
+      </ul>
+
+    </nav>
+
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+
+        <article class="post">
+  <header class="post-header">
+    <div class="post-hero hero-releases">
+      <div class="wrapper">
+      	<h1 class="post-title">Releases</h1>
+      	<p class="post-subtitle">Version downloads and complete release notes</p> 
+      </div>
+    </div>
+  </header>
+  
+  	<div class="sub-nav">
+	<div class="wrapper">
+        <nav class="inline_nav" sub-nav>
+            <ul>
+                
+                
+        			<li class="">
+                        <a class="subnav_link" href="/releases/">Downloads</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="/releases/#binary_packages">Binary Packages</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="/releases/#source_control">Source Control</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="/sub_projects/">Sub-projects</a>
+                    </li>
+        		
+        			<li class="active">
+                        <a class="subnav_link" href="/release_notes/">Release notes</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="/older_releases/">Older releases</a>
+                    </li>
+        		
+            </ul>
+        </nav>
+	</div>
+</div>
+
+  
+
+  <div class="post-content">
+      <div ng-controller="ReleaseNotesPage">
+    <header class="modules_header">
+        <div class="wrapper base_padding_v">
+            <div class="row">
+                <div class="columns medium-4">
+                    <h3 class="section-title">Release Notes</h3>
+                </div>
+                <div class="modules_search columns medium-8">
+                    <input class="h5 search" type="text" placeholder="Search" ng-model="search" ng-model-options="{ debounce: 300 }" ng-value="searchString" ng-change="changeLocationSearch(search)">
+
+                    <select class="h5 bg_block-light text-dark" ng-model="searchDate" ng-change="getBranchesByDate(searchDate)" ng-init="searchdate = ''">
+                        <option value="">Filter by year</option>
+                        <option value="2016">Released 2016</option>
+                        <option value="2015">Released 2015</option>
+                        <option value="2014">Released 2014</option>
+                        <option value="2013">Released 2013</option>
+                        <option value="2012">Released 2012</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <section class="modules_section base_padding_v">
+        <div class="wrapper">
+
+            <div ng-repeat="release_note in release_notes">
+                <div class="release_note base_padding_v" ng-repeat="branch in release_note.release" ng-cloak>
+                    <div class="row">
+                        <div class="columns medium-2"><h4 tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">{{branch.date | date : 'yyyy.MM.dd'}}</h4></div>
+                        <div class="columns medium-5">
+                            <h4 tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">Version {{branch.name}} has been released. <img ng-if="isCritical(branch)" class="icon_xsmall" src="/img/alert-red.svg" alt=""></h4>
+                            <span>{{branch.summary}}.</span>
+                        </div>
+                        <div class="columns medium-4">
+                            <ul class="release_module_list h5" ng-init="things = getAffectedModulesByCategory(branch)">
+                                <li class="release_module_item" ng-repeat="(key, modules) in things" tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">
+
+                                    <span class="release_module_item_inner">
+                                        <span class="icon_xsmall release_module_icon text_accent-blue"><img ng-src="/img/mod-{{key}}.svg" alt=""></span> {{key}} <span class="text-light">({{modules.length}})</span>
+                                        <ul class="release_module_sub_items">
+                                            <li ng-repeat="module in modules">{{module.name}}</li>
+                                        </ul>
+                                    </span>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="columns medium-1" tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">
+                            <img ng-show="active == '#release' + branch.name.split('.').join('-')" src="../img/close.svg" class="icon_xsmall open-toggle">
+                            <img ng-hide="active == '#release' + branch.name.split('.').join('-')" src="../img/open.svg" class="icon_xsmall open-toggle">
+                        </div>
+                    </div>
+                    <div class="release_details"
+                        id="release{{branch.name.split('.').join('-')}}"
+                        tab-content
+                        transition="slide"
+                        ng-class="{branch_active: active == '#release' + branch.name.split('.').join('-')}">
+                        <p class="bg_block-light sm_padding text_accent-red emphasis" ng-if="isCritical(branch)"><img class="icon_small" src="/img/alert-red.svg" alt=""> This release addresses critical security issues</p>
+
+                        <div ng-if="branch.features">
+                            <h5>Feature Improvements</h5>
+                            <ul class="release_features">
+                                <li ng-repeat="feature in branch.features">
+                                    <span class="{{getComponents(feature).join(' ')}}" ng-class="{highlight_point: compareArrays(getComponents(feature), affectedClasses)}">{{feature.description}}.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div ng-if="branch.defects">
+                            <h5>Bug Fixes</h5>
+                            <ul class="release_defects">
+                                <li ng-repeat="defect in branch.defects">
+                                    <span class="{{getComponents(defect).join(' ')}}" ng-class="{highlight_point: compareArrays(getComponents(defect), affectedClasses)}">{{defect.description}}.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <h5>Related Modules</h5>
+
+                        <div class="row" content-group>
+                            <!-- <div class="module module-{{module.category}}" ng-repeat="module in getAffectedModules(branch) track by $index"> -->
+                                <div class="module module-{{module.category}}"
+                                    ng-class="{active: active == '#module-details-{{module.name}}'}"
+                                    ng-repeat="module in getAffectedModules(branch)"
+                                    ng-init="dormant = true"
+                                    mod
+                                    ng-cloak>
+                                    <div class="link box {{module.name}}"
+                                        ng-click="toggle('#module-details-' + module.name, true); fixMargin();"
+                                        ng-mouseenter="showAffected($event)" ng-mouseleave="hideAffected()"
+                                        >
+                                        <!-- ^ ng-class="{highlight_point: compareArrays([module.name], affectedClasses)}" ^ -->
+                                        <span class="module_icon pull_right">
+                                            <img ng-hide="active == '#module-details-{{module.name}}'" ng-src="/img/mod-{{module.category}}.svg" alt="">
+                                            <img ng-show="active == '#module-details-{{module.name}}'" ng-src="/img/mod-{{module.category}}-white.svg" alt="">
+                                        </span>
+                                        <span class="h5 module_category">{{module.category}}</span>
+                                        <span class="module_title h4">{{module.name}}</span>
+                                    </div>
+                                    <div class="module_details base_padding_v block" id="module-details-{{module.name}}">
+
+                                        <div class="wrapper">
+                                            <div class="row">
+                                                <div class="columns medium-3">
+                                                    <div class="module_details_linkwrap">
+                                                        <span class="module_icon pull_right">
+                                                            <img ng-src="/img/mod-{{module.category}}.svg" alt="">
+                                                        </span>
+                                                        <span class="h5 module_category">{{module.category}}</span>
+                                                        <a ng-href="/modules/?cat={{module.category}}&mod={{module.name}}" class="module_title h4">{{module.name}}</a>
+                                                    </div>
+                                                    <a class="h5 button bg_accent-grey" target="_blank" href="{{module.documentation_link}}">View documentation</a>
+                                                </div>
+                                                <div class="columns medium-6 text-mid">
+                                                    <p>{{module.description}}</p>
+                                                    <div ng-if="module.dependents">
+                                                        <h5 class="text_accent-grey">Sub-modules</h5>
+                                                        <ul class="h6">
+                                                            <li ng-repeat="submodule in module.dependents"><a class="undecorate" ng-href="/modules/?cat={{submodule.category}}&mod={{submodule.name}}">{{submodule.name}}</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="columns medium-3 text_accent-grey">
+                                                    <div ng-repeat="available in module.available">
+                                                        <div class="link">
+                                                            <p class="h5 text_accent-grey">Availability</p>
+                                                            <span class="h6">{{available.start.name}} - {{available.end.name}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="link">
+                                    <span class="module_icon pull_right">
+                                        <img ng-src="/img/mod-{{module.category}}.svg" alt="">
+                                    </span>
+                                    <span class="h5 module_category">{{module.category}}</span>
+                                    <span class="module_title h4"><a class="undecorate text-dark" href="/modules/?s={{module.name}}">{{module.name}}</a></span>
+                                </div> -->
+                            <!-- </div> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+</div>
+  </div>
+
+</article>
+
+
+    </div>
+
+    <footer class="global_footer bg_block-dark lg_padding_v">
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <div class="footer_main">
+                    <img class="footer_logo" width="150" src="../img/wordmark-white.svg" alt="">
+                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
+                    <div class="footer-social">
+                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
+                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
+                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
+                    </div>
+                    <p>&copy; 2015 The FreeRADIUS Server Project Support and Contributors</p>
+                </div>
+            </div>
+            <div class="columns medium-8">
+                <nav class="footer_nav h6 row small-up-2">
+                    <ul>
+                        <li><a href="/documentation/">Docs</a></li>
+                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
+                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
+                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
+                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
+                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/modules/">Modules</a></li>
+                        <li><a href="/modules/">Packages</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/community/">Community</a></li>
+                        <li><a href="/support/">Mailing Lists</a></li>
+                        <li><a href="/community/#contributing">Contribute</a></li>
+                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/about/#project">The Project</a></li>
+                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
+                        <li><a href="/about/#security">Security</a></li>
+                        <li><a href="/about/#team">Team</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/support/">Support</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
+                        <li><a href="/security_issues/">Security Issues</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
+                        <li><a href="/support/">Newsletters</a></li>
+                        <li><a href="/commercial_support/">Commercial</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/app.js"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,96 @@
+/**
+ * Sub Nav
+ */
+
+.sub-nav {
+    background-color: $block-light;
+    padding: $baseSpacing 0;
+    margin-bottom: $spacing-unit;
+}
+.subnav_link {
+    @extend .h5;
+    color: $text-light;
+    .active &, &.active {
+        color: $text-dark;
+    }
+}
+
+
+/**
+ * Page content
+ */
+.page-content {
+    //padding: $spacing-unit 0;
+    .site-header.fixed + & {
+        margin-top: 100px;
+    }
+}
+
+.page-heading {
+    font-size: 20px;
+}
+
+.post-list {
+    margin-left: 0;
+    list-style: none;
+
+    > li {
+        margin-bottom: $spacing-unit;
+    }
+}
+
+.post-meta {
+    font-size: $small-font-size;
+    color: $grey-color;
+}
+
+.post-link {
+    display: block;
+    font-size: 24px;
+}
+
+
+
+/**
+ * Posts
+ */
+
+.post-header {
+    //margin-bottom: $spacing-unit;
+    background-color: #666666;
+}
+.post-hero {
+    @extend .wrapper;
+    &.hero-about{background: url('../img/hero-about.svg') right no-repeat;}
+    &.hero-community{background: url('../img/hero-community.svg') right no-repeat;}
+    &.hero-documentation{background: url('../img/hero-documentation.svg') right no-repeat;}
+    &.hero-releases{background: url('../img/hero-releases.svg') right no-repeat;}
+    &.hero-support{background: url('../img/hero-support.svg') right no-repeat;}
+    padding: ($baseSpacing * 2) 0;
+}
+.post-title {
+    //font-size: 42px;
+    //letter-spacing: -1px;
+    //line-height: 1;
+    color: white;
+    margin-bottom: 0;
+    @include breakpoint(medium) {
+        font-size: $h1Size;
+    }
+}
+
+.post-subtitle{
+    color: white;
+}
+
+.banner {
+
+}
+
+.security_post {
+    border-top: 1px solid $accent-grey;
+}
+.security_post_date {
+    display: inline-block;
+    margin-right: $baseSpacing;
+}

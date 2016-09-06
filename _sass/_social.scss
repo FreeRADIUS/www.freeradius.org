@@ -1,0 +1,45 @@
+.social-header {
+	background-color: white;
+	padding: $baseSpacing;
+	text-align: left;
+	border-bottom: 1px solid $stroke-light;
+	h5 {
+		float: right;
+		color: $text-light;
+		padding-top: $baseSpacing / 2;
+	}
+    @include clearfix;
+}
+.social-block {
+	background-color: white;
+	text-align: left;
+	padding: 0 $baseSpacing $baseSpacing/2;
+	margin-bottom: $baseSpacing;
+	height: 264px;
+	overflow-y: scroll;
+}
+.social-entry {
+    border-bottom: 1px solid $stroke-light;
+    padding: $baseSpacing 0;
+    word-wrap:break-word;
+    font-size: 16px;
+    .label {
+    	@extend .h5;
+    	color: $text-light;
+    	background-color: $block-light;
+    	display: inline-block;
+    	padding: $smSpacing/2;
+    	margin-bottom: $baseSpacing/2;
+
+		.icon {
+			display: inline-block;
+		    width: 16px;
+			height: 16px;
+		    vertical-align: sub;
+		    margin-right: $smSpacing/2;
+		    &.time {content: url(../img/label-time.svg);}
+		    &.comment {content: url(../img/label-comment.svg);}
+		    &.upload {content: url(../img/label-upload.svg);}
+	    }
+    }
+}

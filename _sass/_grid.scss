@@ -1,0 +1,26 @@
+@import 'util/util';
+
+html {
+  box-sizing: border-box;
+}
+
+// Set box-sizing globally to handle padding and border widths
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+@import 'grid/grid';
+@include foundation-grid;
+
+.row {
+    @each $breakpoint, $value in $grid-column-responsive-gutter {
+      $margin: rem-calc($value) / 2 * -1;
+
+      @include breakpoint($breakpoint) {
+        margin-left: $margin;
+        margin-right: $margin;
+      }
+    }
+}

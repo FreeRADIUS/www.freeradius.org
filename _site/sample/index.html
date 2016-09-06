@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html ng-app="freeradius">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Sample Template Page</title>
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="freeradius.surge.sh/sample/">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.surge.sh/feed.xml">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
+    <meta name="msapplication-TileColor" content="#da532c ">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+</head>
+
+
+  <body>
+
+    <div class="global-nav">
+  <div class="global_links pull_right">
+    <div class="global_link global_link_label h5 text">Our sites:</div>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>radius</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>radius</div></a>
+  </div>
+</div>
+
+<header class="site-header" global-header ng-class="{fixed: fixNav}">
+  <div class="site-header-wrapper">
+
+    <a class="site-title" href="/"><img src="../img/wordmark.svg"></a>
+    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
+      <svg viewBox="0 0 18 15">
+        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+      </svg>
+    </button>
+
+    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
+
+      <div class="get-release">
+      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
+      </div>
+
+      <ul class="site-nav-list">
+        
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/releases/">Releases</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/documentation/">Documentation</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/modules/">Modules</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/community/">Community</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/about/">About</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/support/">Support</a>
+              </li>
+            
+          
+        
+      </ul>
+
+    </nav>
+
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+
+        <article class="post">
+  <header class="post-header">
+    <div class="post-hero hero-support">
+      <div class="wrapper">
+      	<h1 class="post-title">Sample Template Page</h1>
+      	<p class="post-subtitle">Sample content using the template layout</p> 
+      </div>
+    </div>
+  </header>
+  
+  	<div class="sub-nav">
+	<div class="wrapper">
+        <nav class="inline_nav" sub-nav>
+            <ul>
+                
+                
+        			<li class="">
+                        <a class="subnav_link" href="\#the_link">A Link</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="\#the_otherlink">Another Link</a>
+                    </li>
+        		
+            </ul>
+        </nav>
+	</div>
+</div>
+
+  
+
+  <div class="post-content">
+    <div class="wrapper base_margin_b">
+      <h2 id="getting-started">Getting Started</h2>
+
+<p>This page describes how to perform the initial configuration of FreeRADIUS. It assumes a basic knowledge of Unix system administration. No RADIUS knowledge is required.</p>
+
+<h4 id="installing-the-server">Installing the Server</h4>
+
+<p>Where possible, we recommend using the packaging system that is used by your operating system. The version that is supplied by your OS might be out of date, but it is likely to work “out of the box”.</p>
+
+<p>If you need to install it yourself, the Wiki installation page contains detailed instructions for a number of platforms.</p>
+
+<p>Otherwise, we assume that you can install the server via something like <code class="highlighter-rouge">yum install freeradius</code>, or <code class="highlighter-rouge">apt-get install freeradius</code>.</p>
+
+<p>Note that in Debian-based systems, the server daemon is called <code class="highlighter-rouge">freeradius</code> instead of <code class="highlighter-rouge">radiusd</code> The configuration files are also located in <code class="highlighter-rouge">/etc/freeradius</code> instead of <code class="highlighter-rouge">/etc/raddb/</code>. We use radiusd and /etc/raddb/ in this guide, and trust that Debian administrators can translate to their system.</p>
+
+<h4 id="some-background">Some background</h4>
+
+<p>Once the server has been installed, the first thing to do is <em>change as little as possible</em>. The default configuration is designed to work everywhere, and to perform nearly every authentication method.</p>
+
+<hr />
+
+<p><em>Do not edit the default configuration files until you understand what they do. This means reading the documentation contained in the comments of the configuration files.</em></p>
+
+<hr />
+
+<p>Many common configurations are documented as suggestions or examples in the configuration files. Many common problems are discussed in the configuration files, along with suggested solutions.</p>
+
+<p>We recommend reading the configuration files, in large part because most of the configuration items are documented only in the comments in the configuration files.</p>
+
+<p>We recommend <em>reading the debug output of the server</em>. While it contains a lot of text, it usually contains error messages which describe exactly what went wrong, and how to fix it.</p>
+
+<h4 id="starting-the-server">Starting the server</h4>
+
+<p>When the server has been installed on a new machine, the first step is to start it in debugging mode, as user <code class="highlighter-rouge">root</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ radiusd -X
+</code></pre>
+</div>
+
+<p>This step demonstrates that the server is installed and configured properly. If the output says <code class="highlighter-rouge">Ready to process requests</code>, then all is well.</p>
+
+<p>Otherwise, typical errors include <code class="highlighter-rouge">Address already in use</code>, which means that there is another radius server already running. You will need to find that one and stop it before running the server in debugging mode.</p>
+
+<h4 id="initial-tests">Initial Tests</h4>
+
+<p>Testing authentication is simple. Edit the users file (in v3 this has been moved to <code class="highlighter-rouge">raddb/mods-config/files/authorize</code>), and add the following line of text at the top of the file, before anything else:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>testing Cleartext-Password := "password"
+</code></pre>
+</div>
+
+<p>Start the server in debugging mode (<code class="highlighter-rouge">radiusd -X</code>), and run <code class="highlighter-rouge">radtest</code> from another terminal window:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$ radtest testing password 127.0.0.1 0 testing123
+</code></pre>
+</div>
+
+<p>You <em>should</em> see the server respond with an Access-Accept. If it doesn’t, the debug log will show why. In version 2, you can paste the output into the debug form, and a colorized HTML version will be produced. In version 3, the output will be colorized. Look for red or yellow text, and read the relvant messages. They should describe exactly what went wrong, and how to fix the problem.</p>
+
+<p>If you do see an <code class="highlighter-rouge">Access-Accept</code>, then congratulations, the following authentication methods now work for the <code class="highlighter-rouge">testing</code> user:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>PAP, CHAP, MS-CHAPv1, MS-CHAPv2, PEAP, EAP-TTLS, EAP-GTC, EAP-MD5.
+</code></pre>
+</div>
+
+<p>The next step is to add more users, and to configure databases. Those steps are outside of the scope of this short web page, but the general method to use is important, and is outlined in the next section.</p>
+
+<h4 id="adding-a-client">Adding a client</h4>
+
+<p>The above test runs <code class="highlighter-rouge">radtest</code> from localhost. It is useful to add a new client, which can be done by editing the <code class="highlighter-rouge">clients.conf</code> file. Add the following contets:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>client new {
+	ipaddr = 192.0.2.1
+	secret = testing123
+}
+</code></pre>
+</div>
+
+<p>You should change the IP address <code class="highlighter-rouge">192.0.2.1</code> to be the address of the client which will be sending Access-Request packets.</p>
+
+<p>The client should also be configured to talk to the RADIUS server, by using the IP address of the maching running the RADIUS server. The client should use the same secret as configured above in the <code class="highlighter-rouge">client</code> section.</p>
+
+<p>Then restart the server in debugging mode, and run a simple test using the testing user. You should see an Access-Accept in the server output</p>
+
+<hr />
+
+<p>The following steps outline the best known method for configuring the server. Following them lets you create complex configurations with a minimm of effort. Failure to follow them leads to days of frustration and wasted effort.</p>
+
+<hr />
+
+<h4 id="configuring-the-server">Configuring the Server</h4>
+
+<p>Changing the server configuration should be done via the following steps:</p>
+
+<ol>
+  <li>Start with a “known working” configuration, such as supplied by the default installation.</li>
+  <li>Make one small change to the configuration files.</li>
+  <li>Start the server in debugging mode (radiusd -X).</li>
+  <li>Verify that the results are what you expect
+    <ul>
+      <li>The debug output shows any configuration changes you have made.</li>
+      <li>Databases (if used) are connected and operating.</li>
+      <li>Test packets are accepted by the server.</li>
+      <li>The debug output shows that the packets are being processed as you expect.</li>
+      <li>The response packets are contain the attributes you expect to see.</li>
+    </ul>
+  </li>
+  <li>If everything is OK, save a copy of the configuration, go back to step (2), and make another change.</li>
+  <li>If anything goes wrong,
+    <ul>
+      <li>double-check the configuration</li>
+      <li>read the entire debug output, looking for words like error or warning. These messages usually contain descriptions of what went wrong, and suggestions for how it can be fixed. (see also the debug form)</li>
+      <li>Try replace your configuration with a saved copy of a “known working” configuration, and start again. This process can clean up errors caused by temporary edits, or edits that you have forgotten about.</li>
+      <li>Ask for help on the freeradius-users mailing list. Include a description of what you are trying to do, and the entire debugging output, especially output showing the server receiving and processing test packets. You may want to scrub “secret” information from the output before posting it. (Shared secrets, passwords, etc.)</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="other-resources">Other Resources</h4>
+
+<p>A number of guides are available from Network RADIUS. In particular, we recommend the Technical Guide, which should be read by every new RADIUS administrator. It explains RADIUS concepts, and covers how to perform introductory administation and maintenance. More in-depth guides are available on the same page.</p>
+
+    </div>
+  </div>
+
+</article>
+
+
+    </div>
+
+    <footer class="global_footer bg_block-dark lg_padding_v">
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <div class="footer_main">
+                    <img class="footer_logo" width="150" src="../img/wordmark-white.svg" alt="">
+                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
+                    <div class="footer-social">
+                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
+                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
+                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
+                    </div>
+                    <p>&copy; 2015 The FreeRADIUS Server Project Support and Contributors</p>
+                </div>
+            </div>
+            <div class="columns medium-8">
+                <nav class="footer_nav h6 row small-up-2">
+                    <ul>
+                        <li><a href="/documentation/">Docs</a></li>
+                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
+                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
+                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
+                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
+                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/modules/">Modules</a></li>
+                        <li><a href="/modules/">Packages</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/community/">Community</a></li>
+                        <li><a href="/support/">Mailing Lists</a></li>
+                        <li><a href="/community/#contributing">Contribute</a></li>
+                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/about/#project">The Project</a></li>
+                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
+                        <li><a href="/about/#security">Security</a></li>
+                        <li><a href="/about/#team">Team</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/support/">Support</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
+                        <li><a href="/security_issues/">Security Issues</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
+                        <li><a href="/support/">Newsletters</a></li>
+                        <li><a href="/commercial_support/">Commercial</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/app.js"></script>
+
+  </body>
+
+</html>

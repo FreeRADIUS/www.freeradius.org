@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html ng-app="freeradius">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Documentation</title>
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="freeradius.surge.sh/documentation/">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.surge.sh/feed.xml">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
+    <meta name="msapplication-TileColor" content="#da532c ">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+</head>
+
+
+  <body>
+
+    <div class="global-nav">
+  <div class="global_links pull_right">
+    <div class="global_link global_link_label h5 text">Our sites:</div>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>radius</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>radius</div></a>
+  </div>
+</div>
+
+<header class="site-header" global-header ng-class="{fixed: fixNav}">
+  <div class="site-header-wrapper">
+
+    <a class="site-title" href="/"><img src="../img/wordmark.svg"></a>
+    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
+      <svg viewBox="0 0 18 15">
+        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+      </svg>
+    </button>
+
+    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
+
+      <div class="get-release">
+      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
+      </div>
+
+      <ul class="site-nav-list">
+        
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/releases/">Releases</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/documentation/">Documentation</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/modules/">Modules</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/community/">Community</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/about/">About</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/support/">Support</a>
+              </li>
+            
+          
+        
+      </ul>
+
+    </nav>
+
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+
+        <article class="post">
+  <header class="post-header">
+    <div class="post-hero hero-documentation">
+      <div class="wrapper">
+      	<h1 class="post-title">Documentation</h1>
+      	<p class="post-subtitle">A FreeRADIUS resource portal</p> 
+      </div>
+    </div>
+  </header>
+  
+  	<div class="sub-nav">
+	<div class="wrapper">
+        <nav class="inline_nav" sub-nav>
+            <ul>
+                
+                
+        			<li class="active">
+                        <a class="subnav_link" href="#intro">Intro to docs</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="#getting_started">Getting started</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="#wiki">Community wiki</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="#more_resources">More Resources</a>
+                    </li>
+        		
+            </ul>
+        </nav>
+	</div>
+</div>
+
+  
+
+  <div class="post-content">
+      <div class="wrapper base_padding_v" id="intro">
+	<h3 class="section-title">FreeRADIUS Documentation</h3>
+	<div class="row base_margin_b">
+	    <div class="columns medium-8">
+	        <p>Configuring the server can be a complex task. This task is made easier in recent versions, as we gradually improve the documentation and "default" configurations.</p>
+	        <p>The server comes with documentation. The <a href="https://github.com/FreeRADIUS/freeradius-server/tree/v3.0.x/doc/">doc/</a> directory contains a number of files, named for their functionality. The configuration files contain enormous amounts of documentation. Each configuration directive is documented in comments where it is used. The <a href="https://github.com/FreeRADIUS/freeradius-server/tree/v3.0.x/raddb/sites-available/">raddb/sites-available</a> directory contains many example "virtual servers". Each example has comments describing what it does, when it should be used, and how to configure it.</p>
+	        <p>If you are using Version 1 or 2 of the server, we suggest upgrading to Version 3. Version 1 is no longer supported, and Version 2 is EOL.</p>
+	    </div>
+	    <div class="quick-links columns medium-4 text_accent-blue">
+        	 <a href="http://freeradius.org/doc/debugging.html">
+		        <div class="link block">
+	                <img src="../img/debug.svg" alt="" class="icon">
+	                <span class="h5 text-mid">Debugging the server</span><img class="arrow" src="../img/arrow-right.svg">
+	            </div>
+	         </a>
+	         <a href="#getting_started">
+		       	<div class="link block">
+	                <img src="../img/start.svg" alt="" class="icon">
+	                <span class="h5 text-mid">Getting started</span><img class="arrow" src="../img/arrow-right.svg">
+	            </div>
+	        </a>
+	        <a href="/commercial_support/">
+	            <div class="link block">
+	                <img src="../img/support.svg" alt="" class="icon">
+	                <span class="h5 text-mid">Commercial Support</span><img class="arrow" src="../img/arrow-right.svg">
+	            </div>
+           	</a>
+	    </div>
+	</div>
+
+
+	<div class="alert-box row">
+		<img class="columns medium-1" src="../img/alert-blue.svg">
+		<div  class="columns medium-11">
+			<p><span class="emphasis text-dark">Many people try to find documentation by Googling keywords, but this method is not generally productive.</span> Most of the links are to other people asking the same question, or to out-dated third party documentation. Most people can easily get lost in a mess of contradictory and confusing documentation, leading to frustration and a badly configured server.</p>
+			<p><span class="emphasis text-dark">Most third-party documentation and How-To's are wrong and outdated.</span> We strongly suggest that you do not follow any documentation which is more than 4 years old. If you do follow such ancient documentation, the result will likely be a server that does not work.</p>
+		</div>
+	</div>
+
+
+	<div class="base_padding_v" id="getting_started">
+		<h3 class="section-title">New to RADIUS? Start here.</h3>
+		<div class="row">
+			<div class="columns medium-6">
+				<div class="circle-number h5">1</div>
+
+				<h5>Quick Start guide</h5>
+
+				<p>New users of the server should read <a href="http://freeradius.org/doc/getting_started.html">Getting Started</a>. It describes how to set up a test user and how to add a new client. These are the two basic steps that start all new installations.</p>
+
+				<a href="http://freeradius.org/doc/getting_started.html" class="headline-link">Visit GETTING STARTED</a>
+			</div>
+
+			<div class="columns medium-6">
+				<div class="circle-number h5">2</div>
+
+				<h5>FreeRadius Technical Guide (PDF)</h5>
+
+				<p>This comprehensive guide covers RADIUS concepts, how RADIUS works, and how to install FreeRadius. It also describes configuration files distributed with the server and what they are used for.</p>
+
+				<a href="http://networkradius.com/doc/FreeRADIUS%20Technical%20Guide.pdf" class="headline-link"> Download the FreeRADIUS Technical Guide (PDF)</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="grey-block" id="wiki">
+	<div class="wrapper base_padding_v">
+		<h3 class="section-title">FreeRADIUS Wiki</h3>
+		<div class="row">
+			<div class="columns medium-8">
+				<p>Configuring the server can be a complex task. This task is made easier in recent versions, as we gradually improve the documentation and "default" configurations.</p>
+
+				<p>The Wiki has a fair amount of documentation and How-To's. It is a good starting resource. The Wiki is searchable: type in a few keywords, and you will get pages of documentation that often answer your questions and can help you solve problems.</p>
+
+				<span class="emphasis">Contributing to documentation</span>
+				<p>You can help! Just edit the wiki. It takes less than five minutes, and it will help thousands of other people.</p>
+
+			</div>
+			<div class="quick-links columns medium-4 text_accent-blue">
+				<a href="http://wiki.freeradius.org/Home">
+					<div class="link block">
+		                <img src="../img/wiki.svg" alt="" class="icon">
+		                <span class="h5 text-mid">Visit Wiki</span><img class="arrow" src="../img/arrow-right.svg">
+		            </div>
+		         </a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="wrapper base_padding_v" id="more_resources">
+	<h3 class="section-title">Resources</h3>
+	<div class="row base_padding_v">
+		<div class="columns medium-6">
+			<div class="quick-links text_accent-blue">
+				<a href="http://freeradius.org/radiusd/man/">
+					<div class="link">
+		                <span class="h5">Online manual pages </span><img class="arrow" src="../img/arrow-right.svg">
+		            </div>
+		        </a>
+			</div>
+
+			<p>All of the "man" pages are available on any system running FreeRADIUS. We suggest typing typing man radiusd, and reading the resulting text.  These manual pages contain instructions for configuring and debugging the server.</p>
+
+			<p>
+				<span class="emphasis text-mid">Links of interest:</span>
+				<ul>
+					<li><a href="http://freeradius.org/radiusd/man/index.html#programs">Programs documentation</a></li>
+					<li><a href="http://freeradius.org/radiusd/man/index.html#files">Configuration files documentation</a></li>
+					<li><a href="http://freeradius.org/radiusd/man/index.html#modules">Modules documentation</a></li>
+				</ul>
+			</p>
+			<a href="http://freeradius.org/radiusd/man/" class="headline-link">Visit ONLINE MANUAL PAGES</a>
+		</div>
+
+		<div class="columns medium-6">
+			<div class="quick-links text_accent-blue">
+				<a href="http://deployingradius.com/">
+					<div class="link">
+		                <span class="h5">deployingradius.com </span><img class="arrow" src="../img/arrow-right.svg">
+		            </div>
+		        </a>
+			</div>
+
+			<p>This web site has a number of useful how-to documents that are kept up to date with newer versions of the server.</p>
+			<p>
+				<span class="emphasis text-mid">Links of interest:</span>
+				<ul>
+					<li><a href="http://deployingradius.com/documents/configuration/eap.html">Configuring EAP (TLS, PEAP, TTLS)</a></li>
+					<li><a href="http://deployingradius.com/documents/configuration/active_directory.html">Configure Active Directory for authentication</a></li>
+					<li><a href="http://deployingradius.com/documents/configuration/setup.html">Setting up the server</a></li>
+					<li><a href="http://deployingradius.com/documents/protocols/compatibility.html">Authentication Protocols Table</a> <span class="italic">compatiblity with back-end databases and password storage methods</span></li>
+				</ul>
+			</p>
+
+			<a href="http://deployingradius.com/" class="headline-link">Visit DEPLOYINGRADIUS.COM</a>
+		</div>
+	</div>
+
+
+	<hr>
+
+	<div class="row base_padding_v">
+		<div class="columns medium-6">
+			<div class="quick-links text_accent-blue">
+				<a href="http://networkradius.com/doc.html">
+					<div class="link">
+		                <span class="h5">Full server documentation </span><img class="arrow" src="../img/arrow-right.svg">
+		            </div>
+		        </a>
+			</div>
+
+			<p>Our documentation is a work in process and is as yet incomplete. However, we have extensive documentation on the following topics:</p>
+			<p>
+				<span class="emphasis text-mid">Links of interest:</span>
+				<ul>
+					<li><a href="http://networkradius.com/doc/current/upgrading/">Upgrading to 3.0</a></li>
+					<li><a href="http://networkradius.com/doc/current/unlang/keywords.html">Unlang keywords</a> <span class="italic">i.e., "if", "update", etc.</span></li>
+					<li><a href="http://networkradius.com/doc/current/unlang/condition.html">Conditional syntax</a> <span class="italic">i.e., how to use "if" statements in unlang</span></li>
+					<li><a href="http://networkradius.com/doc/current/raddb/mods-available/expansions.html">String expansions</a> <span class="italic">i.e., "%{User-Name}"</span></li>
+					<li><a href="http://networkradius.com/doc/current/raddb/mods-available/">Modules</a> <span class="italic">About ¾ of the modules are documented</span></li>
+				</ul>
+			</p>
+			<a href="http://networkradius.com/doc.html" class="headline-link">Visit NetworkRADIUS FULL SERVER DOCS</a>
+		</div>
+
+		<div class="columns medium-6">
+			<div class="quick-links text_accent-blue">
+				<a href="http://doc.freeradius.org/">
+					<div class="link">
+		                <span class="h5">API Documentation </span><img class="arrow" src="../img/arrow-right.svg">
+		            </div>
+		        </a>
+			</div>
+
+			<p>The doc site holds a rendered copy of the doxygen annotations added to the FreeRADIUS code base.  Doxygen content is primarily useful for developers, but it contains notes describing hidden or advanced features that may be useful for users.</p>
+
+			<p class="italic">The API documentation site is not useful for people who want to configure FreeRADIUS.</p>
+
+			<a href="http://doc.freeradius.org/" class="headline-link">Visit DOXYGEN DOC SITE</a>
+		</div>
+	</div>
+
+	<hr>
+
+	<div class="row base_padding_v">
+
+		<div class="columns medium-6 end">
+			<h5>Novell eDirectory Integration</h5>
+
+			<p>An administration guide to <a href="http://freeradius.org/doc/radiusadmin.pdf">FreeRADIUS and Novell eDirectory</a> is available.</p>
+			<a href="http://freeradius.org/doc/radiusadmin.pdf" class="headline-link">Download ADMINSTRATION GUIDE PDF</a>
+			<br><br>
+			<p>For the latest version of the "Integrating Novell eDirectory with FreeRADIUS" administration guide, refer to Novell's site.</p>
+
+			<a href="http://www.novell.com/documentation/edir_radius/index.html" class="headline-link">Visit NOVELL.COM</a>
+		</div>
+	</div>
+</div>
+  </div>
+
+</article>
+
+
+    </div>
+
+    <footer class="global_footer bg_block-dark lg_padding_v">
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <div class="footer_main">
+                    <img class="footer_logo" width="150" src="../img/wordmark-white.svg" alt="">
+                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
+                    <div class="footer-social">
+                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
+                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
+                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
+                    </div>
+                    <p>&copy; 2015 The FreeRADIUS Server Project Support and Contributors</p>
+                </div>
+            </div>
+            <div class="columns medium-8">
+                <nav class="footer_nav h6 row small-up-2">
+                    <ul>
+                        <li><a href="/documentation/">Docs</a></li>
+                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
+                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
+                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
+                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
+                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/modules/">Modules</a></li>
+                        <li><a href="/modules/">Packages</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/community/">Community</a></li>
+                        <li><a href="/support/">Mailing Lists</a></li>
+                        <li><a href="/community/#contributing">Contribute</a></li>
+                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/about/#project">The Project</a></li>
+                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
+                        <li><a href="/about/#security">Security</a></li>
+                        <li><a href="/about/#team">Team</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/support/">Support</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
+                        <li><a href="/security_issues/">Security Issues</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
+                        <li><a href="/support/">Newsletters</a></li>
+                        <li><a href="/commercial_support/">Commercial</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/app.js"></script>
+
+  </body>
+
+</html>

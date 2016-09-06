@@ -1,0 +1,52 @@
+<div class="row base_padding_v" ng-controller="SocialFeeds" ng-init="getFeeds()">
+    <div class="column medium-4">
+        <div class="social-header">
+            <img class="icon_small" src="/img/twitter.svg" alt="">
+            <h5>@FreeRadius</h5>
+        </div>
+
+        <div class="social-block">
+            <div class="social-entry" ng-repeat="tweet in feeds.twitter">
+                <div class="label"><span class="icon time"></span><span ng-bind="toDate(tweet.created_at)"></span></div>
+                <div ng-bind-html="trust(tweet.text)"></div>
+            </div>
+        </div>
+
+        <a class="h5 undecorate text_accent-blue" target="_blank" href="https://twitter.com/freeradius">Visit freeRADIUS on twitter</a>
+    </div>
+
+    <div class="column medium-4">
+        <div class="social-header">
+            <img class="icon_small" src="/img/stackoverflow.svg" alt="">
+            <h5>Latest questions</h5>
+        </div>
+
+        <div class="social-block">
+            <div class="social-entry" ng-repeat="so in feeds.stackoverflow">
+                <div class="label"><span class="icon comment"></span>{% raw %}{{so.last_activity_date*1000 | date: 'longDate' }}{% endraw %}</div>
+                <h5><a class="undecorate" href="{% raw %}{{so.link}}{% endraw %}" target="_blank" ng-bind-html="trust(so.title)"></a></h5>
+                <div ng-bind-html="trust(so.body)"></div>
+            </div>
+        </div>
+
+        <a class="h5 undecorate text_accent-blue" target="_blank" href="http://stackoverflow.com/questions/tagged/freeradius?sort=newest">Visit freeRADIUS on Stack Overflow</a>
+    </div>
+
+    <div class="column medium-4">
+        <div class="social-header">
+            <img class="icon_small" src="/img/github.svg" alt="">
+            <h5>Last Updates</h5>
+        </div>
+        <div class="social-block">
+            <div class="social-entry" ng-repeat="gh in feeds.github">
+                <div class="label"><span class="icon upload"></span>{% raw %}{{gh.commit.author.date | date: 'longDate' }}{% endraw %}</div>
+                <h5><a class="undecorate" href="{% raw %}{{gh.parents[0].html_url}}{% endraw %}" target="_blank">freeradius-server</a></h5>
+                <div ng-bind-html="trust(gh.commit.message)"></div>
+            </div>
+        </div>
+
+        <a class="h5 undecorate text_accent-blue" target="_blank" href="https://github.com/FreeRADIUS">Visit freeRADIUS on GitHub</a>
+    </div>
+
+</div>
+

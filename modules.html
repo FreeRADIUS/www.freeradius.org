@@ -1,0 +1,94 @@
+---
+layout: default
+title: Modules
+permalink: /modules/
+navorder: 300
+
+---
+<div ng-controller="ModulesPage">
+    <header class="modules_header">
+        <div class="wrapper base_padding_v">
+            <div class="row">
+                <div class="columns medium-4">
+                    <h3 class="section-title">{{page.title}}</h3>
+                </div>
+                <div class="modules_search columns medium-8">
+                    <input class="h5 search" type="text" placeholder="Search" ng-model="search" ng-model-options="{ debounce: 300 }" ng-value="searchString" ng-change="changeLocationSearch(search)">
+                    <a href="https://github.com/FreeRADIUS/freeradius-server/issues/new" class="h5 button_alt bg_block-light text-dark">Report a bug<img class="arrow" src="/img/arrow-right.svg" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <nav class="inline_nav h5 text_centered bg_block-light base_padding_v">
+            <div class="wrapper">
+                <ul class="modules_filter_list">
+                    <li ng-click="changeLocation(false); filter('all')" ng-class="{active: activeFilter == 'all'}">All modules</li>
+                    <li ng-click="changeLocation('authentication'); filter('authentication')" ng-class="{active: activeFilter == 'authentication'}"><span  class="module_icon text_accent-blue">{% include /svg/mod-authentication.svg %}</span> Authentication</li>
+                    <li ng-click="changeLocation('datastore'); filter('datastore')" ng-class="{active: activeFilter == 'datastore'}"><span  class="module_icon text_accent-yellow">{% include /svg/mod-datastores.svg %}</span> Datastores</li>
+                    <li ng-click="changeLocation('io'); filter('io')" ng-class="{active: activeFilter == 'io'}"><span  class="module_icon text_accent-green">{% include /svg/mod-io.svg %}</span> I/O</li>
+                    <li ng-click="changeLocation('languages'); filter('languages')" ng-class="{active: activeFilter == 'languages'}"><span  class="module_icon text_accent-orange">{% include /svg/mod-languages.svg %}</span> Languages</li>
+                    <li ng-click="changeLocation('policy'); filter('policy')" ng-class="{active: activeFilter == 'policy'}"><span  class="module_icon text_accent-red">{% include /svg/mod-policy.svg %}</span> Policy</li>
+                    <li ng-click="changeLocation('protocols'); filter('protocols')" ng-class="{active: activeFilter == 'protocols'}"><span  class="module_icon text_accent-purple">{% include /svg/mod-protocols.svg %}</span> Protocols</li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="modules_section base_padding_v">
+        <div class="wrapper">
+            <div class="row" content-group>
+
+                <div class="module module-{% raw %}{{module.category}}{% endraw %}"
+                    id="module-{% raw %}{{module.name}}{% endraw %}"
+                    ng-class="{active: active == '#module-details-{% raw %}{{module.name}}{% endraw %}'}"
+                    ng-repeat="module in modules"
+                    ng-init="dormant = true"
+                    mod
+                    ng-cloak>
+                    <div class="link box" ng-click="toggle('#module-details-' + module.name, true); changeLocationModule(module.name)">
+                        <span class="module_icon pull_right">
+                            <img ng-hide="active == '#module-details-{% raw %}{{module.name}}{% endraw %}'" ng-src="/img/mod-{% raw %}{{module.category}}{% endraw %}.svg" alt="">
+                            <img ng-show="active == '#module-details-{% raw %}{{module.name}}{% endraw %}'" ng-src="/img/mod-{% raw %}{{module.category}}{% endraw %}-white.svg" alt="">
+                        </span>
+                        <span class="h5 module_category">{% raw %}{{module.category}}{% endraw %}</span>
+                        <span class="module_title h4">{% raw %}{{module.name}}{% endraw %}</span>
+                    </div>
+                    <div class="module_details base_padding_v block" id="module-details-{% raw %}{{module.name}}{% endraw %}">
+
+                        <div class="wrapper">
+                            <div class="row">
+                                <div class="columns medium-3">
+                                    <div class="module_details_linkwrap">
+                                        <span class="module_icon pull_right">
+                                            <img ng-src="/img/mod-{% raw %}{{module.category}}{% endraw %}.svg" alt="">
+                                        </span>
+                                        <span class="h5 module_category">{% raw %}{{module.category}}{% endraw %}</span>
+                                        <span class="module_title h4">{% raw %}{{module.name}}{% endraw %}</span>
+                                    </div>
+                                    <a class="h5 button bg_accent-grey" target="_blank" href="{% raw %}{{module.documentation_link}}{% endraw %}">View documentation</a>
+                                </div>
+                                <div class="columns medium-6 text-mid">
+                                    <p>{% raw %}{{module.description}}{% endraw %}</p>
+                                    <div ng-if="module.dependents">
+                                        <h5 class="text_accent-grey">Sub-modules</h5>
+                                        <ul class="h6">
+                                            <li ng-repeat="submodule in module.dependents"><a class="" ng-click="changeLocation(submodule.category, submodule.name);">{% raw %}{{submodule.name}}{% endraw %}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="columns medium-3 text_accent-grey">
+                                    <div ng-repeat="available in module.available">
+                                        <div class="link">
+                                            <p class="h5 text_accent-grey">Availability</p>
+                                            <span class="h6"><a ng-href="/release_notes/?br={% raw %}{{available.branch.name}}{% endraw %}&re={% raw %}{{available.start.name}}{% endraw %}">{% raw %}{{available.start.name}}{% endraw %}</a> - <a ng-href="/release_notes/?br={% raw %}{{available.branch.name}}{% endraw %}&re={% raw %}{{available.end.name}}{% endraw %}">{% raw %}{{available.end.name}}{% endraw %}</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>

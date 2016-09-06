@@ -1,0 +1,135 @@
+---
+layout: page
+title: Support & Services
+subtitle: Having trouble and need a hand? Find answers here.
+subpage: true
+permalink: /security_issues/
+hero: support
+
+subnav:
+    data: support_subnav
+---
+<div class="wrapper base_padding_v">
+    <h3 class="section-title">Security Contact</h3>
+    <div class="row">
+        <div class="columns medium-8">
+            <p>The FreeRADIUS security contact is <a href="mailto:security@freeradius.org">security@freeradius.org</a>. All security related information or notifications should be sent to that address. Security notifications may be signed with the pgp key <a href="mailto:aland@freeradius.org">aland@freeradius.org</a></p>
+        </div>
+        <div class="quick-links columns medium-4 text_accent-blue">
+            <a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">
+                <div class="link block">
+                    <img src="../img/debug.svg" alt="" class="icon">
+                    <span class="h5 text-mid">Report a bug</span><img class="arrow" src="../img/arrow-right.svg">
+                </div>
+            </a>
+            <a href="http://stackoverflow.com/questions/tagged/freeradius">
+                <div class="link block">
+                    <img src="../img/faq.svg" alt="" class="icon">
+                    <span class="h5 text-mid">F.A.Q. on Stack Overflow</span><img class="arrow" src="../img/arrow-right.svg">
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <h3 class="section-title">Security of the RADIUS Protocol</h3>
+    <p>The <a href="http://freeradius.org/related/papers.html">security papers page</a> lists some general issues with RADIUS security.</p>
+
+    <div content-group ng-init="active = '#notifications'">
+        <div class="link accent-red" ng-class="{inactive: active != '#notifications'}" ng-click="toggle('#notifications')">
+            <span class="icon_small">{% include_relative /img/alert-red.svg %}</span>
+            <span class="h5">Vulnerability Notifications</span>
+        </div>
+        <div class="link accent-red" ng-class="{inactive: active != '#dependencies'}" ng-click="toggle('#dependencies')">
+            <span class="icon_small">{% include_relative /img/alert-red.svg %}</span>
+            <span class="h5">Vulnerability in Dependencies</span>
+        </div>
+
+        <div id="notifications" ng-show="active == '#notifications'">
+            <section class="articles" content-group ng-init="active = '#2015'">
+                <nav class="inline_nav base_padding_v">
+                    <ul>
+                        {% for post in site.categories.vul_notifications %}
+                        <li ng-class="{active: active == '#{{post.date | date: "%Y"}}'}"><a class="subnav_link" ng-click="toggle('#{{post.date | date: "%Y"}}')">{{post.date | date: "%Y"}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                <div class="article_list">
+                    {% for post in site.categories.vul_notifications %}
+                        <article class="security_post base_padding_v" ng-show="active.indexOf({{post.date | date: "%Y"}}) != -1">
+                            <h4><span class="security_post_date">{{post.date | date: "%Y.%m.%d"}}</span>{{post.title}}</h4>
+                            {{post.content}}
+                        </article>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+
+        <div id="dependencies" ng-show="active == '#dependencies'">
+            <section class="articles" content-group ng-init="active = '#2015'">
+                <nav class="inline_nav base_padding_v">
+                    <ul>
+                        {% for post in site.categories.vul_in_deps %}
+                            {% if forloop.first %}
+                                {% assign olderDate = post.date | date: "%Y" | minus: 5 %}
+                            {% endif %}
+
+                            {% assign postDate = post.date | date: "%Y" | minus : 1 %}
+                            {% assign postDate = postDate | plus : 1 %}
+                            <!-- plus and minus changes post.date from a string into an integer to compare to olderDate -->
+                            {% if postDate > olderDate %}
+                                <li ng-class="{active: active == '#{{post.date | date: "%Y"}}'}"><a class="subnav_link" ng-click="toggle('#{{post.date | date: "%Y"}}')">{{post.date | date: "%Y"}}</a></li>
+                            {% else %}
+                                {% assign olderDates = olderDates | append: '-' | append: postDate %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if olderDates %}
+                            <li ng-class="{active: active == '#{{olderDates}}'}"><a class="subnav_link" ng-click="toggle('#{{olderDates}}')">Older...</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                <div class="article_list">
+                    {% for post in site.categories.vul_in_deps %}
+                        <article class="security_post base_padding_v" ng-show="active.indexOf({{post.date | date: "%Y"}}) != -1">
+                            <h4><span class="security_post_date">{{post.date | date: "%Y.%m.%d"}}</span>{{post.title}}</h4>
+                            {{post.content}}
+                        </article>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+</div>
+
+
+<section class="bg_block-light lg_padding_v">
+    <div class="wrapper">
+        <h4>FreeRADIUS Security</h4>
+        <h5>Defensive Programming</h5>
+        <p>All input is sanity-checked before use.</p>
+
+        <h5>Clean code</h5>
+        <p>There are no C compiler warnings in the build. Builds performed by developers have -Werror set, so that new errors are not introduced.</p>
+
+        <h5>Builds with multiple compilers</h5>
+        <p>We use GCC and CLANG for all builds. Each compiler produces a slightly different set of warnings. As seen above, no warnings from any compiler are allowed in the build.</p>
+
+        <h5>Builds on multiple operating systems</h5>
+        <p>We always build on Mac OSX and Ubuntu. We are in the process of adding FreeBSD and CentOS.</p>
+
+        <h5>Builds are done with every single module, and multiple feature permutations</h5>
+        <p>There is no portion of the server which has "code rot" because it has not been built for years.</p>
+
+        <h5>Continuous testing</h5>
+        <p>The src/tests/ directory has a growing set of tests for server functionality. These tests help ensure that new commits do not accidentally break existing functionality</p>
+
+        <h5>Continuous integration</h5>
+        <p>Commits are built and tested via travis</p>
+
+        <h5>Static analysis (3X!)</h5>
+        <p>Builds are performed weekly with Coverity. Builds are performed daily with Clang static analyzer and cppcheck. The server must build with no errors before it can be released.</p>
+        <p>These practices are not perfect. The test suite is growing, but it does not cover all of the servers functionality. As a result, the latest releases may still have bugs. The version 2 "stable" release undergoes less code churn and is the "long term support" stable and bug-free release. The version 3 "feature" release has significantly more code churn, and therefore, may have more issues than version 2</p>
+    </div>
+</section>

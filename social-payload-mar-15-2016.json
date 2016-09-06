@@ -1,0 +1,2141 @@
+{
+  "twitter": [
+    {
+      "created_at": "Tue Jan 26 03:14:41 +0000 2016",
+      "id": 6.9182153081322e+17,
+      "id_str": "691821530813222912",
+      "text": "Downgrade to OpenSSL &lt;= 1.0.0 which lacks support for TLS 1.2, or build your own FreeRADIUS packages (make deb).",
+      "truncated": false,
+      "source": "<a href=\"http:\/\/twitter.com\" rel=\"nofollow\">Twitter Web Client<\/a>",
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+        "id": 83314299,
+        "id_str": "83314299",
+        "name": "freeradius",
+        "screen_name": "freeradius",
+        "location": "Everywhere",
+        "description": "The worlds most popular RADIUS server.",
+        "url": "http:\/\/t.co\/EbSTAEE01c",
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "url": "http:\/\/t.co\/EbSTAEE01c",
+                "expanded_url": "http:\/\/freeradius.org",
+                "display_url": "freeradius.org",
+                "indices": [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description": {
+            "urls": [
+              
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 168,
+        "friends_count": 33,
+        "listed_count": 3,
+        "created_at": "Sun Oct 18 06:52:32 +0000 2009",
+        "favourites_count": 4,
+        "utc_offset": 3600,
+        "time_zone": "Paris",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 85,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "000000",
+        "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_link_color": "0F5095",
+        "profile_sidebar_border_color": "000000",
+        "profile_sidebar_fill_color": "000000",
+        "profile_text_color": "000000",
+        "profile_use_background_image": false,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 2,
+      "entities": {
+        "hashtags": [
+          
+        ],
+        "symbols": [
+          
+        ],
+        "user_mentions": [
+          
+        ],
+        "urls": [
+          
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "lang": "en"
+    },
+    {
+      "created_at": "Mon Jan 18 20:15:13 +0000 2016",
+      "id": 6.8917925560388e+17,
+      "id_str": "689179255603884032",
+      "text": "Coming in 3.0.11 - Allow Response-Packet-Type in Post-Proxy-Type fail, which lets you \"invent\" responses when the home server times out",
+      "truncated": false,
+      "source": "<a href=\"http:\/\/twitter.com\" rel=\"nofollow\">Twitter Web Client<\/a>",
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+        "id": 83314299,
+        "id_str": "83314299",
+        "name": "freeradius",
+        "screen_name": "freeradius",
+        "location": "Everywhere",
+        "description": "The worlds most popular RADIUS server.",
+        "url": "http:\/\/t.co\/EbSTAEE01c",
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "url": "http:\/\/t.co\/EbSTAEE01c",
+                "expanded_url": "http:\/\/freeradius.org",
+                "display_url": "freeradius.org",
+                "indices": [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description": {
+            "urls": [
+              
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 168,
+        "friends_count": 33,
+        "listed_count": 3,
+        "created_at": "Sun Oct 18 06:52:32 +0000 2009",
+        "favourites_count": 4,
+        "utc_offset": 3600,
+        "time_zone": "Paris",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 85,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "000000",
+        "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_link_color": "0F5095",
+        "profile_sidebar_border_color": "000000",
+        "profile_sidebar_fill_color": "000000",
+        "profile_text_color": "000000",
+        "profile_use_background_image": false,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 0,
+      "entities": {
+        "hashtags": [
+          
+        ],
+        "symbols": [
+          
+        ],
+        "user_mentions": [
+          
+        ],
+        "urls": [
+          
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "lang": "en"
+    },
+    {
+      "created_at": "Mon Jan 18 20:14:05 +0000 2016",
+      "id": 6.8917896922517e+17,
+      "id_str": "689178969225170946",
+      "text": "Coming in 3.0.11, many elastic search fixes from @mcnewton",
+      "truncated": false,
+      "source": "<a href=\"http:\/\/twitter.com\" rel=\"nofollow\">Twitter Web Client<\/a>",
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+        "id": 83314299,
+        "id_str": "83314299",
+        "name": "freeradius",
+        "screen_name": "freeradius",
+        "location": "Everywhere",
+        "description": "The worlds most popular RADIUS server.",
+        "url": "http:\/\/t.co\/EbSTAEE01c",
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "url": "http:\/\/t.co\/EbSTAEE01c",
+                "expanded_url": "http:\/\/freeradius.org",
+                "display_url": "freeradius.org",
+                "indices": [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description": {
+            "urls": [
+              
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 168,
+        "friends_count": 33,
+        "listed_count": 3,
+        "created_at": "Sun Oct 18 06:52:32 +0000 2009",
+        "favourites_count": 4,
+        "utc_offset": 3600,
+        "time_zone": "Paris",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 85,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "000000",
+        "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_link_color": "0F5095",
+        "profile_sidebar_border_color": "000000",
+        "profile_sidebar_fill_color": "000000",
+        "profile_text_color": "000000",
+        "profile_use_background_image": false,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 1,
+      "entities": {
+        "hashtags": [
+          
+        ],
+        "symbols": [
+          
+        ],
+        "user_mentions": [
+          {
+            "screen_name": "mcnewton",
+            "name": "Matthew Newton",
+            "id": 17733174,
+            "id_str": "17733174",
+            "indices": [
+              49,
+              58
+            ]
+          }
+        ],
+        "urls": [
+          
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "lang": "en"
+    },
+    {
+      "created_at": "Thu Nov 19 22:59:57 +0000 2015",
+      "id": 6.674774417288e+17,
+      "id_str": "667477441728802816",
+      "text": "Come on @debian, @ubuntu, @redhatopen, @CentOS, even the BSDs have more update to date FreeRADIUS packages than you! https:\/\/t.co\/Z2qOQgY2Ca",
+      "truncated": false,
+      "source": "<a href=\"http:\/\/twitter.com\" rel=\"nofollow\">Twitter Web Client<\/a>",
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+        "id": 83314299,
+        "id_str": "83314299",
+        "name": "freeradius",
+        "screen_name": "freeradius",
+        "location": "Everywhere",
+        "description": "The worlds most popular RADIUS server.",
+        "url": "http:\/\/t.co\/EbSTAEE01c",
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "url": "http:\/\/t.co\/EbSTAEE01c",
+                "expanded_url": "http:\/\/freeradius.org",
+                "display_url": "freeradius.org",
+                "indices": [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description": {
+            "urls": [
+              
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 168,
+        "friends_count": 33,
+        "listed_count": 3,
+        "created_at": "Sun Oct 18 06:52:32 +0000 2009",
+        "favourites_count": 4,
+        "utc_offset": 3600,
+        "time_zone": "Paris",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 85,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "000000",
+        "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_link_color": "0F5095",
+        "profile_sidebar_border_color": "000000",
+        "profile_sidebar_fill_color": "000000",
+        "profile_text_color": "000000",
+        "profile_use_background_image": false,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "quoted_status_id": 6.6738114442652e+17,
+      "quoted_status_id_str": "667381144426520576",
+      "quoted_status": {
+        "created_at": "Thu Nov 19 16:37:18 +0000 2015",
+        "id": 6.6738114442652e+17,
+        "id_str": "667381144426520576",
+        "text": "FreeRADIUS 3.1? check. SAMBA 4.3.1? check Linux Kernel 4.3? Check. feels fresh being so up to date... if only the big distros delivered this",
+        "truncated": false,
+        "source": "<a href=\"http:\/\/twitter.com\" rel=\"nofollow\">Twitter Web Client<\/a>",
+        "in_reply_to_status_id": null,
+        "in_reply_to_status_id_str": null,
+        "in_reply_to_user_id": null,
+        "in_reply_to_user_id_str": null,
+        "in_reply_to_screen_name": null,
+        "user": {
+          "id": 17990670,
+          "id_str": "17990670",
+          "name": "alanbuxey",
+          "screen_name": "alanbuxey",
+          "location": "UK",
+          "description": "all tweets are my PERSONAL opinion\/views (or retweets of things I agree with) and are nothing to do with the organisations I work for (they have official feeds)",
+          "url": "http:\/\/t.co\/Gi022I8OcO",
+          "entities": {
+            "url": {
+              "urls": [
+                {
+                  "url": "http:\/\/t.co\/Gi022I8OcO",
+                  "expanded_url": "http:\/\/www.alanbuxey.co.uk",
+                  "display_url": "alanbuxey.co.uk",
+                  "indices": [
+                    0,
+                    22
+                  ]
+                }
+              ]
+            },
+            "description": {
+              "urls": [
+                
+              ]
+            }
+          },
+          "protected": false,
+          "followers_count": 302,
+          "friends_count": 193,
+          "listed_count": 27,
+          "created_at": "Tue Dec 09 13:15:05 +0000 2008",
+          "favourites_count": 77,
+          "utc_offset": 0,
+          "time_zone": "London",
+          "geo_enabled": false,
+          "verified": false,
+          "statuses_count": 13442,
+          "lang": "en",
+          "contributors_enabled": false,
+          "is_translator": false,
+          "is_translation_enabled": false,
+          "profile_background_color": "352726",
+          "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme5\/bg.gif",
+          "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme5\/bg.gif",
+          "profile_background_tile": false,
+          "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/413319307\/shadow-small_normal.JPG",
+          "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/413319307\/shadow-small_normal.JPG",
+          "profile_link_color": "D02B55",
+          "profile_sidebar_border_color": "829D5E",
+          "profile_sidebar_fill_color": "99CC33",
+          "profile_text_color": "3E4415",
+          "profile_use_background_image": true,
+          "has_extended_profile": false,
+          "default_profile": false,
+          "default_profile_image": false,
+          "following": true,
+          "follow_request_sent": false,
+          "notifications": false
+        },
+        "geo": null,
+        "coordinates": null,
+        "place": null,
+        "contributors": null,
+        "is_quote_status": false,
+        "retweet_count": 0,
+        "favorite_count": 0,
+        "entities": {
+          "hashtags": [
+            
+          ],
+          "symbols": [
+            
+          ],
+          "user_mentions": [
+            
+          ],
+          "urls": [
+            
+          ]
+        },
+        "favorited": false,
+        "retweeted": false,
+        "lang": "en"
+      },
+      "is_quote_status": true,
+      "retweet_count": 0,
+      "favorite_count": 0,
+      "entities": {
+        "hashtags": [
+          
+        ],
+        "symbols": [
+          
+        ],
+        "user_mentions": [
+          {
+            "screen_name": "debian",
+            "name": "The Debian Project",
+            "id": 24253645,
+            "id_str": "24253645",
+            "indices": [
+              8,
+              15
+            ]
+          },
+          {
+            "screen_name": "ubuntu",
+            "name": "Ubuntu",
+            "id": 2480951,
+            "id_str": "2480951",
+            "indices": [
+              17,
+              24
+            ]
+          },
+          {
+            "screen_name": "redhatopen",
+            "name": "Red Hat Community",
+            "id": 1286116932,
+            "id_str": "1286116932",
+            "indices": [
+              26,
+              37
+            ]
+          },
+          {
+            "screen_name": "CentOS",
+            "name": "Karanbir Singh",
+            "id": 17232315,
+            "id_str": "17232315",
+            "indices": [
+              39,
+              46
+            ]
+          }
+        ],
+        "urls": [
+          {
+            "url": "https:\/\/t.co\/Z2qOQgY2Ca",
+            "expanded_url": "https:\/\/twitter.com\/alanbuxey\/status\/667381144426520576",
+            "display_url": "twitter.com\/alanbuxey\/stat\u00e2\u20ac\u00a6",
+            "indices": [
+              117,
+              140
+            ]
+          }
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "possibly_sensitive": false,
+      "lang": "en"
+    },
+    {
+      "created_at": "Thu Oct 22 15:29:53 +0000 2015",
+      "id": 6.5721731718976e+17,
+      "id_str": "657217317189763072",
+      "text": "Any multi-threaded application using OpenSSL is really single-threaded for many OpenSSL operations.  Say \"bye-bye\" to performance.",
+      "truncated": false,
+      "source": "<a href=\"http:\/\/twitter.com\" rel=\"nofollow\">Twitter Web Client<\/a>",
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+        "id": 83314299,
+        "id_str": "83314299",
+        "name": "freeradius",
+        "screen_name": "freeradius",
+        "location": "Everywhere",
+        "description": "The worlds most popular RADIUS server.",
+        "url": "http:\/\/t.co\/EbSTAEE01c",
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "url": "http:\/\/t.co\/EbSTAEE01c",
+                "expanded_url": "http:\/\/freeradius.org",
+                "display_url": "freeradius.org",
+                "indices": [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description": {
+            "urls": [
+              
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 168,
+        "friends_count": 33,
+        "listed_count": 3,
+        "created_at": "Sun Oct 18 06:52:32 +0000 2009",
+        "favourites_count": 4,
+        "utc_offset": 3600,
+        "time_zone": "Paris",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 85,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "000000",
+        "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_link_color": "0F5095",
+        "profile_sidebar_border_color": "000000",
+        "profile_sidebar_fill_color": "000000",
+        "profile_text_color": "000000",
+        "profile_use_background_image": false,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 0,
+      "entities": {
+        "hashtags": [
+          
+        ],
+        "symbols": [
+          
+        ],
+        "user_mentions": [
+          
+        ],
+        "urls": [
+          
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "lang": "en"
+    },
+    {
+      "created_at": "Thu Oct 22 15:29:06 +0000 2015",
+      "id": 6.5721711910951e+17,
+      "id_str": "657217119109513216",
+      "text": "OpenSSL could have used per-object mutexes.  But no... global mutexes are better.  For creating contention.",
+      "truncated": false,
+      "source": "<a href=\"http:\/\/twitter.com\" rel=\"nofollow\">Twitter Web Client<\/a>",
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+        "id": 83314299,
+        "id_str": "83314299",
+        "name": "freeradius",
+        "screen_name": "freeradius",
+        "location": "Everywhere",
+        "description": "The worlds most popular RADIUS server.",
+        "url": "http:\/\/t.co\/EbSTAEE01c",
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "url": "http:\/\/t.co\/EbSTAEE01c",
+                "expanded_url": "http:\/\/freeradius.org",
+                "display_url": "freeradius.org",
+                "indices": [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description": {
+            "urls": [
+              
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 168,
+        "friends_count": 33,
+        "listed_count": 3,
+        "created_at": "Sun Oct 18 06:52:32 +0000 2009",
+        "favourites_count": 4,
+        "utc_offset": 3600,
+        "time_zone": "Paris",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 85,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "000000",
+        "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_link_color": "0F5095",
+        "profile_sidebar_border_color": "000000",
+        "profile_sidebar_fill_color": "000000",
+        "profile_text_color": "000000",
+        "profile_use_background_image": false,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 0,
+      "entities": {
+        "hashtags": [
+          
+        ],
+        "symbols": [
+          
+        ],
+        "user_mentions": [
+          
+        ],
+        "urls": [
+          
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "lang": "en"
+    },
+    {
+      "created_at": "Thu Oct 22 15:28:31 +0000 2015",
+      "id": 6.5721697271157e+17,
+      "id_str": "657216972711571456",
+      "text": "When you have 1000 objects \"bar\", OpenSSL makes them all contend for one global mutex to update reference counts.",
+      "truncated": false,
+      "source": "<a href=\"http:\/\/twitter.com\" rel=\"nofollow\">Twitter Web Client<\/a>",
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+        "id": 83314299,
+        "id_str": "83314299",
+        "name": "freeradius",
+        "screen_name": "freeradius",
+        "location": "Everywhere",
+        "description": "The worlds most popular RADIUS server.",
+        "url": "http:\/\/t.co\/EbSTAEE01c",
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "url": "http:\/\/t.co\/EbSTAEE01c",
+                "expanded_url": "http:\/\/freeradius.org",
+                "display_url": "freeradius.org",
+                "indices": [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description": {
+            "urls": [
+              
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 168,
+        "friends_count": 33,
+        "listed_count": 3,
+        "created_at": "Sun Oct 18 06:52:32 +0000 2009",
+        "favourites_count": 4,
+        "utc_offset": 3600,
+        "time_zone": "Paris",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 85,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "000000",
+        "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_link_color": "0F5095",
+        "profile_sidebar_border_color": "000000",
+        "profile_sidebar_fill_color": "000000",
+        "profile_text_color": "000000",
+        "profile_use_background_image": false,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 0,
+      "entities": {
+        "hashtags": [
+          
+        ],
+        "symbols": [
+          
+        ],
+        "user_mentions": [
+          
+        ],
+        "urls": [
+          
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "lang": "en"
+    },
+    {
+      "created_at": "Thu Oct 22 15:27:41 +0000 2015",
+      "id": 6.5721676284116e+17,
+      "id_str": "657216762841161728",
+      "text": "OpenSSL updates reference count \"foo\" in object \"bar\" by locking a global mutex \"foo_lock\".",
+      "truncated": false,
+      "source": "<a href=\"http:\/\/twitter.com\" rel=\"nofollow\">Twitter Web Client<\/a>",
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+        "id": 83314299,
+        "id_str": "83314299",
+        "name": "freeradius",
+        "screen_name": "freeradius",
+        "location": "Everywhere",
+        "description": "The worlds most popular RADIUS server.",
+        "url": "http:\/\/t.co\/EbSTAEE01c",
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "url": "http:\/\/t.co\/EbSTAEE01c",
+                "expanded_url": "http:\/\/freeradius.org",
+                "display_url": "freeradius.org",
+                "indices": [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description": {
+            "urls": [
+              
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 168,
+        "friends_count": 33,
+        "listed_count": 3,
+        "created_at": "Sun Oct 18 06:52:32 +0000 2009",
+        "favourites_count": 4,
+        "utc_offset": 3600,
+        "time_zone": "Paris",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 85,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "000000",
+        "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_link_color": "0F5095",
+        "profile_sidebar_border_color": "000000",
+        "profile_sidebar_fill_color": "000000",
+        "profile_text_color": "000000",
+        "profile_use_background_image": false,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 0,
+      "entities": {
+        "hashtags": [
+          
+        ],
+        "symbols": [
+          
+        ],
+        "user_mentions": [
+          
+        ],
+        "urls": [
+          
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "lang": "en"
+    },
+    {
+      "created_at": "Thu Oct 22 15:26:50 +0000 2015",
+      "id": 6.572165497286e+17,
+      "id_str": "657216549728600065",
+      "text": "Investigating OpenSSL performance issues.  It uses a bizarre reference counting scheme.",
+      "truncated": false,
+      "source": "<a href=\"http:\/\/twitter.com\" rel=\"nofollow\">Twitter Web Client<\/a>",
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+        "id": 83314299,
+        "id_str": "83314299",
+        "name": "freeradius",
+        "screen_name": "freeradius",
+        "location": "Everywhere",
+        "description": "The worlds most popular RADIUS server.",
+        "url": "http:\/\/t.co\/EbSTAEE01c",
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "url": "http:\/\/t.co\/EbSTAEE01c",
+                "expanded_url": "http:\/\/freeradius.org",
+                "display_url": "freeradius.org",
+                "indices": [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description": {
+            "urls": [
+              
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 168,
+        "friends_count": 33,
+        "listed_count": 3,
+        "created_at": "Sun Oct 18 06:52:32 +0000 2009",
+        "favourites_count": 4,
+        "utc_offset": 3600,
+        "time_zone": "Paris",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 85,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "000000",
+        "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_link_color": "0F5095",
+        "profile_sidebar_border_color": "000000",
+        "profile_sidebar_fill_color": "000000",
+        "profile_text_color": "000000",
+        "profile_use_background_image": false,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 0,
+      "favorite_count": 0,
+      "entities": {
+        "hashtags": [
+          
+        ],
+        "symbols": [
+          
+        ],
+        "user_mentions": [
+          
+        ],
+        "urls": [
+          
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "lang": "en"
+    },
+    {
+      "created_at": "Sat Oct 17 20:57:31 +0000 2015",
+      "id": 6.554878311215e+17,
+      "id_str": "655487831121502209",
+      "text": "Problems with TLS1.2?  Try \"disable_tlsv1_2 = yes\" in \"tls\" sub-section of the \"eap\" module.",
+      "truncated": false,
+      "source": "<a href=\"http:\/\/twitter.com\" rel=\"nofollow\">Twitter Web Client<\/a>",
+      "in_reply_to_status_id": null,
+      "in_reply_to_status_id_str": null,
+      "in_reply_to_user_id": null,
+      "in_reply_to_user_id_str": null,
+      "in_reply_to_screen_name": null,
+      "user": {
+        "id": 83314299,
+        "id_str": "83314299",
+        "name": "freeradius",
+        "screen_name": "freeradius",
+        "location": "Everywhere",
+        "description": "The worlds most popular RADIUS server.",
+        "url": "http:\/\/t.co\/EbSTAEE01c",
+        "entities": {
+          "url": {
+            "urls": [
+              {
+                "url": "http:\/\/t.co\/EbSTAEE01c",
+                "expanded_url": "http:\/\/freeradius.org",
+                "display_url": "freeradius.org",
+                "indices": [
+                  0,
+                  22
+                ]
+              }
+            ]
+          },
+          "description": {
+            "urls": [
+              
+            ]
+          }
+        },
+        "protected": false,
+        "followers_count": 168,
+        "friends_count": 33,
+        "listed_count": 3,
+        "created_at": "Sun Oct 18 06:52:32 +0000 2009",
+        "favourites_count": 4,
+        "utc_offset": 3600,
+        "time_zone": "Paris",
+        "geo_enabled": false,
+        "verified": false,
+        "statuses_count": 85,
+        "lang": "en",
+        "contributors_enabled": false,
+        "is_translator": false,
+        "is_translation_enabled": false,
+        "profile_background_color": "000000",
+        "profile_background_image_url": "http:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_image_url_https": "https:\/\/abs.twimg.com\/images\/themes\/theme1\/bg.png",
+        "profile_background_tile": false,
+        "profile_image_url": "http:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_image_url_https": "https:\/\/pbs.twimg.com\/profile_images\/688958079052853248\/BcvpE-SP_normal.png",
+        "profile_link_color": "0F5095",
+        "profile_sidebar_border_color": "000000",
+        "profile_sidebar_fill_color": "000000",
+        "profile_text_color": "000000",
+        "profile_use_background_image": false,
+        "has_extended_profile": false,
+        "default_profile": false,
+        "default_profile_image": false,
+        "following": false,
+        "follow_request_sent": false,
+        "notifications": false
+      },
+      "geo": null,
+      "coordinates": null,
+      "place": null,
+      "contributors": null,
+      "is_quote_status": false,
+      "retweet_count": 2,
+      "favorite_count": 2,
+      "entities": {
+        "hashtags": [
+          
+        ],
+        "symbols": [
+          
+        ],
+        "user_mentions": [
+          
+        ],
+        "urls": [
+          
+        ]
+      },
+      "favorited": false,
+      "retweeted": false,
+      "lang": "en"
+    }
+  ],
+  "stackoverflow": [
+    {
+      "tags": [
+        "attributes",
+        "customization",
+        "freeradius",
+        "reply"
+      ],
+      "owner": {
+        "reputation": 8,
+        "user_id": 5115832,
+        "user_type": "registered",
+        "profile_image": "https:\/\/graph.facebook.com\/10153162855938853\/picture?type=large",
+        "display_name": "Felix Joel",
+        "link": "http:\/\/stackoverflow.com\/users\/5115832\/felix-joel"
+      },
+      "is_answered": false,
+      "view_count": 4,
+      "answer_count": 1,
+      "score": 0,
+      "last_activity_date": 1458053971,
+      "creation_date": 1458048493,
+      "question_id": 36012704,
+      "link": "http:\/\/stackoverflow.com\/questions\/36012704\/freeradius-mysql-config-adding-custom-attributes-to-the-reply-item",
+      "title": "freeradius (MySQL config) adding custom attributes to the reply-item",
+      "body": "<p>I've run into a dead end while trying to set up customized attributes as a reply item (I want custom information added to the \"access accept\" packet).\nWhile trying to achieve this I came across this entry:<\/p>\n\n<pre><code>#   If you want to add entries to the dictionary file,\n#   which are NOT going to be placed in a RADIUS packet,\n#   add them to the 'dictionary.local' file.\n#\n#   The numbers you pick should be between 3000 and 4000.\n#   These attributes will NOT go into a RADIUS packet.\n#\n#   If you want that, you will need to use VSAs.  This means\n#   requesting allocation of a Private Enterprise Code from\n#   http:\/\/iana.org.  We STRONGLY suggest doing that only if\n#   you are a vendor of RADIUS equipment.\n#\n#   See RFC 6158 for more details.\n#   http:\/\/ietf.org\/rfc\/rfc6158.txt\n<\/code><\/pre>\n\n<p>So I understand how the usual approach should be.<\/p>\n\n<p>However my infrastructure is set up in stages and the radius server in question is already placed on the \"inside\", so I don't see why I  shouldn't be able to set or overwrite unused attributes on both ends of this second internal authentication step. <\/p>\n\n<p>Googleing around I found several threads on how to set this type of thing up with a users-file based approach on 1.x versions of Freeradius, not so much for any of the newer releases.<\/p>\n\n<p>Is what I'm proposing still possible with freeradius-server-3.0.10 ?\nAnd if so, how should I go about implementing this?<\/p>\n\n<p>Current state:\nI've added my attribute \"faculty\" to the dictionary (mapping the set integer from the DB to a string set in directory ie. Ei &amp; MECH) and the respective DB, causing the radius server to find and evaluate the attribute set in \"radreply\" (here: := MECH) and \"radgroupreply\" (here += EI).   <\/p>\n\n<pre><code>...\nrlm_sql (sql1): Reserved connection (5)\n(1) sql1: EXPAND SELECT id, username, attribute, value, op FROM radcheck WHERE username = '%{SQL-User-Name}' AND active &gt; '0' AND active &lt; '3' ORDER BY id(1) sql1:    --&gt; SELECT id, username, attribute, value, op FROM radcheck WHERE username = '*username*' AND active &gt; '0' AND active &lt; '3' ORDER BY id\n(1) sql1: Executing select query: SELECT id, username, attribute, value, op FROM radcheck WHERE username = '*username*' AND active &gt; '0' AND active &lt; '3'ORDER BY id\n(1) sql1: User found in radcheck table\n(1) sql1: Conditional check items matched, merging assignment check items\n(1) sql1:   Cleartext-Password := \"*password*\"\n(1) sql1: EXPAND SELECT id, username, attribute, value, op FROM radreply WHERE username = '%{SQL-User-Name}' ORDER BY id\n(1) sql1:    --&gt; SELECT id, username, attribute, value, op FROM radreply WHERE username = '*username*' ORDER BY id\n(1) sql1: Executing select query: SELECT id, username, attribute, value, op FROM radreply WHERE username = '*username*' ORDER BY id\n(1) sql1: User found in radreply table, merging reply items\n(1) sql1:   faculty := MECH\n(1) sql1: EXPAND SELECT groupname FROM radusergroup WHERE username = '%{SQL-User-Name}' ORDER BY priority\n(1) sql1:    --&gt; SELECT groupname FROM radusergroup WHERE username = '*username*' ORDER BY priority\n(1) sql1: Executing select query: SELECT groupname FROM radusergroup WHERE username = '*username*' ORDER BY priority\n(1) sql1: User found in the group table\n(1) sql1: EXPAND SELECT id, groupname, attribute, Value, op FROM radgroupcheck WHERE groupname = '%{sql1-SQL-Group}' ORDER BY id\n(1) sql1:    --&gt; SELECT id, groupname, attribute, Value, op FROM radgroupcheck WHERE groupname = 'vid100' ORDER BY id\n(1) sql1: Executing select query: SELECT id, groupname, attribute, Value, op FROM radgroupcheck WHERE groupname = 'vid100' ORDER BY id\n(1) sql1: Group \"vid100\": Conditional check items matched\n(1) sql1: Group \"vid100\": Merging assignment check items\n(1) sql1: EXPAND SELECT id, groupname, attribute, value, op FROM radgroupreply WHERE groupname = '%{sql1-SQL-Group}' ORDER BY id\n(1) sql1:    --&gt; SELECT id, groupname, attribute, value, op FROM radgroupreply WHERE groupname = 'vid100' ORDER BY id\n(1) sql1: Executing select query: SELECT id, groupname, attribute, value, op FROM radgroupreply WHERE groupname = 'vid100' ORDER BY id\n(1) sql1: Group \"vid100\": Merging reply items\n(1) sql1:   Tunnel-Type = VLAN\n(1) sql1:   Tunnel-Medium-Type = IEEE-802\n(1) sql1:   Tunnel-Private-Group-Id = \"100\"\n(1) sql1:   faculty += EI\nrlm_sql (sql1): Released connection (5)\n...\n<\/code><\/pre>\n\n<p><em>The keen observer will also notice some changes to the \"radcheck\" query, but this change is not related to the topic at hand.<\/em>\nSo the Server gets the information, however I've not found a way to include it to the reply yet. <\/p>\n\n<pre><code>(1) Sent Access-Accept Id 81 from **IP-Radius-server**:*port* to **IP-supplicant**:*port* length 0\n(1)   Tunnel-Type = VLAN\n(1)   Tunnel-Medium-Type = IEEE-802\n(1)   Tunnel-Private-Group-Id = \"100\"\n(1) Finished request\n<\/code><\/pre>\n\n<p>Any help or pointers would be appreciated :) \nFelix<\/p>\n"
+    },
+    {
+      "tags": [
+        "linux",
+        "freeradius",
+        "coovachilli"
+      ],
+      "owner": {
+        "reputation": 10,
+        "user_id": 2071013,
+        "user_type": "registered",
+        "profile_image": "https:\/\/www.gravatar.com\/avatar\/57b4132567d8c130773d445827c0567c?s=128&d=identicon&r=PG",
+        "display_name": "muchumanoj",
+        "link": "http:\/\/stackoverflow.com\/users\/2071013\/muchumanoj"
+      },
+      "is_answered": false,
+      "view_count": 21,
+      "answer_count": 1,
+      "score": 0,
+      "last_activity_date": 1457840039,
+      "creation_date": 1457778383,
+      "question_id": 35956463,
+      "link": "http:\/\/stackoverflow.com\/questions\/35956463\/open-ports-in-coovachilli",
+      "title": "open ports in coovachilli",
+      "body": "<p>I have set up an hotsopt with coovachilli &amp; freeradius. Everything is working fine. I get a landing page, after logging in, I am able to access internet.<\/p>\n\n<p>Now, I have also hosted a web server which is listening at port 3740 in the same system as coovachilli and freeradius. I am not able to access that port from any system connected to the hotspot.<\/p>\n\n<p>My wifi hotspot access point IP is 192.168.10.1 and the webserver is running at port 3740.\nEven if I login to my hotspot, the port is not accessible. \nCan you let me know how to open this port?<\/p>\n"
+    },
+    {
+      "tags": [
+        "vpn",
+        "whmcs",
+        "freeradius"
+      ],
+      "owner": {
+        "reputation": 1,
+        "user_id": 4514215,
+        "user_type": "registered",
+        "profile_image": "https:\/\/www.gravatar.com\/avatar\/f430abee74b2bdabba39d02e487c6cac?s=128&d=identicon&r=PG&f=1",
+        "display_name": "Fedorino",
+        "link": "http:\/\/stackoverflow.com\/users\/4514215\/fedorino"
+      },
+      "is_answered": false,
+      "view_count": 17,
+      "answer_count": 1,
+      "score": 0,
+      "last_activity_date": 1457804768,
+      "creation_date": 1457493889,
+      "question_id": 35882308,
+      "link": "http:\/\/stackoverflow.com\/questions\/35882308\/freeradius-and-whmcs-for-vpn-your-opinion-needed",
+      "title": "Freeradius and WHMCS for VPN your opinion needed",
+      "body": "<p>I am using WHMCS and bought the Free Radius plugin in order to manage VPN service.<\/p>\n\n<p>I am trying to assess the pro and cons of using Freeradius Vs a Custom solution.<\/p>\n\n<p>In my opinion Freeradius brings the following cons :<\/p>\n\n<p>Huge overhead\nComplex and not well coded: difficult to improve.\nIn case of bug, very hard to fix, no maintenability.\nImpossible or complex and expensive to add functionality or evolve the code.\nCentralized authentification system, will add between 500ms to 5s lag for the authentification (client connection).\nIf the central server is down, no client can connect to any server.<\/p>\n\n<p>Do you think it is a good idea to choose not to use Freeradius and code my own solution for WHMCS in order to manage authentication and user management ? <\/p>\n\n<p>Trying to assess the pro and cons.<\/p>\n\n<p>Thx for your opinion<\/p>\n"
+    },
+    {
+      "tags": [
+        "linux",
+        "ssl",
+        "freeradius",
+        "wpa-supplicant"
+      ],
+      "owner": {
+        "reputation": 1,
+        "user_id": 2299445,
+        "user_type": "registered",
+        "profile_image": "https:\/\/www.gravatar.com\/avatar\/2041f72cf8515aeeae95a48f3090e745?s=128&d=identicon&r=PG",
+        "display_name": "user2299445",
+        "link": "http:\/\/stackoverflow.com\/users\/2299445\/user2299445"
+      },
+      "is_answered": false,
+      "view_count": 20,
+      "answer_count": 0,
+      "score": 0,
+      "last_activity_date": 1457338443,
+      "creation_date": 1457337702,
+      "last_edit_date": 1457338443,
+      "question_id": 35838822,
+      "link": "http:\/\/stackoverflow.com\/questions\/35838822\/trying-to-set-up-freeradius-in-eap-tls-mode-using-wpa-supplicant",
+      "title": "Trying to set up freeradius in eap-tls mode using wpa supplicant",
+      "body": "<p>I am trying to setup freeraadius in eap-tls mode. I am using freeradius as a server and wpa-supplicant as a client. I have installed both packages in Ubuntu-14.04.3. I am using the sample certificates provided along with freeradius package. I use the script bootstrap provided in <em>\/freerad\/raddb\/cert<\/em> . I donot know if this script properly signs the certificate or not as i am not an expert in this area. I simply provide the paths to these certificates in client.conf to freeradius and configuration file in wpa-supplicant. Following is the wpa-supplicant configuration i am using <\/p>\n\n<pre><code>network={\n\n  ssid=\"YOUR-SSID\"\n  scan_ssid=1\n  key_mgmt=WPA-EAP\n  eap=TLS\n  identity=\"alice\"\n  ca_cert=\"\/home\/areh\/freeradius-server-3.0.11\/raddb\/certs\/ca.pem\"\n  client_cert=\"\/home\/areh\/freeradius-server-3.0.11\/raddb\/certs\/client.pem\"\n  private_key=\"\/home\/areh\/freeradius-server-3.0.11\/raddb\/certs\/client.key\"\n}\n<\/code><\/pre>\n\n<p>I am running freeradius using <em>Freeradius -X<\/em> command and  <em>eapol_test -c eap-tls.conf  -s testing123<\/em> for wpa-supplicant command.<\/p>\n\n<p>I receive the following error on wpa-supplicant terminal:<\/p>\n\n<blockquote>\n  <p>OpenSSL: tls_connection_client_cert - SSL_use_certificate_file (DER) failed error:0D0680A8:asn1 encoding routines:ASN1_CHECK_TLEN:wrong tag<\/p>\n  \n  <p>OpenSSL: pending error: error:0D07803A:asn1 encoding routines:ASN1_ITEM_EX_D2I:nested asn1 error<\/p>\n  \n  <p>OpenSSL: pending error: error:140C800D:SSL routines:SSL_use_certificate_file:ASN1 lib<\/p>\n  \n  <p>OpenSSL: SSL_use_certificate_file (PEM) --> OK<\/p>\n  \n  <p>OpenSSL: tls_connection_private_key - SSL_use_PrivateKey_File (DER) failed error:0D0680A8:asn1 encoding routines:ASN1_CHECK_TLEN:wrong tag<\/p>\n  \n  <p>OpenSSL: pending error: error:0D08303A:asn1 encoding routines:ASN1_TEMPLATE_NOEXP_D2I:nested asn1 error<\/p>\n  \n  <p>OpenSSL: pending error: error:0D0680A8:asn1 encoding routines:ASN1_CHECK_TLEN:wrong tag<\/p>\n  \n  <p>OpenSSL: pending error: error:0D07803A:asn1 encoding routines:ASN1_ITEM_EX_D2I:nested asn1 error<\/p>\n  \n  <p>OpenSSL: pending error: error:04093004:rsa routines:OLD_RSA_PRIV_DECODE:RSA lib<\/p>\n  \n  <p>OpenSSL: pending error: error:0D0680A8:asn1 encoding routines:ASN1_CHECK_TLEN:wrong tag<\/p>\n  \n  <p>OpenSSL: pending error: error:0D07803A:asn1 encoding routines:ASN1_ITEM_EX_D2I:nested asn1 error<\/p>\n  \n  <p>OpenSSL: pending error: error:140CB00D:SSL routines:SSL_use_PrivateKey_file:ASN1 lib<\/p>\n  \n  <p>OpenSSL: tls_connection_private_key - SSL_use_PrivateKey_File (PEM) failed error:0907B068:PEM routines:PEM_READ_BIO_PRIVATEKEY:bad password read<\/p>\n  \n  <p>OpenSSL: pending error: error:140CB009:SSL routines:SSL_use_PrivateKey_file:PEM lib<\/p>\n  \n  <p>OpenSSL: tls_read_pkcs12 - Failed to use PKCS#12 file error:0D0680A8:asn1 encoding routines:ASN1_CHECK_TLEN:wrong tag<\/p>\n  \n  <p>OpenSSL: pending error: error:0D07803A:asn1 encoding routines:ASN1_ITEM_EX_D2I:nested asn1 error<\/p>\n  \n  <p>OpenSSL: Failed to load private key<\/p>\n  \n  <p>TLS: Failed to load private key '\/home\/areh\/freeradius-server-3.0.11\/raddb\/certs\/client.key'<\/p>\n  \n  <p>TLS: Failed to set TLS connection parameters<\/p>\n<\/blockquote>\n\n<p>I am using wpa_supplicant-0.7.3 and also tried with 2.5 version, freeradius version is freeradius-server-3.0.11. I would really appreciate any clue or help. I am debugging using wireshark and I can see access-challenge and access-request packets being exchanged but never reach the next message stage. Kindly help with this problem.<\/p>\n"
+    },
+    {
+      "tags": [
+        "ubuntu",
+        "freeradius"
+      ],
+      "migrated_from": {
+        "other_site": {
+          "styling": {
+            "tag_background_color": "#F3F1D9",
+            "tag_foreground_color": "#444444",
+            "link_color": "#10456A"
+          },
+          "related_sites": [
+            {
+              "relation": "meta",
+              "api_site_parameter": "meta.serverfault",
+              "site_url": "http:\/\/meta.serverfault.com",
+              "name": "Meta Server Fault"
+            },
+            {
+              "relation": "chat",
+              "site_url": "http:\/\/chat.stackexchange.com?tab=site&host=serverfault.com",
+              "name": "Chat Stack Exchange"
+            }
+          ],
+          "markdown_extensions": [
+            "Prettify"
+          ],
+          "launch_date": 1243296000,
+          "closed_beta_date": 1241049600,
+          "site_state": "normal",
+          "high_resolution_icon_url": "http:\/\/cdn.sstatic.net\/serverfault\/img\/apple-touch-icon@2.png",
+          "twitter_account": "ServerFault",
+          "favicon_url": "http:\/\/cdn.sstatic.net\/serverfault\/img\/favicon.ico",
+          "icon_url": "http:\/\/cdn.sstatic.net\/serverfault\/img\/apple-touch-icon.png",
+          "audience": "system and network administrators",
+          "site_url": "http:\/\/serverfault.com",
+          "api_site_parameter": "serverfault",
+          "logo_url": "http:\/\/cdn.sstatic.net\/serverfault\/img\/logo.png",
+          "name": "Server Fault",
+          "site_type": "main_site"
+        },
+        "on_date": 1457318936,
+        "question_id": 761975
+      },
+      "owner": {
+        "reputation": 121,
+        "user_id": 3697474,
+        "user_type": "registered",
+        "accept_rate": 20,
+        "profile_image": "https:\/\/www.gravatar.com\/avatar\/f5eba1d5e184b2fb77b0ba14a9b64277?s=128&d=identicon&r=PG&f=1",
+        "display_name": "Juakali92",
+        "link": "http:\/\/stackoverflow.com\/users\/3697474\/juakali92"
+      },
+      "is_answered": false,
+      "view_count": 10,
+      "answer_count": 1,
+      "score": 1,
+      "last_activity_date": 1457318936,
+      "creation_date": 1457311050,
+      "question_id": 35835405,
+      "link": "http:\/\/stackoverflow.com\/questions\/35835405\/freeradius-recognising-wrong-username",
+      "title": "FreeRadius recognising wrong username",
+      "body": "<p>Bit of a strange thing that is happenening on our freeradius server. Using laravel, we have a free wifi hotspot login page that authenticates users who have logged in using social logins such as facebook etc. We use the provider ID's of the users as a username for authentification through radius. However the value that we pass the our the radius server and the value that it reads are 2 different values. As an example, we have a form shown below which sends the request to our radius server:<\/p>\n\n<p><img src=\"http:\/\/i.stack.imgur.com\/l2clt.png\" alt=\"Login Form\"><\/p>\n\n<p>and this is how our radius server recognises the request<\/p>\n\n<p><img src=\"http:\/\/i.stack.imgur.com\/pcoOd.png\" alt=\"Radius request\"><\/p>\n\n<p>As you can see, the value that the radius recognises is -1 to the id being sent, but this results in an auth failure everytime as the radcheck table has the correct Login form ebtry stored.<\/p>\n"
+    },
+    {
+      "tags": [
+        "accounting",
+        "freeradius"
+      ],
+      "owner": {
+        "reputation": 3,
+        "user_id": 6009611,
+        "user_type": "registered",
+        "profile_image": "https:\/\/lh3.googleusercontent.com\/-OqrL2iN_tWw\/AAAAAAAAAAI\/AAAAAAAAAEo\/5cI8WfH3xEs\/photo.jpg?sz=128",
+        "display_name": "Tomas Kirnak",
+        "link": "http:\/\/stackoverflow.com\/users\/6009611\/tomas-kirnak"
+      },
+      "is_answered": true,
+      "view_count": 15,
+      "accepted_answer_id": 35756477,
+      "answer_count": 1,
+      "score": 0,
+      "last_activity_date": 1456947236,
+      "creation_date": 1456945711,
+      "question_id": 35756012,
+      "link": "http:\/\/stackoverflow.com\/questions\/35756012\/freeradius-error-unknown-module-x-ascend-session-svr-key",
+      "title": "Freeradius error - Unknown module &quot;X-Ascend-Session-Svr-Key&quot;",
+      "body": "<p>I am using FreeRadius 2.1.12 on Ubuntu Server 14.04 (installed through apt directly from the OS apt repos).<\/p>\n\n<p>I am getting the following error on every accounting request:<\/p>\n\n<pre><code>WARNING: Unknown module \"X-Ascend-Session-Svr-Key\" in string expansion \"%')\"\n<\/code><\/pre>\n\n<p>This causes an SQL error when inserting the accounting records into the database.\nI have tracked this to dialup.conf accounting_start_query where it tries to insert '%{X-Ascend-Session-Svr-Key}'.<\/p>\n\n<p>My searches turned out very little on why this could happen.<\/p>\n\n<p>How can I solve this issue, or debug it to find out why its happening?<\/p>\n"
+    },
+    {
+      "tags": [
+        "logging",
+        "server",
+        "freeradius"
+      ],
+      "owner": {
+        "reputation": 9,
+        "user_id": 3774088,
+        "user_type": "registered",
+        "profile_image": "https:\/\/www.gravatar.com\/avatar\/6f0a7783d5eb29494f4805223c51e28d?s=128&d=identicon&r=PG&f=1",
+        "display_name": "user3774088",
+        "link": "http:\/\/stackoverflow.com\/users\/3774088\/user3774088"
+      },
+      "is_answered": false,
+      "view_count": 8,
+      "answer_count": 0,
+      "score": 0,
+      "last_activity_date": 1456237687,
+      "creation_date": 1456237687,
+      "question_id": 35580181,
+      "link": "http:\/\/stackoverflow.com\/questions\/35580181\/logging-users-advanced-informations",
+      "title": "Logging user&#39;s advanced informations",
+      "body": "<p>I am working with a free-radius server (2.2.5) and I am searching a way to save user's informations (@Mac, username, pc-name, brand? ...) when they logged.<\/p>\n\n<p>Do you have any idea ? I have only found that it's possible to save username\/password.<\/p>\n\n<p>thanks.<\/p>\n"
+    },
+    {
+      "tags": [
+        "java",
+        "jpa",
+        "orm",
+        "freeradius"
+      ],
+      "owner": {
+        "reputation": 317,
+        "user_id": 1006669,
+        "user_type": "registered",
+        "accept_rate": 35,
+        "profile_image": "https:\/\/graph.facebook.com\/1421285589\/picture?type=large",
+        "display_name": "Heruan",
+        "link": "http:\/\/stackoverflow.com\/users\/1006669\/heruan"
+      },
+      "is_answered": false,
+      "view_count": 10,
+      "answer_count": 0,
+      "score": 0,
+      "last_activity_date": 1455899976,
+      "creation_date": 1455899976,
+      "question_id": 35510309,
+      "link": "http:\/\/stackoverflow.com\/questions\/35510309\/freeradius-sql-attribute-mappings-in-jpa",
+      "title": "FreeRADIUS SQL-attribute mappings in JPA",
+      "body": "<p>FreeRADIUS <code>mod_sql<\/code> reads user's attributes from the <code>radcheck<\/code> table, defined as:<\/p>\n\n<pre><code>+----+----------+------------------+----+-------+\n| id | username | attribute        | op | value |\n+----+----------+------------------+----+-------+\n|  1 | heruan   | Expire-After     | == | 3600  |\n|  2 | heruan   | Login-Within     | == | 1800  |\n|  3 | heruan   | Simultaneous-Use | == | 1     |\n|  4 | naureh   | Expire-After     | == | 7200  |\n|  5 | naureh   | Login-Within     | == | 3600  |\n|  6 | naureh   | Simultaneous-Use | == | 10    |\n+----+----------+------------------+----+-------+\n<\/code><\/pre>\n\n<p>and I'd like to map this POJO:<\/p>\n\n<pre><code>@Entity\npublic class Account {\n\n    @Id\n    public Long id;\n\n    public String username;\n\n    public Integer expireAfter;\n\n    public Integer loginWithin;\n\n    public Integer simultaneousUse;\n\n}\n<\/code><\/pre>\n\n<p>I'm not interested about the <code>op<\/code> column, as long it gets its default value <code>==<\/code>.<\/p>\n\n<p>What I've done so far is using a <code>Map<\/code> like this:<\/p>\n\n<pre><code>@Entity\n@SecondaryTable(name = \"radreply\", pkJoinColumns = {\n    @PrimaryKeyJoinColumn(name = \"username\", referencedColumnName = \"username\")\n})\npublic class Account extends Person implements Serializable {\n\n    private static final long serialVersionUID = 1L;\n\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    public Long id;\n\n    public String username;\n\n    @ElementCollection\n    @CollectionTable(name = \"radcheck\", joinColumns = {\n        @JoinColumn(name = \"username\", referencedColumnName = \"username\")\n    })\n    @MapKeyColumn(name = \"attribute\")\n    @Column(name = \"value\")\n    public Map&lt;String, String&gt; attributes;\n\n}\n<\/code><\/pre>\n\n<p>but I'd prefer to have the single-attribute fields, if possibile.<\/p>\n"
+    },
+    {
+      "tags": [
+        "radius",
+        "freeradius",
+        "radius-protocol"
+      ],
+      "owner": {
+        "reputation": 27,
+        "user_id": 3648335,
+        "user_type": "registered",
+        "accept_rate": 83,
+        "profile_image": "https:\/\/graph.facebook.com\/1252889170\/picture?type=large",
+        "display_name": "user3648335",
+        "link": "http:\/\/stackoverflow.com\/users\/3648335\/user3648335"
+      },
+      "is_answered": true,
+      "view_count": 5357,
+      "answer_count": 3,
+      "score": 0,
+      "last_activity_date": 1455774223,
+      "creation_date": 1422281752,
+      "last_edit_date": 1422282958,
+      "question_id": 28151798,
+      "link": "http:\/\/stackoverflow.com\/questions\/28151798\/freeradius-failed-binding-to-authentication-address",
+      "title": "FreeRadius - Failed binding to authentication address",
+      "body": "<p>When I run the following command, I can get successfull result.<\/p>\n\n<p>root@ubuntu:\/home\/can# radtest user password 127.0.0.1 1812 testing123<\/p>\n\n<p>Sending Access-Request of id 78 to 127.0.0.1 port 1812<\/p>\n\n<pre><code>User-Name = \"user\"\nUser-Password = \"password\"\nNAS-IP-Address = 127.0.1.1\nNAS-Port = 1812\nMessage-Authenticator = 0x00000000000000000000000000000000\n<\/code><\/pre>\n\n<p>rad_recv: Access-Accept packet from host 127.0.0.1 port 1812, id=78, length=20<\/p>\n\n<hr>\n\n<p>However When I run the \"freeradius -X\" , I get error message as following :<\/p>\n\n<p>.....<\/p>\n\n<p>Failed binding to authentication address * port 1812: Address already in use \n\/etc\/freeradius\/radiusd.conf[250]: Error binding to port for 0.0.0.0 port 1812<\/p>\n\n<p>Please Help Me <\/p>\n\n<p>Thank you for your efforts.<\/p>\n\n<p>Can <\/p>\n"
+    },
+    {
+      "tags": [
+        "ldap",
+        "freeradius"
+      ],
+      "owner": {
+        "reputation": 1,
+        "user_id": 5936349,
+        "user_type": "registered",
+        "profile_image": "https:\/\/www.gravatar.com\/avatar\/eb105e585b144b28da973b897208aa12?s=128&d=identicon&r=PG&f=1",
+        "display_name": "JurajL",
+        "link": "http:\/\/stackoverflow.com\/users\/5936349\/jurajl"
+      },
+      "is_answered": false,
+      "view_count": 16,
+      "answer_count": 1,
+      "score": 0,
+      "last_activity_date": 1455647480,
+      "creation_date": 1455643770,
+      "question_id": 35439191,
+      "link": "http:\/\/stackoverflow.com\/questions\/35439191\/freeradius-ad-static-ip-assignment",
+      "title": "FreeRadius + AD + static ip assignment",
+      "body": "<p>Hi I need help with assigning static IP addresses from Active Directory\nI'm using FreeRadius version 3.0.10<\/p>\n\n<p>I understand, that I should use LDAP atribute mapping, but with no success.<\/p>\n\n<p>Trying to do something like<\/p>\n\n<pre><code>update reply {\n        Framed-IP-Address = &amp;msRADIUSFramedIPAddress\n}\n<\/code><\/pre>\n\n<p>also, msRADIUSFramedIPAddress is binary, so there should be some conversion. \nI found this example where right side was <\/p>\n\n<pre><code>=&amp;Atribute-of-type-Octets\n<\/code><\/pre>\n\n<p>but not sure if this would do something or just should a use some special atribute<\/p>\n\n<p>While trying to run radius -X the msRADIUSFramedIPAddress is unknown atribute<\/p>\n\n<p>I'm just so lost in this mapping, reading and trying several days.<\/p>\n\n<p>I would really appreciate help.<\/p>\n\n<p>Thank you<\/p>\n\n<p>Juraj Lehotsky<\/p>\n"
+    }
+  ],
+  "github": [
+    {
+      "sha": "36539844118905652f2a8d0dbd58b23ad90c7dc5",
+      "commit": {
+        "author": {
+          "name": "Alan T. DeKok",
+          "email": "aland@freeradius.org",
+          "date": "2016-03-15T15:31:36Z"
+        },
+        "committer": {
+          "name": "Alan T. DeKok",
+          "email": "aland@freeradius.org",
+          "date": "2016-03-15T15:31:36Z"
+        },
+        "message": "Make secrets talloc'd\n\nIn preparation for using talloc_array_length() in the radius\nencoder\/decoder, instead of strlen",
+        "tree": {
+          "sha": "70b0b5e7023465103e94d71bbc8b7727f06eb246",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/trees\/70b0b5e7023465103e94d71bbc8b7727f06eb246"
+        },
+        "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/commits\/36539844118905652f2a8d0dbd58b23ad90c7dc5",
+        "comment_count": 0
+      },
+      "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/36539844118905652f2a8d0dbd58b23ad90c7dc5",
+      "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/36539844118905652f2a8d0dbd58b23ad90c7dc5",
+      "comments_url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/36539844118905652f2a8d0dbd58b23ad90c7dc5\/comments",
+      "author": {
+        "login": "alandekok",
+        "id": 17612,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/17612?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/alandekok",
+        "html_url": "https:\/\/github.com\/alandekok",
+        "followers_url": "https:\/\/api.github.com\/users\/alandekok\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/alandekok\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/alandekok\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/alandekok\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/alandekok\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/alandekok\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/alandekok\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/alandekok\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/alandekok\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "alandekok",
+        "id": 17612,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/17612?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/alandekok",
+        "html_url": "https:\/\/github.com\/alandekok",
+        "followers_url": "https:\/\/api.github.com\/users\/alandekok\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/alandekok\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/alandekok\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/alandekok\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/alandekok\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/alandekok\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/alandekok\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/alandekok\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/alandekok\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "22f77c3321f4bf315a4388b11f8ab0d68d1af04f",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/22f77c3321f4bf315a4388b11f8ab0d68d1af04f",
+          "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/22f77c3321f4bf315a4388b11f8ab0d68d1af04f"
+        }
+      ]
+    },
+    {
+      "sha": "22f77c3321f4bf315a4388b11f8ab0d68d1af04f",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-15T00:17:57Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-15T00:17:57Z"
+        },
+        "message": "Can't use index *sigh*",
+        "tree": {
+          "sha": "269f0fa81c51bf90239de1a6c901a63922d84b15",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/trees\/269f0fa81c51bf90239de1a6c901a63922d84b15"
+        },
+        "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/commits\/22f77c3321f4bf315a4388b11f8ab0d68d1af04f",
+        "comment_count": 0
+      },
+      "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/22f77c3321f4bf315a4388b11f8ab0d68d1af04f",
+      "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/22f77c3321f4bf315a4388b11f8ab0d68d1af04f",
+      "comments_url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/22f77c3321f4bf315a4388b11f8ab0d68d1af04f\/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "d0a81e5517ecc656c5a8a3cccc944a65c0f53bf1",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/d0a81e5517ecc656c5a8a3cccc944a65c0f53bf1",
+          "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/d0a81e5517ecc656c5a8a3cccc944a65c0f53bf1"
+        }
+      ]
+    },
+    {
+      "sha": "d0a81e5517ecc656c5a8a3cccc944a65c0f53bf1",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-15T00:14:10Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-15T00:14:24Z"
+        },
+        "message": "Mark more things as unused",
+        "tree": {
+          "sha": "d716aed304ed89a1ff3800d0c2e2823d1ab00e5b",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/trees\/d716aed304ed89a1ff3800d0c2e2823d1ab00e5b"
+        },
+        "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/commits\/d0a81e5517ecc656c5a8a3cccc944a65c0f53bf1",
+        "comment_count": 0
+      },
+      "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/d0a81e5517ecc656c5a8a3cccc944a65c0f53bf1",
+      "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/d0a81e5517ecc656c5a8a3cccc944a65c0f53bf1",
+      "comments_url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/d0a81e5517ecc656c5a8a3cccc944a65c0f53bf1\/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "7794ab6429560e3e6ac3eca6bfc610f86e0f885d",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/7794ab6429560e3e6ac3eca6bfc610f86e0f885d",
+          "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/7794ab6429560e3e6ac3eca6bfc610f86e0f885d"
+        }
+      ]
+    },
+    {
+      "sha": "7794ab6429560e3e6ac3eca6bfc610f86e0f885d",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-14T23:43:56Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-14T23:43:56Z"
+        },
+        "message": "Typo",
+        "tree": {
+          "sha": "230af0d697fa8ee85b9da53b0a45028b3071686c",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/trees\/230af0d697fa8ee85b9da53b0a45028b3071686c"
+        },
+        "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/commits\/7794ab6429560e3e6ac3eca6bfc610f86e0f885d",
+        "comment_count": 0
+      },
+      "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/7794ab6429560e3e6ac3eca6bfc610f86e0f885d",
+      "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/7794ab6429560e3e6ac3eca6bfc610f86e0f885d",
+      "comments_url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/7794ab6429560e3e6ac3eca6bfc610f86e0f885d\/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "577115d92e1841a9c7c7a5484139a419e78527e5",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/577115d92e1841a9c7c7a5484139a419e78527e5",
+          "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/577115d92e1841a9c7c7a5484139a419e78527e5"
+        }
+      ]
+    },
+    {
+      "sha": "577115d92e1841a9c7c7a5484139a419e78527e5",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-14T23:42:53Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-14T23:42:53Z"
+        },
+        "message": "Remove whitespace",
+        "tree": {
+          "sha": "068b145c0344aee13cafa30737ba4b5e6e80c72f",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/trees\/068b145c0344aee13cafa30737ba4b5e6e80c72f"
+        },
+        "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/commits\/577115d92e1841a9c7c7a5484139a419e78527e5",
+        "comment_count": 0
+      },
+      "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/577115d92e1841a9c7c7a5484139a419e78527e5",
+      "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/577115d92e1841a9c7c7a5484139a419e78527e5",
+      "comments_url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/577115d92e1841a9c7c7a5484139a419e78527e5\/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "cc8d42fa5832aa46c1174c05037c14c544119e70",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/cc8d42fa5832aa46c1174c05037c14c544119e70",
+          "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/cc8d42fa5832aa46c1174c05037c14c544119e70"
+        }
+      ]
+    },
+    {
+      "sha": "cc8d42fa5832aa46c1174c05037c14c544119e70",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-14T21:39:35Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-14T23:37:56Z"
+        },
+        "message": "Move contributing doc to new .github folder (which they just added support for)",
+        "tree": {
+          "sha": "bac9798e693831693248de9e702ba007fe049717",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/trees\/bac9798e693831693248de9e702ba007fe049717"
+        },
+        "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/commits\/cc8d42fa5832aa46c1174c05037c14c544119e70",
+        "comment_count": 0
+      },
+      "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/cc8d42fa5832aa46c1174c05037c14c544119e70",
+      "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/cc8d42fa5832aa46c1174c05037c14c544119e70",
+      "comments_url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/cc8d42fa5832aa46c1174c05037c14c544119e70\/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "dab771c799bc76e381c5f98bc65e68f0aa56d8ab",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/dab771c799bc76e381c5f98bc65e68f0aa56d8ab",
+          "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/dab771c799bc76e381c5f98bc65e68f0aa56d8ab"
+        }
+      ]
+    },
+    {
+      "sha": "dab771c799bc76e381c5f98bc65e68f0aa56d8ab",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-14T23:22:59Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-14T23:37:55Z"
+        },
+        "message": "Formatting",
+        "tree": {
+          "sha": "b10d891e11e4434fc2c763808353abcc1285c30d",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/trees\/b10d891e11e4434fc2c763808353abcc1285c30d"
+        },
+        "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/commits\/dab771c799bc76e381c5f98bc65e68f0aa56d8ab",
+        "comment_count": 0
+      },
+      "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/dab771c799bc76e381c5f98bc65e68f0aa56d8ab",
+      "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/dab771c799bc76e381c5f98bc65e68f0aa56d8ab",
+      "comments_url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/dab771c799bc76e381c5f98bc65e68f0aa56d8ab\/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "dcfed00995396483edd9a6fa63f124d5e2cff092",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/dcfed00995396483edd9a6fa63f124d5e2cff092",
+          "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/dcfed00995396483edd9a6fa63f124d5e2cff092"
+        }
+      ]
+    },
+    {
+      "sha": "dcfed00995396483edd9a6fa63f124d5e2cff092",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-14T21:34:34Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-14T23:37:55Z"
+        },
+        "message": "Mostly complete server side SNMP code\n\nNeeds updating to understand tables properly",
+        "tree": {
+          "sha": "6dda752aa478c2bd0f2cbe358e2fa9b97a1c94f1",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/trees\/6dda752aa478c2bd0f2cbe358e2fa9b97a1c94f1"
+        },
+        "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/commits\/dcfed00995396483edd9a6fa63f124d5e2cff092",
+        "comment_count": 0
+      },
+      "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/dcfed00995396483edd9a6fa63f124d5e2cff092",
+      "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/dcfed00995396483edd9a6fa63f124d5e2cff092",
+      "comments_url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/dcfed00995396483edd9a6fa63f124d5e2cff092\/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "e076d464bf9f67935068f85498fb960645b86093",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/e076d464bf9f67935068f85498fb960645b86093",
+          "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/e076d464bf9f67935068f85498fb960645b86093"
+        }
+      ]
+    },
+    {
+      "sha": "e076d464bf9f67935068f85498fb960645b86093",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-14T21:30:17Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2016-03-14T21:35:18Z"
+        },
+        "message": "Formatting",
+        "tree": {
+          "sha": "d9e0cd6837e8c951d5c545e20cd8d052c362498d",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/trees\/d9e0cd6837e8c951d5c545e20cd8d052c362498d"
+        },
+        "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/commits\/e076d464bf9f67935068f85498fb960645b86093",
+        "comment_count": 0
+      },
+      "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/e076d464bf9f67935068f85498fb960645b86093",
+      "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/e076d464bf9f67935068f85498fb960645b86093",
+      "comments_url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/e076d464bf9f67935068f85498fb960645b86093\/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/791758?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/arr2036",
+        "html_url": "https:\/\/github.com\/arr2036",
+        "followers_url": "https:\/\/api.github.com\/users\/arr2036\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/arr2036\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/arr2036\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/arr2036\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/arr2036\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/arr2036\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/arr2036\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/arr2036\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/arr2036\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "7f7fef5747c1876b5ebb2499ba19925661b7f0eb",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/7f7fef5747c1876b5ebb2499ba19925661b7f0eb",
+          "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/7f7fef5747c1876b5ebb2499ba19925661b7f0eb"
+        }
+      ]
+    },
+    {
+      "sha": "7f7fef5747c1876b5ebb2499ba19925661b7f0eb",
+      "commit": {
+        "author": {
+          "name": "Alan T. DeKok",
+          "email": "aland@freeradius.org",
+          "date": "2016-03-14T15:39:53Z"
+        },
+        "committer": {
+          "name": "Alan T. DeKok",
+          "email": "aland@freeradius.org",
+          "date": "2016-03-14T15:40:03Z"
+        },
+        "message": "notes on DB2",
+        "tree": {
+          "sha": "56fb8299871deb41f2d89e85b752f4af16acdf58",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/trees\/56fb8299871deb41f2d89e85b752f4af16acdf58"
+        },
+        "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/git\/commits\/7f7fef5747c1876b5ebb2499ba19925661b7f0eb",
+        "comment_count": 0
+      },
+      "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/7f7fef5747c1876b5ebb2499ba19925661b7f0eb",
+      "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/7f7fef5747c1876b5ebb2499ba19925661b7f0eb",
+      "comments_url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/7f7fef5747c1876b5ebb2499ba19925661b7f0eb\/comments",
+      "author": {
+        "login": "alandekok",
+        "id": 17612,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/17612?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/alandekok",
+        "html_url": "https:\/\/github.com\/alandekok",
+        "followers_url": "https:\/\/api.github.com\/users\/alandekok\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/alandekok\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/alandekok\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/alandekok\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/alandekok\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/alandekok\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/alandekok\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/alandekok\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/alandekok\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "alandekok",
+        "id": 17612,
+        "avatar_url": "https:\/\/avatars.githubusercontent.com\/u\/17612?v=3",
+        "gravatar_id": "",
+        "url": "https:\/\/api.github.com\/users\/alandekok",
+        "html_url": "https:\/\/github.com\/alandekok",
+        "followers_url": "https:\/\/api.github.com\/users\/alandekok\/followers",
+        "following_url": "https:\/\/api.github.com\/users\/alandekok\/following{\/other_user}",
+        "gists_url": "https:\/\/api.github.com\/users\/alandekok\/gists{\/gist_id}",
+        "starred_url": "https:\/\/api.github.com\/users\/alandekok\/starred{\/owner}{\/repo}",
+        "subscriptions_url": "https:\/\/api.github.com\/users\/alandekok\/subscriptions",
+        "organizations_url": "https:\/\/api.github.com\/users\/alandekok\/orgs",
+        "repos_url": "https:\/\/api.github.com\/users\/alandekok\/repos",
+        "events_url": "https:\/\/api.github.com\/users\/alandekok\/events{\/privacy}",
+        "received_events_url": "https:\/\/api.github.com\/users\/alandekok\/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "a6f05bfcc1b1f417ace833ca4454fea48bc5a24b",
+          "url": "https:\/\/api.github.com\/repos\/FreeRADIUS\/freeradius-server\/commits\/a6f05bfcc1b1f417ace833ca4454fea48bc5a24b",
+          "html_url": "https:\/\/github.com\/FreeRADIUS\/freeradius-server\/commit\/a6f05bfcc1b1f417ace833ca4454fea48bc5a24b"
+        }
+      ]
+    }
+  ]
+}

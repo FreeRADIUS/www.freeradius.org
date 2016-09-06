@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html ng-app="freeradius">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Community</title>
+    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="freeradius.surge.sh/community/">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.surge.sh/feed.xml">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
+    <meta name="msapplication-TileColor" content="#da532c ">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+</head>
+
+
+  <body>
+
+    <div class="global-nav">
+  <div class="global_links pull_right">
+    <div class="global_link global_link_label h5 text">Our sites:</div>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>radius</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>radius</div></a>
+  </div>
+</div>
+
+<header class="site-header" global-header ng-class="{fixed: fixNav}">
+  <div class="site-header-wrapper">
+
+    <a class="site-title" href="/"><img src="../img/wordmark.svg"></a>
+    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
+      <svg viewBox="0 0 18 15">
+        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+      </svg>
+    </button>
+
+    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
+
+      <div class="get-release">
+      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
+      </div>
+
+      <ul class="site-nav-list">
+        
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+            
+          
+        
+          
+        
+          
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/releases/">Releases</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/documentation/">Documentation</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/modules/">Modules</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/community/">Community</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/about/">About</a>
+              </li>
+            
+          
+        
+          
+            
+              <li class="site-nav-item">
+                <a class="page-link h5" href="/support/">Support</a>
+              </li>
+            
+          
+        
+      </ul>
+
+    </nav>
+
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+
+        <article class="post">
+  <header class="post-header">
+    <div class="post-hero hero-community">
+      <div class="wrapper">
+      	<h1 class="post-title">Community</h1>
+      	<p class="post-subtitle">Get involved, connect with us</p> 
+      </div>
+    </div>
+  </header>
+  
+  	<div class="sub-nav">
+	<div class="wrapper">
+        <nav class="inline_nav" sub-nav>
+            <ul>
+                
+                
+        			<li class="active">
+                        <a class="subnav_link" href="#mailing_list">Mailing list</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="#contributing">Contributing modules</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="#developer_docs">Developer docs</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="#connect">Connect with us</a>
+                    </li>
+        		
+            </ul>
+        </nav>
+	</div>
+</div>
+
+  
+
+  <div class="post-content">
+      <div class="wrapper" id="mailing_list">
+    <div class="base_padding_v">
+    <h3 class="section-title">Stay up to date with Mailing Lists</h3>
+        <div class="row base_margin_b">
+            <div class="columns medium-8">
+                <p>Our mailing lists keep you up to date with current issues, technical developements and general announcements for users and developers.</p>
+            </div>
+            <div class="quick-links columns medium-4 text_accent-blue">
+                <a href="/support/">
+                    <div class="link block">
+                        <img src="../img/mail.svg" alt="" class="icon">
+                        <span class="h5 text-mid">Join mailing lists</span><img class="arrow" src="../img/arrow-right.svg">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="map_section text_centered bg_block-hero" id="contributing">
+    <div class="wrapper base_margin_b">
+        <div id='map'></div>
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
+        <script>
+
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZGlsbG9uLXBpbG90IiwiYSI6ImNpbHNobzk3dDAwMTV0eWtyNTdzM3hueTMifQ.rs8ORrHG7Y9Rg2WjB9glEg';
+            // mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZXJhZGl1cyIsImEiOiJjaWx0ZmtneXMwMDM3dnFtNmhheXA5N3FlIn0.rWA-VJLxadgsto6tjRSPnw';
+            var map = new mapboxgl.Map({
+                container: 'map', // container id
+                style: 'mapbox://styles/dillon-pilot/cilshysxr009va7lt1rvuqiu6', //stylesheet location
+                // style: 'mapbox://styles/freeradius/ciltjr1ei00l2c3lw552jyufy', //stylesheet location
+                center: [10, 40], // starting position
+                zoom: 1.03, // starting zoom
+                scrollZoom: false,
+            });
+        </script>
+    </div>
+    <div class="wrapper base_padding_v">
+        <h3 class="h4">Our community is making commits worldwide – see how you can get involved below</h3>
+        <img src="../img/arrow-down.svg" class="icon_xsmall">
+    </div>
+</section>
+
+<section class="text_centered lg_padding_v">
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <img class="icon_medium" src="../img/develop-modules.svg" alt="">
+                <p class="h5">Develop new modules</p>
+                <p>API documentation, C code examples, and anything else you need to get up-to-speed and writing modules for FreeRADIUS.</p>
+                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+            </div>
+            <div class="columns medium-4">
+                <img class="icon_medium" src="../img/submit-modules.svg" alt="">
+                <p class="h5">Submit new modules</p>
+                <p>Developed your own module? Great! Submit your code back to the project and have it maintained by the community.</p>
+                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+            </div>
+            <div class="columns medium-4">
+                <img class="icon_medium" src="../img/patch-issues.svg" alt="">
+                <p class="h5">Patch issues</p>
+                <p>Found an issue? We accept patches for everything, from code, to documentation, to this website!  </p>
+                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="wrapper" id="developer_docs">
+    <div class="base_padding_v">
+        <h3 class="section-title">Documentation: Showing what’s possible</h3>
+        <div class="row base_margin_b">
+                <div class="columns medium-8">
+                    <p>Our <a href="http://networkradius.com/doc/current">official documentation</a> provides a comprehensive guide to configuring and deploying FreeRADIUS, but it is the user contributions to the <a href="http://wiki.freeradius.org/Home">Wiki</a> that build on the official documentation and demonstrate the server's true flexibility and utility. Even if you can't code, cookbook recipes and deployment guides are great ways to give back to the community!</p>
+                </div>
+                <div class="quick-links columns medium-4 text_accent-blue">
+                    <a href="http://wiki.freeradius.org/Home">
+                        <div class="link block">
+                            <img src="../img/wiki.svg" alt="" class="icon">
+                            <span class="h5 text-mid">Visit Wiki</span><img class="arrow" src="../img/arrow-right.svg">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg_block-light base_padding_v">
+    <div class="wrapper text_centered" id="connect">
+        <div class="row base_padding_v" ng-controller="SocialFeeds" ng-init="getFeeds()">
+    <div class="column medium-4">
+        <div class="social-header">
+            <img class="icon_small" src="/img/twitter.svg" alt="">
+            <h5>@FreeRadius</h5>
+        </div>
+
+        <div class="social-block">
+            <div class="social-entry" ng-repeat="tweet in feeds.twitter">
+                <div class="label"><span class="icon time"></span><span ng-bind="toDate(tweet.created_at)"></span></div>
+                <div ng-bind-html="trust(tweet.text)"></div>
+            </div>
+        </div>
+
+        <a class="h5 undecorate text_accent-blue" target="_blank" href="https://twitter.com/freeradius">Visit freeRADIUS on twitter</a>
+    </div>
+
+    <div class="column medium-4">
+        <div class="social-header">
+            <img class="icon_small" src="/img/stackoverflow.svg" alt="">
+            <h5>Latest questions</h5>
+        </div>
+
+        <div class="social-block">
+            <div class="social-entry" ng-repeat="so in feeds.stackoverflow">
+                <div class="label"><span class="icon comment"></span>{{so.last_activity_date*1000 | date: 'longDate' }}</div>
+                <h5><a class="undecorate" href="{{so.link}}" target="_blank" ng-bind-html="trust(so.title)"></a></h5>
+                <div ng-bind-html="trust(so.body)"></div>
+            </div>
+        </div>
+
+        <a class="h5 undecorate text_accent-blue" target="_blank" href="http://stackoverflow.com/questions/tagged/freeradius?sort=newest">Visit freeRADIUS on Stack Overflow</a>
+    </div>
+
+    <div class="column medium-4">
+        <div class="social-header">
+            <img class="icon_small" src="/img/github.svg" alt="">
+            <h5>Last Updates</h5>
+        </div>
+        <div class="social-block">
+            <div class="social-entry" ng-repeat="gh in feeds.github">
+                <div class="label"><span class="icon upload"></span>{{gh.commit.author.date | date: 'longDate' }}</div>
+                <h5><a class="undecorate" href="{{gh.parents[0].html_url}}" target="_blank">freeradius-server</a></h5>
+                <div ng-bind-html="trust(gh.commit.message)"></div>
+            </div>
+        </div>
+
+        <a class="h5 undecorate text_accent-blue" target="_blank" href="https://github.com/FreeRADIUS">Visit freeRADIUS on GitHub</a>
+    </div>
+
+</div>
+
+
+    </div>
+</div>
+  </div>
+
+</article>
+
+
+    </div>
+
+    <footer class="global_footer bg_block-dark lg_padding_v">
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <div class="footer_main">
+                    <img class="footer_logo" width="150" src="../img/wordmark-white.svg" alt="">
+                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
+                    <div class="footer-social">
+                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
+                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
+                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
+                    </div>
+                    <p>&copy; 2015 The FreeRADIUS Server Project Support and Contributors</p>
+                </div>
+            </div>
+            <div class="columns medium-8">
+                <nav class="footer_nav h6 row small-up-2">
+                    <ul>
+                        <li><a href="/documentation/">Docs</a></li>
+                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
+                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
+                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
+                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
+                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/modules/">Modules</a></li>
+                        <li><a href="/modules/">Packages</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/community/">Community</a></li>
+                        <li><a href="/support/">Mailing Lists</a></li>
+                        <li><a href="/community/#contributing">Contribute</a></li>
+                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/about/#project">The Project</a></li>
+                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
+                        <li><a href="/about/#security">Security</a></li>
+                        <li><a href="/about/#team">Team</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/support/">Support</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
+                        <li><a href="/security_issues/">Security Issues</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
+                        <li><a href="/support/">Newsletters</a></li>
+                        <li><a href="/commercial_support/">Commercial</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/app.js"></script>
+
+  </body>
+
+</html>

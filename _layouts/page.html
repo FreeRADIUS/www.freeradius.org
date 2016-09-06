@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <div class="post-hero hero-{{ page.hero }}">
+      <div class="wrapper">
+      	<h1 class="post-title">{{ page.title }}</h1>
+      	<p class="post-subtitle">{{ page.subtitle }}</p> 
+      </div>
+    </div>
+  </header>
+  {% if page.subnav %}
+  	{% include subnav.html subnav=page.subnav %}
+  {% endif %}
+
+  <div class="post-content">
+      {{ content }}
+  </div>
+
+</article>

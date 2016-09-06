@@ -1,0 +1,72 @@
+[
+    {
+        "name": "rlm_chap",
+        "description": "Lorem ipsum etc...",
+        "category": "authentication",
+        "documentation_link": "http://networkradius.com/doc/foo",
+        "available": [
+            {
+                "branch": "v3.1.x",
+                "start": {
+                    "major": "<major>",
+                    "minor": "<minor>",
+                    "release": "<release>",
+                    "pre_type": "(rc|beta)",
+                    "pre": "<number>"
+                },
+                "end": {
+                    "major": "<major>",
+                    "minor": "<minor>",
+                    "release": "<release>",
+                    "pre_type": "(rc|beta)",
+                    "pre": "<number>"
+                }
+            }
+        ],
+        "submodules": [
+            {
+                "name": "module 0",
+                "url": "/api/components/<module 0>"
+            },
+            {
+                "name": "<module n>",
+                "url": "/api/components/<module n>"
+            }
+        ]
+    },
+    {
+        "name": "rlm_dynamic_clients",
+        "description": "Lorem ipsum etc...",
+        "category": "datastores",
+        "documentation_link": "http://networkradius.com/doc/foo",
+        "available": [
+            {
+                "branch": "(v2.0.x|v3.0.x|v3.1.x)",
+                "start": {
+                    "major": "<major>",
+                    "minor": "<minor>",
+                    "release": "<release>",
+                    "pre_type": "(rc|beta)",
+                    "pre": "<number>"
+                },
+                "end": {
+                    "major": "<major>",
+                    "minor": "<minor>",
+                    "release": "<release>",
+                    "pre_type": "(rc|beta)",
+                    "pre": "<number>"
+                }
+            }
+        ],
+        "submodules": [
+            {
+                "name": "<module 0>",
+                "url": "/api/components/<module 0>"
+            },
+            {
+                "name": "<module n>",
+                "url": "/api/components/<module n>"
+            }
+        ]
+    }
+]
