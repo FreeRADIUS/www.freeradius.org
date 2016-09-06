@@ -1,2 +1,0 @@
-This Internet-Draft was published as RFC2620 on June 22, 1999 
-You can access this file at ftp://ftp.ietf.org/rfc/rfc2620.txt 
