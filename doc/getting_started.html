@@ -115,7 +115,7 @@ why.  In version 2, you can paste the output into
 the <a href="http://networkradius.com/freeradius.html">debug form</a>,
 and a colorized HTML version will be produced.  In version 3, the
 output will be colorized.  Look for red or yellow text, and read the
-relvant messages.  They should describe exactly what went wrong, and
+relevant messages.  They should describe exactly what went wrong, and
 how to fix the problem.</p>
 
 <p>If you do see an <tt>Access-Accept</tt>,
@@ -135,7 +135,7 @@ section.</p>
 
 <p>The above test runs <code>radtest</code> from localhost.  It is
 useful to add a new client, which can be done by editing
-the <code>clients.conf</code> file.  Add the following contets:</p>
+the <code>clients.conf</code> file.  Add the following content:</p>
 
 <pre>
 client new {
@@ -149,9 +149,13 @@ address of the client which will be
 sending <code>Access-Request</code> packets.</p>
 
 <p>The client should also be configured to talk to the RADIUS server,
-by using the IP address of the maching running the RADIUS server.  The
+by using the IP address of the machine running the RADIUS server.  The
 client should use the same secret as configured above in
 the <code>client</code> section.</p>
+
+<p>(NB: When we discuss clients, we mean clients of the RADIUS server i.e. Wireless
+Access Point, Switch or other form of NAS. NOT the network clients - such as laptops,
+tablets etc - they do not talk directly to the RADIUS server)</p>
 
 <p>Then restart the server in debugging mode, and run a simple test
 using the <code>testing</code> user.  You should see
@@ -161,7 +165,7 @@ an <code>Access-Accept</code> in the server output</p>
 <em>
 The following steps outline the best known method for configuring the
 server.  Following them lets you create complex configurations with a
-minimm of effort.  Failure to follow them leads to days of frustration
+minimum of effort.  Failure to follow them leads to days of frustration
 and wasted effort.
 </em>
 <hr />
@@ -197,7 +201,7 @@ usually contain descriptions of what went wrong, and suggestions for
 how it can be fixed. (see also
 the <a href="http://networkradius.com/freeradius.html">debug
 form</a>)</li>
-<li>Try replace your configuration with a saved copy of a "known
+<li>Try replacing your configuration with a saved copy of a "known
 working" configuration, and start again.  This process can clean up
 errors caused by temporary edits, or edits that you have forgotten
 about.</li>
