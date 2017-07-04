@@ -16,7 +16,9 @@ module Jekyll
 
             tweets = []
             timeline.take(10).collect do |tweet|
-                tweets.push({"created_at": "#{tweet.created_at}", "text": "#{tweet.user.screen_name}: #{tweet.text}"})
+                # The javascript is picky about the time format,
+                # so ensure it doesn't change with system settings.
+                tweets.push({"created_at": "#{tweet.created_at.strftime('%a %b %d %H:%M:%S %z %Y')}", "text": "#{tweet.user.screen_name}: #{tweet.text}"})
             end
             # return tweet
             socialList['twitter'] = JSON.parse(JSON.generate(tweets))
