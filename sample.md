@@ -118,4 +118,4 @@ Changing the server configuration should be done via the following steps:
 
 ####Other Resources
 
-A number of guides are available from Network RADIUS. In particular, we recommend the Technical Guide, which should be read by every new RADIUS administrator. It explains RADIUS concepts, and covers how to perform introductory administation and maintenance. More in-depth guides are available on the same page.
+A number of guides are available from NetworkRADIUS. In particular, we recommend the Technical Guide, which should be read by every new RADIUS administrator. It explains RADIUS concepts, and covers how to perform introductory administation and maintenance. More in-depth guides are available on the same page.
