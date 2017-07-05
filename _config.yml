@@ -25,6 +25,7 @@ exclude:
   - "bower.json"
   - "makefile"
   - "bs-config.js"
+  - "Vagrantfile"
 
 sass:
   load_paths:
