@@ -21,7 +21,7 @@ subnav:
     <h3 class="section-title">Stay up to date with Mailing Lists</h3>
         <div class="row base_margin_b">
             <div class="columns medium-8">
-                <p>Our mailing lists keep you up to date with current issues, technical developements and general announcements for users and developers.</p>
+                <p>Our mailing lists keep you up to date with current issues, technical developements and general announcements for users and developers. They are the first place to go to for any questions to do with configuring or running the server.</p>
             </div>
             <div class="quick-links columns medium-4 text_accent-blue">
                 <a href="/support/">
@@ -35,6 +35,7 @@ subnav:
     </div>
 </div>
 <section class="map_section text_centered bg_block-hero" id="contributing">
+{% comment %}
     <div class="wrapper base_margin_b">
         <div id='map'></div>
         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
@@ -53,6 +54,7 @@ subnav:
             });
         </script>
     </div>
+{% endcomment %}
     <div class="wrapper base_padding_v">
         <h3 class="h4">Our community is making commits worldwide – see how you can get involved below</h3>
         <img src="../img/arrow-down.svg" class="icon_xsmall">
@@ -66,19 +68,23 @@ subnav:
                 <img class="icon_medium" src="../img/develop-modules.svg" alt="">
                 <p class="h5">Develop new modules</p>
                 <p>API documentation, C code examples, and anything else you need to get up-to-speed and writing modules for FreeRADIUS.</p>
+{% comment %}
                 <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+{% endcomment %}
             </div>
             <div class="columns medium-4">
                 <img class="icon_medium" src="../img/submit-modules.svg" alt="">
                 <p class="h5">Submit new modules</p>
                 <p>Developed your own module? Great! Submit your code back to the project and have it maintained by the community.</p>
-                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+                <a class="h5 undecorate text_accent-blue" href="https://github.com/FreeRADIUS/">Visit our GitHub page</a>
             </div>
             <div class="columns medium-4">
                 <img class="icon_medium" src="../img/patch-issues.svg" alt="">
                 <p class="h5">Patch issues</p>
                 <p>Found an issue? We accept patches for everything, from code, to documentation, to this website!  </p>
+{% comment %}
                 <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+{% endcomment %}
             </div>
         </div>
     </div>
