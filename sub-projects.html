@@ -36,26 +36,29 @@ subnav:
       <!--Pam_radius content -->
       <section id="pam-radius" tab-content ng-show="active == '#pam-radius'" ng-init="active = '#pam-radius'">
 
-        <a href="ftp://ftp.freeradius.org/pub/radius/pam_radius-1.4.0.tar.gz" class="button bg_accent-blue detailed base_margin_b">
+        <a href="https://github.com/FreeRADIUS/pam_radius/archive/release_1_4_0.tar.gz" class="button bg_accent-blue detailed base_margin_b">
           <span class="h4 right-border">PAM Authentication and Accounting module</span>
           <span class="h5">Download v 1.4.0</span>
           <img class="icon_xsmall" src="/img/arrow-download.svg" alt="">
         </a>
+{% comment %}
+This isn't on github, but not on new web site either.
         <a href="ftp://ftp.freeradius.org/pub/radius/pam_radius-1.4.0.tar.gz.sig" class="h5 spaced-link">(sig)</a>
+{% endcomment %}
 
         <p>This is the PAM to RADIUS authentication module. It allows any PAM-capable machine to become a RADIUS client for authentication and accounting requests. You will need a RADIUS server to perform the actual authentication.</p>
 
         <h5>Files included with the module</h5>
         <p>
-        <a href="http://freeradius.org/pam_radius_auth/README">README</a>
+        <a href="https://github.com/FreeRADIUS/pam_radius/blob/master/README.rst">README</a>
           <span class="italic">Introduction and documentation</span><br>
-        <a href="http://freeradius.org/pam_radius_auth/INSTALL">INSTALL</a>
+        <a href="https://github.com/FreeRADIUS/pam_radius/blob/master/INSTALL">INSTALL</a>
           <span class="italic">Installation instructions</span><br>
-        <a href="http://freeradius.org/pam_radius_auth/USAGE">USAGE</a>
+        <a href="https://github.com/FreeRADIUS/pam_radius/blob/master/USAGE">USAGE</a>
           <span class="italic">Module configuration and usage documentation</span><br>
-        <a href="http://freeradius.org/pam_radius_auth/Changelog">Changelog</a>
+        <a href="https://github.com/FreeRADIUS/pam_radius/blob/master/Changelog">Changelog</a>
           <span class="italic">What's changed</span></br>
-        <a href="http://freeradius.org/pam_radius_auth/pam_radius_auth.conf">pam_radius_auth.conf</a>
+        <a href="https://github.com/FreeRADIUS/pam_radius/blob/master/pam_radius_auth.conf">pam_radius_auth.conf</a>
           <span class="italic">Sample configuration file for telling the client the location of the RADIUS server.</span>
         </p>
 
@@ -64,9 +67,9 @@ subnav:
        <!--mod_auth_radius content -->
       <section id="mod-auth-radius" tab-content ng-show="active == '#mod-auth-radius'">
 
-        <a href="ftp://ftp.freeradius.org/pub/radius/mod_auth_radius-1.5.8.tar" class="button bg_accent-blue detailed base_margin_b">
+        <a href="https://github.com/FreeRADIUS/mod_auth_radius/archive/v1.6.0.tar.gz" class="button bg_accent-blue detailed base_margin_b">
           <span class="h4 right-border">The Authentication Module for Apache</span>
-          <span class="h5">Download v 1.5.8</span>
+          <span class="h5">Download v 1.6.0</span>
           <img class="icon_xsmall" src="/img/arrow-download.svg" alt="">
         </a>
 
@@ -99,24 +102,21 @@ subnav:
 
         <h5>Files included with the module</h5>
         <p>
-        <a href="http://freeradius.org/mod_auth_radius/README">README</a>
+        <a href="https://github.com/FreeRADIUS/mod_auth_radius/blob/master/README.asciidoc">README</a>
           <span class="italic">Introduction and documentation</span><br>
-        <a href="http://freeradius.org/mod_auth_radius/httpd.conf">httpd.conf</a>
+        <a href="https://github.com/FreeRADIUS/mod_auth_radius/blob/master/httpd.conf">httpd.conf</a>
           <span class="italic">Sample HTTPD configuration file for RADIUS attributes, with additional comments and documentation.</span><br>
-        <a href="http://freeradius.org/mod_auth_radius/htaccess">htaccess</a>
+        <a href="https://github.com/FreeRADIUS/mod_auth_radius/blob/master/htaccess">htaccess</a>
           <span class="italic">Sample .htaccess file</span><br>
-        <a href="http://freeradius.org/mod_auth_radius/mod_auth_radius.c">mod_auth_radius.c</a>
-          <span class="italic">C source file for Apache 1.3.x</span><br>
-        <a href="http://freeradius.org/mod_auth_radius/mod_auth_radius-2.0.c">mod_auth_radius-2.0.c</a>
-          <span class="italic">C source file for Apache 2.0</span>
+        <a href="https://github.com/FreeRADIUS/mod_auth_radius/blob/master/mod_auth_radius.c">mod_auth_radius.c</a>
+          <span class="italic">C source file for Apache 2.4.x</span><br>
         </p>
 
         <h5>Updates</h5>
 
-        <p>The latest version of the module is 1.5.8.<br>
-        For the latest source code, see the main web or ftp site:<br>
-        <a href="http://www.freeradius.org/mod_auth_radius/">http://www.freeradius.org/mod_auth_radius/</a><br>
-        <a href="ftp://ftp.freeradius.org/pub/radius/mod_auth_radius-1.5.8.tar">ftp://ftp.freeradius.org/pub/radius/mod_auth_radius-1.5.8.tar</a></p>
+        <p>The latest version of the module is 1.6.0.<br>
+        For the latest source code, see the GitHub site:<br>
+        <a href="https://github.com/FreeRADIUS/mod_auth_radius">https://github.com/FreeRADIUS/mod_auth_radius</a></p>
 
         <h5>Author contact</h5>
 
@@ -125,14 +125,13 @@ subnav:
         <h5>Related pages</h5>
         <p>
         <a href="http://www.apache.org/httpd.html">The Apache HTTP server project</a><br>
-        <a href="http://modules.apache.org/">The Apache Module Registry</a><br>
-        mod_auth_radius: <a href="http://www.wede.de/sw/mod_auth_radius/">another variant</a>
+        <a href="http://httpd.apache.org/modules/">The Apache Module Registry</a>
         </p>
       </section>
 
       <!--freeradius-server content -->
       <section id="freeradius-client" tab-content ng-show="active == '#freeradius-client'">
-        <a href="ftp://ftp.freeradius.org/pub/freeradius/freeradius-client-1.1.7.tar.gz" class="button bg_accent-blue detailed base_margin_b">
+        <a href="https://github.com/FreeRADIUS/freeradius-client/archive/release_1_1_7.tar.gz" class="button bg_accent-blue detailed base_margin_b">
           <span class="h4 right-border">The FreeRADIUS Client Library</span>
           <span class="h5">Download v 1.1.7</span>
           <img class="icon_xsmall" src="/img/arrow-download.svg" alt="">
@@ -140,11 +139,11 @@ subnav:
 
         <p>FreeRADIUS Client is a framework and library for writing RADIUS Clients which additionally includes radlogin, a flexible RADIUS aware login replacement, a command line program to send RADIUS accounting records and a utility to query the status of a RADIUS server. All of these programs are based on a library that lets you develop a RADIUS-aware application in less than 50 lines of C code. It is highly portable and runs on Linux, many BSD variants and Solaris.</p>
 
-        <p>See the <a href="http://wiki.freeradius.org/Radiusclient">Wiki</a> for more information, including <a href="ftp://ftp.freeradius.org/pub/freeradius/freeradius-client-1.1.7.tar.gz">download links</a>.</p>
+        <p>See the <a href="http://wiki.freeradius.org/project/Radiusclient">Wiki</a> for more information.</p>
 
         <h5>Version 1.1.7</h5>
 
-        <p>After many years, version 1.1.7 has been released. It has a large number of fixes, but is still compatible with the code from 1.1.6. The ChangeLog is:</p>
+        <p>Version 1.1.7 has a large number of fixes, but is still compatible with the code from 1.1.6. The ChangeLog is:</p>
 
         <ul>
           <li>Allow "configure --with-nettle" to use nettle MD5 implementation. Patch from Nikos Mavrogiannopoulos.</li>
