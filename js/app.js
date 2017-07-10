@@ -47,7 +47,7 @@
     freeradius.factory('getStable', ['$http', function($http){
         return $http({
             method: 'GET',
-            url: 'http://freeradius.org/api/info/branch/',
+            url: 'http://{{ site.url }}/api/info/branch/',
             // url: '/modules.json',
             params: {
                 by_keyword: 'stable',
@@ -173,7 +173,7 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/component/',
+                url: 'http://{{ site.url }}/api/info/component/',
                 // url: '/modules.json',
                 params: {
                     by_category: category,
@@ -276,7 +276,7 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/component/'+module+'/',
+                url: 'http://{{ site.url }}/api/info/component/'+module+'/',
                 params: {
                     expansion_depth: 3,
                 }
@@ -306,7 +306,7 @@
             $scope.searchString = string;
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/component/',
+                url: 'http://{{ site.url }}/api/info/component/',
                 // url: '/modules.json',
                 params: {
                     by_keyword: 'regex:'+string,
@@ -354,7 +354,7 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/branch/',
+                url: 'http://{{ site.url }}/api/info/branch/',
                 params: {
                     expansion_depth: 4,
                     order_by: 'name',
@@ -497,7 +497,7 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/branch/',
+                url: 'http://{{ site.url }}/api/info/branch/',
                 // url: '/modules.json',
                 params: {
                     by_keyword: 'regex:'+date,
@@ -522,7 +522,7 @@
             $scope.searchString = string;
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/branch/',
+                url: 'http://{{ site.url }}/api/info/branch/',
                 params: {
                     by_keyword: 'regex:'+string,
                     keyword_expansion_depth: 3,
@@ -544,7 +544,7 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/branch/'+branch+'/release/'+release+'/',
+                url: 'http://{{ site.url }}/api/info/branch/'+branch+'/release/'+release+'/',
                 params: {
                     expansion_depth: 2,
                 }
@@ -612,7 +612,7 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/branch/',
+                url: 'http://{{ site.url }}/api/info/branch/',
                 // url: '/modules.json',
                 params: {
                     expansion_depth: 3,
@@ -670,7 +670,7 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                // url: 'http://freeradius.org/api/components/',
+                // url: 'http://{{ site.url }}/api/components/',
                 url: '/social.json',
                 // params: {
                 //     by_category: category
