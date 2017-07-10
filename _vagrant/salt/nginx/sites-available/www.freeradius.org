@@ -1,0 +1,113 @@
+#
+#  Yes, this is global, and sucks, blame the NGINX/LUA shitheads
+#
+lua_package_path ";;/srv/www/www.freeradius.org/api/info/?.lua;";
+
+#
+#  Going to the IP gets
+#
+server {
+	listen 80 default_server;
+#	listen [::]:80 default_server ipv6only=on;
+
+	# this name will never match anything, so it can't affect
+	# the other virtual servers
+#	server_name _;
+#	rewrite ^ http://freeradius.org$request_uri? permanent;
+#}
+
+#server {
+#	listen 80;
+#	listen 443 ssl;
+
+	root /srv/www/www.freeradius.org;
+	index index.html index.htm index.json;
+
+	server_name freeradius.org;
+	access_log /var/log/nginx/freeradius.access.log;
+
+	error_page 404 /404.html;
+
+	rewrite /business/ http://networkradius.com/support.html permanent;
+	rewrite /business/index.html http://networkradius.com/support.html permanent;
+
+	# Deny all attempts to access hidden files such as .htaccess, .htpasswd, .DS_Store (Mac) .git ...
+	location ~ /\. {
+		deny all;
+		access_log off;
+		log_not_found off;
+	}
+
+	location /nginx_status {
+		stub_status on;
+		access_log off;
+		allow 127.0.0.1;
+		deny all;
+	}
+
+	location / {
+		ssi on;
+	}
+
+	#
+	#  Block this temporarily, with account radius / fhg7Fbf
+	#
+	location ^~ /security/fuzzer-2017.html {
+		ssi on;
+		auth_basic "Restricted";
+		auth_basic_user_file "htpasswd/fuzzer";
+		index  index.html index.htm;
+	}
+
+	#
+	#  Dispatch requests to the release and branch info API
+	#
+	location ~ ^/api/ {
+		default_type application/json;
+
+		# Needed for pilot interactive to access dummy API
+#		add_header Access-Control-Allow-Origin http://freeradius.surge.sh;
+
+		location ~ ^/api/info/component/$  {
+			content_by_lua_file $document_root/api/info/bin/component_index.lua;
+		}
+
+		location ~ ^/api/info/component/[.0-9a-z_-]+/$ {
+			content_by_lua_file $document_root/api/info/bin/component.lua;
+		}
+
+		location ~ ^/api/info/branch/$ {
+			content_by_lua_file $document_root/api/info/bin/branch_index.lua;
+		}
+
+		location ~ ^/api/info/branch/[.0-9a-z_-]+/$ {
+			content_by_lua_file $document_root/api/info/bin/branch.lua;
+		}
+
+		location ~ ^/api/info/branch/[.0-9a-z_-]+/release/$ {
+			content_by_lua_file $document_root/api/info/bin/release_index.lua;
+		}
+
+		location ~ ^/api/info/branch/[.0-9a-z_-]+/release/[.0-9a-z-]+/$ {
+			content_by_lua_file $document_root/api/info/bin/release.lua;
+		}
+	}
+
+#	ssl_certificate /srv/etc/ssl/services/freeradius.org.pem;
+#	ssl_certificate_key /srv/etc/ssl/services/freeradius.org.key;
+#	ssl_session_timeout 5m;
+#	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+#	ssl_ciphers ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv3:+EXP;
+#	ssl_prefer_server_ciphers on;
+}
+
+#server {
+#	listen 80;
+#	listen 443 ssl;
+
+#	server_name www.freeradius.org;
+#	rewrite ^ $scheme://freeradius.org$request_uri? permanent;
+
+#	ssl_certificate /srv/etc/ssl/services/freeradius.org.pem;
+#	ssl_certificate_key /srv/etc/ssl/services/freeradius.org.key;
+#}
