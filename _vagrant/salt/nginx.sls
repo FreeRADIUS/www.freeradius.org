@@ -24,6 +24,7 @@ nginx_configtest:
     - watch:
       - file: /etc/nginx/sites-available/*
       - file: /etc/nginx/sites-enabled/*
+      - file: /etc/nginx/conf.d/*
     - require:
       - pkg: nginx-pkg
 
@@ -55,6 +56,11 @@ nginx:
 /etc/nginx/sites-available:
   file.recurse:
     - source: salt://nginx/sites-available
+    - file_mode: 640
+
+/etc/nginx/conf.d:
+  file.recurse:
+    - source: salt://nginx/conf.d
     - file_mode: 640
 
 {% for site in ['www.freeradius.org']
