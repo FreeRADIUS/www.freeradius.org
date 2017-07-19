@@ -148,28 +148,48 @@ sub get_module_readme
 }
 
 
-#** @function get_releases ($repo)
-# @brief Get all release tags from the git repository
+#** @function get_versions ($repo)
+# @brief Get all release tags and dev branches from the git repository
 #
-# Scans the git repository for all release tags (that begin 'release_')
-# and returns them in a hash where the keys are the version number and
-# the values are the release tag.
+# Scans the git repository for all standard development branches and release
+# tags (that begin 'release_') and returns them in a hash where the keys are
+# the version number and the values are the release tag and type of branch.
 #
 # @params $repo		Git::Repository reference
 #
-# @retval $%releases	Hash reference of version => release tag
+# @retval $%versions	Hash reference of version => hashref of branch and type
 #*
 
-sub get_releases
+sub get_versions
 {
 	my $repo = shift;
 
+	# get all tags
+	#
 	my @tags = map {chomp $_; $_}
 		$repo->command("tag" => '-l')->stdout->getlines();
 
-	my %release = map {/^release_(\d+)_(\d+)_(\d+)$/ ? ("$1.$2.$3", $_) : ()} @tags;
+	# get version number of all tags and put into hash
+	#
+	my %versions = map {/^release_(\d+)_(\d+)_(\d+)$/ ? ("$1.$2.$3", {tag => $_, type => "release"}) : ()} @tags;
 
-	return \%release;
+	# find all branches, to see what's in development
+	#
+	my @branches = map {chomp $_; $_}
+		$repo->command("branch" => '-a')->stdout->getlines();
+
+	# if the branches are "public facing" ones then add them to the hash
+	#
+	foreach my $branch (@branches) {
+		if ($branch =~ /^[\s\*]+((?:remotes\/origin\/)?v(\d+\.(?:\d+|x)\.x))$/) {
+			$versions{$2} = {
+				tag => $1,
+				type => "development",
+			};
+		}
+	}
+
+	return \%versions;
 }
 
 
