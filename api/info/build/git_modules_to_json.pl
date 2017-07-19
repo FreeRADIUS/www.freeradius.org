@@ -1,10 +1,16 @@
 #! /usr/bin/perl
 
-# Build tree of json files for the api to read.
+#** @file git_modules_to_json.pl
+# @brief Build tree of json files for the web site api to read.
+#
+# Scans the FreeRADIUS git repository for all sorts of goodies and writes it
+# out in json files for the lua API to read.
+#
 # Written in perl to make Arran happy.
 #
-# Matthew Newton
-# 2017-07-11
+# @author Matthew Newton
+# @date 2017-07-11
+#*
 
 use strict;
 use Data::Dumper;
@@ -16,8 +22,20 @@ my $gitdir = "/srv/freeradius-server";
 my $repo = Git::Repository->new( work_tree => $gitdir );
 
 
-# compare release versions
+#** @function version_compare ($version_a, $version_b)
+# @brief Compare two version numbers
 #
+# Equivalent to perl's "<=>" and "cmp" operators for FreeRADIUS version
+# numbers. Given two version numbers (e.g. "3.0.5" and "2.2.8") returns -1, 0
+# or 1 depending on whether the first is less than, equal to or greater than
+# the second.
+#
+# @params $version_a	Version number
+# @params $version_b	Version number
+#
+# @retval $cmp		-1, 0 or 1
+#*
+
 sub version_compare
 {
 	my ($va, $vb) = @_;
@@ -41,8 +59,18 @@ sub version_compare
 }
 
 
-# get and parse README.md file
+#** @function get_module_readme ($repo, $blob)
+# @brief Retrieve module README.md and parse it
 #
+# Given a git blob of a README.md file, pulls it from the git repository and
+# parses it into a usable data structure.
+#
+# @params $repo		Git::Repository reference
+# @params $blob		Git blob
+#
+# @retval $readme	Hash reference of README data
+#*
+
 sub get_module_readme
 {
 	my ($repo, $blob) = @_;
@@ -58,8 +86,18 @@ sub get_module_readme
 }
 
 
-# get release tags
+#** @function get_releases ($repo)
+# @brief Get all release tags from the git repository
 #
+# Scans the git repository for all release tags (that begin 'release_')
+# and returns them in a hash where the keys are the version number and
+# the values are the release tag.
+#
+# @params $repo		Git::Repository reference
+#
+# @retval $%releases	Hash reference of version => release tag
+#*
+
 sub get_releases
 {
 	my $repo = shift;
@@ -73,8 +111,20 @@ sub get_releases
 }
 
 
-# get modules in a release
+#** @function get_release_modules ($repo, $reltag)
+# @brief Get all modules included in a particular release
 #
+# Looks at all directories under src/modules in a given release and returns a
+# hash of all modules. Key is the module name, and value is a hash with the
+# module name, parent module name (e.g. rlm_sql for rlm_sql_sqlite) and readme
+# for the module if available.
+#
+# @params $repo		Git::Repository reference
+# @params $reltag	Git tag name or object
+#
+# @retval $%modules	Hash reference of module name => module information
+#*
+
 sub get_release_modules
 {
 	my ($repo, $reltag) = @_;
@@ -115,17 +165,21 @@ sub get_release_modules
 			$name = $components[$#components-1];
 		}
 
+		# only interested in certain directories
+		#
 		next unless $name =~ /^(rlm|proto)_/;
 
 		my $module = $modules->{$name} || {};
 		$module->{name} = $name;
 
 		# find the parent for submodules
+		#
 		if ($$o{type} eq "tree" and $#components > 2) {
 			$module->{parent} = @components[2];
 		}
 
 		# get the module readme
+		#
 		if ($$o{type} eq "blob") {
 			$module->{readme} = get_module_readme($repo, $$o{hash});
 		}
@@ -137,8 +191,20 @@ sub get_release_modules
 }
 
 
-# add modules to the main module list, with min/max versions
+#** @function build_modules_repository ($modrepo, $modules, $release)
+# @brief Add data about modules in a release to module repository
 #
+# Takes information about modules in a particular release and builds up
+# a "module repository" which contains data about all modules and which
+# releases they are included in.
+#
+# @params $%modrepo	Hash reference of module repository to add to
+# @params $%modules	Data as returned from get_release_modules
+# @params $release	Version these modules are in (e.g. "3.0.8")
+#
+# @retval $%modrepo	Hash reference of module repository
+#*
+
 sub build_module_repository
 {
 	my ($modrepo, $modules, $release) = @_;
