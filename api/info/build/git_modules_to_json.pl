@@ -171,7 +171,9 @@ sub get_versions
 
 	# get version number of all tags and put into hash
 	#
-	my %versions = map {/^release_(\d+)_(\d+)_(\d+)$/ ? ("$1.$2.$3", {tag => $_, type => "release"}) : ()} @tags;
+	my %versions = map {/^release_(\d+)_(\d+)_(\d+)$/ ?
+		("$1.$2.$3", {tag => $_, type => "release", version => "$1.$2.$3"}) :
+		()} @tags;
 
 	# find all branches, to see what's in development
 	#
@@ -185,6 +187,7 @@ sub get_versions
 			$versions{$2} = {
 				tag => $1,
 				type => "development",
+				version => $2,
 			};
 		}
 	}
@@ -202,14 +205,16 @@ sub get_versions
 # for the module if available.
 #
 # @params $repo		Git::Repository reference
-# @params $reltag	Git tag name or object
+# @params $versioninfo	Hash reference of tag name and type (devel or release)
 #
 # @retval $%modules	Hash reference of module name => module information
 #*
 
 sub get_release_modules
 {
-	my ($repo, $reltag) = @_;
+	my ($repo, $versioninfo) = @_;
+
+	my $reltag = $$versioninfo{tag};
 
 	# run git ls-tree to find all subdirectories of src/modules for a
 	# particular git tag, and get the data as an array of hashes
@@ -274,7 +279,7 @@ sub get_release_modules
 }
 
 
-#** @function build_modules_repository ($modrepo, $modules, $release)
+#** @function build_modules_repository ($modrepo, $modules, $versioninfo)
 # @brief Add data about modules in a release to module repository
 #
 # Takes information about modules in a particular release and builds up
@@ -283,14 +288,16 @@ sub get_release_modules
 #
 # @params $%modrepo	Hash reference of module repository to add to
 # @params $%modules	Data as returned from get_release_modules
-# @params $release	Version these modules are in (e.g. "3.0.8")
+# @params $%versioninfo	Hashref with version information for these modules
 #
 # @retval $%modrepo	Hash reference of module repository
 #*
 
 sub build_module_repository
 {
-	my ($modrepo, $modules, $release) = @_;
+	my ($modrepo, $modules, $versioninfo) = @_;
+
+	my $release = $$versioninfo{version};
 
 	# go through all new modules and add to the main module repository
 	# as required, tracking release numbers
@@ -301,6 +308,7 @@ sub build_module_repository
 				name => $module,
 				minrelease => $release,
 				maxrelease => $release,
+				maxdevrelease => $release,
 				list => [],
 			};
 		}
@@ -309,15 +317,60 @@ sub build_module_repository
 
 		push @{$$mrm{list}}, $$modules{$module};
 
-		$$mrm{minrelease} = $release if version_compare($$mrm{minrelease}, $release) > 0;
-		$$mrm{maxrelease} = $release if version_compare($$mrm{maxrelease}, $release) < 0;
+		# track minimum and maximum released versions for this module
+		#
+		# If the version we are comparing is a released version, then
+		# that takes all precedence so we only show released versions
+		# on the web site (e.g. from version 1.1.0 to 3.0.15, even
+		# though the module is also in version 4.0.x under development.
+		# However, if the module is *only* in development versions
+		# (say, 3.1.x and 4.0.x) then show the minimum and maximum
+		# versions of that instead so that the module gets listed.
+		#
+		# In either case, the README.md is always taken from the very
+		# latest development version of the server.
+		#
+		if ($$versioninfo{type} eq "release") {
+			if ($$mrm{minrelease} =~ /x/ or version_compare($$mrm{minrelease}, $release) > 0) {
+				$$mrm{minrelease} = $release;
+			}
+
+			if ($$mrm{maxrelease} =~ /x/ or version_compare($$mrm{maxrelease}, $release) < 0) {
+				$$mrm{maxrelease} = $release;
+			}
+		}
+		else {
+			if ($$mrm{minrelease} =~ /x/ and version_compare($$mrm{minrelease}, $release) > 0) {
+				$$mrm{minrelease} = $release;
+			}
+
+			if ($$mrm{maxrelease} =~ /x/ and version_compare($$mrm{maxrelease}, $release) < 0) {
+				$$mrm{maxrelease} = $release;
+			}
+		}
+
+		# track latest development version, just because
+		#
+		$$mrm{maxdevrelease} = $release if version_compare($$mrm{maxdevrelease}, $release) < 0;
+
+
+		# sanity check that parents for different versions are the same
+		#
 		if (defined $$mrm{parent} and
 			($$mrm{parent} ne $$modules{$module}{parent})) {
 			die "differing parents for $module";
 		}
+
+		# set the parent
+		#
 		if (defined $$modules{$module}{parent}) {
 			$$mrm{parent} = $$modules{$module}{parent};
 		}
+
+		# set the readme version
+		#
+		# don't check for stable/development versions here - see comments above
+		#
 		if (defined $$modules{$module}{readmeblob}) {
 			my $oldversion = $$mrm{readmeversion} || "0.0.0";
 			if (version_compare($oldversion, $release) < 0) {
@@ -384,24 +437,24 @@ sub output_module_repository
 }
 
 
-# get all release tags with version numbers
-my $releases = get_releases($repo);
+# get all versions we're interested in
+my $versions = get_versions($repo);
 
-# testing, for now
-$$releases{"2.99.99"} = "v2.x.x";
-$$releases{"3.0.99"} = "v3.0.x";
-$$releases{"4.0.0"} = "v4.0.x";
+#foreach my $k (sort {version_compare($a, $b)} keys %$releases) {
+#	next unless $$releases{$k}{type} eq "development";
+#	print "$k\n";
+#}
 
 # module repository
 my $modrepo = {};
 
-my $ss = get_release_modules($repo, "v4.0.x");
+#my $ss = get_release_modules($repo, "v4.0.x");
 #print Dumper $ss;
 
 # go through all versions and add the modules to the module repository
-foreach my $version (keys %$releases) {
-	my $release_modules = get_release_modules($repo, $$releases{$version});
-	build_module_repository($modrepo, $release_modules, $version);
+foreach my $version (keys %$versions) {
+	my $release_modules = get_release_modules($repo, $$versions{$version});
+	build_module_repository($modrepo, $release_modules, $$versions{$version});
 }
 
 # read and parse readme file data
