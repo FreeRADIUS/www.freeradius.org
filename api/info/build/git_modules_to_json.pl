@@ -49,7 +49,15 @@ sub version_compare
 	# same then jump to the next, otherwise comparison can stop here.
 	#
 	for (my $i = 0; $i < 3; $i++) {
-		next if $sa[$i] == $sb[$i];
+		# do a string comparison to see if they're the same
+		# (we sometimes have 'x', so not numerical here)
+		next if $sa[$i] eq $sb[$i];
+
+		# they're not both 'x', so if one is then it's newer
+		return 1 if $sa[$i] eq "x";
+		return -1 if $sb[$i] eq "x";
+
+		# must be numbers then, so just do a numerical comparison
 		return $sa[$i] <=> $sb[$i];
 	}
 
