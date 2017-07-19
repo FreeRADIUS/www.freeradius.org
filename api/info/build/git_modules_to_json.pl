@@ -65,6 +65,9 @@ sub version_compare
 # Given a git blob of a README.md file, pulls it from the git repository and
 # parses it into a usable data structure.
 #
+# README.md file format is "# module_name" on the first line, followed by
+# sections delimited by "## section_name".
+#
 # @params $repo		Git::Repository reference
 # @params $blob		Git blob
 #
@@ -74,15 +77,66 @@ sub version_compare
 sub get_module_readme
 {
 	my ($repo, $blob) = @_;
+	my $readme = {};
 
+	# read the blob from git
+	#
 	my $data = $repo->command("show" => $blob)->stdout;
+	return undef unless $data;
 
-# this is rather a TODO for now.
-# parse the README, and return a hash of the different sections
+	#my @lines;
+	my $state = "header";
+	my $sectionname;
+	my $sectiondata;
 
-# for the time being, just return the whole file.
-	my @lines = $data->getlines();
-	return join "", @lines;
+	while (my $line = $data->getline()) {
+		chomp $line;
+		#push @lines, $line;
+
+		# at the start, look for a header with a module name
+		#
+		if ($state eq "header") {
+			next if ($line =~ /^\s*$/);
+
+			unless ($line =~ /^#\s+([a-z0-9_]+)$/) {
+				die "malformed README header '$line'\n";
+			}
+			$$readme{modulename} = $1;
+			$state = "section";
+			next;
+		}
+
+		if ($state eq "section") {
+			if ($line =~ /^##\s+([A-Za-z]+)$/) {
+				if ($sectionname) {
+					$$readme{lc $sectionname} = {
+						name => $sectionname,
+						data => $sectiondata,
+					};
+				}
+
+				$sectionname = $1;
+				$sectiondata = "";
+				$state = "section";
+				next;
+			}
+		}
+
+		if ($state eq "section") {
+			$sectiondata .= "$line\n";
+		}
+	}
+
+	if ($state eq "section" and $sectionname) {
+		$$readme{lc $sectionname} = {
+			name => $sectionname,
+			data => $sectiondata,
+		};
+	}
+
+	#$$readme{lines} = \@lines;
+
+	return $readme;
 }
 
 
@@ -181,7 +235,8 @@ sub get_release_modules
 		# get the module readme
 		#
 		if ($$o{type} eq "blob") {
-			$module->{readme} = get_module_readme($repo, $$o{hash});
+			$module->{readmeblob} = $$o{hash};
+			#get_module_readme($repo, $$o{hash});
 		}
 
 		$modules->{$name} = $module;
@@ -235,16 +290,44 @@ sub build_module_repository
 		if (defined $$modules{$module}{parent}) {
 			$$mrm{parent} = $$modules{$module}{parent};
 		}
-		if (defined $$modules{$module}{readme}) {
+		if (defined $$modules{$module}{readmeblob}) {
 			my $oldversion = $$mrm{readmeversion} || "0.0.0";
 			if (version_compare($oldversion, $release) < 0) {
-				$$mrm{readme} = $$modules{$module}{readme};
+				$$mrm{readmeblob} = $$modules{$module}{readmeblob};
 				$$mrm{readmeversion} = $release;
 			}
 		}
 	}
 
 	return $modrepo;
+}
+
+
+#** @function get_readme_files ($modrepo)
+# @brief Retrieve all module README.md files
+#
+# Goes through the module repository and fetches all the README.md files for
+# each module from the git repo. Done here rather than earlier so we only pull
+# the latest README for each module. If nothing else, earlier READMEs are
+# unlikely to be formatted correctly, and therefore will cause the parse sub to
+# blow up.
+#
+# @params $repo		Git::Repository reference
+# @params $%modrepo	Hash reference of module repository
+#
+# @retval $%modrepo	Hash reference of module repository
+#*
+
+sub get_readme_files
+{
+	my ($repo, $modrepo) = @_;
+
+	foreach my $module (sort keys %$modrepo) {
+		my $md = $$modrepo{$module};
+		next unless defined $$md{readmeblob};
+
+		$$md{readme} = get_module_readme($repo, $$md{readmeblob});
+	}
 }
 
 
@@ -261,10 +344,11 @@ sub output_module_repository
 		print "\tmin: " . $$md{minrelease} . "\n";
 		print "\tmax: " . $$md{maxrelease} . "\n";
 		print "\tparent: " . $$md{parent} . "\n" if defined $$md{parent};
+		print "\treadme blob: " . $$md{readmeblob} . "\n" if defined $$md{readmeblob};
+		print "\treadme version " . $$md{readmeversion} . "\n" if defined $$md{readmeversion};
 		if (defined $$md{readme}) {
-			print "\treadme from version: " . $$md{readmeversion} . "\n";
 			print "-" x 80 . "\n";
-			print $$md{readme};
+			print Dumper $$md{readme};
 			print "-" x 80 . "\n";
 		}
 		print "\n";
@@ -291,6 +375,9 @@ foreach my $version (keys %$releases) {
 	my $release_modules = get_release_modules($repo, $$releases{$version});
 	build_module_repository($modrepo, $release_modules, $version);
 }
+
+# read and parse readme file data
+get_readme_files($repo, $modrepo);
 
 # dump everything we've got
 output_module_repository($modrepo);
