@@ -77,11 +77,11 @@ function _m:build(path)
       end
 
       if attrs.mode == "file" then
-         local m, err = ngx.re.match(file, "^(.*)\\.[^.]+?$", "jo")
-         local name = m[1]
+         local m, err = ngx.re.match(file, "^(.*)\\.json$", "jo")
 
-         if name:sub(1,1) ~= "." then
-             table.insert(self.index, { name = name, url = self.url_prefix .. "/" .. name .. "/" })
+         if m and not err then
+            local name = m[1]
+            table.insert(self.index, { name = name, url = self.url_prefix .. "/" .. name .. "/" })
          end
       end
    end
