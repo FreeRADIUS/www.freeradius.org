@@ -105,7 +105,7 @@ sub get_releases
 	my @tags = map {chomp $_; $_}
 		$repo->command("tag" => '-l')->stdout->getlines();
 
-	my %release = map {/^release[_.](\d+)[_.](\d+)[_.](\d+)$/ ? ("$1.$2.$3", $_) : ()} @tags;
+	my %release = map {/^release_(\d+)_(\d+)_(\d+)$/ ? ("$1.$2.$3", $_) : ()} @tags;
 
 	return \%release;
 }
