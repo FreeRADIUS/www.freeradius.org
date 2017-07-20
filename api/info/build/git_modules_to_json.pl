@@ -29,32 +29,32 @@ my $RELBRANCHES = [
 	{
 		# release means find the latest release tag for this branch
 		type => "release",
-		version => "3.0.x",
+		branch => "3.0.x",
 		description => "Latest stable branch",
 		status => "stable",
 	},
 	{
 		type => "release",
-		version => "2.x.x",
+		branch => "2.x.x",
 		description => "Old stable branch",
 		status => "end of life",
 	},
 	{
 		type => "release",
-		version => "1.x.x",
+		branch => "1.x.x",
 		description => "Obsolete stable branch",
 		status => "obsolete",
 	},
 	{
 		type => "release",
-		version => "0.x.x",
+		branch => "0.x.x",
 		description => "Obsolete stable branch",
 		status => "obsolete",
 	},
 	{
 		# development means just download this actual branch HEAD
 		type => "development",
-		version => "4.0.x",
+		branch => "4.0.x",
 		description => "Development branch",
 		status => "development",
 	},
@@ -315,7 +315,7 @@ sub add_versions_to_branches
 		$$branch{releases} = [];
 
 		foreach my $version (keys %$versions) {
-			if (version_is_in_branch($version, $$branch{version})) {
+			if (version_is_in_branch($version, $$branch{branch})) {
 				push @{$$branch{releases}}, $$versions{$version};
 				$$versions{$version}{branch} = $branch;
 			}
@@ -546,7 +546,7 @@ sub get_readme_files
 # Some versions in relbranches may be "stable", but listed as e.g. 3.0.x. This
 # will find the latest stable version in that train.
 #
-# @params $%relbranches	Versions to display on web site
+# @params $%relbranches	Branches available
 # @params $%versions	All git versions and tags
 #
 # @retval $%relbranches	Updated release versions with branch info
@@ -561,7 +561,7 @@ sub find_releases
 	# check each release version
 	#
 	foreach my $rv (@$relbranches) {
-		my $version = $$rv{version};
+		my $version = $$rv{branch};
 
 		# while development versions will be the same as listed in
 		# relbranches (e.g. 4.0.x is always the HEAD of v4.0.x),
@@ -578,7 +578,7 @@ sub find_releases
 			#
 			foreach my $v (sort {version_compare($a, $b)} keys %$versions) {
 				my $version_is_same_or_lower = (
-					version_compare($v, $$rv{version}) != 1
+					version_compare($v, $$rv{branch}) != 1
 				);
 
 				if ($$versions{$v}{type} eq "release" and
@@ -598,12 +598,12 @@ sub find_releases
 			$version = $stableversion;
 		}
 
-		my $branchname = $$versions{$version}{tag};
-		die "unable to find version $version\n" unless defined $branchname;
+		my $tagname = $$versions{$version}{tag};
+		die "unable to find version $version\n" unless defined $tagname;
 
-		$branchname =~ s+^remotes/origin/++; # trim off remotes
-		$$rv{version} = $version;
-		$$rv{branch} = $branchname;
+		$tagname =~ s+^remotes/origin/++; # trim off remotes
+		$$rv{latestversion} = $version;
+		$$rv{latesttag} = $tagname;
 	}
 
 	return $relbranches;
@@ -703,14 +703,13 @@ sub git_date
 	return $date;
 }
 
-
 #** @function build_web_json ($relbranches, $versions, $modrepo, $outdir)
 # @brief Build JSON files for web site API
 #
 # Takes information in the module repository data and builds JSON files that
 # are picked up by the web site Lua scripts.
 #
-# @params $%relbranches	Versions to display on web site
+# @params $%relbranches	Branches available
 # @params $%versions	All git versions and tags
 # @params $%modrepo	Hash reference of module repository
 # @params $outdir	Directory to put output files
@@ -737,16 +736,16 @@ sub build_web_json
 	# create branch json for each release version
 	#
 	foreach my $rv (@$relbranches) {
-		my $branch = $$rv{branch};
+		my $tag = $$rv{latesttag};
 
 		my $oj = {
-			name => $branch.
+			name => $tag,
 			description => $$rv{description},
 			status => $$rv{status},
 		};
-		jout "$outdir/branch/$branch.json", $oj;
+		jout "$outdir/branch/$tag.json", $oj;
 
-		make_path "$outdir/branch/$branch/release";
+		make_path "$outdir/branch/$tag/release";
 
 		print "\nbranch: $branch\n";
 #		print Dumper $rv;
