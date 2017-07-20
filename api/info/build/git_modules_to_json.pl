@@ -683,6 +683,33 @@ sub get_branch_release_data
 }
 
 
+#** @function get_component_release_data ($repo, $component)
+# @brief Build data structure for each component
+#
+# Pulls together everything needed to create a component JSON file.
+#
+# @params $repo		Git::Repository reference
+# @params $%component	Hash reference of module/component data
+#*
+
+sub get_component_release_data
+{
+	my ($repo, $component) = @_;
+
+	my %json;
+
+	my @available = ();
+	$json{available} = \@available;
+
+	$json{name} = $$component{name};
+	$json{description} = $$component{readme}{summary};
+	$json{category} = "io"; # $$component{readme}{metadata}; # TODO XML :(
+	$json{documentation_link} = ""; # TODO "http://networkradius.com/doc/current/raddb/mods-available/linelog";
+
+	$$component{output} = \%json;
+}
+
+
 #** @function git_date ($repo, $branch)
 # @brief Get the commit date of a git branch
 #
@@ -753,7 +780,9 @@ sub build_web_json
 		print "\nbranch: $branch\n";
 #		print Dumper $rv;
 		foreach my $release (@{$$rv{releases}}) {
-			print $$release{version} . "\n";
+			my $fname = $$release{version};
+			$fname =~ s/x/0/g; # the lua doesn't like versions with x's in them
+			jout "$outdir/branch/$tag/release/$fname.json", $$release{output};
 		}
 #		my $reldata = $$rv{releaseinfo};
 #		jout "$outdir/branch/$branch/release/
@@ -763,6 +792,7 @@ sub build_web_json
 	make_path "$outdir/component";
 
 	foreach my $component (keys %$modrepo) {
+		jout "$outdir/component/$component.json", $$modrepo{$component}{output};
 	}
 }
 
@@ -845,6 +875,10 @@ foreach my $version (keys %$versions) {
 
 # read and parse readme file data
 get_readme_files($repo, $modrepo);
+
+foreach my $component (keys %$modrepo) {
+	get_component_release_data($repo, $$modrepo{$component});
+}
 
 # dump everything we've got
 output_module_repository($modrepo);
