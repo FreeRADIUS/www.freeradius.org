@@ -24,7 +24,6 @@ nginx_configtest:
     - watch:
       - file: /etc/nginx/sites-available/*
       - file: /etc/nginx/sites-enabled/*
-      - file: /etc/nginx/conf.d/*
     - require:
       - pkg: nginx-pkg
 
