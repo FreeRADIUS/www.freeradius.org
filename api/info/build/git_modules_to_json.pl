@@ -546,6 +546,25 @@ sub output_module_repository
 # get all versions we're interested in
 my $versions = get_versions($repo);
 
+#print "yes 1\n" if version_compare("2.0.0", "2.x.x") == -1;
+#print "yes 2\n" if version_compare("2.0.0", "3.0.0") == -1;
+#print "yes 3\n" if version_compare("0.1.0", "1.x.x") == -1;
+#print "yes 4\n" if version_compare("0.1.0", "3.2.x") == -1;
+#print "yes 5\n" if version_compare("3.0.x", "0.9.9") == 1;
+#print "yes 6\n" if version_compare("0.9.9", "3.0.x") == -1;
+
+#print "yes\n" if version_is_in_branch("2.0.0", "2.x.x");
+#print "yes\n" if version_is_in_branch("2.1.0", "2.x.x");
+#print "yes\n" if not version_is_in_branch("1.0.0", "2.x.x");
+#print "yes\n" if not version_is_in_branch("3.1.5", "2.x.x");
+#print "yes\n" if version_is_in_branch("3.0.15", "3.0.x");
+#print "yes\n" if version_is_in_branch("3.0.15", "3.x.x");
+#print "yes\n" if not version_is_in_branch("3.0.15", "3.1.x");
+
+#print Dumper $versions;
+#print Dumper $RELBRANCHES;
+#exit;
+
 #foreach my $k (sort {version_compare($a, $b)} keys %$releases) {
 #	next unless $$releases{$k}{type} eq "development";
 #	print "$k\n";
