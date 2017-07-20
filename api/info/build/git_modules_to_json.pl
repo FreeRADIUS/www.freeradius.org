@@ -61,6 +61,22 @@ my $RELBRANCHES = [
 ];
 
 
+#** @function component_url ($component)
+# @brief Get relative URL for a component
+#
+# @params $component	Module or protocol name
+#
+# @retval $url		Relative URL
+#*
+
+sub component_url
+{
+	my $component = shift;
+
+	return "/api/info/component/$component/";
+}
+
+
 #** @function version_compare ($version_a, $version_b)
 # @brief Compare two version numbers
 #
@@ -594,8 +610,101 @@ sub find_releases
 }
 
 
+#** @function get_release_data ($release)
+# @brief Build data structure for each release
+#
+# Pulls together everything needed to create a release JSON file.
+#
+# @params $%release	Hashref of release
+#
+# @retval $release	Release data
+#*
 
-#** @function build_web_json ($modrepo, $outdir)
+sub get_release_data
+{
+	my ($repo, $release) = @_;
+
+	my %json;
+
+	# build download links
+	#
+	my @download = ();
+	foreach my $type (qw(tar.gz tar.bz2)) {
+		my %d = (
+			name => $type,
+			url => "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.gz",
+			sig_url => "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.gz.sig",
+		);
+		push @download, \%d;
+	}
+	$json{download} = \@download;
+
+	# build list of features
+	#
+	my @features = ();
+	my %feature = (
+		description => "Test feature",
+		component => [
+			{
+				name => "rlm_always",
+				url => component_url("rlm_always"),
+			},
+		],
+	);
+	push @features, \%feature;
+	$json{features} = \@features;
+
+	# build list of defects
+	#
+	my @defects = ();
+	my %defect = (
+		description => "Test issue",
+		exploit => \0,
+		component => [
+			{
+				name => "rlm_rest",
+				url => component_url("rlm_rest"),
+			},
+		],
+	);
+	push @defects, \%defect;
+	$json{defects} = \@defects;
+
+	$json{name} = $$release{version};
+#	$json{name} =~ s/x/0/g; # the lua doesn't like versions with x's in them
+	$json{summary} = "The focus of this release is testing";
+	$json{date} = git_date($repo, $$release{tag});
+
+	$$release{output} = \%json;
+}
+
+
+#** @function git_date ($repo, $branch)
+# @brief Get the commit date of a git branch
+#
+# @params $repo		Git::Repository reference
+# @params $branch	Git commit ref
+#
+# @retval $date		Date of commit
+#*
+
+sub git_date
+{
+	my ($repo, $branch) = @_;
+
+	print "- $branch\n";
+	my $cmd = $repo->command(show => "-s",
+		"--format=%cd",
+		"--date=format:%Y-%m-%dT%H:%M:%SZ",
+		$branch);
+	my $date = $cmd->stdout->getline();
+	chomp $date;
+
+	return $date;
+}
+
+
+#** @function build_web_json ($relbranches, $versions, $modrepo, $outdir)
 # @brief Build JSON files for web site API
 #
 # Takes information in the module repository data and builds JSON files that
@@ -698,6 +807,10 @@ my $versions = get_versions($repo);
 add_versions_to_branches($RELBRANCHES, $versions);
 
 find_releases($RELBRANCHES, $versions);
+
+foreach my $release (keys %$versions) {
+	get_release_data($repo, $$versions{$release});
+}
 
 #print Dumper $versions;
 #print Dumper $RELBRANCHES;
