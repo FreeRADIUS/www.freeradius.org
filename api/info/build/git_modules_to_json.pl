@@ -621,7 +621,7 @@ sub find_releases
 }
 
 
-#** @function get_release_data ($release)
+#** @function get_branch_release_data ($release)
 # @brief Build data structure for each release
 #
 # Pulls together everything needed to create a release JSON file.
@@ -631,7 +631,7 @@ sub find_releases
 # @retval $release	Release data
 #*
 
-sub get_release_data
+sub get_branch_release_data
 {
 	my ($repo, $release) = @_;
 
@@ -826,7 +826,7 @@ add_versions_to_branches($RELBRANCHES, $versions);
 find_releases($RELBRANCHES, $versions);
 
 foreach my $release (keys %$versions) {
-	get_release_data($repo, $$versions{$release});
+	get_branch_release_data($repo, $$versions{$release});
 }
 
 #print Dumper $versions;
