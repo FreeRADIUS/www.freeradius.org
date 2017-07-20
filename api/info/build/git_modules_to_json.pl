@@ -172,10 +172,7 @@ sub get_module_readme
 		if ($state eq "section") {
 			if ($line =~ /^##\s+([A-Za-z]+)$/) {
 				if ($sectionname) {
-					$$readme{lc $sectionname} = {
-						name => $sectionname,
-						data => $sectiondata,
-					};
+					$$readme{lc $sectionname} = $sectiondata;
 				}
 
 				$sectionname = $1;
@@ -191,10 +188,7 @@ sub get_module_readme
 	}
 
 	if ($state eq "section" and $sectionname) {
-		$$readme{lc $sectionname} = {
-			name => $sectionname,
-			data => $sectiondata,
-		};
+		$$readme{lc $sectionname} = $sectiondata;
 	}
 
 	#$$readme{lines} = \@lines;
