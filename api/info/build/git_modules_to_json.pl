@@ -280,6 +280,34 @@ sub version_is_in_branch
 	return 1;
 }
 
+
+#** @function add_versions_to_branches ($relbranches, $versions)
+# @brief Add versions to the release branch hash
+#
+# Scan through all versions in $versions and assign them to a particular
+# branch in $relbranches, if possible.
+#
+# @params $@relbranches	All branches we're interested in for the web site
+# @prarms $%versions	All versions found in the git repository
+#*
+
+sub add_versions_to_branches
+{
+	my ($relbranches, $versions) = @_;
+
+	foreach my $branch (@$relbranches) {
+		$$branch{releases} = [];
+
+		foreach my $version (keys %$versions) {
+			if (version_is_in_branch($version, $$branch{version})) {
+				push @{$$branch{releases}}, $$versions{$version};
+				$$versions{$version}{branch} = $branch;
+			}
+		}
+	}
+}
+
+
 #** @function get_release_modules ($repo, $reltag)
 # @brief Get all modules included in a particular release
 #
@@ -596,6 +624,8 @@ my $versions = get_versions($repo);
 #print "yes\n" if version_is_in_branch("3.0.15", "3.0.x");
 #print "yes\n" if version_is_in_branch("3.0.15", "3.x.x");
 #print "yes\n" if not version_is_in_branch("3.0.15", "3.1.x");
+
+add_versions_to_branches($RELBRANCHES, $versions);
 
 #print Dumper $versions;
 #print Dumper $RELBRANCHES;
