@@ -14,10 +14,13 @@
 
 use strict;
 use Data::Dumper;
+use File::Path qw(make_path);
+use JSON;
 
 use Git::Repository;
 
 my $gitdir = "/srv/freeradius-server";
+my $outdir = "/tmp/wsbuild"; # TODO make this a temp dir and then move into place
 
 my $repo = Git::Repository->new( work_tree => $gitdir );
 
@@ -457,6 +460,64 @@ sub get_readme_files
 }
 
 
+
+#** @function build_web_json ($modrepo, $outdir)
+# @brief Build JSON files for web site API
+#
+# Takes information in the module repository data and builds JSON files that
+# are picked up by the web site Lua scripts.
+#
+# @params $%relbranches	Versions to display on web site
+# @params $%versions	All git versions and tags
+# @params $%modrepo	Hash reference of module repository
+# @params $outdir	Directory to put output files
+#*
+
+sub build_web_json
+{
+	my ($relbranches, $versions, $modrepo, $outdir) = @_;
+	my $json = JSON->new->pretty(1);
+
+	# shortcut to write json out to a file
+	#
+	sub jout
+	{
+		my ($fn, $js) = @_;
+		open my $fh, ">", $fn;
+		print $fh $json->encode($js);
+		close $fh;
+	}
+
+	make_path "$outdir/branch";
+	make_path "$outdir/component";
+
+	# create branch json for each release version
+	#
+	foreach my $rv (@$relbranches) {
+		my $branch = $$rv{branch};
+
+		my $oj = {
+			name => $branch.
+			description => $$rv{description},
+			status => $$rv{status},
+		};
+		jout "$outdir/branch/$branch.json", $oj;
+
+		make_path "$outdir/branch/$branch/release";
+
+		print "\nbranch: $branch\n";
+#		print Dumper $rv;
+		foreach my $release (@{$$rv{releases}}) {
+			print $$release{version} . "\n";
+		}
+#		my $reldata = $$rv{releaseinfo};
+#		jout "$outdir/branch/$branch/release/
+	}
+
+	exit;
+}
+
+
 # dump things in human-readable form (for now)
 #
 sub output_module_repository
@@ -507,4 +568,6 @@ get_readme_files($repo, $modrepo);
 
 # dump everything we've got
 output_module_repository($modrepo);
+
+build_web_json($RELBRANCHES, $versions, $modrepo, $outdir);
 
