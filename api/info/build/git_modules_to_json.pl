@@ -407,7 +407,7 @@ sub get_release_modules
 }
 
 
-#** @function build_modules_repository ($modrepo, $modules, $versioninfo)
+#** @function build_modules_repository ($modrepo, $modules, $versioninfo, $relbranches)
 # @brief Add data about modules in a release to module repository
 #
 # Takes information about modules in a particular release and builds up
@@ -417,13 +417,14 @@ sub get_release_modules
 # @params $%modrepo	Hash reference of module repository to add to
 # @params $%modules	Data as returned from get_release_modules
 # @params $%versioninfo	Hashref with version information for these modules
+# @params $%relbranches	Branches available
 #
 # @retval $%modrepo	Hash reference of module repository
 #*
 
 sub build_module_repository
 {
-	my ($modrepo, $modules, $versioninfo) = @_;
+	my ($modrepo, $modules, $versioninfo, $relbranches) = @_;
 
 	my $release = $$versioninfo{version};
 
@@ -438,6 +439,7 @@ sub build_module_repository
 				maxrelease => $release,
 				maxdevrelease => $release,
 				list => [],
+				branches => {},
 			};
 		}
 
@@ -504,6 +506,15 @@ sub build_module_repository
 			if (version_compare($oldversion, $release) < 0) {
 				$$mrm{readmeblob} = $$modules{$module}{readmeblob};
 				$$mrm{readmeversion} = $release;
+			}
+		}
+
+		# find out which branches the module appears in, and add them
+		# to the branches hash
+		#
+		foreach my $branch (@$relbranches) {
+			if (version_is_in_branch($release, $$branch{branch})) {
+				$$mrm{branches}{$$branch{branch}} = $branch;
 			}
 		}
 	}
@@ -829,7 +840,7 @@ my $modrepo = {};
 # go through all versions and add the modules to the module repository
 foreach my $version (keys %$versions) {
 	my $release_modules = get_release_modules($repo, $$versions{$version});
-	build_module_repository($modrepo, $release_modules, $$versions{$version});
+	build_module_repository($modrepo, $release_modules, $$versions{$version}, $RELBRANCHES);
 }
 
 # read and parse readme file data
