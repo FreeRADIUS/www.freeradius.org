@@ -615,14 +615,13 @@ sub find_releases
 }
 
 
-#** @function get_branch_release_data ($release)
+#** @function get_branch_release_data ($repo, $release)
 # @brief Build data structure for each release
 #
-# Pulls together everything needed to create a release JSON file.
+# Pulls together everything needed to create a branch release JSON file.
 #
+# @params $repo		Git::Repository reference
 # @params $%release	Hashref of release
-#
-# @retval $release	Release data
 #*
 
 sub get_branch_release_data
