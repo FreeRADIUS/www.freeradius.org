@@ -25,6 +25,42 @@ my $outdir = "/tmp/wsbuild"; # TODO make this a temp dir and then move into plac
 my $repo = Git::Repository->new( work_tree => $gitdir );
 
 
+my $RELBRANCHES = [
+	{
+		# release means find the latest release tag for this branch
+		type => "release",
+		version => "3.0.x",
+		description => "Latest stable branch",
+		status => "stable",
+	},
+	{
+		type => "release",
+		version => "2.x.x",
+		description => "Old stable branch",
+		status => "end of life",
+	},
+	{
+		type => "release",
+		version => "1.x.x",
+		description => "Obsolete stable branch",
+		status => "obsolete",
+	},
+	{
+		type => "release",
+		version => "0.x.x",
+		description => "Obsolete stable branch",
+		status => "obsolete",
+	},
+	{
+		# development means just download this actual branch HEAD
+		type => "development",
+		version => "4.0.x",
+		description => "Development branch",
+		status => "development",
+	},
+];
+
+
 #** @function version_compare ($version_a, $version_b)
 # @brief Compare two version numbers
 #
