@@ -524,6 +524,76 @@ sub get_readme_files
 }
 
 
+#** @function find_releases ($relbranches, $versions)
+# @brief Find which versions are the latest in particular branches
+#
+# Some versions in relbranches may be "stable", but listed as e.g. 3.0.x. This
+# will find the latest stable version in that train.
+#
+# @params $%relbranches	Versions to display on web site
+# @params $%versions	All git versions and tags
+#
+# @retval $%relbranches	Updated release versions with branch info
+#*
+
+sub find_releases
+{
+	my ($relbranches, $versions) = @_;
+
+	my $branches = [];
+
+	# check each release version
+	#
+	foreach my $rv (@$relbranches) {
+		my $version = $$rv{version};
+
+		# while development versions will be the same as listed in
+		# relbranches (e.g. 4.0.x is always the HEAD of v4.0.x),
+		# released versions will point to the latest dev version in
+		# that train and we need find the latest released version
+		# instead.
+		#
+		if ($$rv{type} eq "release" and $version =~ /x/) {
+			my $stableversion = "0.0.0";
+
+			# go through versions in order, remembering last stable
+			# version number we've seen. quit out if we hit the
+			# development version we're looking for.
+			#
+			foreach my $v (sort {version_compare($a, $b)} keys %$versions) {
+				my $version_is_same_or_lower = (
+					version_compare($v, $$rv{version}) != 1
+				);
+
+				if ($$versions{$v}{type} eq "release" and
+					$version_is_same_or_lower) {
+					$stableversion = $v;
+				}
+
+				last if not $version_is_same_or_lower;
+			}
+
+			# TODO maybe we should check here to make sure the
+			# version we searched for and found was actually in the
+			# same train, e.g. searching for 8.1.x stable will
+			# currently quite happily return release_3_0_15, which
+			# probably isn't what is intended.
+
+			$version = $stableversion;
+		}
+
+		my $branchname = $$versions{$version}{tag};
+		die "unable to find version $version\n" unless defined $branchname;
+
+		$branchname =~ s+^remotes/origin/++; # trim off remotes
+		$$rv{version} = $version;
+		$$rv{branch} = $branchname;
+	}
+
+	return $relbranches;
+}
+
+
 
 #** @function build_web_json ($modrepo, $outdir)
 # @brief Build JSON files for web site API
@@ -626,6 +696,8 @@ my $versions = get_versions($repo);
 #print "yes\n" if not version_is_in_branch("3.0.15", "3.1.x");
 
 add_versions_to_branches($RELBRANCHES, $versions);
+
+find_releases($RELBRANCHES, $versions);
 
 #print Dumper $versions;
 #print Dumper $RELBRANCHES;
