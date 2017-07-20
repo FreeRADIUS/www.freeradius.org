@@ -196,6 +196,51 @@ sub get_versions
 }
 
 
+#** @function version_is_in_branch ($version, $branch)
+# @brief Check to see if this version is in this branch
+#
+# Does the version number match the branch? e.g. 3.0.14 matches branch 3.0.x,
+# but does not match 3.1.x or 2.x.x. Basically treat 'x' as a wildcard and
+# everything else must match.
+#
+# @params $version	A FreeRADIUS version number
+# @prarms $branch	A FreeRADIUS branch number
+#
+# @retval $yes		1 if this version is in the branch, else 0
+#*
+
+sub version_is_in_branch
+{
+	my ($version, $branch) = @_;
+
+	# split version and branch into components
+	#
+	my @vc = split /\./, $version;
+	my @bc = split /\./, $branch;
+
+	# go through each component of the version number, if they are the
+	# same then jump to the next, otherwise comparison can stop here.
+	#
+	for (my $i = 0; $i < 3; $i++) {
+		# keep going if component is the same
+		next if $vc[$i] eq $bc[$i];
+
+		# keep going if branch component is 'x'
+		next if $bc[$i] eq "x";
+
+		# version number shoulnd't contain 'x', but may as well to enable
+		# comparing branch numbers too
+		next if $vc[$i] eq "x";
+
+		# they don't match, and are not 'x'
+		return 0;
+	}
+
+	# version matches the branch
+	#
+	return 1;
+}
+
 #** @function get_release_modules ($repo, $reltag)
 # @brief Get all modules included in a particular release
 #
