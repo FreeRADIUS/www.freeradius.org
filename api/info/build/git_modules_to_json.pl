@@ -432,14 +432,11 @@ sub build_module_repository
 				minrelease => $release,
 				maxrelease => $release,
 				maxdevrelease => $release,
-				list => [],
 				branches => {},
 			};
 		}
 
 		my $mrm = $$modrepo{$module};
-
-		push @{$$mrm{list}}, $$modules{$module};
 
 		# track minimum and maximum released versions for this module
 		#
@@ -723,7 +720,6 @@ sub git_date
 {
 	my ($repo, $branch) = @_;
 
-	print "- $branch\n";
 	my $cmd = $repo->command(show => "-s",
 		"--format=%cd",
 		"--date=format:%Y-%m-%dT%H:%M:%SZ",
@@ -777,18 +773,13 @@ sub build_web_json
 
 		make_path "$outdir/branch/$tag/release";
 
-		print "\nbranch: $branch\n";
-#		print Dumper $rv;
 		foreach my $release (@{$$rv{releases}}) {
 			my $fname = $$release{version};
 			$fname =~ s/x/0/g; # the lua doesn't like versions with x's in them
 			jout "$outdir/branch/$tag/release/$fname.json", $$release{output};
 		}
-#		my $reldata = $$rv{releaseinfo};
-#		jout "$outdir/branch/$branch/release/
 	}
 
-	exit;
 	make_path "$outdir/component";
 
 	foreach my $component (keys %$modrepo) {
@@ -881,7 +872,7 @@ foreach my $component (keys %$modrepo) {
 }
 
 # dump everything we've got
-output_module_repository($modrepo);
+#output_module_repository($modrepo);
 
 build_web_json($RELBRANCHES, $versions, $modrepo, $outdir);
 
