@@ -1,7 +1,7 @@
 local cjson             = require "cjson"
 local ngx               = require "ngx"
 
-local helper   	      = require "lib.helper"
+local helper            = require "lib.helper"
 local validate          = require "lib.validate"
 local indexer           = require "lib.indexer"
 
@@ -10,7 +10,7 @@ local uri               = ngx.var.uri
 local get_args          = ngx.req.get_uri_args()
 local sane_args
 
-local releases	         = {}
+local releases            = {}
 local ret, err
 
 -- Process helper arguments
@@ -43,40 +43,40 @@ Convert version string into an integer for comparison
 @return integer representing version or nil
 --]]
 local function version_to_int(version)
-	   local m, err = ngx.re.match(version, "^([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{1,2})(?:-(pre|beta|alpha)([0-9]{1,2}))?$", "jo")
-		local int = 0
-		local w = 4
+   local m, err = ngx.re.match(version, "^([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{1,2})(?:-(pre|beta|alpha)([0-9]{1,2}))?$", "jo")
+   local int = 0
+   local w = 4
 
-		if err or not m then
-			ngx.log(ngx.ERR, err or "Bad version " .. version)
-			return nil
-		end
+   if err or not m then
+      ngx.log(ngx.ERR, err or "Bad version " .. version)
+      return nil
+   end
 
-		-- Need 5 bytes
+   -- Need 5 bytes
 
-		int = (tonumber(m[1]) * (2 ^ 4))
-		int = (tonumber(m[2]) * (2 ^ 3)) + int
-		int = (tonumber(m[3]) * (2 ^ 2)) + int
+   int = (tonumber(m[1]) * (2 ^ 4))
+   int = (tonumber(m[2]) * (2 ^ 3)) + int
+   int = (tonumber(m[3]) * (2 ^ 2)) + int
 
-		if m[4] then
-			if m[4] == 'pre' then
-				w = 3
-			elseif m[4] == 'beta' then
-				w = 2
-			elseif m[4] == 'alpha' then
-				w = 1
-			else
-				ngx.log(ngx.ERR, "Unknown unstable release type \"" .. m[4] '' "\"")
-				return nil
-			end
-		end
+   if m[4] then
+      if m[4] == 'pre' then
+         w = 3
+      elseif m[4] == 'beta' then
+         w = 2
+      elseif m[4] == 'alpha' then
+         w = 1
+      else
+         ngx.log(ngx.ERR, "Unknown unstable release type \"" .. m[4] '' "\"")
+         return nil
+      end
+   end
 
-		int = (w * 2) + int
-		if m[5] then
-			int = int + tonumber(m[5])
-		end
+   int = (w * 2) + int
+   if m[5] then
+      int = int + tonumber(m[5])
+   end
 
-		return int
+   return int
 end
 
 --[[Function: version_sort
@@ -89,18 +89,18 @@ Sort result by version.
    - false if a <= b
 --]]
 local function version_sort(a, b)
-	local a_int, b_int
+   local a_int, b_int
 
-	a_int = version_to_int(a.name)
-	if not a_int then
-		helper.fatal_error()
-	end
-	b_int = version_to_int(b.name)
-	if not b_int then
-		helper.fatal_error()
-	end
+   a_int = version_to_int(a.name)
+   if not a_int then
+      helper.fatal_error()
+   end
+   b_int = version_to_int(b.name)
+   if not b_int then
+      helper.fatal_error()
+   end
 
-	return a_int > b_int
+   return a_int > b_int
 end
 
 local branch = uri:match("^" .. helper.config.base_url .. "/branch/([^/]+)/")
