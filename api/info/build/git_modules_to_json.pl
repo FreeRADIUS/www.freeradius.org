@@ -624,14 +624,16 @@ sub get_branch_release_data
 
 	my %json;
 
+	my $version = $$release{version};
+
 	# build download links
 	#
 	my @download = ();
 	foreach my $type (qw(tar.gz tar.bz2)) {
 		my %d = (
 			name => $type,
-			url => "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.gz",
-			sig_url => "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.gz.sig",
+			url => "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-$version.$type",
+			sig_url => "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-$version.$type.sig",
 		);
 		push @download, \%d;
 	}
