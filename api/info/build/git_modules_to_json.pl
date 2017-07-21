@@ -753,6 +753,26 @@ sub get_component_release_data
 	my %json;
 
 	my @available = ();
+	foreach my $branch (keys %{$$component{branches}}) {
+		my ($min, $max) = get_component_release_minmax($$component{branches}{$branch});
+		$min =~ s/x/0/g;
+		$max =~ s/x/0/g;
+		my $branchdata = {
+			branch => {
+				name => $branch,
+				url => "/api/info/branch/$branch/",
+			},
+			start => {
+				name => $min,
+				url => "/api/info/branch/$branch/release/$min/",
+			},
+			end => {
+				name => "$max",
+				url => "/api/info/branch/$branch/release/$max/",
+			},
+		};
+		push @available, $branchdata;
+	}
 	$json{available} = \@available;
 
 	$json{name} = $$component{name};
@@ -821,15 +841,15 @@ sub build_web_json
 	foreach my $rv (@$relbranches) {
 		my $tag = $$rv{branch};
 
-		unless ($$rv{status} eq "obsolete") {
-		my $oj = {
-			# this data appears on the "releases" page
-			name => "v" . $$rv{branch},
-			description => $$rv{description},
-			status => $$rv{status},
-		};
-		jout "$outdir/branch/$tag.json", $oj;
-	}
+#		unless ($$rv{status} eq "obsolete") {
+			my $oj = {
+				# this data appears on the "releases" page
+				name => "v" . $$rv{branch},
+				description => $$rv{description},
+				status => $$rv{status},
+			};
+			jout "$outdir/branch/$tag.json", $oj;
+#		}
 
 		make_path "$outdir/branch/$tag/release";
 
