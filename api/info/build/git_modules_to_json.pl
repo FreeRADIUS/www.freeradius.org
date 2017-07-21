@@ -619,6 +619,54 @@ sub find_releases
 	return $relbranches;
 }
 
+sub get_component_release_minmax
+{
+	my ($branch) = @_;
+	my ($min, $max);
+
+	my $releases = $$branch{releases};
+
+	foreach my $release (@$releases) {
+		my $version = $$release{version};
+
+		$min = $$release{version} unless defined $min;
+		$max = $$release{version} unless defined $max;
+
+		# track minimum and maximum released versions for this module
+		#
+		# If the version we are comparing is a released version, then
+		# that takes all precedence so we only show released versions
+		# on the web site (e.g. from version 1.1.0 to 3.0.15, even
+		# though the module is also in version 4.0.x under development.
+		# However, if the module is *only* in development versions
+		# (say, 3.1.x and 4.0.x) then show the minimum and maximum
+		# versions of that instead so that the module gets listed.
+		#
+		# In either case, the README.md is always taken from the very
+		# latest development version of the server.
+		#
+		if ($$release{type} eq "release") {
+			if ($min =~ /x/ or version_compare($min, $version) > 0) {
+				$min = $version;
+			}
+
+			if ($max =~ /x/ or version_compare($max, $version) < 0) {
+				$max = $version;
+			}
+		}
+		else {
+			if ($min =~ /x/ and version_compare($min, $version) > 0) {
+				$min = $version;
+			}
+
+			if ($max =~ /x/ and version_compare($max, $version) < 0) {
+				$max = $version;
+			}
+		}
+	}
+
+	return ($min, $max);
+}
 
 #** @function get_branch_release_data ($repo, $release)
 # @brief Build data structure for each release
