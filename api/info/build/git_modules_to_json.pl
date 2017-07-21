@@ -955,7 +955,7 @@ foreach my $component (keys %$components) {
 }
 
 # dump everything we've got
-output_component_repository($components);
+#output_component_repository($components);
 
 build_web_json($RELBRANCHES, $versions, $components, $outdir);
 
