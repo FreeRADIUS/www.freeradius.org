@@ -122,8 +122,8 @@ sub version_compare
 }
 
 
-#** @function get_module_readme ($repo, $blob)
-# @brief Retrieve module README.md and parse it
+#** @function get_component_readme ($repo, $blob)
+# @brief Retrieve component README.md and parse it
 #
 # Given a git blob of a README.md file, pulls it from the git repository and
 # parses it into a usable data structure.
@@ -137,7 +137,7 @@ sub version_compare
 # @retval $readme	Hash reference of README data
 #*
 
-sub get_module_readme
+sub get_component_readme
 {
 	my ($repo, $blob) = @_;
 	my $readme = {};
@@ -164,7 +164,7 @@ sub get_module_readme
 			unless ($line =~ /^#\s+([a-z0-9_]+)$/) {
 				die "malformed README header '$line'\n";
 			}
-			$$readme{modulename} = $1;
+			$$readme{componentname} = $1;
 			$state = "section";
 			next;
 		}
@@ -192,6 +192,7 @@ sub get_module_readme
 	}
 
 	#$$readme{lines} = \@lines;
+	print Dumper $readme; exit;
 
 	return $readme;
 }
@@ -318,8 +319,8 @@ sub add_versions_to_branches
 }
 
 
-#** @function get_release_modules ($repo, $reltag)
-# @brief Get all modules included in a particular release
+#** @function get_release_components ($repo, $reltag)
+# @brief Get all components included in a particular release
 #
 # Looks at all directories under src/modules in a given release and returns a
 # hash of all modules. Key is the module name, and value is a hash with the
@@ -332,7 +333,7 @@ sub add_versions_to_branches
 # @retval $%modules	Hash reference of module name => module information
 #*
 
-sub get_release_modules
+sub get_release_components
 {
 	my ($repo, $versioninfo) = @_;
 
@@ -352,14 +353,14 @@ sub get_release_modules
 		}}
 		$trees->getlines();
 
-	# new data structure to hold all the module details in
-	my $modules = {};
+	# new data structure to hold all the component details in
+	my $components = {};
 
 	# go through each git object and work out which modules exist
 	foreach my $o (@objects) {
 		next unless $$o{path} =~ m+^src/modules/+;
 
-		my @components = split /\//, $$o{path};
+		my @nodes = split /\//, $$o{path};
 
 		# get the relevant module name
 		#
@@ -367,68 +368,67 @@ sub get_release_modules
 		if ($$o{type} eq "tree") {
 			# the main module name will always be at the end of the path
 			# and begin with rlm_ or proto_
-			$name = $components[$#components];
+			$name = $nodes[$#nodes];
 		} else {
 			# we only care about README files, so short circuit if not
-			next unless $components[$#components] eq "README.md";
-			$name = $components[$#components-1];
+			next unless $nodes[$#nodes] eq "README.md";
+			$name = $nodes[$#nodes-1];
 		}
 
 		# only interested in certain directories
 		#
 		next unless $name =~ /^(rlm|proto)_/;
 
-		my $module = $modules->{$name} || {};
-		$module->{name} = $name;
+		my $component = $components->{$name} || {};
+		$component->{name} = $name;
 
 		# find the parent for submodules
 		#
-		if ($$o{type} eq "tree" and $#components > 2) {
-			$module->{parent} = @components[2];
+		if ($$o{type} eq "tree" and $#nodes > 2) {
+			$component->{parent} = @nodes[2];
 		}
 
 		# get the module readme
 		#
 		if ($$o{type} eq "blob") {
-			$module->{readmeblob} = $$o{hash};
-			#get_module_readme($repo, $$o{hash});
+			$component->{readmeblob} = $$o{hash};
 		}
 
-		$modules->{$name} = $module;
+		$components->{$name} = $component;
 	}
 
-	return $modules;
+	return $components;
 }
 
 
-#** @function build_modules_repository ($modrepo, $modules, $versioninfo, $relbranches)
-# @brief Add data about modules in a release to module repository
+#** @function build_component_repository ($components, $modules, $versioninfo, $relbranches)
+# @brief Add data about modules in a release to component repository
 #
 # Takes information about modules in a particular release and builds up
-# a "module repository" which contains data about all modules and which
+# a "component repository" which contains data about all modules and which
 # releases they are included in.
 #
-# @params $%modrepo	Hash reference of module repository to add to
-# @params $%modules	Data as returned from get_release_modules
+# @params $%components	Component repository
+# @params $%relcomp	Data as returned from get_release_components
 # @params $%versioninfo	Hashref with version information for these modules
 # @params $%relbranches	Branches available
 #
-# @retval $%modrepo	Hash reference of module repository
+# @retval $%components	Component repository
 #*
 
-sub build_module_repository
+sub build_component_repository
 {
-	my ($modrepo, $modules, $versioninfo, $relbranches) = @_;
+	my ($components, $relcomp, $versioninfo, $relbranches) = @_;
 
 	my $release = $$versioninfo{version};
 
-	# go through all new modules and add to the main module repository
-	# as required, tracking release numbers
+	# go through all new modules and protocoles and add to the main
+	# component repository as required, tracking release numbers
 	#
-	foreach my $module (keys %$modules) {
-		unless (defined $$modrepo{$module}) {
-			$$modrepo{$module} = {
-				name => $module,
+	foreach my $component (keys %$relcomp) {
+		unless (defined $$components{$component}) {
+			$$components{$component} = {
+				name => $component,
 				minrelease => $release,
 				maxrelease => $release,
 				maxdevrelease => $release,
@@ -436,7 +436,7 @@ sub build_module_repository
 			};
 		}
 
-		my $mrm = $$modrepo{$module};
+		my $mrm = $$components{$component};
 
 		# track minimum and maximum released versions for this module
 		#
@@ -478,24 +478,24 @@ sub build_module_repository
 		# sanity check that parents for different versions are the same
 		#
 		if (defined $$mrm{parent} and
-			($$mrm{parent} ne $$modules{$module}{parent})) {
-			die "differing parents for $module";
+			($$mrm{parent} ne $$relcomp{$component}{parent})) {
+			die "differing parents for $component";
 		}
 
 		# set the parent
 		#
-		if (defined $$modules{$module}{parent}) {
-			$$mrm{parent} = $$modules{$module}{parent};
+		if (defined $$relcomp{$component}{parent}) {
+			$$mrm{parent} = $$relcomp{$component}{parent};
 		}
 
 		# set the readme version
 		#
 		# don't check for stable/development versions here - see comments above
 		#
-		if (defined $$modules{$module}{readmeblob}) {
+		if (defined $$relcomp{$component}{readmeblob}) {
 			my $oldversion = $$mrm{readmeversion} || "0.0.0";
 			if (version_compare($oldversion, $release) < 0) {
-				$$mrm{readmeblob} = $$modules{$module}{readmeblob};
+				$$mrm{readmeblob} = $$relcomp{$component}{readmeblob};
 				$$mrm{readmeversion} = $release;
 			}
 		}
@@ -510,34 +510,34 @@ sub build_module_repository
 		}
 	}
 
-	return $modrepo;
+	return $components;
 }
 
 
-#** @function get_readme_files ($modrepo)
+#** @function get_readme_files ($components)
 # @brief Retrieve all module README.md files
 #
-# Goes through the module repository and fetches all the README.md files for
+# Goes through the component repository and fetches all the README.md files for
 # each module from the git repo. Done here rather than earlier so we only pull
 # the latest README for each module. If nothing else, earlier READMEs are
 # unlikely to be formatted correctly, and therefore will cause the parse sub to
 # blow up.
 #
 # @params $repo		Git::Repository reference
-# @params $%modrepo	Hash reference of module repository
+# @params $%components	Component repository
 #
-# @retval $%modrepo	Hash reference of module repository
+# @retval $%components	Component repository
 #*
 
 sub get_readme_files
 {
-	my ($repo, $modrepo) = @_;
+	my ($repo, $components) = @_;
 
-	foreach my $module (sort keys %$modrepo) {
-		my $md = $$modrepo{$module};
+	foreach my $component (sort keys %$components) {
+		my $md = $$components{$component};
 		next unless defined $$md{readmeblob};
 
-		$$md{readme} = get_module_readme($repo, $$md{readmeblob});
+		$$md{readme} = get_component_readme($repo, $$md{readmeblob});
 	}
 }
 
@@ -730,21 +730,21 @@ sub git_date
 	return $date;
 }
 
-#** @function build_web_json ($relbranches, $versions, $modrepo, $outdir)
+#** @function build_web_json ($relbranches, $versions, $components, $outdir)
 # @brief Build JSON files for web site API
 #
-# Takes information in the module repository data and builds JSON files that
-# are picked up by the web site Lua scripts.
+# Takes information in the component repository data and builds JSON files
+# that are picked up by the web site Lua scripts.
 #
 # @params $%relbranches	Branches available
 # @params $%versions	All git versions and tags
-# @params $%modrepo	Hash reference of module repository
+# @params $%components	Component repository
 # @params $outdir	Directory to put output files
 #*
 
 sub build_web_json
 {
-	my ($relbranches, $versions, $modrepo, $outdir) = @_;
+	my ($relbranches, $versions, $components, $outdir) = @_;
 	my $json = JSON->new->pretty(1);
 
 	# shortcut to write json out to a file
@@ -782,22 +782,22 @@ sub build_web_json
 
 	make_path "$outdir/component";
 
-	foreach my $component (keys %$modrepo) {
-		jout "$outdir/component/$component.json", $$modrepo{$component}{output};
+	foreach my $component (keys %$components) {
+		jout "$outdir/component/$component.json", $$components{$component}{output};
 	}
 }
 
 
 # dump things in human-readable form (for now)
 #
-sub output_module_repository
+sub output_component_repository
 {
-	my $modrepo = shift;
+	my $components = shift;
 
-	foreach my $module (sort keys %$modrepo) {
-		my $md = $$modrepo{$module};
+	foreach my $component (sort keys %$components) {
+		my $md = $$components{$component};
 
-		print "$module:\n";
+		print "$component\n";
 		print "\tmin: " . $$md{minrelease} . "\n";
 		print "\tmax: " . $$md{maxrelease} . "\n";
 		print "\tparent: " . $$md{parent} . "\n" if defined $$md{parent};
@@ -852,27 +852,29 @@ foreach my $release (keys %$versions) {
 #	print "$k\n";
 #}
 
-# module repository
-my $modrepo = {};
+# component repository
+my $components = {};
 
-#my $ss = get_release_modules($repo, "v4.0.x");
+#my $ss = get_release_components($repo, "v4.0.x");
 #print Dumper $ss;
 
-# go through all versions and add the modules to the module repository
+# go through all versions and add the modules and protocols
+# to the components repository
+#
 foreach my $version (keys %$versions) {
-	my $release_modules = get_release_modules($repo, $$versions{$version});
-	build_module_repository($modrepo, $release_modules, $$versions{$version}, $RELBRANCHES);
+	my $version_components = get_release_components($repo, $$versions{$version});
+	build_component_repository($components, $version_components, $$versions{$version}, $RELBRANCHES);
 }
 
 # read and parse readme file data
-get_readme_files($repo, $modrepo);
+get_readme_files($repo, $components);
 
-foreach my $component (keys %$modrepo) {
-	get_component_release_data($repo, $$modrepo{$component});
+foreach my $component (keys %$components) {
+	get_component_release_data($repo, $$components{$component});
 }
 
 # dump everything we've got
-#output_module_repository($modrepo);
+output_component_repository($components);
 
-build_web_json($RELBRANCHES, $versions, $modrepo, $outdir);
+build_web_json($RELBRANCHES, $versions, $components, $outdir);
 
