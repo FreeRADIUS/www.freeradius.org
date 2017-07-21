@@ -764,8 +764,6 @@ sub get_component_release_data
 		next if $branch =~ /^[01]/; # TODO look in RELBRANCHES for obsolete instead
 
 		my ($min, $max) = get_component_release_minmax($$component{branches}{$branch});
-		$min =~ s/x/0/g;
-		$max =~ s/x/0/g;
 		my $branchdata = {
 			branch => {
 				name => $branch,
@@ -864,7 +862,6 @@ sub build_web_json
 
 		foreach my $release (@{$$rv{releases}}) {
 			my $fname = $$release{version};
-			$fname =~ s/x/0/g; # the lua doesn't like versions with x's in them
 			jout "$outdir/branch/$tag/release/$fname.json", $$release{output};
 		}
 	}
