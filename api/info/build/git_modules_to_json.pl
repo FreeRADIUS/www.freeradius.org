@@ -334,6 +334,7 @@ sub get_release_components
 {
 	my ($repo, $components, $release) = @_;
 
+	my $version = $$release{version};
 	my $reltag = $$release{tag};
 
 	# run git ls-tree to find all subdirectories of src/modules for a
@@ -350,9 +351,6 @@ sub get_release_components
 		}}
 		$trees->getlines();
 
-	# new data structure to hold all the component details in
-	my $release_components = {};
-
 	# go through each git object and work out which modules exist
 	#
 	foreach my $gitobject (@objects) {
@@ -363,6 +361,7 @@ sub get_release_components
 		# get the relevant module name
 		#
 		my $name;
+
 		if ($$gitobject{type} eq "tree") {
 			# the main module name will always be at the end of the path
 			# and begin with rlm_ or proto_
@@ -377,54 +376,55 @@ sub get_release_components
 		#
 		next unless $name =~ /^(rlm|proto)_/;
 
-		my $component = $release_components->{$name} || {};
-		$component->{name} = $name;
-
-		# find the parent for submodules
-		#
-		if ($$gitobject{type} eq "tree" and $#nodes > 2) {
-			$component->{parent} = @nodes[2];
-		}
-
-		# get the module readme
-		#
-		if ($$gitobject{type} eq "blob") {
-			$component->{readmeblob} = $$gitobject{hash};
-		}
-
-		$release_components->{$name} = $component;
-
-		# build main component repository
+		# create main component repository entry
 		#
 		unless (defined $$components{$name}) {
 			$$components{$name} = {
 				name => $name,
-				minrelease => $$release{version},
-				maxrelease => $$release{version},
-				maxdevrelease => $$release{version},
+				minrelease => $version,
+				maxrelease => $version,
+				maxdevrelease => $version,
 				branches => {},
 				releases => {},
 			};
 		}
 
+		# shortcut for this component in the main component repository
+		#
 		my $c = $$components{$name};
 
-		$$c{releases}{$$release{version}} = $release;
+		# find the parent for submodules
+		#
+		if ($$gitobject{type} eq "tree" and $#nodes > 2) {
+			my $parent = @nodes[2];
 
-		if (defined $$component{parent}) {
 			# sanity check that parents for different versions are the same
 			#
-			if ($$c{parent} and
-					$$c{parent} ne $$component{parent}) {
-				print Dumper $component;
-				print Dumper $$components{$name};
-				die "differing parents for $component";
+			if ($$c{parent} and $$c{parent} ne $parent) {
+				die "differing parents for $name";
 			}
 
 			# set the parent
 			#
-			$$c{parent} = $$component{parent};
+			$$c{parent} = $parent;
 		}
+
+		# get the module readme
+		#
+		# don't check for stable/development versions here - see comments below
+		#
+		if ($$gitobject{type} eq "blob") {
+			my $readmeblob = $$gitobject{hash};
+
+			my $oldversion = $$c{readmeversion} || "0.0.0";
+			if (version_compare($oldversion, $version) < 0) {
+				$$c{readmeblob} = $readmeblob;
+				$$c{readmeversion} = $version;
+			}
+		}
+
+		$$c{releases}{$version} = $release;
+
 
 		# track minimum and maximum released versions for this module
 		#
@@ -440,84 +440,66 @@ sub get_release_components
 		# latest development version of the server.
 		#
 		if ($$release{type} eq "release") {
-			if ($$c{minrelease} =~ /x/ or version_compare($$c{minrelease}, $release) > 0) {
-				$$c{minrelease} = $release;
+			if ($$c{minrelease} =~ /x/ or version_compare($$c{minrelease}, $version) > 0) {
+				$$c{minrelease} = $version;
 			}
 
-			if ($$c{maxrelease} =~ /x/ or version_compare($$c{maxrelease}, $release) < 0) {
-				$$c{maxrelease} = $release;
+			if ($$c{maxrelease} =~ /x/ or version_compare($$c{maxrelease}, $version) < 0) {
+				$$c{maxrelease} = $version;
 			}
 		}
 		else {
-			if ($$c{minrelease} =~ /x/ and version_compare($$c{minrelease}, $release) > 0) {
-				$$c{minrelease} = $release;
+			if ($$c{minrelease} =~ /x/ and version_compare($$c{minrelease}, $version) > 0) {
+				$$c{minrelease} = $version;
 			}
 
-			if ($$c{maxrelease} =~ /x/ and version_compare($$c{maxrelease}, $release) < 0) {
-				$$c{maxrelease} = $release;
+			if ($$c{maxrelease} =~ /x/ and version_compare($$c{maxrelease}, $version) < 0) {
+				$$c{maxrelease} = $version;
 			}
 		}
 
 		# track latest development version, just because
 		#
-		$$c{maxdevrelease} = $release if version_compare($$c{maxdevrelease}, $release) < 0;
-
-		# set the readme version
-		#
-		# don't check for stable/development versions here - see comments above
-		#
-		if (defined $$component{readmeblob}) {
-			my $oldversion = $$c{readmeversion} || "0.0.0";
-			if (version_compare($oldversion, $release) < 0) {
-				$$c{readmeblob} = $$component{readmeblob};
-				$$c{readmeversion} = $release;
-			}
-		}
-
+		$$c{maxdevrelease} = $version if version_compare($$c{maxdevrelease}, $version) < 0;
 	}
 
-	return $release_components;
+	return $components;
 }
 
 
-#** @function build_component_repository ($components, $modules, $versioninfo, $relbranches)
-# @brief Add data about modules in a release to component repository
+#** @function find_component_branches ($components, $relbranches)
+# @brief Find all branches that a component is included in
 #
-# Takes information about modules in a particular release and builds up
-# a "component repository" which contains data about all modules and which
-# releases they are included in.
+# Goes through all components and releases that the component is in, and
+# adds an entry for each relevant branch.
 #
 # @params $%components	Component repository
-# @params $%relcomp	Data as returned from get_release_components
-# @params $%versioninfo	Hashref with version information for these modules
 # @params $%relbranches	Branches available
-#
-# @retval $%components	Component repository
 #*
 
-sub build_component_repository
+sub find_component_branches
 {
-	my ($components, $relcomp, $versioninfo, $relbranches) = @_;
-
-	my $release = $$versioninfo{version};
+	my ($components, $relbranches) = @_;
 
 	# go through all new modules and protocoles and add to the main
 	# component repository as required, tracking release numbers
 	#
-	foreach my $component (keys %$relcomp) {
-		my $mrm = $$components{$component};
+	foreach my $component (keys %$components) {
+		my $c = $$components{$component};
 
-		# find out which branches the module appears in, and add them
-		# to the branches hash
+		# through all releases this component is included in
 		#
-		foreach my $branch (@$relbranches) {
-			if (version_is_in_branch($release, $$branch{branch})) {
-				$$mrm{branches}{$$branch{branch}} = $branch;
+		foreach my $release (keys %{$$c{releases}}) {
+			# find out which branches the module appears in, and add them
+			# to the branches hash
+			#
+			foreach my $branch (@$relbranches) {
+				if (version_is_in_branch($release, $$branch{branch})) {
+					$$c{branches}{$$branch{branch}} = $branch;
+				}
 			}
 		}
 	}
-
-	return $components;
 }
 
 
@@ -892,9 +874,10 @@ my $components = {};
 # to the components repository
 #
 foreach my $version (keys %$versions) {
-	my $version_components = get_release_components($repo, $components, $$versions{$version});
-	build_component_repository($components, $version_components, $$versions{$version}, $RELBRANCHES);
+	get_release_components($repo, $components, $$versions{$version});
 }
+
+find_component_branches($components, $RELBRANCHES);
 
 # read and parse readme file data
 get_readme_files($repo, $components);
