@@ -761,6 +761,8 @@ sub get_component_release_data
 
 	my @available = ();
 	foreach my $branch (keys %{$$component{branches}}) {
+		next if $branch =~ /^[01]/; # TODO look in RELBRANCHES for obsolete instead
+
 		my ($min, $max) = get_component_release_minmax($$component{branches}{$branch});
 		$min =~ s/x/0/g;
 		$max =~ s/x/0/g;
@@ -848,7 +850,7 @@ sub build_web_json
 	foreach my $rv (@$relbranches) {
 		my $tag = $$rv{branch};
 
-#		unless ($$rv{status} eq "obsolete") {
+		unless ($$rv{status} eq "obsolete") {
 			my $oj = {
 				# this data appears on the "releases" page
 				name => "v" . $$rv{branch},
@@ -856,7 +858,7 @@ sub build_web_json
 				status => $$rv{status},
 			};
 			jout "$outdir/branch/$tag.json", $oj;
-#		}
+		}
 
 		make_path "$outdir/branch/$tag/release";
 
@@ -870,7 +872,10 @@ sub build_web_json
 	make_path "$outdir/component";
 
 	foreach my $component (keys %$components) {
-		jout "$outdir/component/$component.json", $$components{$component}{output};
+		# TODO this if is a hack to remove old modules that have no available release
+		if (scalar (@{$$components{$component}{output}{available}})) {
+			jout "$outdir/component/$component.json", $$components{$component}{output};
+		}
 	}
 }
 
