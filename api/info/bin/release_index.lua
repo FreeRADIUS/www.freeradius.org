@@ -43,7 +43,7 @@ Convert version string into an integer for comparison
 @return integer representing version or nil
 --]]
 local function version_to_int(version)
-   local m, err = ngx.re.match(version, "^([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{1,2})(?:-(pre|beta|alpha)([0-9]{1,2}))?$", "jo")
+   local m, err = ngx.re.match(version, "^([0-9]{1,2})\\.([0-9]{1,2})\\.([0-9]{1,2}|x)(?:-(pre|beta|alpha)([0-9]{1,2}))?$", "jo")
    local int = 0
    local w = 4
 
@@ -54,9 +54,15 @@ local function version_to_int(version)
 
    -- Need 5 bytes
 
-   int = (tonumber(m[1]) * (2 ^ 4))
-   int = (tonumber(m[2]) * (2 ^ 3)) + int
-   int = (tonumber(m[3]) * (2 ^ 2)) + int
+   int = (tonumber(m[1]) * (2 ^ 28))            -- A nibble for major
+   int = (tonumber(m[2]) * (2 ^ 24)) + int      -- A nibble for minor
+
+   -- x is the HEAD version for a particular branch
+   if m[3] == 'x' then
+      int = ((2 ^ 16) - 1) - ((2 ^ 8) - 1)      -- Set release byte to 255 for head
+   else
+      int = (tonumber(m[3]) * (2 ^ 16)) + int   -- A byte for the release
+   end
 
    if m[4] then
       if m[4] == 'pre' then
@@ -71,9 +77,9 @@ local function version_to_int(version)
       end
    end
 
-   int = (w * 2) + int
+   int = (w * (2 ^ 8)) + int
    if m[5] then
-      int = int + tonumber(m[5])
+      int = int + tonumber(m[5])   -- 1 byte for the pre/beta/alpha number
    end
 
    return int
