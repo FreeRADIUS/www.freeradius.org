@@ -191,9 +191,6 @@ sub get_component_readme
 		$$readme{lc $sectionname} = $sectiondata;
 	}
 
-	#$$readme{lines} = \@lines;
-	print Dumper $readme; exit;
-
 	return $readme;
 }
 
@@ -672,7 +669,6 @@ sub get_branch_release_data
 	$json{defects} = \@defects;
 
 	$json{name} = $$release{version};
-#	$json{name} =~ s/x/0/g; # the lua doesn't like versions with x's in them
 	$json{summary} = "The focus of this release is testing";
 	$json{date} = git_date($repo, $$release{tag});
 
