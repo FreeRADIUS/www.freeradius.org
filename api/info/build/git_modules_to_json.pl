@@ -531,10 +531,29 @@ sub get_readme_files
 	my ($repo, $components) = @_;
 
 	foreach my $component (sort keys %$components) {
-		my $md = $$components{$component};
-		next unless defined $$md{readmeblob};
+		my $cd = $$components{$component};
+		next unless defined $$cd{readmeblob};
 
-		$$md{readme} = get_component_readme($repo, $$md{readmeblob});
+		# get the readme file data and add to the component
+		#
+		my $readme = get_component_readme($repo, $$cd{readmeblob});
+		$$cd{readme} = $readme;
+
+		# if there is some metadata, hope it is fairly well formed and
+		# try and extract the category from it. TODO would be to use a
+		# proper XML library, but whatever.
+		#
+		if ($$readme{metadata}) {
+			my $metadata = $$readme{metadata};
+
+			# strip all whitespace
+			$metadata =~ s/\s*//mg;
+
+			# check for something that looks familiar
+			if ($metadata =~ m#<dl><dt>category</dt><dd>([a-z]+)</dd></dl>#) {
+				$$readme{category} = $1;
+			}
+		}
 	}
 }
 
@@ -698,7 +717,7 @@ sub get_component_release_data
 
 	$json{name} = $$component{name};
 	$json{description} = $$component{readme}{summary};
-	$json{category} = "io"; # $$component{readme}{metadata}; # TODO XML :(
+	$json{category} = $$component{readme}{category} || "";
 	$json{documentation_link} = ""; # TODO "http://networkradius.com/doc/current/raddb/mods-available/linelog";
 
 	$$component{output} = \%json;
