@@ -760,14 +760,17 @@ sub build_web_json
 	# create branch json for each release version
 	#
 	foreach my $rv (@$relbranches) {
-		my $tag = $$rv{latesttag};
+		my $tag = $$rv{branch};
 
+		unless ($$rv{status} eq "obsolete") {
 		my $oj = {
-			name => $tag,
+			# this data appears on the "releases" page
+			name => "v" . $$rv{branch},
 			description => $$rv{description},
 			status => $$rv{status},
 		};
 		jout "$outdir/branch/$tag.json", $oj;
+	}
 
 		make_path "$outdir/branch/$tag/release";
 
