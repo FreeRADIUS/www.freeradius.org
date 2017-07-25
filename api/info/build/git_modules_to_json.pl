@@ -199,6 +199,112 @@ sub get_component_readme
 }
 
 
+#** @function get_release_changelog ($repo, $blob)
+# @brief Retrieve doc/Changelog for a release parse it
+#
+# Given a git blob of a Changelog file, pulls it from the git
+# repository and parses it into a usable data structure.
+#
+# Changelog file format is header line starting with FreeRADIUS,
+# followed by bulleted lists of changes, with possible headers.
+# Recent releases are separated in to "Feature improvements" and
+# "Bux fixes", but older releases are less standard.
+#
+# @params $repo		Git::Repository reference
+# @params $blob		Git blob
+#
+# @retval $changelog	Hash reference of Changelog data
+#*
+
+sub get_release_changelog
+{
+	my ($repo, $commit) = @_;
+	my $changelog = {};
+	my %components;
+
+	my %keywords = (
+		"eap" => "rlm_eap",
+		"ocsp" => "rlm_eap",
+		"redis" => "rlm_redis",
+	);
+
+	# read the blob from git
+	#
+	my $data = $repo->command("show" => "$commit:doc/ChangeLog")->stdout;
+	return undef unless $data;
+
+	my $line = $data->getline(); # get the header line
+
+	if ($line !~ /^FreeRADIUS /) {
+		return undef if $commit eq "release_0_1_0";
+		# panic, the header isn't as expected
+		die "PANIC, $commit ChangeLog header isn't as expected.\n$line\n";
+	}
+
+	my $header = "Generic improvements";
+
+	LINES: while ($line = $data->getline()) {
+		chomp $line;
+
+		next if $line =~ /^\s*$/;
+
+		# look for header lines (No "*") and change the header
+		#
+		# grrr, 3.0.8 had a line with 8 spaces instead of a tab, and
+		# 2.1.12 had a space followed by a tab, so try and pick up
+		# anything here that "looks" like a tab
+		#
+		if ($line =~ /^ (?:\s{0,7}\t|\s{8}) ([^\*\s].*) \s*$/x) {
+			$header = $1;
+			$$changelog{$header} = [];
+
+			next;
+		}
+
+		# quick heuristic scan for modules or protocols that
+		# have been mentioned
+		#
+		if ($line =~ /\b((?:rlm|proto)_[a-z0-9]+)\s/) {
+			$components{$1} = 1;
+		}
+
+		foreach my $kw (keys %keywords) {
+			$components{$keywords{$kw}} = 1 if $line =~ /\b$kw\b/i;
+		}
+
+		# look for items
+		#
+		if ($line =~ /^ (?:\s{0,7}\t|\s{8}) \* \s+ (.*) \s*$/x) {
+			my $item = $1;
+
+			push @{$$changelog{$header}}, $item;
+
+			next;
+		}
+
+		if ($line =~ /^ (?:\s{0,7}\t|\s{8}) \s+ (.*) \s*$/x) {
+			my $item = $1;
+
+			my $list = $$changelog{$header};
+			my $lastitem = pop @$list;
+			$item = $lastitem . " " . $item;
+			push @$list, $item;
+
+			next;
+		}
+
+		last LINES if $line =~ /^FreeRADIUS /;
+		last LINES if $line =~ /^  -- /;
+
+		# PANIC!
+		die "$commit has unexpected Changelog line:\n$line\n";
+	}
+
+	@{$$changelog{components}} = keys %components;
+	return $changelog;
+}
+
+
 #** @function get_versions ($repo)
 # @brief Get all release tags and dev branches from the git repository
 #
