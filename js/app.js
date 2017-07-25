@@ -616,7 +616,7 @@
                 // url: '/modules.json',
                 params: {
                     expansion_depth: 3,
-                    order_by: 'name'
+                    order_by: 'priority'
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);

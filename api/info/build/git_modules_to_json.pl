@@ -32,13 +32,24 @@ my $RELBRANCHES = [
 		branch => "3.0.x",
 		description => "Latest stable branch",
 		status => "stable",
+		priority => 1,
 	},
 	{
 		type => "release",
 		branch => "2.x.x",
 		description => "Old stable branch",
 		status => "end of life",
+		priority => 2,
 	},
+	{
+		# development means just download this actual branch HEAD
+		type => "development",
+		branch => "4.0.x",
+		description => "Development branch",
+		status => "development",
+		priority => 3,
+	},
+
 	{
 		type => "release",
 		branch => "1.x.x",
@@ -50,13 +61,6 @@ my $RELBRANCHES = [
 		branch => "0.x.x",
 		description => "Obsolete stable branch",
 		status => "obsolete",
-	},
-	{
-		# development means just download this actual branch HEAD
-		type => "development",
-		branch => "4.0.x",
-		description => "Development branch",
-		status => "development",
 	},
 ];
 
@@ -854,6 +858,7 @@ sub build_web_json
 				name => "v" . $$rv{branch},
 				description => $$rv{description},
 				status => $$rv{status},
+				priority => $$rv{priority} || 9999,
 			};
 			jout "$outdir/branch/$tag.json", $oj;
 		}
