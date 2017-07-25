@@ -33,6 +33,10 @@ my $RELBRANCHES = [
 		description => "Latest stable branch",
 		status => "stable",
 		priority => 1,
+		focus => {
+			"3.0.15" => "security",
+			"3.0.0" => "new features",
+		},
 	},
 	{
 		type => "release",
@@ -40,6 +44,12 @@ my $RELBRANCHES = [
 		description => "Old stable branch",
 		status => "end of life",
 		priority => 2,
+		focus => {
+			"2.2.10" => "security",
+			"2.2.0" => "security",
+			"2.1.0" => "new features",
+			"2.0.0" => "new features",
+		},
 	},
 	{
 		# development means just download this actual branch HEAD
@@ -48,13 +58,23 @@ my $RELBRANCHES = [
 		description => "Development branch",
 		status => "development",
 		priority => 3,
+		focus => {
+			"4.0.x" => "development",
+		},
 	},
 
 	{
+		# obsolete releases are filtered out by the js
+		# code so won't display as downloads
 		type => "release",
 		branch => "1.x.x",
 		description => "Obsolete stable branch",
 		status => "obsolete",
+		focus => {
+			"1.1.8" => "security",
+			"1.1.0" => "new features",
+			"1.0.0" => "new features",
+		},
 	},
 	{
 		type => "release",
@@ -848,6 +868,10 @@ sub get_branch_release_data
 	my $version = $$release{version};
 	my $tag = $$release{tag};
 
+	# find focus of the release
+	#
+	my $focus = $$release{branch}{focus}{$version} || "stability";
+
 	# build download links
 	#
 	my @download = ();
@@ -899,7 +923,7 @@ sub get_branch_release_data
 	$json{defects} = \@defects;
 
 	$json{name} = $$release{version};
-	$json{summary} = "The focus of this release is testing";
+	$json{summary} = "The focus of this release is $focus";
 	$json{date} = git_date($repo, $$release{tag});
 
 	$$release{output} = \%json;
