@@ -1036,7 +1036,7 @@ sub build_web_json
 
 		my $oj = {
 			# this data appears on the "releases" page
-			name => "v" . $$rv{branch},
+			name => $$rv{branch},
 			description => $$rv{description},
 			status => $$rv{status},
 			priority => $$rv{priority} || 9999,
