@@ -969,7 +969,7 @@ sub get_component_release_data
 	$json{available} = \@available;
 
 	$json{name} = $$component{name};
-	$json{description} = $$component{readme}{summary};
+	$json{description} = $$component{readme}{summary} || "";
 	$json{category} = $$component{readme}{category} || "";
 	$json{documentation_link} = ""; # TODO "http://networkradius.com/doc/current/raddb/mods-available/linelog";
 
