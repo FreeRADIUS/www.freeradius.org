@@ -860,8 +860,16 @@ sub build_web_json
 
 		make_path "$outdir/branch/$tag/release";
 
+		# go through each release in the branch and output its json file
+		#
 		foreach my $release (@{$$rv{releases}}) {
 			my $fname = $$release{version};
+
+			# if the branch is development then output the dev (.x)
+			# versions, otherwise just output the stable releases
+			#
+			next if $$rv{status} ne "development" and $fname =~ /x/;
+
 			jout "$outdir/branch/$tag/release/$fname.json", $$release{output};
 		}
 	}
