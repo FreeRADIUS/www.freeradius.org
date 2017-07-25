@@ -865,30 +865,64 @@ sub get_branch_release_data
 	my %json;
 
 	my $version = $$release{version};
-	my $tag = $$release{tag};
+	my $tag = my $tagname = $$release{tag};
+	$tagname =~ s+^remotes/origin/++;
 
 	# find focus of the release
 	#
 	my $focus = $$release{branch}{focus}{$version} || "stability";
 
+	my $latest = 0;
+	$latest = 1 if $$release{branch}{latestversion} eq $version;
+
 	# build download links
 	#
 	my @download = ();
-	#foreach my $type (qw(tar.gz tar.bz2)) {
-	foreach my $type (qw(tar.gz)) {
-		my %d = (
-			# TODO FIXME XXX
-			# tag here can be remote/origin/v4.0.x e.g., which doesn't work very well
+	my @mirror = ();
+
+	if ($$release{type} eq "release") {
+		foreach my $type (qw(tar.gz tar.bz2)) {
+			my %d = ( name => $type );
+
+			# release files should be on the freeradius FTP site
 			#
-			name => $type,
-			#url => "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-$version.$type",
-			#sig_url => "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-$version.$type.sig",
-			url => "https://github.com/FreeRADIUS/freeradius-server/archive/$tag.$type",
-			#sig_url => "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-$version.$type.sig",
-		);
-		push @download, \%d;
+			my $path = "ftp://ftp.freeradius.org/pub/freeradius/";
+
+			$path .= "old/" unless $latest;
+			$path .= "freeradius-";
+			$path .= "server-" unless $version =~ /^[01]\./;
+
+			$path .= "$version.$type";
+
+			$d{url} = $path;
+			$d{sig_url} = "$path.sig",
+
+			push @download, \%d;
+
+			if ($type eq "tar.gz") {
+				# github supports tar.gz and zip, so we can't do tar.bz2 here
+				push @mirror, {
+					name => "GitHub ($type)",
+					url => "https://github.com/FreeRADIUS/freeradius-server/archive/$tagname.$type",
+				};
+			}
+
+		}
+	} else {
+		foreach my $type (qw(tar.gz)) {
+			my %d = ( name => $type );
+
+			# whatever it is, github should have it...
+			#
+			$d{url} = "https://github.com/FreeRADIUS/freeradius-server/archive/$tagname.$type",
+			# ...but has no .sig
+
+			push @download, \%d;
+		}
 	}
+
 	$json{download} = \@download;
+	$json{mirror} = \@mirror if @mirror;
 
 	my $changelog = get_release_changelog($repo, $tag);
 
