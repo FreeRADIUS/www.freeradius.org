@@ -76,6 +76,7 @@ Vagrant.configure("2") do |config|
     # Copy the infrastructure git repo in for reference only.
     #
     frorg.vm.synced_folder "../infrastructure", "/srv/infrastructure", type: "rsync"
+    frorg.vm.synced_folder "../freeradius-server", "/srv/freeradius-server", type: "rsync"
 
     # Set memory available (though not tested in virtualbox yet)
     #
