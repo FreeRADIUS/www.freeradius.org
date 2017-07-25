@@ -171,14 +171,12 @@ sub get_component_readme
 	my $data = $repo->command("show" => $blob)->stdout;
 	return undef unless $data;
 
-	#my @lines;
 	my $state = "header";
 	my $sectionname;
 	my $sectiondata;
 
 	while (my $line = $data->getline()) {
 		chomp $line;
-		#push @lines, $line;
 
 		# at the start, look for a header with a module name
 		#
@@ -1132,19 +1130,26 @@ find_releases($RELBRANCHES, $versions);
 #	print "$k\n";
 #}
 
-# component repository
+# global component repository
+#
 my $components = {};
 
 #my $ss = get_release_components($repo, "v4.0.x");
 #print Dumper $ss;
 
-# go through all versions and add the modules and protocols
-# to the components repository
+# go through all versions in git and add the modules and
+# protocols to the components repository
 #
 foreach my $version (keys %$versions) {
 	get_release_components($repo, $components, $$versions{$version});
 }
 
+# go through each component and record the branches it appears in
+# we need this because the web site shows the min and max versions a component
+# appears in within a branch, not globally. e.g. rahter than "this appeared in
+# 2.0.4 and vanished in 3.0.14" it's "it appeared in 2.x.x between 2.0.4 and
+# 2.2.10, and in 3.0.x between 3.0.0 and 3.0.14"
+#
 find_component_branches($components, $RELBRANCHES);
 
 # work out the data needed for the JSON files for the branches and releases
@@ -1157,6 +1162,8 @@ foreach my $release (keys %$versions) {
 #
 get_readme_files($repo, $components);
 
+# work out the data needed for the components' JSON files
+#
 foreach my $component (keys %$components) {
 	get_component_release_data($repo, $$components{$component});
 }
