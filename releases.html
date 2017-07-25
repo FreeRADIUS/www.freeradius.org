@@ -29,12 +29,12 @@ subnav:
                         <div class="columns eol-alert-p">
                         The {% raw %}{{branch.name}}{% endraw %} release series is now End Of Life. Only security fixes will be applied to {% raw %}{{branch.name}}{% endraw %}. Users of {% raw %}{{branch.name}}{% endraw %} are encouraged to migrate to the latest <span ng-init="getStableBranch()">{% raw %}{{stableBranch.name}}{% endraw %}</span> series release.</div>
                     </div>
-                    <span ng-repeat="dl in branch.last_release.download" ng-if="branch.status != 'end of life'">
+                    <span ng-repeat="dl in branch.last_release.download" ng-if="branch.status == 'stable'">
                     	<a ng-href="{% raw %}{{dl.url}}{% endraw %}" class="button releases-fixed-width bg_accent-blue detailed base_margin_b"><span class="h5 right-border">Download {% raw %}{{branch.last_release.name}}{% endraw %}</span><span class="h5">{% raw %}{{dl.name}}{% endraw %}</span><img class="icon_xsmall pull_right" src="/img/arrow-download.svg" alt=""></a>
                     	<a ng-if="dl.sig_url" ng-href="{% raw %}{{dl.sig_url}}{% endraw %}" class="h5 spaced-link">(PGP Signature)</a>
                     </span>
 
-                    <table class="h5 text-mid" ng-if="branch.status == 'end of life'">
+                    <table class="h5 text-mid" ng-if="branch.status != 'stable'">
                         <tr ng-repeat="dl in branch.last_release.download">
                             <td>Version {% raw %}{{branch.last_release.name}}{% endraw %}:</td>
                             <td>
