@@ -765,8 +765,6 @@ sub get_component_release_data
 
 	my @available = ();
 	foreach my $branch (keys %{$$component{branches}}) {
-		next if $branch =~ /^[01]/; # TODO look in RELBRANCHES for obsolete instead
-
 		my ($min, $max) = get_component_release_minmax($$component{branches}{$branch});
 		my $branchdata = {
 			branch => {
@@ -852,16 +850,14 @@ sub build_web_json
 	foreach my $rv (@$relbranches) {
 		my $tag = $$rv{branch};
 
-		unless ($$rv{status} eq "obsolete") {
-			my $oj = {
-				# this data appears on the "releases" page
-				name => "v" . $$rv{branch},
-				description => $$rv{description},
-				status => $$rv{status},
-				priority => $$rv{priority} || 9999,
-			};
-			jout "$outdir/branch/$tag.json", $oj;
-		}
+		my $oj = {
+			# this data appears on the "releases" page
+			name => "v" . $$rv{branch},
+			description => $$rv{description},
+			status => $$rv{status},
+			priority => $$rv{priority} || 9999,
+		};
+		jout "$outdir/branch/$tag.json", $oj;
 
 		make_path "$outdir/branch/$tag/release";
 
