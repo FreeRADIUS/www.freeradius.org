@@ -199,6 +199,77 @@ sub get_component_readme
 }
 
 
+#** @function changelog_entry_components_json ($entry, $components)
+# @brief Heuristic to try and work out what components were affected
+#
+# Scans text for patterns and returns a list of potential components
+# in the format required for the releases JSON file.
+#
+# @params $entry	ChangeLog entry
+# @params $%components	Component repository
+#
+# @retval $components	Some of the components that may have been touched
+#*
+
+sub changelog_entry_components_json
+{
+	my ($entry, $components) = @_;
+	my %found_component;
+	my @json;
+
+	my %keywords = (
+		"couchbase"	=> "rlm_couchbase",
+		"memcached"	=> "rlm_cache_memcached",
+		"eap"		=> "rlm_eap",
+		"ocsp"		=> "rlm_eap",
+		"peap"		=> "rlm_eap_peap",
+		"ttls"		=> "rlm_eap_ttls",
+		"eap-tls"	=> "rlm_eap_tls",
+		"linelog"	=> "rlm_linelog",
+		"huntgroups"	=> "rlm_preprocess",
+		"python"	=> "rlm_python",
+		"redis"		=> "rlm_redis",
+		"sql"		=> "rlm_sql",
+		"postgresql"	=> "rlm_sql_postgresql",
+		"sqlite3"	=> "rlm_sql_sqlite",
+		"dhcp"		=> "proto_dhcp",
+		"vmps"		=> "proto_vmps",
+	);
+
+
+	# quick heuristic scan for modules or protocols that
+	# have been mentioned
+	#
+	if ($entry =~ /\b((?:rlm|proto)_[a-z0-9_]+)\b/) {
+		$found_component{$1} = 1;
+	}
+
+	# scan for keywords in the above list
+	#
+	foreach my $kw (keys %keywords) {
+		$found_component{$keywords{$kw}} = 1 if $entry =~ /\b$kw\b/i;
+	}
+
+	# check components actually exist - otherwise the
+	# javascript blows up when the lua returns 404
+	# then add to the array used for the json file
+	#
+	foreach my $component (keys %found_component) {
+		if (!$$components{$component}) {
+			warn "component $component in a changelog not actually found, skipping\n";
+			next;
+		}
+		my $c = {
+			name => $component,
+			url => component_url($component),
+		};
+		push @json, $c;
+	}
+
+	return \@json;
+}
+
+
 #** @function get_release_changelog ($repo, $blob)
 # @brief Retrieve doc/Changelog for a release parse it
 #
@@ -220,13 +291,6 @@ sub get_release_changelog
 {
 	my ($repo, $commit) = @_;
 	my $changelog = {};
-	my %components;
-
-	my %keywords = (
-		"eap" => "rlm_eap",
-		"ocsp" => "rlm_eap",
-		"redis" => "rlm_redis",
-	);
 
 	# read the blob from git
 	#
@@ -261,20 +325,9 @@ sub get_release_changelog
 			next;
 		}
 
-		# quick heuristic scan for modules or protocols that
-		# have been mentioned
-		#
-		if ($line =~ /\b((?:rlm|proto)_[a-z0-9]+)\s/) {
-			$components{$1} = 1;
-		}
-
-		foreach my $kw (keys %keywords) {
-			$components{$keywords{$kw}} = 1 if $line =~ /\b$kw\b/i;
-		}
-
 		# look for items
 		#
-		if ($line =~ /^ (?:\s{0,7}\t|\s{8}) \* \s+ (.*) \s*$/x) {
+		if ($line =~ /^ (?:\s{0,7}\t|\s{8}) \* \s+ (.*?) \.? \s*$/x) {
 			my $item = $1;
 
 			push @{$$changelog{$header}}, $item;
@@ -282,7 +335,7 @@ sub get_release_changelog
 			next;
 		}
 
-		if ($line =~ /^ (?:\s{0,7}\t|\s{8}) \s+ (.*) \s*$/x) {
+		if ($line =~ /^ (?:\s{0,7}\t|\s{8}) \s+ (.*?) \.? \s*$/x) {
 			my $item = $1;
 
 			my $list = $$changelog{$header};
@@ -300,7 +353,6 @@ sub get_release_changelog
 		die "$commit has unexpected Changelog line:\n$line\n";
 	}
 
-	@{$$changelog{components}} = keys %components;
 	return $changelog;
 }
 
