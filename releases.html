@@ -11,58 +11,60 @@ subnav:
 ---
 
 <div class="wrapper base_padding_v" ng-controller="GetBranches">
-	<div class="alert-box">FreeRADIUS is developed under the GNU General Public License, version 2 (GPLv2), and is free for download and use. Commercial support is available from <a href="http://www.networkradius.com/">NetworkRADIUS</a>.</div>
+    <div class="alert-box">FreeRADIUS is developed under the GNU General Public License, version 2 (GPLv2), and is free for download and use. Commercial support is available from <a href="http://www.networkradius.com/">NetworkRADIUS</a>.</div>
     <h3 class="section-title base_margin_b">Download Latest Versions</h3>
     <div ng-repeat="branch in branches" ng-cloak>
-	<div ng-if="branch.status != 'obsolete'">
+        <div ng-if="branch.status != 'obsolete'">
             <div class="link block base_margin_b" ng-class="{'accent-blue': branch.status == 'stable', 'accent-grey': branch.status == 'end of life'}">
-         	<div class="row flex_1">
-                <div class="column medium-4">
-                    <h3 class="section-title">{% raw %}{{branch.name}}{% endraw %} Series</h3>
-    				<h4 class="title_case">{% raw %}{{branch.status}}{% endraw %}</h4>
-    				<a ng-href="/release_notes/?br={% raw %}{{branch.name}}{% endraw %}&re={% raw %}{{branch.last_release.name}}{% endraw %}" class="h5 text-mid">View Release notes</a>
-
-                </div>
-                <div class="column medium-8">
-
-                    <div class="row emphasis text-dark alert-box" ng-if="branch.status == 'end of life'">
-                        <img class="columns eol-alert-img" src="../img/alert-blue.svg">
-                        <div class="columns eol-alert-p">
-                        The {% raw %}{{branch.name}}{% endraw %} release series is now End Of Life. Only security fixes will be applied to {% raw %}{{branch.name}}{% endraw %}. Users of {% raw %}{{branch.name}}{% endraw %} are encouraged to migrate to the latest <span ng-init="getStableBranch()">{% raw %}{{stableBranch.name}}{% endraw %}</span> series release.</div>
+                <div class="row flex_1">
+                    <div class="column medium-4">
+                        <h3 class="section-title">{% raw %}{{branch.name}}{% endraw %} Series</h3>
+                        <h4 class="title_case">{% raw %}{{branch.status}}{% endraw %}</h4>
+                        <a ng-href="/release_notes/?br={% raw %}{{branch.name}}{% endraw %}&re={% raw %}{{branch.last_release.name}}{% endraw %}" class="h5 text-mid">View Release notes</a>
                     </div>
 
-                    <div class="row emphasis text-dark alert-box" ng-if="branch.status == 'development'">
-                        <img class="columns eol-alert-img" src="../img/alert-blue.svg">
-                        <div class="columns eol-alert-p">
-                        The {% raw %}{{branch.name}}{% endraw %} release series is in development and should only be used in production on the recommendation of the FreeRADIUS development team.</div>
+                    <div class="column medium-8">
+                        <div class="row emphasis text-dark alert-box" ng-if="branch.status == 'end of life'">
+                            <img class="columns eol-alert-img" src="../img/alert-blue.svg">
+                            <div class="columns eol-alert-p">
+                                The {% raw %}{{branch.name}}{% endraw %} release series is now End Of Life. Only security fixes will be applied to {% raw %}{{branch.name}}{% endraw %}. Users of {% raw %}{{branch.name}}{% endraw %} are encouraged to migrate to the latest <span ng-init="getStableBranch()">{% raw %}{{stableBranch.name}}{% endraw %}</span> series release.
+                            </div>
+                        </div>
+
+                        <div class="row emphasis text-dark alert-box" ng-if="branch.status == 'development'">
+                            <img class="columns eol-alert-img" src="../img/alert-blue.svg">
+                            <div class="columns eol-alert-p">
+                                The {% raw %}{{branch.name}}{% endraw %} release series is in development and should only be used in production on the recommendation of the FreeRADIUS development team.
+                            </div>
+                        </div>
+
+                        <span ng-repeat="dl in branch.last_release.download" ng-if="branch.status == 'stable'">
+                            <a ng-href="{% raw %}{{dl.url}}{% endraw %}" class="button releases-fixed-width bg_accent-blue detailed base_margin_b"><span class="h5 right-border">Download {% raw %}{{branch.last_release.name}}{% endraw %}</span><span class="h5">{% raw %}{{dl.name}}{% endraw %}</span><img class="icon_xsmall pull_right" src="/img/arrow-download.svg" alt=""></a>
+                            <a ng-if="dl.sig_url" ng-href="{% raw %}{{dl.sig_url}}{% endraw %}" class="h5 spaced-link">(PGP Signature)</a>
+                        </span>
+
+                        <table class="h5 text-mid" ng-if="branch.status != 'stable'">
+                            <tr ng-repeat="dl in branch.last_release.download">
+                                <td>Version {% raw %}{{branch.last_release.name}}{% endraw %}:</td>
+                                <td>
+                                    <a ng-href="{% raw %}{{dl.url}}{% endraw %}" class="spaced-link">{% raw %}{{dl.name}}{% endraw %}</a>
+                                    <a ng-if="dl.sig_url" ng-href="{% raw %}{{dl.sig_url}}{% endraw %}" class="spaced-link">(PGP Signature)</a>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="h5 text-mid" ng-if="branch.last_release.mirror">
+                            <tr>
+                                <td>Mirrors:</td>
+                                <td>
+                                    <a ng-repeat="mirror in branch.last_release.mirror" ng-href="{% raw %}{{mirror.url}}{% endraw %}" class="spaced-link">{% raw %}{{mirror.name}}{% endraw %}</a>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-
-                    <span ng-repeat="dl in branch.last_release.download" ng-if="branch.status == 'stable'">
-                    	<a ng-href="{% raw %}{{dl.url}}{% endraw %}" class="button releases-fixed-width bg_accent-blue detailed base_margin_b"><span class="h5 right-border">Download {% raw %}{{branch.last_release.name}}{% endraw %}</span><span class="h5">{% raw %}{{dl.name}}{% endraw %}</span><img class="icon_xsmall pull_right" src="/img/arrow-download.svg" alt=""></a>
-                    	<a ng-if="dl.sig_url" ng-href="{% raw %}{{dl.sig_url}}{% endraw %}" class="h5 spaced-link">(PGP Signature)</a>
-                    </span>
-
-                    <table class="h5 text-mid" ng-if="branch.status != 'stable'">
-                        <tr ng-repeat="dl in branch.last_release.download">
-                            <td>Version {% raw %}{{branch.last_release.name}}{% endraw %}:</td>
-                            <td>
-                                <a ng-href="{% raw %}{{dl.url}}{% endraw %}" class="spaced-link">{% raw %}{{dl.name}}{% endraw %}</a>
-                                <a ng-if="dl.sig_url" ng-href="{% raw %}{{dl.sig_url}}{% endraw %}" class="spaced-link">(PGP Signature)</a>
-                            </td>
-                        </tr>
-                    </table>
-                    <table class="h5 text-mid" ng-if="branch.last_release.mirror">
-                        <tr>
-                            <td>Mirrors:</td>
-                            <td>
-                                <a ng-repeat="mirror in branch.last_release.mirror" ng-href="{% raw %}{{mirror.url}}{% endraw %}" class="spaced-link">{% raw %}{{mirror.name}}{% endraw %}</a>
-                            </td>
-                        </tr>
-                    </table>
 
                 </div>
             </div>
-        </div>
         </div>
     </div>
 
@@ -70,45 +72,45 @@ subnav:
         <div class="columns medium-7 end">
             <h4>Older Releases</h4>
             <p>Older releases are no longer actively maintained, and no help or support for these versions will be provided. These systems should be upgrade to 3.0 as soon as possible.</p>
-			<p>Older releases are available <a href="/older_releases">here</a>.</p>
+            <p>Older releases are available <a href="/older_releases">here</a>.</p>
         </div>
     </div>
 </div>
 
 <div class="grey-block" id="binary_packages">
-	<div class="wrapper">
-		<div class="base_padding_v">
-			<h3 class="section-title">Binary Packages</h3>
-			<p>Binary packages for a number of platforms are available from third parties.</p>
-			<p>
-				<a href="http://freeradius.net/">Cygwin</a>,
-				<a href="http://packages.debian.org/freeradius">Debian</a>,
-				<a href="http://pkgsrc.se/net/freeradius">DragonFlyBSD</a> (via NetBSD pkgsrc),
-				<a href="http://koji.fedoraproject.org/koji/packageinfo?packageID=298">Fedora</a>,
-				<a href="http://www.freebsd.org/cgi/ports.cgi?query=freeradius&stype=all&sektion=net">FreeBSD</a>,
-				<a href="http://freeradius.darwinports.com/">Mac OSX</a> (<a href="http://www.apple.com/opensource/">Leopard Server</a>),
-				<a href="http://download.opensuse.org/repositories/network:/aaa/">Mandriva</a>,
-				<a href="http://pkgsrc.se/net/freeradius">NetBSD</a>,
-				<a href="http://openports.se/net/freeradius">OpenBSD</a>,
-				Solaris,
-				<a href="http://download.opensuse.org/repositories/network:/aaa/">SuSE</a>,
-				<a href="http://packages.ubuntu.com/freeradius">Ubuntu</a>.
-			</p>
-		</div>
+    <div class="wrapper">
+        <div class="base_padding_v">
+            <h3 class="section-title">Binary Packages</h3>
+            <p>Binary packages for a number of platforms are available from third parties.</p>
+            <p>
+                <a href="http://freeradius.net/">Cygwin</a>,
+                <a href="http://packages.debian.org/freeradius">Debian</a>,
+                <a href="http://pkgsrc.se/net/freeradius">DragonFlyBSD</a> (via NetBSD pkgsrc),
+                <a href="http://koji.fedoraproject.org/koji/packageinfo?packageID=298">Fedora</a>,
+                <a href="http://www.freebsd.org/cgi/ports.cgi?query=freeradius&stype=all&sektion=net">FreeBSD</a>,
+                <a href="http://freeradius.darwinports.com/">Mac OSX</a> (<a href="http://www.apple.com/opensource/">Leopard Server</a>),
+                <a href="http://download.opensuse.org/repositories/network:/aaa/">Mandriva</a>,
+                <a href="http://pkgsrc.se/net/freeradius">NetBSD</a>,
+                <a href="http://openports.se/net/freeradius">OpenBSD</a>,
+                Solaris,
+                <a href="http://download.opensuse.org/repositories/network:/aaa/">SuSE</a>,
+                <a href="http://packages.ubuntu.com/freeradius">Ubuntu</a>.
+            </p>
+        </div>
 
-		<h3 class="section-title">Checking out from source control</h3>
-		<div class="row base_padding_v" id="source_control">
-	        <div class="columns medium-8">
-	            <p>Visit <a href="https://github.com/FreeRADIUS/freeradius-server">https://github.com/FreeRADIUS/freeradius-server</a> for the "git" repository of the FreeRADIUS server. Other projects are accessible through the FreeRADIUS GitHub project page <a href="https://github.com/FreeRADIUS/">https://github.com/FreeRADIUS/</a>.</p>
-	        </div>
-	        <div class="quick-links columns medium-4 text_accent-blue">
-	            <a href="https://github.com/FreeRADIUS">
-		            <div class="link block">
-		                <img src="../img/github.svg" alt="" class="icon">
-		                <span class="h5 text-mid">FreeRADIUS on Github</span><img class="arrow" src="../img/arrow-right.svg">
-		            </div>
-	            </a>
-	        </div>
-    	</div>
-	</div>
+        <h3 class="section-title">Checking out from source control</h3>
+        <div class="row base_padding_v" id="source_control">
+            <div class="columns medium-8">
+                <p>Visit <a href="https://github.com/FreeRADIUS/freeradius-server">https://github.com/FreeRADIUS/freeradius-server</a> for the "git" repository of the FreeRADIUS server. Other projects are accessible through the FreeRADIUS GitHub project page <a href="https://github.com/FreeRADIUS/">https://github.com/FreeRADIUS/</a>.</p>
+            </div>
+            <div class="quick-links columns medium-4 text_accent-blue">
+                <a href="https://github.com/FreeRADIUS">
+                    <div class="link block">
+                        <img src="../img/github.svg" alt="" class="icon">
+                        <span class="h5 text-mid">FreeRADIUS on Github</span><img class="arrow" src="../img/arrow-right.svg">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
