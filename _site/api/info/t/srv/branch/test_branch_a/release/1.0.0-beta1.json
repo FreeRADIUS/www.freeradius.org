@@ -1,0 +1,36 @@
+{
+	"name": "1.0.0-beta1",
+	"summary": "The focus of this release is testing",
+	"date": "2016-04-20T05:23:30Z",
+	"features": [
+		{
+			"description": "Test feature",
+			"component": [
+				{
+					"name": "rlm_test_a",
+					"url": "/api/info/component/rlm_test_a/"
+				},
+				{
+					"name": "rlm_test_b",
+					"url": "/api/info/component/rlm_test_b/"
+				}
+			]
+		}
+	],
+	"defects": [
+		{
+			"description": "Test issue",
+			"exploit": true,
+			"component": [
+				{
+					"name": "rlm_test_a",
+					"url": "/api/info/component/rlm_test_a/"
+				},
+				{
+					"name": "rlm_test_b",
+					"url": "/api/info/component/rlm_test_b/"
+				}
+			]
+		}
+	]
+}

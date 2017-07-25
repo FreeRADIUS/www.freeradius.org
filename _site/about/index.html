@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>About Us</title>
-    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="freeradius.surge.sh/about/">
-    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.surge.sh/feed.xml">
+    <link rel="canonical" href="localhost/about/">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="localhost/feed.xml">
 
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
@@ -42,8 +42,8 @@
     <div class="global-nav">
   <div class="global_links pull_right">
     <div class="global_link global_link_label h5 text">Our sites:</div>
-    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>radius</div></a>
-    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>radius</div></a>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
   </div>
 </div>
 
@@ -69,10 +69,6 @@
         
         
           
-            
-          
-        
-          
         
           
             
@@ -82,8 +78,6 @@
         
           
         
-          
-            
           
         
           
@@ -98,6 +92,12 @@
             
           
         
+          
+            
+          
+        
+          
+            
           
         
           
@@ -206,22 +206,22 @@
   <div class="post-content">
       <div class="wrapper" id="project">
 	<section class="lg_padding_h base_padding_v">
-		<h3 class="section-title text_centered">The FreeRadius Server Project</h3>
+		<h3 class="section-title text_centered">The FreeRADIUS Server Project</h3>
 		<p>FreeRADIUS was founded in June 1999 by Miquel van Smoorenburg and Alan DeKok. The first public "alpha" release of the code was in August 1999, with 0.1 being released in May 2001. Since then, new versions have been released every few months.</p>
 
 		<div class="text_centered lg_padding_h base_padding_v">
 			<img src="../img/quote.svg" alt="" class="icon_small">
-			<h3>FreeRadius is used daily by 100 million people to access the Internet.</h3>
+			<h3>FreeRADIUS is used daily by 100 million people to access the Internet.</h3>
 			<img src="../img/octo-bright.svg" alt="" class="icon_medium block">
 		</div>
 
 		<p>Since then, the project has grown to include support for more authentication types than any other open source server. It is used daily by <a href="#usage_statistics">100 million people</a> to access the Internet. There are over 50 thousand sites using FreeRADIUS, ranging in size from 10 users to over 10 million users.</p>
 
-		<p>Since its founding, the project has expanded to include a number of other RADIUS related products, including:</p>
+		<p>Since its founding, the project has expanded to include a number of other <a href="/sub_projects/">RADIUS related products</a>, including:</p>
 		<p>
-		<a href="/sub_projects/">freeradius-client</a>	A BSD licensed RADIUS client library.<br>
-		<a href="/sub_projects/">mod_auth_radius</a> 	A RADIUS module for Apache 1.x and 2.x.<br>
-		<a href="/sub_projects/">pam_radius_auth</a> 	A Pluggable Authentication Module (PAM) for RADIUS authenticationand accounting.</p>
+		<a href="https://github.com/FreeRADIUS/freeradius-client">freeradius-client</a> A BSD licensed RADIUS client library.<br>
+		<a href="https://github.com/FreeRADIUS/mod_auth_radius">mod_auth_radius</a> A RADIUS module for Apache 1.x and 2.x.<br>
+		<a href="https://github.com/FreeRADIUS/pam_radius">pam_radius_auth</a> A Pluggable Authentication Module (PAM) for RADIUS authenticationand accounting.</p>
 	</section>
 </div>
 
@@ -248,12 +248,12 @@
 
 			 	<div class="row base_padding_v">
 			 		<div class="columns medium-3"><img src="../img/world.svg"></div>
-			 		<div class="columns medium-9 h3">FreeRadius is responsible for authenticating  a third of all users on the Internet.</div>
+			 		<div class="columns medium-9 h3">FreeRADIUS is responsible for authenticating  a third of all users on the Internet.</div>
 			 	</div>
 
 				<p><span class="emphasis">There are a small percentage of sites have over 10,000,000 (that's 10 MILLION) users.</span> When we add up all of the sites, the total comes to about 100,000,000 users who are authenticated via FreeRADIUS. And that number includes only the sites that filled out the survey!</p>
 
-				<p><span class="emphasis">In total it is estimated that FreeRadius is responsible for authenticating more than &frac13; of users on the internet.</span> Other users are split between Cisco ACS and Microsoft IAS (each with an equal share); and all the other Radius servers combined. </p>
+				<p><span class="emphasis">In total it is estimated that FreeRADIUS is responsible for authenticating more than &frac13; of users on the internet.</span> Other users are split between Cisco ACS and Microsoft IAS (each with an equal share); and all the other RADIUS servers combined. </p>
 			</div>
 			<div class="columns medium-4">
 				<h1 class="h5 stats-head text_accent-blue">Number of Users</h1>
@@ -276,7 +276,7 @@
 			<div class="columns medium-8">
 				<p><span class="emphasis">Not surprisingly, most sites have a very small number of servers. A few sites (likely the biggest ones) have a large number of servers.</span></p>
 
-				<p>It looks like most sites under 10000 users have one or two servers. As the number of users grows, so does the number of servers used. A few sites have more than 50 servers, likely because they are placing servers at multiple locations.</p>
+				<p>It looks like most sites under 10,000 users have one or two servers. As the number of users grows, so does the number of servers used. A few sites have more than 50 servers, likely because they are placing servers at multiple locations.</p>
 			</div>
 			<div class="columns medium-4">
 				<h1 class="h5 stats-head text_accent-blue">Number of Servers</h1>
@@ -294,7 +294,7 @@
 	<section id="tab-3" tab-content ng-show="active == '#tab-3'">
 		<div class="row">
 			<div class="columns medium-8">
-				<p><span class="emphasis">Taken together the various SQL modules account for nearly 50% of deployments.</span> The only surprise is that Active Directory has such a low ranking, as it is the database used in most internal corporate (i.e. enterprise) environments. The conclusion that we can reach from this is that the people filling out this survey are probably ISP's and resellers rather than enterprise IT administrators.</p>
+				<p><span class="emphasis">Taken together, the various SQL modules account for nearly 50% of deployments.</span> The only surprise is that Active Directory has such a low ranking, as it is the database used in most internal corporate environments. The conclusion that we can reach from this is that the people filling out this survey were probably ISPs and resellers rather than enterprise IT administrators.</p>
 
 				<p>Another conclusion is that if you have to store a few million users in a database, Active Directory probably isn't your first choice.</p>
 			</div>
@@ -360,7 +360,7 @@
 
 <div class="grey-block">
 	<div class="wrapper">
-		<p class="small-print text_centered lg_padding_h">The survey was commissioned because RADIUS servers are usally hidden inside of private networks (for very good reasons), and are not publicly accessibly like HTTP or DNS servers. That is, <a href="http://httpd.apache.org/">Apache</a> can say that it is the number one HTTP server in the Internet because of public results from <a href="http://news.netcraft.com/archives/web_server_survey.html">Netcraft</a>. In order to get the same data, we have to go ask site administrators what they are using. The good news is that over 500 responses to the survey were received, with the results as of November 2006 summarized as shown above.</p>
+		<p class="small-print text_centered lg_padding_h">The survey was commissioned because RADIUS servers are usally hidden inside of private networks (for very good reasons), and are not publicly accessibly like HTTP or DNS servers. That is, <a href="http://httpd.apache.org/">Apache</a> can say that it is the number one HTTP server in the Internet because of public results from <a href="http://news.netcraft.com/archives/web_server_survey.html">Netcraft</a>. In order to get the same data, we have to directly ask site administrators what they are using. The good news is that over 500 responses to the survey were received, with the results as of November 2006 summarized as shown above.</p>
 	</div>
 </div>
 
@@ -378,7 +378,7 @@
 		<div class="column medium-6">
 			<img src="../img/profile-temp.png" class="base_margin_b">
 			<h1 class="h4">Arran Cudbard-Bell <small class="italic text-mid">Principal Architect</small></h1>
-			<p>Arran has a penchant for policy driven networking. He has been a contributor since 2007 and core team member since 2012, and has authored and rewritten many modules. He contributes heavily to code documentation, modernisation, re-architecture, and cleanup efforts. Arran is a member of the Janet 802.1X SIG, and Director of <a href="#">RM-RF LTD</a>.</p>
+			<p>Arran has a penchant for policy driven networking. He has been a contributor since 2007 and core team member since 2012, and has authored and rewritten many modules. He contributes heavily to code documentation, modernisation, re-architecture, and cleanup efforts. Arran is a member of the Jisc 802.1X SIG, and Director of <a href="#">RM-RF LTD</a>.</p>
 			<a href="#"><img class="icon_xsmall" src="../img/github.svg"></a>
 			<a href="#"><img class="icon_xsmall" src="../img/twitter.svg"></a>
 			<a href="#" class="headline-link text-mid uppercase">rm-rfi.com/blog/</a>
@@ -446,7 +446,7 @@
                          <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
                         <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
                     </div>
-                    <p>&copy; 2015 The FreeRADIUS Server Project Support and Contributors</p>
+                    <p>&copy; 2017 The FreeRADIUS Server Project Support and Contributors</p>
                 </div>
             </div>
             <div class="columns medium-8">

@@ -1,0 +1,11 @@
+#! /bin/sh
+
+rm -rf /tmp/wsbuild/
+./git_modules_to_json.pl
+
+rm -rf /vagrant/_site/api/info/srv/branch
+rm -rf /vagrant/_site/api/info/srv/component
+cp -av /tmp/wsbuild/branch /vagrant/_site/api/info/srv/branch
+cp -av /tmp/wsbuild/component /vagrant/_site/api/info/srv/component
+
+

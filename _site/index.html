@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>FreeRADIUS</title>
-    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="freeradius.surge.sh/">
-    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.surge.sh/feed.xml">
+    <link rel="canonical" href="localhost/">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="localhost/feed.xml">
 
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
@@ -42,8 +42,8 @@
     <div class="global-nav">
   <div class="global_links pull_right">
     <div class="global_link global_link_label h5 text">Our sites:</div>
-    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>radius</div></a>
-    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>radius</div></a>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
   </div>
 </div>
 
@@ -69,10 +69,6 @@
         
         
           
-            
-          
-        
-          
         
           
             
@@ -82,8 +78,6 @@
         
           
         
-          
-            
           
         
           
@@ -98,6 +92,12 @@
             
           
         
+          
+            
+          
+        
+          
+            
           
         
           
@@ -179,7 +179,7 @@
                     <div id="hero-more-1" class="home_hero_block_overlay block_shadow">
                         <img class="icon_medium" src="/img/icon-telco.svg" alt="">
                         <p class="h5">Education</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, repellat!</p>
+                        <p>FreeRADIUS is commonly used in academic wireless networks, especially amongst the <a href="http://www.eduroam.org/">eduroam</a> community.</p>
                         <img ng-click="toggle('#hero-more-1', true)" src="/img/less.svg" alt="" class="icon_small">
                     </div>
                 </div>
@@ -196,7 +196,7 @@
                     <div id="hero-more-2" class="home_hero_block_overlay block_shadow">
                         <img class="icon_medium" src="/img/icon-telco.svg" alt="">
                         <p class="h5">Telco / ISP</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, repellat!</p>
+                        <p>FreeRADIUS authenticates users and tracks accounting data for millions of DSL connections and phones every day.</p>
                         <img ng-click="toggle('#hero-more-2', true)" src="/img/less.svg" alt="" class="icon_small">
                     </div>
                 </div>
@@ -213,7 +213,7 @@
                     <div id="hero-more-3" class="home_hero_block_overlay block_shadow">
                         <img class="icon_medium" src="/img/icon-telco.svg" alt="">
                         <p class="h5">Enterprise</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, repellat!</p>
+                        <p>Both wired and wireless 802.1X solutions use RADIUS as the backend. From the smallest business to the largest enterprise, FreeRADIUS can be found everywhere!</p>
                         <img ng-click="toggle('#hero-more-3', true)" src="/img/less.svg" alt="" class="icon_small">
                     </div>
                 </div>
@@ -283,23 +283,23 @@
                 <img class="icon_medium" src="../img/develop-modules.svg" alt="">
                 <p class="h5">Develop new modules</p>
                 <p>API documentation, C code examples, and anything else you need to get up-to-speed and writing modules for FreeRADIUS.</p>
-                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+                <a class="h5 undecorate text_accent-blue" href="https://github.com/FreeRADIUS/freeradius-server/blob/v4.0.x/doc/developer/coding-methods.rst">View coding styles</a>
             </div>
             <div class="columns medium-4">
                 <img class="icon_medium" src="../img/submit-modules.svg" alt="">
-                <p class="h5">submit new modules</p>
+                <p class="h5">Submit new modules</p>
                 <p>Developed your own module? Great! Submit your code back to the project and have it maintained by the community.</p>
-                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+                <a class="h5 undecorate text_accent-blue" href="https://github.com/FreeRADIUS/">Visit our GitHub page</a>
             </div>
             <div class="columns medium-4">
                 <img class="icon_medium" src="../img/patch-issues.svg" alt="">
                 <p class="h5">Patch issues</p>
-                <p>Found an issue? We accept patches for everything, from code, to documentation, to this website!</p>
-                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+                <p>Found an issue? We accept patches for everything, from code, to documentation, and even to this website!</p>
+                <a class="h5 undecorate text_accent-blue" href="https://github.com/FreeRADIUS/freeradius-server/blob/v4.0.x/doc/developer/contributing.rst">How to contribute</a>
             </div>
         </div>
         <div class="base_padding_v">
-            <a href="/community/#contributing" class="button bg_accent-blue h5">Join the community</a>
+            <a href="/community/" class="button bg_accent-blue h5">Join the community</a>
         </div>
     </div>
 </section>
@@ -323,7 +323,7 @@
             </div>
         </div>
 
-        <a class="h5 undecorate text_accent-blue" target="_blank" href="https://twitter.com/freeradius">Visit freeRADIUS on twitter</a>
+        <a class="h5 undecorate text_accent-blue" target="_blank" href="https://twitter.com/freeradius">Visit FreeRADIUS on twitter</a>
     </div>
 
     <div class="column medium-4">
@@ -340,7 +340,7 @@
             </div>
         </div>
 
-        <a class="h5 undecorate text_accent-blue" target="_blank" href="http://stackoverflow.com/questions/tagged/freeradius?sort=newest">Visit freeRADIUS on Stack Overflow</a>
+        <a class="h5 undecorate text_accent-blue" target="_blank" href="http://stackoverflow.com/questions/tagged/freeradius?sort=newest">Visit FreeRADIUS on Stack Overflow</a>
     </div>
 
     <div class="column medium-4">
@@ -356,7 +356,7 @@
             </div>
         </div>
 
-        <a class="h5 undecorate text_accent-blue" target="_blank" href="https://github.com/FreeRADIUS">Visit freeRADIUS on GitHub</a>
+        <a class="h5 undecorate text_accent-blue" target="_blank" href="https://github.com/FreeRADIUS">Visit FreeRADIUS on GitHub</a>
     </div>
 
 </div>
@@ -392,7 +392,7 @@
             </div>
             <div class="columns medium-6 base_padding_v">
                 <div class="inner">
-                    <h4 class="h2 text-white">We are the FreeRadius experts.</h4>
+                    <h4 class="h2 text-white">We are the FreeRADIUS experts.</h4>
                     <p class="text-white">Critical deadline? We offer 24/7 commercial support through NetworkRADIUS, the official sponsor of the FreeRADIUS project.</p>
                     <a href="http://networkradius.com/"><img width="300" src="../img/networkradius.svg" alt=""></a>
                 </div>
@@ -400,6 +400,7 @@
         </div>
     </div>
 </section>
+
 
     </div>
 
@@ -416,7 +417,7 @@
                          <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
                         <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
                     </div>
-                    <p>&copy; 2015 The FreeRADIUS Server Project Support and Contributors</p>
+                    <p>&copy; 2017 The FreeRADIUS Server Project Support and Contributors</p>
                 </div>
             </div>
             <div class="columns medium-8">

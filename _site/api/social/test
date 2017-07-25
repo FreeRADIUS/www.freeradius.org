@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export PATH=/usr/local/openresty/nginx/sbin/:$PATH
+export TEST_DATA='true'
+TEST_NGINX_REPOSITORY_ROOT="$(git rev-parse --show-toplevel)" prove "$@"

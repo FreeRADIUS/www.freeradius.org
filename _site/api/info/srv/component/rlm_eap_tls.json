@@ -1,0 +1,22 @@
+{
+	"name": "rlm_eap_tls",
+	"description": "Authentication with TLS",
+	"category": "authentication",
+	"documentation_link": "http://networkradius.com/doc/current/raddb/mods-available/eap",
+	"available": [
+		{
+			"branch": {
+				"name": "test_branch_a",
+				"url": "/api/info/branch/test_branch_a/"
+			},
+			"start": {
+				"name": "0.0.1",
+				"url": "/api/info/branch/test_branch_a/release/0.0.1/"
+			},
+			"end": {
+				"name": "0.0.2",
+				"url": "/api/info/branch/test_branch_a/release/0.0.2/"
+			}
+		}
+	]
+}

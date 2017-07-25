@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Community</title>
-    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="freeradius.surge.sh/community/">
-    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.surge.sh/feed.xml">
+    <link rel="canonical" href="localhost/community/">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="localhost/feed.xml">
 
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
@@ -42,8 +42,8 @@
     <div class="global-nav">
   <div class="global_links pull_right">
     <div class="global_link global_link_label h5 text">Our sites:</div>
-    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>radius</div></a>
-    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>radius</div></a>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
   </div>
 </div>
 
@@ -69,10 +69,6 @@
         
         
           
-            
-          
-        
-          
         
           
             
@@ -82,8 +78,6 @@
         
           
         
-          
-            
           
         
           
@@ -98,6 +92,12 @@
             
           
         
+          
+            
+          
+        
+          
+            
           
         
           
@@ -209,7 +209,7 @@
     <h3 class="section-title">Stay up to date with Mailing Lists</h3>
         <div class="row base_margin_b">
             <div class="columns medium-8">
-                <p>Our mailing lists keep you up to date with current issues, technical developements and general announcements for users and developers.</p>
+                <p>Our mailing lists keep you up to date with current issues, technical developements and general announcements for users and developers. They are the first place to go to for any questions to do with configuring or running the server.</p>
             </div>
             <div class="quick-links columns medium-4 text_accent-blue">
                 <a href="/support/">
@@ -223,24 +223,7 @@
     </div>
 </div>
 <section class="map_section text_centered bg_block-hero" id="contributing">
-    <div class="wrapper base_margin_b">
-        <div id='map'></div>
-        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
-        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
-        <script>
 
-            mapboxgl.accessToken = 'pk.eyJ1IjoiZGlsbG9uLXBpbG90IiwiYSI6ImNpbHNobzk3dDAwMTV0eWtyNTdzM3hueTMifQ.rs8ORrHG7Y9Rg2WjB9glEg';
-            // mapboxgl.accessToken = 'pk.eyJ1IjoiZnJlZXJhZGl1cyIsImEiOiJjaWx0ZmtneXMwMDM3dnFtNmhheXA5N3FlIn0.rWA-VJLxadgsto6tjRSPnw';
-            var map = new mapboxgl.Map({
-                container: 'map', // container id
-                style: 'mapbox://styles/dillon-pilot/cilshysxr009va7lt1rvuqiu6', //stylesheet location
-                // style: 'mapbox://styles/freeradius/ciltjr1ei00l2c3lw552jyufy', //stylesheet location
-                center: [10, 40], // starting position
-                zoom: 1.03, // starting zoom
-                scrollZoom: false,
-            });
-        </script>
-    </div>
     <div class="wrapper base_padding_v">
         <h3 class="h4">Our community is making commits worldwide – see how you can get involved below</h3>
         <img src="../img/arrow-down.svg" class="icon_xsmall">
@@ -254,19 +237,19 @@
                 <img class="icon_medium" src="../img/develop-modules.svg" alt="">
                 <p class="h5">Develop new modules</p>
                 <p>API documentation, C code examples, and anything else you need to get up-to-speed and writing modules for FreeRADIUS.</p>
-                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+                <a class="h5 undecorate text_accent-blue" href="https://github.com/FreeRADIUS/freeradius-server/blob/v4.0.x/doc/developer/coding-methods.rst">View coding styles</a>
             </div>
             <div class="columns medium-4">
                 <img class="icon_medium" src="../img/submit-modules.svg" alt="">
                 <p class="h5">Submit new modules</p>
                 <p>Developed your own module? Great! Submit your code back to the project and have it maintained by the community.</p>
-                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+                <a class="h5 undecorate text_accent-blue" href="https://github.com/FreeRADIUS/">Visit our GitHub page</a>
             </div>
             <div class="columns medium-4">
                 <img class="icon_medium" src="../img/patch-issues.svg" alt="">
                 <p class="h5">Patch issues</p>
-                <p>Found an issue? We accept patches for everything, from code, to documentation, to this website!  </p>
-                <a class="h5 undecorate text_accent-blue" href="#">Link to resource</a>
+                <p>Found an issue? We accept patches for everything, from code, to documentation, and even to this website!</p>
+                <a class="h5 undecorate text_accent-blue" href="https://github.com/FreeRADIUS/freeradius-server/blob/v4.0.x/doc/developer/contributing.rst">How to contribute</a>
             </div>
         </div>
     </div>
@@ -277,7 +260,10 @@
         <h3 class="section-title">Documentation: Showing what’s possible</h3>
         <div class="row base_margin_b">
                 <div class="columns medium-8">
-                    <p>Our <a href="http://networkradius.com/doc/current">official documentation</a> provides a comprehensive guide to configuring and deploying FreeRADIUS, but it is the user contributions to the <a href="http://wiki.freeradius.org/Home">Wiki</a> that build on the official documentation and demonstrate the server's true flexibility and utility. Even if you can't code, cookbook recipes and deployment guides are great ways to give back to the community!</p>
+                    <p>The <a href="http://doc.freeradius.org/">API documentation</a> is moving towards being the primary resource for developers of FreeRADIUS, giving information about all functions and data structures in the server, generated using Doxygen. All contributions towards improving this key resource are very welcome.</p>
+                    <p>Our official <a href="http://networkradius.com/doc/current">server documentation</a> provides a comprehensive guide to configuring and deploying FreeRADIUS, but it is the user contributions to the <a href="http://wiki.freeradius.org/Home">Wiki</a> that build on this and demonstrate the server's true flexibility and utility.</p>
+                    <h5>Contributing documentation</h5>
+                    <p>Even if you can't code, cookbook recipes and deployment guides are great ways to give back to the community!</p>
                 </div>
                 <div class="quick-links columns medium-4 text_accent-blue">
                     <a href="http://wiki.freeradius.org/Home">
@@ -307,7 +293,7 @@
             </div>
         </div>
 
-        <a class="h5 undecorate text_accent-blue" target="_blank" href="https://twitter.com/freeradius">Visit freeRADIUS on twitter</a>
+        <a class="h5 undecorate text_accent-blue" target="_blank" href="https://twitter.com/freeradius">Visit FreeRADIUS on twitter</a>
     </div>
 
     <div class="column medium-4">
@@ -324,7 +310,7 @@
             </div>
         </div>
 
-        <a class="h5 undecorate text_accent-blue" target="_blank" href="http://stackoverflow.com/questions/tagged/freeradius?sort=newest">Visit freeRADIUS on Stack Overflow</a>
+        <a class="h5 undecorate text_accent-blue" target="_blank" href="http://stackoverflow.com/questions/tagged/freeradius?sort=newest">Visit FreeRADIUS on Stack Overflow</a>
     </div>
 
     <div class="column medium-4">
@@ -340,7 +326,7 @@
             </div>
         </div>
 
-        <a class="h5 undecorate text_accent-blue" target="_blank" href="https://github.com/FreeRADIUS">Visit freeRADIUS on GitHub</a>
+        <a class="h5 undecorate text_accent-blue" target="_blank" href="https://github.com/FreeRADIUS">Visit FreeRADIUS on GitHub</a>
     </div>
 
 </div>
@@ -348,6 +334,7 @@
 
     </div>
 </div>
+
   </div>
 
 </article>
@@ -368,7 +355,7 @@
                          <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
                         <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
                     </div>
-                    <p>&copy; 2015 The FreeRADIUS Server Project Support and Contributors</p>
+                    <p>&copy; 2017 The FreeRADIUS Server Project Support and Contributors</p>
                 </div>
             </div>
             <div class="columns medium-8">

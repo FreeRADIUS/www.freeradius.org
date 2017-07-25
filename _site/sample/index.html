@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Sample Template Page</title>
-    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="freeradius.surge.sh/sample/">
-    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.surge.sh/feed.xml">
+    <link rel="canonical" href="localhost/sample/">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="localhost/feed.xml">
 
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
@@ -42,8 +42,8 @@
     <div class="global-nav">
   <div class="global_links pull_right">
     <div class="global_link global_link_label h5 text">Our sites:</div>
-    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>radius</div></a>
-    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>radius</div></a>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
   </div>
 </div>
 
@@ -69,10 +69,6 @@
         
         
           
-            
-          
-        
-          
         
           
             
@@ -82,8 +78,6 @@
         
           
         
-          
-            
           
         
           
@@ -98,6 +92,12 @@
             
           
         
+          
+            
+          
+        
+          
+            
           
         
           
@@ -197,11 +197,11 @@
 
   <div class="post-content">
     <div class="wrapper base_margin_b">
-      <h2 id="getting-started">Getting Started</h2>
+      <p>##Getting Started</p>
 
 <p>This page describes how to perform the initial configuration of FreeRADIUS. It assumes a basic knowledge of Unix system administration. No RADIUS knowledge is required.</p>
 
-<h4 id="installing-the-server">Installing the Server</h4>
+<p>####Installing the Server</p>
 
 <p>Where possible, we recommend using the packaging system that is used by your operating system. The version that is supplied by your OS might be out of date, but it is likely to work “out of the box”.</p>
 
@@ -211,7 +211,7 @@
 
 <p>Note that in Debian-based systems, the server daemon is called <code class="highlighter-rouge">freeradius</code> instead of <code class="highlighter-rouge">radiusd</code> The configuration files are also located in <code class="highlighter-rouge">/etc/freeradius</code> instead of <code class="highlighter-rouge">/etc/raddb/</code>. We use radiusd and /etc/raddb/ in this guide, and trust that Debian administrators can translate to their system.</p>
 
-<h4 id="some-background">Some background</h4>
+<p>####Some background</p>
 
 <p>Once the server has been installed, the first thing to do is <em>change as little as possible</em>. The default configuration is designed to work everywhere, and to perform nearly every authentication method.</p>
 
@@ -227,7 +227,7 @@
 
 <p>We recommend <em>reading the debug output of the server</em>. While it contains a lot of text, it usually contains error messages which describe exactly what went wrong, and how to fix it.</p>
 
-<h4 id="starting-the-server">Starting the server</h4>
+<p>####Starting the server</p>
 
 <p>When the server has been installed on a new machine, the first step is to start it in debugging mode, as user <code class="highlighter-rouge">root</code>:</p>
 
@@ -239,7 +239,7 @@
 
 <p>Otherwise, typical errors include <code class="highlighter-rouge">Address already in use</code>, which means that there is another radius server already running. You will need to find that one and stop it before running the server in debugging mode.</p>
 
-<h4 id="initial-tests">Initial Tests</h4>
+<p>####Initial Tests</p>
 
 <p>Testing authentication is simple. Edit the users file (in v3 this has been moved to <code class="highlighter-rouge">raddb/mods-config/files/authorize</code>), and add the following line of text at the top of the file, before anything else:</p>
 
@@ -263,7 +263,7 @@
 
 <p>The next step is to add more users, and to configure databases. Those steps are outside of the scope of this short web page, but the general method to use is important, and is outlined in the next section.</p>
 
-<h4 id="adding-a-client">Adding a client</h4>
+<p>####Adding a client</p>
 
 <p>The above test runs <code class="highlighter-rouge">radtest</code> from localhost. It is useful to add a new client, which can be done by editing the <code class="highlighter-rouge">clients.conf</code> file. Add the following contets:</p>
 
@@ -286,7 +286,7 @@
 
 <hr />
 
-<h4 id="configuring-the-server">Configuring the Server</h4>
+<p>####Configuring the Server</p>
 
 <p>Changing the server configuration should be done via the following steps:</p>
 
@@ -314,9 +314,9 @@
   </li>
 </ol>
 
-<h4 id="other-resources">Other Resources</h4>
+<p>####Other Resources</p>
 
-<p>A number of guides are available from Network RADIUS. In particular, we recommend the Technical Guide, which should be read by every new RADIUS administrator. It explains RADIUS concepts, and covers how to perform introductory administation and maintenance. More in-depth guides are available on the same page.</p>
+<p>A number of guides are available from NetworkRADIUS. In particular, we recommend the Technical Guide, which should be read by every new RADIUS administrator. It explains RADIUS concepts, and covers how to perform introductory administation and maintenance. More in-depth guides are available on the same page.</p>
 
     </div>
   </div>
@@ -339,7 +339,7 @@
                          <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
                         <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
                     </div>
-                    <p>&copy; 2015 The FreeRADIUS Server Project Support and Contributors</p>
+                    <p>&copy; 2017 The FreeRADIUS Server Project Support and Contributors</p>
                 </div>
             </div>
             <div class="columns medium-8">

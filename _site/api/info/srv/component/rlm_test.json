@@ -1,0 +1,22 @@
+{
+	"name": "rlm_test",
+	"description": "rlm_test description",
+	"category": "policy",
+	"documentation_link": "http://networkradius.com/doc/current/raddb/mods-available/test",
+	"available": [
+		{
+			"branch": {
+				"name": "test_branch_a",
+				"url": "/api/info/branch/test_branch_a/"
+			},
+			"start": {
+				"name": "0.0.1",
+				"url": "/api/info/branch/test_branch_a/release/0.0.1/"
+			},
+			"end": {
+				"name": "0.0.2",
+				"url": "/api/info/branch/test_branch_a/release/0.0.2/"
+			}
+		}
+	]
+}

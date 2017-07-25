@@ -1,0 +1,24 @@
+2016/05/02 10:09:38 [notice] 41840#0: using the "kqueue" event method
+2016/05/02 10:09:38 [notice] 41840#0: openresty/1.9.7.4
+2016/05/02 10:09:38 [notice] 41840#0: built by clang 7.3.0 (clang-703.0.29)
+2016/05/02 10:09:38 [notice] 41840#0: OS: Darwin 15.4.0
+2016/05/02 10:09:38 [notice] 41840#0: hw.ncpu: 8
+2016/05/02 10:09:38 [notice] 41840#0: net.inet.tcp.sendspace: 131072
+2016/05/02 10:09:38 [notice] 41840#0: kern.ipc.somaxconn: 128
+2016/05/02 10:09:38 [notice] 41840#0: getrlimit(RLIMIT_NOFILE): 256:9223372036854775807
+2016/05/02 10:09:39 [debug] 41841#0: *1 [lua] http.lua:542: send_request(): 
+GET /2.2/questions?order=desc&tagged=freeradius&tagged=freeradius2&tagged=freeradius3&filter=withbody&sort=creation&site=stackoverflow&todate=1462060800&page=1&key=Pv)MLDFfh)Uh7lqVRL*fmQ((&pagesize=3 HTTP/1.1
+Host: api.stackexchange.com
+User-Agent: lua-resty-http/0.07 (Lua) ngx_lua/10001
+Accept-Encoding: zlib
+
+
+2016/05/02 10:09:39 [debug] 41841#0: *1 [lua] http.lua:542: send_request(): 
+GET http://www.freeradius.org/logo.png HTTP/1.1
+Host: www.freeradius.org
+User-Agent: lua-resty-http/0.07 (Lua) ngx_lua/10001
+
+
+2016/05/02 10:09:39 [notice] 41841#0: signal 3 (SIGQUIT) received, shutting down
+2016/05/02 10:09:39 [info] 41841#0: kevent() failed (4: Interrupted system call)
+2016/05/02 10:09:39 [notice] 41841#0: exit

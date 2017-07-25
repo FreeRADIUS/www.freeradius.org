@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>FreeRADIUS</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    <description>The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
 </description>
-    <link>freeradius.surge.sh/</link>
-    <atom:link href="freeradius.surge.sh/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 05 Aug 2016 14:08:39 -0400</pubDate>
-    <lastBuildDate>Fri, 05 Aug 2016 14:08:39 -0400</lastBuildDate>
-    <generator>Jekyll v3.1.1</generator>
+    <link>localhost/</link>
+    <atom:link href="localhost/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 25 Jul 2017 10:02:15 +0000</pubDate>
+    <lastBuildDate>Tue, 25 Jul 2017 10:02:15 +0000</lastBuildDate>
+    <generator>Jekyll v3.5.0</generator>
     
       <item>
         <title>Welcome to Jekyll!</title>
@@ -21,15 +21,15 @@
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;Tom&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &#39;Hi, Tom&#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;
 
 </description>
-        <pubDate>Thu, 11 Feb 2016 10:13:52 -0500</pubDate>
-        <link>freeradius.surge.sh/jekyll/update/2016/02/11/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">freeradius.surge.sh/jekyll/update/2016/02/11/welcome-to-jekyll.html</guid>
+        <pubDate>Thu, 11 Feb 2016 15:13:52 +0000</pubDate>
+        <link>localhost/jekyll/update/2016/02/11/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">localhost/jekyll/update/2016/02/11/welcome-to-jekyll.html</guid>
         
         
         <category>jekyll</category>
@@ -46,9 +46,9 @@
 
 &lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 18 Sep 2015 00:00:00 -0400</pubDate>
-        <link>freeradius.surge.sh/vul_in_deps/2015/09/18/revoked-intermediate-certificates.html</link>
-        <guid isPermaLink="true">freeradius.surge.sh/vul_in_deps/2015/09/18/revoked-intermediate-certificates.html</guid>
+        <pubDate>Fri, 18 Sep 2015 00:00:00 +0000</pubDate>
+        <link>localhost/vul_in_deps/2015/09/18/revoked-intermediate-certificates.html</link>
+        <guid isPermaLink="true">localhost/vul_in_deps/2015/09/18/revoked-intermediate-certificates.html</guid>
         
         <category>security</category>
         
@@ -65,9 +65,9 @@
 
 &lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
 </description>
-        <pubDate>Wed, 16 Sep 2015 00:00:00 -0400</pubDate>
-        <link>freeradius.surge.sh/vul_notifications/2015/09/16/tunnel-password-vulnerabilities.html</link>
-        <guid isPermaLink="true">freeradius.surge.sh/vul_notifications/2015/09/16/tunnel-password-vulnerabilities.html</guid>
+        <pubDate>Wed, 16 Sep 2015 00:00:00 +0000</pubDate>
+        <link>localhost/vul_notifications/2015/09/16/tunnel-password-vulnerabilities.html</link>
+        <guid isPermaLink="true">localhost/vul_notifications/2015/09/16/tunnel-password-vulnerabilities.html</guid>
         
         <category>security</category>
         
@@ -84,9 +84,9 @@
 
 &lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 18 Sep 2014 00:00:00 -0400</pubDate>
-        <link>freeradius.surge.sh/vul_in_deps/2014/09/18/revoked-intermediate-certificates2.html</link>
-        <guid isPermaLink="true">freeradius.surge.sh/vul_in_deps/2014/09/18/revoked-intermediate-certificates2.html</guid>
+        <pubDate>Thu, 18 Sep 2014 00:00:00 +0000</pubDate>
+        <link>localhost/vul_in_deps/2014/09/18/revoked-intermediate-certificates2.html</link>
+        <guid isPermaLink="true">localhost/vul_in_deps/2014/09/18/revoked-intermediate-certificates2.html</guid>
         
         <category>security</category>
         
@@ -103,9 +103,9 @@
 
 &lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 16 Sep 2014 00:00:00 -0400</pubDate>
-        <link>freeradius.surge.sh/vul_notifications/2014/09/16/tunnel-password-vulnerabilities2.html</link>
-        <guid isPermaLink="true">freeradius.surge.sh/vul_notifications/2014/09/16/tunnel-password-vulnerabilities2.html</guid>
+        <pubDate>Tue, 16 Sep 2014 00:00:00 +0000</pubDate>
+        <link>localhost/vul_notifications/2014/09/16/tunnel-password-vulnerabilities2.html</link>
+        <guid isPermaLink="true">localhost/vul_notifications/2014/09/16/tunnel-password-vulnerabilities2.html</guid>
         
         <category>security</category>
         
@@ -122,9 +122,9 @@
 
 &lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
 </description>
-        <pubDate>Wed, 18 Sep 2013 00:00:00 -0400</pubDate>
-        <link>freeradius.surge.sh/vul_in_deps/2013/09/18/revoked-intermediate-certificates.html</link>
-        <guid isPermaLink="true">freeradius.surge.sh/vul_in_deps/2013/09/18/revoked-intermediate-certificates.html</guid>
+        <pubDate>Wed, 18 Sep 2013 00:00:00 +0000</pubDate>
+        <link>localhost/vul_in_deps/2013/09/18/revoked-intermediate-certificates.html</link>
+        <guid isPermaLink="true">localhost/vul_in_deps/2013/09/18/revoked-intermediate-certificates.html</guid>
         
         <category>security</category>
         
@@ -141,9 +141,9 @@
 
 &lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 18 Sep 2012 00:00:00 -0400</pubDate>
-        <link>freeradius.surge.sh/vul_in_deps/2012/09/18/revoked-intermediate-certificates.html</link>
-        <guid isPermaLink="true">freeradius.surge.sh/vul_in_deps/2012/09/18/revoked-intermediate-certificates.html</guid>
+        <pubDate>Tue, 18 Sep 2012 00:00:00 +0000</pubDate>
+        <link>localhost/vul_in_deps/2012/09/18/revoked-intermediate-certificates.html</link>
+        <guid isPermaLink="true">localhost/vul_in_deps/2012/09/18/revoked-intermediate-certificates.html</guid>
         
         <category>security</category>
         
@@ -160,9 +160,9 @@
 
 &lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 18 Sep 2011 00:00:00 -0400</pubDate>
-        <link>freeradius.surge.sh/vul_in_deps/2011/09/18/revoked-intermediate-certificates.html</link>
-        <guid isPermaLink="true">freeradius.surge.sh/vul_in_deps/2011/09/18/revoked-intermediate-certificates.html</guid>
+        <pubDate>Sun, 18 Sep 2011 00:00:00 +0000</pubDate>
+        <link>localhost/vul_in_deps/2011/09/18/revoked-intermediate-certificates.html</link>
+        <guid isPermaLink="true">localhost/vul_in_deps/2011/09/18/revoked-intermediate-certificates.html</guid>
         
         <category>security</category>
         
@@ -179,9 +179,9 @@
 
 &lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
 </description>
-        <pubDate>Sat, 18 Sep 2010 00:00:00 -0400</pubDate>
-        <link>freeradius.surge.sh/vul_in_deps/2010/09/18/revoked-intermediate-certificates.html</link>
-        <guid isPermaLink="true">freeradius.surge.sh/vul_in_deps/2010/09/18/revoked-intermediate-certificates.html</guid>
+        <pubDate>Sat, 18 Sep 2010 00:00:00 +0000</pubDate>
+        <link>localhost/vul_in_deps/2010/09/18/revoked-intermediate-certificates.html</link>
+        <guid isPermaLink="true">localhost/vul_in_deps/2010/09/18/revoked-intermediate-certificates.html</guid>
         
         <category>security</category>
         

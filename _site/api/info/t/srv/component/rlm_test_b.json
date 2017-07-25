@@ -1,0 +1,22 @@
+{
+	"name": "rlm_test_b",
+	"description": "rlm_test_b description",
+	"category": "datastore",
+	"documentation_link": "http://networkradius.com/doc/current/raddb/mods-available/rlm_test_b",
+	"available": [
+		{
+			"branch": {
+				"name": "test_branch_a",
+				"url": "/api/info/branch/test_branch_a/"
+			},
+			"start": {
+				"name": "1.0.0-beta1",
+				"url": "/api/info/branch/test_branch_a/release/1.0.0-beta1/"
+			},
+			"end": {
+				"name": "1.0.0-pre0",
+				"url": "/api/info/branch/test_branch_a/release/1.0.0-pre0/"
+			}
+		}
+	]
+}
