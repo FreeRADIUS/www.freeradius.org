@@ -850,18 +850,19 @@ sub get_component_release_minmax
 	return ($min, $max);
 }
 
-#** @function get_branch_release_data ($repo, $release)
+#** @function get_branch_release_data ($repo, $components, $release)
 # @brief Build data structure for each release
 #
 # Pulls together everything needed to create a branch release JSON file.
 #
 # @params $repo		Git::Repository reference
+# @params $%components	Component repository
 # @params $%release	Hashref of release
 #*
 
 sub get_branch_release_data
 {
-	my ($repo, $release) = @_;
+	my ($repo, $components, $release) = @_;
 
 	my %json;
 
@@ -891,40 +892,43 @@ sub get_branch_release_data
 	}
 	$json{download} = \@download;
 
+	my $changelog = get_release_changelog($repo, $tag);
+
+	my @features;
+	my @defects;
+
 	# build list of features
 	#
-	my @features = ();
-	my %feature = (
-		description => "Test feature",
-		component => [
-			{
-				name => "rlm_always",
-				url => component_url("rlm_always"),
-			},
-		],
-	);
-	push @features, \%feature;
-	$json{features} = \@features;
+	foreach my $section (keys %$changelog) {
+		my $list;
+		if ($section =~ /improvements/i) {
+			$list = \@features;
+		} elsif ($section =~ /fixes/i) {
+			$list = \@defects;
+		} else {
+			# (otherwise generally parse errors which we'll ignore)
+			next;
+		}
 
-	# build list of defects
-	#
-	my @defects = ();
-	my %defect = (
-		description => "Test issue",
-		exploit => \0,
-		component => [
-			{
-				name => "rlm_rest",
-				url => component_url("rlm_rest"),
-			},
-		],
-	);
-	push @defects, \%defect;
-	$json{defects} = \@defects;
+		foreach my $item (@{$$changelog{$section}}) {
+			my $add = {
+				description => $item
+			};
+
+			my $component = changelog_entry_components_json($item, $components);
+			$$add{component} = $component if @$component;
+
+			push @$list, $add;
+		}
+	}
+
 
 	$json{name} = $$release{version};
 	$json{summary} = "The focus of this release is $focus";
 	$json{date} = git_date($repo, $$release{tag});
+
+	$json{features} = \@features if @features;
+	$json{defects} = \@defects if @defects;
 
 	$$release{output} = \%json;
 }
@@ -1119,10 +1123,6 @@ add_versions_to_branches($RELBRANCHES, $versions);
 
 find_releases($RELBRANCHES, $versions);
 
-foreach my $release (keys %$versions) {
-	get_branch_release_data($repo, $$versions{$release});
-}
-
 #print Dumper $versions;
 #print Dumper $RELBRANCHES;
 #exit;
@@ -1147,7 +1147,14 @@ foreach my $version (keys %$versions) {
 
 find_component_branches($components, $RELBRANCHES);
 
-# read and parse readme file data
+# work out the data needed for the JSON files for the branches and releases
+#
+foreach my $release (keys %$versions) {
+	get_branch_release_data($repo, $components, $$versions{$release});
+}
+
+# read and parse readme file data for the components
+#
 get_readme_files($repo, $components);
 
 foreach my $component (keys %$components) {
