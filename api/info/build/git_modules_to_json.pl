@@ -711,9 +711,9 @@ sub get_readme_files
 		my $readme = get_component_readme($repo, $$cd{readmeblob});
 		$$cd{readme} = $readme;
 
-		# if there is some metadata, hope it is fairly well formed and
-		# try and extract the category from it. TODO would be to use a
-		# proper XML library, but whatever.
+		# If there is some metadata, hope it is fairly well formed and
+		# try and extract the category from it. Should be better to use
+		# a proper XML library, but whatever.
 		#
 		if ($$readme{metadata}) {
 			my $metadata = $$readme{metadata};
@@ -722,7 +722,7 @@ sub get_readme_files
 			$metadata =~ s/\s*//mg;
 
 			# check for something that looks familiar
-			if ($metadata =~ m#<dl><dt>category</dt><dd>([a-z]+)</dd></dl>#) {
+			if ($metadata =~ m#<dl><dt>category</dt><dd>([a-z]+)</dd>#) {
 				$$readme{category} = $1;
 			}
 		}
