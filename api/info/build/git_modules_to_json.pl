@@ -81,6 +81,9 @@ my $RELBRANCHES = [
 		branch => "0.x.x",
 		description => "Obsolete stable branch",
 		status => "obsolete",
+		focus => {
+			"0.9.3" => "security",
+		},
 	},
 ];
 
