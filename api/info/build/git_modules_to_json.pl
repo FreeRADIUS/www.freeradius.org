@@ -704,11 +704,22 @@ sub get_readme_files
 
 	foreach my $component (keys %$components) {
 		my $cd = $$components{$component};
-		next unless defined $$cd{readmeblob};
+		my $readme;
 
 		# get the readme file data and add to the component
 		#
-		my $readme = get_component_readme($repo, $$cd{readmeblob});
+		if (defined $$cd{readmeblob}) {
+			$readme = get_component_readme($repo, $$cd{readmeblob});
+		} else {
+			# module has no useful README to use, it's probably old,
+			# so make something up
+			#
+			$readme = {
+				componentname => $$cd{name},
+				summary => "The " . $$cd{name} . " module.",
+			}
+		}
+
 		$$cd{readme} = $readme;
 
 		# If there is some metadata, hope it is fairly well formed and
@@ -725,6 +736,8 @@ sub get_readme_files
 			if ($metadata =~ m#<dl><dt>category</dt><dd>([a-z]+)</dd>#) {
 				$$readme{category} = $1;
 			}
+		} else {
+			$$readme{category} = 'obsolete';
 		}
 	}
 }
