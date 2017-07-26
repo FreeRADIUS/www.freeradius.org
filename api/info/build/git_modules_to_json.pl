@@ -702,7 +702,7 @@ sub get_readme_files
 {
 	my ($repo, $components) = @_;
 
-	foreach my $component (sort keys %$components) {
+	foreach my $component (keys %$components) {
 		my $cd = $$components{$component};
 		next unless defined $$cd{readmeblob};
 
