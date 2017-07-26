@@ -1018,7 +1018,13 @@ sub get_component_release_data
 	$json{name} = $$component{name};
 	$json{description} = $$component{readme}{summary} || "";
 	$json{category} = $$component{readme}{category} || "";
-	$json{documentation_link} = ""; # TODO "http://networkradius.com/doc/current/raddb/mods-available/linelog";
+
+       	# TODO Well, these are all over the place, so there's no nice easy way
+	# to find out where the correct documentation is. The best thing is probably
+	# a link in the module README.md file, but for now just link to the generic
+	# page rather than specific module documentation.
+	#
+	$json{documentation_link} = "http://networkradius.com/doc/current/raddb/mods-available/home.html";
 
 	$$component{output} = \%json;
 }
