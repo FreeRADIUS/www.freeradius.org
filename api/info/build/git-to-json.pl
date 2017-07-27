@@ -9,21 +9,14 @@
 # Written in perl to make Arran happy.
 #
 # @author Matthew Newton
-# @date 2017-07-11
+# @date 2017-07-27
 #*
 
 use strict;
 use Data::Dumper;
-
 use File::Path qw(make_path);
 use JSON;
-
 use Git::Repository;
-
-my $gitdir = "/srv/freeradius-server";
-my $outdir = "/tmp/wsbuild"; # TODO make this a temp dir and then move into place
-
-my $repo = Git::Repository->new( work_tree => $gitdir );
 
 
 my $RELBRANCHES = [
@@ -87,6 +80,89 @@ my $RELBRANCHES = [
 		},
 	},
 ];
+
+
+
+if (scalar @ARGV != 2) {
+	print STDERR "Syntax: $0 <git repository> <output dir>\n";
+	exit(1);
+}
+
+my $gitdir = $ARGV[0];
+my $outdir = $ARGV[1];
+
+if (! -d "$gitdir/.git") {
+	die "Cannot find git repository '$gitdir'\n";
+}
+
+if (! -d $outdir) {
+	mkdir "$outdir";
+}
+
+if (! -d $outdir) {
+	die "Cannot find output directory '$outdir'\n";
+}
+
+
+my $repo = Git::Repository->new( work_tree => $gitdir );
+
+
+# find all release_x_y_z tags and vN.x.x branches
+#
+my $versions = get_versions($repo);
+
+# assign each release version to branches in RELBRANCHES, so
+# we know which version (e.g. 3.0.5) is in which branch (e.g.
+# 3.0.x)
+#
+add_versions_to_branches($RELBRANCHES, $versions);
+
+# find the latest stable release for each branch
+#
+find_latest_stable_releases($RELBRANCHES, $versions);
+
+# global component repository to store all info about modules
+#
+my $components = {};
+
+# go through all versions in git and add the modules and
+# protocols to the components repository
+#
+foreach my $version (keys %$versions) {
+	get_release_components($repo, $components, $$versions{$version});
+}
+
+# go through each component and record the branches it appears in
+# we need this because the web site shows the min and max versions a component
+# appears in within a branch, not globally. e.g. rahter than "this appeared in
+# 2.0.4 and vanished in 3.0.14" it's "it appeared in 2.x.x between 2.0.4 and
+# 2.2.10, and in 3.0.x between 3.0.0 and 3.0.14"
+#
+find_component_branches($components, $RELBRANCHES);
+
+# work out the data needed for the JSON files for the branches and releases
+#
+foreach my $release (keys %$versions) {
+	get_branch_release_data($repo, $components, $$versions{$release});
+}
+
+# read and parse readme file data for the components
+#
+get_readme_files($repo, $components);
+
+# work out the data needed for the components' JSON files
+#
+foreach my $component (keys %$components) {
+	get_component_release_data($repo, $$components{$component});
+}
+
+# write out a shedload of json files
+#
+build_web_json($RELBRANCHES, $versions, $components, $outdir);
+
+exit;
+
+
 
 
 #** @function component_url ($component)
@@ -1145,59 +1221,4 @@ sub build_web_json
 #print "yes\n" if version_is_in_branch("3.0.15", "3.0.x");
 #print "yes\n" if version_is_in_branch("3.0.15", "3.x.x");
 #print "yes\n" if not version_is_in_branch("3.0.15", "3.1.x");
-
-
-
-# find all release_x_y_z tags and vN.x.x branches
-#
-my $versions = get_versions($repo);
-
-# assign each release version to branches in RELBRANCHES, so
-# we know which version (e.g. 3.0.5) is in which branch (e.g.
-# 3.0.x)
-#
-add_versions_to_branches($RELBRANCHES, $versions);
-
-# find the latest stable release for each branch
-#
-find_latest_stable_releases($RELBRANCHES, $versions);
-
-# global component repository to store all info about modules
-#
-my $components = {};
-
-# go through all versions in git and add the modules and
-# protocols to the components repository
-#
-foreach my $version (keys %$versions) {
-	get_release_components($repo, $components, $$versions{$version});
-}
-
-# go through each component and record the branches it appears in
-# we need this because the web site shows the min and max versions a component
-# appears in within a branch, not globally. e.g. rahter than "this appeared in
-# 2.0.4 and vanished in 3.0.14" it's "it appeared in 2.x.x between 2.0.4 and
-# 2.2.10, and in 3.0.x between 3.0.0 and 3.0.14"
-#
-find_component_branches($components, $RELBRANCHES);
-
-# work out the data needed for the JSON files for the branches and releases
-#
-foreach my $release (keys %$versions) {
-	get_branch_release_data($repo, $components, $$versions{$release});
-}
-
-# read and parse readme file data for the components
-#
-get_readme_files($repo, $components);
-
-# work out the data needed for the components' JSON files
-#
-foreach my $component (keys %$components) {
-	get_component_release_data($repo, $$components{$component});
-}
-
-# write out a shedload of json files
-#
-build_web_json($RELBRANCHES, $versions, $components, $outdir);
 
