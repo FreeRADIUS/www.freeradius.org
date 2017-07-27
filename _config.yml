@@ -13,7 +13,7 @@ description: > # this means to ignore newlines until "baseurl:"
   AAA server, BSD licensed client and PAM and Apache modules. Full
   support is available from NetworkRADIUS.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "freeradius.surge.sh" # the base hostname & protocol for your site
+url: "new.freeradius.org" # the base hostname & protocol for your site
 twitter_username: jekyllrb
 github_username:  jekyll
 
