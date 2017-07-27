@@ -1,0 +1,1007 @@
+
+
+
+
+
+Network Working Group                                   Kaushik Narayan
+Category :Experimental                                        HCL-Cisco
+Title : draft-kaushik-radius-sec-ext-06.txt                   July 2001
+
+
+
+             Radius Security Extensions using Kerberos v5
+
+
+Status of this Memo
+
+   This document is an Internet-Draft and is in full conformance with
+   all provisions of Section 10 of RFC2026.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF), its areas, and its working groups. Note that
+   other groups may also distribute working documents as
+   Internet-Drafts.
+
+   Internet-Drafts are draft documents valid for a maximum of six
+   months and may be updated, replaced, or obsoleted by other documents
+   at any time. It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   The list of current Internet-Drafts can be accessed at
+   http://www.ietf.org/ietf/1id-abstracts.txt
+
+   The list of Internet-Draft Shadow Directories can be accessed at
+   http://www.ietf.org/shadow.html.
+
+   The distribution of this memo is unlimited. It is filed as <draft-
+   kaushik-radius-sec-ext-05.txt>, and expires February 22, 2001. 
+   Please send comments to the author (kaushik@cisco.com).
+
+
+Copyright Notice
+
+    Copyright (C) The Internet Society (2000).  All Rights Reserved.
+
+Abstract
+
+   The RADIUS protocol described in RFC2865 and RFC2866 defines 
+   hop by hop message integrity and minimal AVP encryption using 
+   statically configured symmetric transforms to secure communication 
+   between two adjacent RADIUS peers. Cross domain Radius applications
+   like roaming have a requirement for end to end security. This 
+   document specifies how end to end AVP authentication, integrity and 
+   encryption can be provided for RADIUS  using the Kerberos protocol. 
+   This document also specifies how additionally stronger hop by hop 
+   AVP authentication, integrity and encryption can be provided for 
+   RADIUS using the Kerberos protocol.
+
+
+
+Kaushik                    expires January 2002                [Page 1]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+Table of Contents
+
+ 1.0 Introduction ................................................. 2
+ 2.0 Need for Radius encryption and role of Kerberos .............. 2
+ 3.0 Kerberized Radius Operation .................................. 3
+ 3.1 End to End Security using Kerberized Radius .................. 4
+ 3.2 Hop by Hop Security using Kerberized Radius .................. 7
+ 3.3 Encryption operation ......................................... 7 
+ 3.4 Integrity protection operation ............................... 8 
+ 3.5 Request routing .............................................. 9 
+ 4.0 Packet Format ............................................... 11
+ 5.0 Packet Types ................................................ 11
+ 6.0 Attributes .................................................. 11
+ 6.1 Kerberos-EndtoEnd ........................................... 11
+ 6.1.1 Kerberos Authentication message ........................... 12
+ 6.1.2 Privacy protection message ................................ 13
+ 6.1.3 Integrity protection message .............................. 13
+ 6.1.4 Integrity protected attribute list ........................ 14
+ 6.2 Kerberos-HopbyHop ........................................... 15
+ 7.0 Implementation Notes ........................................ 16
+ 8.0 IANA Considerations ......................................... 17
+ 9.0 Security Considerations ..................................... 17
+ 10.0 References  ................................................ 17
+ 11.0 Author's Addresses.......................................... 17
+ 12.0 Full Copyright Statement ................................... 18
+
+1.0 Introduction
+
+   This memo describes the changes required to the Remote
+   Authentication Dial In User Service(RADIUS) protocol to integrate 
+   it with the Kerberos Network Authentication service (V5).
+
+   The memo is an extension to the basic Radius protocol and it 
+   provides full backward compatibility with the current Radius 
+   protocol. This memo describes the use of Kerberos authentication 
+   and encryption mechanism in the Radius protocol to provide End to 
+   End security and additional Hop by Hop security for Radius . The 
+   draft employs two additional Radius attributes namely 
+   Kerberos-End-to-End and Kerberos-Hop-by-Hop.
+
+2.0 Need for Radius encryption and role of Kerberos V
+
+   The Remote Authentication Dial In User Service (RADIUS) provides 
+   basic Authentication, Authorization and Accounting (AAA) services 
+   to a Network Access Server (NAS). The NAS uses RADIUS to 
+   communicate with a RADIUS server which holds the AAA user/policy 
+   information. 
+
+
+Kaushik                    expires January 2002                [Page 2]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+   RADIUS is a UDP based protocol with a very elementary security 
+   framework. Radius makes no provision to provide End to End security 
+   and provides Hop by Hop integrity protection and limited privacy
+   protection using static symmetric transforms. With the exception of 
+   some attributes the RADIUS packet is transmitted in cleartext and 
+   thus is vulnerable to snooping. In addition RADIUS privacy 
+   protection uses a pre-configured key which is vulnerable to attack 
+   by snooping. End to End security is a key requirement for 
+   interdomain scenarios like roaming and shared services and even the 
+   Hop by Hop security that Radius provides might be insufficient for 
+   some cases. 
+
+   Kerberos V provides a authentication, integrity protection and 
+   encryption services  which can be easily integrated seamlessly 
+   with other protocols. This document describes how RADIUS may be 
+   secured using Kerberos V.
+
+   Note: RADIUS as defined in RFC2865 is referred to as Normal RADIUS
+   operation in this document. The attributes defined in RFC2865 can
+   be encrypted end to end with the exception of the User-Name and 
+   Called-Station-Id attributes, these attributes are used by RADIUS 
+   proxies to forward RADIUS packets, and thus cannot be encrypted
+   end to end. The RADIUS attributes added in this draft, 
+   Kerberos-End-To-End and Kerberos-Hop-By-Hop are never encrypted.
+   RADIUS attributes, with the exception of Kerberos-End-To-End, 
+   Kerberos-Hop-By-Hop, User-Name and Called-Station-Id, are referred 
+   to as "normal" attributes in this document.
+
+3.0  Kerberized RADIUS operation
+
+   RADIUS clients and servers supporting the Kerberos Extensions
+   use the existing RADIUS message types, as defined in RFC2865. The
+   major change in operation is the addition of Kerberos-End-To-End, 
+   Kerberos-Hop-By-Hop attributes. 
+   
+   The word "radius" is used as the keyword in the Kerberos service 
+   principal. The Kerberos V principal for a RADIUS server called 
+   "servername" in the realm "serverrealm" would be 
+   radius/servername.serverrealm@serverrealm.
+
+   The NAS uses the kerberos service principal for service discovery
+   i.e. to discover the capability of a Radius server to support 
+   Kerberos. Since the kerberos service principal is defined per 
+   Radius server or proxy only Kerberized Radius servers or proxies 
+   would have the service principals registered with the KDC. The 
+   KRB_TGS_REQ would fail trying to obtain a ticket for a non 
+   Kerberized Radius server or proxy and the NAS would revert back 
+   to using the "normal" Radius operation as defined in RFC 2865.
+
+
+Kaushik                    expires January 2002                [Page 3]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+   A valid cross domain Ticket Granting Ticket(TGT) must be cached on 
+   the Radius client prior to sending a Kerberized Radius request.  
+   Cross domain TGT acquisition is out of the scope of this draft and 
+   can happen based on inter domain trust or public key extensions 
+   like PKCROSS can be employed to obtain cross realm TGTs. 
+
+   The service principal ticket is acquired from the KDC prior to 
+   a Kerberos application exchange. The RADIUS client will send 
+   a KRB_TGS_REQ to the Ticket Granting Service (TGS) in order to 
+   the service principal ticket for the RADIUS server. The TGS will 
+   reply with a KRB_TGS_REP, containing a session key and Kerberos 
+   ticket to the RADIUS service. In case the service principal 
+   ticket is present in the credentials cache on the RADIUS client, 
+   the KRB_TGS_REQ will not be sent, but the credentials would be 
+   retrieved from the cache. The credentials would be cached on the 
+   Radius client for a non negligible period of time(can vary from a 
+   few hours to months) and the number of transactions between the
+   Kerberized Radius clients and the KDC (KRB_TGS_REQ/KRB_TGS_REP)
+   would be very small as compared to the transactions between the
+   Kerberized Radius peers (KRB_AP_REQ/KRB_AP_REP). The Kerberized
+   Radius operation would mostly involve dynamic symmetric key 
+   negotiation between Radius peers using the Kerberos Application 
+   exchange (KRB_AP_REQ/KRB_AP_REP). The symmetric keys negotiated 
+   would then be used to provide integrity protection and privacy 
+   protection for the Radius AVPs.
+
+   In routing the Access-Request to the home RADIUS server, the
+   NAI is typically  used, as described in RFC 2486. For NAS to
+   homeserver End-to-End security the NAS can determine whether 
+   the Access-Request will be served locally, or whether it needs to 
+   be proxied based on the NAI. The NAS would also need the hostname 
+   of the homeserver construct the End-to-End service principal. The 
+   hostname and port of a RADIUS homeserver can be determined as 
+   described in the section 3.4. Remote realm Kerberos Key 
+   Distribution Centres(KDC) can either be statically configured or 
+   can be discovered dynamically. The internet draft 
+   "draft-ietf-cat-krb-dns-locate-02.txt" suggests a method of dynamic 
+   discovery of the KDC for a remote realm.
+ 
+3.1   End-to-End Security using Kerberized Radius 
+
+   Kerberized Radius would provide end-to-end security between Radius 
+   peers, End-to-End security refers to security between the NAS domain 
+   and the homeserver.  Implementations might have end-to-end security 
+   between the NAS and homeserver or between the NAS domain proxy 
+   server and the Radius homeserver. This draft can provide NAS to 
+   homeserver End to End security without a major compromise in NAS 
+   performance since the symmetric key operation and ticket caching 
+   make Kerberos exceptionally lightweight. This section uses the term 
+   Radius client which refers to a NAS or a NAS realm Radius proxy 
+   acting as a Radius client. 
+
+
+Kaushik                    expires January 2002                [Page 4]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+   The RADIUS client will start of by creating a KRB_AP_REQ message 
+   using the credentials present in the end-to-end service principal 
+   ticket. The KRB_AP_REQ will have MUTUAL-REQUIRED and USE_SECRET_KEY 
+   set in the ap-options field in order to turn on mutual 
+   authentication mode and specify to the homeserver to use its secret 
+   key to decrypt the Kerberos ticket. 
+
+   If end-to-end Kerberos is used, then an end-to-end MIC must be 
+   present. This prevents a downgrade attack in which an attacker 
+   deletes the end-to-end MIC and then modifies the reply. The 
+   integrity check message is generated as follows
+   
+   1> Create the Integrity protected attribute list TLV if one or more 
+      Radius AVPS need to be end-to-end integrity protected, the list 
+      should be in the same order in which the Radius AVPs are present 
+      in the AVP checksum block. This step is optional since a client 
+      might decide not to integrity protect any normal Radius AVPs 
+      end-to-end.
+         
+   2> Create the Keberos Integrity Protection message (MIC) 
+
+      KRB_SAFE ( Radius code (header) + Encryption flag + 
+      Integrity Protected Attribute List TLV (optional) +
+      MD5 (Block of Integrity Protected Attributes) (optional) ) 
+ 
+   Encryption flag = 1 (if end-to-end encryption is used)
+                   = 0 (otherwise)
+  
+   In case there are attributes that need to be encrypted end-to-end 
+   then a KRB_PRIV message is created which uses the Kerberos 
+   end-to-end session key to encrypt the Radius AVPs. The format of the 
+   KRB_SAFE and KRB_PRIV messages has been specified in section 3.3 and
+   section 3.4 respectively. The User-Name and Called-Station-Id 
+   attributes are never encrypted on an end-to-end basis since RADIUS 
+   proxies typically use these attributes for routing decisions.
+
+   The Radius client would then create a Kerberos-EndtoEnd attribute 
+   which would contain the TLVs for the Kerberos authentication
+   (KRB_AP_REQ), KRB_SAFE message, KRB_PRIV message and Integrity
+   protected attribute list TLV. Details about the exact format of 
+   the Kerberos-EndtoEnd attribute can be found in section 6.2. 
+
+   Any intermediate RADIUS proxy would copy the Kerberos-EndtoEnd 
+   to a new packet along with the other RADIUS attributes. Thus, 
+   RADIUS proxy operation is transparent with respect to the 
+   end-to-end Kerberized RADIUS extensions. This would enable the
+   Kerberized Radius extensions to work transparently through a
+   conventional RFC2865 Radius proxy.
+  
+   On reception of the Access-Request or Accounting-Request, the
+   Kerberized RADIUS home server would obtain the secret key for the 
+   service principal from the Kerberos keytab file. The server would 
+   extract the KRB_AP_REQ message from the Kerberos-EndtoEnd attribute 
+   and decrypt the enclosed Kerberos ticket using its secret key and 
+   obtain the Kerberos session key. 
+
+
+Kaushik                    expires January 2002                [Page 5]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+   This Kerberos session key is the same as the client session key. 
+   The server would then decrypt the Kerberos authenticator using the 
+   Kerberos session key and verify authenticator. This completes the 
+   Kerberos service authentication.  In case of an error in Kerberos 
+   authentication, an Access-Reject is sent with a Kerberos-EndtoEnd 
+   attribute containing the KRB_ERROR message in the Kerberos 
+   authentication TLV. 
+
+   On successful Kerberos authentication , the server would extract 
+   the KRB_PRIV message from the privacy TLV if it is present in the 
+   Kerberos-EndtoEnd attribute. The encrypted Radius AVPs would be 
+   decrypted from the KRB_PRIV message using the Kerberos session 
+   key. After successful decryption of any encrypted Radius AVPs the 
+   server would extract the KRB_SAFE message and integrity protected 
+   attribute list from the Kerberos-EndtoEnd attribute. The KRB_SAFE 
+   message would always be present in the Kerberos-EndtoEnd attribute, 
+   the server would do the following to verify the integrity checksum
+
+   1> Check for the Integrity protected attribute list TLV in the 
+      Kerberos-EndtoEnd attribute and extract the list of integrity 
+      attributes if this TLV is present and create a block of data 
+      with the Radius AVPs specified in the integrity protected list 
+      in the same order as in the list.
+
+   2> KRB_SAFE (Radius code + Encryption Flag + 
+      Integrity Protected Attribute List TLV (if present) +
+      MD5(Integrity Protected Radius AVPs (if present)))
+
+      here Encryption Flag = 1 (if privacy TLV is present)
+                           = 0 (otherwise)
+
+   3> Verify the generated checksum against the checksum in the 
+      KRB5_SAFE message.
+
+   Sucessful verification of the checksum completes the Kerberos 
+   operations on the Radius packet. The homeserver would have 
+   successfully performed Kerberos authentication, 
+   decryption (optional) and integrity check on the Radius packet.
+   The Radius packet can then be processed normally.
+                                                                   
+   In responding to the Access-Request or Accounting-Request, the
+   RADIUS server forms a KRB_AP_REP message containing the Kerberos
+   Response Authenticator. The KRB_AP_REP message is included within 
+   the Kerberos auth TLV in the Kerberos-EndtoEnd attribute. The 
+   end-to-end KRB5_SAFE message is generated in much the same way as 
+   the Radius client. Any Radius AVPs in the reply that need to 
+   protected end-to-end are added to the integrity protected block and
+   the integrity protected attribute list TLV is created as well. If 
+   encryption is desired on a set of normal Radius AVPs then the 
+   KRB5_PRIV message is generated which would contain the Radius AVPs 
+   encrypted with the Kerberos session key. 
+
+
+Kaushik                    expires January 2002                [Page 6]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001 
+
+
+   The homeserver would generate the Keberos-EndtoEnd attribute and 
+   add the Kerberos auth(KRB_AP_REP) TLV, integrity protection TLV 
+   (KRB_SAFE), privacy protection TLV (KRB_PRIV - optional) and the 
+   Integrity protected attribute list TLV (optional) and send back the 
+   Radius reply.
+
+   On receiving an Access-Accept, Access-Reject, Access-Challenge or
+   Accounting-Reply from the home server, the Radius client would 
+   perform the same set of operations as the homeserver to perform
+   end-to-end Kerberos authentication, decryption (optional) and
+   integrity verification. Upon successful Kerberos operation the reply
+   would processed normally.
+
+3.2 Hop by Hop Security using Kerberos
+
+   End to End security is probably the most important requirement for
+   Radius, but Radius hop by hop security itself is weak. Radius 
+   provides hop by hop integrity protection and encryption using 
+   statically configured keys. Moreover Radius doesn't encrypt anything 
+   other than the User-Password attribute. In certain cases there might 
+   be requirement to provide strong security on a hop by hop basis in 
+   addition to the end to end security requirement. This draft provides
+   Hop by Hop Kerberos authentication for Radius and hop by hop privacy 
+   protection and integrity protection of the Radius AVPs.     
+
+   Hop by Hop security are exactly similar to the End to End security 
+   operations as discussed in the previous section. The only 
+   differences being
+
+   1> Kerberos-HopbyHop attribute is used to carry the hop by hop
+      kerberos authenticator, KRB5_SAFE, KRB5_PRIV messages and the
+      hop by hop MIC attribute list. The format of this attribute
+      is exactly same as the Kerberos-EndtoEnd attribute.
+   
+   2> The hop-by-hop KRB5_SAFE message is not mandatory, this is 
+      because the Radius header authenticator provide hop by hop
+      integrity protection. 
+    
+   3> In case kerberos is employed for hop by hop security the kerberos
+      session key should be used as the Radius secret. 
+
+   Hop by Hop security is totally independent of End to End security.
+   The NAS or any intermediate Radius proxy might decide to employ 
+   Hop by Hop security by adding the Kerberos-HopbyHop attribute. This
+   may be in addition to an End to End security present between the
+   Radius client and homeserver but presence of End to End security 
+   is not mandatory for Hop by Hop security.
+   
+
+Kaushik                    expires January 2002                [Page 7]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+3.3 Encryption operation
+
+   The KRB_PRIV message carries the Radius AVP block encrypted in the 
+   Session Key. The Radius AVP block would be present in the
+   user-data field in the EncKrbPrivPart message. As defined in 
+   RFC 1510, the following ASN.1 definition describes the KRB_PRIV 
+   message
+
+   KRB-PRIV ::=         [APPLICATION 21] SEQUENCE {
+                pvno[0]                   INTEGER,
+                 msg-type[1]               INTEGER,
+                enc-part[3]               EncryptedData
+   }
+
+   EncKrbPrivPart ::=   [APPLICATION 28] SEQUENCE {
+                user-data[0]              OCTET STRING,
+                timestamp[1]              KerberosTime OPTIONAL,
+                usec[2]                   INTEGER OPTIONAL,
+                seq-number[3]             INTEGER OPTIONAL,
+                s-address[4]              HostAddress, -- sender's addr
+                r-address[5]              HostAddress OPTIONAL
+                                                      -- recip's addr
+   }
+
+   The enc-part holds an encoding of the EncKrbPrivPart sequence 
+   encrypted under the session key. As defined in RFC 1510, the 
+   following ASN.1 definition describes the encrypted contents:
+
+   EncryptedData ::=   SEQUENCE {
+                       etype[0]     INTEGER, -- EncryptionType
+                       kvno[1]      INTEGER OPTIONAL,
+                       cipher[2]    OCTET STRING -- ciphertext
+   }
+
+
+   CipherText ::=   ENCRYPTED       SEQUENCE {
+        confounder[0]   UNTAGGED OCTET STRING(conf_length)     OPTIONAL,
+        check[1]        UNTAGGED OCTET STRING(checksum_length) OPTIONAL,
+        msg-seq[2]      MsgSequence,
+        pad             UNTAGGED OCTET STRING(pad_length) OPTIONAL
+   }
+
+
+
+Kaushik                    expires January 2002                [Page 8]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+3.4 Integrity Protection operation 
+
+   The KRB_SAFE message carries the integrity protected Radius 
+   attributes and other elements in the integrity message. The exact 
+   format of the integrity protection message is given in section 
+   6.1.3. This message is carried along with a collision-proof 
+   checksum keyed with the session key. As defined in RFC 1510, the 
+   following ASN.1 definition describes the KRB_SAFE message 
+
+   KRB-SAFE ::=        [APPLICATION 20] SEQUENCE {
+               pvno[0]               INTEGER,
+               msg-type[1]           INTEGER,
+               safe-body[2]          KRB-SAFE-BODY,
+               cksum[3]              Checksum
+   }
+
+   KRB-SAFE-BODY ::=   SEQUENCE {
+               user-data[0]          OCTET STRING,
+               timestamp[1]          KerberosTime OPTIONAL,
+               usec[2]               INTEGER OPTIONAL,
+               seq-number[3]         INTEGER OPTIONAL,
+               s-address[4]          HostAddress,
+               r-address[5]          HostAddress OPTIONAL
+   }
+
+   As defined in RFC 1510, the following ASN.1 definition is used for
+   a checksum:
+
+   Checksum ::=   SEQUENCE {
+                           cksumtype[0]   INTEGER,
+                           checksum[1]    OCTET STRING
+   } 
+
+
+3.5   Request routing
+  
+   As described in RFC 2486, the Network Access Identifier (NAI) is
+   of the form user@realm. This section describes how the NAI, which
+   is typically contained within the RADIUS User-Name or
+   Called-Station-ID attributes, may be used to route RADIUS
+   requests. The procedure is similar to that used for routing
+   of SIP requests, as described in RFC 2543.
+  
+   When a RADIUS client wishes to send a request, the client MAY send
+   it to locally configured RADIUS proxy server, independent of the
+   NAI. The RADIUS proxy server MAY then forward the request based
+   on local configuration, or it MAY forward the request by determining
+   the IP address and port of the destination RADIUS server, based on
+   the realm portion of the NAI. Alternatively, the RADIUS client MAY
+   send the request directly to the destination RADIUS server.
+  
+
+Kaushik                    expires January 2002                [Page 9]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+   The IP address and port of the destination RADIUS server MAY be
+   determined based on local configuration or it MAY be determined
+   by querying DNS, using either an address record approach, or
+   an SRV record approach.
+  
+   The address record approach is the recommended default behavior,
+   since SRV records, described in RFC 2782, are not yet widely
+   deployed. Thus, the destination realm cannot generally be
+   depended upon to provide an SRV record for the RADIUS server.
+  
+   In the address record approach, the client or proxy queries the
+   DNS server for address records (A RRs, AAAA RRs, or other similar
+   address records) within the NAI realm. Note that since there are
+   no mandatory rules for naming of RADIUS servers, the address
+   record approach may not succeed even if a RADIUS server exists
+   within the destination realm. For example, the RADIUS server
+   could be named radius.realm (recommended), or it could have some
+   other arbitrary name.
+
+   Where the DNS server returns no address records, the client or
+   proxy SHOULD utilize the SRV record approach. However if one
+   or more addresses are located but no RADIUS server is found
+   at any of those addresses, then the client or proxy should
+   conclude that the RADIUS server is down, rather than utilizing
+   the SRV approach.
+
+   The approach for obtaining the IP address and port of the
+   RADIUS server via SRV records is similar to that described
+   in Appendix D of RFC 2543.  The protocol to use when
+   querying for the SRV record is "radius"; the transport
+   is UDP. Since SRV records contain port numbers in addition
+   to IP addresses, the client or proxy always uses the port
+   number when contacting the RADIUS server. If there is no
+   port number available, then the RADIUS default ports are
+   used, as specified in RFCs 2865 and RFC 2866.
+
+   The results of the SRV query are ordered based on priority.
+   If the DNS does not return any SRV records, then the
+   client or proxy concludes that the search has failed.
+   Otherwise, the client or proxy contacts each server in
+   the order listed. If no server can be contacted, the client
+   or proxy gives up.
+  
+   A client or proxy MAY cache a successful DNS query result.
+   A successful query is one where the server is determined to
+   be available at one of the addresses returned in the answer.
+   When the client or proxy wishes to send a request to the same
+   host, it MUST start the search as if it had just received this
+   answer from the name server. The client MUST follow the procedures
+   in RFC 1035 and 2308 regarding DNS cache invalidation when the DNS
+   time-to-live expires. A client SHOULD be able to interpret explicit 
+   network notifications (such as ICMP messages) which indicate that
+   a server is not reachable, rather than relying solely on timeouts.
+
+
+Kaushik                    expires January 2002               [Page 10]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+  
+
+4.0 Packet Format
+
+   The Packet Format is the same as defined in RFC2865 and
+   RFC2866.
+
+5.0 Packet Types
+
+   The Packet Types are exactly the same as defined in RFC2865 and
+   RFC2866.
+
+6.0 Attributes
+
+   The Kerberos-EndtoEnd and Kerberos-HopbyHop attributes are 
+   used in order to support the Kerberized RADIUS extensions. RADIUS 
+   Attribute values are specified in the most recent "Assigned Numbers" 
+   RFC [5]. Values 192-223 are reserved for experimental use, 224-240 
+   are reserved for implementation specific use, and 241-255 are 
+   reserved and should not be used. This document uses the following 
+   values:
+
+          92      Kerberos-EndtoEnd
+          93      Kerberos-HopbyHop
+
+          
+6.1 Kerberos-EndtoEnd
+
+   Description
+
+   The Kerberos-EndtoEnd attribute contains the End to End security
+   parameters. The attribute contains the Kerberos authentication
+   TLV (KRB_AP_REQ/KRB_AP_REP), privacy TLV (KRB_PRIV message), 
+   message integrity TLV (KRB_SAFE message) and the Integrity protected 
+   Attributes List TLV. Since all these kerberos messages put together 
+   would exceed 253 octets, multiple Kerberos-EndtoEnd attributes would 
+   be present in the RADIUS packet. 
+  
+   A summary of the Kerberos-Data Attribute format is shown below. 
+   The fields are transmitted from left to right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+   |     Type      |    Length     |  String ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Type
+
+      92 for Kerberos-EndtoEnd
+
+   Length
+
+      Length of this attribute.
+
+
+Kaushik                    expires January 2002               [Page 11]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+
+   String
+
+       The value field of the Kerberos-EndtoEnd attributes contains
+       multiple Type-Length-Value format messages.
+        
+        0                   1                   2
+        0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+       |     Type      |    Length     |  Value ...
+       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+       The possible values of the Type are
+
+       0       Kerberos Authentication message
+       1       Privacy protection message
+       2       Integrity Protection message
+       3       Integrity protected attribute list 
+        
+          
+6.1.1  Kerberos Authentication message   
+
+   Description
+
+   This Kerberos Authentication message TLV carries the KRB_AP_REQ and 
+   KRB_AP_REP/KRB_ERROR messages. These messages are used for Kerberos
+   mutual authentication and symmetric key exchange.
+
+   A summary of the Kerberos Authentication message TLV  format is 
+   shown below. The fields are transmitted from left to right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+   |     Type      |    Length     |  String ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Type
+
+      0 for Kerberos Authentication message.
+
+   Length
+
+      Length of the KRB_AP_REQ, KRB_AP_REP or KRB_ERROR message.     
+
+   String
+
+      The KRB_AP_REQ, KRB_AP_REP or KRB_ERROR message. 
+
+
+
+Kaushik                    expires January 2002               [Page 12]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+6.1.2  Privacy protection message   
+
+   Description
+
+   This Privacy protection message TLV carries the KRB_PRIV message 
+   which contains encrypted Radius AVPs. This TLV would be present
+   if the client has selected end to end encryption for one or more
+   Radius attributes.
+   
+   A summary of the Privacy protection message TLV  format is shown 
+   below. The fields are transmitted from left to right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+   |     Type      |    Length     |  String ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Type
+
+      0 for Kerberos Authentication message.
+
+   Length
+
+      Length of the KRB_SAFE message.     
+
+   String
+
+      The KRB_SAFE message. 
+     
+6.1.3  Integrity protection message
+
+   Description
+
+   This Integrity protection message TLV carries the KRB_PRIV message
+   which contains the MIC computed over 
+
+   Radius code + Encryption Flag + 
+   Integrity protected attribute list TLV +
+   MD5(integrity protected Radius attributes) 
+
+   To create the fourth element in the block, the Radius client would 
+   create a block of data with the Radius AVPs that need to be 
+   integrity protected and compute a MD5 signature over this block. 
+   
+   The Integrity protection message TLV is mandatory but a Radius client
+   may decide not to have end to end integrity protection for any of the
+   "normal" Radius attributes in which the MIC would computed over
+
+   Radius code + Encryption flag
+
+   Encryption flag = 1 (if end to end encryption selected)
+                   = 0 (otherwise)
+
+
+Kaushik                    expires January 2002               [Page 13]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+  
+
+   A summary of the Integrity protection TLV  format is shown 
+   below. The fields are transmitted from left to right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+   |     Type      |    Length     |  String ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Type
+
+      0 for Kerberos Authentication message.
+
+   Length
+
+      Length of the KRB_SAFE message.
+
+   String
+
+      The KRB_SAFE message.
+
+
+6.1.4  Integrity protected attributes list
+
+   Description
+
+   This Integrity protected attributes list TLV carries the list of 
+   "normal" Radius attributes that are end to end integrity protected.
+   This TLV is not mandatory and will not be present if a Radius client
+   decides that none of the "normal" Radius attributes need end to end
+   integrity protection. This TLV would also be protected by the 
+   integrity protection message.
+
+   A summary of the Integrity protected attributes list TLV  format is  
+   shown below. The fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |             Value .......
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Type
+
+      4 for Integrity protected attributes list
+
+   Length
+
+      2 + 4 * Number of integrity protected "normal" Radius attributes.
+
+
+Kaushik                    expires January 2002               [Page 14]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+   Value
+
+      The value field is a list of integers, each item of the list would
+      occupy four octets. Each 4 octet in the list is a Radius attribute
+      type field and the list is filled in the same order as the Radius
+      attributes appear in the  block of integrity protected Radius 
+      AVPs.
+     
+6.2 Kerberos-HopbyHop
+
+   The Kerberos-HopbyHop attribute contains the Hop by Hop security
+   parameters which are used to provide Kerberos security services
+   on a hop by hop basis. The format of the Kerberos-HopbyHop is
+   exactly similar to the Kerberos-EndtoEnd attribute described in
+   the previous section. Similar to the Kerberos-EndtoEnd attribute,
+   the Kerberos-HopbyHop attribute would also contain the Kerberos 
+   authentication TLV (KRB_AP_REQ/KRB_AP_REP), privacy protection TLV 
+   (KRB_PRIV message), integrity protection TLV (KRB_SAFE message) and 
+   the Integrity protected attribute list TLV. Please refer to the 
+   previous section for the format of the Kerberos-HopbyHop attribute 
+   and the individual TLVs.
+
+
+   Note: Radius clients can choose multiple modes of operation by 
+   having the Kerberos-EndtoEnd attribute or Kerberos-HopbyHop 
+   attribute or both part of the Radius packet. The End to End mode 
+   where just the Kerberos-EndtoEnd attribute is present is the most 
+   useful mode for Radius. The End to End with Hop by Hop is an 
+   extension of the End to End where some intermediate proxies use 
+   Kerberos for hop by hop security. This mode might be used in some 
+   special cases where hop by hop security is desired across some 
+   insecure hops. This draft also provides for a Hop by Hop mode where 
+   Kerberos is used for key management instead of static key 
+   association provided for Radius. The advantage of using Kerberos 
+   for hop by hop security is dynamic key association which would 
+   provide stronger security.
+   
+   A summary of the Kerberos-EndtoEnd and Kerberos-HopbyHop attributes
+   is given below: 
+
+        --------------------------------------------------------
+       |    Attribute        |    Attribute  |     Attribute    |
+       |                     |    Added By   |      Read by     |
+        --------------------------------------------------------
+       |  Kerberos-EndtoEnd  |  NAS or NAS   |      Radius      |
+       |                     |  realm proxy  |    homeserver    |
+        --------------------------------------------------------
+       |  Kerberos-HopbyHop  |   Any Radius  | Next hop Radius  |
+       |                     |     proxy     | proxy/homeserver |
+        --------------------------------------------------------
+
+
+
+Kaushik                    expires January 2002               [Page 15]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+7.0 Implementation Notes 
+
+   This section we examine how the Kerberized RADIUS extensions
+   can be implemented on the client and server using a standard
+   Kerberos library. Following is a list of Kerberos v5 library 
+   calls that would be employed to implement the Kerberized 
+   Radius extensions.
+
+   
+   krb5_mk_req - This call would be used by the Radius client to 
+   initialize a new Kerberos security context. This call would 
+   would check whether the service principal ticket is present in 
+   the cache and if not acquire the service principal ticket from 
+   the KDC (KRB_TGS_REQ).  It would then create the KRB_AP_REQ 
+   message using the credentials present in the service principal
+   ticket. This call would also process the KRB_AP_REP received
+   back from the Radius server to complete the mutual 
+   authentication.
+
+   krb5_rd_rep - This call would be used by a Radius server to 
+   process the KRB_AP_REQ request from the client. It would 
+   perform the service authentication and retrieve the Kerberos 
+   session key. This call would also generate the KRB_AP_REP 
+   message.
+
+   krb5_mk_priv - This call would be used by the Radius client and 
+   server to encrypt the block of Radius attributes that need 
+   privacy protection using the kerberos session key. 
+
+   krb5_rd_priv - This call would be used by the Radius client and 
+   server to decrypt the block of encrypted Radius attributes using 
+   the kerberos session key.
+
+   krb5_mk_safe - This call would be used by the Radius client and 
+   server to create the Integrity checksum using the kerberos session 
+   key. 
+
+   krb5_rd_safe - This call would be used by the Radius client and 
+   server to verify the Integrity checksum using the kerberos session 
+   key. 
+
+8.0  IANA Considerations
+
+   The Packet Type Codes, Attribute Types, and Attribute Values defined
+   in this document are registered by the Internet Assigned Numbers
+   Authority (IANA) from the RADIUS name spaces.
+
+
+Kaushik                    expires January 2002               [Page 16]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+  
+
+9.0  Security Considerations
+   
+   This draft determines whether to use Kerberos purely on the basis of 
+   the existence or non-existence of a Kerberos service principal. This 
+   presents an opportunity for a downgrade attack wherein because an 
+   attacker can spoof an error message from the KDC and make the 
+   Kerberized Radius client use "vanilla" Radius which would compromise 
+   end to end security. Implementations should provide users with a 
+   policy knob which would prevent Kerberized Radius clients from 
+   falling back to "vanilla" Radius in case they encounter an error 
+   while acquiring the service principal ticket from the KDC.
+
+10.0 Acknowledgments
+
+   I would like to thank Bernard Aboba, Jeffrey Hutzelman, Sam Hartman
+   whose suggestions and comments have been invaluable. I would also 
+   like to thank Chandrasekhar S. of HCL-Cisco for assisting me in 
+   implementing the prototype for this draft.
+
+11.0 References
+
+   [RFC-1510]: Kohl, J., and C. Neuman, "The Kerberos Network
+   Authentication Service (V5)", RFC 1510, September 1993.
+
+   [RFC-2865]: C. Rigney, A. Rubens, W. Simpson, and S. Willens "Remote
+   Authentication Dial In User Service (RADIUS)", RFC 2865, June 2000.
+
+   [RFC-2486]: Aboba, B., Beadles, M., "The Network Access Identifier",
+   RFC 2486, January 1999.
+  
+   [RFC-2782]: A. Gulbrandsen, P. Vixie, L. Esibov  "A DNS RR for
+   specifying the location of services (DNS SRV)", RFC 2782, Feb 2000
+
+   [RFC-2866]: C. Rigney "RADIUS Accounting", RFC 2866, June 2000.
+
+   [RFC-2078]: Linn, J., "Generic Security Service Application Program
+   Interface, Version 2", RFC 2078, January 1997
+
+   [RFC-1509]: Wray, J., "Generic Security Service Application Program
+   Interface: C-bindings", RFC 1509, September 1993.
+
+   [RFC-2194]: B. Aboba, J. Lu, J. Alsop, J. Ding, W. Wang "Review of
+   Roaming Implementations", RFC 2194, September 1997.
+
+   [RFC-2308]: Andrews, M., "Negative Caching of DNS Queries
+   (DNS NCACHE)", RFC 2308, March 1998.
+
+
+Kaushik                    expires January 2002               [Page 17]
+
+Internet-Draft Radius Security Extensions using Kerberos v5   July 2001
+
+
+12.0 Author's Address
+
+   Kaushik Narayan
+   HCL-Cisco Offshore Development Centre,
+   49-50, Nelson Manickam Road,
+   Chennai, Tamilnadu 600 029
+   India
+
+   EMail: kaushik@cisco.com
+   Phone: +091-44-3741939
+
+13.0  Full Copyright Statement
+
+   Copyright (C) The Internet Society (2000).  All Rights Reserved.
+
+   This document and translations of it may be copied  and  furnished
+   to others,  and  derivative works that comment on or otherwise
+   explain it or assist in its implementation may be prepared, copied,
+   published  and distributed,  in  whole  or  in part, without
+   restriction of any kind, provided that the  above  copyright  notice
+   and  this  paragraph  are included on all such copies and derivative
+   works.  However, this document itself may not be modified in any
+   way, such as  by  removing  the copyright notice or references to
+   the Internet Society or other Internet organizations, except as
+   needed for  the  purpose  of  developing Internet standards in which
+   case the procedures for copyrights defined in the Internet Standards
+   process must be followed, or as required  to translate it into
+   languages other than   English.  The limited permissions granted
+   above are perpetual and  will  not  be  revoked  by  the Internet
+   Society or its successors or assigns.  This document and the
+   information contained herein is provided on an "AS IS" basis  and
+   THE INTERNET SOCIETY AND THE INTERNET ENGINEERING TASK FORCE
+   DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT
+   LIMITED TO ANY  WARRANTY  THAT  THE  USE  OF THE INFORMATION HEREIN
+   WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS  FOR  A PARTICULAR PURPOSE."
+
+
+Kaushik                    expires January 2002               [Page 18]

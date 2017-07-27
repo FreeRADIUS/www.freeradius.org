@@ -1,0 +1,355 @@
+Internet Engineering Task Force                 Jun-ichiro itojun Hagino
+INTERNET-DRAFT                                   IIJ Research Laboratory
+Expires: January 13, 2001                                  Kazu YAMAMOTO
+                                                 IIJ Research Laboratory
+                                                           July 13, 2000
+
+
+ A RADIUS attribute for IPv6 dialup PPP with static address assignment
+                 draft-itojun-ipv6-dialup-radius-00.txt
+
+Status of this Memo
+
+
+This document is an Internet-Draft and is in full conformance with all
+provisions of Section 10 of RFC2026.
+
+Internet-Drafts are working documents of the Internet Engineering Task
+Force (IETF), its areas, and its working groups.  Note that other groups
+may also distribute working documents as Internet-Drafts.
+
+Internet-Drafts are draft documents valid for a maximum of six months
+and may be updated, replaced, or obsoleted by other documents at any
+time.  It is inappropriate to use Internet-Drafts as reference material
+or to cite them other than as ``work in progress.''
+
+     The list of current Internet-Drafts can be accessed at
+     http://www.ietf.org/ietf/1id-abstracts.txt
+
+     The list of Internet-Draft Shadow Directories can be accessed at
+     http://www.ietf.org/shadow.html.
+
+
+Distribution of this memo is unlimited.
+
+The internet-draft will expire in 6 months.  The date of expiration will
+be January 13, 2001.
+
+
+Abstract
+
+The memo defines RADIUS [Rigney, 2000] attribute for supporting IPv6
+dialup PPP with static address assignment.
+
+
+1.  Usage model
+
+In this document we cover the following cases in IPv6 dialup PPP
+operation.  No other cases are addressed in the document.  Please refer
+to [Hagino, 2000] for more about requirements in/categorization of IPv6
+dialup PPP operation,
+
+o The downstream customer is a "static client", i.e. their computers
+  does not change the geographical location.
+
+o Address space is statically assigned to the downstream customer.  In
+  this document, we assume that we have assigned 3ffe:0501:ffff::/48 to
+
+
+HAGINO and YAMAMOTO     Expires: January 13, 2001               [Page 1]
+
+
+DRAFT                  Radius for IPv6 dialup PPP              July 2000
+
+  the downstream customer.
+
+o The /48 Address space is assigned for the network cloud behind the
+  customer router.  It should be noted that ISP router will have no idea
+  about the network topology in the customer site.  In the following
+  diagram, Lx denotes an IPv6 link-local address, and Gx denotes an IPv6
+  global address.
+
+       ISP router --- RADIUS server
+         |La
+         | ppp link
+         |Lb
+       Customer router
+         |Gb
+       (((3ffe:0501:ffff::/48 cloud)))
+
+
+o Routing can be statically configured, or dynamic routing protocol like
+  RIPng [Malkin, 1997] should be used.
+
+o We carry IPv6 packets using IPv6 PPP [Haskin, 1998] .  No IPv6-over-
+  IPv4 tunnelling is used.
+
+o IPv4 PPP address allocation issue is outside of the scope of the
+  document.  We can safely ignore it without loss of generality, thanks
+  to multiprotocol nature of PPP.
+
+
+2.  RADIUS attribute for carrying IPv6 address space information
+
+To exchange the information about customer IPv6 address space between
+the ISP router and RADIUS server, we need a common RADIUS attribute for
+IPv6 address space.  The attribute is defined as follows:
+
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |   Type        |   Length      |  MUST BE ZERO |  Prefixlen  |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |   IPv6 address prefix                                       |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |   IPv6 address prefix (cont'd)                              |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |   IPv6 address prefix (cont'd)                              |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |   IPv6 address prefix (cont'd)                              |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+o Type: TBD
+
+
+
+
+HAGINO and YAMAMOTO     Expires: January 13, 2001               [Page 2]
+
+
+DRAFT                  Radius for IPv6 dialup PPP              July 2000
+
+o Length: 20
+
+o Prefixlen: IPv6 prefix length for the IPv6 address space.  Between 0
+  to 128 (in decimal).  For normal use, 48 (in decimal).
+
+o IPv6 address prefix: Binary representation of IPv6 address, in network
+  byte order.  Bits outside of prefix length must be zero.
+
+For example, if we exchange "3ffe:0501:ffff::/48" with it, the attribute
+will look like follows:
+
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |   Type        |   20          |   0x00        |   48        |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |   0x3f            0xfe            0x05            0x01      |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |   0xff            0xff            0x00            0x00      |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |   0x00            0x00            0x00            0x00      |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |   0x00            0x00            0x00            0x00      |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+3.  Scenario
+
+3.1.  Contract
+
+The ISP and the downstream customer will sign a IPv6 dialup PPP
+contract.  The ISP will assign the downstream customer a global IPv6
+address space.  The ISP will inform the downstream customer of the
+following items:
+
+o The phone number which the customer should dial (the number reaches
+  ISP router), and
+
+o The global IPv6 address space (3ffe:0501:ffff::/48).
+
+The customer and ISP will exchange PPP authentication information in
+secrecy.
+
+3.2.  ISP configuration
+
+The ISP will put the following information into RADIUS database.
+
+o Account name of the user (which is the key for looking up RADIUS
+  database),
+
+o PPP authentication information, and
+
+
+
+HAGINO and YAMAMOTO     Expires: January 13, 2001               [Page 3]
+
+
+DRAFT                  Radius for IPv6 dialup PPP              July 2000
+
+o The global IPv6 address space assigned to the customer
+  (3ffe:0501:ffff::/48).
+
+
+3.3.  Customer site configuration
+
+The customer will configure the customer site using the address space
+assigned.  Customer installs default routing entry toward the ISP
+router.
+
+     ISP router --- RADIUS server
+       .La
+       .
+       .   ^ default route
+       |Lb |
+     Customer router
+       |Gb
+     (((3ffe:0501:ffff::/48 cloud)))
+
+
+3.4.  Establishing a PPP connection
+
+On PPP link establishment, the following events would happen.
+
+o The customer router calls up the ISP router.
+
+o The customer router authenticates itself to the ISP router.  The ISP
+  router contacts RADIUS server for authentication information, to check
+  if the user is legitimate.
+
+o If the user is found to be legitimate, the PPP link will be
+  established between the routers.  IPV6CP [Haskin, 1998] is used to
+  avoid duplicated link-local address on the PPP link.
+
+o The ISP router will grab information on IPv6 address space from RADIUS
+  database (NOTE: the ISP router can grab the authentiation information
+  and the IPv6 address space information, in a single query).
+
+If we use static routing the ISP router is configured with a routing
+entry for the address space, pointing to the customer router.  ISP
+router advertises the routing information to the ISP backbone, if
+necessary.
+
+
+
+
+
+
+
+
+
+
+
+
+HAGINO and YAMAMOTO     Expires: January 13, 2001               [Page 4]
+
+
+DRAFT                  Radius for IPv6 dialup PPP              July 2000
+
+     ISP router --- RADIUS server
+       |La |
+       |   v 3ffe:0501:ffff::/48
+       |
+       |   ^ default route
+       |Lb |
+     Customer router
+       |Gb
+     (((3ffe:0501:ffff::/48 cloud)))
+
+If we use dynamic routing, instead of configuring a static routing
+entry, the ISP router is configured to accept legitimate IPv6 routing
+announcements (that is, 3ffe:0501:ffff::/48) from the customer router.
+The ISP router advertises default route, and possibly more specific
+routes, to the customer router.  The customer router will advertise
+3ffe:0501:ffff::/48 to the ISP router (NOTE: the IPv6 address prefix is
+pre-configured to the customer router.  The customer router knows the
+prefix as the ISP gave the information at the contract time).
+
+3.5.  Tearing down
+
+On PPP link disconnection, the following events would happen.
+
+o The customer router, or the ISP router, wishes to disconnect the PPP
+  connection.
+
+o PPP link will be teared down using normal PPP disconnection procedure.
+
+o The ISP router removes the routing entry for the global IPv6 address
+  space for the customer.
+
+
+4.  Discussions
+
+It is possible to use the proposed attribute for non-dialup IPv6 PPP
+connections, to ease management in the ISP side.
+
+It is possible to define the proposed RADIUS attribute as a vendor-type
+attribute under "Vendor-Specific" type (26).  The authors are not sure
+which is the way to go.
+
+
+5.  Security considerations
+
+The document talks about no security issues.
+
+
+References
+
+Rigney, 2000.
+C. Rigney, S. Willens, A. Rubens, and W. Simpson, "Remote Authentication
+Dial In User Service (RADIUS)" in RFC2865 (June 2000).
+
+
+HAGINO and YAMAMOTO     Expires: January 13, 2001               [Page 5]
+
+
+DRAFT                  Radius for IPv6 dialup PPP              July 2000
+
+ftp://ftp.isi.edu/in-notes/rfc2865.txt.
+
+Hagino, 2000.
+Jun-ichiro Hagino, "Requirements for IPv6 dialup PPP operation" in
+draft-itojun-ipv6-dialup-requirement-00.txt (July 2000). work in
+progress material.
+
+Malkin, 1997.
+G. Malkin and R. Minnear, "RIPng for IPv6" in RFC2080 (January 1997).
+ftp://ftp.isi.edu/in-notes/rfc2080.txt.
+
+Haskin, 1998.
+D. Haskin and E. Allen, "IP Version 6 over PPP" in RFC2472 (December
+1998). ftp://ftp.isi.edu/in-notes/rfc2472.txt.
+
+
+Change history
+
+None.
+
+
+Acknowledgements
+
+(to be filled)
+
+
+Author's address
+
+     Jun-ichiro itojun HAGINO
+     Research Laboratory, Internet Initiative Japan Inc.
+     Takebashi Yasuda Bldg.,
+     3-13 Kanda Nishiki-cho,
+     Chiyoda-ku,Tokyo 101-0054, JAPAN
+     Tel: +81-3-5259-6350
+     Fax: +81-3-5259-6351
+     Email: itojun@iijlab.net
+
+     Kazu YAMAMOTO
+     Research Laboratory, Internet Initiative Japan Inc.
+     (for postal address, see above)
+     Email: kazu@iijlab.net
+
+
+
+
+
+
+
+
+
+
+
+
+
+HAGINO and YAMAMOTO     Expires: January 13, 2001               [Page 6]
+

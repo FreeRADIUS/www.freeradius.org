@@ -1,0 +1,27 @@
+#! /bin/sh
+
+for RFC in rfc*.txt
+do
+
+HTML=`basename $RFC .txt`.html
+echo $RFC - $HTML
+
+cat >$HTML <<EOF
+---
+layout: default
+---
+
+<div class="wrapper base_padding_v">
+<pre>
+EOF
+
+cat $RFC >> $HTML
+
+cat >>$HTML <<EOF
+</pre>
+</div>
+EOF
+
+done
+
+

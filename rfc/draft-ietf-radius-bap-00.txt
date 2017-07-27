@@ -1,0 +1,338 @@
+
+
+
+
+
+Network Working Group                                            G. Zorn
+Internet-Draft                                     Microsoft Corporation
+Category: Informational                                    February 1998
+<draft-ietf-radius-bap-00.txt>
+
+    RADIUS Attributes for Multilink PPP Banwidth Allocation Control
+
+
+1.  Status of this Memo
+
+This  document  is an Internet-Draft.  Internet-Drafts are working docu-
+ments of the Internet Engineering Task Force (IETF), its areas, and  its
+working groups.  Note that other groups may also distribute working doc-
+uments as Internet-Drafts.
+
+Internet-Drafts are draft documents valid for a maximum  of  six  months
+and  may  be  updated,  replaced, or obsoleted by other documents at any
+time.  It is inappropriate to use Internet-Drafts as reference  material
+or to cite them other than as ``work in progress''.
+
+To  learn  the  current  status  of any Internet-Draft, please check the
+``1id-abstracts.txt'' listing contained in  the  Internet-Drafts  Shadow
+Directories  on ds.internic.net (US East Coast), nic.nordu.net (Europe),
+ftp.isi.edu (US West Coast), or munnari.oz.au (Pacific Rim).
+
+This memo provides information for the Internet  community.   This  memo
+does  not specify an Internet standard of any kind.  The distribution of
+this memo  is  unlimited.   It  is  filed  as  <draft-ietf-radius-ms-ba-
+attr-00.txt>  and  expires August 15, 1998.  Please send comments to the
+RADIUS Working Group mailing list (ietf-radius@livingston.com) or to the
+author (glennz@microsoft.com).
+
+
+2.  Abstract
+
+This  document  describes  a  set  of  vendor-specific RADIUS attributes
+designed to support the dynamic control of bandwidth allocation in  mul-
+tilink  PPP [1].  Attributes are defined that specify whether use of the
+PPP Bandwidth Allocation Protocol [2] is allowed or required on incoming
+calls,  the  level  of  line  capacity (expressed as a percentage) below
+which utilization must fall before a link is eligible to be dropped, and
+the length of time (in seconds) that a link must be underutilized before
+it is dropped.
+
+
+
+
+
+
+
+
+Zorn                                                            [Page 1]
+
+INTERNET-DRAFT            BAP RADIUS Attributes            February 1998
+
+
+3.  Specification of Requirements
+
+In this document, the key words "MAY", "MUST,  "MUST  NOT",  "optional",
+"recommended",  "SHOULD",  and  "SHOULD  NOT"  are  to be interpreted as
+described in [3].
+
+
+4.  Attributes
+
+The following sections describe sub-attributes which may be  transmitted
+in one or more RADIUS attributes of type Vendor-Specific [4].  More than
+one  sub-attribute  MAY  be  transmitted  in  a  single  Vendor-Specific
+Attribute;  if  this  is  done, the sub-attributes SHOULD be packed as a
+sequence of Vendor-Type/Vendor-Length/Value triples following the inital
+Type,  Length and Vendor-ID fields.  The Length field of the Vendor-Spe-
+cific Attribute MUST be set equal to the sum of the Vendor-Length fields
+of  the  sub-attributes contained in the Vendor-Specific Attribute, plus
+six.  The Vendor-ID field of the Vendor-Specific  Attribute(s)  MUST  be
+set to decimal 311 (Microsoft).
+
+
+4.1.  BAP-Usage
+
+   Description
+
+      This  Attribute describes whether th use of BAP is allowed, disal-
+      lowed or required on new multilink  calls.   It  MAY  be  used  in
+      Access-Accept packets.
+
+   A  summary  of  the  BAP-Usage  Attribute format is shown below.  The
+   fields are transmitted from left to right.
+
+   0                   1                   2                   3
+   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   | Vendor-Type | Vendor-Length |            Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+             Value (cont)        |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Vendor-Type
+      13 for BAP-Usage.
+
+   Vendor-Length
+      6
+
+   Value
+      The Value field is four octets.
+
+
+
+Zorn                                                            [Page 2]
+
+INTERNET-DRAFT            BAP RADIUS Attributes            February 1998
+
+
+         0      BAP usage not allowed
+         1      BAP usage allowed
+         2      BAP usage required
+
+
+4.2.  Link-Utilization-Threshold
+
+   Description
+
+      This Attribute represents the percentage  of  available  bandwidth
+      utilization below which the link must fall before the link is eli-
+      gible for termination.  Permissible values for  the  Link-Utiliza-
+      tion-Threshold Attribute are in the range 1-100, inclusive.  It is
+      only used in Access-Accept packets.
+
+   A summary of the Link-Utilization-Threshold Attribute format is shown
+   below.  The fields are transmitted from left to right.
+
+   0                   1                   2                   3
+   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |  Vendor-Type  | Vendor-Length |            Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Vendor-Type
+      14 for Link-Utilization-Threshold
+
+   Vendor-Length
+      6
+
+   Value
+      The  Value  field is four octets in length and represents the per-
+      centage of available bandwidth utilization below  which  the  link
+      must  fall before the link is eligible for termination.  Permissi-
+      ble values are in the range 1-100, inclusive.
+
+
+4.3.  Link-Drop-Time-Limit
+
+   Description
+
+      The Link-Drop-Time-Limit Attribute indicates the  length  of  time
+      (in  seconds)  that  a  link  must  be  underutilized before it is
+      dropped.  It MAY only be included in Access-Accept packets.
+
+   A summary of  the  Link-Drop-Time-Limit  Attribute  format  is  given
+
+
+
+Zorn                                                            [Page 3]
+
+INTERNET-DRAFT            BAP RADIUS Attributes            February 1998
+
+
+   below.  The fields are transmitted left to right.
+
+   0                   1                   2                   3
+   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   | Vendor-Type | Vendor-Length |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Vendor-Type
+      15 for Link-Drop-Time-Limit
+
+   Vendor-Length
+      6
+
+   Value
+      The  Value field represents the number of seconds that a link must
+      be underutilized (i.e., display bandwidth  utilization  below  the
+      threshold  specified  in the Link-Utilization-Threshold Attribute)
+      before the link is dropped.
+
+
+5.  Table of Attributes
+
+The following table provides a guide to which of  the  above  attributes
+may be found in which kinds of packets, and in what quantity.
+
+   Request Accept Reject Challenge Acct-Request #  Attribute
+   0       0-1    0      0         0            13 BAP-Usage
+   0       0-1    0      0         0            14 Link-Utilization-Threshold
+   0       0-1    0      0         0            15 Link-Drop-Time-Limit
+
+The following table defines the meaning of the above table entries.
+
+   0     This attribute MUST NOT be present in packet.
+   0+    Zero or more instances of this attribute MAY be present in packet.
+   0-1   Zero or one instance of this attribute MAY be present in packet.
+
+
+6.  Security Considerations
+
+None.
+
+
+
+
+
+
+
+
+Zorn                                                            [Page 4]
+
+INTERNET-DRAFT            BAP RADIUS Attributes            February 1998
+
+
+7.  Acknowledgements
+
+Thanks to Narendra Gidwani (nareng@microsoft.com) for useful comments.
+
+
+8.  Expiration Date
+
+This document expires August 15, 1998.
+
+
+9.  Chair's Address
+
+The RADIUS Working Group can be contacted via the current chair:
+
+   Carl Rigney
+   Livingston Enterprises
+   4464 Willow Road
+   Pleasanton, California  94588
+
+   Phone: +1 510 426 0770
+   E-Mail: cdr@livingston.com
+
+
+10.  Author's Address
+
+Questions about this memo can also be directed to:
+
+   Glen Zorn
+   Microsoft Corporation
+   One Microsoft Way
+   Redmond, Washington 98052
+
+   Phone: +1 425 703 1559
+   FAX:   +1 425 936 7329
+   EMail: glennz@microsoft.com
+
+
+11.  References
+
+[1]  Sklower,  K., et. al., "The PPP Multilink Protocol (MP)", RFC 1990,
+     August 1996
+
+[2]  Richards, C. and Smith, K., "The PPP Bandwidth Allocation  Protocol
+     (BAP)  The  PPP  Bandwidth  Allocation Control Protocol (BACP)" RFC
+     2125, March 1997
+
+[3]  Bradner, S.,  "Key words for use in RFCs  to  Indicate  Requirement
+     Levels", RFC 2119, March 1997
+
+
+
+Zorn                                                            [Page 5]
+
+INTERNET-DRAFT            BAP RADIUS Attributes            February 1998
+
+
+[4]  Rigney,  C.,  et.  al.,  "Remote  Access Dial In User Service", RFC
+     2138, April 1997
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zorn                                                            [Page 6]
+

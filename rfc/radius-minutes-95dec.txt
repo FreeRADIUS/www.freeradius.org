@@ -1,0 +1,170 @@
+Minutes of the Second RADIUS BOF (Remote Authentication Dial In User
+Service) held 12/5/95 at the 34th IETF in Dallas Texas.
+
+There were 102 attendees.
+
+RADIUS
+
+Draft draft-ietf-radius-radius-01.txt was reviewed.  A few places were
+noted to be clarified or corrected in the next draft, to come out in
+January.  The following changes to that draft were recommended:
+
+For the Service-Type (6) attribute, Exec-User (value 7) is to be
+renamed as NAS-Prompt-User to avoid confusion.  There was a
+request to add a value for Callback NAS Prompt User, which will be 9.
+
+There was discussion of the Framed-Route attribute and the language in
+draft 01 that describes its format.  General consensus was happy with
+that language.
+
+There was a request to clarify that the Access-Request that replies to
+an Access-Challenge may itself be replied to with another
+Access-Challenge.
+
+There was a request to make it clearer that "client" referred to a NAS
+or to another server acting as a proxy.
+
+There was consensus to delete the proposed NAS-Port-Id attribute (61)
+and replace it with a NAS-Port-Type attribute that together with the
+existing NAS-Port attribute (5) could be used by vendors that number
+different kinds of ports from the same base number (e.g. bri0 and
+async0).  NAS-Port-Type would be Attribute 61, encoded as a 32-bit
+integer with the following suggested values:
+
+0	Async
+1	Sync
+2	ISDN Sync
+3	ISDN Async V.120
+4	ISDN Async V.110
+
+The Keyed MD5 approach to protecting the User-Password (2) Attribute
+when extending it from 16 characters to 128 was discussed.  The
+Security Area will be consulted as to whether this is a valid
+approach.
+
+There was a brief discussion of how to define an SNMP MIB for RADIUS
+Servers; members of the working group familiar with useful SNMP MIB
+definition are requested to make their presence known if they have the
+time to help on that.
+
+There was considerable interest in holding a RADIUS Bake-off in the
+March timeframe, probably in the two days preceding the 35th IETF in
+Los Angeles, in order to check interoperability of client and server
+implementations.  Test plans should be drawn up in advance.
+
+
+RADIUS ACCOUNTING
+
+On the latest accounting draft draft-ietf-radius-radius-01.txt there
+was consensus for Accounting-On and Accounting-Off with a request to
+add more text explaining their usage.  Merit requested moving the value
+of Accounting-On to 7 and Accounting-Off to 8, which was accepted.
+
+There was much discussion of Checkpointing, friend or foe, with it
+clear that in some circumstances it wasn't useful, but there may be
+circumstances in which it is.  Value 3 of Acct-Status-Type is
+recommended for implementers who wish to experiment with checkpointing
+and report their results back to the working group.
+
+Values of Acct-Terminate-Cause were discussed, along with whether any
+others were needed; people with ideas for other values are requested to
+submit those to the working group mailing list or the document editor
+by early January.
+
+Adding a new packet type for Accounting-Reject (so an accounting server
+could tell the NAS to go to its backup, instead of just not replying)
+was discussed and rejected as complicating the protocol while not
+adding sufficient benefit.
+
+
+CHARTER
+
+There was strong support to revise the charter in two ways: 1) to issue
+the current draft, plus any minor changes for clarification, either as
+a Proposed Draft by January or February, or if that wasn't possible to
+issue it as an Informational RFC in that time frame and then continue
+work on getting it onto a standards track.  2) To start a seperate
+effort within the working group to gather and document useful
+extensions based on field experience with implementations, and issue
+that as a later RFC along its own track.  The amended charter is
+included below.
+
+The end purpose of this group is to produce four documents:
+
+1) By early '96, an informational RFC documenting the RADIUS protocol
+already deployed for use by a Network Access Server (NAS) to
+communicate with a remote Authentication & Authorization database
+server, with minor amendments reflecting field experience of several
+implementations over several years at hundreds of sites.
+
+2) By February '96, an informational RFC describing RADIUS Accounting.
+
+3) By early '97, a full standard RFC documenting the RADIUS protocol,
+addressing any operational or security issues raised concerning the
+informational RFC.  This document will obsolete goal 1.  (If the
+Internet-Draft for goal 1 is deemed suitable by the IESG for release as
+a Proposed Standard instead of informational in January, then goals 1
+and 3 will be merged.)
+
+4) Starting in February '96 and concluding in '97, a RADIUS Extensions
+RFC documenting extensions for additional functionality within the
+RADIUS framework, which will be interoperable with the base RADIUS
+defined in the document for goal 3.
+
+The intent in goals 1 through 3 are to document the protocol as it
+exists and is used currently, in such a way as to allow interoperable
+implementations to be written from the RFC.  Minor modifications to
+enhance interoperability or operation based on field experience are
+suitable, major overhauls are outside the scope of this working group's
+charter.  Goal 4 is to provide a mechanism for additional features
+deemed widely useful to be added to the existing framework, for example
+to provide better support for EAP.
+
+Clearly outside the scope of the charter are the following:
+
+1) NAS Standardization is outside the scope.  We're defining standard
+RADIUS, not a standard encompassing everything about network access
+servers.  This effort does not require NASes to implement RADIUS; it
+just defines how the RADIUS Protocol works on NASes that do implement
+RADIUS.
+
+2) RADIUS is not intended as a NAS management protocol, SNMP already
+exists for that.
+
+3) Management of the Authentication/Authorization database itself is
+outside the scope.
+
+4) Alternative transport protocols such as IPX or IPv6 appear
+straightforward, but will not be addressed in this effort.
+
+5) The flexibility and generality of RADIUS have led to its use for
+other applications, but this Working Group is addressing only those
+uses involving user dial-in to Network Access Servers.
+
+Background:
+
+The original specification for and implementation of RADIUS was written
+by Steve Willens of Livingston Enterprises in response to a need
+outlined by the earlier NASREQ working group, and has been deployed by
+multiple vendors over the past 3 years.
+
+No other working group appears to be addressing the topic of
+communicating authentication and authorization information between a
+Network Access Server and a central authentication & authorization
+server, and general consensus is that standardization of such a
+protocol would be extremely useful.
+
+CONTACT INFORMATION
+
+A mailing List is available at ietf-radius@livingston.com.  To join,
+send email to ietf-radius-request@livingston.com with "subscribe" in
+the body of the message.
+
+Archives and working documents directory can be found at:
+ftp://ftp.livingston.com/pub/radius/archive/
+ftp://ftp.livingston.com/pub/radius/draft-ietf-radius-radius-01.txt
+ftp://ftp.livingston.com/pub/radius/draft-ietf-radius-accounting-01.txt
+
+The Document Editor is Carl Rigney of Livingston Enterprises, and can
+be reached via email at cdr@livingston.com.
+

@@ -1,0 +1,1624 @@
+
+
+Network Working Group                                       Koral Ilgun
+INTERNET-DRAFT                                                      ACC
+Category: Internet Draft
+Title: draft-ilgun-radius-accvsa-00.txt
+Date: 22 May 1998
+Expires: 27 November 1998
+
+
+
+
+
+                    ACC's Vendor Specific Attributes
+
+
+
+
+Status of this Memo
+
+   This document is a submission to the RADIUS Working Group of the
+   Internet Engineering Task Force (IETF).  Comments should be submitted
+   to the ietf-radius@livingston.com mailing list.
+
+   Distribution of this memo is unlimited.
+
+   This document is an Internet-Draft.  Internet-Drafts are working
+   documents of the Internet Engineering Task Force (IETF), its areas,
+   and its working groups.  Note that other groups may also distribute
+   working documents as Internet-Drafts.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as ``work in progress.''
+
+   To view the entire list of current Internet-Drafts, please check
+   the "1id-abstracts.txt" listing contained in the Internet-Drafts
+   Shadow Directories on ftp.is.co.za (Africa), ftp.nordu.net
+   (Northern Europe), ftp.nis.garr.it (Southern Europe), munnari.oz.au
+   (Pacific Rim), ftp.ietf.org (US East Coast), or ftp.isi.edu
+   (US West Coast).
+
+Abstract
+
+   This document describes vendor specific attributes for carrying
+   authentication, authorization and accounting information between
+   ACC's Network Access Server (NAS) and an Authentication/Accounting
+   Server using the Remote Authentication Dial In User Service (RADIUS)
+   protocol described in RFC 2058 and RFC 2059.
+
+
+
+
+Ilgun                                                           [Page 1]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+                             Table of Contents
+
+      1.    Introduction ...........................................  3
+
+      2.    ACC's Radius Authentication Attributes .................  3
+         2.1    Acc-Ccp-Option .....................................  3
+         2.2    Acc-Ip-Gateway-Pri .................................  4
+         2.3    Acc-Ip-Gateway-Sec .................................  5
+         2.4    Acc-Route-Policy ...................................  6
+         2.5    Acc-ML-MLX-Admin-State .............................  7
+         2.6    Acc-ML-Call-Threshold ..............................  8
+         2.7    Acc-ML-Clear-Threshold .............................  9
+         2.8    Acc-ML-Damping-Factor ..............................  9
+         2.9    Acc-Tunnel-Secret  ................................. 10
+         2.10   Acc-Service-Profile ................................ 11
+         2.11   Acc-Request-Type  .................................. 12
+         2.12   Acc-Bridging-Support  .............................. 13
+         2.13   Acc-Dns-Server-Pri ................................. 14
+         2.14   Acc-Dns-Server-Sec ................................. 15
+         2.15   Acc-Nbns-Server-Pri ................................ 16
+         2.16   Acc-Nbns-Server-Sec ................................ 16
+
+       3. ACC's Radius Accounting Attributes ....................... 17
+         3.1    Acc-Reason-Code .................................... 18
+         3.2    Acc-Input-Errors ................................... 20
+         3.3    Acc-Output-Errors .................................. 21
+         3.4    Acc-Access-Partition ............................... 21
+         3.5    Acc-Customer-Id .................................... 22
+         3.6    Acc-Clearing-Cause ................................. 23
+         3.7    Acc-Clearing-Location .............................. 25
+         3.8    Acc-Vpsm-Oversubscribed ............................ 26
+         3.9    Acc-Acct-On-Off-Reason ............................. 26
+         3.10   Acc-Tunnel-Port .................................... 27
+
+
+       4. Security Considerations .................................. 28
+
+       5. References ............................................... 28
+
+       6. Expiration Date .......................................... 29
+
+       7. Author's Address ......................................... 29
+
+
+
+
+
+
+
+
+
+Ilgun                                                           [Page 2]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+1. Introduction
+
+   The Remote Authentication Dial In User Service (RADIUS) protocol is
+   specified by the RADIUS Working Group of the Internet Engineering
+   Task Force (IETF). There are two specifications that make up the
+   RADIUS protocol suite: Authentication [RIG97a] and Accounting
+   [RIG97b].  These protocols aim to centralize authentication,
+   configuration, and accounting of dial-in services to an independent
+   server.
+
+   ACC has implemented RADIUS authentication and accounting for its
+   Network Access Server family of router products.  This document
+   provides details of ACC's RADIUS implementation, in particular the
+   use of Vendor Specific Attributes (VSA's).  It is intended as a guide
+   for using the RADIUS protocol for ACC products.  ACC's vendor-
+   specific attributes use a vendor Id of 5.  For more information on
+   ACC's RADIUS implementation, see the white paper [ACC97b].
+
+2. ACC's Radius Authentication Attributes
+
+   The table below indicates how the authentication vendor-specific
+   attributes are used in the access request and response packets.
+
+      +-------------------------+--------+---------+--------+--------+
+      | Attribute Name          | Number | Request | Accept | Reject |
+      +-------------------------+--------+---------+--------+--------+
+      | Acc-Ccp-Option          |    2   |         |   X    |        |
+      | Acc-Ip-Gateway-Pri      |    7   |         |   X    |        |
+      | Acc-Ip-Gateway-Sec      |    8   |         |   X    |        |
+      | Acc-Route-Policy        |    9   |         |   X    |        |
+      | Acc-ML-MLX-Admin-State  |   10   |         |   X    |        |
+      | Acc-ML-Call-Threshold   |   11   |         |   X    |        |
+      | Acc-ML-Clear-Threshold  |   12   |         |   X    |        |
+      | Acc-ML-Damping-Factor   |   13   |         |   X    |        |
+      | Acc-Tunnel-Secret       |   14   |         |   X    |        |
+      | Acc-Service-Profile     |   17   |         |   X    |        |
+      | Acc-Request-Type        |   18   |    X    |        |        |
+      | Acc-Bridging-Support    |   19   |         |   X    |        |
+      | Acc-Dns-Server-Pri      |   23   |         |   X    |        |
+      | Acc-Dns-Server-Sec      |   24   |         |   X    |        |
+      | Acc-Nbns-Server-Pri     |   25   |         |   X    |        |
+      | Acc-Nbns-Server-Sec     |   26   |         |   X    |        |
+      +-------------------------+--------+---------+--------+--------+
+
+2.1 Acc-Ccp-Option
+
+   Description
+
+
+
+
+Ilgun                                                           [Page 3]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+      This attribute indicates if PPP CCP [RAN96] compression
+      negotiation is to be attempted on the dial-in link. It may be used
+      in Access-Accept packets only.
+
+
+   A summary of the Acc-Ccp-Option Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      2 for Acc-Ccp-Option
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+          1    Disabled
+          2    Enabled
+
+2.2 Acc-Ip-Gateway-Pri
+
+   Description
+
+      This attribute defines the next hop IP address where the dial-in
+      user's data packets should be directed to.  This address could be
+      a router that is directly attached to a VPN (Virtual Private
+      Network) customer's network or to a router that forwards the
+      packet to its final destination based on the Source IP Address. It
+      may be used in Access-Accept packets only.
+
+
+   A summary of the Acc-Ip-Gateway-Pri Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+
+
+Ilgun                                                           [Page 4]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Address
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            Address (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      7 for Acc-Ip-Gateway-Pri
+
+   Length
+
+      6
+
+   Address
+
+      The Address field is a four octet IP Address.
+
+2.3 Acc-Ip-Gateway-Sec
+
+   Description
+
+      Similar to Acc-Ip-Gateway-Pri described in Section 2.2, this
+      attribute defines the next hop IP address in case the Acc-Ip-
+      Gateway-Pri is unreachable.  It may be used in Access-Accept
+      packets only.
+
+
+   A summary of the Acc-Ip-Gateway-Sec Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Address
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            Address (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      8 for Acc-Ip-Gateway-Sec
+
+
+
+
+Ilgun                                                           [Page 5]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+   Length
+
+      6
+
+   Address
+
+      The Address field is a four octet IP Address.
+
+2.4 Acc-Route-Policy
+
+   Description
+
+      This attribute indicates the route policy to be used with Access
+      Partitioning [ACC97a].  Access Partitioning gives carriers the
+      ability to partition dial-in resources and assign these partitions
+      to dial-in Virtual Private Networks.  If the Acc-Route-Policy
+      attribute is set to Direct (2) two dial-in links belonging to the
+      same Access Partition can route directly to each other without
+      going through the IP home gateway.  If this attribute is not
+      defined or set to Funnel (1), it means all packets received from
+      the dial-in user of this access partition will be forwarded to the
+      designated home gateway.  It may be used in Access-Accept packets
+      only.
+
+
+   A summary of the Acc-Route-Policy Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      9 for Acc-Route-Policy
+
+   Length
+
+      6
+
+   Value
+
+
+
+
+Ilgun                                                           [Page 6]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+      The value field is four octets.
+
+          1    Funnel
+          2    Direct
+
+
+2.5 Acc-ML-MLX-Admin-State
+
+   Description
+
+      If the standard Port-Limit attribute is configured for the dial-in
+      user on the RADIUS server, the ACC NAS attempts to place the
+      dial-in user in a multilink group. The Port-Limit attribute
+      defines the maximum number of members the multilink group can
+      have. All members of the multilink group must have the same dial-
+      in user name. When the first member of a multilink group calls in,
+      a multilink group is created on receipt of the access-accept with
+      the Port-Limit attribute configured. The multilink group exists
+      for as long as there is a call up in the multilink group. When the
+      last call in the multilink group is cleared, the multilink group
+      is deleted. When subsequent links in the multilink group call in,
+      they are added to the multilink group. The multilink group uses
+      the IETF standard PPP Multilink protocol [SKL96].  The MLX (also
+      known as MP+ [SMI96]) administrative state, call threshold, clear
+      threshold and damping factor values of the multilink group can
+      also be set using the ACC VSAs described in 2.5, 2.6, 2.7 and 2.8
+
+      The Acc-ML-MLX-Admin-State attribute indicates if PPP MLX (RFC
+      1934) negotiation is to be attempted on the dial-in link. It may
+      be used in Access-Accept packets only.
+
+
+   A summary of the Acc-ML-MLX-Admin-State Attribute format within the
+   ACC vendor-specific attribute is shown below. The fields are
+   transmitted left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      10 for Acc-ML-MLX-Admin-State
+
+
+
+Ilgun                                                           [Page 7]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+          1    Enabled
+          2    Disabled
+
+
+2.6 Acc-ML-Call-Threshold
+
+   Description
+
+      This attribute indicates the call threshold value to be used with
+      the multilink group that is to be configured.  It may be used in
+      Access-Accept packets only.  See Section 2.5 for more information
+      about this attribute.
+
+
+   A summary of the Acc-ML-Call-Threshold Attribute format within the
+   ACC vendor-specific attribute is shown below. The fields are
+   transmitted left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      11 for Acc-ML-Call-Threshold
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.  The minimum value is 0 and
+      maximum value is 101.
+
+
+
+
+Ilgun                                                           [Page 8]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+2.7 Acc-ML-Clear-Threshold
+
+   Description
+
+      This attribute indicates the clear threshold value to be used with
+      the multilink group that is to be configured.  It may be used in
+      Access-Accept packets only.
+
+
+   A summary of the Acc-ML-Clear-Threshold Attribute format within the
+   ACC vendor-specific attribute is shown below. The fields are
+   transmitted left-to-right.  See Section 2.5 for more information
+   about this attribute.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      12 for Acc-ML-Clear-Threshold
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.  The minimum value is 0 and
+      maximum value is 100.
+
+2.8 Acc-ML-Damping-Factor
+
+   Description
+
+      This attribute indicates the damping factor value to be used with
+      the multilink group that is to be configured.  It may be used in
+      Access-Accept packets only.  See Section 2.5 for more information
+      about this attribute.
+
+
+   A summary of the Acc-ML-Damping-Factor Attribute format within the
+   ACC vendor-specific attribute is shown below. The fields are
+
+
+
+Ilgun                                                           [Page 9]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+   transmitted left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      13 for Acc-ML-Damping-Factor
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.  The minimum value is 0 and
+      maximum value is 64.
+
+2.9 Acc-Tunnel-Secret
+
+   Description
+
+      This attribute sets the shared secret to support the CHAP style
+      endpoint authentication used by L2TP [VAL97]. The purpose for this
+      attribute is same as Tunnel-Password [ZOR98], except that Acc-
+      Tunnel-Secret is sent in clear.  Therefore, Acc-Tunnel-Secret
+      should only be used if the RADIUS server does not support salt
+      encryption.  It may be used in Access-Accept packets only.
+
+
+   A summary of the Acc-Tunnel-Secret Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |     String...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+
+
+Ilgun                                                          [Page 10]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+      14 for Acc-Tunnel-Secret
+
+   Length
+
+      >= 3
+
+   String
+
+      The String field is one or more octets.  It is the clear text
+      tunnel secret.
+
+2.10 Acc-Service-Profile
+
+   Description
+
+      This attribute the service profile to be used on the dial-in link.
+      It may be used in Access-Accept packets only.
+
+      With the addition of Acc-Service-Profile VSA, RADIUS can identify
+      the Service Profile to be assigned to a dial-in user.  This
+      attribute should only be present in an access accept message when
+      the NAS has queried RADIUS prior to answering the call.  In this
+      case all RADIUS has is the called number.  The service profile
+      identified by this VSA must exist on the NAS in its locally
+      configured Service Profile database.  For the regular routing case
+      the service profile indicates that dial-in calls to be routed
+      based on the Destination IP Address received from a dial-in user.
+      This service is used primarily to provide carrier-based Internet
+      access.  For the called number routing case, the service profile
+      forces IP dial-in calls to be specifically directed to a VPN
+      customer's network.  A service profile may also indicate that
+      Layer 2 Tunneling should be performed for a given dial-in user.
+
+
+   A summary of the Acc-Service-Profile Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |     String...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      17 for Acc-Service-Profile
+
+
+
+Ilgun                                                          [Page 11]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+   Length
+
+      >= 3
+
+   String
+
+      The String field is one or more octets.  It is the name of the
+      service profile.
+
+2.11 Acc-Request-Type
+
+   Description
+
+      This attribute indicates the type of the Access-Request or
+      Accounting-Request packet. It may be used in Access-Request and
+      Accounting-Request packets only.  The attribute values from 1 to 4
+      are used in Access-Request packets, whereas 5 and 6 are used in
+      Accounting-Request packets.
+
+      An ACC NAS may send an Access-Request packet to the RADIUS server
+      before it answers the call.  In this case the User-Name attribute
+      includes the Called Number and the Acc-Request-Type attribute
+      contains the value 1, i.e. Ring-Indication. A special-purpose
+      RADIUS server (or proxy) receiving this message may accept or
+      reject the call based on its policy, e.g. it may reject the call
+      if the quota assigned for this Called Number has been exceeded.
+      This is useful when an ISP or TELCO outsources their dial-in ports
+      to separate customers and partitions the customers by
+      differentiating them based on the number they call in.  ACC's VPSM
+      server product is an example for this type of operation.
+
+      A value of 2 in the Acc-Request-Type field indicates that the NAS
+      is attempting to authorize an outgoing call.  A value of 3
+      indicates that the type of access request is for user
+      authentication, which is the default behavior for the RADIUS
+      authentication.  A value of 4 indicates that a tunnel
+      authentication is requested by the LAC (L2TP Access Concentrator)
+      in response to a tunnel request from an LNS (L2TP Network Server).
+
+      This attribute may also be present in Accounting-Request packets.
+      A value of 5 indicates that the Accounting-Request is for a PPP
+      session, whereas a value of 6 indicates that the Accounting-
+      Request is for a tunnel session.  The latter case also indicates
+      that this accounting information is being provided for a dial-in
+      session that is not authenticated at the LAC end of the tunnel,
+      but possibly authenticated at the LNS end.
+
+
+
+
+
+Ilgun                                                          [Page 12]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+   A summary of the Acc-Request-Type Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      18 for Acc-Request-Type
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+          1    Ring Indication
+          2    Dial Request
+          3    User Authentication
+          4    Tunnel Authentication
+          5    User Accounting
+          6    Tunnel Accounting
+
+2.12 Acc-Bridging-Support
+
+   Description
+
+      This attribute indicates if Transparent (Ethernet) Bridging should
+      be enabled on the dial-in link. It may be used in Access-Accept
+      packets only.
+
+
+   A summary of the Acc-Bridging-Support Attribute format within the ACC
+   vendor-specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+
+
+
+
+
+
+Ilgun                                                          [Page 13]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      19 for Acc-Bridging-Support
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+          1    Disabled
+          2    Enabled
+
+2.13 Acc-Dns-Server-Pri
+
+   Description
+
+      This attribute indicates the primary DNS (Domain Name System)
+      Server Address to be provided to the dial-in user during IPCP
+      negotiation.  The IPCP protocol (RFC 1332) [MCG92] provides the
+      option of negotiating the IP addresses of the primary and
+      secondary DNS and NBNS (NetBIOS Name Server) servers.  The support
+      for these options is specified by RFC 1877 [COB95].  The Acc-Dns-
+      Server-Pri attribute may be used in Access-Accept packets only.
+
+
+   A summary of the Acc-Dns-Server-Pri attribute format within the ACC
+   vendor-specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+
+Ilgun                                                          [Page 14]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+   Type
+
+      23 for Acc-Dns-Server-Pri
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+2.14 Acc-Dns-Server-Sec
+
+   Description
+
+      This attribute indicates the secondary DNS (Domain Name System)
+      Server Address to be provided to the dial-in user during IPCP
+      negotiation.  The IPCP protocol (RFC 1332) [MCG92] provides the
+      option of negotiating the IP addresses of the primary and
+      secondary DNS and NBNS (NetBIOS Name Server) servers.  The support
+      for these options is specified by RFC 1877 [COB95].  The Acc-Dns-
+      Server-Sec attribute may be used in Access-Accept packets only.
+
+
+   A summary of the Acc-Dns-Server-Sec attribute format within the ACC
+   vendor-specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      24 for Acc-Dns-Server-Sec
+
+   Length
+
+      6
+
+   Value
+
+
+
+
+Ilgun                                                          [Page 15]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+      The value field is four octets.
+
+2.15 Acc-Nbns-Server-Pri
+
+   Description
+
+      This attribute indicates the primary NBNS (NetBIOS Name Server)
+      Address to be provided to the dial-in user during IPCP
+      negotiation.  The IPCP protocol (RFC 1332) [MCG92] provides the
+      option of negotiating the IP addresses of the primary and
+      secondary DNS (Domain Name System) and NBNS (NetBIOS Name Server)
+      servers.  The support for these options is specified by RFC 1877
+      [COB95].  The Acc-Nbns-Server-Pri attribute may be used in
+      Access-Accept packets only.
+
+
+
+   A summary of the  Acc-Nbns-Server-Pri attribute format within the ACC
+   vendor-specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      25 for Acc-Nbns-Server-Pri
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+2.16 Acc-Nbns-Server-Sec
+
+   Description
+
+      This attribute indicates the secondary NBNS (NetBIOS Name Server)
+      Address to be provided to the dial-in user during IPCP
+
+
+
+Ilgun                                                          [Page 16]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+      negotiation.  The IPCP protocol (RFC 1332) [MCG92] provides the
+      option of negotiating the IP addresses of the primary and
+      secondary DNS (Domain Name System) and NBNS (NetBIOS Name Server)
+      servers.  The support for these options is specified by RFC 1877
+      [COB95].  The Acc-Nbns-Server-Sec attribute may be used in
+      Access-Accept packets only.
+
+
+
+   A summary of the Acc-Nbns-Server-Sec attribute format within the ACC
+   vendor-specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      26 for Acc-Nbns-Server-Sec
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+3. ACC's Radius Accounting Attributes
+
+   The table below indicates how the accounting vendor-specific
+   attributes are used in the accounting request packets. The attributes
+   with (*) are accounting specific attributes. An X indicates in which
+   type of Accounting-Request packet the attribute may be included.
+   Note that any Accounting-Request packet may include a copy of all the
+   configuration attributes.
+
+
+
+
+
+
+
+
+
+Ilgun                                                          [Page 17]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+      +-----------------------------+--------+-------+------+---------+
+      | Attribute Name              | Number | Start | Stop | Interim |
+      +-----------------------------+--------+-------+------+---------+
+      | Acc-Reason-Code (*)         |   1    |       |  X   |         |
+      | Acc-Ccp-Option              |   2    |       |      |         |
+      | Acc-Input-Errors (*)        |   3    |       |  X   |    X    |
+      | Acc-Output-Errors (*)       |   4    |       |  X   |    X    |
+      | Acc-Access-Partition (*)    |   5    |   X   |  X   |    X    |
+      | Acc-Customer-Id (*)         |   6    |   X   |  X   |    X    |
+      | Acc-Ip-Gateway-Pri          |   7    |       |      |         |
+      | Acc-Ip-Gateway-Sec          |   8    |       |      |         |
+      | Acc-Route-Policy            |   9    |       |      |         |
+      | Acc-ML-MLX-Admin-State      |   10   |       |      |         |
+      | Acc-ML-Call-Threshold       |   11   |       |      |         |
+      | Acc-ML-Clear-Threshold      |   12   |       |      |         |
+      | Acc-ML-Damping-Factor       |   13   |       |      |         |
+      | Acc-Clearing-Cause (*)      |   15   |       |  X   |         |
+      | Acc-Clearing-Location (*)   |   16   |       |  X   |         |
+      | Acc-Service-Profile         |   17   |   X   |  X   |    X    |
+      | Acc-Request-Type            |   18   |   X   |  X   |    X    |
+      | Acc-Bridging-Support        |   19   |       |      |         |
+      | Acc-Vpsm-Oversubscribed (*) |   20   |   X   |  X   |         |
+      | Acc-Acct-On-Off-Reason (*)  |   21   |       |      |         |
+      | Acc-Tunnel-Port (*)         |   22   |   X   |  X   |    X    |
+      +-----------------------------+--------+-------+------+---------+
+
+3.1 Acc-Reason-Code
+
+   Description
+
+      This attribute provides an extension to the standard Acct-
+      Terminate-Cause attribute. It provides more detail on the
+      termination reason for a call.
+
+
+   A summary of the Acc-Reason-Code Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+
+
+
+Ilgun                                                          [Page 18]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+   Type
+
+      1 for Acc-Reason-Code
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+          0    no reason given/no failure
+          1    resource shortage
+          2    session already open
+          3    too many RADIUS users
+          4    no authentication server
+          5    no authentication response
+          6    no accounting server
+          7    no accounting response
+          8    access denied
+          9    temporary buffer shortage
+          10   protocol error
+          11   invalid attribute
+          12   invalid service type
+          13   invalid framed protocol
+          14   invalid attribute value
+          15   invalid user information
+          16   invalid IP address
+          17   invalid integer syntax
+          18   invalid NAS port
+          19   requested by user
+          20   network disconnect
+          21   service interruption
+          22   physical port error
+          23   idle timeout
+          24   session timeout
+          25   administrative reset
+          26   NAS reload or reset
+          27   NAS error
+          28   NAS request
+          29   undefined reason given
+          30   conflicting attributes
+          31   port limit exceeded
+          32   facility not available
+          33   internal configuration error
+          34   bad route specification
+          35   Access Partition bind failure
+
+
+
+Ilgun                                                          [Page 19]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+          36   security violation
+          37   request type conflict
+          38   configuration disallowed
+          39   missing attribute
+          40   invalid request
+          41   missing parameter
+          42   invalid parameter
+          43   call cleared with cause
+          44   inopportune config request
+          45   invalid config parameter
+          46   missing config parameter
+          47   incompatible service profile
+          48   administrative reset
+          49   administrative reload
+          50   port unneeded
+          51   port preempted
+          52   port suspended
+          53   service unavailable
+          54   callback
+          55   user error
+          56   host request
+
+3.2 Acc-Input-Errors
+
+   Description
+
+      This attribute indicates the number of receive errors on the
+      physical port the dial- in user was connected to.
+
+
+   A summary of the Acc-Input-Errors Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      3 for Acc-Input-Error
+
+
+
+
+Ilgun                                                          [Page 20]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+3.3 Acc-Output-Errors
+
+   Description
+
+      This attribute indicates the number of send errors on the physical
+      port the dial-in user was connected to.
+
+
+   A summary of the Acc-Output-Errors Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      4 for Acc-Output-Errors
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+3.4 Acc-Access-Partition
+
+   Description
+
+      This attribute specifies the name of the Access Partition the
+      dial-in user is assigned to.  Access Partitioning [ACC97a] gives
+      carriers the ability to partition dial-in resources and assign
+
+
+
+Ilgun                                                          [Page 21]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+      these partitions to dial-in Virtual Private Networks.
+
+
+   A summary of the Acc-Access-Partition Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |     String...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      5 for Acc-Access-Partition
+
+   Length
+
+      >= 3
+
+   String
+
+      The String field is one or more octets.
+
+3.5 Acc-Customer-Id
+
+   Description
+
+      This attribute specifies the Id of the Customer the dial-in user
+      is associated with.
+
+
+   A summary of the Acc-Customer-Id Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |     String...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      6 for Acc-Customer-Id
+
+
+
+Ilgun                                                          [Page 22]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+   Length
+
+      >= 3
+
+   Value
+
+      The String field is one or more octets.
+
+3.6 Acc-Clearing-Cause
+
+   Description
+
+      This attribute provides an extension to the Acc-Reason-Code
+      attribute. It provides more detail if Acc-Reason-Code indicates
+      Call-Cleared-With-Cause (43).
+
+
+   A summary of the Acc-Clearing-Cause Attribute format within the ACC
+   vendor- specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      15 for Acc-Clearing-Cause
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+          0    cause unspecified
+          1    unassigned number
+          2    no route to transit network
+          3    no route to destination
+          6    channel unacceptable
+
+
+
+Ilgun                                                          [Page 23]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+          7    call awarded being delivered
+          16   normal clearing
+          17   user busy
+          18   no user responding
+          19   user alerted no answer
+          21   call rejected
+          22   number changed
+          26   non selected user clearing
+          27   destination out of order
+          28   invalid or incomplete number
+          29   facility rejected
+          30   response to status inquiry
+          31   normal unspecified cause
+          34   no circuit or channel available
+          38   network out of order
+          41   temporary failure
+          42   switching equipment congestion
+          43   access information discarded
+          44   circuit or channel unavailable
+          45   circuit or channel preempted
+          47   resources unavailable
+          49   quality of service unavailable
+          50   facility not subscribed
+          52   outgoing calls barred
+          54   incoming calls barred
+          57   bearer capability unauthorized
+          58   bearer capability not available
+          63   service not available
+          65   bearer capability not implemented
+          66   channel type not implemented
+          69   facility not implemented
+          70   restricted digital information only
+          79   service not implemented
+          81   invalid call reference
+          82   identified channel does not exist
+          83   call identity does not exist
+          84   call identity in use
+          85   no call suspended
+          86   suspended call cleared
+          88   incompatible destination
+          91   invalid transit network selection
+          95   invalid message
+          96   mandatory information element missing
+          97   message not implemented
+          98   inopportune message
+          99   information element not implemented
+          100  invalid information element contents
+          101  message incompatible with state
+
+
+
+Ilgun                                                          [Page 24]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+          102  recovery on timer expiration
+          103  mandatory information element length error
+          111  protocol error
+          127  interworking
+
+3.7 Acc-Clearing-Location
+
+   Description
+
+      This attribute provides an extension to the Acc-Reason-Code
+      attribute. It provides detail on where the call has been cleared.
+
+
+   A summary of the Acc-Clearing-Location Attribute format within the
+   ACC vendor-specific attribute is shown below. The fields are
+   transmitted left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      16 for Acc-Clearing-Location
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets
+
+          0   local or remote user
+          1   private network serving local user
+          2   public network serving local user
+          3   transit network
+          4   private network serving remote user
+          5   public network serving remote user
+          6   international network
+          10  beyond interworking point
+
+
+
+
+
+Ilgun                                                          [Page 25]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+3.8 Acc-Vpsm-Oversubscribed
+
+   Description
+
+      This attribute is specific to ACC's VPSM (Virtual Port Service
+      Manager) server software.  VPSM runs as a proxy RADIUS server
+      between an ACC NAS and a home RADIUS server.  If the VPSM server
+      detects that this connection caused the corresponding Access
+      Partition quota to be exceeded, the Accounting-Start record for
+      the connection will include the Acc-Vpsm-Oversubscribed attribute
+      with a value of 2 (True).
+
+
+   A summary of the Acc-Vpsm-Oversubscribed Attribute format within the
+   ACC vendor-specific attribute is shown below. The fields are
+   transmitted left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      20 for Acc-Vpsm-Oversubscribed
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+          1   False
+          2   True
+
+3.9 Acc-Acct-On-Off-Reason
+
+   Description
+
+      This attribute provides a reason code for why the Accounting-On or
+      Accounting- Off message is sent.
+
+
+
+
+Ilgun                                                          [Page 26]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+   A summary of the Acc-Acct-On-Off-Reason Attribute format within the
+   ACC vendor-specific attribute is shown below. The fields are
+   transmitted left-to-right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      21 for Acc-Acct-On-Off-Reason
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+          0    NAS Reset
+          1    NAS Reload
+          2    Configuration Reset
+          3    Configuration Reload
+          4    Enabled
+          5    Disabled
+
+3.10 Acc-Tunnel-Port
+
+   Description
+
+      This attribute indicates the index of the Tunnel Port the dial-in
+      user is connected to.
+
+
+   A summary of the Acc-Tunnel-Port attribute format within the ACC
+   vendor-specific attribute is shown below. The fields are transmitted
+   left-to-right.
+
+
+
+
+
+
+
+
+Ilgun                                                          [Page 27]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+   Type
+
+      22 for Acc-Tunnel-Port
+
+   Length
+
+      6
+
+   Value
+
+      The value field is four octets.
+
+4. Security Considerations
+
+   Security issues regarding the RADIUS protocol are discussed in RFC
+   2138 [RIG97a] and RFC 2139 [RIG97b].  The use of Acc-Tunnel-Secret
+   attribute is insecure. The Tunnel-Password attribute, defined in
+   [ZOR98], should be used whenever possible and Acc-Tunnel-Secret
+   attribute should only be used if the RADIUS server does not support
+   salt encryption.
+
+5. References
+
+       [ACC97a]  "Access Partitioning" White Paper,
+                 http://www.acc.com/internet/whitepapers/
+                 accesspartitioning.html, ACC, August 1997
+
+       [ACC97b]  "RADIUS Implementation" White Paper,
+                 http://www.acc.com/internet/whitepapers/
+                 radiusimp.html, ACC, January 1998
+
+       [COB95]   Cobb, S., PPP Internet Protocol Control Protocol
+                 Extensions for Name Server Addresses,
+                 RFC 1877, Microsoft, December 1995.
+
+       [MCG92]   McGregor, G., PPP Internet Control Protocol",
+                 RFC 1332, Merit, May 1992.
+
+       [RAN96]   Rand, D., The PPP Compression Control Protocol (CCP),
+
+
+
+Ilgun                                                          [Page 28]
+
+Internet Draft      ACC's Vendor Specific Attributes         22 May 1998
+
+
+                 RFC 1962, Novell, June 1996.
+
+       [RIG97a]  Rigney, C., Remote Authentication Dial In User Service
+                 (RADIUS), RFC 2138, Livingston, April 1997.
+
+       [RIG97b]  Rigney, C., et al, RADIUS Accounting,
+                 RFC 2139, Livingston, April 1997.
+
+       [SKL96]   Sklower, K., et al, The PPP Multilink Protocol (MP),
+                 RFC 1990, UC Berkeley, August 1996.
+
+       [SMI96]   Smith, K., Ascend's Multilink Protocol Plus (MP+),
+                 Ascend, RFC 1934, August 1996.
+
+       [VAL97]   Valencia, et al., Layer Two Tunneling Protocol (L2TP),
+                 draft-ietf-pppext-l2tp-06.txt, June 1997.
+
+       [ZOR98]   Zorn, G., et al, RADIUS Attributes for Tunnel
+                 Protocol Support, draft-ietf-radius-tunnel-auth-05.txt,
+                 Microsoft-Ascend-Shiva, April 1998.
+
+
+6. Expiration Date
+
+   This document expires November 27, 1998.
+
+7. Author's Address
+
+   Koral Ilgun
+   Advanced Computer Communications
+   340 Storke Road
+   Santa Barbara, CA 93117
+
+   Phone: (805) 961-0279
+
+   EMail: koral@acc.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ilgun                                                          [Page 29]
+
