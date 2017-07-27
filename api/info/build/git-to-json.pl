@@ -14,6 +14,7 @@
 
 use strict;
 use Data::Dumper;
+
 use File::Path qw(make_path);
 use JSON;
 
@@ -746,7 +747,7 @@ sub get_readme_files
 }
 
 
-#** @function find_releases ($relbranches, $versions)
+#** @function find_latest_stable_releases ($relbranches, $versions)
 # @brief Find which versions are the latest in particular branches
 #
 # Some versions in relbranches may be "stable", but listed as e.g. 3.0.x. This
@@ -758,7 +759,7 @@ sub get_readme_files
 # @retval $%relbranches	Updated release versions with branch info
 #*
 
-sub find_releases
+sub find_latest_stable_releases
 {
 	my ($relbranches, $versions) = @_;
 
@@ -863,6 +864,7 @@ sub get_component_release_minmax
 
 	return ($min, $max);
 }
+
 
 #** @function get_branch_release_data ($repo, $components, $release)
 # @brief Build data structure for each release
@@ -1126,30 +1128,6 @@ sub build_web_json
 }
 
 
-# dump things in human-readable form (for now)
-#
-sub output_component_repository
-{
-	my $components = shift;
-
-	foreach my $component (sort keys %$components) {
-		my $md = $$components{$component};
-
-		print "$component\n";
-		print "\tmin: " . $$md{minrelease} . "\n";
-		print "\tmax: " . $$md{maxrelease} . "\n";
-		print "\tparent: " . $$md{parent} . "\n" if defined $$md{parent};
-		print "\treadme blob: " . $$md{readmeblob} . "\n" if defined $$md{readmeblob};
-		print "\treadme version " . $$md{readmeversion} . "\n" if defined $$md{readmeversion};
-		if (defined $$md{readme}) {
-			print "-" x 80 . "\n";
-			print Dumper $$md{readme};
-			print "-" x 80 . "\n";
-		}
-		print "\n";
-	}
-}
-
 
 # tests
 #
@@ -1170,28 +1148,23 @@ sub output_component_repository
 
 
 
-# get all versions we're interested in
+# find all release_x_y_z tags and vN.x.x branches
+#
 my $versions = get_versions($repo);
 
+# assign each release version to branches in RELBRANCHES, so
+# we know which version (e.g. 3.0.5) is in which branch (e.g.
+# 3.0.x)
+#
 add_versions_to_branches($RELBRANCHES, $versions);
 
-find_releases($RELBRANCHES, $versions);
+# find the latest stable release for each branch
+#
+find_latest_stable_releases($RELBRANCHES, $versions);
 
-#print Dumper $versions;
-#print Dumper $RELBRANCHES;
-#exit;
-
-#foreach my $k (sort {version_compare($a, $b)} keys %$releases) {
-#	next unless $$releases{$k}{type} eq "development";
-#	print "$k\n";
-#}
-
-# global component repository
+# global component repository to store all info about modules
 #
 my $components = {};
-
-#my $ss = get_release_components($repo, "v4.0.x");
-#print Dumper $ss;
 
 # go through all versions in git and add the modules and
 # protocols to the components repository
@@ -1224,8 +1197,7 @@ foreach my $component (keys %$components) {
 	get_component_release_data($repo, $$components{$component});
 }
 
-# dump everything we've got
-#output_component_repository($components);
-
+# write out a shedload of json files
+#
 build_web_json($RELBRANCHES, $versions, $components, $outdir);
 
