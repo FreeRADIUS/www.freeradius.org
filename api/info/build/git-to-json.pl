@@ -166,7 +166,7 @@ $$components{rlm_counter}{readme} = {
 	summary => "Provides a packet counter to track data usage and other values.",
 };
 $$components{rlm_dynamic_clients}{readme} = {
-	category => "datastores",
+	category => "datastore",
 	summary => "Loads RADIUS clients as needed, rather than when the server starts.",
 };
 $$components{rlm_smsotp}{readme} = {
@@ -198,7 +198,7 @@ $$components{rlm_otp}{readme} = {
 	summary => "One-time password implementation.",
 };
 $$components{rlm_sql_iodbc}{readme} = {
-	category => "datastores",
+	category => "datastore",
 	summary => "Connect to databases via iODBC.",
 };
 $$components{proto_dhcp}{readme} = {
