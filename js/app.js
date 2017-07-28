@@ -51,8 +51,8 @@
             // url: '/modules.json',
             params: {
                 by_keyword: 'stable',
-                keyword_expansion_depth: 2,
-                expansion_depth: 2,
+                keyword_expansion_depth: 1,
+                expansion_depth: 1,
                 keyword_field: 'status'
             }
         });
@@ -177,7 +177,7 @@
                 // url: '/modules.json',
                 params: {
                     by_category: category,
-                    expansion_depth: 3,
+                    expansion_depth: 1,
                     order_by: 'category'
                 }
             }).then(function successCallback(response) {
@@ -278,7 +278,7 @@
                 method: 'GET',
                 url: 'http://{{ site.url }}/api/info/component/'+module+'/',
                 params: {
-                    expansion_depth: 3,
+                    expansion_depth: 1,
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
@@ -311,7 +311,7 @@
                 params: {
                     by_keyword: 'regex:'+string,
                     keyword_expansion_depth: 1,
-                    expansion_depth: 3,
+                    expansion_depth: 1,
                     order_by: 'category',
                 }
             }).then(function successCallback(response) {
@@ -525,7 +525,7 @@
                 url: 'http://{{ site.url }}/api/info/branch/',
                 params: {
                     by_keyword: 'regex:'+string,
-                    keyword_expansion_depth: 3,
+                    keyword_expansion_depth: 2,
                     expansion_depth: 4,
                 }
             }).then(function successCallback(response) {
@@ -546,7 +546,7 @@
                 method: 'GET',
                 url: 'http://{{ site.url }}/api/info/branch/'+branch+'/release/'+release+'/',
                 params: {
-                    expansion_depth: 2,
+                    expansion_depth: 1,
                 }
             }).then(function successCallback(response) {
                 $scope.release_notes = [];
@@ -615,7 +615,7 @@
                 url: 'http://{{ site.url }}/api/info/branch/',
                 // url: '/modules.json',
                 params: {
-                    expansion_depth: 3,
+                    expansion_depth: 2,
                     order_by: 'priority'
                 }
             }).then(function successCallback(response) {
