@@ -408,7 +408,7 @@ sub changelog_entry_components_json
 	# javascript blows up when the lua returns 404
 	# then add to the array used for the json file
 	#
-	foreach my $component (keys %found_component) {
+	foreach my $component (sort keys %found_component) {
 		if (!$$components{$component}) {
 			warn "component $component in a changelog not actually found, skipping\n";
 			next;
