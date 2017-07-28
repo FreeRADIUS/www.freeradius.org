@@ -150,6 +150,62 @@ foreach my $release (keys %$versions) {
 #
 get_readme_files($repo, $components);
 
+# some modules are in v3.0.x, but not in v4. So let's make them not look quite
+# so "obsolete" on the web site because v4 isn't released yet.
+#
+$$components{rlm_preprocess}{readme} = {
+	category => "policy",
+	summary => "Pre-process the incoming RADIUS request and fix some common problems. Also checks huntgroups and hints.",
+};
+$$components{rlm_ruby}{readme} = {
+	category => "languages",
+	summary => "Adds the abiltiy to run embedded ruby scripts.",
+};
+$$components{rlm_counter}{readme} = {
+	category => "policy",
+	summary => "Provides a packet counter to track data usage and other values.",
+};
+$$components{rlm_dynamic_clients}{readme} = {
+	category => "datastores",
+	summary => "Loads RADIUS clients as needed, rather than when the server starts.",
+};
+$$components{rlm_smsotp}{readme} = {
+	category => "authentication",
+	summary => "Extends FreeRADIUS with a SOCKS interface to create and validate One-Time-Passwords.",
+};
+$$components{rlm_realm}{readme} = {
+	category => "policy",
+	summary => "Determine where to proxy requests to based on attributes in the request.",
+};
+$$components{rlm_replicate}{readme} = {
+	category => "io",
+	summary => "Opens a new socket for each packet, and \"clones\" the incoming packet to the destination realm.",
+};
+$$components{rlm_eap_tnc}{readme} = {
+	category => "authentication",
+	summary => "Interfaces with the naeap library to provide the EAP-TNC inner method.",
+};
+$$components{rlm_ippool}{readme} = {
+	category => "policy",
+	summary => "Allocates an IPv4 address from a pool stored in a GDBM database.",
+};
+$$components{rlm_eap_ikev2}{readme} = {
+	category => "authentication",
+	summary => "Implements the EAP-IKEv2 protocol functionality.",
+};
+$$components{rlm_otp}{readme} = {
+	category => "authentication",
+	summary => "One-time password implementation.",
+};
+$$components{rlm_sql_iodbc}{readme} = {
+	category => "datastores",
+	summary => "Connect to databases via iODBC.",
+};
+$$components{proto_dhcp}{readme} = {
+	category => "protocols",
+	summary => "Implements the DHCP protocol for IPv4. Replaced in v4 by the proto_dhcpv4 module.",
+};
+
 # work out the data needed for the components' JSON files
 #
 foreach my $component (keys %$components) {
