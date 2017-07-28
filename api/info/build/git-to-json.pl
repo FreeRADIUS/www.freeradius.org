@@ -1132,7 +1132,10 @@ sub get_component_release_data
 	my %json;
 
 	my @available = ();
-	foreach my $branch (keys %{$$component{branches}}) {
+
+	# sort into order to keep git diffs happier...
+	#
+	foreach my $branch (sort keys %{$$component{branches}}) {
 		my ($min, $max) = get_component_release_minmax($$component{branches}{$branch});
 		my $branchdata = {
 			branch => {
@@ -1206,6 +1209,10 @@ sub build_web_json
 {
 	my ($relbranches, $versions, $components, $outdir) = @_;
 	my $json = JSON->new->pretty(1);
+
+	# sort into order to keep git diffs happier...
+	#
+	$json->canonical(1);
 
 	# shortcut to write json out to a file
 	#
