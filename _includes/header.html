@@ -25,21 +25,13 @@
       </div>
 
       <ul class="site-nav-list">
-        {% assign sorted_pages = site.pages | sort:"navorder" %}
-        {% for page in sorted_pages %}
-          {% if page.title %}
-            {% unless page.subpage %}
-              <li class="site-nav-item">
-                <a class="page-link h5" href="{{ page.url | prepend: site.baseurl }}">{{ page.navtitle | default: page.title }}</a>
-              </li>
-            {% endunless %}
-          {% endif %}
-        {% endfor %}
+{% assign sorted_pages = site.pages | sort:"navorder" %}{% for page in sorted_pages %}{% if page.title %}{% unless page.subpage %}
+         <li class="site-nav-item">
+            <a class="page-link h5" href="{{ page.url | prepend: site.baseurl }}">{{ page.navtitle | default: page.title }}</a>
+         </li>
+{% endunless %}{% endif %}{% endfor %}
       </ul>
 
     </nav>
-
-
   </div>
-
 </header>
