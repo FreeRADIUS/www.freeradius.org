@@ -1,0 +1,190 @@
+RADIUSD(8)		       FreeRADIUS Daemon		    RADIUSD(8)
+
+
+
+NAME
+       radiusd - Authentication, Authorization and Accounting server
+
+SYNOPSIS
+       radiusd	[-C]  [-d  config_directory]  [-f] [-h] [-l log_file] [-m] [-n
+       name] [-s] [-t] [-T] [-v] [-x] [-X]
+
+DESCRIPTION
+       FreeRADIUS is a high-performance and highly configurable RADIUS server.
+       It supports many database back-ends such as flat-text files, SQL, LDAP,
+       Perl, Python, etc.  It also supports many authentication protocols such
+       as  PAP,  CHAP,	MS-CHAP(v2),  HTTP  Digest, and EAP (EAP-MD5, EAP-TLS,
+       PEAP, EAP-TTLS, EAP-SIM, etc.).
+
+       It also has fullsupport for Cisco's  VLAN  Query  Protocol  (VMPS)  and
+       DHCP.
+
+       Please  read the DEBUGGING section below.  It contains instructions for
+       quickly configuring the server for your local system.
+
+OPTIONS
+       The following command-line options are accepted by the server:
+
+       -C     Check the configuration and exit immediately.   If  there  is  a
+	      problem  reading	the  configuration,  then the server will exit
+	      with a non-zero status code.  If the configuration appears to be
+	      acceptable, then the server will exit with a zero status code.
+
+	      Note  that there are limitations to this check.  Due to the com-
+	      plexities involved in almost starting  a	RADIUS	server,  these
+	      checks are necessarily incomplete.  The server can return a zero
+	      status code when run with -C, but may still exit with  an  error
+	      when run normally.
+
+	      See  the	output of radiusd -XC for an informative list of which
+	      modules are checked for correct configuration, and which modules
+	      are skipped, and therefore not checked.
+
+       -d config directory
+	      Defaults to /etc/raddb. Radiusd looks here for its configuration
+	      files such as the dictionary and the users files.
+
+       -f     Do not fork, stay running as a foreground process.
+
+       -h     Print usage help information.
+
+       -l log_file
+	      Defaults to ${logdir}/radius.log. Radiusd  writes  it's  logging
+	      information  to  this  file.  If log_file is the string "stdout"
+	      logging will be written to stdout.
+
+       -m     On SIGINT or SIGQUIT exit cleanly instead of immediately.   This
+	      is most useful for when running the server with "valgrind".
+
+       -n name
+	      Read raddb/name.conf instead of raddb/radiusd.conf.
+
+       -s     Run in "single server" mode.  The server normally runs with mul-
+	      tiple threads and/or processes, which  can  lower  its  response
+	      time to requests.  Some systems have issues with threading, how-
+	      ever, so running in "single server" mode	may  help  to  address
+	      those  issues.   In single server mode, the server will also not
+	      "daemonize" (auto-background) itself.
+
+       -t     Do not spawn threads.
+
+       -T     Always add timestamps to log messages.
+
+       -v     Print server version information and exit.
+
+       -X     Debugging mode.  Equivalent to "-sfxx -l stdout".   When	trying
+	      to  understand how the server works, ALWAYS run it with "radiusd
+	      -X".  For production servers, use "raddebug"
+
+       -x     Finer-grained debug mode. In this mode  the  server  will  print
+	      details  of every request on it's stdout output. You can specify
+	      this option multiple times (-x -x or -xx) to get	more  detailed
+	      output.
+
+DEBUGGING
+       The default configuration is set to work in the widest possible circum-
+       stances.  It requires minimal changes for your system.
+
+       However, your needs may be complex, and may require significant changes
+       to  the	server	configuration.	 Making random changes is a guaranteed
+       method of failure.  Instead, we STRONGLY RECOMMEND proceeding  via  the
+       following steps:
+
+       1)  Always run the server in debugging mode ( radiusd -X ) after making
+       a configuration change.	We cannot emphasize this enough.  If  you  are
+       not  running  the server in debugging mode, you will not be able to see
+       what is doing, and you will not be able to correct any problems.
+
+       If you ask questions on the mailing list, the first response will be to
+       tell  you  "run	the  server  in debugging mode".  Please, follow these
+       instructions.
+
+       2) Change as little as possible in  the	default  configuration	files.
+       The  server  contains a decade of experience with protocols, databases,
+       and different systems.  Its default configuration is designed  to  work
+       almost everywhere, and to do almost everything you need.
+
+       3)  When  you  make a small change, testing it before changing anything
+       else.  If the change works, save a copy of the configuration, and  make
+       another	change.   If  the  change  doesn't  work, debug it, and try to
+       understand why it doesn't work.
+
+       If you begin by making large changes to the  server  configuration,  it
+       will never work, and you will never be able to debug the problem.
+
+       4)  If  you  need  to  add a connection to a database FOO (e.g. LDAP or
+       SQL), then:
+
+	  a) Edit raddb/modules/foo
+	  This file contains the default configuration	for  the  module.   It
+	  contains  comments describing what can be configured, and what those
+	  configuration entries mean.
+	  b) Edit raddb/sites-available/default
+	  This file contains the default policy for the server.  e.g.  "enable
+	  CHAP,  MS-CHAP,  and EAP authentication".  Look in this file for all
+	  references to your module "foo".  Read the comments, and remove  the
+	  leading  hash  '#'  from  the  lines	referencing  the module.  This
+	  enables the module.
+	  c) Edit raddb/sites-available/inner-tunnel
+	  This file contains the default policy for the "tunneled" portion  of
+	  certain  EAP	methods.  Perform the same kind of edits as above, for
+	  the "default" file..	If you are not using EAP (802.1X),  then  this
+	  step can be skipped.
+	  d)  Start  the  server  in  debugging mode ( radiusd -X ), and start
+	  testing.
+
+       5) Ask questions on the	mailing  list  (freeradius-users@lists.freera-
+       dius.org).   When  asking  questions, include the output from debugging
+       mode ( radiusd -X ).  This information will allow people to  help  you.
+       If  you	do  not include it, the first response to your message will be
+       "post the output of debug mode".
+
+       Ask questions earlier, rather than later.  If you cannot solve a  prob-
+       lem  in a day, ask a question on the mailing list.  Most questions have
+       been seen before, and can be answered quickly.
+
+BACKGROUND
+       RADIUS is a protocol spoken  between  an  access  server,  typically  a
+       device  connected to several modems or ISDN lines, and a radius server.
+       When a user connects to the access server, (s)he is asked for a	login-
+       name  and  a  password.	This  information  is  then sent to the radius
+       server. The server replies with "access denied", or "access OK". In the
+       latter  case login information is sent along, such as the IP address in
+       the case of a PPP connection.
+
+       The access server also sends login and logout  records  to  the	radius
+       server  so accounting can be done. These records are kept for each ter-
+       minal server separately in a file called detail, and in the  wtmp  com-
+       patible logfile /var/log/radwtmp.
+
+CONFIGURATION
+       Radiusd	uses  a  number of configuration files. Each file has it's own
+       manpage describing the format of the file. These files are:
+
+       radiusd.conf
+	      The main configuration file, which sets  the  administrator-con-
+	      trolled items.
+
+       dictionary
+	      This  file is usually static. It defines all the possible RADIUS
+	      attributes used in the other  configuration  files.   You  don't
+	      have  to	modify	it.  It includes other dictionary files in the
+	      same directory.
+
+       users  Here the users are defined. On a typical setup, this file mainly
+	      contains	DEFAULT  entries  to  process  the  different types of
+	      logins, based on hints from the hints  file.  Authentication  is
+	      then based on the contents of the UNIX /etc/passwd file. However
+	      it is also possible to define all users, and their passwords, in
+	      this file.
+
+SEE ALSO
+       radiusd.conf(5), users(5) dictionary(5), raddebug(8)
+
+AUTHOR
+       The FreeRADIUS Server Project (http://www.freeradius.org)
+
+
+
+
+				  26 Apr 2012			    RADIUSD(8)

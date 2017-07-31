@@ -1,0 +1,133 @@
+---
+layout: default
+---
+
+<div class="wrapper base_padding_v">
+<H1>RADTEST</H1>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 5 April 2010<BR><A HREF="#index">Index</A>
+<A HREF="/man/">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+radtest - send packets to a RADIUS server, show reply
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>radtest</B>
+
+[<B>-d</B>
+
+<I>raddb_directory</I>]
+
+[<B>-P</B>
+
+<I>tcp/udp</I>]
+
+[<B>-t</B>
+
+<I>pap/chap/mschap/eap-md5</I>]
+
+[<B>-x</B>
+
+<I>]</I>
+
+[<B>-4</B>
+
+<I>]</I>
+
+[<B>-6</B>
+
+<I>]</I>
+
+<I>user password radius-server nas-port-number secret</I>
+
+[<B>ppphint</B>]
+
+[<B>nasname</B>]
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>radtest</B> is a frontend to <B><a href="radclient.html">radclient</A></B>(1). It generates a
+list of attribute/value pairs based on the command line arguments,
+and feeds these into <B>radclient</B>. It's a fast and convenient
+way to test a radius server.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<P>
+<DL COMPACT>
+<DT>-d <I>raddb_directory</I><DD>
+The directory that contains the RADIUS dictionary files. Defaults to
+<I>/etc/raddb</I>.
+<P>
+<DT>-P&nbsp;<I>proto</I><DD>
+Use <I>proto</I> transport protocol (&quot;tcp&quot; or &quot;udp&quot;).
+Only available if FreeRADIUS is compiled with TCP transport support.
+<P>
+<DT>-x<DD>
+Enables debugging output for the RADIUS client.
+<P>
+<DT>-4<DD>
+Use NAS-IP-Address for the NAS address (default)
+<P>
+<DT>-6<DD>
+Use NAS-IPv6-Address for the NAS address (default)
+<P>
+<DT>user<DD>
+Username to send.
+<P>
+<DT>password<DD>
+Password of the user.
+<P>
+<DT>radius-server<DD>
+Hostname or IP address of the radius server. Optionally, you may specify a
+port by appending :port
+<P>
+<DT>nas-port-number<DD>
+The value of the NAS-Port attribute. Is an integer between 0 and 2^31,
+and it really doesn't matter what you put here. <I>10</I> will do fine.
+<P>
+<DT>secret<DD>
+The shared secret for this client.
+<P>
+<DT>ppphint<DD>
+If you put an integer &gt; 0 here, radtest (or actually radclient) will
+add the attribute <I>Framed-Protocol = PPP</I> to the request packet.
+<P>
+<DT>nasname<DD>
+If present, this will be resolved to an IP address and added to
+the request packet as the <I>NAS-IP-Address</I> attribute. If you
+don't specify it, the local hostname of the system will be used.
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<a href="radiusd.html">radiusd</A>(8),
+<a href="radclient.html">radclient</A>(1).
+<A NAME="lbAG">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</A>.
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+man2html,
+using the manual pages.<BR>
+Time: 13:20:53 GMT, July 31, 2017
+</div>
+</HTML>

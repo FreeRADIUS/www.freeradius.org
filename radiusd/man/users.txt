@@ -1,0 +1,199 @@
+USERS(5)	      FreeRADIUS user authorization file	      USERS(5)
+
+
+
+NAME
+       users - user authorization file for the FreeRADIUS server
+
+DESCRIPTION
+       The  users files reside in the files module configuration directory, by
+       default /etc/raddb/mods-config/files/.  It contains a series of config-
+       uration	directives which are used by the files module to decide how to
+       authorize and authenticate each user request.
+
+       Every line starting with a hash sign ('#') is treated  as  comment  and
+       ignored.
+
+       Each  entry of the file begins with a username, followed by a (possibly
+       empty) list of check items, all on one line.  The next line begins with
+       a  tab,	and  a (possibly empty) list of reply items.  Each item in the
+       check or reply item list is an attribute of  the  form  name  =	value.
+       Multiple  items	may  be placed on one line, in which case they must be
+       separated by commas.  The reply items may be  specified	over  multiple
+       lines, in which case each line must end with a comma, and the last line
+       of the reply items must not end with a comma.
+
+       The check items are a list of attributes used  to  match  the  incoming
+       request.  If the username matches, AND all of the check items match the
+       incoming request, then the  reply  items  are  added  to  the  list  of
+       attributes  which  will	be  used  in  the reply to that request.  This
+       process is repeated for all of the entries in the users file.
+
+       If the incoming request matches NO entry, then the request is rejected.
+
+
+CAVEATS
+       The special keyword DEFAULT matches any usernames.
+
+       The entries are processed in order, from the top of the users file,  on
+       down.   If  an  entry  contains the special item Fall-Through = No as a
+       reply attribute, then the processing of the file  stops,  and  no  more
+       entries	are  matched.	Any  reply  item list without any Fall-Through
+       attribute is  treated  as  though  it  included	a  Fall-Through  =  No
+       attribute.
+
+       If  an  entry  contains	the special item Fall-Through = Yes as a reply
+       attribute, then the processing proceeds to the next entry in order.
+
+       Care should be taken when using Fall-Through.   The  server  should  be
+       tested  in  debugging  mode with a number of test requests, in order to
+       verify that the configured entries behave as expected.
+
+       The special attribute Auth-Type is used to identify the	authentication
+       type  to  be used for that user.  See the dictionary file for a list of
+       permitted values for the Auth-Type attribute.
+
+       Once the users file has been processed, the request  is	authenticated,
+       using the method given by Auth-Type.
+
+
+OPERATORS
+       Additional  operators  other  than  = may be used for the attributes in
+       either the check item, or reply item list.  The following is a list  of
+       operators, and their meaning.
+
+
+       Attribute = Value
+	    Not allowed as a check item for RADIUS protocol attributes.  It is
+	    allowed for server configuration attributes (Auth-Type, etc),  and
+	    sets  the value of an attribute, only if there is no other item of
+	    the same attribute.
+	    As a reply item, it means "add the item to	the  reply  list,  but
+	    only if there is no other item of the same attribute."
+
+
+       Attribute := Value
+	    Always  matches as a check item, and replaces in the configuration
+	    items any attribute of the same name.  If  no  attribute  of  that
+	    name appears in the request, then this attribute is added.
+	    As	a  reply  item, it has an identical meaning, but for the reply
+	    items, instead of the request items.
+
+
+       Attribute == Value
+	    As a check item, it matches if the named attribute is  present  in
+	    the request, AND has the given value.
+	    Not allowed as a reply item.
+
+
+       Attribute += Value
+	    Always  matches  as  a  check item, and adds the current attribute
+	    with value to the list of configuration items.
+	    As a reply item, it has an identical meaning, but the attribute is
+	    added to the reply items.
+
+
+       Attribute != Value
+	    As a check item, matches if the given attribute is in the request,
+	    AND does not have the given value.
+	    Not allowed as a reply item.
+
+
+       Attribute > Value
+	    As a check item, it matches if the request contains  an  attribute
+	    with a value greater than the one given.
+	    Not allowed as a reply item.
+
+
+       Attribute >= Value
+	    As	a  check item, it matches if the request contains an attribute
+	    with a value greater than, or equal to the one given.
+	    Not allowed as a reply item.
+
+
+       Attribute < Value
+	    As a check item, it matches if the request contains  an  attribute
+	    with a value less than the one given.
+	    Not allowed as a reply item.
+
+
+       Attribute <= Value
+	    As	a  check item, it matches if the request contains an attribute
+	    with a value less than, or equal to the one given.
+	    Not allowed as a reply item.
+
+
+       Attribute =* Value
+	    As a check item, it matches if  the  request  contains  the  named
+	    attribute, no matter what the value is.
+	    Not allowed as a reply item.
+
+
+       Attribute !* Value
+	    As	a  check  item, it matches if the request does not contain the
+	    named attribute, no matter what the value is.
+	    Not allowed as a reply item.
+
+
+EXAMPLES
+       bob  Cleartext-Password := "hello"
+
+	      Requests containing the User-Name attribute, with  value	"bob",
+	      will  be	authenticated using the "known good" password "hello".
+	      There are no reply items, so the reply will be empty.
+
+       DEFAULT	 Auth-Type = System
+	    Fall-Through = Yes
+
+	      For  all	users  reaching  this  entry,  perform	authentication
+	      against  the  system,  unless  Auth-Type	has  already been set.
+	      Also, process any following entries which may match.
+
+       DEFAULT Service-Type == Framed-User, Framed-Protocol == PPP
+	    Service-Type = Framed-User,
+	    Framed-Protocol = PPP,
+	    Fall-Through = Yes
+
+	      If the request packet contains the attributes  Service-Type  and
+	      Framed-Protocol,	with  the  given  values,  then  include those
+	      attributes in the reply.
+
+	      That is, give the user what they ask for.  This entry also shows
+	      how to specify multiple reply items.
+
+       See  the users file supplied with the server for more examples and com-
+       ments.
+
+
+HINTS
+       Run the server in debugging mode (-X), and use the radclient program to
+       send  it test packets which you think will match specific entries.  The
+       server will print out which entries were matched for that  request,  so
+       you  can  verify your expectations.  This should be the FIRST thing you
+       do if you suspect problems with the file.
+
+       Care should be taken when writing entries for the users	file.	It  is
+       easy  to misconfigure the server so that requests are accepted when you
+       wish to reject them.  The entries should  be  ordered,  and  the  Fall-
+       Through item should be used ONLY where it is required.
+
+       Entries	rejecting  certain  requests should go at the top of the file,
+       and should not have a Fall-Through item in their reply items.   Entries
+       for  specific  users,  who do not have a Fall-Through item, should come
+       next.  Any DEFAULT entries should usually come last,  except  as  fall-
+       through entries that set reply attributes.
+
+
+FILES
+       /etc/raddb/mods-config/files/
+
+SEE ALSO
+       radclient(1), radiusd(8), dictionary(5),
+
+
+AUTHOR
+       The FreeRADIUS team.
+
+
+
+				  04 Jan 2004			      USERS(5)

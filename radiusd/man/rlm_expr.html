@@ -1,0 +1,180 @@
+---
+layout: default
+---
+
+<div class="wrapper base_padding_v">
+<H1>rlm_expr</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 5 February 2004<BR><A HREF="#index">Index</A>
+<A HREF="/man/">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_expr - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_expr</I> module allows the server to perform
+limited mathematical calculations.  This module is not called
+directly in any section, it is invoked through the dynamic expansion
+of strings.
+<P>
+
+For example, some NAS boxes send a NAS-Port attribute
+which is a 32-bit number composed of port, card, and interface, all in
+different bytes.  To see these attributes split into pieces, you can
+have an entry in the 'users' file like:
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+DEFAULT
+<BR>
+    Vendor-Interface = `&percnt;{expr: &percnt;{NAS-Port} / (256 * 256)}`,
+<BR>
+    Vendor-Card = `&percnt;{expr: (&percnt;{NAS-Port} / 256) &percnt;&percnt; 256}`,
+<BR>
+    Vendor-Port = `&percnt;{expr: &percnt;{NAS-Port} &percnt;&percnt; 256}`
+<BR>
+
+
+</PRE>
+
+</DL>
+
+<P>
+
+where the attributes Vendor-Interface, Vendor-Card, and Vendor-Port
+are attributes created by either you or a vendor-supplied
+dictionary.
+<P>
+The methematical operators supported by the expression module are:
+<DL COMPACT>
+<DT><B>+</B>
+
+<DD>
+addition
+<DT><B>-</B>
+
+<DD>
+subtraction
+<DT><B>/</B>
+
+<DD>
+division
+<DT><B>&percnt;&percnt;</B>
+
+<DD>
+modulo remainder
+<DT><B>*</B>
+
+<DD>
+multiplication
+<DT><B>&amp;</B>
+
+<DD>
+boolean AND
+<DT><B>|</B>
+
+<DD>
+boolean OR
+<DT><B>()</B>
+
+<DD>
+grouping of sub-expressions
+</DL>
+<P>
+
+NOTE: The modulo remainder operator is '&percnt;&percnt;', and not '&percnt;'.  This
+is due to the '&percnt;' character being used as a special character for
+dynamic translation.
+<P>
+
+NOTE: These operators do NOT have precedence.  The parsing
+of the input string, and the calculation of the answer, is done
+strictly left to right.  If you wish to order the expressions, you
+MUST group them into sub-expression, as shown in the previous
+example.
+<P>
+
+All of the calculations are performed as unsigned 32-bit integers.
+
+
+
+<P>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+modules {
+  ...
+<BR>
+  expr {
+<BR>
+  }
+<BR>
+  ...
+<BR>
+}
+<BR>
+ ...
+<BR>
+instantiate {
+  ...
+<BR>
+  expr
+  ...
+<BR>
+}
+</DL>
+</PRE><A NAME="lbAE">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>instantiate</B>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf</I>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><a href="radiusd.html">radiusd</A></B>(8),
+
+<B><a href="radiusd.conf.html">radiusd.conf</A></B>(5)
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
+<P>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAE">SECTIONS</A><DD>
+<DT><A HREF="#lbAF">FILES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+man2html,
+using the manual pages.<BR>
+Time: 13:20:54 GMT, July 31, 2017
+</div>
+</HTML>

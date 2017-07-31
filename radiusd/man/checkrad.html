@@ -1,0 +1,143 @@
+---
+layout: default
+---
+
+<div class="wrapper base_padding_v">
+<H1>CHECKRAD</H1>
+Section: File Formats (5)<BR>Updated: 13 January 2006<BR><A HREF="#index">Index</A>
+<A HREF="/man/">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+checkrad -- See if a user is (still) logged in on a certain port.
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>checkrad</B>
+
+[<B>-d</B>]
+
+<I>nas-type nas-ip nas-port login session-id</I>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>Checkrad</B> is used by the radius server to check if its idea of a user logged in
+on a certain port/NAS is correct if a double login is detected.
+<P>
+Returns: 0 = no duplicate, 1 = duplicate, &gt;1 = error.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<P>
+<DL COMPACT>
+<DT>-d<DD>
+Enable printing of debugging information.
+<P>
+<DT>nas-type<DD>
+Type of port/NAS. Can be one of:
+<P>
+<DL COMPACT><DT><DD>
+<DL COMPACT>
+<DT>&bull;<DD>
+ascend
+<DT>&bull;<DD>
+bay
+<DT>&bull;<DD>
+cisco
+<DT>&bull;<DD>
+cisco_l2tp
+<DT>&bull;<DD>
+computone
+<DT>&bull;<DD>
+cvx
+<DT>&bull;<DD>
+digitro
+<DT>&bull;<DD>
+dot1x
+<DT>&bull;<DD>
+livingston
+<DT>&bull;<DD>
+max40xx
+<DT>&bull;<DD>
+mikrotik
+<DT>&bull;<DD>
+mikrotik_snmp
+<DT>&bull;<DD>
+multitech
+<DT>&bull;<DD>
+netserver
+<DT>&bull;<DD>
+other
+<DT>&bull;<DD>
+pathras
+<DT>&bull;<DD>
+patton
+<DT>&bull;<DD>
+portslave
+<DT>&bull;<DD>
+pr3000
+<DT>&bull;<DD>
+pr4000
+<DT>&bull;<DD>
+redback
+<DT>&bull;<DD>
+tc
+<DT>&bull;<DD>
+usrhiper
+<DT>&bull;<DD>
+versanet
+</DL>
+<P>
+
+The &quot;other&quot; type cause <B>checkrad</B> to skip any check and always returns 1.
+</DL>
+
+<P>
+<P>
+<DT>nas-ip<DD>
+IP address of the NAS to check.
+<P>
+<DT>nas-port<DD>
+The NAS port to check (may be ignored by some nas-type).
+<P>
+<DT>login<DD>
+The login name to check.
+<P>
+<DT>session-id<DD>
+Session to check. (actually ignored by all nas-type)
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<a href="radiusd.html">radiusd</A>(8)
+<P>
+<A NAME="lbAG">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+Written by Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</A>.
+<P>
+This manual page was written by Marco Nenciarini &lt;<A HREF="mailto:mnencia@debian.org">mnencia@debian.org</A>&gt; for
+the Debian project (but may be used by others).
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+man2html,
+using the manual pages.<BR>
+Time: 13:20:53 GMT, July 31, 2017
+</div>
+</HTML>

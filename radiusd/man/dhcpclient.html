@@ -1,0 +1,128 @@
+---
+layout: default
+---
+
+<div class="wrapper base_padding_v">
+<H1>DHCPCLIENT</H1>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 19 September 2016<BR><A HREF="#index">Index</A>
+<A HREF="/man/">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+dhcpclient - Send a DHCP request with provided RADIUS attributes and get the output response.
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>dhcpclient</B>
+
+[<B>-d</B>
+
+<I>raddb_directory</I>]
+
+[<B>-D</B>
+
+<I>dictionary_directory</I>]
+
+[<B>-f</B>
+
+<I>file</I>]
+
+[<B>-h</B>]
+
+[<B>-i</B>
+
+<I>interface</I>]
+
+[<B>-t</B>
+
+<I>timeout</I>]
+
+[<B>-v</B>]
+
+[<B>-x</B>]
+
+<I>server[:port] {discover|request|decline|release|inform|auto}</I>
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>dhcpclient</B> is a DHCP test client program. It can send arbitrary DHCP
+packets to the FreeRADIUS server running as DHCP server, then shows the reply.
+It can be used to test changes you made in the configuration of the radius server,
+or it can be used to monitor if a radius server is up.
+<P>
+
+<B>dhcpclient</B> reads radius attribute/value pairs from its standard
+input, or from a file specified on the command line. It then encodes
+these attribute/value pairs using the dictionary, and sends them
+to the local/remote server.
+<P>
+
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<P>
+<DL COMPACT>
+<DT>-d&nbsp;<I>raddb_directory</I><DD>
+The directory that contains the user dictionary file. Defaults to
+<I>/etc/raddb</I>.
+<DT>-D&nbsp;<I>dictionary_directory</I><DD>
+The directory that contains the main dictionary file. Defaults to
+<I>/usr/share/freeradius</I>.
+<DT>-f&nbsp;<I>file[:file]</I><DD>
+File to read the attribute/value pairs from. If this is not specified,
+they are read from stdin.  This option can be specified multiple
+times, in which case packets are sent in order by file, and within
+each file, by first packet to last packet.  A blank line separates
+logical packets within a file.
+<DT>-h<DD>
+Print usage help information.
+<DT>-i&nbsp;<I>interface</I><DD>
+Select which interface to send/receive at packet level on a raw socket.
+<DT>-t&nbsp;<I>timeout</I><DD>
+Wait <I>timeout</I> seconds before deciding that the NAS has not
+responded to a request, and re-sending the packet. This may be a floating
+point number, e.g. 2.2.
+<DT>-v<DD>
+Print out program version information.
+<DT>-x<DD>
+Print out debugging information.
+<DT>server[:port]<DD>
+The hostname or IP address of the remote server. Optionally a UDP port
+can be specified. If no UDP port is specified, it is looked up in
+<I>/etc/services</I>. The service name looked for is <B>radacct</B> for
+accounting packets, and <B>radius</B> for all other requests. If a
+service is not found in <I>/etc/services</I>, 1813 and 1812 are used
+respectively.
+<DT>discover&nbsp;|&nbsp;request&nbsp;|&nbsp;decline&nbsp;|&nbsp;release&nbsp;|&nbsp;inform&nbsp;|&nbsp;auto<DD>
+DHCP options - use the type relevant for testing
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<a href="radiusd.html">radiusd</A>(8)
+<A NAME="lbAG">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt;
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">AUTHORS</A><DD>
+</DL>
+<HR>
+This document was created by
+man2html,
+using the manual pages.<BR>
+Time: 13:20:52 GMT, July 31, 2017
+</div>
+</HTML>

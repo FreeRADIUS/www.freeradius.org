@@ -1,0 +1,63 @@
+---
+layout: default
+---
+
+<div class="wrapper base_padding_v">
+<H1>SMBENCRYPT</H1>
+Section: User Commands  (1)<BR><A HREF="#index">Index</A>
+<A HREF="/man/">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+smbencrypt - produce LM &amp; NT password hashes from cleartext passwords
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>smbencrypt </B><I>password</I> [<I>password ...</I>]
+
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>smbencrypt</B> For each cleartext password passed on the command line
+emit the LM-Password and NT-Password hashes for that password.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>EXAMPLE</H2>
+
+<PRE>
+$ smbencrypt foo bar
+LM Hash                                 NT Hash
+--------------------------------        --------------------------------
+5BFAFBEBFB6A0942AAD3B435B51404EE        AC8E657F83DF82BEEA5D43BDAF7800CC
+A6428F2551EDEE1BAAD3B435B51404EE        86C156FC198B358CCCF6278D8BD49B6A
+</PRE>
+
+<P>
+<A NAME="lbAF">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<a href="radiusd.html">radiusd</A>(8)
+<A NAME="lbAG">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">EXAMPLE</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">AUTHORS</A><DD>
+</DL>
+<HR>
+This document was created by
+man2html,
+using the manual pages.<BR>
+Time: 13:20:52 GMT, July 31, 2017
+</div>
+</HTML>

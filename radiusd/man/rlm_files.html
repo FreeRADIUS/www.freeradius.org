@@ -1,0 +1,153 @@
+---
+layout: default
+---
+
+<div class="wrapper base_padding_v">
+<H1>rlm_files</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 5 February 2004<BR><A HREF="#index">Index</A>
+<A HREF="/man/">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_files - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_files</I> module uses the 'users' file for accessing
+authorization information for users.  Additionally, it supports
+a 'users' file syntax to be applied to the accounting and pre-proxy
+sections.
+<P>
+
+The main configuration items to be aware of are:
+<DL COMPACT>
+<DT>usersfile<DD>
+The filename of the 'users' file, which is parsed during the
+authorization stage of this module.
+<DT>acctusersfile<DD>
+The filename of the 'users' file, which is parsed during the
+accounting stage of this module.
+<DT>preproxy_usersfile<DD>
+The filename of the 'users' file, which is parsed during the
+pre_proxy stage of this module.
+<DT>compat<DD>
+This option allows FreeRADIUS to parse an old style Cistron syntax.
+The default is 'no'.  If you need to parse an old style Cistron
+file, set this option to 'cistron'.
+<DT>key<DD>
+This option lets you set the attribute to use as a key to find
+entries.  The default is &quot;&percnt;{&percnt;{Stripped-User-Name}:-&percnt;{User-Name}}&quot;.  Note
+that the key MUST supply real data.  Dynamic attributes like &quot;Group&quot;
+will not work, because the &quot;Group&quot; attribute can only be used as a
+comparison, to see if a user is in a Unix group.  It will not return
+the name of the Unix group that a user is in.
+</DL>
+<P>
+
+If you want to use groups as a key, see the <I>rlm_passwd</I>, which
+will create a real attribute that contains the group name.
+<P>
+
+This configuration entry enables you to have configurations that
+perform per-group checks, and return per-group attributes, where the
+group membership is dynamically defined by a previous module.  It also
+lets you do things like key off of attributes in the reply, and
+express policies like like &quot;when I send replies containing attribute
+FOO with value BAR, do more checks, and maybe send additional
+attributes&quot;.
+<A NAME="lbAD">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+<P>
+
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+modules {
+  ... stuff here ...
+<BR>
+  files {
+<BR>
+    usersfile = &percnt;{confdir}/users
+<BR>
+    acctusersfile = &percnt;{confdir}/acct_users
+<BR>
+    preproxy_usersfile = &percnt;{confdir}/preproxy_users
+<BR>
+    compat = no
+<BR>
+    key = &percnt;{&percnt;{Stripped-User-Name}:-&percnt;{User-Name}}
+<BR>
+  }
+<BR>
+  ... stuff here ...
+<BR>
+}
+
+</PRE>
+
+</DL>
+
+<P>
+
+<P>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>authorization,</B>
+
+<B>accounting,</B>
+
+<B>pre_proxy</B>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf,</I>
+
+<I>/etc/raddb/users,</I>
+
+<I>/etc/raddb/acct_users,</I>
+
+<I>/etc/raddb/preproxy_users</I>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><a href="radiusd.html">radiusd</A></B>(8),
+
+<B><a href="radiusd.conf.html">radiusd.conf</A></B>(5),
+
+<B><a href="users.html">users</A></B>(5)
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAE">SECTIONS</A><DD>
+<DT><A HREF="#lbAF">FILES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHORS</A><DD>
+</DL>
+<HR>
+This document was created by
+man2html,
+using the manual pages.<BR>
+Time: 13:20:53 GMT, July 31, 2017
+</div>
+</HTML>
