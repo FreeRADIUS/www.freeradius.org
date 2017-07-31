@@ -1,6 +1,7 @@
 all:
 	jekyll serve & browser-sync start --config bs-config.js
 build:
+	( cd radiusd/man && make )
 	jekyll build
 	rm -r _site/api/info/srv
 	api/info/build/git-to-json.pl /srv/freeradius-server _site/api/info/srv
