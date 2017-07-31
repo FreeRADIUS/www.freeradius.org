@@ -1081,7 +1081,7 @@ sub get_branch_release_data
 
 	# build list of features
 	#
-	foreach my $section (keys %$changelog) {
+	foreach my $section (sort keys %$changelog) {
 		my $list;
 		if ($section =~ /improvements/i) {
 			$list = \@features;
