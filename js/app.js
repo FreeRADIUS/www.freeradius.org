@@ -615,7 +615,7 @@
                 url: 'http://{{ site.url }}/api/info/branch/',
                 // url: '/modules.json',
                 params: {
-                    expansion_depth: 2,
+                    expansion_depth: 3,
                     order_by: 'priority'
                 }
             }).then(function successCallback(response) {
