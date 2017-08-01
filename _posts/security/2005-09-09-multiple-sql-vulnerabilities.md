@@ -29,7 +29,7 @@ the number of vulnerable sites is low.
 
 Additional issues, not externally exploitable, were found by Suse. A
 full response to their report is available
-[here](security/20050909-response-to-suse.txt). A related post to
+[here](/security/20050909-response-to-suse.txt). A related post to
 the `vendor-sec` mailing list is found
-[here](security/20050909-vendor-sec.txt).
+[here](/security/20050909-vendor-sec.txt).
 

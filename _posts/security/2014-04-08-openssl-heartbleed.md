@@ -6,7 +6,7 @@ categories: vul_in_deps
 tags: security
 ---
 
-[Heartbleed](heartbleed.com) bug.
+[Heartbleed](http://heartbleed.com/) bug.
 
 OpenSSL has a major security issue, seen in to
 [CVE-2014-0160](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0160%0A).

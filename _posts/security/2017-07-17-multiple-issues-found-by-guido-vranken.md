@@ -6,7 +6,8 @@ categories: vul_notifications
 tags: security
 ---
 
-We requested that Guido Vranken do fuzz testing against the server.
-He found issues in all versions of the server. These issues are
-documented on the [fuzzer](security/fuzzer-2017.html) page.
+We requested that Guido Vranken do fuzz testing against the
+server. He found issues in all versions of the server. These
+issues are documented on the [fuzzer](/security/fuzzer-2017.html)
+page.
 
