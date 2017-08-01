@@ -50,16 +50,6 @@ server {
 	}
 
 	#
-	#  Block this temporarily, with account radius / fhg7Fbf
-	#
-	location ^~ /security/fuzzer-2017.html {
-		ssi on;
-		auth_basic "Restricted";
-		auth_basic_user_file "htpasswd/fuzzer";
-		index  index.html index.htm;
-	}
-
-	#
 	#  Dispatch requests to the release and branch info API
 	#
 	location ~ ^/api/ {
