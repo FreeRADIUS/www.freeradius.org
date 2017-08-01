@@ -1,0 +1,140 @@
+{
+   "date" : "2006-05-25T16:24:40Z",
+   "defects" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Return better error codes in SQL IODBC module.  Closes bug #341"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Corrected list of EAP handlers"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Initialize variable in rlm_ldap.c.  This fixes RedHat bug #136468"
+      },
+      {
+         "description" : "Escape more ldap strings, so configuration entries that have magic LDAP characters don't break LDAP This closes bug #360"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Updated doc/rlm_ldap.  This closes bug #353"
+      },
+      {
+         "description" : "Updated redhat/freeradius.spec.  This closes bug #330"
+      },
+      {
+         "description" : "Don't forcibly over-write Auth-Type in the mschap module This prevents an earlier module from forcing reject"
+      },
+      {
+         "description" : "Use the correct module reference in the authenticate section, where Auth-Type wasn't explicitely specified"
+      },
+      {
+         "description" : "If there are typos in a subsection in radiusd.conf, exit after printing an error, rather than continuing"
+      },
+      {
+         "description" : "Print Ascend \"abinary\" format as text rather than octets when we receive it"
+      },
+      {
+         "description" : "Silently drop packets with bad Message-Authenticators, as per RFC3579"
+      },
+      {
+         "description" : "Unbreak ./configure --disable-static (closes: #350)"
+      },
+      {
+         "description" : "Unbreak ./configure --prefix (closes: #354)"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.2.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.2.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.2.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.2.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Allow tagged VSA's for Juniper.  Closes bugs #367 and #368"
+      },
+      {
+         "description" : "Allow Ascend \"abinary\" format to be specified as octets, (e.g. Ascend-Data-Filter = 0x010203...)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            },
+            {
+               "name" : "rlm_eap_tls",
+               "url" : "/api/info/component/rlm_eap_tls/"
+            }
+         ],
+         "description" : "Added \"cipher_list\" configuration to the EAP-TLS module See \"eap.conf\" and \"man 1 cipher\" for details"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            },
+            {
+               "name" : "rlm_eap_tls",
+               "url" : "/api/info/component/rlm_eap_tls/"
+            }
+         ],
+         "description" : "Added \"check_cert_issuer\" configuration to the EAP-TLS module See \"eap.conf\" for details. (closes: #346)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_detail",
+               "url" : "/api/info/component/rlm_detail/"
+            }
+         ],
+         "description" : "Added \"suppress\" configuration entry to rlm_detail, to suppress certain attributes (e.g. User-Password) This closes bug #359"
+      },
+      {
+         "description" : "More dictionary updates"
+      },
+      {
+         "description" : "Write SSL errors to log file, rather than stderr This closes bug #347"
+      },
+      {
+         "description" : "Allow a core dump on uid change on Linux (closes: #361)"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_1_1_2.tar.gz"
+      }
+   ],
+   "name" : "1.1.2",
+   "summary" : "The focus of this release is stability"
+}

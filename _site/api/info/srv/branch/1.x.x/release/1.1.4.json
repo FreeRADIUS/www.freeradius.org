@@ -1,0 +1,100 @@
+{
+   "date" : "2007-01-05T00:10:39Z",
+   "defects" : [
+      {
+         "description" : "Fix a parse error in the digest module, where malformed digest requests would result in the user being accepted.  Oops.."
+      },
+      {
+         "description" : "VALUEs can only be defined for 'integer', to catch mistakes with setting VALUEs for type 'string'"
+      },
+      {
+         "description" : "Better parsing of VALUE names, so that values starting with a digit work correctly"
+      },
+      {
+         "description" : "Check return from malloc (closes: #407)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap_tls",
+               "url" : "/api/info/component/rlm_eap_tls/"
+            }
+         ],
+         "description" : "Fix a double free() in rlm_eap_tls.c (closes: #404)"
+      },
+      {
+         "description" : "Check return code of malloc() during initialization. (closes: #407)"
+      },
+      {
+         "description" : "Fix a corner case where the proxy port isn't set either in radiusd.conf or in proxy.conf"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.4.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.4.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.4.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.4.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_pap",
+               "url" : "/api/info/component/rlm_pap/"
+            }
+         ],
+         "description" : "Major enhancements to rlm_pap, that make \"encryption_scheme\" a think of the past.  See \"man rlm_pap\" for details"
+      },
+      {
+         "description" : "Added SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS flag to use work-arounds that enable Windows Vista clients to work"
+      },
+      {
+         "description" : "Added preliminary code to support Firebird. (closes: #378) Use at your own risk!"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            },
+            {
+               "name" : "rlm_eap_ttls",
+               "url" : "/api/info/component/rlm_eap_ttls/"
+            }
+         ],
+         "description" : "Send MS-CHAP2-Success, which makes EAP-TTLS/MSCHAP work on more platforms.  (closes: #402)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sqlcounter",
+               "url" : "/api/info/component/rlm_sqlcounter/"
+            }
+         ],
+         "description" : "Add a new \"reply-name\" directive in rlm_sqlcounter to define the name of the reply attribute. (closes: #403)"
+      },
+      {
+         "description" : "Added more dictionaries and attributes (closes: #408, among others)"
+      },
+      {
+         "description" : "Print ntlm_auth failure reason in Module-Failure-Message (closes: #398)"
+      },
+      {
+         "description" : "radsqlrelay is able to get the DB password from a file instead of command line. (closes: #395)"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_1_1_4.tar.gz"
+      }
+   ],
+   "name" : "1.1.4",
+   "summary" : "The focus of this release is stability"
+}

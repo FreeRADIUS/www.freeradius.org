@@ -1,0 +1,540 @@
+
+
+
+
+
+
+Network Working Group                                      Bernard Aboba
+INTERNET-DRAFT                                                 Microsoft
+Category: Standards Track                                      Glen Zorn
+<draft-aboba-radius-ipv6-00.txt>                           Cisco Systems
+10 August 2000                                               Dave Mitton
+                                                         Nortel Networks
+
+
+                            RADIUS and IPv6
+
+This document is an Internet-Draft and is in full conformance with all
+provisions of Section 10 of RFC2026.
+
+Internet-Drafts are working documents of the Internet Engineering Task
+Force (IETF), its areas, and its working groups.  Note that other groups
+may also distribute working documents as Internet- Drafts.
+
+Internet-Drafts are draft documents valid for a maximum of six months
+and may be updated, replaced, or obsoleted by other documents at any
+time.  It is inappropriate to use Internet-Drafts as reference material
+or to cite them other than as "work in progress."
+
+The list of current Internet-Drafts can be accessed at
+http://www.ietf.org/ietf/1id-abstracts.txt
+
+The list of Internet-Draft Shadow Directories can be accessed at
+http://www.ietf.org/shadow.html.
+
+1.  Copyright Notice
+
+Copyright (C) The Internet Society (2000).  All Rights Reserved.
+
+2.  Abstract
+
+This document specifies the operation of RADIUS when run over IPv6 as
+well as the RADIUS attributes used to support IPv6 network access.  Note
+that the RADIUS server does not know a priori whether the NAS will be
+using IPv4, IPv6, or both. Therefore it is presumed that the IPv6
+attributes described in this document may be sent along with
+IPv4-related attributes within the same RADIUS message and that the NAS
+will decide which attributes to use.
+
+3.  Introduction
+
+This document specifies the operation of RADIUS when run over IPv6 as
+well as the RADIUS attributes used to support IPv6 network access.  Note
+that the RADIUS server does not know a priori whether the NAS will be
+using IPv4, IPv6, or both. Therefore it is presumed that the IPv6
+
+
+
+Aboba, Zorn & Mitton         Standards Track                    [Page 1]
+
+
+
+
+
+INTERNET-DRAFT              RADIUS and IPv6               10 August 2000
+
+
+attributes described in this document may be sent along with
+IPv4-related attributes within the same RADIUS message and that the NAS
+will decide which attributes to use.
+
+The NAS can provide IPv6 access natively, or alternatively, via a tunnel
+(6BONE). The choice of method for providing IPv6 access has no effect on
+RADIUS usage per se, although if it is desired that an IPv6 within IPv4
+tunnel be opened to a particular location, then tunnel attributes should
+be utilized, as described in [7]-[8].
+
+3.1.  Requirements language
+
+In this document, the key words "MAY", "MUST,  "MUST  NOT",  "optional",
+"recommended",  "SHOULD",  and  "SHOULD  NOT",  are to be interpreted as
+described in [1].
+
+4.  Attributes
+
+4.1.  NAS-IPv6-Address
+
+Description
+
+   This Attribute indicates the identifying IPv6 Address of the NAS
+   which is requesting authentication of the user, and SHOULD be unique
+   to the NAS within the scope of the RADIUS server.  NAS-IPv6-Address
+   is only used in Access-Request packets.  NAS-IPv6-Address and/or NAS-
+   IP-Address MAY be present in an Access-Request packet; however, if
+   neither attribute is present then NAS-Identifier MUST be present.
+
+A summary of the NAS-IPv6-Address Attribute format is shown below.  The
+fields are transmitted from left to right.
+
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|     Type      |    Length     |             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            Address             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+Type
+
+
+
+
+Aboba, Zorn & Mitton         Standards Track                    [Page 2]
+
+
+
+
+
+INTERNET-DRAFT              RADIUS and IPv6               10 August 2000
+
+
+   TBD for NAS-IPv6-Address
+
+Length
+
+   18
+
+Address
+
+   The Address field is 16 octets.
+
+4.2.  Framed-Interface-Id
+
+Description
+
+   This Attribute indicates the IPv6 interface identifier to be
+   configured for the user. It MAY be used in Access-Accept packets. It
+   MAY be used in an Access-Request packet as a hint by the NAS to the
+   server that it would prefer that address, but the server is not
+   required to honor the hint.
+
+A summary of the Framed-Interface-Id Attribute format is shown below.
+The fields are transmitted from left to right.
+
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|     Type      |    Length     |             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+         Address                |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+Type
+
+   TBD for Framed-Interface-Id
+
+Length
+
+   10
+
+Address
+
+   The Address field is 8 octets.
+
+
+
+
+
+
+
+Aboba, Zorn & Mitton         Standards Track                    [Page 3]
+
+
+
+
+
+INTERNET-DRAFT              RADIUS and IPv6               10 August 2000
+
+
+4.3.  Framed-IPv6-Prefix
+
+Description
+
+   This Attribute indicates the IPv6 prefix to be configured for the
+   user. It MAY be used in Access-Accept packets.  It MAY be used in an
+   Access-Request packet as a hint by the NAS to the server that it
+   would prefer that address, but the server is not required to honor
+   the hint.
+
+A summary of the Framed-IPv6-Prefix Attribute format is shown below.
+The fields are transmitted from left to right.
+
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|     Type      |    Length     |           Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+             Address            |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+Type
+
+   TBD for Framed-IPv6-Prefix
+
+Length
+
+   At least 2 and no larger than 18. The length is set to the prefix
+   length + 2.
+
+Address
+
+   The Address field is up to 16 octets in length.
+
+4.4.  Login-IPv6-Host
+
+Description
+
+   This Attribute indicates the system with which to connect the user,
+   when the Login-Service Attribute is included. It MAY be used in
+   Access-Accept packets. It MAY be used in an Access-Request packet as
+   a hint to the server that the NAS would prefer to use that host, but
+
+
+
+Aboba, Zorn & Mitton         Standards Track                    [Page 4]
+
+
+
+
+
+INTERNET-DRAFT              RADIUS and IPv6               10 August 2000
+
+
+   the server is not required to honor the hint.
+
+A summary of the Login-IPv6-Host Attribute format is shown below.  The
+fields are transmitted from left to right.
+
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|     Type      |    Length     |             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                             Address
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+         Address                |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+Type
+
+   TBD for Login-IPv6-Host
+
+Length
+
+   18.
+
+Address
+
+   The Address field is 16 octets in length. The value
+   0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF indicates that the NAS SHOULD
+   allow the user to select an address.  The value 0 indicates that the
+   NAS SHOULD select a host to connect the user to. Other values
+   indicate the address the NAS SHOULD connect the user to.
+
+4.5.  Framed-IPv6-Route
+
+Description
+
+   This Attribute provides routing information to be configured for the
+   user on the NAS.  It is used in the Access-Accept packet and can
+   appear multiple times.
+
+A summary of the Framed-IPv6-Route Attribute format is shown below.  The
+fields are transmitted from left to right.
+
+ 0                   1                   2
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3
+
+
+
+Aboba, Zorn & Mitton         Standards Track                    [Page 5]
+
+
+
+
+
+INTERNET-DRAFT              RADIUS and IPv6               10 August 2000
+
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+|     Type      |    Length     |  Text ...
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+Type
+
+   TBD for Framed-IPv6-Route
+
+Length
+
+   >=3
+
+Text
+
+   The Text field is one or more octets, and its contents are
+   implementation dependent.  It is intended to be human readable and
+   MUST NOT affect operation of the protocol.  It is recommended that
+   the message contain UTF-8 encoded 10646 [2] characters.
+
+   For IPv6 routes, it SHOULD contain a destination prefix optionally
+   followed by a slash and a decimal length specifier stating how many
+   high order bits of the prefix to use. That is followed by a space, a
+   gateway address, a space, and one or more metrics separated by
+   spaces.
+
+   Whenever the gateway address is specified as zero the IP address of
+   the user SHOULD be used as the gateway address.
+
+5.  Table of Attributes
+
+The following table provides a guide to which attributes may be found in
+which kinds of packets, and in what quantity.
+
+   Request   Accept   Reject   Challenge   #    Attribute
+   0-1       0        0        0          TBD   NAS-IPv6-Address
+   0-1       0-1      0        0          TBD   Framed-Interface-Id
+   0-1       0-1      0        0          TBD   Framed-IPv6-Prefix
+   0+        0+       0        0          TBD   Login-IPv6-Host
+   0         0+       0        0          TBD   Framed-IPv6-Route
+   Request   Accept   Reject   Challenge   #    Attribute
+
+6.  References
+
+
+[1]  Bradner, S., "Key words for use in RFCs to Indicate Requirement
+     Levels", RFC 2119, March, 1997.
+
+
+
+
+
+Aboba, Zorn & Mitton         Standards Track                    [Page 6]
+
+
+
+
+
+INTERNET-DRAFT              RADIUS and IPv6               10 August 2000
+
+
+[2]  Yergeau, F., "UTF-8, a transformation format of Unicode and ISO
+     10646", RFC 2044, October 1996.
+
+[3]  Aboba, B., and Vollbrecht, J., "Proxy Chaining and Policy
+     Implementation in Roaming", RFC 2607, June 1999.
+
+[4]  Rigney, C., Rubens, A., Simpson, W., Willens, S.,  "Remote
+     Authentication Dial In User Service (RADIUS)", RFC 2865, June 2000.
+
+[5]  Rigney, C., "RADIUS Accounting", RFC 2866, June 2000.
+
+[6]  Rigney, C., Willats, W., Calhoun, P., "RADIUS Extensions", RFC
+     2869, June 2000.
+
+[7]  Zorn, G., Leifer, D., Rubens, A., Shriver, J., Holdrege, M.,
+     Goyret, I., "RADIUS Attributes for Tunnel Protocol Support", RFC
+     2868, June 2000.
+
+[8]  Zorn, G., Mitton, D., Aboba, B., "RADIUS Accounting Modifications
+     for Tunnel Protocol Support", RFC 2867, June 2000.
+
+[9]  Kent S., Atkinson, R., "Security Architecture for the Internet
+     Protocol", RFC 2401, November 1998.
+
+[10] Alvestrand, H. and T. Narten, "Guidelines for Writing an IANA
+     Considerations Section in RFCs", BCP 26, RFC 2434, October 1998.
+
+7.  Security Considerations
+
+This draft describes the use of RADIUS for the purposes of
+authentication, authorization and accounting in IPv6-enabled networks.
+In such networks, the RADIUS protocol may run either over IPv4 or over
+IPv6. Known security vulnerabilities of the RADIUS protocol are
+described in [6] and [3].
+
+Since IPSEC [9] is mandatory to implement for IPv6, it is expected that
+running RADIUS implementations supporting IPv6 will typically run over
+IPSEC. Where RADIUS is run over IPSEC and where certificates are used
+for authentication, it may be desirable to avoid management of RADIUS
+shared secrets, so as to leverage the improved scalability of public key
+infrastructure.
+
+Within RADIUS, a shared secret is used for hiding of attributes such as
+User-Password [4] and Tunnel-Password [7]. In addition, the shared
+secret is used in computation of the Response Authenticator [4], as well
+as the Message-Authenticator attribute [6]. Therefore, in RADIUS a
+shared secret is used to provide confidentiality as well as integrity
+protection and authentication. As a result, only use of IPSEC ESP with a
+
+
+
+Aboba, Zorn & Mitton         Standards Track                    [Page 7]
+
+
+
+
+
+INTERNET-DRAFT              RADIUS and IPv6               10 August 2000
+
+
+non-null transform can provide security services sufficient to
+substitute for RADIUS application-layer security. Therefore, where IPSEC
+AH or ESP null is used, it will typically still be necessary to
+configure a RADIUS shared secret.
+
+However, where RADIUS is run over IPSEC ESP with a non-null transform,
+the secret shared between the NAS and the RADIUS server MAY NOT be
+configured. In this case, a shared secret of zero length MUST be
+assumed.
+
+8.  IANA Considerations
+
+This draft requires the assignment of five new RADIUS attribute numbers
+for the following attributes:
+
+NAS-IPv6-Address
+Framed-Interface-Id
+Framed-IPv6-Prefix
+Login-IPv6-Host
+Framed-IPv6-Route
+
+9.  Acknowledgments
+
+The authors would like to acknowledge Darran Potter of Cisco and Carl
+Rigney of Lucent for contributions to this document.
+
+10.  Authors' Addresses
+
+Bernard Aboba
+Microsoft Corporation
+One Microsoft Way
+Redmond, WA 98052
+
+EMail: bernarda@microsoft.com
+Phone: +1 425 936 6605
+Fax:   +1 425 936 7329
+
+Glen Zorn
+Cisco Systems, Inc.
+500 108th Avenue N.E., Suite 500
+Bellevue, WA 98004
+
+Phone: +1 425 468 0955
+Email: gwz@cisco.com
+
+Dave Mitton
+Nortel Networks
+880 Technology Park Drive
+
+
+
+Aboba, Zorn & Mitton         Standards Track                    [Page 8]
+
+
+
+
+
+INTERNET-DRAFT              RADIUS and IPv6               10 August 2000
+
+
+Billerica, MA 01821
+
+Phone: +1 978 288 4570
+Fax:   +1 978 288 3030
+EMail: dmitton@nortelnetworks.com
+
+11.  Full Copyright Statement
+
+Copyright (C) The Internet Society (2000).  All Rights Reserved.
+This document and translations of it may be copied and furnished to
+others, and derivative works that comment on or otherwise explain it or
+assist in its implementation may be prepared, copied, published and
+distributed, in whole or in part, without restriction of any kind,
+provided that the above copyright notice and this paragraph are included
+on all such copies and derivative works.  However, this document itself
+may not be modified in any way, such as by removing the copyright notice
+or references to the Internet Society or other Internet organizations,
+except as needed for the purpose of developing Internet standards in
+which case the procedures for copyrights defined in the Internet
+Standards process must be followed, or as required to translate it into
+languages other than English.  The limited permissions granted above are
+perpetual and will not be revoked by the Internet Society or its
+successors or assigns.  This document and the information contained
+herein is provided on an "AS IS" basis and THE INTERNET SOCIETY AND THE
+INTERNET ENGINEERING TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE
+INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED
+WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE."
+
+12.  Expiration Date
+
+This memo is filed as <draft-aboba-radius-ipv6-00.txt>,  and  expires
+March 1, 2001.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Aboba, Zorn & Mitton         Standards Track                    [Page 9]
+
+

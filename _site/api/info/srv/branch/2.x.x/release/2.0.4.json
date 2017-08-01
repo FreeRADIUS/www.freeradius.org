@@ -1,0 +1,174 @@
+{
+   "date" : "2008-05-02T09:11:18Z",
+   "defects" : [
+      {
+         "description" : "Install all files in raddb/sites-available"
+      },
+      {
+         "description" : "Allow non-threaded builds"
+      },
+      {
+         "description" : "Don't treat '0x' as special for known attributes that are not of type \"octets\""
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_pap",
+               "url" : "/api/info/component/rlm_pap/"
+            }
+         ],
+         "description" : "Fix log error in rlm_pap"
+      },
+      {
+         "description" : "Remove documentation about non-existent functionality"
+      },
+      {
+         "description" : "Updated warning messages in debug output"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Fix handling of timeouts in rlm_ldap that affected 64-bit systems This fix was supposed to go into 2.0.3, but did not make it"
+      },
+      {
+         "description" : "Fix event handling in debug mode for failed proxy requests"
+      },
+      {
+         "description" : "Fix memleak in fifos.  Closes #537"
+      },
+      {
+         "description" : "Fix memleak on blocked threads.  Closes #538"
+      },
+      {
+         "description" : "Perform additional checks on NULL realms.  Closes #541"
+      },
+      {
+         "description" : "Fix handling of \"clients\" in \"listen\" section"
+      },
+      {
+         "description" : "When detail file cannot process a packet, sleep for longer to let the rest of the server do something"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Add missing table to raddb/sql/mssql/schema.sql.  Closes #545"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql_postgresql",
+               "url" : "/api/info/component/rlm_sql_postgresql/"
+            }
+         ],
+         "description" : "Updated rlm_sql_postgresql to build with PostgreSQL 7.x Closes #533"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Fix \"postauth\" of rlm_ldap to look for LDAP-UserDn in the correct place"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_attr_filter",
+               "url" : "/api/info/component/rlm_attr_filter/"
+            }
+         ],
+         "description" : "Update rlm_attr_filter for some corner cases.  Closes #543"
+      },
+      {
+         "description" : "Fixed memory leak in libfreeradius event handler"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "In the SQL Accounting on/off queries, remove the restriction that the session time had to be zero"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.4.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.4.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.4.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.4.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Allow \"virtual_server\" in \"realm\" and \"home_server\" sections See raddb/proxy.conf and raddb/sites-available/virtual.example.com"
+      },
+      {
+         "description" : "Allow \"passwd\" module to be listed in \"accounting\" and \"post-auth\""
+      },
+      {
+         "description" : "Added \"fallback\" to \"home_server_pool\" configuration, to handle the case of all home servers being dead.  See raddb/proxy.conf"
+      },
+      {
+         "description" : "Added sample text to raddb/sites-available/inner-tunnel which can simplify debugging of inner tunnel configurations"
+      },
+      {
+         "description" : "Added regular expression matching in realm names.  See raddb/proxy.conf for examples"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Added simple DHCP server functionality.  For comments, see raddb/sites-available/dhcp"
+      },
+      {
+         "description" : "Added file globbing capabilities to detail file reader"
+      },
+      {
+         "description" : "Added sample raddb/sites-available/robust-proxy-accounting"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Clients in SQL can now refer to a virtual server Patch from Michael Bretterklieber"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Added some examples of creating RADIUS administrator in SQL, and assigning appropriate access rights"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_2_0_4.tar.gz"
+      }
+   ],
+   "name" : "2.0.4",
+   "summary" : "The focus of this release is stability"
+}

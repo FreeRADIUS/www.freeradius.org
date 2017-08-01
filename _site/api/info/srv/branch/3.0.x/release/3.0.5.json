@@ -1,0 +1,303 @@
+{
+   "date" : "2014-11-21T15:14:41Z",
+   "defects" : [
+      {
+         "description" : "Parse list qualifiers in generic LDAP 'valuepair_attribute' attributes correctly"
+      },
+      {
+         "description" : "Fix issue where prefix length would be ignored for dynamic or static clients if the address matched INADDR_ANY (0.0.0.0)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Allow null user object filter in rlm_ldap, it's valid to specify a complete object DN and use the base scope"
+      },
+      {
+         "description" : "Don't SEGV if a received attribute value in a JSON structure is null, or a value can't be stringified"
+      },
+      {
+         "description" : "Don't assert if the server returns a JSON content-type and the server hasn't been built with support for JSON Closes #808"
+      },
+      {
+         "description" : "Set CURLOPT_NOSIGNAL to prevent curl from handling signals and causing a longjmp error when the server was running with threads"
+      },
+      {
+         "description" : "Allow tabs after attribute names in the \"users\" file Closes #796"
+      },
+      {
+         "description" : "Free unknown DICT_ATTRs.  Closes #795"
+      },
+      {
+         "description" : "Handle unknown attributes in the conditions and \"update\" sections.  e.g. Attr-1.2.3.4 = foo"
+      },
+      {
+         "description" : "Use correct array size for MS-CHAP new password"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "In rlm_rest, check for older versions of libraries at start time, rather than when a packet comes in"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_perl",
+               "url" : "/api/info/component/rlm_perl/"
+            }
+         ],
+         "description" : "Don't call detach on parse error in rlm_perl.  Closes #802"
+      },
+      {
+         "description" : "Integer fixes for big-endian systems.  Closes #803"
+      },
+      {
+         "description" : "Don't optimize %{Packet-Src-IP-Address}.  Closes #804"
+      },
+      {
+         "description" : "dhcpclient loads dictionaries correclty.  Closes #805"
+      },
+      {
+         "description" : "double quotes are no longer escaped in single-quoted strings.  e.g. 'foo \"hello\" bar'"
+      },
+      {
+         "description" : "Fixes for proxying to virtual servers broke the detail file reader.  Now they both work"
+      },
+      {
+         "description" : "Typos and fixes from Nikolai Kondrashov"
+      },
+      {
+         "description" : "Fixes to OpenSSL version checks, for cross-platform issues"
+      },
+      {
+         "description" : "cppcheck fixes from Herwin Weststrate"
+      },
+      {
+         "description" : "Fix build for OSX Yosemite"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Merge DHCP sub-options.  Closes #812"
+      },
+      {
+         "description" : "Fix decoding of Starent attributes"
+      },
+      {
+         "description" : "When a module asks for a connection, don't return idle connections"
+      },
+      {
+         "description" : "LDAP connection timeouts will now retry, instead of failing"
+      },
+      {
+         "description" : "Prevent race conditions between fork and wait for child Patch from James Rouzier"
+      },
+      {
+         "description" : "Fix triggers for connection pools.  Patches from Nikolai Kondrashov"
+      },
+      {
+         "description" : "Fix SEGV when comparing non string type check items"
+      },
+      {
+         "description" : "Build with newer versions of libmysqlclient"
+      },
+      {
+         "description" : "make the %{escape:} and %{unescape:} xlat functions UTF8 safe"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Don't escape UTF8 chars in SQL query strings"
+      },
+      {
+         "description" : "Fix issue in cached LDAP group comparisons, which caused checks to sometimes fail"
+      },
+      {
+         "description" : "Fix use after free issue in unlang switch evaluation"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_cache",
+               "url" : "/api/info/component/rlm_cache/"
+            }
+         ],
+         "description" : "Respect operators in rlm_cache when merging into the current request"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_cache",
+               "url" : "/api/info/component/rlm_cache/"
+            }
+         ],
+         "description" : "Update Cache-Entry-Hits each time rlm_cache is called"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Produce WARN messages if SQL queries are empty strings"
+      },
+      {
+         "description" : "Fix invalid assertion when proxying CoA requests"
+      },
+      {
+         "description" : "Allow empty strings in \"case\" statements.  Closes #836"
+      },
+      {
+         "description" : "Normalize escaping for string expansions.  i.e. don't do double escaping in rare situations"
+      },
+      {
+         "description" : "Normalize LDAP escaping.  LDAP servers have multiple ways to escape things, so the data has to be normalized before we can compare two LDAP DNs"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Don't go to high debug level if we're proxying inner EAP as EAP.  Closes #839"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Fix rlm_rest state handling.  Closes #835"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.5.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.5.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.5.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.5.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Large update to Huawei dictionary"
+      },
+      {
+         "description" : "Added dictionary.rfc7155"
+      },
+      {
+         "description" : "Regular expressions like /%{User-Name}/ are now parsed and validated when the server starts"
+      },
+      {
+         "description" : "All configuration items which are dynamically expanded are now parsed and validated when the server starts"
+      },
+      {
+         "description" : "%{expr:...} expressions can now do bit shifting and more See raddb/mods-available/expr"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "The detail file reader can now track packets which have had replies, so they are never re-transmitted.  See raddb/sites-available/buffered-sql, the \"track\" config item"
+      },
+      {
+         "description" : "CoA and Disconnect packets can now be sent to a specific home server by setting control:Packet-Dst-IP-Address and (optionally) control:Packet-Dst-Port"
+      },
+      {
+         "description" : "Allow CoA and Disconnect packets to be read from the detail file"
+      },
+      {
+         "description" : "Allow LDAP to specify arbitrary attributes for dynamic clients"
+      },
+      {
+         "description" : "Convert all unused attributes in the control: list to config pairs in dynamic clients. This allows arbitrary client attributes to be set for dynamic clients too"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_couchbase",
+               "url" : "/api/info/component/rlm_couchbase/"
+            }
+         ],
+         "description" : "rlm_couchbase now supports bulk loading of clients on startup in a similar way to rlm_ldap. Contributed by Aaron Hurt"
+      },
+      {
+         "description" : "Allow one level of backslashes (finally).  See radiusd.conf, \"correct_escapes\" setting"
+      },
+      {
+         "description" : "Rename dictionary.redback to dictionary.ericsson.ab"
+      },
+      {
+         "description" : "Add --disable-openssl-version-check option to configure So vendors can disable the check.  Patch from Nikolai Kondrashov"
+      },
+      {
+         "description" : "Do context-specific indenting in debug messages.  This makes the debug output easier to read"
+      },
+      {
+         "description" : "Make configuration a separate RPM, just like for Debian"
+      },
+      {
+         "description" : "better decoding of unknown VSAs"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "When supported by OpenSSL, allow TLS 1.1 and TLS 1.2 in EAP methods"
+      },
+      {
+         "description" : "Allow multiple new connections to be spawned simultaneously in the connection pool, to cope with spikes in traffic"
+      },
+      {
+         "description" : "Document retry_delay in connection pools"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_couchbase",
+               "url" : "/api/info/component/rlm_couchbase/"
+            }
+         ],
+         "description" : "Allow checksimul in rlm_couchbase"
+      },
+      {
+         "description" : "Use kqueue on systems which support it.  This allows for better scaling when using many sockets"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_3_0_5.tar.gz"
+      }
+   ],
+   "name" : "3.0.5",
+   "summary" : "The focus of this release is stability"
+}

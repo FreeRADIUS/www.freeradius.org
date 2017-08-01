@@ -1,0 +1,267 @@
+{
+   "date" : "2015-02-19T11:54:21Z",
+   "defects" : [
+      {
+         "description" : "Fix issues parsing LDAP hostnames with non-standard ports"
+      },
+      {
+         "description" : "Fix issues with realms containing regular expressions"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_expr",
+               "url" : "/api/info/component/rlm_expr/"
+            }
+         ],
+         "description" : "Allow unary negation before parantheses in rlm_expr"
+      },
+      {
+         "description" : "Fix infinite loop in kevent event loop code. Issue only presented on FreeBSD"
+      },
+      {
+         "description" : "Be more careful to define Auth-Types before loading modules"
+      },
+      {
+         "description" : "Link libfreeradius-radius against OpenSSL too, to avoid multi-version symbols in SSL libraries"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "When rlm_ldap rebinds a connection, it should use bind credentials from the module that created the connection pool, not credentials from the module referencing it"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Empty server config pairs should be allowed in rlm_ldap instances that reference another module's connection pool"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_always",
+               "url" : "/api/info/component/rlm_always/"
+            }
+         ],
+         "description" : "Mark rlm_always as huppable, so its rcode can be changed via radmin (allows policy toggles)"
+      },
+      {
+         "description" : "Emit warnings when ignoring user configured pool values"
+      },
+      {
+         "description" : "Fix issue that would cause radclient to complain intermittently about differing numbers of filters and requests"
+      },
+      {
+         "description" : "Fix cosmetic issues in connection pool logging, that made it appear as if the same connection was being opened multiple times"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Fix threadsafety issues in SQL drivers, where a static buffer was used to store error messages"
+      },
+      {
+         "description" : "Log RERROR, RWARN, RINFO to the global log if request logging is not enabled"
+      },
+      {
+         "description" : "Link to libldap instead of libldap_r. libldap_r is not supported for use by projects outside of OpenLDAP"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql_mysql",
+               "url" : "/api/info/component/rlm_sql_mysql/"
+            }
+         ],
+         "description" : "Set connection timeout correctly in rlm_sql_mysql"
+      },
+      {
+         "description" : "Build with older versions of libcurl, and use CFLAGS from curl-config"
+      },
+      {
+         "description" : "Honour Packet-Src-Port and Packet-Src-IP-address in radclient"
+      },
+      {
+         "description" : "Initialise ldapai_info_version field, so libldap will report its vendor and version"
+      },
+      {
+         "description" : "Fix log rotation scripts by using the copyrotate option"
+      },
+      {
+         "description" : "Fix issue that caused opening control sockets to always fail on non-Linux systems, if a user or group was set"
+      },
+      {
+         "description" : "Save Session-State after proxying"
+      },
+      {
+         "description" : "Additional fixes for reading CoA/DM requests from detail files"
+      },
+      {
+         "description" : "Create dynamic clients if the dynamic clients virtual server returns ok *or* updated. Emit useful messages for other codes"
+      },
+      {
+         "description" : "Compile bare \"authorize\" statements, and issue errors saying using them isn't a good idea"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.7.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.7.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.7.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.7.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Allow coa home_servers to be derived from client sections if a coa_server section is provided"
+      },
+      {
+         "description" : "Automatically determine the correct port if no port is provided for a home server"
+      },
+      {
+         "description" : "Allow foreach to operate over lists"
+      },
+      {
+         "description" : "Add compile time features to ${feature.*} and versions of core libraries to ${version.*}.  Feature and version names match output of radiud -xv. %v is now deprecated"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Add support for PATCH method in rlm_rest"
+      },
+      {
+         "description" : "Validate more module xlats on startup, and warn if an xlat expansion is found in a double quoted config item which will not be expanded"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Add support for sub-second timeouts in rlm_rest"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Add support for connection timeouts in rlm_rest"
+      },
+      {
+         "description" : "Add %{jsonquote:<str>} xlat to escape strings for insertion into json documents"
+      },
+      {
+         "description" : "Add %{ldapquote:<str>} xlat to escape strings for insertion into ldap DNs"
+      },
+      {
+         "description" : "Add %{explode:&ref <char>}, splits value of &ref on <char> and creates new &ref type attributes with the fragments"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Allow rlm_ldap to use attribute references for base_dn and filter config items. The attribute references are not escaped, allowing DNs and filters to be created dynamically"
+      },
+      {
+         "description" : "Add %{nexttime:[<int>]h|d|w|y} to calculate the number of seconds before the next <int> hour(s), day(s), week(s), or year(s)"
+      },
+      {
+         "description" : "Allow the left side of update sections to be xlat expansions The result of the expansion is then used to reference the attribute to be modified"
+      },
+      {
+         "description" : "Added %{lpad:&Attribute-Name 7 x} and rpad.  These produce fixed-width output strings, with padding to the left (lpad) or the right (rpad)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "For some SQL drivers (MySQL, sqlite) distinguish between constraints violations (on insert), invalid queries, and server errors, and return noop, invalid, and error respectively"
+      },
+      {
+         "description" : "Call SHOW WARNINGS in the MySQL driver and write them to the request log, if libmysqlclient indicates warnings are available on the server"
+      },
+      {
+         "description" : "Forbid the creation of Vendor-Specific for non-standard VSAs.  Use Attr-26 = 0x... instead"
+      },
+      {
+         "description" : "Make dhcpclient work with raw sockets and various other improvements - Contributed by nchaigne"
+      },
+      {
+         "description" : "Add support for SSHA2 - Contributed by PDD"
+      },
+      {
+         "description" : "Add perle dictionary - Contributed by Hachmer"
+      },
+      {
+         "description" : "Modernise init scripts for RHEL, SUSE and Debian"
+      },
+      {
+         "description" : "radmin now tracks the return code of commands, and exits with status \"1\" if any command failed to execute"
+      },
+      {
+         "description" : "radmin now sends error messages from the server to stderr, instead of to stdout"
+      },
+      {
+         "description" : "radmin now looks for sockets matching it's UID and GID, rather than just always using the first one it finds"
+      },
+      {
+         "description" : "radmin can how delete clients which are tied to a listener"
+      },
+      {
+         "description" : "Moved RADIUS attribute definitions to src/include/rfc*.h"
+      },
+      {
+         "description" : "Move to talloc pools for requests.  For in-memory tests (default config, 'users' file), performance increases by 30%"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "In rlm_ldap allow sasl_mech to be specified for admin and user binds. Only non-interactive mechs (like EXTERNAL) are currently supported"
+      },
+      {
+         "description" : "Remove support for ephemeral RSA keys.  They were \"export only\", and should not be used by anyone"
+      },
+      {
+         "description" : "Syntax errors in the \"users\" file now produce better error messages"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_3_0_7.tar.gz"
+      }
+   ],
+   "name" : "3.0.7",
+   "summary" : "The focus of this release is stability"
+}

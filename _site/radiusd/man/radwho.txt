@@ -1,0 +1,65 @@
+RADWHO(1)		       FreeRADIUS Daemon		     RADWHO(1)
+
+
+
+NAME
+       radwho - show online users
+
+SYNOPSIS
+       radwho  [-d  raddb_directory]  [-l]  [-h] [-f] [-n] [-s] [-i] [-p] [-c]
+       [-r]
+
+DESCRIPTION
+       The FreeRADIUS server can be configured to maintain an  active  session
+       database  in  a	file called radutmp. This utility shows the content of
+       that session database.
+
+OPTIONS
+       -d raddb_directory
+	      The directory that  contains  the  RADIUS  configuration	files.
+	      Defaults to /etc/raddb.
+
+       -l     Show local shell users too. In this case, radwho reads the local
+	      "session database" aka the systems utmp file as well  and  shows
+	      the  contents  of  that  file  before the contents of the radius
+	      "session database" aka the radutmp file, in the same format.
+
+       -h     Hide shell users. Doesn't show the entries for users that do not
+	      have a SLIP or PPP session.
+
+       -f     Behave  as  the  'fingerd' daemon - waits for one line of input,
+	      then prints the output with lines \r\n terminated.
+
+       -n     Normally radwho looks up the username in	the  systems  password
+	      file, and shows the full username as well. The -n flags prevents
+	      this.
+
+       -s     Show full name.
+
+       -i     Shows the session ID instead of the full name.
+
+       -p     Adds an extra column for the port type - I for ISDN, A for  Ana-
+	      log.
+
+       -c     Shows caller ID (if available) instead of the full name.
+
+       -r     Outputs  all  data  in  raw  format - no headers, no formatting,
+	      fields are comma-seperated.
+
+
+SEE ALSO
+       radiusd(8).
+
+AUTHOR
+       Miquel van Smoorenburg, miquels@cistron.nl.
+
+
+SEE ALSO
+       radiusd(8), radiusd.conf(5), wtmp(5), last(1).
+
+AUTHOR
+       Miquel van Smoorenburg, miquels@cistron.nl.
+
+
+
+			       23 February 2001 		     RADWHO(1)

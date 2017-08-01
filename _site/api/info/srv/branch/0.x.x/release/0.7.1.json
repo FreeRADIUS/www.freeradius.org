@@ -1,0 +1,31 @@
+{
+   "date" : "2002-09-10T16:01:11Z",
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.7.1.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.7.1.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.7.1.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.7.1.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Fix a security hole in the kerberos module"
+      },
+      {
+         "description" : "Updated 'configure' to allow it to discover pthread libraries on Solaris"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_0_7_1.tar.gz"
+      }
+   ],
+   "name" : "0.7.1",
+   "summary" : "The focus of this release is stability"
+}

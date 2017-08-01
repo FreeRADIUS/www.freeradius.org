@@ -1,0 +1,132 @@
+{
+   "date" : "2006-03-17T19:50:34Z",
+   "defects" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_perl",
+               "url" : "/api/info/component/rlm_perl/"
+            }
+         ],
+         "description" : "Fix rlm_perl crash. (closes: #348)"
+      },
+      {
+         "description" : "Fix handling of CoA-Request packets (close #344).  Also correct name of CoA packets"
+      },
+      {
+         "description" : "Fix an error on x86_64 machines when reading dictionaries (closes: #312)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_otp",
+               "url" : "/api/info/component/rlm_otp/"
+            }
+         ],
+         "description" : "Fix compilation errors on FreeBSD and NetBSD because of rlm_otp module. (closes: #314 #328)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_otp",
+               "url" : "/api/info/component/rlm_otp/"
+            }
+         ],
+         "description" : "Workaround Cisco bug in State attribute handling in rlm_otp"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_otp",
+               "url" : "/api/info/component/rlm_otp/"
+            }
+         ],
+         "description" : "Support LP64 for async mode in rlm_otp"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap_peap",
+               "url" : "/api/info/component/rlm_eap_peap/"
+            }
+         ],
+         "description" : "Fix libtool problems on Debian with rlm_eap_peap and rlm_eap_ttls modules. (closes: #75)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap_peap",
+               "url" : "/api/info/component/rlm_eap_peap/"
+            }
+         ],
+         "description" : "Make \"use_tunneled_reply\" work properly for PEAP"
+      },
+      {
+         "description" : "Copy the whole string when getting a one-to-one-mapped attribute from LDAP (closes: #261)"
+      },
+      {
+         "description" : "Fix net-snmp's ucd-snmp compatibility mode"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Additional state checking in the EAP-MSCHAPv2 module Bug found by Steffen Schuster"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.1.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.1.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.1.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.1.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "More dictionary updates"
+      },
+      {
+         "description" : "Additional tests and fixes for Digest module from Phillipe Sultan"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_otp",
+               "url" : "/api/info/component/rlm_otp/"
+            }
+         ],
+         "description" : "Add new \"phone\" response mode to rlm_otp/cryptocard"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Put the eap sessions into a tree, so that looking them up is very fast, and no longer O(n) in the number of sessions"
+      },
+      {
+         "description" : "Install the schema examples for a set of backends with the rest of the documentation"
+      },
+      {
+         "description" : "Add support for xlat expansion of attributes from LDAP"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_1_1_1.tar.gz"
+      }
+   ],
+   "name" : "1.1.1",
+   "summary" : "The focus of this release is stability"
+}

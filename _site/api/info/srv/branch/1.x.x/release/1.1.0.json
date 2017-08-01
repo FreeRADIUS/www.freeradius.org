@@ -1,0 +1,230 @@
+{
+   "date" : "2006-01-11T15:50:15Z",
+   "defects" : [
+      {
+         "description" : "#306 (HUP when built with threads, but executed with -s)"
+      },
+      {
+         "description" : "#285 (more attributes in dictionary.cisco.vpn3000)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_digest",
+               "url" : "/api/info/component/rlm_digest/"
+            }
+         ],
+         "description" : "rlm_digest has a number of bug fixes to authentication types"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Don't leak memory in module \"rlm_sql\""
+      },
+      {
+         "description" : "Update the dictionaries, so that VALUEs with the same name, but different numbers, aren't allowed"
+      },
+      {
+         "description" : "Queue the request before looking for available threads"
+      },
+      {
+         "description" : "Don't free the check items after we received the proxy reply"
+      },
+      {
+         "description" : "Expand config variables in included files, too"
+      },
+      {
+         "description" : "Check the return value of accounting modules and don't proxy invalid requests"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_passwd",
+               "url" : "/api/info/component/rlm_passwd/"
+            }
+         ],
+         "description" : "In rlm_passwd, don't close a file stream more than once"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Fix format string errors in rlm_sql.c, spotted by Primoz Bratanic"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Walk the whole string in when escaping strings in rlm_ldap"
+      },
+      {
+         "description" : "Include crypt.h if it is available so we get a prototype for crypt(), spotted by Konstantin Kubatkin"
+      },
+      {
+         "description" : "Removed (for almost all uses) length restrictions on vendor names and VALUE names"
+      },
+      {
+         "description" : "Don't leak memory when proxying an Access-Challenge response"
+      },
+      {
+         "description" : "Make the sleep time user-defined, so radrelay can send more than 7 requests/s"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_checkval",
+               "url" : "/api/info/component/rlm_checkval/"
+            }
+         ],
+         "description" : "Fix a memory leak in rlm_checkval"
+      },
+      {
+         "description" : "radclient doesn't resend countless times packets with invalid signature"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_pam",
+               "url" : "/api/info/component/rlm_pam/"
+            }
+         ],
+         "description" : "Fix segfault and mem leak in rlm_pam"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.0.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.0.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.0.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.0.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "rlm_ldap has \"set_auth_type\" configuration option, which should address some configuration problems when using it"
+      },
+      {
+         "description" : "Fix MIT Kerberos bug"
+      },
+      {
+         "description" : "Modules can be load balanced, both in isolation and redundantly See doc/load-balance.txt for more information"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_perl",
+               "url" : "/api/info/component/rlm_perl/"
+            }
+         ],
+         "description" : "rlm_perl is now marked \"stable\""
+      },
+      {
+         "description" : "N-tier certificate patch from Mohammed Petiwala"
+      },
+      {
+         "description" : "Copied dictionaries from the CVS head (many, many, more vendors)"
+      },
+      {
+         "description" : "Enabled support for weird VSA formats, like Lucent and Starent"
+      },
+      {
+         "description" : "Support encrypted IP address and integers, for Juniper clients"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap_peap",
+               "url" : "/api/info/component/rlm_eap_peap/"
+            },
+            {
+               "name" : "rlm_mschap",
+               "url" : "/api/info/component/rlm_mschap/"
+            }
+         ],
+         "description" : "Add PEAP machine authentication support in module \"rlm_mschap\""
+      },
+      {
+         "description" : "Support User-Password field encryption in digest mode"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_x99_token",
+               "url" : "/api/info/component/rlm_x99_token/"
+            }
+         ],
+         "description" : "rlm_x99_token has become rlm_otp (with lots of changes)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sqlcounter",
+               "url" : "/api/info/component/rlm_sqlcounter/"
+            }
+         ],
+         "description" : "Add rlm_sqlcounter to the list of stable modules"
+      },
+      {
+         "description" : "Read MySQL specific options in sections [freeradius] and [client] from file \"my.cnf\""
+      },
+      {
+         "description" : "Support the ${Cisco-AVPair[n]} syntax"
+      },
+      {
+         "description" : "Execute modules in {Pre,Post}-Proxy-Type stanzas"
+      },
+      {
+         "description" : "Add new options to radclient to run stress tests on the server"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            },
+            {
+               "name" : "rlm_sql_log",
+               "url" : "/api/info/component/rlm_sql_log/"
+            }
+         ],
+         "description" : "New module \"rlm_sql_log\" to postpone the storage of accounting data in a SQL database. See rlm_sql_log(5) manpage"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "New program \"radsqlrelay\" which sends the SQL logfile according to the SQL server's capabilities"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_1_1_0.tar.gz"
+      }
+   ],
+   "name" : "1.1.0",
+   "summary" : "The focus of this release is new features"
+}

@@ -1,0 +1,274 @@
+{
+   "date" : "2013-09-17T17:06:40Z",
+   "defects" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Skip OCSP if there's no host / port / url, with soft_fail"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Properly decode AT_IDENTITY in EAP-SIM.  Patch from Iliya Peregoudov"
+      },
+      {
+         "description" : "Thread max_queue_size has better bounds checking"
+      },
+      {
+         "description" : "Use correct variable for warning message if the user misconfigures the server"
+      },
+      {
+         "description" : "radtest is more generous about parsing ppphint"
+      },
+      {
+         "description" : "radeapclient now accepts -4 and -6, just like radclient Patch from John Dennis"
+      },
+      {
+         "description" : "Ignore \".rpmnew\" and a bunch of other files when loading config files from a directory"
+      },
+      {
+         "description" : "Wait for child threads before exiting.  This prevents errors on exit, but may increase exit time if databases are blocked! Patch from Iliya Peregoudov"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_cache",
+               "url" : "/api/info/component/rlm_cache/"
+            }
+         ],
+         "description" : "Wrap rbtree calls in mutexes in rlm_cache to prevent memory corruption. Patch from Phil Mayers"
+      },
+      {
+         "description" : "Port fix for %{3GPP-*} expansion from master branch"
+      },
+      {
+         "description" : "Fix sample certificate scripts when multiple client certs are made"
+      },
+      {
+         "description" : "Track return code priorities across if/else/elsif in unlang Closes #107"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "In debug mode, print out DHCP options when sending a DHCP packet"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_redis",
+               "url" : "/api/info/component/rlm_redis/"
+            }
+         ],
+         "description" : "Fixes to the redis modules from Brian Candler"
+      },
+      {
+         "description" : "Print better debug message for LDAP \"operations error\""
+      },
+      {
+         "description" : "Fix a number of minor issues as found by Coverity"
+      },
+      {
+         "description" : "Frees module config in order to prevent occasional crash on exit"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Update DHCP debugging messages to make it clearer what's going on"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Print multiple DHCP options the correct number of times in debugging mode"
+      },
+      {
+         "description" : "On debug builds, don't dlclose() modules when '-m' is used This allows valgrind to show module symbols"
+      },
+      {
+         "description" : "Don't count Status-Server packets in Access-Request statistics"
+      },
+      {
+         "description" : "Minor cleanups to debug output"
+      },
+      {
+         "description" : "Be more careful handling module configurations to avoid crash on otherwise clean exit"
+      },
+      {
+         "description" : "For raddebug, correctly set the group of the output file"
+      },
+      {
+         "description" : "renamed dhclient to dhcpclient.  People who install it shouldn't have their systems broken"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            },
+            {
+               "name" : "rlm_eap_tls",
+               "url" : "/api/info/component/rlm_eap_tls/"
+            }
+         ],
+         "description" : "for EAP-TLS methods, random_file is no longer required OpenSSL already reads /dev/urandom"
+      },
+      {
+         "description" : "Fix Suse and Redhat scripts.  Patches from Fajar Nugraha"
+      },
+      {
+         "description" : "Minor bug fix for base64 decoding"
+      },
+      {
+         "description" : "Allow two consecutive WiMAX TLVs of the same number"
+      },
+      {
+         "description" : "Remove requirement that User-Name has to match MS-CHAP-User-Name I18n issues means that the character sets could be different"
+      },
+      {
+         "description" : "Don't use ephemeral thread states from PyGILState_Ensure(), use our own, generated one per thread and stored in TLS"
+      },
+      {
+         "description" : "Port module processing fixes from v3.  The code is simpler, and one or two esoteric bugs are now gone"
+      },
+      {
+         "description" : "update code handling max_requests_per_server.  It should now work correctly"
+      },
+      {
+         "description" : "wrap ASCTIME_R for systems not supporting the standard API"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.1.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.1.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.1.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.1.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Updated dictionaries for alcatel, broadsoft, bskyb, dlink, meru, telkom, trapeze, proxim, zeus, rfc6677, 6911, and rfc6930"
+      },
+      {
+         "description" : "Added %{randstr:..} support. Creates random strings in a controllable format"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_python",
+               "url" : "/api/info/component/rlm_python/"
+            }
+         ],
+         "description" : "Added operator support to rlm_python"
+      },
+      {
+         "description" : "Added %{hex:...} for hex version of raw attribute data"
+      },
+      {
+         "description" : "Added %{sha1:...} for SHA1 hashing of data"
+      },
+      {
+         "description" : "Added %{base64:...} for raw attribute data (e.g. 32-bit IP addr), and %{tobase64:...} for the printable string form (e.g. 1.2.3.4), and %{base64tohex:...} to convert a base64 string to a hex string"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_expr",
+               "url" : "/api/info/component/rlm_expr/"
+            }
+         ],
+         "description" : "rlm_expr is now responsible for registering many of the xlat expansions. This is cleaner than bundling them all in the server core. You should ensure 'expr' is listed in instantiate to ensure correct operation of xlat expansions"
+      },
+      {
+         "description" : "Use correct terminology when printing errors regarding request/ response/message authenticators"
+      },
+      {
+         "description" : "Added keytab support to Heimdal Kerberos. Patch from Ryan Steinmetz"
+      },
+      {
+         "description" : "radsqlrelay does multiple INSERTs in one transaction Patch from Uwe Meyer-Gruhl"
+      },
+      {
+         "description" : "Run Post-Proxy-Type Reject {} if the upstream server rejected the request"
+      },
+      {
+         "description" : "On startup, the server checks if it was linked with the correct OpenSSL libraries.  If not, it errors out.  This prevents later crashes in OpenSSL, due to library incompatibilities"
+      },
+      {
+         "description" : "Added radmin command \"hup main.log\", to re-open the log files, without HUPing any other part of the server"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Added support for EAP-Key-Name.  See raddb/sites-available/default, and look for comments mentioning EAP-Key-Name.  MacSec now works"
+      },
+      {
+         "description" : "Added support for hex numbers (0x...) to %{expr: ...}"
+      },
+      {
+         "description" : "Backported TLS client certificate validation from 3.0.0"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Run Post-Auth for EAP inner-tunnel methods"
+      },
+      {
+         "description" : "Added more RFCs"
+      },
+      {
+         "description" : "Added \"show config <path>\" to radmin.  You can now examine any configuration item in a running server"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Added TLS-Client-Cert-X509v3-Extended-Key-Usage for TLS-based EAP methods.  It is set automatically from the fields in the certificate"
+      },
+      {
+         "description" : "Add CRLCP attribute in certificate creation script.  Windows phones require it.  Patch from Alan Buxey"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_2_2_1.tar.gz"
+      }
+   ],
+   "name" : "2.2.1",
+   "summary" : "The focus of this release is stability"
+}

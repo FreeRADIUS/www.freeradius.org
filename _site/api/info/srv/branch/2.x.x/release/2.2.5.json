@@ -1,0 +1,60 @@
+{
+   "date" : "2014-04-28T15:13:08Z",
+   "defects" : [
+      {
+         "description" : "Minor changes to build on Sun"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_linelog",
+               "url" : "/api/info/component/rlm_linelog/"
+            }
+         ],
+         "description" : "Print non-ASCII characters as octal in linelog.  Closes #578"
+      },
+      {
+         "description" : "close stdout in daemon mode"
+      },
+      {
+         "description" : "Fix zombie period calculation.  Closes #579"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.5.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.5.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.5.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.5.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Update dictionary.terena"
+      },
+      {
+         "description" : "expose server version via %v.  Patch from Alan Buxey"
+      },
+      {
+         "description" : "Forbid running with vulnerable versions of OpenSSL See \"allow_vulnerable_openssl\" in the \"security\" subsection of \"radiusd.conf\""
+      },
+      {
+         "description" : "Catch underlying \"heartbleed\" problem, so that nothing bad happens even when using a vulnerable version of OpenSSL"
+      },
+      {
+         "description" : "Add dictionary.zte"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_2_2_5.tar.gz"
+      }
+   ],
+   "name" : "2.2.5",
+   "summary" : "The focus of this release is stability"
+}

@@ -1,0 +1,105 @@
+{
+   "date" : "2008-02-14T11:14:11Z",
+   "defects" : [
+      {
+         "description" : "Fixed reading of \"detail\" files"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Allow inner EAP tunneled sessions to be proxied"
+      },
+      {
+         "description" : "Corrected MySQL schemas"
+      },
+      {
+         "description" : "syslog now works in log{} section"
+      },
+      {
+         "description" : "Corrected typo in raddb/certs/client.cnf"
+      },
+      {
+         "description" : "Updated raddb/sites-available/proxy-inner-tunnel to permit authentication to work"
+      },
+      {
+         "description" : "Ignore zero-length attributes in received packets"
+      },
+      {
+         "description" : "Correct memcpy when dealing with unknown attributes"
+      },
+      {
+         "description" : "Corrected debugging messages in attr_rewrite"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Corrected generation of State attribute in EAP.  This fixes the \"failed to remember handler\" issues"
+      },
+      {
+         "description" : "Fall back to DEFAULT realm if no realm was found Based on a patch from Vincent Magnin"
+      },
+      {
+         "description" : "Updated example raddb/sites-available/proxy-inner-tunnel"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_attr_filter",
+               "url" : "/api/info/component/rlm_attr_filter/"
+            }
+         ],
+         "description" : "Corrected behavior of attr_filter to match documentation This is NOT backwards compatible with previous versions! See \"man rlm_attr_filter\" for details"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.2.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.2.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.2.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.2.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Added notes on how to debug the server in radiusd.conf"
+      },
+      {
+         "description" : "Moved all \"log_*\" in radiusd.conf to log{} section The old configurations are still accepted, though"
+      },
+      {
+         "description" : "Added ca.der target in raddb/certs/Makefile.  This is needed for importing CA certs into Windows"
+      },
+      {
+         "description" : "Added ability send raw attributes via \"Raw-Attribute = 0x0102...\" This is available only debug builds.  It can be used to create invalid packets! Use it with care"
+      },
+      {
+         "description" : "Permit \"unlang\" policies inside of Auth-Type{} sub-sections of the authenticate{} section.  This makes some policies easier to implement"
+      },
+      {
+         "description" : "\"listen\" sections can now have \"type = proxy\".  This lets you control which IP is used for sending proxied requests"
+      },
+      {
+         "description" : "Added note on SSL performance to raddb/certs/README"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_2_0_2.tar.gz"
+      }
+   ],
+   "name" : "2.0.2",
+   "summary" : "The focus of this release is stability"
+}

@@ -1,0 +1,65 @@
+{
+   "date" : "2015-09-30T16:37:13Z",
+   "defects" : [
+      {
+         "description" : "Fix Tunnel-Password crash from home server Found by Denis Andzakovic"
+      },
+      {
+         "description" : "Fix timer issue when proxying"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            },
+            {
+               "name" : "rlm_eap_ttls",
+               "url" : "/api/info/component/rlm_eap_ttls/"
+            }
+         ],
+         "description" : "Update EAP-TTLS so that MPPE keys are correctly calculated with TLSv1.2"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            },
+            {
+               "name" : "rlm_eap_ttls",
+               "url" : "/api/info/component/rlm_eap_ttls/"
+            }
+         ],
+         "description" : "Always delete MS-MPPE-* from the TTLS inner tunnel This allows TTLS / EAP-MSCHAPv2 to work"
+      },
+      {
+         "description" : "Don't fall through in empty \"case\" statements Fixes #1274"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.9.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.9.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.9.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.9.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "None"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_2_2_9.tar.gz"
+      }
+   ],
+   "name" : "2.2.9",
+   "summary" : "The focus of this release is stability"
+}

@@ -4,11 +4,96 @@
     <title>FreeRADIUS</title>
     <description>The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
 </description>
-    <link>localhost/</link>
-    <atom:link href="localhost/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 25 Jul 2017 10:02:15 +0000</pubDate>
-    <lastBuildDate>Tue, 25 Jul 2017 10:02:15 +0000</lastBuildDate>
-    <generator>Jekyll v3.5.0</generator>
+    <link>new.freeradius.org/</link>
+    <atom:link href="new.freeradius.org/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 01 Aug 2017 21:33:10 +0000</pubDate>
+    <lastBuildDate>Tue, 01 Aug 2017 21:33:10 +0000</lastBuildDate>
+    <generator>Jekyll v3.5.1</generator>
+    
+      <item>
+        <title>Multiple issues found by Guido Vranken</title>
+        <description>&lt;p&gt;We requested that Guido Vranken do fuzz testing against the
+server. He found issues in all versions of the server. These
+issues are documented on the &lt;a href=&quot;/security/fuzzer-2017.html&quot;&gt;fuzzer&lt;/a&gt;
+page.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
+        <link>new.freeradius.org/vul_notifications/2017/07/17/multiple-issues-found-by-guido-vranken.html</link>
+        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2017/07/17/multiple-issues-found-by-guido-vranken.html</guid>
+        
+        <category>security</category>
+        
+        
+        <category>vul_notifications</category>
+        
+      </item>
+    
+      <item>
+        <title>Erroneous Session Resumption</title>
+        <description>&lt;p&gt;We discovered that the server could be convinced to permit TLS
+session resumption before the authentication finished. A partial fix
+was put into 3.0.13. Pavel Kankovsky verified that the fix was
+insufficient, and provided a tool to test the issue. A better fix
+was put into the server, and was released in version 3.0.14.&lt;/p&gt;
+
+&lt;p&gt;The original EAP-TLS code would refuse to resume sessions unless
+there were policy attributes in the session cache. This check was
+put in place to work around this issue with the OpenSSL API. At some
+point, the code was changed to cache policy attributes by default,
+which opened up the vulnerability. Given the long history of the
+server, it is not clear when that change was made.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;FIX:&lt;/strong&gt; The short-term fix is to disable session resumption in the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;cache&lt;/code&gt; subsection of the &lt;code class=&quot;highlighter-rouge&quot;&gt;eap&lt;/code&gt; module.&lt;/p&gt;
+
+&lt;p&gt;We believe that this issue affects version 2.1.1 through
+2.1.7 inclusive. Other versions seem to be unaffected. We remind
+users that versions 1.0.x, 1.1.x, 2.0.x, 2.1.x, and 2.2.x are old
+and unsupported. Patches for those versions will not be released, as
+the issue can be corrected with a minor configuration change. We
+also note that prior to version 3, the session cache was disabled by
+default, and required administrator intervention to enable it.&lt;/p&gt;
+
+&lt;p&gt;The v4.0.x branch is not vulnerable to this issue. The underlying
+code has been refactored to hide the TLS session data until the
+final EAP Success is sent, in the Access-Accept. This change means
+that the issue is impossible to reoccur in the future.&lt;/p&gt;
+
+&lt;p&gt;At this time, we have not had reports of the issue being exploited
+in the wild.&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+        <link>new.freeradius.org/vul_notifications/2017/05/26/erroneous-session-resumption.html</link>
+        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2017/05/26/erroneous-session-resumption.html</guid>
+        
+        <category>security</category>
+        
+        
+        <category>vul_notifications</category>
+        
+      </item>
+    
+      <item>
+        <title>FreeRADIUS server scanned by PVS-Studio</title>
+        <description>&lt;p&gt;The people at &lt;a href=&quot;https://www.viva64.com/en/pvs-studio/&quot;&gt;PVS-Studio&lt;/a&gt; were kind enough to give us a temporary
+license so that we could scan FreeRADIUS. We scanned the v3.0.x
+branch of the server, as of &lt;a href=&quot;https://github.com/FreeRADIUS/freeradius-server/commit/3047fc60a7df94c101e525b2e9a4b4a184232cec&quot;&gt;commit
+a7df94&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can read our write-up &lt;a href=&quot;/security/pvs-studio.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 16 May 2017 00:00:00 +0000</pubDate>
+        <link>new.freeradius.org/vul_notifications/2017/05/16/server-scanned-by-pvs-studio.html</link>
+        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2017/05/16/server-scanned-by-pvs-studio.html</guid>
+        
+        <category>security</category>
+        
+        
+        <category>vul_notifications</category>
+        
+      </item>
     
       <item>
         <title>Welcome to Jekyll!</title>
@@ -28,8 +113,8 @@
 
 </description>
         <pubDate>Thu, 11 Feb 2016 15:13:52 +0000</pubDate>
-        <link>localhost/jekyll/update/2016/02/11/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">localhost/jekyll/update/2016/02/11/welcome-to-jekyll.html</guid>
+        <link>new.freeradius.org/jekyll/update/2016/02/11/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">new.freeradius.org/jekyll/update/2016/02/11/welcome-to-jekyll.html</guid>
         
         
         <category>jekyll</category>
@@ -39,35 +124,32 @@
       </item>
     
       <item>
-        <title>Revoked intermediate certificates are not properly validated. oCert-CVE 2015-4680.</title>
-        <description>&lt;p&gt;Denis Andzakovic found issues with the decryption of very long Tunnel-Passwords. The decryption routines could walk off of the end of a buffer, and write to adjacent addresses. The data being written is not under control of an attacker. The end result is usually a crash of the server.&lt;/p&gt;
+        <title>Tunnel-Password Vulnerabilities</title>
+        <description>&lt;p&gt;Denis Andzakovic found issues with the decryption of very
+long Tunnel-Passwords. The decryption routines could walk off of the
+end of a buffer, and write to adjacent addresses. The data being
+written is not under control of an attacker. The end result is
+usually a crash of the server.&lt;/p&gt;
 
-&lt;p&gt;The initial report was for version 3.0. We determined that the v3.1.x branch in git is also vulnerable. Version 2 has similar code for Tunnel-Password, which we were not able to exploit. However, for safety, all currently supported versions of the server were fixed.&lt;/p&gt;
+&lt;p&gt;The initial report was for version 3.0. We determined that the
+v3.1.x branch in git is also vulnerable. Version 2 has similar code
+for Tunnel-Password, which we were not able to exploit. However, for
+safety, all currently supported versions of the server were fixed.&lt;/p&gt;
 
-&lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 18 Sep 2015 00:00:00 +0000</pubDate>
-        <link>localhost/vul_in_deps/2015/09/18/revoked-intermediate-certificates.html</link>
-        <guid isPermaLink="true">localhost/vul_in_deps/2015/09/18/revoked-intermediate-certificates.html</guid>
-        
-        <category>security</category>
-        
-        
-        <category>vul_in_deps</category>
-        
-      </item>
-    
-      <item>
-        <title>Tunnel-Password Vulnerabilities.</title>
-        <description>&lt;p&gt;Denis Andzakovic found issues with the decryption of very long Tunnel-Passwords. The decryption routines could walk off of the end of a buffer, and write to adjacent addresses. The data being written is not under control of an attacker. The end result is usually a crash of the server.&lt;/p&gt;
+&lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this
+issue is exploitable is when a proxy server receives a long
+Tunnel-Password attribute in the reply from a home server. The
+attack cannot be performed by a RADIUS client, or an end user. As
+such, the exploitability of the attack is limited to systems within
+the trusted RADIUS environment.&lt;/p&gt;
 
-&lt;p&gt;The initial report was for version 3.0. We determined that the v3.1.x branch in git is also vulnerable. Version 2 has similar code for Tunnel-Password, which we were not able to exploit. However, for safety, all currently supported versions of the server were fixed.&lt;/p&gt;
+&lt;p&gt;We are releasing version 2.2.9 and version 3.0.10 to correct
+the issue.&lt;/p&gt;
 
-&lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
 </description>
         <pubDate>Wed, 16 Sep 2015 00:00:00 +0000</pubDate>
-        <link>localhost/vul_notifications/2015/09/16/tunnel-password-vulnerabilities.html</link>
-        <guid isPermaLink="true">localhost/vul_notifications/2015/09/16/tunnel-password-vulnerabilities.html</guid>
+        <link>new.freeradius.org/vul_notifications/2015/09/16/tunnel-password-vulnerabilities.html</link>
+        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2015/09/16/tunnel-password-vulnerabilities.html</guid>
         
         <category>security</category>
         
@@ -77,35 +159,57 @@
       </item>
     
       <item>
-        <title>Revoked intermediate certificates are not properly validated. oCert-CVE 2015-4680.</title>
-        <description>&lt;p&gt;Denis Andzakovic found issues with the decryption of very long Tunnel-Passwords. The decryption routines could walk off of the end of a buffer, and write to adjacent addresses. The data being written is not under control of an attacker. The end result is usually a crash of the server.&lt;/p&gt;
+        <title>Revoked intermediate certificates are not properly validated</title>
+        <description>&lt;p&gt;oCert-CVE 2015-4680&lt;/p&gt;
 
-&lt;p&gt;The initial report was for version 3.0. We determined that the v3.1.x branch in git is also vulnerable. Version 2 has similar code for Tunnel-Password, which we were not able to exploit. However, for safety, all currently supported versions of the server were fixed.&lt;/p&gt;
+&lt;p&gt;All versions which implement EAP-TLS, prior to 2.2.8 and 3.0.9 do
+not check intermediate CAs for revocation. We have put patches into
+the version 2 and version 3 branches to fix these issues.&lt;/p&gt;
 
-&lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
+&lt;p&gt;We expect that this issue has minimal effect on the majority of
+RADIUS systems. If you are using a self-signed CA for 802.1X, this
+issue does not seriously affect you, as only you can issue
+intermediate certificates. If you are using certificates from a
+public CA, then your configuration already permits third parties to
+issue certificates which will be accepted by your RADIUS server.&lt;/p&gt;
+
+&lt;p&gt;i.e. The act of using a public CA cert in RADIUS can open your
+systems to security issues which are larger, and much worse than
+this one. The fix for this particular issue does not change the
+underlying security problem behind using a public CA.&lt;/p&gt;
+
+&lt;p&gt;Our analysis of the issue led us to disagree with the analysis done
+by oCert, and the (alleged) original vendor who made the report. We
+a requested a response to our analysis, and oCert refused. We
+requested that the public notice contain an accurate description of
+the issue and it’s impact. oCert again refused. After repeated
+messages, the response from Andrea Barisani of oCert was:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The reporter disagrees with your assessment yet cannot share details
+about their setup, oCERT has no wishes to do technical support on
+their setup as we just care about the reported bug.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Which is missing the point. We never asked to do “technical support
+on their setup”. We asked for an accurate description of the issue
+and it’s impact. oCert refused, whichs means that they do not, in
+fact, “care about the reported bug”.&lt;/p&gt;
+
+&lt;p&gt;We wanted to work together to come up with an accurate description
+of the issue, including it’s impact. It was clear that oCert was had
+no such goal. They saw their work as simply taking the original
+report, and forwarding it to a wider audience (including us).&lt;/p&gt;
+
+&lt;p&gt;We can only conclude that our analysis is correct, and that the
+original report, and the summary published by oCert is largely
+wrong. We can also recommend that people avoid oCert, as they are
+unwilling to work with authors to publish accurate reports.&lt;/p&gt;
+
 </description>
-        <pubDate>Thu, 18 Sep 2014 00:00:00 +0000</pubDate>
-        <link>localhost/vul_in_deps/2014/09/18/revoked-intermediate-certificates2.html</link>
-        <guid isPermaLink="true">localhost/vul_in_deps/2014/09/18/revoked-intermediate-certificates2.html</guid>
-        
-        <category>security</category>
-        
-        
-        <category>vul_in_deps</category>
-        
-      </item>
-    
-      <item>
-        <title>Tunnel-Password Vulnerabilities.</title>
-        <description>&lt;p&gt;Denis Andzakovic found issues with the decryption of very long Tunnel-Passwords. The decryption routines could walk off of the end of a buffer, and write to adjacent addresses. The data being written is not under control of an attacker. The end result is usually a crash of the server.&lt;/p&gt;
-
-&lt;p&gt;The initial report was for version 3.0. We determined that the v3.1.x branch in git is also vulnerable. Version 2 has similar code for Tunnel-Password, which we were not able to exploit. However, for safety, all currently supported versions of the server were fixed.&lt;/p&gt;
-
-&lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 16 Sep 2014 00:00:00 +0000</pubDate>
-        <link>localhost/vul_notifications/2014/09/16/tunnel-password-vulnerabilities2.html</link>
-        <guid isPermaLink="true">localhost/vul_notifications/2014/09/16/tunnel-password-vulnerabilities2.html</guid>
+        <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
+        <link>new.freeradius.org/vul_notifications/2015/06/22/revoked-intermediate-certificates-are-not-properly-validated.html</link>
+        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2015/06/22/revoked-intermediate-certificates-are-not-properly-validated.html</guid>
         
         <category>security</category>
         
@@ -115,73 +219,140 @@
       </item>
     
       <item>
-        <title>Revoked intermediate certificates are not properly validated. oCert-CVE 2015-4680.</title>
-        <description>&lt;p&gt;Denis Andzakovic found issues with the decryption of very long Tunnel-Passwords. The decryption routines could walk off of the end of a buffer, and write to adjacent addresses. The data being written is not under control of an attacker. The end result is usually a crash of the server.&lt;/p&gt;
+        <title>EAP-PWD Vulnerabilities</title>
+        <description>&lt;p&gt;The EAP-PWD module performed insufficient validation on packets
+received from an EAP peer. This module is &lt;em&gt;not&lt;/em&gt; enabled in the
+default configuration. Administrators must manually enable it for
+their server to be vulnerable. Only versions 3.0 up to 3.0.8
+are affected.&lt;/p&gt;
 
-&lt;p&gt;The initial report was for version 3.0. We determined that the v3.1.x branch in git is also vulnerable. Version 2 has similar code for Tunnel-Password, which we were not able to exploit. However, for safety, all currently supported versions of the server were fixed.&lt;/p&gt;
+&lt;p&gt;These issues were found by Jouni Malinen as part of investigating
+&lt;a href=&quot;http://w1.fi/security/2015-4/&quot;&gt;2015-4&lt;/a&gt; for HostAP.&lt;/p&gt;
 
-&lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;The EAP-PWD packet length is not checked before the first byte
+is dereferenced. A zero-length EAP-PWD packet will cause the
+module to dereference a NULL pointer, and will cause the server
+to crash.&lt;/li&gt;
+  &lt;li&gt;The commit message payload length is not validated before the
+packet is decoded. This can result in a read overflow in
+the server.&lt;/li&gt;
+  &lt;li&gt;The confirm message payload length is not validated before the
+packet is decoded. This can result in a read overflow in
+the server.&lt;/li&gt;
+  &lt;li&gt;A strcpy() was used to pack a C string into an EAP-PWD packet.
+This would result in an over-run of the destination buffer by
+one byte.&lt;/li&gt;
+&lt;/ul&gt;
+
 </description>
-        <pubDate>Wed, 18 Sep 2013 00:00:00 +0000</pubDate>
-        <link>localhost/vul_in_deps/2013/09/18/revoked-intermediate-certificates.html</link>
-        <guid isPermaLink="true">localhost/vul_in_deps/2013/09/18/revoked-intermediate-certificates.html</guid>
+        <pubDate>Sat, 04 Apr 2015 00:00:00 +0000</pubDate>
+        <link>new.freeradius.org/vul_notifications/2015/04/04/eap-pwd-vulnerabilities.html</link>
+        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2015/04/04/eap-pwd-vulnerabilities.html</guid>
         
         <category>security</category>
         
         
-        <category>vul_in_deps</category>
+        <category>vul_notifications</category>
         
       </item>
     
       <item>
-        <title>Revoked intermediate certificates are not properly validated. oCert-CVE 2015-4680.</title>
-        <description>&lt;p&gt;Denis Andzakovic found issues with the decryption of very long Tunnel-Passwords. The decryption routines could walk off of the end of a buffer, and write to adjacent addresses. The data being written is not under control of an attacker. The end result is usually a crash of the server.&lt;/p&gt;
+        <title>SSLv3 (POODLE)</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Transport_Layer_Security#POODLE_attack&quot;&gt;POODLE&lt;/a&gt; attack.&lt;/p&gt;
 
-&lt;p&gt;The initial report was for version 3.0. We determined that the v3.1.x branch in git is also vulnerable. Version 2 has similar code for Tunnel-Password, which we were not able to exploit. However, for safety, all currently supported versions of the server were fixed.&lt;/p&gt;
+&lt;p&gt;FreeRADIUS is &lt;em&gt;not&lt;/em&gt; vulnerable to this issue. All version to at
+least 1.0.0 (and possibly earlier) require TLSv1.&lt;/p&gt;
 
-&lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
 </description>
-        <pubDate>Tue, 18 Sep 2012 00:00:00 +0000</pubDate>
-        <link>localhost/vul_in_deps/2012/09/18/revoked-intermediate-certificates.html</link>
-        <guid isPermaLink="true">localhost/vul_in_deps/2012/09/18/revoked-intermediate-certificates.html</guid>
+        <pubDate>Wed, 24 Sep 2014 00:00:00 +0000</pubDate>
+        <link>new.freeradius.org/vul_notifications/2014/09/24/sslv3-poodle.html</link>
+        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2014/09/24/sslv3-poodle.html</guid>
         
         <category>security</category>
         
         
-        <category>vul_in_deps</category>
+        <category>vul_notifications</category>
         
       </item>
     
       <item>
-        <title>Revoked intermediate certificates are not properly validated. oCert-CVE 2015-4680.</title>
-        <description>&lt;p&gt;Denis Andzakovic found issues with the decryption of very long Tunnel-Passwords. The decryption routines could walk off of the end of a buffer, and write to adjacent addresses. The data being written is not under control of an attacker. The end result is usually a crash of the server.&lt;/p&gt;
+        <title>Bash (Shellshock)</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Shellshock_(software_bug)&quot;&gt;Shellshock&lt;/a&gt; bug.&lt;/p&gt;
 
-&lt;p&gt;The initial report was for version 3.0. We determined that the v3.1.x branch in git is also vulnerable. Version 2 has similar code for Tunnel-Password, which we were not able to exploit. However, for safety, all currently supported versions of the server were fixed.&lt;/p&gt;
+&lt;p&gt;Systems running FreeRADIUS &lt;em&gt;may be&lt;/em&gt; vulnerable to this bug. The
+default configuration does not execute any external programs or
+shell scripts. However, administrators who have configured the
+server to execute shell scripts &lt;strong&gt;must&lt;/strong&gt; upgrade their version of
+&lt;code class=&quot;highlighter-rouge&quot;&gt;bash&lt;/code&gt; to a version which is not vulnerable.&lt;/p&gt;
 
-&lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 18 Sep 2011 00:00:00 +0000</pubDate>
-        <link>localhost/vul_in_deps/2011/09/18/revoked-intermediate-certificates.html</link>
-        <guid isPermaLink="true">localhost/vul_in_deps/2011/09/18/revoked-intermediate-certificates.html</guid>
+        <pubDate>Wed, 24 Sep 2014 00:00:00 +0000</pubDate>
+        <link>new.freeradius.org/vul_notifications/2014/09/24/bash-shellshock.html</link>
+        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2014/09/24/bash-shellshock.html</guid>
         
         <category>security</category>
         
         
-        <category>vul_in_deps</category>
+        <category>vul_notifications</category>
         
       </item>
     
       <item>
-        <title>Revoked intermediate certificates are not properly validated. oCert-CVE 2015-4680.</title>
-        <description>&lt;p&gt;Denis Andzakovic found issues with the decryption of very long Tunnel-Passwords. The decryption routines could walk off of the end of a buffer, and write to adjacent addresses. The data being written is not under control of an attacker. The end result is usually a crash of the server.&lt;/p&gt;
+        <title>OpenSSL Heartbleed</title>
+        <description>&lt;p&gt;&lt;a href=&quot;http://heartbleed.com/&quot;&gt;Heartbleed&lt;/a&gt; bug.&lt;/p&gt;
 
-&lt;p&gt;The initial report was for version 3.0. We determined that the v3.1.x branch in git is also vulnerable. Version 2 has similar code for Tunnel-Password, which we were not able to exploit. However, for safety, all currently supported versions of the server were fixed.&lt;/p&gt;
+&lt;p&gt;OpenSSL has a major security issue, seen in to
+&lt;a href=&quot;http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0160%0A&quot;&gt;CVE-2014-0160&lt;/a&gt;.
+The issue mainly affects servers such as SMTPS or HTTPS, which allow
+random IP addresses to connect to them via TLS. Those sites must
+assume that all information available to the system using TLS has
+been compromised.&lt;/p&gt;
 
-&lt;p&gt;The packet decoder in FreeRADIUS ensures that the only time this issue is exploitable is when a proxy server receives a long Tunnel-Password attribute in the reply from a home server. The attack cannot be performed by a RADIUS client, or an end user. As such, the exploitability of the attack is limited to systems within the trusted RADIUS environment. We are releasing version 2.2.9 and version 3.0.10 to correct the issue.&lt;/p&gt;
+&lt;p&gt;Based on further information from Jouni Malinen, it appears that
+both Version 2 and Version 3 of FreeRADIUS are vulnerable to
+the attack. It is likely that earlier versions of the server are
+vulnerable, too.&lt;/p&gt;
+
+&lt;p&gt;The problem appears to be that OpenSSL has already allowed invalid
+reads by the time that FreeRADIUS detects the invalid heartbeat, and
+closes the connection. The benefit of the way FreeRADIUS uses
+OpenSSL is that the attack appears to be limited to reading ~1K of
+data from the stack, when the server receives the
+malicious heartbeat. This limitation mitigates the attack, but does
+not remove the possibility of exposing private information.&lt;/p&gt;
+
+&lt;p&gt;We recommend that all administrators upgrade OpenSSL immediately.&lt;/p&gt;
+
+&lt;p&gt;Administrators can detect “heartbleed” attacks by looking in their
+logs for a message containing the text &lt;code class=&quot;highlighter-rouge&quot;&gt;Invalid ACK received: 24&lt;/code&gt;.
+If such a message is seen, it means that the attack has
+been attempted. You should upgrade your version of
+OpenSSL immediately.&lt;/p&gt;
+
+&lt;p&gt;We suggest that all administrators upgrade all of their systems to a
+version of OpenSSL which is not vulnerable to this attack. Sites
+which allow random IPs to connect to a TLS server (e.g. SMTPS
+or HTTPS) should assume that all information available to those
+servers has been stolen from those systems. This information
+includes user credentials, keys for private certificates, cookies
+sent over HTTPS, etc.&lt;/p&gt;
+
+&lt;p&gt;We have updated FreeRADIUS (all versions) so that it refuses to
+start when it detects the vulnerable versions of OpenSSL.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;v3.0.x&lt;/strong&gt; - Administrators can over-ride this check by setting
+&lt;code class=&quot;highlighter-rouge&quot;&gt;allow_vulnerable_openssl = CVE-2014-0160&lt;/code&gt; in the &lt;code class=&quot;highlighter-rouge&quot;&gt;security&lt;/code&gt;
+subsection of radiusd.conf.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;v2.2.x&lt;/strong&gt; - Administrators can over-ride this check by setting
+&lt;code class=&quot;highlighter-rouge&quot;&gt;allow_vulnerable_openssl = yes&lt;/code&gt; in the &lt;code class=&quot;highlighter-rouge&quot;&gt;security&lt;/code&gt; subsection
+of radiusd.conf.&lt;/p&gt;
+
 </description>
-        <pubDate>Sat, 18 Sep 2010 00:00:00 +0000</pubDate>
-        <link>localhost/vul_in_deps/2010/09/18/revoked-intermediate-certificates.html</link>
-        <guid isPermaLink="true">localhost/vul_in_deps/2010/09/18/revoked-intermediate-certificates.html</guid>
+        <pubDate>Tue, 08 Apr 2014 00:00:00 +0000</pubDate>
+        <link>new.freeradius.org/vul_in_deps/2014/04/08/openssl-heartbleed.html</link>
+        <guid isPermaLink="true">new.freeradius.org/vul_in_deps/2014/04/08/openssl-heartbleed.html</guid>
         
         <category>security</category>
         

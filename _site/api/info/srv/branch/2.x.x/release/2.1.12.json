@@ -1,0 +1,159 @@
+{
+   "date" : "2011-09-30T16:12:07Z",
+   "defects" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_detail",
+               "url" : "/api/info/component/rlm_detail/"
+            }
+         ],
+         "description" : "Fix memory leak in rlm_detail"
+      },
+      {
+         "description" : "Fix \"failed to insert event\""
+      },
+      {
+         "description" : "Allow virtual servers to be reloaded on HUP It no longer complains about duplicate virtual servers"
+      },
+      {
+         "description" : "Fix %{string:...} expansion"
+      },
+      {
+         "description" : "Fix \"server closed socket\" loop in radmin"
+      },
+      {
+         "description" : "Set ownership of control socket when starting up"
+      },
+      {
+         "description" : "Always allow root to connect to control socket, even if \"uid\" is set.  They're root.  They can already do anything"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Save all attributes in Access-Accept when proxying inner-tunnel EAP-MSCHAPv2"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Fixes for DHCP relaying"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Check certificate validity when using OCSP"
+      },
+      {
+         "description" : "Updated Oracle \"configure\" script"
+      },
+      {
+         "description" : "Fixed typos in dictionary.alvarion"
+      },
+      {
+         "description" : "WARNING on potential proxy loop"
+      },
+      {
+         "description" : "Be more aggressive about clearing old requests from the internal queue"
+      },
+      {
+         "description" : "Don't open network sockets when using -C"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.1.12.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.1.12.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.1.12.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.1.12.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Updates to dictionary.erx, dictionary.siemens, dictionary.starent, dictionary.starent.vsa1, dictionary.zyxel, added dictionary.symbol"
+      },
+      {
+         "description" : "Added support for PCRE from Phil Mayers"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_linelog",
+               "url" : "/api/info/component/rlm_linelog/"
+            }
+         ],
+         "description" : "Configurable file permission in rlm_linelog"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_attr_filter",
+               "url" : "/api/info/component/rlm_attr_filter/"
+            }
+         ],
+         "description" : "Added \"relaxed\" option to rlm_attr_filter.  This copies attributes if at least one match occurred"
+      },
+      {
+         "description" : "Added documentation on dynamic clients See raddb/modules/dynamic_clients"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Added support for elliptical curve cryptography See ecdh_curve in raddb/eap.conf"
+      },
+      {
+         "description" : "Added support for 802.1X MIBs in checkrad"
+      },
+      {
+         "description" : "Added support for %{rand:...}, which generates a uniformly distributed number between 0 and the number you specify"
+      },
+      {
+         "description" : "Created \"man\" pages for all installed commands, and documented options for all commands.  Patch from John Dennis"
+      },
+      {
+         "description" : "Allow radsniff to decode encrypted VSAs and CoA packets Patch from Bjorn Mork"
+      },
+      {
+         "description" : "Always send Message-Authenticator in radtest. Patch from John Dennis radclient continues to be more flexible"
+      },
+      {
+         "description" : "Updated Oracle schema and queries"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_securid",
+               "url" : "/api/info/component/rlm_securid/"
+            }
+         ],
+         "description" : "Added SecurID module.  See src/modules/rlm_securid/README"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_2_1_12.tar.gz"
+      }
+   ],
+   "name" : "2.1.12",
+   "summary" : "The focus of this release is stability"
+}

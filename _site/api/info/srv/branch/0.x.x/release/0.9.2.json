@@ -1,0 +1,112 @@
+{
+   "date" : "2003-10-14T19:04:38Z",
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.9.2.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.9.2.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.9.2.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.9.2.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_ippool",
+               "url" : "/api/info/component/rlm_ippool/"
+            }
+         ],
+         "description" : "New rlm_ippool code to fix IP leaks"
+      },
+      {
+         "description" : "New rlm_ippool_tool for manipulation of rlm_ippool databases"
+      },
+      {
+         "description" : "Change radrelay to reject records without an Acct-Status-Type attribute"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_counter",
+               "url" : "/api/info/component/rlm_counter/"
+            }
+         ],
+         "description" : "Change rlm_counter to reject packets which predate last server reset"
+      },
+      {
+         "description" : "Change version output to include GNU GPL information"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Change rlm_ldap to output bad search filters"
+      },
+      {
+         "description" : "Fix compilation of various modules when not building with pthreads"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_mschap",
+               "url" : "/api/info/component/rlm_mschap/"
+            }
+         ],
+         "description" : "Fix segfault due to poorly initialised value in rlm_mschap"
+      },
+      {
+         "description" : "Fix to only reject packets once"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_exec",
+               "url" : "/api/info/component/rlm_exec/"
+            }
+         ],
+         "description" : "Fix rlm_exec to work when wait=no"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_attr_filter",
+               "url" : "/api/info/component/rlm_attr_filter/"
+            }
+         ],
+         "description" : "Fix rlm_attr_filter to work in post-proxy (as intended)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Fix rlm_sql to only try to load SQL drivers"
+      },
+      {
+         "description" : "Fix to orrectly limit size of RADIUS packets"
+      },
+      {
+         "description" : "Fix usage information to output to stdout when used with -h flag"
+      },
+      {
+         "description" : "Fix configure to assume gethostbyname is BSD-Style on FreeBSD"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_0_9_2.tar.gz"
+      }
+   ],
+   "name" : "0.9.2",
+   "summary" : "The focus of this release is stability"
+}

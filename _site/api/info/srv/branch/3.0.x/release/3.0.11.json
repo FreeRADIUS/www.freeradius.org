@@ -1,0 +1,264 @@
+{
+   "date" : "2016-01-25T13:27:03Z",
+   "defects" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Fix issue where field nas_type would not be accessible via the %{client:} xlat, for clients loaded from SQL"
+      },
+      {
+         "description" : "Fix compatiblity issues with OpenSSL 1.0.2.  Ignore calls to msg_callback with 'pseudo' content types"
+      },
+      {
+         "description" : "Data type \"ipv4prefix\" is parsed correctly"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_exec",
+               "url" : "/api/info/component/rlm_exec/"
+            }
+         ],
+         "description" : "Use correct talloc context in rlm_exec.  Fixes #1338"
+      },
+      {
+         "description" : "Complain in unlang if \"else\" is used with no previous \"if\" or \"elsif\""
+      },
+      {
+         "description" : "Send accounting status packets to the accounting port Fixes #1364"
+      },
+      {
+         "description" : "Print out CFLAGS when doing \"radiusd -Xxv\""
+      },
+      {
+         "description" : "Fixed bug with coa/acct stats value #1339. Based on patch from Jorge Pereira"
+      },
+      {
+         "description" : "Fixes for LEAP proxying.  Don't use LEAP!"
+      },
+      {
+         "description" : "Fix issue with \"directory already exists\" seen when doing \"make install\""
+      },
+      {
+         "description" : "Fixed bug with radmin related to the option \"stats detail <filename>\""
+      },
+      {
+         "description" : "Complain if the detail file reader does not have permission to read the \"detail.work\" file.  Fixes #1398"
+      },
+      {
+         "description" : "Fixed SoH. Attributes were not being copied to the virtual server"
+      },
+      {
+         "description" : "Used a wrong list to global statistics in \"stats\""
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Create EAP-PWD identity correctly.  Prevents segfaults"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            },
+            {
+               "name" : "rlm_eap_peap",
+               "url" : "/api/info/component/rlm_eap_peap/"
+            }
+         ],
+         "description" : "Dynamically validate authentication types for PEAP and EAP-MSCHAPv2"
+      },
+      {
+         "description" : "Fix includes in installed headers"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "OpenSSL 1.0.1f and 1.0.1g do NOT calculate TLS 1.2 keys correctly See raddb/mods-available/eap, \"disable_tlsv1_2\""
+      },
+      {
+         "description" : "Allow password change to work for MS-CHAP.  This requires 'r=0', because password changes are not retries"
+      },
+      {
+         "description" : "Fix home server fail-over for home servers using TCP and/or RadSec"
+      },
+      {
+         "description" : "Special characters in expanded regexes are now escaped e.g. User-Name containing '.', and comparing /%{User-Name}/, the '.' will now be escaped.  See src/tests/keywords/regex-escape"
+      },
+      {
+         "description" : "Use correct authentication vector when sending Access-Reject replies for RadSec"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap_ttls",
+               "url" : "/api/info/component/rlm_eap_ttls/"
+            }
+         ],
+         "description" : "Set FreeRADIUS-Proxied-To in TTLS again.  You should use the \"inner-tunnel\" virtual server, instead of relying on this attribute"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_perl",
+               "url" : "/api/info/component/rlm_perl/"
+            }
+         ],
+         "description" : "Fix debugging constants in rlm_perl.  Patch from Herwin Weststrate"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_mschap",
+               "url" : "/api/info/component/rlm_mschap/"
+            }
+         ],
+         "description" : "Add samba-dev / samba4-dev to debian builds so that rlm_mschap can automatically use the new winbind API"
+      },
+      {
+         "description" : "Automatically skip zero-length attributes when sending packets, instead of erroring out"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.11.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.11.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.11.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.11.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "\"unlang\" comparisons of IP addresses to IP prefixes are now detected, and types automatically cast"
+      },
+      {
+         "description" : "Allow shorthand form of ipv4prefix values e.g. 127/8"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Add \"auto_chain\" to raddb/mods-available/eap, tls subsection.  This allows the disabling of OpenSSL auto-chaining of certificates.  Which might be wrong"
+      },
+      {
+         "description" : "Added printing of coa and disconnect stats (radmin)"
+      },
+      {
+         "description" : "radclient defaults to expecting Access-Accept responses to Status-Server"
+      },
+      {
+         "description" : "Updated dictionary.lancom, dictionary.starent"
+      },
+      {
+         "description" : "Portability fixes for Solaris"
+      },
+      {
+         "description" : "More errors from ntlm_auth gets passed to MS-CHAP"
+      },
+      {
+         "description" : "Update abfab-tr-idp virtual server"
+      },
+      {
+         "description" : "Added \"filter_password\" in policy.d/filter.  This removes embedded zero bytes in User-Password, for compatibility with broken clients"
+      },
+      {
+         "description" : "The server now issues a WARNING message if duplicate configuration items are found"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "TLS can skip the \"verify\" section if OCSP returns OK See raddb/mods-available/eap, \"skip_if_ocsp_ok\""
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Set TLS-OCSP-Cert-Valid = yes / no / skipped, which is the result from the OCSP check"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_mschap",
+               "url" : "/api/info/component/rlm_mschap/"
+            }
+         ],
+         "description" : "Interoperate with AD and \"LmCompatibiltyLevel = 5\", by always setting WBC_MSV1_0_ALLOW_MSVCHAPV2 for native winbind in rlm_mschap"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap_peap",
+               "url" : "/api/info/component/rlm_eap_peap/"
+            },
+            {
+               "name" : "rlm_eap_ttls",
+               "url" : "/api/info/component/rlm_eap_ttls/"
+            }
+         ],
+         "description" : "TTLS and PEAP now require \"virtual_server\" to be a real server"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap_peap",
+               "url" : "/api/info/component/rlm_eap_peap/"
+            },
+            {
+               "name" : "rlm_eap_ttls",
+               "url" : "/api/info/component/rlm_eap_ttls/"
+            }
+         ],
+         "description" : "Print WARNING when TTLS or PEAP identities are spoofed or not properly anonymized.  See RFC 7542 for requirements"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_python",
+               "url" : "/api/info/component/rlm_python/"
+            }
+         ],
+         "description" : "Various rlm_python fixes from Herwin Weststrate"
+      },
+      {
+         "description" : "Allow setting Response-Packet-Type in \"Post-Proxy-Type Fail\", which is useful when the home server does not respond"
+      },
+      {
+         "description" : "elasticsearch updates from Matthew Newton"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_3_0_11.tar.gz"
+      }
+   ],
+   "name" : "3.0.11",
+   "summary" : "The focus of this release is stability"
+}

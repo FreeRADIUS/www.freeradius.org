@@ -1,0 +1,58 @@
+rlm_files(5)		       FreeRADIUS Module		  rlm_files(5)
+
+
+
+NAME
+       rlm_files - FreeRADIUS Module
+
+DESCRIPTION
+       The  rlm_files module uses the 'users' file for accessing authorization
+       information for users.  Additionally, it supports a 'users' file syntax
+       to be applied to the accounting and pre-proxy sections.
+
+       The main configuration items to be aware of are:
+
+       usersfile
+	      The  filename  of  the  'users' file, which is parsed during the
+	      authorization stage of this module.
+
+       acctusersfile
+	      The filename of the 'users' file, which  is  parsed  during  the
+	      accounting stage of this module.
+
+       preproxy_usersfile
+	      The  filename  of  the  'users' file, which is parsed during the
+	      pre_proxy stage of this module.
+
+       compat This option allows FreeRADIUS to parse an old style Cistron syn-
+	      tax.   The  default  is 'no'.  If you need to parse an old style
+	      Cistron file, set this option to 'cistron'.
+
+CONFIGURATION
+       modules {
+	 ... stuff here ...
+	 files {
+	   detailfile = %{confdir}/users
+	   acctusersfile = %{confdir}/acct_users
+	   preproxy_usersfile = %{confdir}/preproxy_users
+	   compat = no
+	 }
+	 ... stuff here ...
+       }
+
+SECTIONS
+       authorization, accounting, pre_proxy
+
+FILES
+       /etc/raddb/radiusd.conf,    /etc/raddb/users,	/etc/raddb/acct_users,
+       /etc/raddb/preproxy_users
+
+SEE ALSO
+       radiusd(8), radiusd.conf(5), users(5)
+
+AUTHORS
+       Chris Parker, cparker@segv.org
+
+
+
+				5 February 2004 		  rlm_files(5)

@@ -1,0 +1,270 @@
+{
+   "date" : "2009-09-14T16:43:29Z",
+   "defects" : [
+      {
+         "description" : "Fixed corner case where proxied packets could have extra character in User-Password attribute.  Fix from Niko Tyni"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Extended size of \"attribute\" field in SQL to 64"
+      },
+      {
+         "description" : "Fixes to ruby module to be more careful about when it builds"
+      },
+      {
+         "description" : "Updated Perl module \"configure\" script to check for broken Perl installations"
+      },
+      {
+         "description" : "Fix \"status_check = none\".  It would still send packets in some cases"
+      },
+      {
+         "description" : "Set recursive flag on the proxy mutex, which enables safer cleanup on some platforms"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Copy the EAP username verbatim, rather than escaping it"
+      },
+      {
+         "description" : "Update handling so that robust-proxy-accounting works when all home servers are down for extended periods of time"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Look for DHCP option 53 anywhere in the packet, not just at the start"
+      },
+      {
+         "description" : "Fix processing of proxy fail handler with virtual servers"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "DHCP code now prints out correct src/dst IP addresses when sending packets"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Removed requirement for DHCP to have clients"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Fixed handling of DHCP packets with message-type buried in the packet"
+      },
+      {
+         "description" : "Fixed corner case with negation in unlang"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql_postgresql",
+               "url" : "/api/info/component/rlm_sql_postgresql/"
+            }
+         ],
+         "description" : "Minor fixes to default MySQL & PostgreSQL schemas"
+      },
+      {
+         "description" : "Suppress MSCHAP complaints in debugging mode"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Fix SQL module for multiple instance, and possible crash on HUP"
+      },
+      {
+         "description" : "Fix permissions for radius.log for sites that change user/group, but which don't create the file before starting radiusd"
+      },
+      {
+         "description" : "Fix double counting of packets when proxying"
+      },
+      {
+         "description" : "Make %l work"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_perl",
+               "url" : "/api/info/component/rlm_perl/"
+            }
+         ],
+         "description" : "Fix pthread keys in rlm_perl"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Log reasons for EAP failure (closes bug #8)"
+      },
+      {
+         "description" : "Load home servers and pools that aren't referenced from a realm"
+      },
+      {
+         "description" : "Handle return codes from virtual attributes in \"unlang\" (e.g. LDAP-Group).  This makes \"!(expr)\" work for them"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_vmps",
+               "url" : "/api/info/component/proto_vmps/"
+            }
+         ],
+         "description" : "Enable VMPS to see contents of virtual server again"
+      },
+      {
+         "description" : "Fix WiMAX module to be consistent with examples.  (closes bug #10)"
+      },
+      {
+         "description" : "Fixed crash with policies dependent on NAS-Port comparisons"
+      },
+      {
+         "description" : "Allowed vendor IDs to be be higher than 32767"
+      },
+      {
+         "description" : "Fix crash on startup with certain regexes in \"hints\" file"
+      },
+      {
+         "description" : "Fix crash in attr_filter module when packets don't exist"
+      },
+      {
+         "description" : "Allow detail file reader to be faster when \"load_factor = 100\""
+      },
+      {
+         "description" : "Add work-around for build failures with errors related to lt__PROGRAM__LTX_preloaded_symbols.  libltdl / libtool are horrible"
+      },
+      {
+         "description" : "Made ldap module \"rebind\" option aware of older, incompatible versions of OpenLDAP"
+      },
+      {
+         "description" : "Check value of Fall-Through in attr_filter module"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.1.7.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.1.7.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.1.7.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.1.7.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Full support for CoA and Disconnect packets as per RFC 3576 and RFC 5176.  Both receiving and proxying CoA is supported"
+      },
+      {
+         "description" : "Added \"src_ipaddr\" configuration to \"home_server\".  See proxy.conf for details"
+      },
+      {
+         "description" : "radsniff now accepts -I, to read from a filename instead of a device"
+      },
+      {
+         "description" : "radsniff also prints matching requests and any responses to those requests when '-r' is used"
+      },
+      {
+         "description" : "Added example of attr_filter for Access-Challenge packets"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Added support for udpfromto in DHCP code"
+      },
+      {
+         "description" : "radmin can now selectively mark modules alive/dead See \"set module state\""
+      },
+      {
+         "description" : "Added customizable messages on login success/fail See msg_goodpass && msg_badpass in log{} section of radiusd.conf"
+      },
+      {
+         "description" : "Document \"chase_referrals\" and \"rebind\" in raddb/modules/ldap"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Preliminary implementation of DHCP relay"
+      },
+      {
+         "description" : "Made thread pool section optional.  If it doesn't exist, the server will run single-threaded"
+      },
+      {
+         "description" : "Added sample radrelay.conf for people upgrading from 1.x"
+      },
+      {
+         "description" : "Made proxying more stable by failing over, rather than rejecting the first request.  See \"response_window\" in proxy.conf"
+      },
+      {
+         "description" : "Allow home_server_pools to exist without realms"
+      },
+      {
+         "description" : "Add dictionary.iea (closes bug #7)"
+      },
+      {
+         "description" : "Added support for RFC 5580"
+      },
+      {
+         "description" : "Added experimental sql_freetds module from Gabriel Blanchard"
+      },
+      {
+         "description" : "Updated dictionary.foundry"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Added sample configuration for MySQL cluster in raddb/sql/ndb See the README file for explanations"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_2_1_7.tar.gz"
+      }
+   ],
+   "name" : "2.1.7",
+   "summary" : "The focus of this release is stability"
+}

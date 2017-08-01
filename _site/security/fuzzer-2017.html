@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html ng-app="freeradius">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Support &amp; Services</title>
+    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="new.freeradius.org/security/fuzzer-2017.html">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="new.freeradius.org/feed.xml">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
+    <meta name="msapplication-TileColor" content="#da532c ">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+</head>
+
+
+  <body>
+
+    <div class="global-nav">
+  <div class="global_links pull_right">
+    <div class="global_link global_link_label h5 text">Our sites:</div>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+  </div>
+</div>
+
+<header class="site-header" global-header ng-class="{fixed: fixNav}">
+  <div class="site-header-wrapper">
+
+    <a class="site-title" href="/"><img src="/img/wordmark.svg"></a>
+    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
+      <svg viewBox="0 0 18 15">
+        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+      </svg>
+    </button>
+
+    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
+
+      <div class="get-release">
+      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
+      </div>
+
+      <ul class="site-nav-list">
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/releases/">Releases</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/documentation/">Documentation</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/modules/">Modules</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/community/">Community</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/about/">About</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/support/">Support</a>
+         </li>
+
+      </ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+
+        <article class="post">
+  <header class="post-header">
+    <div class="post-hero hero-support">
+      <div class="wrapper">
+      	<h1 class="post-title">Support & Services</h1>
+      	<p class="post-subtitle">Having trouble and need a hand? Find answers here.</p> 
+      </div>
+    </div>
+  </header>
+  
+  	<div class="sub-nav">
+	<div class="wrapper">
+        <nav class="inline_nav" sub-nav>
+            <ul>
+                
+                
+        			<li class="">
+                        <a class="subnav_link" href="/support/">Mailing Lists</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="/commercial_support/">Commercial Support</a>
+                    </li>
+        		
+            </ul>
+        </nav>
+	</div>
+</div>
+
+  
+
+  <div class="post-content">
+      <div class="wrapper base_padding_v">
+
+<h1>Issues found via fuzzing by Guido Vranken</h1>
+
+<p>
+In June 2017, <a href="https://guidovranken.wordpress.com/">Guido
+Vranken</a> found a number of issues with OpenVPN.  One issue was a
+slow memory leak due to mis-use of the OpenSSL API.  He contacted us
+to say that FreeRADIUS had the same issue as OpenVPN.
+We <a href="https://github.com/FreeRADIUS/freeradius-server/commit/c7f120e8c16841e45656ee9e8175e0b3302c1b1e">fixed</a>
+that issue immediately in the
+the <a href="https://github.com/FreeRADIUS/freeradius-server/commits/v2.x.x">v2.x.x</a>
+branch, and also
+<a href="https://github.com/FreeRADIUS/freeradius-server/commit/e2c80d363778c1c63461cc15bd509b1122982509">fixed</a>
+it in
+the <a href="https://github.com/FreeRADIUS/freeradius-server/commits/v3.0.x">v3.0.x</a>
+branch, and the v4.0.x branch.  The v3.1.x branch is unsupported, and
+has been deleted.  Similarly, we do not discuss the v0 or v1 releases,
+as those are end of life and unsupported.
+</p>
+
+<p>
+In order to improve the security of FreeRADIUS, we asked Guido to try
+fuzzing FreeRADIUS.  He spent a week working with us, and managed to
+find a number of issues.  We worked together to create and validate
+fixes for all of them.
+His <a href="https://guidovranken.wordpress.com/2017/07/17/11-remote-vulnerabilities-inc-2x-rce-in-freeradius-packet-parsers/">blog</a>
+contains a short note on the subject.
+</p>
+
+<p>
+The short summary is that if your RADIUS server is on a private
+network, accessible only by managed devices, you are likely safe.  If
+your RADIUS server is part of a roaming consortium, then anyone within
+that consortium can attack it.  If your RADIUS server is on the public
+internet, then you are not following best practices, and anyone on the
+net can attack your systems.
+</p>
+
+<h2>Secure coding in C</h2>
+
+<p>Given the scope of these issues, there needs to be a statement on
+the security aspects of coding in C.  In short, C is a terrible
+language for security.  We have understood this for many years, and
+have taken pro-active steps to deal with the limitations of C.  For
+example, we worked with Coverity as far back
+as <a href="https://www.cnet.com/news/open-source-bug-hunt-project-expands/">2007</a>
+to scan FreeRADIUS.
+</p>
+
+<p>Starting from version 3, all versions of the server have built with
+zero compiler warnings.  All releases have passed static analyis
+by <a href="https://scan.coverity.com/">Coverity</a>, <a href="https://clang-analyzer.llvm.org/">Clang
+analyzer</a>,
+and <a href="http://cppcheck.sourceforge.net/">cppcheck</a>.  We have
+also
+used <a href="https://www.viva64.com/en/pvs-studio/">PVS-Studio</a>,
+with <a href="pvs-studio.html">results here</a>. Each
+static analysis tool has it's pros and cons, and each one usually
+finds things which are missed by all of the others.
+</p>
+
+<p>
+We also have hundreds of regression tests, which check that "well
+formed" attributes and packets are decoded correctly, and that
+"malformed" attributes and packets do not cause misbehavior in the
+server.
+</p>
+
+<p>
+As is apparent from this page, those processes are not enough to
+ensure secure C code.  In short:
+</p>
+
+<p>
+<center>
+<em>
+There are about as many issues disclosed in this page as in the previous ten
+years combined.
+</em></center></p>
+
+<p>
+We will therefore be integrating the fuzzer into all future releases
+of the server.  We will be updating our automated build system to run
+with memory sanitizers enabled.  We <b>strongly recommend</b> that
+other software projects follow the same practices.
+</p>
+
+<p>
+<b>If multiple static analyers and hundreds of regression tests are not
+enough for us to find these security issues, they are probably not
+enough for you, either.
+</b>
+</p>
+
+<hr />
+<h2>Summary of Issues</h2>
+
+<p>This page summarizes his findings, along with our response,
+analysis, and fixes.  The items are labeled <em>FR-GV-###</em>,
+followed by which version(s) of the server are affected (v2, v3,
+etc.), and finally by a short description.  His work led us to do
+additional tests, which found other issues that are
+labeled <em>FR-AD-###</em>.
+</p>
+
+<p>The issues below were found via fuzzing and address sanitization
+checks.  Not all are exploitable.  Out of 15 issues, 5 have no
+possible exploit.  Six (6) issues are only for DHCP, leaving 4 for RADIUS.</p>
+
+<p>
+<a href="#FR-GV-201">FR-GV-201 (v2,v3) Read / write overflow in make_secret()</a><br>
+<a href="#FR-GV-202">FR-GV-202 (v2) Write overflow in rad_coalesce()</a><br>
+<a href="#FR-GV-203">FR-GV-203 (v2) DHCP - Memory leak in decode_tlv()</a><br>
+<a href="#FR-GV-204">FR-GV-204 (v2) DHCP - Memory leak in fr_dhcp_decode()</a><br>
+<a href="#FR-GV-205">FR-GV-205 (v2) DHCP - Buffer over-read in fr_dhcp_decode_options()</a><br>
+<a href="#FR-GV-206">FR-GV-206 (v2,v3) DHCP - Read overflow when decoding option 63</a><br>
+<a href="#FR-GV-207">FR-GV-207 (v2) Zero-length malloc in data2vp()</a><br>
+<a href="#FR-GV-301">FR-GV-301 (v3) Write overflow in data2vp_wimax()</a><br>
+<a href="#FR-GV-302">FR-GV-302 (v3) Infinite loop and memory exhaustion with 'concat' attributes</a><br>
+<a href="#FR-GV-303">FR-GV-303 (v3) DHCP - Infinite read in dhcp_attr2vp()</a><br>
+<a href="#FR-GV-304">FR-GV-304 (v3) DHCP - Buffer over-read in fr_dhcp_decode_suboptions()</a><br>
+<a href="#FR-GV-305">FR-GV-305 (v3) Decode 'signed' attributes correctly</a><br>
+<a href="#FR-AD-001">FR-AD-001 (v2,v3) Use strncmp() instead of memcmp() for string data</a><br>
+<a href="#FR-AD-002">FR-AD-002 (v3) String lifetime issues in rlm_python</a><br>
+<a href="#FR-AD-003">FR-AD-003 (v3) Incorrect statement length passed into sqlite3_prepare</a>
+</p>
+
+
+<p>
+For some issues, the same or similar code appears in all versions of
+FreeRADIUS.  i.e. from version 2, to version 3, and the "in
+development" v4.0.x branch.  As a result, we present the findings by
+issue, and state which versions are affected.  Where issues only apply
+one version, we show them for version 2, and then version 3.  We do
+not discuss the v4.0.x branch here, as it has not had an official
+release.  Finally, these issues affect all releases of FreeRADIUS
+version 2 and 3.
+</p>
+
+<p>
+On July 17 2017, we will release versions 2.2.10 and 3.0.15 in
+order to address these issues.  Guido has provided us with the source
+for the fuzzers.  The fuzzers will be integrated into future releases
+of FreeRADIUS.
+</p>
+
+<h2>RADIUS Security</h2>
+
+<p>Before we discuss the issues, we must first give the reader some
+background on RADIUS security and associated best practices.</p>
+
+<p>In general, RADIUS security can only be described as "poor".  The
+protocol was designed in 1993, and uses MD5 to sign packets with a
+"shared secret".  While MD5 has been broken, no one has shown that the
+attacks on MD5 can be extended to attack RADIUS.  That is, packets
+which are signed with the shared secret are considered to be sent from
+a "trusted" source.</p>
+
+<p>The design of RADIUS ensures that all packets except Access-Request
+are signed.  In FreeRADIUS, this signature is checked prior to any
+packet decoding.  This check ensures that only packets from "trusted"
+sources are accepted by the server.  In most cases, therefore, only
+packets from those "trusted" sources can exploit these issues.</p>
+
+<p>While the Access-Request packets are not signed by default, RADIUS
+provides for a signature via the Message-Authenticator attribute.
+Again, packets signed via this method are from "trusted" sources, and
+only those sources can exploit these issues.</p>
+
+<p>However, many NAS implementations do not send a
+Message-Authenticator attribute in Access-Request packets.  In those
+situations, any attacker who can forge packets from the NAS to the
+RADIUS server can have those packets accepted by the server, and can
+exploit these issues.</p>
+
+<p>This security issue in RADIUS has been known for over a
+decade.  <a href="https://tools.ietf.org/html/rfc5080#section-2.2.2">RFC
+5080 Section 2.2.2</a> says in part:</p>
+
+<ul>
+   However, Access-Request packets not containing a Message-<br />
+   Authenticator attribute always affect the cache, even though they may<br />
+   be trivially forged.  To avoid this issue, server implementations may<br />
+   be configured to require the presence of a Message-Authenticator<br />
+   attribute in Access-Request packets.  Requests not containing a<br />
+   Message-Authenticator attribute MAY then be silently discarded.<br />
+<br />
+   Client implementations SHOULD include a Message-Authenticator<br />
+   attribute in every Access-Request to further help mitigate this<br />
+   issue.
+</ul>
+
+<p>We <b>strongly</b> recommend that vendors update their firmware to
+include a Message-Authenticator attribute in all Access-Request
+packets.  Where this change is not possible, we <b>strongly</b>
+recommend that all RADIUS administrators ensure that RADIUS traffic is
+on a secure management network.  That is, end users <b>should not</b>
+be able to send any network traffic to a RADIUS server.</p>
+
+<p>All versions of FreeRADIUS from version 2.0.0 onwards have provided
+for a per-client
+configuration <code>require_message_authenticator</code>.  This flag
+rejects all Access-Request packets which do not contain a valid
+Message-Authenticator attribute.  We recommend that this flag be
+enabled where possible.  Once this flag is set, even in old an
+un-patched versions of the server, the issues discussed here can only
+be exploited by "trusted" sources.  Also, as of version 2.1.3,
+FreeRADIUS has ensured that proxied Access-Request packets always
+contain a Message-Authenticator attribute.  This change ensures that
+all systems which receive Access-Request packets from a FreeRADIUS
+proxy can set the <code>require_message_authenticator</code> flag.
+</p>
+
+<p>While this limitation minimizes the impact of these issues, it does
+not remove it entirely.  Roaming agreements may provide for packets to
+be sent from parties who are largely unknown to the recipient, but who
+are within a "trusted" roaming coalition.  We believe that breaches of
+trust by "trusted" parties are best dealt with via administrative
+means, and not technical ones.  Still, we should still ensure that
+trusted parties are unable to exploit our trust in order to perform
+malicious actions.
+</p>
+
+<p>
+Where is necessary to be part of a roaming consortium, administrators
+should ensure that all RADIUS traffic over the public Internet is
+encrypted with IPSec or TLS.  We <em>do not</em> recommend placing a
+RADIUS server on the public net.  <b>Even independent of the issues
+disclosed here, the security of the RADIUS protocol is insufficient to
+guarantee safe operation on the public Internet.</b>
+</p>
+
+<h2>DHCP Security</h2>
+
+<p>Finally, we note that the discussion above is about RADIUS security,
+and does not apply to DHCP.  Unfortunately, DHCP protocol security can
+best be described as "in practice, non-existent".  Unlike RADIUS, DHCP
+allows end users to send packets directly to DHCP servers.  This
+capability means that it is harder for administrators to shield their
+DHCP servers from malicious parties.
+</p>
+
+<p>
+We note that while FreeRADIUS includes DHCP functionality, it is not
+enabled by default.  Administrators must take explicit action to
+configure it.  As such, most FreeRADIUS sites are not vulnerable to
+the DHCP issues disclosed here.  We still, however, recommend
+upgrading to a version which contains fixes for these issues.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<h1>Issues</h1>
+
+<p>The follow list describes each issue in detail.  Included in each
+description are a statement in impact, exploit vector (where
+appropriate), a link to the fix, which versions are affected, and
+where appropriate, a CVE identifier.
+</p>
+
+<hr />
+<a name="FR-GV-201"> </a>
+<h2>FR-GV-201 (v2,v3) Read / write overflow in make_secret()</h2>
+
+<p><b>Issue: </b> The <code>make_secret()</code> function does not
+properly check for output buffer size before writing data.  It can
+perform a read or write overflow of up to 16 octets.
+
+<p><b>Impact: </b> Minimal.  The issue will be see when the server is
+sending a RADIUS packet that is almost at the maximum (4K octets), and
+the last attribute in the packet is an Ascend-Send-Secret (or similar)
+attribute.  The data being written is an MD5 digest of the shared
+secret, concatenated to data which is under the attackers control.
+</p>
+
+<p>
+The issue will also be seen when receiving a packet that has an
+Ascend-Send-Secret (or similar) attribute of the wrong size.  The
+server will read data past the end of the attribute, up to a limit of
+16 octets.
+</p>
+
+<p><b>Exploit vector: </b> Read or write overflow, by anyone who can
+send packets which are accepted by the server.
+</p>
+
+<p>
+Home servers which send large Access-Accept responses, with an
+Ascend-Send-Secret attribute as the last one in the packet, and where
+the proxy does minimal packet editing, <em>may</em> be able crash a
+proxy which receives that Access-Accept and forwards it to a NAS.
+</p>
+
+<p><b>Fix: </b> Ensure that the <code>make_secret()</code> function
+checks for bounds on the encapsulating packet.  Fixed in
+<a href="https://github.com/FreeRADIUS/freeradius-server/commit/38ee90f2a5a28dc5887a30bdfdc98109c0418e68">FR-GV-201
+(v2)</a>, and
+in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/fc8662d7e827f630d515eaa0bddfa94754c8047f">FR-GV-201
+(v3)</a>.
+</p>
+
+<p><b>Affected versions: </b> 2.0.0 through 3.0.14, inclusive.
+</p>
+
+<p><b>CVE: </b> This issue has been assigned <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-10978">CVE-2017-10978</a>.  No remote code
+execution is possible.  A denial of service is possible.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-GV-202"> </a>
+<h2>FR-GV-202 (v2) Write overflow in rad_coalesce</h2>
+
+<p><b>Issue: </b> The <code>rad_coalesce()</code> function checks for
+WiMAX attributes which are too small, but it does not check for WiMAX
+attributes which are too large.  As a result, the server can be
+convinced to read past the end of an attribute, and to write past the
+end of memory allocated via <code>malloc()</code>.
+</p>
+
+<p>
+The data being copied is taken from the attributes following the
+malformed WiMAX attribute, and is under the control of the attacker.
+While the packet has to be a "well formed" RADIUS packet, that
+requirement limits only the two octets which immediately follow the
+malformed WiMAX attribute.  After that, there are up to 245 octets
+copied which are the complete control of the attacker.
+</p>
+
+<p>
+This issue does not appear in version 3, as that code was re-written,
+and the <code>rad_coalesce</code> function does not exist in those
+branches.  However, similar issues appear in
+the <code>data2vp_wimax()</code> function in version 3.
+</p>
+
+<p><b>Impact: </b> Write overflow, possibly remote exploit by anyone
+who can send packets which are accepted by the server.
+</p>
+
+<p><b>Exploit vector: </b> The issue happens when the server receives
+any packet containing malformed WiMAX attributes.  One example of this
+issue is the following data: <code>1a 0a 00 00 60 b5 2c 04 80 00 1a 09
+00 00 60 b5 2c fa 00</code>.  Similar formats can be used with other
+WiMAX attributes, e.g. where the <code>2c</code> octet is replace by
+other values.  The exploit here is the <code>fa</code>.  That octet
+indicates that there are 250 octets of data remaining in the
+attribute, while in fact there is only one octet.
+</p>
+
+<p><b>Fix: </b> Check for attributes which are "too long", in addition
+to checking for attributes which are "too short".  Fixed in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/ae3ba0011e7d299e92c45300e0137a56a650e8f5">FR-GV-202</a>.
+</p>
+
+<p><b>Affected versions: </b> 2.0.0 through 2.2.9, inclusive.
+</p>
+
+<p><b>CVE: </b> This issue has been assigned <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-10979">CVE-2017-10979</a>.  Remote code
+execution is possible.  A denial of service is possible.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-GV-203"> </a>
+<h2>FR-GV-203 (v2) DHCP - Memory leak in decode_tlv()</h2>
+
+<p><b>Issue: the <code>decode_tlv()</code> function leaked memory in certain circumstances.</b>
+</p>
+
+<p><b>Impact: </b> Memory leak, potentially leading to memory
+exhaustion.
+</p>
+
+<p><b>Exploit vector: </b> Any network device capable of sending DHCP
+packets to FreeRADIUS, which sends option 82 with multiple sub-options.
+</p>
+
+<p><b>Fix: </b> Link all decoded attributes into the decoded packet.  Fixed in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/ef0727fc68e211a36637b5c4e4a6fa1326f0a029">FR-GV-203</a>.
+</p>
+
+<p><b>Affected versions: </b> 2.0.0 through 2.2.9, inclusive.
+</p>
+
+<p><b>CVE: </b> This issue has been assigned <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-10980">CVE-2017-10980</a>.  No remote code
+execution is possible.  A denial of service is possible.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-GV-204"> </a>
+<h2>FR-GV-204 (v2) DHCP - Memory leak in fr_dhcp_decode()</h2>
+
+<p><b>Issue: </b> If option decoding fails,
+the <code>fr_dhcp_decode()</code> function would leak memory.
+</p>
+
+<p><b>Impact: </b> Memory leak, potentially leading to memory
+exhaustion.
+</p>
+
+<p><b>Exploit vector: </b> Any network device capable of sending DHCP
+packets to FreeRADIUS, which sends packets with malformed options.
+</p>
+
+<p><b>Fix: </b> Free partially decoded options on error.  Fixed in
+<a href="https://github.com/FreeRADIUS/freeradius-server/commit/812766e2150faa07b4c574e51393b014feaffe6c">FR-GV-204</a>
+</p>
+
+<p><b>Affected versions: </b> 2.0.0 through 2.2.9, inclusive.
+</p>
+
+<p><b>CVE: </b> This issue has been assigned <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-10981">CVE-2017-10981</a>.  No remote code
+execution is possible.  A denial of service is possible.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-GV-205"> </a>
+<h2>FR-GV-205 (v2) DHCP - Read overflow in fr_dhcp_decode_options()</h2>
+
+<p><b>Issue: </b> The <code>fr_dhcp_decode_options()</code> function
+does not do proper bounds checks on option lengths, leading to out of
+bounds reads.
+</p>
+
+<p><b>Impact: </b> The server can read up to 253 octets more data than
+it should.  Depending on memory layout, this read may initiate a page
+fault, and cause the server to crash.
+</p>
+
+<p><b>Exploit vector: </b> Any network device capable of sending DHCP
+packets to FreeRADIUS, which sends packets with malformed options.
+</p>
+
+<p><b>Fix: </b> Check for options which are "too long", in addition
+to checking for attributes which are "too short".  Fixed in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/10b6de9345c9e0d9d4d5e0426fa5c3d68d702875">FR-GV-205</a>.
+</p>
+
+<p><b>Affected versions: </b> 2.0.0 through 2.2.9, inclusive.
+</p>
+
+<p><b>CVE: </b> This issue has been assigned <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-10982">CVE-2017-10982</a>.  No remote code
+execution is possible.  A denial of service is possible.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-GV-206"> </a>
+<h2>FR-GV-206 (v2,v3) DHCP - Read overflow when decoding option 63</h2>
+
+<p><b>Issue: </b> The <code>fr_dhcp_decode()</code> function performed
+a <code>strcmp()</code> on binary data in an internal data structure,
+instead of checking the length of the option and doing
+a <code>memcmp</code>.
+</p>
+
+<p><b>Impact: </b> The server can read memory until it reaches a
+zero byte.  Depending on memory layout, this read may initiate a page
+fault, and cause the server to crash.
+</p>
+
+<p><b>Exploit vector: </b> Any network device capable of sending DHCP
+packets to FreeRADIUS, which sends a DHCP option 63 with non-zero
+contents.
+</p>
+
+<p><b>Fix: </b> Examine option 60, instead of option 63, and check for option length.  Fixed in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/ec08b30f87066f82073d02fab57e8ffeef81373d">FR-GV-206 (v2)</a>, and <a href="https://github.com/FreeRADIUS/freeradius-server/commit/5759b20af99af6d30924f0efd8da5eac2a17163d">FR-GV-206 (v3)</a>.
+</p>
+
+<p><b>Affected versions: </b> 2.0.0 through 3.0.14, inclusive.
+</p>
+
+<p><b>CVE: </b> This issue has been assigned <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-10983">CVE-2017-10983</a>.  No remote code
+execution is possible.  A denial of service is possible.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-GV-207"> </a>
+<h2>FR-GV-207 (v2) Zero-length malloc() in data2vp()</h2>
+
+<p><b>Issue: </b> When decoding attributes of type "tlv", the decoder
+can call <code>malloc()</code> with an argument of zero.
+</p>
+
+<p><b>Impact: </b> None.  The length of the allocated data is kept
+separately in the <code>vp->length</code> field.  All dereferences to
+the allocated data are protected by a check for <code>vp->length >
+0</code>
+</p>
+
+<p><b>Exploit vector: </b> None.
+</p>
+
+<p><b>Fix: </b> For general safety, the function was changed to avoid
+a zero-length <code>malloc()</code>.  Fixed in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/26be8a680d2a6830e7be98bee10818dd8b6a426a">FR-GV-207</a>
+</p>
+
+<p><b>Affected versions: </b> 2.0.0 through 2.2.9, inclusive.
+</p>
+
+<p><b>CVE: </b> No CVE has been release as this issue has no impact,
+and exploitation does not cross a privilege boundary in a correct and
+realistic product deployment.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-GV-301"> </a>
+<h2>FR-GV-301 (v3) Write overflow in data2vp_wimax()</h2>
+
+<p><b>Issue: </b> This issue is similar
+to <a href="#FR-GV-202">FR-GV-202</a>, as the code in v3 is based on
+the code in v2.  However, as the issue is slightly different, it is
+listed separately.
+</p>
+
+<p><b>Impact: </b> Write overflow, possibly remote exploit by anyone
+who can send packets which are accepted by the server.
+</p>
+
+<p><b>Exploit vector: </b> Sending WiMAX attributes which have the
+"continuation" flag set, but for which there is no subsequent data.
+</p>
+
+<p><b>Fix: </b> Update checks for malformed attributes.  Fixed
+in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/931850e5d2f65193520c2d9c9878148c0cdc16a6">FR-GV-301</a>,
+with a related patch
+in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/4b059296e14b6ab75dc17163077490528a819806">another
+patch</a>.
+</p>
+
+<p><b>Affected versions: </b> 3.0.0 through 3.0.14, inclusive.
+</p>
+
+<p><b>CVE: </b> This issue has been assigned <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-10984">CVE-2017-10984</a>.  Remote code
+execution is possible.  A denial of service is possible.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-GV-302"> </a>
+<h2>FR-GV-302 (v3) Infinite loop and memory exhaustion with 'concat' attributes</h2>
+
+<p><b>Issue: </b> When the server receives zero-length attributes
+marked 'concat' in the dictionaries, it could go into an infinite loop
+and exhaust memory.
+</p>
+
+<p><b>Impact: </b> Infinite loop and memory exhaustion, by anyone
+who can send packets which are accepted by the server.
+</p>
+
+<p><b>Exploit vector: </b> The issue happens when the server receives
+a packet containing the following attribute data: <code>4f
+02</code>, <code>89 02</code>, <code>90 02</code>, or <code>b4
+02</code>.
+</p>
+
+<p><b>Fix: </b> Update <code>decode_concat()</code> function to return
+the bytes read from the packet, not the length of the attribute data.  Fixed in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/6726c16549b131ed39f6f8886cdf5d9d922a9a97">FR-GV-302</a>.
+</p>
+
+<p><b>Affected versions: </b> 3.0.0 through 3.0.14, inclusive.
+</p>
+
+<p><b>CVE: </b> This issue has been assigned <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-10985">CVE-2017-10985</a>.  No remote code
+execution is possible.  A denial of service is possible.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-GV-303"> </a>
+<h2>FR-GV-303 (v3) DHCP - Infinite read in dhcp_attr2vp()</h2>
+
+<p><b>Issue: </b> When decoding "string" options in an
+array, <code>dhcp_attr2vp()</code> could be convinced to
+call <code>memchr()</code> with a length argument of <code>-1</code>.
+This could result in an over-read until the first zero octet was
+found, or a page fault occured.
+</p>
+
+<p><b>Impact: </b> Possible infinite read overflow, or crash.
+</p>
+
+<p><b>Exploit vector: </b> Any network device capable of sending DHCP
+packets to FreeRADIUS, which sends string options to the server in an
+option array.
+</p>
+
+<p><b>Fix: </b> Perform better bounds checking on decoding string
+options in an array.  Fixed
+in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/21e2e95751bfb54c0fb0328392d06671a75c191c">FR-GV-303</a>.
+</p>
+
+<p><b>Affected versions: </b> 3.0.0 through 3.0.14, inclusive.
+</p>
+
+<p><b>CVE: </b> This issue has been assigned <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-10986">CVE-2017-10986</a>.  No remote code
+execution is possible.  A denial of service is possible.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-GV-304"> </a>
+<h2>FR-GV-304 (v3) DHCP - Buffer over-read in fr_dhcp_decode_suboptions()</h2>
+
+<p><b>Issue: </b> The <code>fr_dhcp_decode_suboptions()</code>
+function does not properly check if sub-options overflow the packet.
+</p>
+
+
+<p>
+This issue is similar to <a href="#FR-GV-205">FR-GV-205</a>, as the
+code in v3 is based on the code in v2.  However, as the issue is
+slightly different, it is listed separately.
+</p>
+
+<p><b>Impact: </b> The server can read up to a small number of octets
+more data than it should.  Depending on memory layout, this read may
+initiate a page fault, and cause the server to crash.
+</p>
+
+<p><b>Exploit vector: </b> Any network device capable of sending DHCP
+packets to FreeRADIUS, which sends packets with malformed options.
+</p>
+
+<p><b>Fix: </b> Check for options which are "too long", in addition
+to checking for attributes which are "too short".  Fixed in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/19a18bf7c8af649c9e9742fb6a046f6aff639866">FR-GV-304</a>.
+
+<p><b>Affected versions: </b> 3.0.0 through 3.0.14, inclusive.
+</p>
+
+<p><b>CVE: </b> This issue has been assigned <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-10987">CVE-2017-10987</a>.  No remote code
+execution is possible.  A denial of service is possible.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-GV-305"> </a>
+<h2>FR-GV-305 (v3) Decode 'signed' attributes correctly</h2>
+
+<p><b>Issue: </b> Attributes of data type 'signed' would sometimes be
+created from uninitialized memory, instead of from the received packet.
+</p>
+
+<p><b>Impact: </b> Minimal.  No overflow or exploit is possible.
+Instead, the attribute sometimes has a garbage value.  There is only
+one 'signed' attribute, which is in the WiMAX dictionaries, and it is
+used only in certain limited situations.
+</p>
+
+<p><b>Exploit vector: </b> None.
+</p>
+
+<p><b>Fix: </b> Decode the attribute correctly.  Fixed
+in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/de3b3b2e4153db26442facbd5e9b268a3bf795ba">FR-GV-305</a>.
+
+<p><b>Affected versions: </b> 3.0.0 through 3.0.14, inclusive.
+</p>
+
+<p><b>CVE: </b> None.
+No remote code execution is possible.  No denial of service is
+possible.  Exploitation does not cross a privilege boundary in a
+correct and realistic product deployment.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-AD-001"> </a>
+<h2>FR-AD-001 (v2,v3) Use strncmp() instead of memcmp() for string data</h2>
+
+<p><b>Issue: </b> When reading data from configuration files, the
+server could over-read to to 4 octets of data.
+</p>
+
+<p><b>Impact: </b> Minimal.
+</p>
+
+<p><b>Exploit vector: </b> Administrators who have write access to the
+server configuration files.
+</p>
+
+<p><b>Fix: </b> Use <code>strncmp()</code> instead
+of <code>memcmp()</code> for bounded comparisons on C strings.  Fixed in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/30c9f53f85a9d07f5213789ea9efbd06d6fc67d8">FR-AD-001 (v2)</a>, and 
+in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/41dfe9f0ca550ceb5f152ba8baf03fd6222d7119">FR-AD-001 (v3)</a>.
+
+<p><b>Affected versions: </b> 3.0.0 through 3.0.14, inclusive.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-AD-002"> </a>
+<h2>FR-AD-002 (v3) String lifetime issues in rlm_python</h2>
+
+<p><b>Issue: </b> The <code>PySys_SetPath()</code>
+and <code>PySys_SetName()</code> functions require a long-lived
+pointer to the path / name.
+</p>
+
+<p><b>Impact: </b> Potential crash.
+</p>
+
+<p><b>Exploit vector: </b> Administrators who have write access to the
+server configuration files.
+</p>
+
+<p><b>Fix: </b> Use a long-lived string instead of a short-lived one.  Fixed in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/a1eccee1872b4019e98e399f0f4597a41ef057a7">FR-AD-002</a>.
+
+<p><b>CVE: </b> No CVE has been release as this issue has no impact,
+and exploitation does not cross a privilege boundary in a correct and
+realistic product deployment.
+</p>
+
+<!-- --------------------------------------------------------------------- -->
+
+<hr />
+<a name="FR-AD-003"> </a>
+<h2>FR-AD-003 (v3) Incorrect statement length passed into sqlite3_prepare</h2>
+
+<p><b>Issue: </b> </p> An incorrect statement length was passed into the <code>sqlite3_prepare()</code> function.
+
+<p><b>Impact: </b> Potential crash.
+</p>
+
+<p><b>Exploit vector: </b> Administrators who have write access to the
+server configuration files.
+</p>
+
+<p><b>Fix: </b> Use the correct statement length.  Fixed in <a href="https://github.com/FreeRADIUS/freeradius-server/commit/62f7d2885ad02911f0ae71e7864d4805a489137b">FR-AD-003</a>.
+
+<p><b>Affected versions: </b> 3.0.0 through 3.0.14, inclusive.
+</p>
+
+<p><b>CVE: </b> No CVE has been release as this issue has no impact,
+and exploitation does not cross a privilege boundary in a correct and
+realistic product deployment.
+</p>
+
+</div>
+
+
+  </div>
+
+</article>
+
+
+    </div>
+
+    <footer class="global_footer bg_block-dark lg_padding_v">
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <div class="footer_main">
+                    <img class="footer_logo" width="150" src="../img/wordmark-white.svg" alt="">
+                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
+                    <div class="footer-social">
+                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
+                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
+                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
+                    </div>
+                    <p>&copy; 2017 The FreeRADIUS Server Project Support and Contributors</p>
+                </div>
+            </div>
+            <div class="columns medium-8">
+                <nav class="footer_nav h6 row small-up-2">
+                    <ul>
+                        <li><a href="/documentation/">Docs</a></li>
+                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
+                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
+                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
+                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
+                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/modules/">Modules</a></li>
+                        <li><a href="/modules/">Packages</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/community/">Community</a></li>
+                        <li><a href="/support/">Mailing Lists</a></li>
+                        <li><a href="/community/#contributing">Contribute</a></li>
+                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/about/#project">The Project</a></li>
+                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
+                        <li><a href="/about/#security">Security</a></li>
+                        <li><a href="/about/#team">Team</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/support/">Support</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
+                        <li><a href="/security/">Security Issues</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
+                        <li><a href="/support/">Newsletters</a></li>
+                        <li><a href="/commercial_support/">Commercial</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/app.js"></script>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html ng-app="freeradius">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Support &amp; Services</title>
+    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="new.freeradius.org/security/pvs-studio.html">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="new.freeradius.org/feed.xml">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
+    <meta name="msapplication-TileColor" content="#da532c ">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+</head>
+
+
+  <body>
+
+    <div class="global-nav">
+  <div class="global_links pull_right">
+    <div class="global_link global_link_label h5 text">Our sites:</div>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+  </div>
+</div>
+
+<header class="site-header" global-header ng-class="{fixed: fixNav}">
+  <div class="site-header-wrapper">
+
+    <a class="site-title" href="/"><img src="/img/wordmark.svg"></a>
+    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
+      <svg viewBox="0 0 18 15">
+        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+      </svg>
+    </button>
+
+    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
+
+      <div class="get-release">
+      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
+      </div>
+
+      <ul class="site-nav-list">
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/releases/">Releases</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/documentation/">Documentation</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/modules/">Modules</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/community/">Community</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/about/">About</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/support/">Support</a>
+         </li>
+
+      </ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+
+        <article class="post">
+  <header class="post-header">
+    <div class="post-hero hero-support">
+      <div class="wrapper">
+      	<h1 class="post-title">Support & Services</h1>
+      	<p class="post-subtitle">Having trouble and need a hand? Find answers here.</p> 
+      </div>
+    </div>
+  </header>
+  
+  	<div class="sub-nav">
+	<div class="wrapper">
+        <nav class="inline_nav" sub-nav>
+            <ul>
+                
+                
+        			<li class="">
+                        <a class="subnav_link" href="/support/">Mailing Lists</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="/commercial_support/">Commercial Support</a>
+                    </li>
+        		
+            </ul>
+        </nav>
+	</div>
+</div>
+
+  
+
+  <div class="post-content">
+      <div class="wrapper base_padding_v">
+
+<h1>Scanning FreeRADIUS with PVS-Studio</h1>
+
+<p>The people
+at <a href="https://www.viva64.com/en/pvs-studio/">PVS-Studio</a> were
+kind enough to give us a temporary license so that we could scan
+FreeRADIUS.  We scanned the v3.0.x branch of the server, as
+of <a href="https://github.com/FreeRADIUS/freeradius-server/commit/3047fc60a7df94c101e525b2e9a4b4a184232cec">commit
+a7df94</a>.  Our commentary
+follows.</p>
+
+<h2>Commentary and Analysis</h2>
+
+<p>We will give our comments here, not necessarily in the order that
+they are in the file.  We do not comment on all of the messages
+produced by PVS-Studio.  Instead, we discuss a representative
+sample.</p>
+
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/scripts/jlibtool.c#L441">scripts/jlibtool.c 441</a> warn	V547 Expression '!out' is always false.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/scripts/jlibtool.c#L1334">scripts/jlibtool.c 1334</a> warn	V547 Expression 'path' is always true.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/scripts/jlibtool.c#L1636">scripts/jlibtool.c 1636</a> warn	V522 There might be dereferencing of a potential null pointer 'tmp'.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/scripts/jlibtool.c#L2244">scripts/jlibtool.c 2244</a> warn	V519 The 'l' variable is assigned values twice successively. Perhaps this is a mistake. Check lines: 2241, 2244.<br>
+
+<p>These errors are in a tool used as part of the build process.  They should be fixed, but they don't affect the running server.</p>
+
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/lib/cbuff.c#L107">src/lib/cbuff.c 107</a> err	V571 Recurring check. The 'if (cbuff->lock)' condition was already verified in line 107.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/lib/cbuff.c#L124">src/lib/cbuff.c 124</a> err	V571 Recurring check. The 'if (cbuff->lock)' condition was already verified in line 124.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/lib/cbuff.c#L139">src/lib/cbuff.c 139</a> err	V571 Recurring check. The 'if (cbuff->lock)' condition was already verified in line 139.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/lib/cbuff.c#L150">src/lib/cbuff.c 150</a> err	V571 Recurring check. The 'if (cbuff->lock)' condition was already verified in line 150.<br>
+
+<p>These are duplicate checks, which are unnecessary.  Fixed by commit 51839ad.</p>
+
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/lib/misc.c#L1931">src/lib/misc.c 1931</a> err	V535 The variable 'i' is being used for this loop and for the outer loop. Check lines: 1922, 1931.<br>
+
+<p>This is a bug which would cause incorrect parsing of date strings.  Fixed by commit 384a9d3.</p>
+
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/lib/missing.c#L324">src/lib/missing.c 324</a> err	V595 The 'ctx' pointer was utilized before it was verified against nullptr. Check lines: 324, 325.<br>
+
+<p>This is failure to handle an "out of memory" condition.  Minor, but it should be fixed.  Fixed by commit 9a613ab.</p>
+
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/lib/tcp.c#L114">src/lib/tcp.c 114</a> warn	V512 A call of the 'memcpy' function will lead to underflow of the buffer 'packet->vector'.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_eap/libeap/comp128.c#L252">src/modules/rlm_eap/libeap/comp128.c 252</a> warn	V512 A call of the 'memcpy' function will lead to underflow of the buffer 'x'.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_eap/libeap/comp128.c#L268">src/modules/rlm_eap/libeap/comp128.c 268</a> warn	V512 A call of the 'memcpy' function will lead to underflow of the buffer 'x'.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_eap/libeap/eapsimlib.c#L262">src/modules/rlm_eap/libeap/eapsimlib.c 262</a> warn	V512 A call of the 'memcpy' function will lead to underflow of the buffer 'sha1digest'.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_eap/types/rlm_eap_mschapv2/rlm_eap_mschapv2.c#L156">src/modules/rlm_eap/types/rlm_eap_mschapv2/rlm_eap_mschapv2.c 156</a> err	V575 The 'memcpy' function doesn't copy the whole string. Use 'strcpy / strcpy_s' function to preserve terminal null.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_eap/types/rlm_eap_sim/rlm_eap_sim.c#L100">src/modules/rlm_eap/types/rlm_eap_sim/rlm_eap_sim.c 100</a> err	V512 A call of the 'memcpy' function will lead to underflow of the buffer 'ess->keys.versionlist'.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_eap/libeap/eapsimlib.c#L429">src/modules/rlm_eap/libeap/eapsimlib.c 429</a> warn	V512 A call of the 'memcmp' function will lead to underflow of the buffer 'calcmac'.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_otp/otp_pw_valid.c#L151">src/modules/rlm_otp/otp_pw_valid.c 151</a> warn	V512 A call of the 'memcpy' function will lead to underflow of the buffer 'otp_request.pwe.u.chap.response'.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_otp/otp_pw_valid.c#L171">src/modules/rlm_otp/otp_pw_valid.c 171</a> warn	V512 A call of the 'memcpy' function will lead to underflow of the buffer 'otp_request.pwe.u.chap.challenge'.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_mschap/rlm_mschap.c#L1292">src/modules/rlm_mschap/rlm_mschap.c 1292</a> warn	V512 A call of the 'memcpy' function will lead to underflow of the buffer 'digest'.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_mschap/rlm_mschap.c#L2006">src/modules/rlm_mschap/rlm_mschap.c 2006</a> err	V512 A call of the 'memset' function will lead to underflow of the buffer 'mppe_sendkey'.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_mschap/rlm_mschap.c#L2008">src/modules/rlm_mschap/rlm_mschap.c 2008</a> warn	V512 A call of the 'memcpy' function will lead to underflow of the buffer 'mppe_sendkey'.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_mschap/mschap.c#L83">src/modules/rlm_mschap/mschap.c 83</a> warn	V512 A call of the 'memcpy' function will lead to underflow of the buffer 'hash'.<br>
+
+<p>The pattern is that we're encoding or decoding packet data, by
+gradually filling a buffer.  While this may be unusual in some
+programs, it's common in network servers.  These messages are
+warnings, so they are not false positives.</p>
+
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/main/exec.c#L172">src/main/exec.c 172</a> warn	V507 Pointer to local array 'buffer' is stored outside the scope of this array. Such a pointer will become invalid.<br>
+
+<p>
+The code has an on-stack array <tt>buffer</tt> which is used in a
+restricted context.  It uses a variable <tt>p</tt> to index
+into <tt>buffer</tt>.  The issue seems to be that <tt>p</tt>
+is <em>declared</em> with a larger scope than <tt>buffer</tt>, even
+tho it is not <em>used</em> outside of the scope of <tt>buffer</tt>.
+</p>
+
+<p>
+The fix is to narrow the scope of the variable <tt>p</tt>.  This
+should have no impact (or change) to the code produced by the
+compiler, but it does make the warning go away.
+</p>
+
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_eap/types/rlm_eap_pwd/rlm_eap_pwd.c#L389">src/modules/rlm_eap/types/rlm_eap_pwd/rlm_eap_pwd.c 389</a> err	V568 It's odd that 'sizeof()' operator evaluates the size of a pointer to a class, but not the size of the 'packet' class object.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/modules/rlm_eap/types/rlm_eap_pwd/rlm_eap_pwd.c#L390">src/modules/rlm_eap/types/rlm_eap_pwd/rlm_eap_pwd.c 390</a> err	V568 It's odd that 'sizeof()' operator evaluates the size of a pointer to a class, but not the size of the 'packet' class object.<br>
+
+<p>These are serious issues, and may be externally exploitable.  They have been fixed in commit d7a006e.</p>
+
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/lib/radius.c#L3299">src/lib/radius.c 3299</a> warn	V575 The potential null pointer is passed into 'memcpy' function. Inspect the first argument.<br>
+
+<p>That's a false positive.  The code does:
+<pre>
+  head = tail = malloc(fraglen);
+	if (!head) return -1;
+	...
+	memcpy(tail, ..., ...)
+</pre>
+
+<p>If <tt>head</tt> is NULL, then the function returns, and
+the <tt>memcpy()</tt> function isn't called.  Since the code
+sets <tt>head = tail</tt>, we can't have <tt>tail == NULL</tt> being
+passed to the <tt>memcpy()</tt> function.</p>
+
+<p>
+We would suggest an update to PVS-Studio which omits the message for this situation.
+</p>
+
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/main/radclient.c#L1628">src/main/radclient.c 1628</a> err	V576 Incorrect format. Consider checking the second actual argument of the 'printf' function. The memsize type argument is expected.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/main/radclient.c#L1628">src/main/radclient.c 1628</a> err	V576 Incorrect format. Consider checking the third actual argument of the 'printf' function. The memsize type argument is expected.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/main/radclient.c#L1628">src/main/radclient.c 1628</a> err	V576 Incorrect format. Consider checking the fourth actual argument of the 'printf' function. The memsize type argument is expected.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/main/radclient.c#L1628">src/main/radclient.c 1628</a> err	V576 Incorrect format. Consider checking the fifth actual argument of the 'printf' function. The memsize type argument is expected.<br>
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/main/radclient.c#L1628">src/main/radclient.c 1628</a> err	V576 Incorrect format. Consider checking the sixth actual argument of the 'printf' function. The memsize type argument is expected.<br>
+
+<p>
+The code is printing a <tt>uint64_t</tt>, via the <tt>PRIu64</tt>
+macro that was defined in C99.  No other compiler or static analysis
+tool complains about these arguments to <tt>printf</tt>.  We believe
+that these messages are due to build issues on different platforms.
+</p>
+
+<a href="https://github.com/FreeRADIUS/freeradius-server/blob/3047fc60a7df94c101e525b2e9a4b4a184232cec/src/lib/udpfromto.c#L227">src/lib/udpfromto.c 227</a> warn	V641 The size of the '&amp; si' buffer is not a multiple of the element size of the type 'struct sockaddr_in6'.<br>
+
+<p>
+The code is using a common network pattern where a <tt>struct
+sockaddr_storage</tt> is defined, and then a <tt>struct
+sockaddr_in6*</tt> pointer is assigned to point to <tt>struct
+sockaddr_storage</tt> structure.  There should be no issues with this
+kind of pattern.
+</p>
+
+<p>The rest of the issues found by PVS-Studio follow similar patterns,
+so we will not discuss them here.  We have, however. fixed all of the
+issues so that we have a "clean" build with PVS-Studio.</p>
+
+<h2>Conclusions</h2>
+
+<p>We have found that PVS-Studio is useful, and finds errors that
+other statis analysis tools do not find.  The false positive rate is
+manageable, with most messages being warnings instead of errors.  We
+believe that it is good security practice to warn about unusual code
+patterns, so we have few issues with the messages being produced.</p>
+
+<p>We plan to continue using PVS-Studio, in conjunction with the other
+static analysis tools we already use.  Again, thanks to the PVS-Studio
+team for providing us with license and a copy of their software.</p>
+
+</div>
+
+  </div>
+
+</article>
+
+
+    </div>
+
+    <footer class="global_footer bg_block-dark lg_padding_v">
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <div class="footer_main">
+                    <img class="footer_logo" width="150" src="../img/wordmark-white.svg" alt="">
+                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
+                    <div class="footer-social">
+                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
+                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
+                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
+                    </div>
+                    <p>&copy; 2017 The FreeRADIUS Server Project Support and Contributors</p>
+                </div>
+            </div>
+            <div class="columns medium-8">
+                <nav class="footer_nav h6 row small-up-2">
+                    <ul>
+                        <li><a href="/documentation/">Docs</a></li>
+                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
+                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
+                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
+                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
+                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/modules/">Modules</a></li>
+                        <li><a href="/modules/">Packages</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/community/">Community</a></li>
+                        <li><a href="/support/">Mailing Lists</a></li>
+                        <li><a href="/community/#contributing">Contribute</a></li>
+                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/about/#project">The Project</a></li>
+                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
+                        <li><a href="/about/#security">Security</a></li>
+                        <li><a href="/about/#team">Team</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/support/">Support</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
+                        <li><a href="/security/">Security Issues</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
+                        <li><a href="/support/">Newsletters</a></li>
+                        <li><a href="/commercial_support/">Commercial</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/app.js"></script>
+
+
+  </body>
+
+</html>

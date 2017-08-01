@@ -46,12 +46,12 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
     freeradius.factory('getStable', ['$http', function($http){
         return $http({
             method: 'GET',
-            url: 'http://localhost/api/info/branch/',
+            url: 'http://new.freeradius.org/api/info/branch/',
             // url: '/modules.json',
             params: {
                 by_keyword: 'stable',
-                keyword_expansion_depth: 2,
-                expansion_depth: 2,
+                keyword_expansion_depth: 1,
+                expansion_depth: 1,
                 keyword_field: 'status'
             }
         });
@@ -172,11 +172,11 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://localhost/api/info/component/',
+                url: 'http://new.freeradius.org/api/info/component/',
                 // url: '/modules.json',
                 params: {
                     by_category: category,
-                    expansion_depth: 3,
+                    expansion_depth: 1,
                     order_by: 'category'
                 }
             }).then(function successCallback(response) {
@@ -275,9 +275,9 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://localhost/api/info/component/'+module+'/',
+                url: 'http://new.freeradius.org/api/info/component/'+module+'/',
                 params: {
-                    expansion_depth: 3,
+                    expansion_depth: 1,
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
@@ -305,12 +305,12 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.searchString = string;
             $http({
                 method: 'GET',
-                url: 'http://localhost/api/info/component/',
+                url: 'http://new.freeradius.org/api/info/component/',
                 // url: '/modules.json',
                 params: {
                     by_keyword: 'regex:'+string,
                     keyword_expansion_depth: 1,
-                    expansion_depth: 3,
+                    expansion_depth: 1,
                     order_by: 'category',
                 }
             }).then(function successCallback(response) {
@@ -353,11 +353,12 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://localhost/api/info/branch/',
+                url: 'http://new.freeradius.org/api/info/branch/',
                 params: {
                     expansion_depth: 4,
-                    order_by: 'name',
                     order_by: 'category',
+                    pagenate_start: 1,
+                    pagenate_end: 5,
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
@@ -496,7 +497,7 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://localhost/api/info/branch/',
+                url: 'http://new.freeradius.org/api/info/branch/',
                 // url: '/modules.json',
                 params: {
                     by_keyword: 'regex:'+date,
@@ -521,7 +522,7 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.searchString = string;
             $http({
                 method: 'GET',
-                url: 'http://localhost/api/info/branch/',
+                url: 'http://new.freeradius.org/api/info/branch/',
                 params: {
                     by_keyword: 'regex:'+string,
                     keyword_expansion_depth: 3,
@@ -543,9 +544,9 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://localhost/api/info/branch/'+branch+'/release/'+release+'/',
+                url: 'http://new.freeradius.org/api/info/branch/'+branch+'/release/'+release+'/',
                 params: {
-                    expansion_depth: 2,
+                    expansion_depth: 1,
                 }
             }).then(function successCallback(response) {
                 $scope.release_notes = [];
@@ -611,11 +612,11 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://localhost/api/info/branch/',
+                url: 'http://new.freeradius.org/api/info/branch/',
                 // url: '/modules.json',
                 params: {
                     expansion_depth: 3,
-                    order_by: 'name'
+                    order_by: 'priority'
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
@@ -669,7 +670,7 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                // url: 'http://localhost/api/components/',
+                // url: 'http://new.freeradius.org/api/components/',
                 url: '/social.json',
                 // params: {
                 //     by_category: category

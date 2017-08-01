@@ -1,0 +1,31 @@
+ACCT_USERS(5)		FreeRADIUS user accounting file 	 ACCT_USERS(5)
+
+
+
+NAME
+       acct_users - user accounting file for the FreeRADIUS server
+
+DESCRIPTION
+       The  acct_users	file  resides  in  the	radius	database directory, by
+       default /etc/raddb.  It contains a series of  configuration  directives
+       which are used by the files module to decide how to log accounting mes-
+       sages.
+
+       The format of this file is identical to that of the users file,	except
+       that  it  controls the response to accounting requests, not authentica-
+       tion requests.
+
+
+FILES
+       /etc/raddb/acct_users
+
+SEE ALSO
+       radclient(1), radiusd(8), dictionary(5), users(5)
+
+
+AUTHOR
+       Alan DeKok <aland@ox.org>
+
+
+
+				05 August 2000			 ACCT_USERS(5)

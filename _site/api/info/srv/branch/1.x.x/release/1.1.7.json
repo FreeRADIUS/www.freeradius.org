@@ -1,0 +1,84 @@
+{
+   "date" : "2007-07-21T14:02:52Z",
+   "defects" : [
+      {
+         "description" : "Added NT-Hash support for mschap_xlat"
+      },
+      {
+         "description" : "Corrected documentation to point to correct location of files"
+      },
+      {
+         "description" : "Checks for more recent FreeBSD versions"
+      },
+      {
+         "description" : "use -DLDAP_DEPRECATED to avoid OpenLDAP crashes"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_mschap",
+               "url" : "/api/info/component/rlm_mschap/"
+            }
+         ],
+         "description" : "Use correct value for authentication name in rlm_mschap"
+      },
+      {
+         "description" : "Fix over-ride for usernames when use_tunneled_reply = yes"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.7.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.7.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.7.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.7.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Updated LDAP documentation"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Added note on DH parameters in eap.conf, and debugging messages which complain if DH is used, but not configured properly"
+      },
+      {
+         "description" : "Updated the Mikrotik dictionary.  Added a note that the sample dictionary they supply is broken"
+      },
+      {
+         "description" : "Output more information on blocked threads, which should help narrow down which modules is causing the problem"
+      },
+      {
+         "description" : "Added more eDirectory support"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "rlm_ldap now prints out attributes in the standard format"
+      },
+      {
+         "description" : "Enabled server-side handling of procedures in MySQL"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_1_1_7.tar.gz"
+      }
+   ],
+   "name" : "1.1.7",
+   "summary" : "The focus of this release is stability"
+}

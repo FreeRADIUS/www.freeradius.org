@@ -1,0 +1,28 @@
+{
+   "date" : "2002-07-03T14:16:33Z",
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.6.0.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.6.0.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.6.0.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.6.0.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Many bug fixes.  For explicit details, see:"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_0_6_0.tar.gz"
+      }
+   ],
+   "name" : "0.6.0",
+   "summary" : "The focus of this release is stability"
+}

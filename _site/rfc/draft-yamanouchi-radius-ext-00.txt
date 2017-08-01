@@ -1,0 +1,1769 @@
+<draft-yamanouchi-radius-ext-00.txt>           N. Yamanouchi, IBM Japan
+                                               N. Ishikawa, NTT
+                                               O. Takahashi, NTT
+
+                                               March  12,   1998 
+                                               Expires in six months
+
+
+
+           RADIUS Extension for Multicast Router Authentication
+
+
+
+Status of this Memo
+
+     This document  is  an Internet-Draft.  Internet-Drafts are  working
+     documents of the Internet Engineering Task Force (IETF), its areas,
+     and its working groups.  Note that other groups may also distribute
+     working documents as Internet-Drafts.
+
+     Internet-Drafts  are draft documents  valid for  a  maximum  of six
+     months and   may be  updated,   replaced,  or obsoleted   by  other
+     documents at any time.  It is inappropriate to use Internet- Drafts
+     as reference material  or  to cite them  other   than as  "work  in
+     progress."
+
+     To view the entire   list of current Internet-Drafts,  please check
+     the  "1id-abstracts.txt" listing  contained in  the Internet-Drafts
+     Shadow  Directories    on  ftp.is.co.za  (Africa),    ftp.nordu.net
+     (Europe),  munnari.oz.au  (Pacific Rim),  ds.internic.net (US  East
+     Coast), or ftp.isi.edu (US West Coast).
+
+Abstract
+
+     This memo describes an  extension of RADIUS authentication protocol
+     (RFC2138)   and RADIUS accounting    protocol (RFC2139) to  provide
+     authentication service about multicast receivers and senders to the
+     ingress and egress routers, and to  keep track of the receiving and
+     sending  clients for multicast data   feed service management.  New
+     services and  attributes are added  to the RADIUS definitions while
+     the   authentication transaction  mechanisms   are preserved.   The
+     authentication server  authenticates the multicast  receiver/sender
+     by using the  CHAP-based  mechanism.  The account  server  logs the
+     start and stop points of multicast route  usage.  This extension is
+     intended  to  be used in  conjunction  with the  IGMP extension for
+     multicast receiver and sender authentication.
+
+
+
+
+
+
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page  1]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+Table of Contents
+
+   1.  Introduction ............................................  2 
+
+   2.  Operation ...............................................  3
+
+   3.  Packet Format ...........................................  3
+
+   4.  Packet Types ............................................  5
+       4.1   Access-Request ....................................  5
+       4.2   Access-Accept......................................  6
+       4.3   Access-Reject......................................  7
+       4.4   Accounting-Request.................................  8
+       4.5   Accounting-Response................................  9
+
+   5.  Attributes .............................................. 10
+       5.1   User-Name ......................................... 12
+       5.2   CHAP-Password ..................................... 12
+       5.3   NAS-IP-Address .................................... 13
+       5.4   Service-Type ...................................... 14
+       5.5   Reply-Message ..................................... 15
+       5.6   Vendor-Specific ................................... 16
+       5.7   Acct-Status-Type .................................. 17
+       5.8   Acct-Session-ID ................................... 18
+       5.9   Mcast-Group-Address ............................... 18
+       5.10  Validity-Period ................................... 19
+       5.11  LAN-IP-Address .................................... 20
+       5.12  LAN-Netmask ....................................... 20
+       5.13  Table of Attributes ............................... 21
+
+   6.  Examples  ............................................... 22
+
+   7.  Issues  ................................................. 22
+
+   Security Considerations ..................................... 22
+
+   References .................................................. 22
+
+   Author's Addresses .......................................... 23
+
+   A.  Appendix A .............................................. 24
+       A.1   Introduction ...................................... 24
+       A.2   Receiver JOIN Authentication Process .............. 25
+       A.3   Detailed Receiver Authentication Process .......... 25
+       A.4   Detailed Sender Authentication Process ............ 28
+
+
+
+
+
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page  2]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+1.  Introduction
+
+The rapid deployment of IP multicast over the Internet has been realized
+by MBone, an  experimental IP multicast network  over the Internet.   IP
+multicast  is  still at  an experimental  stage.   In  order to  make IP
+multicast  a commercial service, many enhancements  to  IP multicast are
+required.  Among them security is one of the most important enhancements
+to IP multicast.  There  are no security functions  in IGMPv2.  Any host
+can send IP multicast datagrams  to a host group.  Any  host can join  a
+host group and receive IP multicast datagrams which are sent to the host
+group.    There are no means to   know who are  the  current sending and
+receiving hosts.
+
+An extension  to IGMP-v2   is  proposed in   [1] for  multicast security
+enhancement.    This document describes   the RADIUS  interface that the
+security mechanisms in [1] uses for getting authentication information.
+
+RADIUS  (Remote Authentication   Dial  In User  Service) was  originally
+designed for implementing centralized database for serial line and modem
+pool authentication [3]  and accounting [4].   This memo extends the use
+of the RADIUS protocol  framework to allow  the IGMP security control to
+gmaintain a single, centralized  authentication database, and at the same
+time, to maintain the usage information at a RADIUS accounting server.
+
+The authentication  server must  be  able to provide the  authentication
+service requested by the routers.  The router will provide a user ID and
+a password for authentication.  For network security, a challenge- based
+authentication is required.  Authentication should be per service, i.e.,
+per  multicast  group address.  Other  authentication  requirements  are
+identical to the RADIUS terminal authentication.
+
+The use of RADIUS is optional to the security-enhanced routers.
+
+If    a security-enhanced  router   is  configured  to  use  RADIUS  for
+authentication, it expects  the RADIUS server  to provide authentication
+service.   This mechanism is identical  to  the authentication of serial
+line users/terminals, but some additional attributes are needed.
+
+If the ISPs and   content service providers want to   keep track of  the
+usage of  the multicast-ed service,  they   set the routers  to log  the
+authentication transaction information  at a centralized logging server.
+This  logging  information transaction  may again be  implemented by the
+RADIUS accounting protocol by slightly extending attributes.
+
+
+Network Security
+
+Transactions  between     the client  multicast    router   and   RADIUS
+authentication and accounting  servers are authenticated through the use
+of a shared secret, which is never sent over the network.
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page  3]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+2.  Operation
+
+When a client multicast router is configured to  use RADIUS with account
+support, at the  start of multicast service  it will generate an Account
+Start  packet describing  the type   of  service (multicast receiver  or
+sender)  being      delivered, and   will send    that    to the  RADIUS
+Mcast-Accounting  server, which will send  back  an acknowledgement that
+the packet has been received.  At the end of service delivery the client
+multicast router  will generate  an  Account Stop  packet describing the
+type of service that was  delivered.  It will  send  that to the  RADIUS
+Mcast-Accounting  server, which will send   back an acknowledgement that
+the packet has been received.
+
+When  a  client router  receives an  IGMP-Join  request, it  requests an
+authentication to the  RADIUS Mcast Authentication  server by sending an
+Access-Request   to the   RADIUS  Mcast-Authentication  server   via the
+network. At the receipt  of  positive response   from the  RADIUS  Mcast
+Authentication  server, the client  router  requests to the RADIUS Mcast
+Account server with an Account-Request/Start to start accounting.
+
+When a client router receives an IGMP-Leave  request, it simply requests
+to  the Mcast  Account   server with  an  Account-Request/Stop  to  stop
+accounting.
+
+A detailed process of a few sample transactions is described in Appendix
+A.
+
+It is  recommended that the  client router continues attempting  to send
+the Access-Request packet  until  it receives an  acknowledgement, using
+some  form of back-off.  If  no response is returned  within a length of
+time, the request is re- sent a number of times.
+
+The RADIUS Mcast Accounting server MAY make requests of other servers in
+order to satisfy the request, in which case it acts as a client.
+
+If the  RADIUS  accounting server  is unable  to successfully record the
+accounting packet it MUST NOT send an Accounting-Response acknowledgment
+to the client.
+
+
+3.  Packet Format
+
+Packet format is identical to RADIUS and RADIUS accounting.
+
+Exactly one RADIUS Accounting  packet is  encapsulated  in the UDP  Data
+field [1], where the UDP  Destination Port field indicates 1812  (RADIUS
+Authentication service) and 1813 (RADIUS Accounting service) (decimal).
+
+When   a  reply  is generated,  the  source   and  destination ports are
+reversed.
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page  4]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+A  summary of the  RADIUS data  format  is shown  below.  The fields are
+transmitted from left to right.
+
+ 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|     Code      |  Identifier   |            Length             |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|                                                               |
+|                         Authenticator                         |
+|                                                               |
+|                                                               |
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+|  Attributes ...
++-+-+-+-+-+-+-+-+-+-+-+-+-
+
+
+Code
+
+   The Code  field  is one octet,  and   identifies the type   of RADIUS
+   packet.  When a packet is received with an  invalid Code field, it is
+   silently discarded.
+
+   The  following  Code  values  of  RADIUS  is  used for Multicast User 
+   Authentication Codes (decimal):
+      1       Access-Request
+      2       Access-Accept
+      3       Access-Reject
+
+   and for Multicast User Accounting Codes (decimal):
+      4       Accounting-Request
+      5       Accounting-Response
+
+Identifier
+
+   The Identifier field is one octet, and aids  in matching requests and
+   replies.  This is identical to RADIUS.
+
+Length
+
+   This part  is the same  as that of RADIUS.  The  Length  field is two
+   octets.  It  indicates the length of  the  packet including the Code,
+   Identifier, Length,    Authenticator and  Attribute  fields.   Octets
+   outside the  range of the Length  field should be  treated as padding
+   and should be  ignored on reception.  If the  packet is  shorter than
+   the Length field indicates,  it  should be  silently discarded.   The
+   minimum length is 20 and maximum length is 4096.
+
+Authenticator
+
+   This part is the same as that of  RADIUS.  The Authenticator field is
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page  5]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+   sixteen  (16) octets.   The   most significant octet  is  transmitted
+   first.  This value  is used to authenticate  the messages between the
+   client and RADIUS accounting server.
+
+Request Authenticator
+
+   This  part is the same   as that  of  RADIUS.  In  Accounting-Request
+   Packets, the  Authenticator value  is a  16  octet MD5 [5]  checksum,
+   called the Request Authenticator.
+
+   The NAS  and RADIUS  accounting server  share  a secret.  The Request
+   Authenticator field in Accounting-Request packets contains a one- way
+   MD5 hash calculated over a stream of octets  consisting of the Code +
+   Identifier + Length  + 16 zero octets  + request  attributes + shared
+   secret (where + indicates   concatenation).  The  16 octet  MD5  hash
+   value is stored in the  Authenticator field of the Accounting-Request
+   packet.
+
+Response Authenticator
+
+   This part is the same as that  of RADIUS.  The Authenticator field in
+   an Accounting-Response packet  is called  the Response Authenticator,
+   and  contains a one-way MD5 hash  calculated over  a stream of octets
+   consisting of the Accounting-  Response Code, Identifier, Length, the
+   Request Authenticator field from  the Accounting-Request packet being
+   replied   to, and  the response attributes    if any, followed by the
+   shared secret.  The resulting  16 octet MD5 hash  value is  stored in
+   the Authenticator field of the Accounting-Response packet.
+
+Attributes
+
+   This   part  is the same  as  that  of  RADIUS.   Attributes may have
+   multiple instances, in such a  case  the order  of attributes of  the
+   same type SHOULD be preserved.  The  order of attributes of different
+   types is not required to be preserved.
+
+4.  Packet Types
+
+   This section is   the same as  that  of RADIUS  and RADIUS accounting
+   documents except for the items described below.
+
+4.1.  Access-Request
+
+   Description
+
+      An Access-Request   SHOULD  contain  a   NAS-IP-Address attribute.
+      NAS-Identifier attribute is prohibited in the case of IP multicast
+      user authentication.  It    MUST  CHAP-Password attribute.    User
+      password attribute is   prohibited.  A  NAS-Port  or NAS-Port-Type
+      attribute is not used.
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page  6]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+      An  Access-Request MAY contain  additional attributes as a hint to
+      the server, but the server is not required to honor the hint.
+
+   A summary of the  Access-Request packet format  is shown below.   The
+   fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Code      |  Identifier   |            Length             |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   |                     Request Authenticator                     |
+   |                                                               |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |  Attributes ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Code
+
+      1 for Access-Request.
+
+   Identifier
+
+      The Identifier  field MUST be  changed whenever the content of the
+      Attributes  field changes,  and  whenever a valid  reply has  been
+      received  for   a  previous request.   For   retransmissions,  the
+      Identifier MUST remain unchanged.
+
+   Request Authenticator
+
+      The Request Authenticator value MUST  be changed  each time a  new
+      Identifier is used.
+
+   Attributes
+
+      The Attribute  field is variable  in length, and contains the list
+      of Attributes that  are required for the  type of service, as well
+      as any desired optional Attributes.
+
+4.2.  Access-Accept
+
+   Description
+
+      Access-Accept packets   are  sent by  the  RADIUS server.   If all
+      Attribute values received in an Access-Request are acceptable then
+      the RADIUS implementation MUST  transmit  a packet with the   Code
+      field set to 2 (Access-Accept).
+
+      On reception of an  Access-Accept, the Identifier field is matched
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page  7]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+      with  a   pending   Access-Request.  Additionally,  the   Response
+      Authenticator field MUST  contain  the  correct response for   the
+      pending Access-Request.  Invalid packets are silently discarded.
+
+   A summary  of the Access-Accept  packet format is  shown  below.  The
+   fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Code      |  Identifier   |            Length             |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   |                     Response Authenticator                    |
+   |                                                               |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |  Attributes ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Code
+
+      2 for Access-Accept.
+
+   Identifier
+
+      The Identifier field  is a  copy of the  Identifier field  of  the
+      Access-Request which caused this Access-Accept.
+
+   Response Authenticator
+
+      The  Response Authenticator value  is calculated  from the Access-
+      Request value, as described earlier.
+
+   Attributes
+
+      The Attribute field is variable in length, and  contains a list of
+      zero or more Attributes.
+
+4.3.  Access-Reject
+
+   Description
+
+      If any value  of the received Attributes  is not  acceptable, then
+      the RADIUS server MUST transmit  a packet with  the Code field set
+      to 3 (Access-Reject).  It   MAY include one or more  Reply-Message
+      Attributes with a  text message which the  NAS MAY display  to the
+      user.
+
+   A  summary  of the Access-Reject packet   format is shown below.  The
+   fields are transmitted from left to right.
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page  8]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Code      |  Identifier   |            Length             |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   |                     Response Authenticator                    |
+   |                                                               |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |  Attributes ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Code
+
+      3 for Access-Reject.
+
+   Identifier
+
+      The  Identifier field is a   copy of the   Identifier field of the
+      Access-Request which caused this Access-Reject.
+
+   Response Authenticator
+
+      The Response Authenticator   value is calculated from  the Access-
+      Request value, as described earlier.
+
+   Attributes
+
+      The Attribute field is variable in length,  and contains a list of
+      zero or more Attributes.
+
+4.4.  Accounting-Request
+
+   Description
+
+      Accounting-Request packets   are sent from  a  client (typically a
+      Network Access Server or its proxy) to a RADIUS accounting server,
+      and  convey information used to   provide accounting for a service
+      provided to a user.  The client transmits a RADIUS packet with the
+      Code field set to 4 (Accounting-Request).
+
+      Upon receipt of an Accounting-Request, the server MUST transmit an
+      Accounting-Response  reply   if    it successfully  records    the
+      accounting packet, and MUST NOT transmit any  reply if it fails to
+      record the accounting packet.
+
+      Any attribute valid in  a  RADIUS Access-Request or  Access-Accept
+      packet is valid in a RADIUS Accounting-Request packet, except that
+      the  following  attributes MUST NOT be   present in an Accounting-
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page  9]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+      Request:  User-Password,   CHAP-Password,  Reply-Message,   State.
+      Either  NAS-IP-Address   or NAS-Identifier MUST   be present  in a
+      RADIUS Accounting-Request.  It SHOULD  contain a NAS-Port or  NAS-
+      Port-Type attribute or both unless the service  does not involve a
+      port or the NAS does not distinguish among its ports.
+
+   A summary of  the  Accounting-Request packet  format is  shown below.
+   The fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Code      |  Identifier   |            Length             |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   |                     Request Authenticator                     |
+   |                                                               |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |  Attributes ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Code
+
+      4 for Accounting-Request.
+
+   Identifier
+
+      The Identifier field  MUST be changed whenever  the content of the
+      Attributes  field changes,  and whenever  a  valid reply has  been
+      received for a previous  request.   For retransmissions where  the
+      contents are identical, the Identifier MUST remain unchanged.
+
+   Request Authenticator
+
+      The Request Authenticator  of an Accounting-Request contains a 16-
+      octet MD5 hash value calculated  according to the method described
+      in "Request Authenticator" above.
+
+   Attributes
+
+      The Attributes field is variable in length, and contains a list of
+      Attributes.
+
+4.5.  Accounting-Response
+
+   Description
+
+      Accounting-Response  packets are   sent by  the  RADIUS accounting
+      server to the  client  to acknowledge that the  Accounting-Request
+      has been received and recorded successfully.  If the Accounting-
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 10]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+      Request  was  recorded successfully  then  the  RADIUS  accounting
+      server  MUST transmit   a packet with   the Code  field set  to  5
+      (Accounting-Response).  On  reception of an Accounting-Response by
+      the  client, the  Identifier   field is  matched  with  a  pending
+      Accounting-Request.  Invalid packets are silently discarded.
+
+      A   RADIUS Accounting-Response    is not required    to  have  any
+      attributes in it.
+
+   A summary of  the Accounting-Response packet  format is shown  below.
+   The fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Code      |  Identifier   |            Length             |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |                                                               |
+   |                     Response Authenticator                    |
+   |                                                               |
+   |                                                               |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |  Attributes ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Code
+
+      5 for Accounting-Response.
+
+   Identifier
+
+      The  Identifier field is  a  copy of the   Identifier field of the
+      Accounting-Request which caused this Accounting-Response.
+
+   Response Authenticator
+
+      The Response Authenticator  of  an Accounting-Response  contains a
+      16-octet    MD5 hash value    calculated  according to the  method
+      described in "Response Authenticator" above.
+
+   Attributes
+
+      The Attributes field is variable in length, and contains a list of
+      zero or more Attributes.
+
+5.  Attributes
+
+   This section is   the same as  that  of RADIUS and  RADIUS accounting
+   documents except for the items described below.
+
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 11]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+   A summary of  the  Attribute format is shown  below.   The fields are
+   transmitted from left to right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+   |     Type      |    Length     |  Value ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Type
+
+      The Type field is one octet.  Up-to-date values of the RADIUS Type
+      field are specified in  the  most recent "Assigned  Numbers"  RFC.
+      Values 192-223 are  reserved for experimental  use, values 224-240
+      are reserved  for implementation-specific use,  and values 241-255
+      are   reserved and should    not  be  used.  The   multicast  user
+      authentication specification concerns the following values:
+
+          1      User-Name
+          3      CHAP-Password
+          4      NAS-IP-Address
+          6      Service-Type
+         18      Reply-Message
+         26      Vendor-Specific ?
+         40      Acct-Status-Type
+         44      Acct-Session-Id
+
+   Length
+
+      The Length field  is one octet, and  indicates the  length of this
+      Attribute   including the Type, Length    and Value fields.  If an
+      Attribute is received  in an  Access-Request  but with an  invalid
+      Length, an Access-Reject  SHOULD be transmitted.   If an Attribute
+      is received in an Access-Accept, Access-Reject or Access-Challenge
+      packet with  an invalid length, the packet  MUST either be treated
+      an Access-Reject  or else silently  discarded.  If an attribute is
+      received in an   Accounting-Request  with an invalid  Length,  the
+      entire request should be silently discarded.
+
+   Value
+
+      The Value field  is zero or more  octets and contains  information
+      specific  to the Attribute.   The format and   length of the Value
+      field is determined by the Type and Length fields.
+
+      Note that a "string" in RADIUS does not  require termination by an
+      ASCII NUL because the Attribute already has a length field.
+
+      The format of the value field is one of four data types.
+
+      string    0-253 octets
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 12]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+
+      address   32 bit value, most significant octet first.
+
+      integer   32 bit value, most significant octet first.
+
+      time      32 bit value, most significant octet first -- seconds
+                since 00:00:00 GMT, January 1, 1970.  The standard
+                Attributes do not use this data type but it is presented
+                here for possible use within Vendor-Specific attributes.
+
+
+5.1.  User-Name
+
+   Description
+
+      This Attribute indicates the name of the user to be authenticated.
+      It is only used in Access-Request packets.
+
+   A summary of the User-Name Attribute format is shown below.  The
+   fields are transmitted from left to right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+   |     Type      |    Length     |  String ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Type
+
+      1 for User-Name.
+
+   Length
+
+      >= 3
+
+   String
+
+      The String field is  one or more  octets.   The NAS may  limit the
+      maximum length of the User-Name but the ability to handle at least
+      63 octets is recommended.
+
+5.2.  CHAP-Password
+
+   Description
+
+      This Attribute indicates the   response  value provided by a   PPP
+      Challenge-Handshake     Authentication Protocol   (CHAP) user   in
+      response to the challenge.     It is only used in   Access-Request
+      packets.
+
+      The CHAP challenge value is found  in the CHAP-Challenge Attribute
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 13]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+      (60)   if   present  in  the  packet,   otherwise  in the  Request
+      Authenticator field.
+
+   A summary of the CHAP-Password Attribute format  is shown below.  The
+   fields are transmitted from left to right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+   |     Type      |    Length     |  CHAP Ident   |  String ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Type
+
+      3 for CHAP-Password.
+
+   Length
+
+      19
+
+   CHAP Ident
+
+      This field is one octet, and contains the CHAP Identifier from the
+      user's CHAP Response.
+
+   String
+
+      The String field is 16 octets, and contains the CHAP Response from
+      the user.
+
+5.3.  NAS-IP-Address
+
+   Description
+
+      This  Attribute indicates the   identifying IP Address  of the NAS
+      which is  requesting authentication of  the user.  It is only used
+      in    Access-Request packets.   Either   NAS-IP-Address   or  NAS-
+      Identifier SHOULD be present in an Access-Request packet.
+
+   A summary of the NAS-IP-Address Attribute format is shown below.  The
+   fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |            Address
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            Address (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 14]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+   Type
+
+      4 for NAS-IP-Address.
+
+   Length
+
+      6
+
+   Address
+
+      The Address field is four octets.
+
+5.4.  Service-Type
+
+   Description
+
+      This  Attribute indicates    the  type of  service   the  user has
+      requested, or the type of service to be provided.   It MAY be used
+      in both  Access-Request and Access-Accept packets.   A NAS  is not
+      required to  implement all of these  service types, and MUST treat
+      unknown  or  unsupported Service-Types as though  an Access-Reject
+      had been received instead.
+
+   A summary of the  Service-Type Attribute format is  shown below.  The
+   fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Type
+
+      6 for Service-Type.
+
+   Length
+
+      6
+
+   Value
+
+      The Value field is four octets.
+
+      10      Mcast-Sender
+      11      Mcast-Receiver
+
+
+      The service  types designate the kind  of services  the user would
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 15]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+      like to receive.  In the original RADIUS they are used to indicate
+      the services the NAS should provide to the user, and if used in an
+      Access-  Accept,  they should be  considered  to be a  hint to the
+      RADIUS  server that the  NAS has reason  to believe the user would
+      prefer the kind of service indicated.
+
+      Mcast-Sender        The user would like to be authenticated as
+                          a multicast sender.
+
+      Mcast-Receiver      The user would like to be authenticated as
+                          a multicast receiver.
+
+5.5.  Reply-Message
+
+   Description
+
+      This Attribute indicates text which MAY be displayed to the user.
+
+      When used in an Access-Accept, it is the success message.
+
+      When used in an Access-Reject, it is the  failure message.  It MAY
+      indicate  a   dialog message to  prompt   the user  before another
+      Access-Request attempt.
+
+      Multiple Reply-Message's MAY be included and if any are displayed,
+      they MUST be displayed  in the same  order as  they appear  in the
+      packet.
+
+   A summary of the Reply-Message Attribute format is shown below.   The
+   fields are transmitted from left to right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+   |     Type      |    Length     |  String ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+
+   Type
+
+      18 for Reply-Message.
+
+   Length
+
+      >= 3
+
+   String
+
+      The  String field  is  one or more  octets,  and  its contents are
+      implementation dependent.   It is intended  to  be human readable,
+      and MUST NOT affect operation of  the protocol.  It is recommended
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 16]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+      that  the message  contain  displayable ASCII  characters from the
+      range   10, 13,  and   32  through  126  decimal.   Mechanisms for
+      extension to  other character  sets are  beyond the  scope of this
+      specification.
+
+5.6.  Vendor-Specific
+
+   Description
+
+      This Attribute is available to allow  vendors to support their own
+      extended  Attributes not suitable for  general usage.  It MUST not
+      affect the operation of the RADIUS protocol.
+
+      Servers not equipped to  interpret the vendor-specific information
+      sent  by a client MUST  ignore  it (although it  may be reported).
+      Clients which do  not receive desired vendor-specific  information
+      SHOULD make an attempt to operate without it, although they may do
+      so (and report they are doing so) in a degraded mode.
+
+   A summary  of the  Vendor-Specific  Attribute format is shown  below.
+   The fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |  Length       |            Vendor-Id
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        Vendor-Id (cont)           |  String...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+   Type
+
+      26 for Vendor-Specific.
+
+   Length
+
+       >= 7
+
+   Vendor-Id
+
+      The high-order octet is  0 and the low-order 3  octets are the SMI
+      Network  Management  Private  Enterprise Code   of  the Vendor  in
+      network byte order, as defined in the Assigned Numbers RFC.
+
+   String
+
+      The String field is one or more octets.  The  actual format of the
+      information    is  site or application    specific,   and a robust
+      implementation SHOULD support the field as undistinguished octets.
+
+      The codification  of the range of allowed  usage  of this field is
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 17]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+      outside the scope of this specification.
+
+      It SHOULD be encoded as a sequence of vendor  type / vendor length
+      /  value   fields, as follows.    The Attribute-Specific  field is
+      dependent   on the vendor's    definition of  that attribute.   An
+      example   encoding of   the Vendor-Specific  attribute  using this
+      method follows:
+
+       0                   1                   2                   3
+       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |     Type      |  Length       |            Vendor-Id
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+           Vendor-Id (cont)           | Vendor type   | Vendor length |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |    Attribute-Specific...
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+
+5.7.  Acct-Status-Type
+
+   Description
+
+      This attribute indicates whether this Accounting-Request marks the
+      beginning of the user service (Start) or the end (Stop).
+
+      It MAY be used by the client to mark the  start of accounting (for
+      example, upon booting) by specifying Accounting-On and to mark the
+      end of accounting (for example, just before a scheduled reboot) by
+      specifying Accounting-Off.
+
+   A  summary of the Acct-Status-Type  attribute  format is shown below.
+   The fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Type
+
+      40 for Acct-Status-Type.
+
+   Length
+
+      6
+
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 18]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+   Value
+
+      The Value field is four octets.
+
+       1      Start
+       2      Stop
+       7      Accounting-On
+       8      Accounting-Off
+
+5.8.  Acct-Session-Id
+
+   Description
+
+      This attribute is a unique Accounting ID to make  it easy to match
+      start and stop records in a log file.   The start and stop records
+      for a  given  session MUST have  the  same Acct-Session-Id.  It is
+      strongly recommended that the Acct-Session-Id be a printable ASCII
+      string.
+
+      For  example, one implementation uses   a  string with an  8-digit
+      upper case hexadecimal number,  the first two digits  increment on
+      each reboot (wrapping  every 256 reboots) and   the next 6  digits
+      counting from 0 for the first person logging in  after a reboot up
+      to 2^24-1, about 16 million.  Other encodings are possible.
+
+   A  summary of the   Acct-Session-Id attribute format  is shown below.
+   The fields are transmitted from left to right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |  String ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Type
+
+      44 for Acct-Session-Id.
+
+   Length
+
+      >= 3
+
+   String
+
+      The String field SHOULD be a string of printable ASCII characters.
+
+5.9. Mcast-Group-Address
+
+   Description
+
+      This attribute indicates  the multicast group IP address  (class-D
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 19]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+      address)  on  which the   routing is  to be   authenticated.  This
+      attribute is passed from the router for per-service authentication
+      purpose.
+
+   A  summary of the Mcast-Group-Address attribute format is shown below.
+   The fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Address
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            Address (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Type
+
+      90 for Mcast-Group-Address
+
+   Length
+
+      6
+
+   Address
+
+      The Address field is four octets.
+
+
+5.10. Validity-Period
+
+   Description
+
+      This attribute indicates the  length of the  time period  in which
+      the authentication is valid.  The authentication expires after the
+      period designated in this attribute,  and the NAS router initiates
+      a re-authentication process of the user terminal.
+
+    A summary of the Mcast-Group-Address attribute format is shown below.
+   The fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Value
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Value (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Type
+
+      93 for Validity-Period
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 20]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+   Length
+
+      6
+
+   Value
+
+      The Value field is four octets in the unit of seconds.
+
+5.11. LAN-IP-Address
+
+   Description
+
+      This attribute  indicates the IP  address of the LAN adapter where
+      the  user terminal is connected to.   This attribute  is used only
+      for LAN-connected terminals.  It is passed from  the router to the
+      multicast user authentication server so that  the server stores it
+      in association with  the terminal entry.   It will be used to find
+      out all   the  terminals connected  to  the LAN   which  failed in
+      re-authentication.
+
+   A summary of the LAN-IP-Address attribute format is shown below.  The
+   fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Address
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            Address (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Type
+
+      91 for LAN-IP-Address
+
+   Length
+
+      6
+
+   Address
+
+      The Address field is four octets.
+
+
+
+5.12. LAN-NetMask
+
+   Description  
+
+      This attribute indicates  the NetMask value  of the LAN where  the
+      terminal is   connected  to.   This attribute  is   used  only for
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 21]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+      LAN-connected  terminals.   It is passed from  the   router to the
+      multicast user authentication server so  that the server stores it
+      in association with the  terminal entry.  It  will be used to find
+      out  all  the terminals  connected  to  the LAN  which   failed in
+      re-authentication.
+
+   A summary of  the LAN-NetMask attribute format is  shown  below.  The
+   fields are transmitted from left to right.
+
+    0                   1                   2                   3
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     Type      |    Length     |             Address
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            Address (cont)         |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Type
+
+      92 for LAN-NetMask
+
+   Length
+
+      6
+
+   Address
+
+      The Address field is four octets.
+
+5.13.  Table of Attributes
+
+   The following table provides a guide to which attributes may be found
+   in which kinds of packets, and in what quantity.
+
+   Request   Accept   Reject   AcctReq  Acct-Resp   #    Attribute
+   1         0        0        0        0           1   User-Name
+   1         0        0        0        0           3   CHAP-Password
+   1         0        0        0        0           4   NAS-IP-Address
+   1         0        0        0        0           6   Service-Type
+   0         0+       0+       0+       0          18   Reply-Message
+   0+        0+       0        0+       0          26   Vendor-Specific
+   0         0        0        1        0          40   Acct-Status-Type
+   0         0        0        1        0          44   Acct-Session-ID
+   1         0        0        0        0               Mcast-Group-
+Address
+   0         1        0        0        0               Validity-Period
+   0+        0        0        0        0               LAN-IP-Address
+   0+        0        0        0        0               LAN-NetMask
+
+   Request   Accept   Reject   AcctReq  Acct-Resp   #    Attribute
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 22]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+   The following table defines the meaning of the above table entries.
+
+ 0     This attribute MUST NOT be present in packet.
+ 0+    Zero or more instances of this attribute MAY be present in packet.
+ 0-1   Zero or one instance of this attribute MAY be present in packet.
+ 1     Exactly one instance of this attribute MUST be present in packet.
+
+6.  Examples
+
+   A few examples are presented in Appendix A  to illustrate the flow of
+   packets  and  use  of typical  attributes.  These   examples  are not
+   intended to be exhaustive, many others are possible.
+
+7.  Issues
+
+ 1) There is a   controversy about whether  the multicast authentication
+   should  be a part of   RADIUS service or  a  separate service.   This
+   document follows the  idea of  the same RADIUS  server to  serve as a
+   multicast authentication  server,  but it  would also be  possible to
+   have a totally  separate  server for multicast  authentication.  This
+   difference affects the port number  assignment of the server.   Other
+   protocol definitions will not change.
+
+ 2) The  idea  of separating   the  authentication  transaction and  the
+   accounting  transaction    is  controversial.     In  the   multicast
+   authentication case the accounting transaction described in this memo
+   is intended to keep track of the joined terminals, which actually can
+   be traced by looking at the authentication  transactions.  A merit of
+   avoiding separate accounting transaction is  that it would reduce the
+   risk of inappropriate logging caused  by any interruption between the
+   authentication and accounting transactions.
+
+Security Considerations
+
+   Security issues are the primary topic of this document.
+
+References
+
+   [1]   Ishikawa, N. et al, "Security Extensions for IGMP Version 2"
+
+   [2]   Fenner, W., "Internet Group Management Protocol, Version 2",
+         RFC 2236, November 1997.
+
+   [3]   Rigney, C. et al, "Remote Authentication Dial In User 
+         Service (RADIUS)", RFC 2138, April 1997.
+
+   [4]   Rigney, C., "RADIUS Accounting", RFC 2139, April 1997.
+
+   [5]   Rivest, R. and Dusse, S., "The MD5 Message-Digest Algorithm",
+         RFC 1321, April 1992.
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 23]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+Author's Addresses
+
+  Nagatsugu Yamanouchi
+  yamanouc@trl.ibm.co.jp
+  IBM Research, Tokyo Research Laboratory
+  IBM Japan
+  1623-14 Shimotsuruma, Yamato-shi, Kanagawa 242 Japan
+
+  Norihiro Ishikawa
+  isic@isl.ntt.co.jp
+  NTT Information and Communication Systems Laboratories
+  1-1 Hikarinooka, Yokosuka, Kanagawa 239 Japan
+
+  Osamu Takahashi
+  osamu@isl.ntt.co.jp
+  NTT Information and Communication Systems Laboratories
+  1-1 Hikarinooka, Yokosuka, Kanagawa 239 Japan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 24]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+
+Appendix A.
+
+A.1  Introduction
+
+Background
+
+  In  short, the  INGRESS   router  get authentication about   multicast
+  routing setup     from the network administrator      in order for the
+  administrator  to gain control over   multicast routing.  This  allows
+  receiver authentication of mcast routing.   This mechanism is  defined
+  in [1] as an extension of IGMP functions.
+  
+  The authentication information may be centrally maintained at a RADIUS
+  server   by  employing  the RADIUS  mechanism,    so that the  network
+  administrator need not   maintain the user authentication  information
+  database in many INGRESS routers.
+
+  A similar    authentication to the  mcast  sender  is useful  to avoid
+  uncontrolled mcast transmission.
+
+  At  the same time, the centralized  RADIUS server(s) may keep track of
+  the  terminal  information in  order to   measure  subscription.  This
+  subscription  information  may  be  used   to  estimate the number  of
+  audience  of the  program, the number  of  multicast  subscribers, and
+  possibly traffic bandwidth.
+
+  These authentication and  subscriber measurement may be implemented by
+  extending the RADIUS interface framework [2], [3].
+
+Additional Technical Considerations
+
+  Keeping track of  terminals  require additional considerations to  the
+  multicast-routing authentication proposed   in [1].   In  the case  of
+  (shared media) LAN-connected  terminals the router only controls mcast
+  routing to the  LAN.  The delivery  control to a  specific terminal is
+  implemented by  the broadcast mechanism of  the  underlying LAN.  This
+  implies that  the   mcast authentication   can neither control    data
+  delivery nor maintain the  terminal/subscriber information in the case
+  of LAN-connected terminals.
+
+  The  mechanism  in  [1] forces all  terminals   on  the LAN to  obtain
+  authentication even if the router opens up  the mcast route to the LAN
+  by  the first requesting terminal.   This  operational rule allows the
+  router   to register the  terminal  as  a  subscriber.  An  additional
+  consideration is necessary for unsubscribing.  [1] forces terminals to
+  issue IGMP  LEAVE  (IGMP v2) at  leaving  from  subscription,  and the
+  router recognizes the status change of the terminal.  Only the garbage
+  cleanup, i.e., the terminals that have left without LEAVE notification
+  for    such reasons  as      system  crash, requires    an  additional
+  consideration.
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 25]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+
+  A  similar  garbage   cleanup  operation is  needed  in  mcast routing
+  control, and the subscription measurement mechanism cleans the garbage
+  by using this  operation as  a trigger.   An  additional interface  to
+  RADIUS is used to pass information necessary  for the cleanup.  Such a
+  cleanup operation  is     invoked   by a   failure    of  a   terminal
+  re-authentication, which provides the ID  of the failed terminal.  The
+  RADIUS server maintains a table of tuples <Terminal、(Router、LAN_ID)>
+  so that  it can extract the key  for cleanup, (router, LAN_ID).  Those
+  terminals that  share the same (router,  LAN_ID) key are to be cleaned
+  up.  Note that LAN_ID here  is used to determine  the LAN in the  case
+  where two  or   more LANs are    connected to the   router.  LAN_ID is
+  identified  by  the IP address  assigned  to the   LAN  adapter in the
+  router, plus the netmask.
+
+A.2  Receiver JOIN Authentication Process
+
+  The authentication process is summarized as follows:
+
+    Terminal -Membership Report-> Router
+                    (UserID)   Router generates
+                               a challenge(16B).
+    Terminal <------Challenge---- Router
+              (Challenge, UserID)
+    Terminal ---User Response---> Router ----Access-Request----> RADIUS
+              (Response, UserID)           (UserID, McastAddr,
+                                            Challenge, Response)
+    Terminal <-------Success----- Router <---Access-Accept------ RADIUS
+               (Validity Period)             (Validity Period)
+
+  In  addition  to the  authentication above,  the  following process is
+  added to  maintain  the subscriber list  in  the RADIUS server.   This
+  process uses RADIUS Accounting (RFC2139) functions.
+
+                                  Router ----AcctStatus Start--> RADIUS 
+                                           (User ID, McastAddr,
+                                         LAN-IP-Addr, LAN-NetMask) 
+                                  Router <---------OK----------- RADIUS
+                                                  (OK)
+
+  We expect that the  terminal issues IGMP-Leave  when leaving from  the
+  multicast service.  At  the  time of  Leave,  the router notifies  the
+  RADIUS server the termination   of the receiver by   RADIUS Accounting
+  Status Stop command.
+
+A.3 Detailed Receiver Authentication Process
+
+  Following  scenarios  are  the  detailed   transactions  for multicast
+  receiver authentication.
+
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 26]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+  Router Initialization Process
+                                   Router ----AcctStatus ON----> RADIUS
+                                     Transaction ID(assigned by Router)
+                                     Radius Code(4)(Accting Request)
+                                     Acct-Status-Type  Acct ON(7)
+                                     Acct-SessionID(assigned by Router)
+                                     NAS-IP-Address (Router IP address)
+                                   Router <-----------OK-------- RADIUS
+                                     Transaction ID
+                                     Radius Code(6)(Accting Response)
+
+  Receiver JOIN Process
+    Terminal--Membership Request-->Router
+          (UserID, mcast Address)
+                    (UserID)   Router generates
+                               a challenge(16B).
+    Terminal <------Challenge----- Router
+               (Challenge, UserID)
+    Terminal ----User Response---> Router ----Access-Request---> RADIUS
+      (Challenge Response, UserID)
+                                     Transaction ID(assigned by Router)
+                                     Radius Code(1)(Access Request)
+                                     Request Authenticator (Challenge)
+                                     User-Name      (UserID)
+                                     CHAP-Password(CHAPID+UserResponse)
+                                     NAS-IP-Address (Router IP address)
+                                     Service-Type Mcast-Receiver(11)
+                                     Mcast-Group-Address  4-octets
+
+                                         RADIUS Server authenticates by
+                                         UserID,Challenge,User Response
+
+    Terminal <------Success------- Router <-----Access-Accept-- RADIUS
+                                     Transaction ID 
+                                     Radius Code(2) (Access Accept)
+                                     Validity-Period  4-octets(seconds)
+                (Validity Period)
+                                   Router ---AcctStatus Start--> RADIUS 
+                                     Transaction ID(assigned by Router)
+                                     Radius Code(4)(Accting Request)
+                                     Acct-Status-Type  Start(1)
+                                     Acct-Session-ID 
+                                     User-Name (User ID)
+                                     NAS-IP-Address (Router IP address)
+                                     Service-Type  Mcast-Receiver(11)
+                                     Mcast-Group-Address  4-octets
+                                   Only for LAN-connected receivers:
+                                     LAN-IP-Address  4-octets
+                                     LAN-NetMask     4-octets
+                                   Router <---------OK---------- RADIUS
+                                     Transaction ID 
+                                     Radius Code(6)(Accting Response)
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 27]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+
+  Authentication failure case:
+
+    Terminal <-------Fail--------- Router <----Access-Accept---- RADIUS
+                                     Transaction ID
+                                     Radius Code(3) (Access Reject)
+
+  Receiver Leave Process
+
+    Terminal ----Leave Request---> Router 
+            (UserID, mcast Address) 
+                                   Router ---AcctStatus Stop---> RADIUS 
+                                     Transaction ID(assigned by Router)
+                                     Radius Code(4)(Accting Request)
+                                     Acct-Status-Type Stop(2)
+                                     Acct-Session-ID
+                                     User-Name (UserID)
+                                     NAS-IP-Address (Router IP address)
+                                     Service-Type  Mcast-Receiver(11)
+                                     Mcast-Group-Address  4-octets
+                                   Only for LAN connected receivers:
+                                     LAN-IP-Address  4-octets
+                                     LAN-NetMask     4-octets
+                                   Router <----------OK----------RADIUS
+                                     Transaction ID
+                                     Radius Code(6) (Accting Response)
+
+  Receiver Re-Authentication Process
+
+    Terminal <-Grp Specific Query- Router
+    Terminal -Membership Request-> Router 
+    Terminal <------Challenge----- Router 
+    Terminal ----User Response---> Router ----Access-Request---> RADIUS
+    Terminal <------Success------- Router <----Access-Accept---- RADIUS
+                                   Router ---AcctStatus Start--> RADIUS 
+                                   Router <----------OK--------- RADIUS
+
+  Receiver Re-Authentication Failure Process
+    Terminal <-Grp Specific Query- Router
+                (NO RESPONSE)
+                                   Router ---AcctStatus Stop---> RADIUS 
+                                     Transaction ID(assigned by Router)
+                                     Radius Code(4)(Accting Request)
+                                     Acct-Status-Type Stop(2)
+                                     Acct-Session-ID
+                                     User-Name (User ID) = "********" 
+                                       Wildcard to designate all.
+                                     NAS-IP-Address(Router IP address)
+                                     Service-Type Mcast-Receiver(11)
+                                     Mcast-Group-Address  4-octets
+                                   Only for LAN connected receivers:
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 28]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+                                     LAN-IP-Address  4-octets
+                                     LAN-NetMask     4-octets
+                                   Router <----------OK--------- RADIUS
+                                     Transaction ID
+                                     Radius Code(6)(Accting Response)
+
+  Router Termination Process
+                                   Router ----AcctStatus OFF---> RADIUS 
+                                     Transaction ID (assigned by Router)
+                                     Radius Code(4)(Accting Request)
+                                     Acct-Status-Type Acct OFF(8)
+                                     Acct-SessionID (assigned by Router)
+                                     NAS-IP-Address(Router IP address)
+                                   Router <----------OK--------- RADIUS
+                                     Radius Transaction ID
+                                     Radius Code = 6 (Accounting Response)
+
+A.4 Detailed Sender Authentication Process
+
+  Sender JOIN Process
+
+  The interface to  the RADIUS  server is  almost identical to  that  of
+  receivers.
+
+    Terminal -Membership Request-> Router 
+    Terminal <-------Challenge---- Router 
+    Terminal -----User Response--> Router ----Access-Request---> RADIUS
+                                     Transaction ID (assigned by Router)
+                                     Radius Code(1) (Access Request)
+                                     Request Authenticator (Challenge)
+                                     User-Name (User ID)
+                                     CHAP-Password (CHAPID+UserResponse)
+                                     NAS-IP-Address(Router IP address)
+                                     Service-Type  Mcast-Sender(10)
+                                     Mcast-Group-Address  4-octets
+
+                                         RADIUS Server authenticates by
+                                         UserID,Challenge,User Response
+
+    Terminal <------Success------- Router <----Access-Accept--- RADIUS
+                                     Transaction ID
+                                     Radius Code(2) (Access Accept)
+                                     Validity-Period  4-octets(seconds)
+                (Validity Period)
+
+                                   Router ---AcctStatus Start--> RADIUS 
+                                     Transaction ID(assigned by Router)
+                                     Radius Code(4) (Accting Request)
+                                     Acct-Status-Type  Start(1)
+                                     Acct-Session-ID 
+                                     User-Name (User ID)
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 29]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+                                     NAS-IP-Address (Router IP address)
+                                     Service-Type  Mcast-Sender(10)
+                                     Mcast-Group-Address  4-octets
+                            (*)LAN-based participation is not expected.
+
+                                   Router <---------OK---------- RADIUS
+                                     Transaction ID
+                                     Radius Code(6) (Accting Response)
+
+  Authentication failure case:
+    Terminal <-------Fail--------- Router <----Access-Reject---- RADIUS
+                                     Transaction ID
+                                     Radius Code(3) (Access Reject)
+
+  Receiver Leave Process
+
+    Terminal ----Leave Request---> Router 
+           (User ID, mcast Address) 
+                                   Router ---AcctStatus Stop---> RADIUS 
+                                     TransactionID(assigned by Router)
+                                     Radius Code(4)(Accting Request)
+                                     Acct-Status-Type  Stop(2)
+                                     Acct-Session-ID
+                                     User-Name  (User ID)
+                                     NAS-IP-Address(Router IP address)
+                                     Service-Type  Mcast-Sender (10)
+                                     Mcast-Group-Address  4-octets
+
+                                   Router <---------OK---------- RADIUS
+                                     Transaction ID
+                                     Radius Code(6) (Accting Response)
+
+  Sender Re-Authentication Process
+
+    Terminal <--one-to-one Query-- Router
+    Terminal -Membership Request-> Router 
+    Terminal <------Challenge----- Router 
+    Terminal ----User Response---> Router ----Access-Request---> RADIUS
+    Terminal <-------Success------ Router <----Access-Accept---- RADIUS
+                                   Router ---AcctStatus Start--> RADIUS 
+                                   Router <----------OK--------- RADIUS
+
+  Receiver Re-Authentication Failure Process
+    Terminal <--one-to-one Query-- Router
+               (NO RESPONSE)
+                                   Router ---AcctStatus Stop--> RADIUS 
+                                     TransactionID (assigned by Router)
+                                     Radius Code(4) (Accting Request)
+                                     Acct-Status-Type  Stop(2)
+                                     Acct-Session-ID
+                                     User-Name  (User ID)
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 30]
+INTERNET-DRAFT   RADIUS Extension for MCast Authentication    March 1998
+
+
+                                     (*)UserID recorded in the Router.
+                                     NAS-IP-Address (Router IP address）
+                                     Service-Type  Mcast-Sender(10)
+                                     Mcast-Group-Address  4-octets
+                                   Router <----------OK--------- RADIUS
+                                     Radius Transaction ID
+                                     Radius Code(6) (Accting Response)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yamanouchi, Ishikawa, Takahashi                                [Page 31]
+
+
+

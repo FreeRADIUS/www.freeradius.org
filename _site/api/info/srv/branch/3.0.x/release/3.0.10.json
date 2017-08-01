@@ -1,0 +1,263 @@
+{
+   "date" : "2015-10-05T14:22:28Z",
+   "defects" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_files",
+               "url" : "/api/info/component/rlm_files/"
+            }
+         ],
+         "description" : "Fix rlm_files so that there are no collisions when loading 10's of 1000's of users"
+      },
+      {
+         "description" : "Fix radclient to use our internal v4/v6 parsing functions v6 addresses with ports now work correctly"
+      },
+      {
+         "description" : "Fix sending/receiving packet messages to wrap v6 addresses in square brackets '[]'"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Check for sasl/sasl.h when building rlm_ldap, and disable SASL functionality if unavailable"
+      },
+      {
+         "description" : "Fix issue which caused a non \\0 terminated buffer to be assigned to attributes if the value being assigned contained an invalid escape sequence"
+      },
+      {
+         "description" : "Fix deadlock when reconnecting connections in the connection pool"
+      },
+      {
+         "description" : "Fix potential overrun in functions that used fr_utf8_char with a non nul terminated buffer"
+      },
+      {
+         "description" : "Fix decoding issue for Tunnel-Password type attributes which were very long.  Found by Denis Andzakovic"
+      },
+      {
+         "description" : "Fix radclient issue with TCP sockets on FreeBSD"
+      },
+      {
+         "description" : "The server now creates ${run_dir} and ${logdir} directories in daemon mode, when running as \"root\""
+      },
+      {
+         "description" : "Handle tags when using maps.  Fixes #1191"
+      },
+      {
+         "description" : "Fix crash when CoA packets time out"
+      },
+      {
+         "description" : "Fix parse error in rediswho"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Fix regex support in SQL radcheck the \"users\" file and radsniff"
+      },
+      {
+         "description" : "Register listen xlat earlier, so that it's available when the virtual servers are being parsed"
+      },
+      {
+         "description" : "Parse Ascend-Data-Filter when given as \"0x...\""
+      },
+      {
+         "description" : "Print Ascend-Data-Filter correctly.  Add test cases for both"
+      },
+      {
+         "description" : "Allow old-style clients again.  They will be disallowed for 3.1.0 and following"
+      },
+      {
+         "description" : "Complain instead of crash when \"else\" and \"elsif\" are in the wrong place"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Clean up memory more aggressively.  This lowers the maximum memory used, most typically for TLS based EAP methods"
+      },
+      {
+         "description" : "Prevent the server from unlinking the control socket of an already running instance"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Fallback to using the configured OCSP URL if one exists, and no URL is provided in the certificate"
+      },
+      {
+         "description" : "Return CoA-NAK if proxying CoA fails.  Based on patch from Jorge Pereira"
+      },
+      {
+         "description" : "Lower peak memory usage by decreasing size of internal memory pools"
+      },
+      {
+         "description" : "The control socket is now left in place if a second copy of the server is accidentally started"
+      },
+      {
+         "description" : "Allow virtual attributes in \"switch\", \"case\", etc Fixes #1240 and #1265"
+      },
+      {
+         "description" : "Many spell check / typo fixes in comments and example configuration files"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Better handle multiple DHCP listeners"
+      },
+      {
+         "description" : "Don't print secrets for old-style realms.  Fixes #1267"
+      },
+      {
+         "description" : "Don't fall through in empty \"case\" statements Fixes #1274"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            },
+            {
+               "name" : "rlm_eap_ttls",
+               "url" : "/api/info/component/rlm_eap_ttls/"
+            }
+         ],
+         "description" : "Update EAP-TTLS so that MPPE keys are correctly calculated with TLSv1.2"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            },
+            {
+               "name" : "rlm_eap_ttls",
+               "url" : "/api/info/component/rlm_eap_ttls/"
+            }
+         ],
+         "description" : "Always delete MS-MPPE-* from the TTLS inner tunnel. This allows TTLS / EAP-MSCHAPv2 to work. Fixes #1206"
+      },
+      {
+         "description" : "Fix off by one error that caused some MSCHAP-Error messages to be sent without the password change version (V=3) and the textual message component (M=)"
+      },
+      {
+         "description" : "Always include C= V= and M= in MSCHAPv2 errors.  RFC 2759 does not say that any of these fields are optional, and not including V= caused errors with wpa_supplicant"
+      },
+      {
+         "description" : "Do not include M= in MSCHAPv1 errors.  It's not supported"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.10.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.10.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.10.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.10.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Do more optimization of unlang policies.  This makes run-time a bit faster"
+      },
+      {
+         "description" : "Re-name most of the functions in src/lib.  Third-party module authors will have to do the same"
+      },
+      {
+         "description" : "More documentation on contributing and how to write modules"
+      },
+      {
+         "description" : "Update radiusd.service for systemd"
+      },
+      {
+         "description" : "Open IPv6 proxy socket if the server is listening on IPV6 auth / acct / coa packets"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Create debian packages for DHCP.  Fixes #1125"
+      },
+      {
+         "description" : "Add more tests for \"update\" section parsing"
+      },
+      {
+         "description" : "Update \"man\" pages"
+      },
+      {
+         "description" : "Update attributes for Alcatel 7750"
+      },
+      {
+         "description" : "Add dictionary for Boingo Wi-Fi"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Add support for DHCP lease queries See raddb/sites-available/dhcp"
+      },
+      {
+         "description" : "On HUP, check all modules for config files which have changed.  And only re-load those modules"
+      },
+      {
+         "description" : "Allow FreeRADIUS-Response-Delay(-USec) to be set for RADIUS packets.  Patch from Herwin Weststrate"
+      },
+      {
+         "description" : "Documentation fixes from Alan Buxey and Matthew Newton"
+      },
+      {
+         "description" : "Update \"logrotate\" script"
+      },
+      {
+         "description" : "Added more RFCs to doc/rfc for new standards implemented by FreeRADIUS"
+      },
+      {
+         "description" : "Don't crash when doing \"radmin -e \"help hup\" Patch from Matthew Newton"
+      },
+      {
+         "description" : "The dictionary parser now does more sanity checks, which prevents run-time problems with invalid attributes"
+      },
+      {
+         "description" : "Update debian packages.  Patches from Christopher Hoskin"
+      },
+      {
+         "description" : "Many other debian packaging fixes from Matthew Netwon and Herwin Weststrate"
+      },
+      {
+         "description" : "Add \"session-state\" to Perl.  Patch from Herwin Weststrate"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_3_0_10.tar.gz"
+      }
+   ],
+   "name" : "3.0.10",
+   "summary" : "The focus of this release is stability"
+}

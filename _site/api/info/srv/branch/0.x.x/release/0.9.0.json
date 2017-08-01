@@ -1,0 +1,244 @@
+{
+   "date" : "2003-07-09T08:00:20Z",
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.9.0.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.9.0.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.9.0.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.9.0.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Many, many, bug fixes and feature enhancements"
+      },
+      {
+         "description" : "radrelay now updates packet 'id' on retransmissions"
+      },
+      {
+         "description" : "More checks for thread-safe functions"
+      },
+      {
+         "description" : "Fix CHAP related buffer overflow (ouch!), thanks to Masao NISHIKU"
+      },
+      {
+         "description" : "Issue warnings if deprecated configuration files are used"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_passwd",
+               "url" : "/api/info/component/rlm_passwd/"
+            }
+         ],
+         "description" : "rlm_passwd can now add items to the reply, request, or config items"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_digest",
+               "url" : "/api/info/component/rlm_digest/"
+            }
+         ],
+         "description" : "The rlm_digest, rlm_exec, and rlm_ippool modules are now marked as 'stable', and included in the default build"
+      },
+      {
+         "description" : "Removed 'raduse'.  No one has used it for years"
+      },
+      {
+         "description" : "Massive fixes for Debian packaging"
+      },
+      {
+         "description" : "radclient can now send \"disconnect\" packets, to NASes which support it.  The server, however, CANNOT send disconnect packets"
+      },
+      {
+         "description" : "Made Auth-Type, Acct-Type, etc. names consistent across dictionary files and radiusd.conf.  The old (inconsistent) names are still allowed for backwards compatibility"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Cleaned up problems with the rlm_sql module"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Updates to the rlm_ldap module"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_mschap",
+               "url" : "/api/info/component/rlm_mschap/"
+            }
+         ],
+         "description" : "rlm_mschap no longer reads SMB password files.  See rlm_passwd, instead"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Changed default entry in the 'users' file to 'Auth-Type = System', to allow EAP and Digest authentication to work automagically"
+      },
+      {
+         "description" : "Support for Cisco LEAP"
+      },
+      {
+         "description" : "Added many new dictionaries (Extreme, Wispr, ERX, Netscreen...)"
+      },
+      {
+         "description" : "Removed support for ATTRIB_NMC.  It is now handled (better) in a different manner"
+      },
+      {
+         "description" : "Dictionaries have been moved from /etc/raddb to /usr/share/freeradius"
+      },
+      {
+         "description" : "Many documentation updates"
+      },
+      {
+         "description" : "Ignore whitespace-only lines in the 'users' file"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_realm",
+               "url" : "/api/info/component/rlm_realm/"
+            }
+         ],
+         "description" : "Patch to fix 'rlm_realm' from returning the DEFAULT entry when we are looking for the NULL entry and it doesn't exist. Bug noted by Nathan Miller"
+      },
+      {
+         "description" : "Disable child process spawning if we don't have threads The code doesn't work, so it's better to force the server to run in single-process mode"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_exec",
+               "url" : "/api/info/component/rlm_exec/"
+            }
+         ],
+         "description" : "New rlm_exec module, which allows a more generic way of executing external programs"
+      },
+      {
+         "description" : "Preliminary large file support in 'configure' and in the server, to support 2G+ detail files"
+      },
+      {
+         "description" : "Install documentation into /usr/local/share/doc/freeradius"
+      },
+      {
+         "description" : "New/updated dictionaries for RedCreek, Bintec, Alcatel, ITK, Telebit, and Cabletron"
+      },
+      {
+         "description" : "Updates to allow building on MAC OSX"
+      },
+      {
+         "description" : "Add support for Acct-Type,Session-Type and PostAuth-Type"
+      },
+      {
+         "description" : "Removed builddbm.  It hasn't been used for ages"
+      },
+      {
+         "description" : "Added new post_proxy section, based on patch from Chris Brotsos"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_counter",
+               "url" : "/api/info/component/rlm_counter/"
+            }
+         ],
+         "description" : "rlm_counter shouldn't reset the counters on instantiation, if the reset is set to 'never'"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_python",
+               "url" : "/api/info/component/rlm_python/"
+            }
+         ],
+         "description" : "Significant updates to the rlm_python and rlm_perl modules"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_pap",
+               "url" : "/api/info/component/rlm_pap/"
+            }
+         ],
+         "description" : "Fix the rlm_pap module to handle password lengths properly"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Do SQL 'close' on bad sockets, to prevent descriptor leaks"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_radutmp",
+               "url" : "/api/info/component/rlm_radutmp/"
+            }
+         ],
+         "description" : "Case insensitivity option for rlm_radutmp"
+      },
+      {
+         "description" : "New pseudo-round-robin load balancing for realms"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Suppress empty SQL queries"
+      },
+      {
+         "description" : "Include strong PRNG"
+      },
+      {
+         "description" : "Create 'snmp' configuration directive, so that we can disable SNMP at run time, even if it's built into the server"
+      },
+      {
+         "description" : "Refresh realm as 'active' when we see a response from it, Based on a patch by Angelos Karageorgiou"
+      },
+      {
+         "description" : "Don't core dump if Status-Server is received, but it's disabled"
+      },
+      {
+         "description" : "Support more variants of character fields in Oracle Patch from Stocker Gernot"
+      },
+      {
+         "description" : "Better parsing of dictionary files"
+      },
+      {
+         "description" : "Alteon web switch dictionary, from Thomas Linden"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_0_9_0.tar.gz"
+      }
+   ],
+   "name" : "0.9.0",
+   "summary" : "The focus of this release is stability"
+}

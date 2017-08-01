@@ -1,0 +1,77 @@
+rlm_always(5)		       FreeRADIUS Module		 rlm_always(5)
+
+
+
+NAME
+       rlm_always - FreeRADIUS Module
+
+DESCRIPTION
+       The  rlm_always module provides a simple way to "always" return a value
+       during the processing of a  configuration  section.   The  module  does
+       nothing other than return a configured value.
+
+       The main configuration item to be aware of is:
+
+       rcode  This  module  will  always return with the rcode specified.  The
+	      default, if none specified is: fail (RLM_MODULE_FAIL).
+
+       The valid options are:
+
+       reject RLM_MODULE_REJECT
+
+       fail   RLM_MODULE_FAIL
+
+       ok     RLM_MODULE_OK
+
+       handled
+	      RLM_MODULE_HANDLED
+
+       invalid
+	      RLM_MODULE_INVALID
+
+       userlock
+	      RLM_MODULE_USERLOCK
+
+       notfound
+	      RLM_MODULE_NOTFOUND
+
+       noop   RLM_MODULE_NOOP
+
+       updated
+	      RLM_MODULE_UPDATED
+
+CONFIGURATION
+       modules {
+	 ...
+	 always ok {
+	    rcode = ok
+	 }
+	 ...
+       }
+	...
+       authorize {
+	 ...
+	 redundant {
+	    sql1	  # try to find the user in sql1
+	    sql2	  # try to find the user in sql2
+	    ok		  # if still not found, it's OK.
+	 }
+	 ...
+       }
+
+SECTIONS
+       authorization,	authentication,   postauthentication,	preaccounting,
+       accounting, preproxy, postproxy
+
+FILES
+       /etc/raddb/radiusd.conf
+
+SEE ALSO
+       radiusd(8), radiusd.conf(5)
+
+AUTHOR
+       Chris Parker, cparker@segv.org
+
+
+
+				3 February 2004 		 rlm_always(5)

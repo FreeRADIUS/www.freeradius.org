@@ -1,22 +1,36 @@
 {
-	"name": "rlm_dynamic_clients",
-	"description": "rlm_dynamic_clients description",
-	"category": "datastore",
-	"documentation_link": "http://networkradius.com/doc/current/raddb/mods-available/dynamic_clients",
-	"available": [
-		{
-			"branch": {
-				"name": "test_branch_a",
-				"url": "/api/info/branch/test_branch_a/"
-			},
-			"start": {
-				"name": "0.0.1",
-				"url": "/api/info/branch/test_branch_a/release/0.0.1/"
-			},
-			"end": {
-				"name": "0.0.2",
-				"url": "/api/info/branch/test_branch_a/release/0.0.2/"
-			}
-		}
-	]
+   "available" : [
+      {
+         "branch" : {
+            "name" : "2.x.x",
+            "url" : "/api/info/branch/2.x.x/"
+         },
+         "end" : {
+            "name" : "2.2.10",
+            "url" : "/api/info/branch/2.x.x/release/2.2.10/"
+         },
+         "start" : {
+            "name" : "2.0.0",
+            "url" : "/api/info/branch/2.x.x/release/2.0.0/"
+         }
+      },
+      {
+         "branch" : {
+            "name" : "3.0.x",
+            "url" : "/api/info/branch/3.0.x/"
+         },
+         "end" : {
+            "name" : "3.0.15",
+            "url" : "/api/info/branch/3.0.x/release/3.0.15/"
+         },
+         "start" : {
+            "name" : "3.0.0",
+            "url" : "/api/info/branch/3.0.x/release/3.0.0/"
+         }
+      }
+   ],
+   "category" : "datastore",
+   "description" : "Loads RADIUS clients as needed, rather than when the server starts.",
+   "documentation_link" : "http://networkradius.com/doc/current/raddb/mods-available/home.html",
+   "name" : "rlm_dynamic_clients"
 }

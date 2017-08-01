@@ -1,0 +1,90 @@
+{
+   "date" : "2013-10-07T15:49:47Z",
+   "defects" : [
+      {
+         "description" : "All known bug fixes from 2.2.x are included"
+      },
+      {
+         "description" : "Removed \"addport\" functionality"
+      },
+      {
+         "description" : "Removed many unused or duplicate modules.  See raddb/README.rst"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.0.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.0.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.0.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.0.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Documentation for upgrading from 2.x is in raddb/README.rst Please follow it.  It will make the upgrade easier"
+      },
+      {
+         "description" : "Moved configuration entries in radiusd.conf to make more sense"
+      },
+      {
+         "description" : "Added the \"integer64\" and \"ipv4prefix\" data types"
+      },
+      {
+         "description" : "Added RADIUS over TLS (i.e. RadSec). See raddb/sites-available/tls"
+      },
+      {
+         "description" : "Updated internal API to support new attributes and formats"
+      },
+      {
+         "description" : "Added code to send SNMP Traps.  See raddb/trigger.conf"
+      },
+      {
+         "description" : "Added preliminary support for Apple's Grand Central Dispatch"
+      },
+      {
+         "description" : "Added provisions for raddb/dictionary.local, for local changes See raddb/dictionary for more details"
+      },
+      {
+         "description" : "Added packet/s tracking. See max_pps in the \"listen\" section"
+      },
+      {
+         "description" : "The %{} expansions and \"unlang\" conditions are now parsed at server start. Descriptive errors are produced for syntax and format errors"
+      },
+      {
+         "description" : "Casting is now supported for \"unlang\" comparisons.  See \"man unlang\" e.g. <ipaddr>127.0.0.1 == Framed-IP-Address"
+      },
+      {
+         "description" : "Direct comparison of attribute references is now supported e.g. &Foo == &Bar.  This avoids stringification of the attributes"
+      },
+      {
+         "description" : "Direct assignment of attributes is now supported e.g. Foo := &Bar.  It also works for \"octets\" data types"
+      },
+      {
+         "description" : "Comparisons of IPv4 and IPv6 prefixes are now supported The \"<\" operator means \"within the prefix\" for comparisons"
+      },
+      {
+         "description" : "New sha1 xlat expansion (thanks to Alan Buxey)"
+      },
+      {
+         "description" : "Colourised log messages when logging to stdout.  Look for yellow warnings and red errors.  Doing this will save you a LOT of grief"
+      },
+      {
+         "description" : "If the PCRE library is available, use it (insted of the POSIX functions) to process regular expressions (thanks to Phil Mayers)"
+      },
+      {
+         "description" : "-xv now displays all the features the server was built with, and the versions of the core libraries (libtalloc, libssl)"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_3_0_0.tar.gz"
+      }
+   ],
+   "name" : "3.0.0",
+   "summary" : "The focus of this release is new features"
+}

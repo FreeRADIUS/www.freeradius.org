@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html ng-app="freeradius">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>FreeRADIUS &#39;man&#39; pages</title>
+    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="new.freeradius.org/radiusd/man/radiusd.html">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="new.freeradius.org/feed.xml">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
+    <meta name="msapplication-TileColor" content="#da532c ">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+</head>
+
+
+  <body>
+
+    <div class="global-nav">
+  <div class="global_links pull_right">
+    <div class="global_link global_link_label h5 text">Our sites:</div>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+  </div>
+</div>
+
+<header class="site-header" global-header ng-class="{fixed: fixNav}">
+  <div class="site-header-wrapper">
+
+    <a class="site-title" href="/"><img src="/img/wordmark.svg"></a>
+    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
+      <svg viewBox="0 0 18 15">
+        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+      </svg>
+    </button>
+
+    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
+
+      <div class="get-release">
+      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
+      </div>
+
+      <ul class="site-nav-list">
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/releases/">Releases</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/documentation/">Documentation</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/modules/">Modules</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/community/">Community</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/about/">About</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/support/">Support</a>
+         </li>
+
+      </ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+
+        <article class="post">
+  <header class="post-header">
+    <div class="post-hero hero-documentation">
+      <div class="wrapper">
+      	<h1 class="post-title">FreeRADIUS 'man' pages</h1>
+      	<p class="post-subtitle">Documentation from the server</p> 
+      </div>
+    </div>
+  </header>
+  
+  	<div class="sub-nav">
+	<div class="wrapper">
+        <nav class="inline_nav" sub-nav>
+            <ul>
+                
+                
+        			<li class="">
+                        <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
+                    </li>
+        		
+        			<li class="">
+                        <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
+                    </li>
+        		
+            </ul>
+        </nav>
+	</div>
+</div>
+
+  
+
+  <div class="post-content">
+      <div class="man_page wrapper base_padding_v">
+<H1>RADIUSD</H1>
+Section: FreeRADIUS Daemon (8)<BR>Updated: 23 June 2004<BR><A HREF="#index">Index</A>
+<A HREF="/man/">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+radiusd - Authentication, Authorization and Accounting server
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>radiusd</B>
+
+[<B>-A</B>]
+
+[<B>-S</B>]
+
+[<B>-a</B>
+
+<I>accounting_directory</I>]
+
+[<B>-b</B>]
+
+[<B>-c</B>]
+
+[<B>-d</B>
+
+<I>config_directory</I>]
+
+[<B>-f</B>]
+
+[<B>-i</B>
+
+<I>ip-address</I>]
+
+[<B>-l</B>
+
+<I>log_directory</I>]
+
+[<B>-g</B>
+
+<I>facility</I>]
+
+[<B>-p</B>
+
+<I>port</I>]
+
+[<B>-s</B>]
+
+[<B>-v</B>]
+
+[<B>-x</B>]
+
+[<B>-X</B>]
+
+[<B>-y</B>]
+
+[<B>-z</B>]
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+This is the FreeRADIUS implementation of the well known
+<B>radius</B>
+
+server program.  Even though this program is largely compatible with
+<I>Livingston's</I> radius version 2.0, it is <B>not</B> based on any
+part of that code.
+<P>
+
+FreeRADIUS is a high-performance and highly configurable RADIUS
+server.  As a result, it can be difficult to configure in systems with
+complex requirements.  Our suggestion is to proceed via the following
+steps:
+<P>
+
+1) Always run the server in debugging mode (
+<B>radiusd -X</B>
+
+).  We cannot emphasize this enough.  If you are not running the
+server in debugging mode, you <I>will not</I> be able to see what is
+doing, and you <I>will not</I> be able to correct any problems.
+<P>
+
+2) When editing the <I>radiusd.conf</I> file, change as little as
+possible, especially in the <I>authorize{}</I> section.  The ordering
+of the modules is critical for the server to be able to
+&quot;automatically&quot; figure out how to handle the request.  Changing the
+order of the modules ensures that the server will not work.
+<P>
+
+3) When testing, start off by configuring a user and password in the
+<I>users</I> file.  So long as the server knows about a user, and has a
+clear-text password for that user, <B>almost all of the authentication
+methods will &quot;just work&quot;</B>.
+<P>
+
+4) Gradually add more complex configurations to the server, while
+testing them as you go.  If you start off by configuring the server in
+a complex configuration, you will never be able to debug it.
+<P>
+
+5) Ask questions on the mailing list
+(<A HREF="mailto:freeradius-users@lists.freeradius.org">freeradius-users@lists.freeradius.org</A>).  When asking questions,
+include the output from debugging mode (
+<B>radiusd -X</B>
+
+).  This information will allow people to help you.  Without it, your
+message will get ignored.
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>BACKGROUND</H2>
+
+<B>RADIUS</B> is a protocol spoken between an access server, typically
+a device connected to several modems or ISDN lines, and a <B>radius</B>
+server. When a user connects to the access server, (s)he is asked for
+a loginname and a password. This information is then sent to the <B>radius</B>
+server. The server replies with &quot;access denied&quot;, or &quot;access OK&quot;. In the
+latter case login information is sent along, such as the IP address in
+the case of a PPP connection.
+<P>
+
+The access server also sends login and logout records to the <B>radius</B>
+server so accounting can be done. These records are kept for each terminal
+server seperately in a file called <B>detail</B>, and in the <I>wtmp</I>
+compatible logfile <B>/var/log/radwtmp</B>.
+<P>
+<A NAME="lbAF">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<P>
+<DL COMPACT>
+<DT>-A<DD>
+Write a file <I>detail.auth</I> in addition to the standard <B>detail</B> file
+in the same directory. This file will contain all the authentication-request
+records. This can be useful for debugging, but not for normal operation.
+<P>
+This command line option is accepted only for backwards
+compatibility.  It no longer does anything.  See the configuration for
+the <I>detail</I> module in <I>radiusd.conf</I>.
+<P>
+<DT>-S<DD>
+Write the stripped usernames (without prefix or suffix) in the <B>detail</B>
+file instead of the raw record as received from the terminal server.
+<P>
+This command line option is deprecated.  See the <I>log_stripped_names</I>
+configuration item in the <I>radiusd.conf</I> file.
+<P>
+<DT>-a <I>accounting directory</I><DD>
+This defaults to <I>/var/log/radacct</I>. If that directory exists,
+<B>radiusd</B> will write an ascii accounting record into a detail file for
+every login/logout recorded. The location of the detail file is
+<I>acct_dir/</I><B>terminal_server</B><I>/detail</I>.
+<P>
+This command line option is deprecated.  See the <I>radacctdir</I>
+configuration item in the <I>radiusd.conf</I> file.
+<P>
+<DT>-l <I>logging directory</I><DD>
+This defaults to <I>/var/log</I>. <B>Radiusd</B> writes a logfile here
+called <I>radius.log</I>. It contains informational and error messages,
+and optionally a record of every login attempt (for aiding an ISP's
+helpdesk). The special arguments <I>stdout</I> and <I>stderr</I> cause
+the information to get written to the standard output, or standard
+error instead. The special argument <I>syslog</I> sends the information
+with <B><a href="syslog.html">syslog</A></B>(3).
+<P>
+This command line option is deprecated.  See the <I>log_dir</I>
+configuration item in the <I>radiusd.conf</I> file.
+<P>
+<DT>-g <I>facility</I><DD>
+Specifies the syslog facility to be used with <B>-l syslog</B>. Default is
+<I>daemon</I>. Another reasonable choice would be <I>authpriv</I>.
+<P>
+<DT>-d <I>config directory</I><DD>
+Defaults to <I>/etc/raddb</I>. <B>Radiusd</B> looks here for its configuration
+files such as the <I>dictionary</I> and the <I>users</I> files.
+<P>
+<DT>-i <I>ip-address</I><DD>
+Defines which IP addres to bind to for sending and receiving packets-
+useful for multi-homed hosts.
+<P>
+This command line option is deprecated.  See the <I>bind_address</I>
+configuration item in the <I>radiusd.conf</I> file.
+<P>
+<DT>-b<DD>
+If the <B>radius</B> server binary was compiled with <I>dbm</I> support,
+this flag tells it to actually <I>use</I> the database files instead of the
+flat <I>users</I> file.
+<P>
+This command line option is deprecated, and does not do anything.
+<P>
+<DT>-c<DD>
+This is still an <I>experimental</I> feature.
+Cache the password, group and shadow files in a hash-table in memory.
+This makes the radius process use a bit more memory, but username
+lookups in the password file are <I>much</I> faster.
+<DT><DD>
+After every change in the real password file (user added, password changed)
+you need to send a <B>SIGHUP</B> to the radius server to let it re-read
+its configuration and the password/group/shadow files !
+<P>
+This command line option is deprecated.  See the <I>cache</I>
+configuration item for the <I>unix</I> module in the <I>radiusd.conf</I>
+file.
+<P>
+<DT>-f<DD>
+Do not fork, stay running as a foreground process.
+<P>
+<DT>-p <I>port</I><DD>
+Normally radiusd listens on the ports specified in <I>/etc/services</I>
+(radius and radacct). With this option radiusd listens on the specified
+port for authentication requests and on the specified port +1 for
+accounting requests.
+<P>
+This command line option is deprecated.  See the <I>port</I>
+configuration item in the <I>radiusd.conf</I> file.
+<P>
+<DT>-s<DD>
+Run in &quot;single server&quot; mode.  The server normally runs with multiple
+threads and/or processes, which can lower its response time to
+requests.  Some systems have issues with threading, however, so
+running in &quot;single server&quot; mode may help to address those issues.  In
+single server mode, the server will also not &quot;daemonize&quot;
+(auto-background) itself.
+<P>
+<DT>-v<DD>
+Print server version information and exit.
+<P>
+<DT>-x<DD>
+Debug mode. In this mode the server will print details of every request
+on it's <B>stderr</B> output. Most useful in combination with <B>-s</B>.
+You can specify this option 2 times (-x -x or -xx) to get a bit more
+debugging output.
+<P>
+<DT>-X<DD>
+Extended debug mode.  Equivalent to -sfxx, but simpler to explain.
+<P>
+<DT>-y<DD>
+Write details about every authentication request in the
+<I>radius.log</I> file.
+<P>
+This command line option is deprecated.  See the <I>log_auth</I>
+configuration item in the <I>radiusd.conf</I> file.
+<P>
+<DT>-z<DD>
+Include the password in the <I>radius.log</I> file <B>even</B> for successful
+logins. <I>This is very insecure!</I>.
+<P>
+This command line option is deprecated.  See the
+<I>log_auth_badpass</I> and the <I>log_auth_goodpass</I> configuration
+items in the <I>radiusd.conf</I> file.
+<P>
+</DL>
+<A NAME="lbAG">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+<B>Radiusd</B> uses a number of configuration files. Each file has it's
+own manpage describing the format of the file. These files are:
+<DL COMPACT>
+<DT>radiusd.conf<DD>
+The main configuration file, which sets the administrator-controlled
+items.
+<DT>dictionary<DD>
+This file is usually static. It defines all the possible RADIUS attributes
+used in the other configuration files.  You don't have to modify it.
+It includes other dictionary files in the same directory.
+<DT>clients<DD>
+[ Deprecated ] Contains the IP address and a secret key for every
+client that wants to connect to the server.
+<DT>naslist<DD>
+Contains an entry for every NAS (Network Access Server) in the network. This
+is not the same as a client, especially if you have <B>radius</B> proxy server
+in your network. In that case, the proxy server is the client and it sends
+requests for different NASes.
+<DT><DD>
+It also contains a abbreviated name for each
+terminal server, used to create the directory name where the <B>detail</B>
+file is written, and used for the <B>/var/log/radwtmp</B> file. Finally
+it also defines what type of NAS (Cisco, Livingston, Portslave) the NAS is.
+<DT>hints<DD>
+Defines certain hints to the radius server based on the users's loginname
+or other attributes sent by the access server. It also provides for
+mapping user names (such as Pusername -&gt; username). This provides the
+functionality that the <I>Livingston 2.0</I> server has as &quot;Prefix&quot; and
+&quot;Suffix&quot; support in the <I>users</I> file, but is more general. Ofcourse
+the Livingston way of doing things is also supported, and you can even use
+both at the same time (within certain limits).
+<DT>huntgroups<DD>
+Defines the huntgroups that you have, and makes it possible to restrict
+access to certain huntgroups to certain (groups of) users.
+<DT>users<DD>
+Here the users are defined. On a typical setup, this file mainly contains
+DEFAULT entries to process the different types of logins, based on hints
+from the hints file. Authentication is then based on the contents of
+the UNIX <I>/etc/passwd</I> file. However it is also possible to define all
+users, and their passwords, in this file.
+</DL>
+<A NAME="lbAH">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<a href="radiusd.conf.html">radiusd.conf</A>(5), <A HREF="../man5/users.html">users</A>(5), <A HREF="../man5/huntgroups.html">huntgroups</A>(5), <A HREF="../man5/hints.html">hints</A>(5),
+<a href="clients.html">clients</A>(5), <A HREF="../man5/dictionary.html">dictionary</A>(5).
+<A NAME="lbAI">&nbsp;</A>
+<H2>AUTHOR</H2>
+
+The FreeRADIUS Server Project (<A HREF="http://www.freeradius.org)">http://www.freeradius.org)</A>
+<P>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">BACKGROUND</A><DD>
+<DT><A HREF="#lbAF">OPTIONS</A><DD>
+<DT><A HREF="#lbAG">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAH">SEE ALSO</A><DD>
+<DT><A HREF="#lbAI">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created by
+man2html,
+using the manual pages.<BR>
+Time: 11:13:12 GMT, August 01, 2017
+</div>
+</HTML>
+
+  </div>
+
+</article>
+
+
+    </div>
+
+    <footer class="global_footer bg_block-dark lg_padding_v">
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <div class="footer_main">
+                    <img class="footer_logo" width="150" src="../img/wordmark-white.svg" alt="">
+                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
+                    <div class="footer-social">
+                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
+                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
+                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
+                    </div>
+                    <p>&copy; 2017 The FreeRADIUS Server Project Support and Contributors</p>
+                </div>
+            </div>
+            <div class="columns medium-8">
+                <nav class="footer_nav h6 row small-up-2">
+                    <ul>
+                        <li><a href="/documentation/">Docs</a></li>
+                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
+                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
+                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
+                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
+                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/modules/">Modules</a></li>
+                        <li><a href="/modules/">Packages</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/community/">Community</a></li>
+                        <li><a href="/support/">Mailing Lists</a></li>
+                        <li><a href="/community/#contributing">Contribute</a></li>
+                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/about/#project">The Project</a></li>
+                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
+                        <li><a href="/about/#security">Security</a></li>
+                        <li><a href="/about/#team">Team</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/support/">Support</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
+                        <li><a href="/security/">Security Issues</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
+                        <li><a href="/support/">Newsletters</a></li>
+                        <li><a href="/commercial_support/">Commercial</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/app.js"></script>
+
+
+  </body>
+
+</html>

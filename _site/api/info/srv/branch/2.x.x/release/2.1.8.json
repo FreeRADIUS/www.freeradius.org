@@ -1,0 +1,132 @@
+{
+   "date" : "2009-12-30T16:44:35Z",
+   "defects" : [
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "DHCP sockets can now set the broadcast flag before binding to a socket.  You need to set \"broadcast = yes\" in the DHCP listener"
+      },
+      {
+         "description" : "Be more restrictive on string parsing in the config files"
+      },
+      {
+         "description" : "Fix password length in scripts/create-users.pl"
+      },
+      {
+         "description" : "Be more flexible about parsing the detail file.  This allows it to read files where the attributes have been edited"
+      },
+      {
+         "description" : "Ensure that requests read from the detail file are cleaned up (i.e. don't leak) if they are proxied without a response"
+      },
+      {
+         "description" : "Write the PID file after opening sockets, not before (closes bug #29)"
+      },
+      {
+         "description" : "Proxying large numbers of packets no longer gives error \"unable to open proxy socket\""
+      },
+      {
+         "description" : "Avoid mutex locks in libc after fork"
+      },
+      {
+         "description" : "Retry packet from detail file if there was no response"
+      },
+      {
+         "description" : "Allow old-style dictionary formats, where the vendor name is the last field in an ATTRIBUTE definition"
+      },
+      {
+         "description" : "Removed all recursive use of mutexes.  Some systems just don't support this"
+      },
+      {
+         "description" : "Allow !* to work as documented"
+      },
+      {
+         "description" : "make templates work (see templates.conf)"
+      },
+      {
+         "description" : "Enabled \"allow_core_dumps\" to work again"
+      },
+      {
+         "description" : "Print better errors when reading invalid dictionaries"
+      },
+      {
+         "description" : "Sign client certificates with CA, rather than server certs"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_passwd",
+               "url" : "/api/info/component/rlm_passwd/"
+            }
+         ],
+         "description" : "Fix potential crash in rlm_passwd when file was closed"
+      },
+      {
+         "description" : "Fixed corner cases in conditional dynamic expansion"
+      },
+      {
+         "description" : "Use InnoDB for MySQL IP Pools, to gain transactional support"
+      },
+      {
+         "description" : "Apply patch to libltdl for CVE-2009-3736"
+      },
+      {
+         "description" : "Fixed a few issues found by LLVM's static checker"
+      },
+      {
+         "description" : "Keep track of \"bad authenticators\" for accounting packets"
+      },
+      {
+         "description" : "Keep track of \"dropped packets\" for auth/acct packets"
+      },
+      {
+         "description" : "Synced the \"debian\" directory with upstream"
+      },
+      {
+         "description" : "Made \"unlang\" use unsigned 32-bit integers, to match the dictionaries"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.1.8.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.1.8.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.1.8.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.1.8.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Print more descriptive error message for too many EAP sessions This gives hints on what to do when \"failed to store handler\""
+      },
+      {
+         "description" : "Commands received from radmin are now printed on stdout when in debugging mode"
+      },
+      {
+         "description" : "Allow accounting packets to be written to a detail file, even if they were read from a different detail file"
+      },
+      {
+         "description" : "Added OpenSSL license exception (src/LICENSE.openssl)"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_2_1_8.tar.gz"
+      }
+   ],
+   "name" : "2.1.8",
+   "summary" : "The focus of this release is stability"
+}

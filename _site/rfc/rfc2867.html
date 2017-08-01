@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html ng-app="freeradius">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>FreeRADIUS</title>
+    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
+">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="new.freeradius.org/rfc/rfc2867.html">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="new.freeradius.org/feed.xml">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
+    <meta name="msapplication-TileColor" content="#da532c ">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+</head>
+
+
+  <body>
+
+    <div class="global-nav">
+  <div class="global_links pull_right">
+    <div class="global_link global_link_label h5 text">Our sites:</div>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+  </div>
+</div>
+
+<header class="site-header" global-header ng-class="{fixed: fixNav}">
+  <div class="site-header-wrapper">
+
+    <a class="site-title" href="/"><img src="/img/wordmark.svg"></a>
+    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
+      <svg viewBox="0 0 18 15">
+        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+      </svg>
+    </button>
+
+    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
+
+      <div class="get-release">
+      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
+      </div>
+
+      <ul class="site-nav-list">
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/releases/">Releases</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/documentation/">Documentation</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/modules/">Modules</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/community/">Community</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/about/">About</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/support/">Support</a>
+         </li>
+
+      </ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+
+        <div class="wrapper base_padding_v">
+<pre>
+
+
+
+
+
+
+Network Working Group                                            G. Zorn
+Request for Comments: 2867                           Cisco Systems, Inc.
+Category: Informational                                         B. Aboba
+Updates: 2866                                      Microsoft Corporation
+                                                               D. Mitton
+                                                         Nortel Networks
+                                                               June 2000
+
+
+      RADIUS Accounting Modifications for Tunnel Protocol Support
+
+Status of this Memo
+
+   This memo provides information for the Internet community.  It does
+   not specify an Internet standard of any kind.  Distribution of this
+   memo is unlimited.
+
+Copyright Notice
+
+   Copyright (C) The Internet Society (2000).  All Rights Reserved.
+
+Abstract
+
+   This document defines new RADIUS accounting Attributes and new values
+   for the existing Acct-Status-Type Attribute [1] designed to support
+   the provision of compulsory tunneling in dial-up networks.
+
+Specification of Requirements
+
+   In this document, the key words "MAY", "MUST, "MUST NOT", "optional",
+   "recommended", "SHOULD", and "SHOULD NOT", are to be interpreted as
+   described in [2].
+
+1.  Introduction
+
+   Many applications of tunneling protocols such as PPTP [5] and L2TP
+   [4] involve dial-up network access.  Some, such as the provision of
+   secure access to corporate intranets via the Internet, are
+   characterized by voluntary tunneling: the tunnel is created at the
+   request of the user for a specific purpose.  Other applications
+   involve compulsory tunneling: the tunnel is created without any
+   action from the user and without allowing the user any choice in the
+   matter, as a service of the Internet service provider (ISP).
+   Typically, ISPs providing a service want to collect data regarding
+   that service for billing, network planning, etc.  One way to collect
+   usage data in dial-up networks is by means of RADIUS  Accounting [1].
+   The use of RADIUS Accounting allows dial-up usage data to be
+   collected at a central location, rather than stored on each NAS.
+
+
+
+Zorn, et al.                 Informational                      [Page 1]
+
+RFC 2867            RADIUS Tunnel Accounting Support           June 2000
+
+
+   In order to collect usage data regarding tunneling, new RADIUS
+   attributes are needed; this document defines these attributes.  In
+   addition, several new values for the Acct-Status-Type attribute are
+   proposed.  Specific recommendations for, and examples of, the
+   application of this attribute for the L2TP protocol can be found in
+   RFC 2809.
+
+2.  Implementation Notes
+
+   Compulsory tunneling may be part of a package of services provided by
+   one entity to another.  For example, a corporation might contract
+   with an ISP to provide remote intranet access to its employees via
+   compulsory tunneling.  In this case, the integration of RADIUS and
+   tunnel protocols allows the ISP and the corporation to synchronize
+   their accounting activities so that each side receives a record of
+   the user's resource consumption.  This provides the corporation with
+   the means to audit ISP bills.
+
+   In auditing, the User-Name, Acct-Tunnel-Connection, Tunnel-Client-
+   Endpoint and Tunnel-Server-Endpoint attributes are typically used to
+   uniquely identify the call, allowing the Accounting-Request sent by
+   the NAS to be reconciled with the corresponding Accounting-Request
+   sent by the tunnel server.
+
+   When implementing RADIUS accounting for L2TP/PPTP tunneling, the
+   Call-Serial-Number SHOULD be used in the Acct-Tunnel-Connection
+   attribute.  In L2TP, the Call-Serial-Number is a 32-bit field and in
+   PPTP it is a 16-bit field.  In PPTP the combination of IP Address and
+   Call-Serial-Number SHOULD be unique, but this is not required.  In
+   addition, no method for determining the Call-Serial-Number is
+   specified, which leaves open the possibility of wrapping after a
+   reboot.
+
+   Note that a 16-bit Call-Serial-Number is not sufficient to
+   distinguish a given call from all other calls over an extended time
+   period.  For example, if the Call-Serial-Number is assigned
+   monotonically, the NAS in question has 96 ports which are continually
+   busy and the average call is of 20 minutes duration, then a 16-bit
+   Call-Serial-Number will wrap within 65536/(96 * 3 calls/hour * 24
+   hours/day) = 9.48 days.
+
+3.  New Acct-Status-Type Values
+
+3.1.  Tunnel-Start
+
+      Value
+
+         9
+
+
+
+Zorn, et al.                 Informational                      [Page 2]
+
+RFC 2867            RADIUS Tunnel Accounting Support           June 2000
+
+
+      Description
+
+         This value MAY be used to mark the establishment of a tunnel
+         with another node.  If this value is used, the following
+         attributes SHOULD also be included in the Accounting-Request
+         packet:
+
+            User-Name (1)
+            NAS-IP-Address (4)
+            Acct-Delay-Time (41)
+            Event-Timestamp (55)
+            Tunnel-Type (64)
+            Tunnel-Medium-Type (65)
+            Tunnel-Client-Endpoint (66)
+            Tunnel-Server-Endpoint (67)
+            Acct-Tunnel-Connection (68)
+
+3.2.  Tunnel-Stop
+
+      Value
+
+         10
+
+      Description
+
+         This value MAY be used to mark the destruction of a tunnel to
+         or from another node.  If this value is used, the following
+         attributes SHOULD also be included in the Accounting-Request
+         packet:
+
+            User-Name (1)
+            NAS-IP-Address (4)
+            Acct-Delay-Time (41)
+            Acct-Input-Octets (42)
+            Acct-Output-Octets (43)
+            Acct-Session-Id (44)
+            Acct-Session-Time (46)
+            Acct-Input-Packets (47)
+            Acct-Output-Packets (48)
+            Acct-Terminate-Cause (49)
+            Acct-Multi-Session-Id (51)
+            Event-Timestamp (55)
+            Tunnel-Type (64)
+            Tunnel-Medium-Type (65)
+            Tunnel-Client-Endpoint (66)
+            Tunnel-Server-Endpoint (67)
+            Acct-Tunnel-Connection (68)
+            Acct-Tunnel-Packets-Lost (86)
+
+
+
+Zorn, et al.                 Informational                      [Page 3]
+
+RFC 2867            RADIUS Tunnel Accounting Support           June 2000
+
+
+3.3.  Tunnel-Reject
+
+      Value
+
+         11
+
+      Description
+
+         This value MAY be used to mark the rejection of the
+         establishment of a tunnel with another node.  If this value is
+         used, the following attributes SHOULD also be included in the
+         Accounting-Request packet:
+
+            User-Name (1)
+            NAS-IP-Address (4)
+            Acct-Delay-Time (41)
+            Acct-Terminate-Cause (49)
+            Event-Timestamp (55)
+            Tunnel-Type (64)
+            Tunnel-Medium-Type (65)
+            Tunnel-Client-Endpoint (66)
+            Tunnel-Server-Endpoint (67)
+            Acct-Tunnel-Connection (68)
+
+3.4.  Tunnel-Link-Start
+
+      Value
+
+         12
+
+      Description
+
+         This value MAY be used to mark the creation of a tunnel link.
+         Only some tunnel types (e.g., L2TP) support multiple links per
+         tunnel.  This Attribute is intended to mark the creation of a
+         link within a tunnel that carries multiple links.  For example,
+         if a mandatory tunnel were to carry M links over its lifetime,
+         2(M+1) RADIUS Accounting messages might be sent: one each
+         marking the initiation and destruction of the tunnel itself and
+         one each for the initiation and destruction of each link within
+         the tunnel.  If only a single link can be carried in a given
+         tunnel (e.g., IPsec in the tunnel mode), this Attribute need
+         not be included in accounting packets, since the presence of
+         the Tunnel-Start Attribute will imply the initiation of the
+         (only possible) link.
+
+
+
+
+
+
+Zorn, et al.                 Informational                      [Page 4]
+
+RFC 2867            RADIUS Tunnel Accounting Support           June 2000
+
+
+         If this value is used, the following attributes SHOULD also be
+         included in the Accounting-Request packet:
+
+            User-Name (1)
+            NAS-IP-Address (4)
+            NAS-Port (5)
+            Acct-Delay-Time (41)
+            Event-Timestamp (55)
+            Tunnel-Type (64)
+            Tunnel-Medium-Type (65)
+            Tunnel-Client-Endpoint (66)
+            Tunnel-Server-Endpoint (67)
+            Acct-Tunnel-Connection (68)
+
+3.5.  Tunnel-Link-Stop
+
+      Value
+
+         13
+
+      Description
+
+         This value MAY be used to mark the destruction of a tunnel
+         link.  Only some tunnel types (e.g., L2TP) support multiple
+         links per tunnel.  This Attribute is intended to mark the
+         destruction of a link within a tunnel that carries multiple
+         links.  For example, if a mandatory tunnel were to carry M
+         links over its lifetime, 2(M+1) RADIUS Accounting messages
+         might be sent: one each marking the initiation and destruction
+         of the tunnel itself and one each for the initiation and
+         destruction of each link within the tunnel.  If only a single
+         link can be carried in a given tunnel (e.g., IPsec in the
+         tunnel mode), this Attribute need not be included in accounting
+         packets, since the presence of the Tunnel-Stop Attribute will
+         imply the termination of the (only possible) link.
+
+         If this value is used, the following attributes SHOULD also be
+         included in the Accounting-Request packet:
+
+            User-Name (1)
+            NAS-IP-Address (4)
+            NAS-Port (5)
+            Acct-Delay-Time (41)
+            Acct-Input-Octets (42)
+            Acct-Output-Octets (43)
+            Acct-Session-Id (44)
+            Acct-Session-Time (46)
+            Acct-Input-Packets (47)
+
+
+
+Zorn, et al.                 Informational                      [Page 5]
+
+RFC 2867            RADIUS Tunnel Accounting Support           June 2000
+
+
+            Acct-Output-Packets (48)
+            Acct-Terminate-Cause (49)
+            Acct-Multi-Session-Id (51)
+            Event-Timestamp (55)
+            NAS-Port-Type (61)
+            Tunnel-Type (64)
+            Tunnel-Medium-Type (65)
+            Tunnel-Client-Endpoint (66)
+            Tunnel-Server-Endpoint (67)
+            Acct-Tunnel-Connection (68)
+            Acct-Tunnel-Packets-Lost (86)
+
+3.6.  Tunnel-Link-Reject
+
+      Value
+
+         14
+
+      Description
+
+         This value MAY be used to mark the rejection of the
+         establishment of a new link in an existing tunnel.  Only some
+         tunnel types (e.g., L2TP) support multiple links per tunnel.
+         If only a single link can be carried in a given tunnel (e.g.,
+         IPsec in the tunnel mode), this Attribute need not be included
+         in accounting packets, since in this case the Tunnel-Reject
+         Attribute has the same meaning.
+
+         If this value is used, the following attributes SHOULD also be
+         included in the Accounting-Request packet:
+
+            User-Name (1)
+            NAS-IP-Address (4)
+            Acct-Delay-Time (41)
+            Acct-Terminate-Cause (49)
+            Event-Timestamp (55)
+            Tunnel-Type (64)
+            Tunnel-Medium-Type (65)
+            Tunnel-Client-Endpoint (66)
+            Tunnel-Server-Endpoint (67)
+            Acct-Tunnel-Connection (68)
+
+
+
+
+
+
+
+
+
+
+Zorn, et al.                 Informational                      [Page 6]
+
+RFC 2867            RADIUS Tunnel Accounting Support           June 2000
+
+
+4.  Attributes
+
+4.1.  Acct-Tunnel-Connection
+
+      Description
+
+         This Attribute indicates the identifier assigned to the tunnel
+         session.  It SHOULD be included in Accounting-Request packets
+         which contain an Acct-Status-Type attribute having the value
+         Start, Stop or any of the values described above.  This
+         attribute, along with the Tunnel-Client-Endpoint and Tunnel-
+         Server-Endpoint attributes [3], may be used to provide a means
+         to uniquely identify a tunnel session for auditing purposes.
+
+      A summary of the Acct-Tunnel-Connection Attribute format is shown
+      below.  The fields are transmitted from left to right.
+
+       0                   1                   2
+       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |      Type     |    Length     |    String ...
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+      Type
+
+         68 for Acct-Tunnel-Connection
+
+      Length
+
+         >= 3
+
+      String
+
+         The format of the identifier represented by the String field
+         depends upon the value of the Tunnel-Type attribute [3].  For
+         example, to fully identify an L2TP tunnel connection, the L2TP
+         Tunnel ID and Call ID might be encoded in this field.  The
+         exact encoding of this field is implementation dependent.
+
+4.2.  Acct-Tunnel-Packets-Lost
+
+      Description
+
+         This Attribute indicates the number of packets lost on a given
+         link.  It SHOULD be included in Accounting-Request packets
+         which contain an Acct-Status-Type attribute having the value
+         Tunnel-Link-Stop.
+
+
+
+
+Zorn, et al.                 Informational                      [Page 7]
+
+RFC 2867            RADIUS Tunnel Accounting Support           June 2000
+
+
+      A summary of the Acct-Tunnel-Packets-Lost Attribute format is
+      shown below.  The fields are transmitted from left to right.
+
+       0                   1                   2                   3
+       0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      |      Type     |    Length     |               Lost
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+                 Lost (cont)          |
+      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+      Type
+
+         86 for Acct-Tunnel-Packets-Lost
+
+      Length
+
+         6
+
+      Lost
+
+         The Lost field is 4 octets in length and represents the number
+         of packets lost on the link.
+
+5.  Table of Attributes
+
+   The following table provides a guide to which attributes may be found
+   in Accounting-Request packets.  No tunnel attributes should be found
+   in Accounting-Response packets.
+
+   Request        #       Attribute
+     0-1          64      Tunnel-Type
+     0-1          65      Tunnel-Medium-Type
+     0-1          66      Tunnel-Client-Endpoint
+     0-1          67      Tunnel-Server-Endpoint
+     0-1          68      Acct-Tunnel-Connection
+     0            69      Tunnel-Password
+     0-1          81      Tunnel-Private-Group-ID
+     0-1          82      Tunnel-Assignment-ID
+     0            83      Tunnel-Preference
+     0-1          86      Acct-Tunnel-Packets-Lost
+
+
+
+
+
+
+
+
+
+
+Zorn, et al.                 Informational                      [Page 8]
+
+RFC 2867            RADIUS Tunnel Accounting Support           June 2000
+
+
+   The following table defines the meaning of the above table entries.
+
+   0     This attribute MUST NOT be present in packet.
+   0+    Zero or more instances of this attribute MAY be present in
+         packet.
+   0-1   Zero or one instance of this attribute MAY be present in
+         packet.
+
+6.  Security Considerations
+
+   By "sniffing" RADIUS Accounting packets, it might be possible for an
+   eavesdropper to perform a passive analysis of tunnel connections.
+
+7.  References
+
+   [1]  Rigney, C., "RADIUS Accounting", RFC 2866, June 2000.
+
+   [2]  Bradner, S., "Key words for use in RFCs to Indicate Requirement
+        Levels", BCP 14, RFC 2119, March 1997.
+
+   [3]  Zorn, G., Leifer, D., Rubens, A., Shriver, J., Holdrege, M. and
+        I.  Goyret, "RADIUS Attributes for Tunnel Protocol Support", RFC
+        2868, June 2000.
+
+   [4]  Townsley, W., Valencia, A., Rubens, A., Pall, G., Zorn, G. and
+        B.  Palter, "Layer Two Tunneling Protocol "L2TP"", RFC 2661,
+        August 1999.
+
+   [5]  Hamzeh, K., Pall, G., Verthein, W., Taarud, J., Little, W. and
+        G.  Zorn, "Point-to-Point Tunneling Protocol (PPTP)", RFC 2637,
+        July 1999.
+
+8.  Acknowledgments
+
+   Thanks to Aydin Edguer, Ly Loi, Matt Holdrege and Gurdeep Singh Pall
+   for salient input and review.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zorn, et al.                 Informational                      [Page 9]
+
+RFC 2867            RADIUS Tunnel Accounting Support           June 2000
+
+
+9.  Authors' Addresses
+
+   Questions about this memo can be directed to:
+
+   Glen Zorn
+   Cisco Systems, Inc.
+   500 108th Avenue N.E., Suite 500
+   Bellevue, Washington 98004
+   USA
+
+   Phone: +1 425 438 8218
+   FAX:   +1 425 438 1848
+   EMail: gwz@cisco.com
+
+
+   Dave Mitton
+   Nortel Networks
+   880 Technology Park Drive
+   Billerica, MA 01821
+
+   Phone: +1 978 288 4570
+   Fax:   +1 978 288 3030
+   EMail: dmitton@nortelnetworks.com
+
+
+   Bernard Aboba
+   Microsoft Corporation
+   One Microsoft Way
+   Redmond, Washington 98052
+
+   Phone: +1 425 936 6605
+   Fax:   +1 425 936 7329
+   EMail: aboba@internaut.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zorn, et al.                 Informational                     [Page 10]
+
+RFC 2867            RADIUS Tunnel Accounting Support           June 2000
+
+
+10.  Full Copyright Statement
+
+   Copyright (C) The Internet Society (2000).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+
+Acknowledgement
+
+   Funding for the RFC Editor function is currently provided by the
+   Internet Society.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zorn, et al.                 Informational                     [Page 11]
+
+</pre>
+</div>
+
+
+    </div>
+
+    <footer class="global_footer bg_block-dark lg_padding_v">
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <div class="footer_main">
+                    <img class="footer_logo" width="150" src="../img/wordmark-white.svg" alt="">
+                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
+                    <div class="footer-social">
+                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
+                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
+                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
+                    </div>
+                    <p>&copy; 2017 The FreeRADIUS Server Project Support and Contributors</p>
+                </div>
+            </div>
+            <div class="columns medium-8">
+                <nav class="footer_nav h6 row small-up-2">
+                    <ul>
+                        <li><a href="/documentation/">Docs</a></li>
+                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
+                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
+                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
+                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
+                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/modules/">Modules</a></li>
+                        <li><a href="/modules/">Packages</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/community/">Community</a></li>
+                        <li><a href="/support/">Mailing Lists</a></li>
+                        <li><a href="/community/#contributing">Contribute</a></li>
+                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/about/#project">The Project</a></li>
+                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
+                        <li><a href="/about/#security">Security</a></li>
+                        <li><a href="/about/#team">Team</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/support/">Support</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
+                        <li><a href="/security/">Security Issues</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
+                        <li><a href="/support/">Newsletters</a></li>
+                        <li><a href="/commercial_support/">Commercial</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/app.js"></script>
+
+
+  </body>
+
+</html>

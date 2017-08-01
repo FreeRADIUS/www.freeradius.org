@@ -1,0 +1,34 @@
+{
+   "date" : "2005-06-16T11:37:59Z",
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.0.4.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.0.4.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.0.4.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.0.4.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Fix installation problem"
+      },
+      {
+         "description" : "Increase a buffer size, so radrelay doesn't truncate values"
+      },
+      {
+         "description" : "Updates in the documentation. Patches from Thor Spruyt"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_1_0_4.tar.gz"
+      }
+   ],
+   "name" : "1.0.4",
+   "summary" : "The focus of this release is stability"
+}

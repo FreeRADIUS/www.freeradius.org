@@ -1,0 +1,22 @@
+{
+   "available" : [
+      {
+         "branch" : {
+            "name" : "0.x.x",
+            "url" : "/api/info/branch/0.x.x/"
+         },
+         "end" : {
+            "name" : "0.9.3",
+            "url" : "/api/info/branch/0.x.x/release/0.9.3/"
+         },
+         "start" : {
+            "name" : "0.1.0",
+            "url" : "/api/info/branch/0.x.x/release/0.1.0/"
+         }
+      }
+   ],
+   "category" : "obsolete",
+   "description" : "The rlm_dictionary module.",
+   "documentation_link" : "http://networkradius.com/doc/current/raddb/mods-available/home.html",
+   "name" : "rlm_dictionary"
+}

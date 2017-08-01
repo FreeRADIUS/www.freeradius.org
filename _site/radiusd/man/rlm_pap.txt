@@ -1,0 +1,38 @@
+rlm_pap(5)		       FreeRADIUS Module		    rlm_pap(5)
+
+
+
+NAME
+       rlm_pap - FreeRADIUS Module
+
+DESCRIPTION
+       The rlm_pap module provides PAP functionality.
+
+       PAP  authentication works with passwords stored in clear-text format or
+       in an encrypted ( via crypt() ) format.
+
+       The configuration item(s):
+
+       encryption_scheme
+	      The method used to encrypt the password.	Valid values are:
+		   clear
+		   crypt (DEFAULT)
+		   md5
+		   sha1
+
+SECTIONS
+       authenticate
+
+FILES
+       /etc/raddb/radiusd.conf
+
+SEE ALSO
+       radiusd(8), radiusd.conf(5)
+
+AUTHOR
+       Chris Parker, cparker@segv.org
+
+
+
+
+				3 February 2004 		    rlm_pap(5)

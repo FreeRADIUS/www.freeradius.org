@@ -1,0 +1,307 @@
+{
+   "date" : "2012-09-10T13:51:34Z",
+   "defects" : [
+      {
+         "description" : "Fix CVE-2012-3547.  All users of 2.1.10, 2.1.11, 2.1.12, and 802.1X should upgrade immediately"
+      },
+      {
+         "description" : "Fix typo in detail file writer, to skip writing if the packet was read from this detail file"
+      },
+      {
+         "description" : "Free cached replies when closing resumed SSL sessions"
+      },
+      {
+         "description" : "Fix a number of issues found by Coverity"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            },
+            {
+               "name" : "rlm_eap_tls",
+               "url" : "/api/info/component/rlm_eap_tls/"
+            }
+         ],
+         "description" : "Fix memory leak and race condition in the EAP-TLS session cache Thanks to Phil Mayers for tracking down OpenSSL APIs"
+      },
+      {
+         "description" : "Restrict ATTRIBUTE names to character sets that make sense"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            },
+            {
+               "name" : "rlm_eap_tls",
+               "url" : "/api/info/component/rlm_eap_tls/"
+            }
+         ],
+         "description" : "Fix EAP-TLS session Id length so that OpenSSL doesn't get excited"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Fix SQL IPPool logic for non-timer attributes.  Closes bug #181"
+      },
+      {
+         "description" : "Change some informational messages to DEBUG rather than error"
+      },
+      {
+         "description" : "Portability fixes for FreeBSD.  Closes bug #177"
+      },
+      {
+         "description" : "A much better fix for the _lt__PROGRAM__LTX_preloaded_symbols nonsense"
+      },
+      {
+         "description" : "Safely handle extremely long lines in conf file variable expansion"
+      },
+      {
+         "description" : "Fix for Debian bug #606450"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_perl",
+               "url" : "/api/info/component/rlm_perl/"
+            }
+         ],
+         "description" : "Mutex lock around rlm_perl Clone routines. Patch from Eike Dehling"
+      },
+      {
+         "description" : "The passwd module no longer permits \"hashsize = 0\".  Setting that is pointless for a host of reasons.  It will also break the server"
+      },
+      {
+         "description" : "Fix proxied inner-tunnel packets sometimes having zero authentication vector.  Found by Brian Julin"
+      },
+      {
+         "description" : "Added $(EXEEXT) to Makefiles for portability.  Closes bug #188"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Fix minor build issue which would cause rlm_eap to be built twice"
+      },
+      {
+         "description" : "When using \"status_check=request\" for a home server, the username and password must be specified, or the server will not start"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "EAP-SIM now calculates keys from the SIM identity, not from the EAP-Identity.  Changing the EAP type via NAK may result in identities changing.  Bug reported by Microsoft EAP team"
+      },
+      {
+         "description" : "Use home server src_ipaddr when sending Status-Server packets"
+      },
+      {
+         "description" : "Decrypt encrypted ERX attributes in CoA packets"
+      },
+      {
+         "description" : "Fix registration of internal xlat's so %{mschap:...} doesn't disappear after a HUP"
+      },
+      {
+         "description" : "Can now reference tagged attributes in expansions e.g. %{Tunnel-Type:1} and %{Tunnel-Type:1[0]} now work"
+      },
+      {
+         "description" : "Correct calculation of Message-Authenticator for CoA and Disconnect replies.  Patch from Jouni Malinen"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_counter",
+               "url" : "/api/info/component/rlm_counter/"
+            }
+         ],
+         "description" : "Install rad_counter, for managing rlm_counter files"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Add unique index constraint to all SQL flavours so that alternate queries work correctly"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap_ttls",
+               "url" : "/api/info/component/rlm_eap_ttls/"
+            }
+         ],
+         "description" : "The TTLS diameter decoder is now more lenient.  It ignores unknown attributes, instead of rejecting the TTLS session"
+      },
+      {
+         "description" : "Use \"globfree\" in detail file reader.  Prevents very slow leak Closes bug #207"
+      },
+      {
+         "description" : "Operator =~ shouldn't copy the attribute, like :=.  It should instead behave more like =="
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Build main Debian package without SQL dependencies"
+      },
+      {
+         "description" : "Use max_queue_size in threading code"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            },
+            {
+               "name" : "rlm_sql_postgresql",
+               "url" : "/api/info/component/rlm_sql_postgresql/"
+            }
+         ],
+         "description" : "Update permissions in raddb/sql/postgresql/admin.sql"
+      },
+      {
+         "description" : "Added OpenSSL_add_all_algorithms() to fix issues where OpenSSL wouldn't use methods it knew about"
+      },
+      {
+         "description" : "Add more sanity checks in dynamic_clients code so the server won't crash if it attempts to load a badly formated client definition"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.0.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.0.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.0.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.2.0.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_passwd",
+               "url" : "/api/info/component/rlm_passwd/"
+            }
+         ],
+         "description" : "100% configuration file compatible with 2.1.x The only fix needed is to disallow \"hashsize=0\" for rlm_passwd"
+      },
+      {
+         "description" : "Update Aruba, Alcatel Lucent, APC, BT, PaloAlto, Pureware, Redback, and Mikrotik dictionaries"
+      },
+      {
+         "description" : "Switch to using SHA1 for certificate digests instead of MD5 See raddb/certs/*.cnf"
+      },
+      {
+         "description" : "Added copyright statements to the dictionaries, so that we know when people are using them"
+      },
+      {
+         "description" : "Better documentation for radrelay and detail file writer See raddb/modules/radrelay and raddb/radrelay.conf"
+      },
+      {
+         "description" : "Added TLS-Cert-Subject-Alt-Name-Email from patch by Luke Howard"
+      },
+      {
+         "description" : "Added -F <file> to radwho"
+      },
+      {
+         "description" : "Added query timeouts to MySQL driver.  Patch from Brian De Wolf"
+      },
+      {
+         "description" : "Add /etc/default/freeradius to debian package Patch from Matthew Newton"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Finalize DHCP and DHCP relay code.  It should now work everywhere See raddb/sites-available/dhcp, src_ipaddr and src_interface"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "DHCP capabilitiies are now compiled in by default It runs as a DHCP server ONLY when manually enabled"
+      },
+      {
+         "description" : "Added one letter expansions: %G - request minute and %I request ID"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            },
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Added script to convert ISC DHCP lease files to SQL pools See scripts/isc2ippool.pl"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_cache",
+               "url" : "/api/info/component/rlm_cache/"
+            }
+         ],
+         "description" : "Added rlm_cache to cache arbitrary attributes"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Added max_use to rlm_ldap to force connection to be re-established after a given number of queries"
+      },
+      {
+         "description" : "Added configtest option to Debian init scripts, and automatic config test on restart"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_krb5",
+               "url" : "/api/info/component/rlm_krb5/"
+            }
+         ],
+         "description" : "Added cache config item to rlm_krb5. When set to \"no\" ticket caching is disabled which may increase performance"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_2_2_0.tar.gz"
+      }
+   ],
+   "name" : "2.2.0",
+   "summary" : "The focus of this release is security"
+}

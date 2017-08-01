@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html ng-app="freeradius">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Revoked intermediate certificates are not properly validated</title>
+    <meta name="description" content="oCert-CVE 2015-4680">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="new.freeradius.org/vul_notifications/2015/06/22/revoked-intermediate-certificates-are-not-properly-validated.html">
+    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="new.freeradius.org/feed.xml">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
+    <meta name="msapplication-TileColor" content="#da532c ">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff ">
+
+</head>
+
+
+  <body>
+
+    <div class="global-nav">
+  <div class="global_links pull_right">
+    <div class="global_link global_link_label h5 text">Our sites:</div>
+    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+  </div>
+</div>
+
+<header class="site-header" global-header ng-class="{fixed: fixNav}">
+  <div class="site-header-wrapper">
+
+    <a class="site-title" href="/"><img src="/img/wordmark.svg"></a>
+    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
+      <svg viewBox="0 0 18 15">
+        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+      </svg>
+    </button>
+
+    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
+
+      <div class="get-release">
+      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
+      </div>
+
+      <ul class="site-nav-list">
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/releases/">Releases</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/documentation/">Documentation</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/modules/">Modules</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/community/">Community</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/about/">About</a>
+         </li>
+
+         <li class="site-nav-item">
+            <a class="page-link h5" href="/support/">Support</a>
+         </li>
+
+      </ul>
+
+    </nav>
+  </div>
+</header>
+
+
+    <div class="page-content">
+
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Revoked intermediate certificates are not properly validated</h1>
+    <p class="post-meta"><time datetime="2015-06-22T00:00:00+00:00" itemprop="datePublished">Jun 22, 2015</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>oCert-CVE 2015-4680</p>
+
+<p>All versions which implement EAP-TLS, prior to 2.2.8 and 3.0.9 do
+not check intermediate CAs for revocation. We have put patches into
+the version 2 and version 3 branches to fix these issues.</p>
+
+<p>We expect that this issue has minimal effect on the majority of
+RADIUS systems. If you are using a self-signed CA for 802.1X, this
+issue does not seriously affect you, as only you can issue
+intermediate certificates. If you are using certificates from a
+public CA, then your configuration already permits third parties to
+issue certificates which will be accepted by your RADIUS server.</p>
+
+<p>i.e. The act of using a public CA cert in RADIUS can open your
+systems to security issues which are larger, and much worse than
+this one. The fix for this particular issue does not change the
+underlying security problem behind using a public CA.</p>
+
+<p>Our analysis of the issue led us to disagree with the analysis done
+by oCert, and the (alleged) original vendor who made the report. We
+a requested a response to our analysis, and oCert refused. We
+requested that the public notice contain an accurate description of
+the issue and it’s impact. oCert again refused. After repeated
+messages, the response from Andrea Barisani of oCert was:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>The reporter disagrees with your assessment yet cannot share details
+about their setup, oCERT has no wishes to do technical support on
+their setup as we just care about the reported bug.
+</code></pre>
+</div>
+
+<p>Which is missing the point. We never asked to do “technical support
+on their setup”. We asked for an accurate description of the issue
+and it’s impact. oCert refused, whichs means that they do not, in
+fact, “care about the reported bug”.</p>
+
+<p>We wanted to work together to come up with an accurate description
+of the issue, including it’s impact. It was clear that oCert was had
+no such goal. They saw their work as simply taking the original
+report, and forwarding it to a wider audience (including us).</p>
+
+<p>We can only conclude that our analysis is correct, and that the
+original report, and the summary published by oCert is largely
+wrong. We can also recommend that people avoid oCert, as they are
+unwilling to work with authors to publish accurate reports.</p>
+
+
+  </div>
+
+</article>
+
+
+    </div>
+
+    <footer class="global_footer bg_block-dark lg_padding_v">
+
+    <div class="wrapper">
+        <div class="row">
+            <div class="columns medium-4">
+                <div class="footer_main">
+                    <img class="footer_logo" width="150" src="../img/wordmark-white.svg" alt="">
+                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
+                    <div class="footer-social">
+                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
+                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
+                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
+                    </div>
+                    <p>&copy; 2017 The FreeRADIUS Server Project Support and Contributors</p>
+                </div>
+            </div>
+            <div class="columns medium-8">
+                <nav class="footer_nav h6 row small-up-2">
+                    <ul>
+                        <li><a href="/documentation/">Docs</a></li>
+                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
+                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
+                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
+                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
+                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/modules/">Modules</a></li>
+                        <li><a href="/modules/">Packages</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/community/">Community</a></li>
+                        <li><a href="/support/">Mailing Lists</a></li>
+                        <li><a href="/community/#contributing">Contribute</a></li>
+                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/about/">About</a></li>
+                        <li><a href="/about/#project">The Project</a></li>
+                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
+                        <li><a href="/about/#security">Security</a></li>
+                        <li><a href="/about/#team">Team</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/support/">Support</a></li>
+                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
+                        <li><a href="/security/">Security Issues</a></li>
+                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
+                        <li><a href="/support/">Newsletters</a></li>
+                        <li><a href="/commercial_support/">Commercial</a></li>
+                        <li><a href="/support/">Support</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
+<script src="/js/angular.min.js"></script>
+<script src="/js/app.js"></script>
+
+
+  </body>
+
+</html>

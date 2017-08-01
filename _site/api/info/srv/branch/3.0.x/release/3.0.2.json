@@ -1,0 +1,356 @@
+{
+   "date" : "2014-03-21T08:27:25Z",
+   "defects" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Fix SQL groups"
+      },
+      {
+         "description" : "Fix operation of fr_strerror() with RE*() macros"
+      },
+      {
+         "description" : "Don't assert if the connection we're trying to reconnect is not in_use"
+      },
+      {
+         "description" : "Fix %{mschap:User-Name} xlat"
+      },
+      {
+         "description" : "Allow comparisons of signed integers and of ethernet addresses"
+      },
+      {
+         "description" : "Fix parsing of text-based ascend binary filters"
+      },
+      {
+         "description" : "Fix a few minor Coverity and clang analyzer issues"
+      },
+      {
+         "description" : "Log WARNING and ERROR prefixes only once, not twice"
+      },
+      {
+         "description" : "Fix attribute truncation seen in Perl and other places"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Use correct port when DHCP relaying"
+      },
+      {
+         "description" : "Fix behaviour on FreeBSD where sending packets from an interface bound to an IP address would fail when the server was built with udpfromto"
+      },
+      {
+         "description" : "Don't abort() when freeing home servers on exit"
+      },
+      {
+         "description" : "Fix edge case in pairmove() when some attributes could be over- written"
+      },
+      {
+         "description" : "Do checks for individual sqlite v2 functions so rlm_sqlite builds correctly with more versions of the library"
+      },
+      {
+         "description" : "In heimdal kerberos, create MEMORY ccaches on a per context basis This prevents issues with the root ccache being used"
+      },
+      {
+         "description" : "Fix corner case with proxying, where home server goes down"
+      },
+      {
+         "description" : "Rate-limit \"max_requests\" complaint.  We don't want to fill the logs when something goes wrong"
+      },
+      {
+         "description" : "Use /dev/urandom for raddb/certs/random, if it exists"
+      },
+      {
+         "description" : "Issue WARNING that old-style clients should no longer be used"
+      },
+      {
+         "description" : "Auto-set secret to \"radsec\" for tcp+tls home servers"
+      },
+      {
+         "description" : "Fix double free in home_server_add when there is a parse error on startup"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_unix",
+               "url" : "/api/info/component/rlm_unix/"
+            }
+         ],
+         "description" : "rlm_unix checks if the dictionaries are broken, instead of crashing"
+      },
+      {
+         "description" : "Fix potential memory corruption when normalising salted password hashes from hex, where the combined hash and salt was > 64 bytes"
+      },
+      {
+         "description" : "Register sqlcounter attributes correctly, and other issues with it"
+      },
+      {
+         "description" : "treat 127.0.0.1/32 as being identical to 127.0.0.1"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            },
+            {
+               "name" : "rlm_sql_postgresql",
+               "url" : "/api/info/component/rlm_sql_postgresql/"
+            }
+         ],
+         "description" : "Don't mangle error output of SQL drivers like PostgreSQL"
+      },
+      {
+         "description" : "Fix usage of \"tls = ${tls}\".  It could previously cause problems when the reference was used multiple times"
+      },
+      {
+         "description" : "Fix TLS session leak for incoming sockets"
+      },
+      {
+         "description" : "Try harder to clean up memory on exit when using \"-mM\""
+      },
+      {
+         "description" : "Fix memory leak when home server is down for RadSec connections"
+      },
+      {
+         "description" : "rate-limit outgoing connection attempts when the home server is down.  It will retry no more than once per second"
+      },
+      {
+         "description" : "When parsing ipv6 address prefixes, always mask off the host portion"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_counter",
+               "url" : "/api/info/component/rlm_counter/"
+            }
+         ],
+         "description" : "Fix rlm_counter so that it does not create two reply attributes"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Fix issues with DHCP Sub-TLVs where the value of the first Sub-TLV would appear corrupted, and subsequent TLVs would not appear in debug output"
+      },
+      {
+         "description" : "Initialize scope in IP address parsing"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_attr_filter",
+               "url" : "/api/info/component/rlm_attr_filter/"
+            }
+         ],
+         "description" : "Prevent vendor attributes and RFC space attributes from clashing in rlm_attr_filter"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Set source IP address for DHCP packets from DHCP-Server-IP-Address, or DHCP-DHCP-Server-Identifier, if we're unable to otherwise determine the source IP"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Fix POST attribute parsing in rlm_rest"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Fix JSON attribute parsing in rlm_rest"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Don't append trailing & to POST options in rlm_rest (minor)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Process HTTP 100 Continue messages correctly in rlm_rest"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Fix generation of long > 512 byte POST payloads, where attribute values on the chunk boundary may have been omitted in rlm_rest"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sqlippool",
+               "url" : "/api/info/component/rlm_sqlippool/"
+            }
+         ],
+         "description" : "Remove duplicate escape sequence parsing in rlm_sqlippool and rlm_sqlcounter which caused issues with escaping %. Escape sequence parsing is now handled purely by the xlat functions"
+      },
+      {
+         "description" : "Ensure %% is treated as a string literal, and so not passed to any xlat escape functions for processing"
+      },
+      {
+         "description" : "Correct calculation of Message-Authenticator for CoA packets.  Closes #556"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.2.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.2.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.2.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.2.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "secret keys and LDAP / SQL passwords are now printed as '<<< secret >>>' in debugging mode.  Use -Xx to see the actual passwords"
+      },
+      {
+         "description" : "Print out more information about passwords in -Xx, including hashes, comparisons, etc"
+      },
+      {
+         "description" : "Allow cast (and implicit conversion) of integers to IPv4 addresses"
+      },
+      {
+         "description" : "More xlats allow attribute references.  This means they can operate on binary data.  e.g. expr, base64, md5, sha1"
+      },
+      {
+         "description" : "Added more tests"
+      },
+      {
+         "description" : "The dictionaries are now auto-loaded.  raddb/dictionary should no longer have $INCLUDE ${prefix}/share/dictionary"
+      },
+      {
+         "description" : "A \"panic_action\" can be set to have the server dump a gdb log on SEGV or other fatal error.  See radiusd.conf"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_pap",
+               "url" : "/api/info/component/rlm_pap/"
+            }
+         ],
+         "description" : "Add support for SHA-224, SHA-256, SHA-384, SHA-512 to rlm_pap"
+      },
+      {
+         "description" : "Add \"%{sha256:}\" and \"%{sha512:}\" xlat functions"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Cache CUI in EAP session resumption"
+      },
+      {
+         "description" : "templates can now have sub-sections, which will be included in the section referencing the template"
+      },
+      {
+         "description" : "Update more dictionaries"
+      },
+      {
+         "description" : "Added more instances of the \"always\" module, for all return codes"
+      },
+      {
+         "description" : "Suppress broken NASes when proxying.  Retransmits which occur more than once per second are rate-limited to once per second"
+      },
+      {
+         "description" : "Allow '&' in more xlat expansions"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql_postgresql",
+               "url" : "/api/info/component/rlm_sql_postgresql/"
+            }
+         ],
+         "description" : "Update PostgreSQL schema and queries to record last updated time, and accounting interim"
+      },
+      {
+         "description" : "Optimize more \"if\" conditions when the server loads.  This will avoid work at run time.  e.g. (\"foo\" == \"bar\") --> FALSE"
+      },
+      {
+         "description" : "Allow removal of all attributes within a list with !* operator"
+      },
+      {
+         "description" : "Allow list to list copies with request qualifiers (outer.)"
+      },
+      {
+         "description" : "Add support for ipv4 prefixes and ipv6 addresses and prefixes to %{integer:}"
+      },
+      {
+         "description" : "allow radmin command \"set module status <module> <code>\" which can be used to forcibly enable/disable modules"
+      },
+      {
+         "description" : "pap module now assumes Cleartext-Password if Password-With-Header doesn't have a {...} header"
+      },
+      {
+         "description" : "Added \"unpack\" module.  It can unpack binary data from horrible VSA formats.  See raddb/mods-available/unpack"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            },
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Added example IP Pool for DHCP, using sqlite.  From Matthew Newton See raddb/mods-config/sql/ippool-dhcp/"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_3_0_2.tar.gz"
+      }
+   ],
+   "name" : "3.0.2",
+   "summary" : "The focus of this release is stability"
+}

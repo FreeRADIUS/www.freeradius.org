@@ -1,0 +1,84 @@
+rlm_expr(5)		       FreeRADIUS Module		   rlm_expr(5)
+
+
+
+NAME
+       rlm_expr - FreeRADIUS Module
+
+DESCRIPTION
+       The  rlm_expr  module allows the server to perform limited mathematical
+       calculations.  This module is not called directly in any section, it is
+       invoked through the dynamic expansion of strings.
+
+       For example, some NAS boxes send a NAS-Port attribute which is a 32-bit
+       number composed of port, card, and interface, all in  different	bytes.
+       To see these attributes split into pieces, you can have an entry in the
+       'users' file like:
+
+       DEFAULT
+	   Vendor-Interface = `%{expr: %{NAS-Port} / (256 * 256)}`,
+	   Vendor-Card = `%{expr: (%{NAS-Port} / 256) %% 256}`,
+	   Vendor-Port = `%{expr: %{NAS-Port} %% 256}`
+
+       where the attributes Vendor-Interface, Vendor-Card, and Vendor-Port are
+       attributes created by either you or a vendor-supplied dictionary.
+
+       The methematical operators supported by the expression module are:
+
+       +      addition
+
+       -      subtraction
+
+       /      division
+
+       %%     modulo remainder
+
+       *      multiplication
+
+       &      boolean AND
+
+       |      boolean OR
+
+       ()     grouping of sub-expressions
+
+       NOTE:  The modulo remainder operator is '%%', and not '%'.  This is due
+       to the '%' character being used as  a  special  character  for  dynamic
+       translation.
+
+       NOTE: These operators do NOT have precedence.  The parsing of the input
+       string, and the calculation of the answer, is  done  strictly  left  to
+       right.	If you wish to order the expressions, you MUST group them into
+       sub-expression, as shown in the previous example.
+
+       All of the calculations are performed as unsigned 32-bit integers.
+
+CONFIGURATION
+       modules {
+	 ...
+	 expr {
+	 }
+	 ...
+       }
+	...
+       instantiate {
+	 ...
+	 expr
+	 ...
+       }
+
+SECTIONS
+       instantiate
+
+FILES
+       /etc/raddb/radiusd.conf
+
+SEE ALSO
+       radiusd(8), radiusd.conf(5)
+
+AUTHOR
+       Chris Parker, cparker@segv.org
+
+
+
+
+				5 February 2004 		   rlm_expr(5)

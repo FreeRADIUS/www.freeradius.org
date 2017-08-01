@@ -1,0 +1,90 @@
+rlm_attr_filter(5)	       FreeRADIUS Module	    rlm_attr_filter(5)
+
+
+
+NAME
+       rlm_attr_filter - FreeRADIUS Module
+
+DESCRIPTION
+       The  rlm_attr_filter module exists for filtering certain attributes and
+       values in received ( or transmitted ) radius packets from  (  or  to  )
+       remote proxy servers.  It gives the proxier ( us ) a flexible framework
+       to filter the attributes we send to or receive from these remote  prox-
+       ies.  This makes sense, for example, in an out-sourced dialup situation
+       to various policy decisions, such as restricting a  client  to  certain
+       ranges of Idle-Timeout or Session-Timeout.
+
+       Filter  rules  are  defined and applied on a per-realm basis, where the
+       realm is anything that is defined and matched based on  the  configura-
+       tion of the rlm_realm module.
+
+       The  file  that defines the attribute filtering rules follows a similar
+       syntax to the users file.  There are a few differences however:
+
+	   There are no check-items allowed other than the realm.
+
+	   There can only be a single DEFAULT entry.
+
+       The rules for each entry are parsed to top to bottom, and an  attribute
+       must  pass *all* the rules which affect it in order to make it past the
+       filter.	Order of the rules is important.  The operators and their pur-
+       pose in defining the rules are as follows:
+
+       =      THIS  OPERATOR  IS NOT ALLOWED.  If used, and warning message is
+	      printed and it is treated as ==
+
+       :=     Set, this attribute and value will always be placed in the  out-
+	      put A/V Pairs.  If the attribute exists, it is overwritten.
+
+       ==     Equal, value must match exactly.
+
+       =*     Always Equal, allow all values for the specified attribute.
+
+       !*     Never Equal, disallow all values for the specified attribute.  (
+	      This is redundant, as any A/V Pair not explicitly permitted will
+	      be dropped ).
+
+       !=     Not Equal, value must not match.
+
+       >=     Greater Than or Equal
+
+       <=     Less Than or Equal
+
+       >      Greather Than
+
+       <      Less Than
+
+       If  regular  expressions  are  enabled the following operators are also
+       possible.  ( Regular Expressions are included by  default  unless  your
+       system  doesn't	support them, which should be rare ).  The value field
+       uses standard regular expression syntax.
+
+       =~     Regular Expression Equal
+
+       !~     Regular Expression Not Equal
+
+       See the default /etc/raddb/attrs for working examples  of  sample  rule
+       ordering and how to use the different operators.
+
+       The main configuration item is:
+
+       attrsfile
+	      This  specifies the location of the file used to load the filter
+	      rules.
+
+SECTIONS
+       authorization, accounting, preproxy, postproxy
+
+FILES
+       /etc/raddb/radiusd.conf /etc/raddb/attrs
+
+SEE ALSO
+       radiusd(8), radiusd.conf(5)
+
+AUTHOR
+       Chris Parker, cparker@segv.org
+
+
+
+
+				3 February 2004 	    rlm_attr_filter(5)

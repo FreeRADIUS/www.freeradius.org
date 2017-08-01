@@ -1,0 +1,126 @@
+{
+   "date" : "2017-07-26T23:03:02Z",
+   "defects" : [
+      {
+         "description" : "Attribute names in unlang MUST be prefixed with & This fixes a host of ambiguities when parsing"
+      },
+      {
+         "description" : "Added unit tests for dictionary parsing and restrictions on which attributes can appear where"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/v4.0.x.tar.gz"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "For upgrade instructions, see raddb/README.rst"
+      },
+      {
+         "description" : "\"authorize\", \"authenticate\", \"preacct\", etc are deprecated.  We now use \"recv Access-Request\" See raddb/README.rst"
+      },
+      {
+         "description" : "Dropped support for -i and -p flags in radiusd"
+      },
+      {
+         "description" : "New \"map\" function in unlang.  See \"man unlang\""
+      },
+      {
+         "description" : "The \"load-balance\" and \"redundant-load-balance\" sections accept a key.  See \"man unlang\""
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "The EAP module tracks certificates in a different attribute list.  See the upgrade instructions"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "The EAP module produces much better messages when using TLS"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql_postgresql",
+               "url" : "/api/info/component/rlm_sql_postgresql/"
+            }
+         ],
+         "description" : "The MySQL and Postgresql modules now call the database string escape functions, instead of using \"safe_characters\""
+      },
+      {
+         "description" : "radmin / raddebug can now stream debug output directly to radmin, instead of using an intermediary file"
+      },
+      {
+         "description" : "radsniff stats (-W) now operates on PCAP files too"
+      },
+      {
+         "description" : "radsniff stats can be printed in CSV format"
+      },
+      {
+         "description" : "Improved internal state API, to simplify multiround authentication"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "ipaddr = * 'just works' for most DHCP configurations"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_redis",
+               "url" : "/api/info/component/rlm_redis/"
+            }
+         ],
+         "description" : "Redis cluster support for all Redis modules"
+      },
+      {
+         "description" : "TLV Attributes can now be nested to nearly any depth"
+      },
+      {
+         "description" : "radsnmp client which can listen on Net-SNMP \"pass persist\" and translate that into queries to the server"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_perl",
+               "url" : "/api/info/component/rlm_perl/"
+            }
+         ],
+         "description" : "rlm_perl: radiusd::xlat to evaluate xlat string within perl script"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "rlm_ldap supports maps, which can map the contents of multiple LDAP objects to RADIUS attributes"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Both the rlm_ldap map and xlat functions support server side sort control specifiers in their URLs"
+      }
+   ],
+   "name" : "4.0.x",
+   "summary" : "The focus of this release is development"
+}

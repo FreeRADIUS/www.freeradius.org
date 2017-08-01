@@ -1,0 +1,54 @@
+{
+   "date" : "2008-01-22T13:26:46Z",
+   "defects" : [
+      {
+         "description" : "The 'acct_unique' module has been updated to understand the deprecated (but still used) Client-IP-Address attribute"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "The EAP-MSCHAPv2 module no longer leaks MS-CHAP2-Success in packets"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_dbm",
+               "url" : "/api/info/component/rlm_dbm/"
+            }
+         ],
+         "description" : "Fixed crash in rlm_dbm"
+      },
+      {
+         "description" : "Fixed parsing of syslog configuration"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.1.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.1.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.1.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.1.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "\"unlang\" has been expanded to do less run-time expansion, and to have better handling of typed data.  See \"man unlang\" for documentation and new examples"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_2_0_1.tar.gz"
+      }
+   ],
+   "name" : "2.0.1",
+   "summary" : "The focus of this release is stability"
+}

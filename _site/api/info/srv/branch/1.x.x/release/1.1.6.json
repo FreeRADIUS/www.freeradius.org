@@ -1,0 +1,87 @@
+{
+   "date" : "2007-04-12T12:54:19Z",
+   "defects" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_pap",
+               "url" : "/api/info/component/rlm_pap/"
+            }
+         ],
+         "description" : "Corrected typo in rlm_pap.c (closes #440)"
+      },
+      {
+         "description" : "Corrected typo in src/main/auth.c (closes #437)"
+      },
+      {
+         "description" : "Suppress SSL error messages if error is zero.  (closes #436)"
+      },
+      {
+         "description" : "Don't complain about \"Error in read client certificate A\" if we expect to read it in the next packet.  Fix based on patch by Dan Lukes"
+      },
+      {
+         "description" : "Corrected nearly 30 bugs found by Coverity See also http://scan.coverity.com"
+      },
+      {
+         "description" : "Don't die on HUP.  Instead leak memory (sorry).  After a few hundred HUP's, the server will have leaked a few megabytes of memory, and you should probably re-start it.  It's ugly, but better than dying.  (Closes #426)"
+      },
+      {
+         "description" : "Corrected a few double free's"
+      },
+      {
+         "description" : "Corrected typo in radrelay, which prevented it from working"
+      },
+      {
+         "description" : "Made Firebird module build"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql_postgresql",
+               "url" : "/api/info/component/rlm_sql_postgresql/"
+            }
+         ],
+         "description" : "Fixed bug in PostgreSQL module that caused server crash"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Fixed bug in SQL module that could cause server to crash"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.6.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.6.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.6.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.1.6.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Added dictionary.rfc4372 (Chargeable User Identity)"
+      },
+      {
+         "description" : "Added dictionary.rfc4675 (VLAN and Priority)"
+      },
+      {
+         "description" : "Added dictionary.rfc4679 (ADSL Forum) NOTE some name differences from the RFC, due to dictionary.redback"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_1_1_6.tar.gz"
+      }
+   ],
+   "name" : "1.1.6",
+   "summary" : "The focus of this release is stability"
+}

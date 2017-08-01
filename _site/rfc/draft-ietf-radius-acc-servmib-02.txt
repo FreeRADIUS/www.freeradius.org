@@ -1,0 +1,805 @@
+
+
+     RADIUS Working Group                                         Glen Zorn
+     INTERNET-DRAFT                                               Microsoft
+     Category: Informational                                  Bernard Aboba
+     <draft-ietf-radius-acc-servmib-02.txt>                       Microsoft
+     11 November 1998
+
+
+                          RADIUS Accounting Server MIB
+
+
+     1.  Status of this Memo
+
+     This document is an Internet-Draft.  Internet-Drafts are working docu-
+     ments of the Internet Engineering Task Force (IETF),  its  areas,  and
+     its  working groups.  Note that other groups may also distribute work-
+     ing documents as Internet-Drafts.
+
+     Internet-Drafts are draft documents valid for a maximum of six  months
+     and  may  be updated, replaced, or obsoleted by other documents at any
+     time.  It is inappropriate to use Internet-Drafts as  reference  mate-
+     rial or to cite them other than as ``work in progress.''
+
+     To  learn  the  current status of any Internet-Draft, please check the
+     ``1id-abstracts.txt'' listing contained in the Internet-Drafts  Shadow
+     Directories   on   ftp.ietf.org   (US  East  Coast),  nic.nordu.net
+     (Europe), ftp.isi.edu (US West Coast), or munnari.oz.au (Pacific Rim).
+
+     The  distribution  of  this memo is unlimited.  It is filed as <draft-
+     ietf-radius-acc-servmib-02.txt>, and  expires May 1, 1999. Please send
+     comments to the authors.
+
+
+     2.  Abstract
+
+     This memo defines a set of extensions which instrument RADIUS account-
+     ing server functions. These extensions represent a portion of the Man-
+     agement  Information Base (MIB) for use with network management proto-
+     cols in the Internet community.  Using these extensions IP-based  man-
+     agement stations can manage RADIUS accounting servers.
+
+
+     3.  Introduction
+
+     This  memo  defines a portion of the Management Information Base (MIB)
+     for use with network management protocols in the  Internet  community.
+     In  particular,  it describes managed objects used for managing RADIUS
+     accounting servers.
+
+     RADIUS accounting servers are today widely deployed by dialup Internet
+     Service  Providers,  in  order  to  provide  accounting services. As a
+     result, the effective management of RADIUS accounting  servers  is  of
+     considerable importance.
+
+
+
+
+
+     Zorn & Aboba                 Informational                    [Page 1]
+
+     INTERNET-DRAFT       RADIUS Accounting Server MIB     11 November 1998
+
+
+     4.  The SNMP Management Framework
+
+     The  SNMP Management Framework presently consists of five major compo-
+     nents:
+
+         o   An overall architecture, described in RFC 2271 [1].
+
+         o   Mechanisms for describing and naming objects  and  events  for
+             the purpose of management. The first version of this Structure
+             of Management Information (SMI) is called SMIv1 and  described
+             in  RFC  1155  [2],  RFC 1212 [3] and RFC 1215 [4]. The second
+             version, called SMIv2, is described in RFC 1902 [5], RFC  1903
+             [6] and RFC 1904 [7].
+
+         o   Message protocols for transferring management information. The
+             first version of the SNMP message protocol  is  called  SNMPv1
+             and  described  in  RFC 1157 [8]. A second version of the SNMP
+             message protocol, which is not  an  Internet  standards  track
+             protocol,  is called SNMPv2c and described in RFC 1901 [9] and
+             RFC 1906 [10]. The third version of the  message  protocol  is
+             called  SNMPv3  and  described in RFC 1906 [10], RFC 2272 [11]
+             and RFC 2274 [12].
+
+         o   Protocol operations for accessing management information.  The
+             first set of protocol operations and associated PDU formats is
+             described in RFC 1157 [8]. A second set of protocol operations
+             and associated PDU formats is described in RFC 1905 [13].
+
+         o   A  set  of fundamental applications described in RFC 2273 [14]
+             and the view-based access control mechanism described  in  RFC
+             2275 [15].
+
+     Managed  objects  are accessed via a virtual information store, termed
+     the Management Information Base  or  MIB.   Objects  in  the  MIB  are
+     defined using the mechanisms defined in the SMI.
+
+     This memo specifies a MIB module that is compliant to the SMIv2. A MIB
+     conforming to the SMIv1 can be produced through the appropriate trans-
+     lations. The resulting translated MIB must be semantically equivalent,
+     except where objects or events are omitted because no  translation  is
+     possible  (use  of  Counter64).  Some  machine readable information in
+     SMIv2 will be converted into textual descriptions in SMIv1 during  the
+     translation  process.  However, this loss of machine readable informa-
+     tion is not considered to change the semantics of the MIB.
+
+
+     5.  Overview
+
+     The RADIUS  accounting  protocol,  described  in  [16],  distinguishes
+     between  the  client  function  and  the  server  function.  In RADIUS
+     accounting, clients send Accounting-Requests, and servers  reply  with
+     Accounting-Responses.   Typically  NAS  devices  implement  the client
+     function, and thus would be expected to implement the RADIUS  account-
+     ing  client  MIB, while RADIUS accounting servers implement the server
+
+
+
+     Zorn & Aboba                 Informational                    [Page 2]
+
+     INTERNET-DRAFT       RADIUS Accounting Server MIB     11 November 1998
+
+
+     function, and thus would be expected to implement the RADIUS  account-
+     ing server MIB.
+
+     However, it is possible for a RADIUS accounting entity to perform both
+     client and server functions. For example, a RADIUS proxy may act as  a
+     server  to one or more RADIUS accounting clients, while simultaneously
+     acting as an accounting client to one or more accounting servers.   In
+     such  situations, it is expected that RADIUS entities combining client
+     and server functionality will support both the client and server MIBs.
+
+
+     5.1.  Selected objects
+
+     This MIB module contains thirteen scalars as well as a single table:
+
+     (1)  the RADIUS Accounting Client Table contains one row for each
+          RADIUS accounting client that the server shares a secret with.
+
+     Each  entry  in  the  RADIUS  Accounting  Client Table includes eleven
+     columns presenting a view of the activity  of  the  RADIUS  accounting
+     server.
+
+
+     6.  Definitions
+
+     RADIUS-ACC-SERVER-MIB DEFINITIONS ::= BEGIN
+
+     IMPORTS
+            MODULE-IDENTITY, OBJECT-TYPE,
+            OBJECT-IDENTITY, experimental,
+            Counter32, Gauge32, Integer32,
+            IpAddress                          FROM SNMPv2-SMI
+            TEXTUAL-CONVENTION, DisplayString  FROM SNMPv2-TC
+            MODULE-COMPLIANCE, OBJECT-GROUP    FROM SNMPv2-CONF;
+
+
+     radius OBJECT-IDENTITY
+            STATUS  current
+            DESCRIPTION
+                  "The OID assigned to RADIUS MIB work by the IANA."
+            ::= { experimental 79 }
+
+     radiusAccounting  OBJECT IDENTIFIER ::= {radius 2}
+
+     radiusAccServMIB MODULE-IDENTITY
+            LAST-UPDATED "9811161659Z"
+            ORGANIZATION "IETF RADIUS Working Group."
+            CONTACT-INFO
+                   " Glen Zorn
+                     Microsoft
+                     One Microsoft Way
+                     Redmond, WA  98052
+                     US
+
+
+
+
+     Zorn & Aboba                 Informational                    [Page 3]
+
+     INTERNET-DRAFT       RADIUS Accounting Server MIB     11 November 1998
+
+
+                     Phone: +1 425 703 1559
+                     EMail: glennz@microsoft.com"
+            DESCRIPTION
+                  "The MIB module for entities implementing the server
+                   side of the Remote Access Dialin User Service (RADIUS)
+                   accounting protocol."
+            ::= { radiusAccounting 1 }
+
+     radiusAccServMIBObjects     OBJECT IDENTIFIER ::= { radiusAccServMIB 1 }
+
+     radiusAccServ      OBJECT IDENTIFIER ::= { radiusAccServMIBObjects 1 }
+
+     -- Textual conventions
+
+     RadiusTime ::= TEXTUAL-CONVENTION
+            DISPLAY-HINT "4d"
+            STATUS  current
+            DESCRIPTION
+                 "RadiusTime values are 32-bit unsigned integers which
+                  measure time in seconds."
+            SYNTAX  Gauge32
+
+     radiusAccServIdent OBJECT-TYPE
+            SYNTAX      DisplayString
+            MAX-ACCESS  read-only
+            STATUS      current
+            DESCRIPTION
+                  "The implementation identification string for the
+                   RADIUS accounting server software in use on the
+                   system, for example; `FNS-2.1'"
+            ::= {radiusAccServ 1}
+
+     radiusAccServUpTime OBJECT-TYPE
+            SYNTAX      RadiusTime
+            MAX-ACCESS  read-only
+            STATUS      current
+            DESCRIPTION
+                  "If the server has a persistent state (e.g., a process),
+                   this value will be the time elapsed since it started.
+                   For software without persistent state, this value will
+                   be zero."
+            ::= {radiusAccServ 2}
+
+     radiusAccServResetTime OBJECT-TYPE
+            SYNTAX      RadiusTime
+            MAX-ACCESS  read-only
+            STATUS      current
+            DESCRIPTION
+                  "If the server has a persistent state (e.g., a process)
+                   and supports a `reset' operation (e.g., can be told to
+                   re-read configuration files), this value will be the
+                   time elapsed since the last time the name server was
+                   `reset.'  For software that does not have persistence or
+                   does not support a `reset' operation, this value will be
+
+
+
+     Zorn & Aboba                 Informational                    [Page 4]
+
+     INTERNET-DRAFT       RADIUS Accounting Server MIB     11 November 1998
+
+
+                   zero."
+            ::= {radiusAccServ 3}
+
+     radiusAccServConfigReset OBJECT-TYPE
+            SYNTAX INTEGER { other(1),
+                             reset(2),
+                             initializing(3),
+                             running(4)}
+            MAX-ACCESS  read-write
+            STATUS      current
+            DESCRIPTION
+                   "Status/action object to reinitialize any persistent
+                    server state.  When set to reset(2), any persistent
+                    server state (such as a process) is reinitialized as if
+                    the server had just been started.  This value will
+                    never be returned by a read operation.  When read, one of
+                    the following values will be returned:
+                        other(1) - server in some unknown state;
+                        initializing(3) - server (re)initializing;
+                        running(4) - server currently running."
+            ::= {radiusAccServ 4}
+
+     -- New Stats proposed by Dale E. Reed Jr (daler@iea.com)
+
+          radiusAccServTotalRequests OBJECT-TYPE
+                 SYNTAX Counter32
+                 MAX-ACCESS read-only
+                 STATUS current
+                 DESCRIPTION
+                        "The total number of packets received on the
+                        accounting port since server start-up."
+                 ::= { radiusAccServ 5 }
+
+          radiusAccServTotalInvalidRequests OBJECT-TYPE
+                 SYNTAX Counter32
+                 MAX-ACCESS read-only
+                 STATUS current
+                 DESCRIPTION
+                       "The total number of RADIUS Accounting-Request packets
+                        received from unknown addresses since server start-up."
+                 ::= { radiusAccServ 6 }
+
+          radiusAccServTotalDupRequests OBJECT-TYPE
+                 SYNTAX Counter32
+                 MAX-ACCESS read-only
+                 STATUS current
+                 DESCRIPTION
+                       "The total number of duplicate RADIUS Accounting-Request
+                        packets received since server start-up."
+                 ::= { radiusAccServ 7 }
+
+          radiusAccServTotalResponses OBJECT-TYPE
+                 SYNTAX Counter32
+                 MAX-ACCESS read-only
+
+
+
+     Zorn & Aboba                 Informational                    [Page 5]
+
+     INTERNET-DRAFT       RADIUS Accounting Server MIB     11 November 1998
+
+
+                 STATUS current
+                 DESCRIPTION
+                       "The total number of RADIUS Accounting-Response packets
+                        sent since server start-up."
+                 ::= { radiusAccServ 8 }
+
+          radiusAccServTotalMalformedRequests OBJECT-TYPE
+                 SYNTAX Counter32
+                 MAX-ACCESS read-only
+                 STATUS current
+                 DESCRIPTION
+                       "The total number of malformed RADIUS Accounting-Request
+                        packets received since server start-up. Bad
+                        authenticators or unknown types are not included as
+                        malformed Access-Requests."
+                 ::= { radiusAccServ 9 }
+
+          radiusAccServTotalBadAuthenticators OBJECT-TYPE
+                 SYNTAX Counter32
+                 MAX-ACCESS read-only
+                 STATUS current
+                 DESCRIPTION
+                       "The total number of RADIUS Accounting-Request packets
+                        which contained invalid Signature attributes
+                        since server start-up."
+                 ::= { radiusAccServ 10 }
+
+          radiusAccServTotalPacketsDropped OBJECT-TYPE
+                SYNTAX Counter32
+                MAX-ACCESS read-only
+                STATUS current
+                DESCRIPTION
+                       "The total number of incoming packets
+                        silently discarded for a reason other than
+                        malformed, bad authenticators, or unknown types."
+                 ::= { radiusAccServ 11 }
+
+          radiusAccServTotalNoRecords OBJECT-TYPE
+                 SYNTAX Counter32
+                 MAX-ACCESS read-only
+                 STATUS current
+                 DESCRIPTION
+                       "The total number of RADIUS Accounting-Request packets
+                        which were received and responded to but not
+                        recorded since server start-up."
+                 ::= { radiusAccServ 12 }
+
+          radiusAccServTotalUnknownTypes OBJECT-TYPE
+                 SYNTAX Counter32
+                 MAX-ACCESS read-only
+                 STATUS current
+                 DESCRIPTION
+                       "The total number of RADIUS packets of unknown type which
+                        were received since server start-up."
+
+
+
+     Zorn & Aboba                 Informational                    [Page 6]
+
+     INTERNET-DRAFT       RADIUS Accounting Server MIB     11 November 1998
+
+
+                 ::= { radiusAccServ 13 }
+
+     -- End of new
+
+     radiusAccClientTable OBJECT-TYPE
+            SYNTAX     SEQUENCE OF RadiusAccClientEntry
+            MAX-ACCESS not-accessible
+
+            STATUS     current
+            DESCRIPTION
+                  "The (conceptual) table listing the RADIUS accounting
+                   clients with which the server shares a secret."
+            ::= { radiusAccServ 14 }
+
+     radiusAccClientEntry OBJECT-TYPE
+            SYNTAX     RadiusAccClientEntry
+            MAX-ACCESS not-accessible
+            STATUS     current
+            DESCRIPTION
+                  "An entry (conceptual row) representing a RADIUS
+                   accounting client with which the server shares a secret."
+            INDEX      { radiusAccClientIndex }
+            ::= { radiusAccClientTable 1 }
+
+     RadiusAccClientEntry ::= SEQUENCE {
+            radiusAccClientIndex                           Integer32,
+            radiusAccClientAddress                         IpAddress,
+            radiusAccClientID                          DisplayString,
+            radiusAccServPacketsDropped                    Counter32,
+            radiusAccServRequests                          Counter32,
+            radiusAccServDupRequests                       Counter32,
+            radiusAccServResponses                         Counter32,
+            radiusAccServBadAuthenticators                 Counter32,
+            radiusAccServMalformedRequests                 Counter32,
+            radiusAccServNoRecords                         Counter32,
+            radiusAccServUnknownTypes                      Counter32
+     }
+
+     radiusAccClientIndex OBJECT-TYPE
+            SYNTAX     Integer32 (0..MAX)
+            MAX-ACCESS not-accessible
+            STATUS     current
+            DESCRIPTION
+                  "A number uniquely identifying each RADIUS accounting
+                   client with which this server communicates."
+            ::= { radiusAccClientEntry 1 }
+
+     radiusAccClientAddress OBJECT-TYPE
+            SYNTAX     IpAddress
+            MAX-ACCESS read-only
+            STATUS     current
+            DESCRIPTION
+                  "The NAS-IP-Address of the RADIUS accounting client
+                   referred to in this table entry."
+
+
+
+     Zorn & Aboba                 Informational                    [Page 7]
+
+     INTERNET-DRAFT       RADIUS Accounting Server MIB     11 November 1998
+
+
+            ::= { radiusAccClientEntry 2 }
+
+     radiusAccClientID OBJECT-TYPE
+            SYNTAX     DisplayString
+            MAX-ACCESS read-only
+            STATUS     current
+            DESCRIPTION
+                  "The NAS-Identifier of the RADIUS accounting client
+                   referred to in this table entry. This is not necessarily
+                   the same as sysName in MIB II."
+            ::= { radiusAccClientEntry 3 }
+
+     -- Server Counters
+     --
+     -- Requests - DupRequests - BadAuthenticators - MalformedRequests -
+     -- UnknownTypes -  PacketsDropped - Responses = Pending
+     --
+     -- Requests - DupRequests - BadAuthenticators - MalformedRequests -
+     -- UnknownTypes - PacketsDropped - NoRecords = entries logged
+
+     radiusAccServPacketsDropped OBJECT-TYPE
+           SYNTAX Counter32
+           MAX-ACCESS read-only
+           STATUS current
+           DESCRIPTION
+                       "The total number of incoming packets received
+                        from this client and silently discarded
+                        for a reason other than malformed, bad
+                        authenticators, or unknown types"
+            ::= { radiusAccClientEntry  4 }
+
+     radiusAccServRequests OBJECT-TYPE
+            SYNTAX Counter32
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+                   "The total number of packets received from this
+                   client on the accounting port since server start-up."
+            ::= { radiusAccClientEntry  5 }
+
+     radiusAccServDupRequests OBJECT-TYPE
+            SYNTAX Counter32
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+                  "The total number of duplicate RADIUS Accounting-Request
+                   packets received from this client since server start-up."
+            ::= { radiusAccClientEntry 6 }
+
+     radiusAccServResponses OBJECT-TYPE
+            SYNTAX Counter32
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+
+
+
+     Zorn & Aboba                 Informational                    [Page 8]
+
+     INTERNET-DRAFT       RADIUS Accounting Server MIB     11 November 1998
+
+
+                  "The total number of RADIUS Accounting-Response packets
+                   sent to this client since server start-up."
+            ::= { radiusAccClientEntry  7 }
+
+     radiusAccServBadAuthenticators OBJECT-TYPE
+            SYNTAX Counter32
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+                  "The total number of RADIUS Accounting-Request packets
+                   which contained invalid  authenticators received
+                   from this client since server start-up."
+            ::= { radiusAccClientEntry  8 }
+
+     radiusAccServMalformedRequests OBJECT-TYPE
+            SYNTAX Counter32
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+                  "The total number of malformed RADIUS Accounting-Request
+                   packets which were received from this client since
+                   server start-up. Bad authenticators and unknown types
+                   are not included as malformed Accounting-Requests."
+            ::= { radiusAccClientEntry  9 }
+
+     radiusAccServNoRecords OBJECT-TYPE
+            SYNTAX Counter32
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+                       "The total number of RADIUS Accounting-Request packets
+                        which were received and responded to but not
+                        recorded since server start-up."
+            ::= { radiusAccClientEntry  10 }
+
+     radiusAccServUnknownTypes OBJECT-TYPE
+            SYNTAX Counter32
+            MAX-ACCESS read-only
+            STATUS current
+            DESCRIPTION
+                  "The total number of RADIUS packets of unknown type which
+                   were received from this client since accounting server
+                   start-up."
+            ::= { radiusAccClientEntry  11 }
+
+
+     -- conformance information
+
+     radiusAccServMIBConformance
+                   OBJECT IDENTIFIER ::= { radiusAccServMIB 2 }
+     radiusAccServMIBCompliances
+                   OBJECT IDENTIFIER ::= { radiusAccServMIBConformance 1 }
+     radiusAccServMIBGroups
+                   OBJECT IDENTIFIER ::= { radiusAccServMIBConformance 2 }
+
+
+
+     Zorn & Aboba                 Informational                    [Page 9]
+
+     INTERNET-DRAFT       RADIUS Accounting Server MIB     11 November 1998
+
+
+     -- compliance statements
+
+     radiusAccServMIBCompliance MODULE-COMPLIANCE
+            STATUS  current
+            DESCRIPTION
+                  "The compliance statement for accounting servers
+                   implementing the RADIUS Accounting Server MIB."
+            MODULE  -- this module
+            MANDATORY-GROUPS { radiusAccServMIBGroup }
+
+            ::= { radiusAccServMIBCompliances 1 }
+
+
+     -- units of conformance
+
+     radiusAccServMIBGroup OBJECT-GROUP
+           OBJECTS {radiusAccServIdent,
+                    radiusAccServUpTime,
+                    radiusAccServResetTime,
+                    radiusAccServConfigReset,
+                    radiusAccServTotalRequests,
+                    radiusAccServTotalInvalidRequests,
+                    radiusAccServTotalDupRequests,
+                    radiusAccServTotalResponses,
+                    radiusAccServTotalMalformedRequests,
+                    radiusAccServTotalBadAuthenticators,
+                    radiusAccServTotalPacketsDropped,
+                    radiusAccServTotalNoRecords,
+                    radiusAccServTotalUnknownTypes,
+                    radiusAccClientAddress,
+                    radiusAccClientID,
+                    radiusAccServPacketsDropped,
+                    radiusAccServRequests,
+                    radiusAccServDupRequests,
+                    radiusAccServResponses,
+                    radiusAccervBadAuthenticators,
+                    radiusAccServMalformedRequests,
+                    radiusAccServNoRecords,
+                    radiusAccServUnknownTypes
+                   }
+           STATUS  current
+           DESCRIPTION
+                 "The collection of objects providing management of
+                  a RADIUS Accounting Server."
+           ::= { radiusAccServMIBGroups 1 }
+
+     END
+
+
+     7.  References
+
+
+     [1]  Harrington,  D., Presuhn, R., and B. Wijnen, "An Architecture for
+          Describing  SNMP  Management  Frameworks",  RFC  2271,  Cabletron
+
+
+
+     Zorn & Aboba                 Informational                   [Page 10]
+
+     INTERNET-DRAFT       RADIUS Accounting Server MIB     11 November 1998
+
+
+          Systems,  Inc.,  BMC  Software,  Inc., IBM T. J. Watson Research,
+          January 1998.
+
+     [2]  Rose, M., and K. McCloghrie,  "Structure  and  Identification  of
+          Management  Information  for  TCP/IP-based  Internets", RFC 1155,
+          Performance Systems International, Hughes LAN Systems, May  1990.
+
+     [3]  Rose, M., and K. McCloghrie, "Concise MIB Definitions", RFC 1212,
+          Performance Systems  International,  Hughes  LAN  Systems,  March
+          1991.
+
+     [4]  M. Rose, "A Convention for Defining Traps for use with the SNMP",
+          RFC 1215, Performance Systems International, March 1991.
+
+     [5]  Case, J., McCloghrie, K., Rose, M., and S. Waldbusser, "Structure
+          of  Management  Information  for  Version 2 of the Simple Network
+          Management Protocol  (SNMPv2)",  RFC  1902,  SNMP  Research,Inc.,
+          Cisco  Systems, Inc., Dover Beach Consulting, Inc., International
+          Network Services, January 1996.
+
+     [6]  Case, J., McCloghrie, K., Rose, M., and S.  Waldbusser,  "Textual
+          Conventions for Version 2 of the Simple Network Management Proto-
+          col (SNMPv2)", RFC 1903,  SNMP  Research,  Inc.,  Cisco  Systems,
+          Inc.,  Dover  Beach  Consulting, Inc., International Network Ser-
+          vices, January 1996.
+
+     [7]  Case, J., McCloghrie, K., Rose, M., and S.  Waldbusser,  "Confor-
+          mance  Statements  for Version 2 of the Simple Network Management
+          Protocol (SNMPv2)", RFC 1904, SNMP Research, Inc., Cisco Systems,
+          Inc.,  Dover  Beach  Consulting, Inc., International Network Ser-
+          vices, January 1996.
+
+     [8]  Case, J., Fedor, M., Schoffstall, M., and J. Davin, "Simple  Net-
+          work  Management  Protocol", RFC 1157, SNMP Research, Performance
+          Systems International,  Performance  Systems  International,  MIT
+          Laboratory for Computer Science, May 1990.
+
+     [9]  Case, J., McCloghrie, K., Rose, M., and S. Waldbusser, "Introduc-
+          tion to Community-based SNMPv2", RFC 1901, SNMP  Research,  Inc.,
+          Cisco  Systems, Inc., Dover Beach Consulting, Inc., International
+          Network Services, January 1996.
+
+     [10] Case, J., McCloghrie, K., Rose, M., and S. Waldbusser, "Transport
+          Mappings  for Version 2 of the Simple Network Management Protocol
+          (SNMPv2)", RFC 1906, SNMP Research, Inc.,  Cisco  Systems,  Inc.,
+          Dover  Beach  Consulting,  Inc.,  International Network Services,
+          January 1996.
+
+     [11] Case, J., Harrington D., Presuhn R., and B. Wijnen, "Message Pro-
+          cessing  and Dispatching for the Simple Network Management Proto-
+          col (SNMP)", RFC 2272, SNMP Research,  Inc.,  Cabletron  Systems,
+          Inc.,  BMC  Software,  Inc.,  IBM  T. J. Watson Research, January
+          1998.
+
+
+
+
+     Zorn & Aboba                 Informational                   [Page 11]
+
+     INTERNET-DRAFT       RADIUS Accounting Server MIB     11 November 1998
+
+
+     [12] Blumenthal, U., and B. Wijnen, "User-based Securi Model (USM) for
+          version  3  of  the Simple Network Management Protocol (SNMPv3)",
+          RFC 2274, IBM T. J. Watson Research, January 1998.
+
+     [13] Case, J., McCloghrie, K., Rose, M., and S. Waldbusser,  "Protocol
+          Operations  for Version 2 of the Simple Network Management Proto-
+          col (SNMPv2)", RFC 1905,  SNMP  Research,  Inc.,  Cisco  Systems,
+          Inc.,  Dover  Beach  Consulting, Inc., International Network Ser-
+          vices, January 196.
+
+     [14] Levi, D., Meyer, P., and B. Stewart, "SNMPv3  Applications",  RFC
+          2273,  SNMP  Research,  Inc., Secure Computing Corporation, Cisco
+          Systems, January 1998
+
+     [15] Wijnen, B., Presuhn, R., and K.  McCloghrie,  "View-based  Access
+          Control  Model  (VACM) for the Simple Network Management Protocol
+          (SNMP)", RFC 2275, IBM T. J. Watson Research, BMC Software, Inc.,
+          Cisco Systems, Inc., January 1998
+
+     [16] Rigney, C., "RADIUS Accounting", RFC 2139, April 1997.
+
+     [17] "Information  processing systems - Open Systems Interconnection -
+          Specification of Abstract Syntax Notation One (ASN.1)",  Interna-
+          tional  Organization  for Standardization, International Standard
+          8824, December 1987.
+
+
+     8.  Security considerations
+
+     There are management  objects  (radiusAccServConfigReset)  defined  in
+     this  MIB that have a MAX-ACCESS clause of read-write and/or read-cre-
+     ate.  Such objects may be considered sensitive or vulnerable  in  some
+     network  environments.  The support for SET operations in a non-secure
+     environment without proper protection can have a  negative  effect  on
+     network operations.
+
+     There  are  a  number  of managed objects in this MIB that may contain
+     sensitive information. These are:
+
+     radiusAccClientAddress
+               This can be used to determine  the  address  of  the  RADIUS
+               accounting  client  with  which the server is communicating.
+               This  information  could  be  useful  in  impersonating  the
+               client.
+
+     radiusAccClientID
+               This can be used to determine the client ID for the account-
+               ing client with which  the  server  is  communicating.  This
+               information could be useful in impersonating the client.
+
+     It  is  thus important to control even GET access to these objects and
+     possibly to even encrypt the values of these object when sending  them
+     over  the network via SNMP.  Not all versions of SNMP provide features
+     for such a secure environment.
+
+
+
+     Zorn & Aboba                 Informational                   [Page 12]
+
+     INTERNET-DRAFT       RADIUS Accounting Server MIB     11 November 1998
+
+
+     SNMPv1 by itself is not a secure  environment.  Even  if  the  network
+     itself  is secure (for example by using IPSec), there is no control as
+     to who on  the  secure  network  is  allowed  to  access  and  GET/SET
+     (read/change/create/delete) the objects in this MIB.
+
+     It is recommended that the implementers consider the security features
+     as provided by the SNMPv3 framework.  Specifically,  the  use  of  the
+     User-based Security Model RFC 2274 [12] and the View-based Access Con-
+     trol Model RFC 2275 [15] is recommended.  Using  these  security  fea-
+     tures,   customer/users  can  give access to the objects only to those
+     principals  (users)  that  have  legitimate  rights  to  GET  or   SET
+     (change/create/delete) them.
+
+
+     9.  Acknowledgments
+
+     Thanks  to  Narendra  Gidwani  of Microsoft, Allan C. Rubens of MERIT,
+     Carl Rigney of Livingston and Peter Heitman of American Internet  Cor-
+     poration for useful discussions of this problem space.
+
+
+     10.  Authors' Addresses
+
+     Bernard Aboba
+     Microsoft Corporation
+     One Microsoft Way
+     Redmond, WA 98052
+
+     Phone: 425-936-6605
+     EMail: bernarda@microsoft.com
+
+     Glen Zorn
+     Microsoft Corporation
+     One Microsoft Way
+     Redmond, WA 98052
+
+     Phone: 425-703-1559
+     EMail: glennz@microsoft.com
+
+
+     11.  Expiration Date
+
+     This  memo  is filed as <draft-ietf-radius-acc-servermib-02.txt>,  and
+     expires May 1, 1999.
+
+
+     tSyS
+
+
+
+
+
+
+
+
+
+
+     Zorn & Aboba                 Informational                   [Page 13]
+

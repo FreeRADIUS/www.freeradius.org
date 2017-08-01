@@ -1,0 +1,50 @@
+{
+   "available" : [
+      {
+         "branch" : {
+            "name" : "0.x.x",
+            "url" : "/api/info/branch/0.x.x/"
+         },
+         "end" : {
+            "name" : "0.9.3",
+            "url" : "/api/info/branch/0.x.x/release/0.9.3/"
+         },
+         "start" : {
+            "name" : "0.1.0",
+            "url" : "/api/info/branch/0.x.x/release/0.1.0/"
+         }
+      },
+      {
+         "branch" : {
+            "name" : "1.x.x",
+            "url" : "/api/info/branch/1.x.x/"
+         },
+         "end" : {
+            "name" : "1.1.8",
+            "url" : "/api/info/branch/1.x.x/release/1.1.8/"
+         },
+         "start" : {
+            "name" : "1.0.0",
+            "url" : "/api/info/branch/1.x.x/release/1.0.0/"
+         }
+      },
+      {
+         "branch" : {
+            "name" : "2.x.x",
+            "url" : "/api/info/branch/2.x.x/"
+         },
+         "end" : {
+            "name" : "2.2.10",
+            "url" : "/api/info/branch/2.x.x/release/2.2.10/"
+         },
+         "start" : {
+            "name" : "2.0.0",
+            "url" : "/api/info/branch/2.x.x/release/2.0.0/"
+         }
+      }
+   ],
+   "category" : "obsolete",
+   "description" : "The rlm_acct_unique module.",
+   "documentation_link" : "http://networkradius.com/doc/current/raddb/mods-available/home.html",
+   "name" : "rlm_acct_unique"
+}

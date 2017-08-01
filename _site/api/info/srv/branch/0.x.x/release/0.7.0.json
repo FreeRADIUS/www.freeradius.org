@@ -1,0 +1,127 @@
+{
+   "date" : "2002-07-26T18:05:05Z",
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.7.0.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.7.0.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.7.0.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-0.7.0.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Allow attributes of type 'date' to be sent in outgoing packets Bug found by Loh John Wu <ljwu@sandvine.com>"
+      },
+      {
+         "description" : "Add 'Realm' attribute, even if it's a LOCAL realm Bug noted by Chris Brotsos"
+      },
+      {
+         "description" : "Added experimental SMB authentication module, which uses PAP passwords to authenticate against an NT-Domain NT/LM-passwords are not currently supported"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_passwd",
+               "url" : "/api/info/component/rlm_passwd/"
+            }
+         ],
+         "description" : "More documentation for rlm_passwd, rlm_mschap, and rlm_digest"
+      },
+      {
+         "description" : "'configure' changes to better find sem_init and friends"
+      },
+      {
+         "description" : "Allow the use of previously installed libtool, and libltdl This appears to help a lot on FreeBSD"
+      },
+      {
+         "description" : "Fixes to work on non-threaded builds Patch from Rainer Weikusat"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "SQL now re-connects to the server, if the connection is lost Currently only MySQL is fixed, but other patches will follow Patch from Todd T. Fries"
+      },
+      {
+         "description" : "Added experimental use of dynamicly translated variables, CallBack-Number = `%{request:Calling-Station-Id}` sets the value of the CallBack-Number attribute to the value of the Calling-Station-Id in the original request"
+      },
+      {
+         "description" : "Cute hack: Allow regex matching on IP addresses, by placing the string representation of the IP address (1.2.3.4) into the internal data structure.  This allows things like NAS-IP-Address =~ \"^192\\.168\", which may be useful"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_dbm",
+               "url" : "/api/info/component/rlm_dbm/"
+            }
+         ],
+         "description" : "Add documentation for experimental rlm_dbm module"
+      },
+      {
+         "description" : "Added experimental Perl module"
+      },
+      {
+         "description" : "Added the relevant IETF RFC's (standards documents) to 'doc/rfc', along with some simple perl scripts to convert them to cross- referenced HTML"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_python",
+               "url" : "/api/info/component/rlm_python/"
+            }
+         ],
+         "description" : "Updated the experimental Python module"
+      },
+      {
+         "description" : "Added Cisco SSG VSA's"
+      },
+      {
+         "description" : "When rejecting authentication due to external Exec-Program, do NOT free the reply pairs, as the server core will take care of doing that.  Bug noted by Thomas Jalsovsky"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_cram",
+               "url" : "/api/info/component/rlm_cram/"
+            }
+         ],
+         "description" : "New experimental module: rlm_cram Supports APOP, CRAM-MD5, CRAM-MD4, CRAM-SHA1 with it's own VSA's. This module may be used for SMTP/POP3/IMAP4 server authentication"
+      },
+      {
+         "description" : "Make Exec-Program and Exec-Program-Wait work in debugging mode"
+      },
+      {
+         "description" : "Finalize the radrelay additions, based on Cistron RADIUS Patches from Simon <lists@routemeister.net>"
+      },
+      {
+         "description" : "Fix issues with linking, by making libradius shared"
+      },
+      {
+         "description" : "Fix issues with MD4, MD5, SHA1, and use of OpenSSL"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_x99_token",
+               "url" : "/api/info/component/rlm_x99_token/"
+            }
+         ],
+         "description" : "Update rlm_x99_token module to compile"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_0_7_0.tar.gz"
+      }
+   ],
+   "name" : "0.7.0",
+   "summary" : "The focus of this release is stability"
+}

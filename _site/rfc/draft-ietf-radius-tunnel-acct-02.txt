@@ -1,0 +1,505 @@
+
+
+
+
+Network Working Group                                            G. Zorn
+Internet-Draft                                     Microsoft Corporation
+Updates: RFC 2139                                              D. Mitton
+Category: Informational                                     Bay Networks
+<draft-ietf-radius-tunnel-acct-02.txt>                    September 1998
+
+
+
+      RADIUS Accounting Modifications for Tunnel Protocol Support
+
+
+
+1.  Status of this Memo
+
+This  document  is an Internet-Draft.  Internet-Drafts are working docu-
+ments of the Internet Engineering Task Force (IETF), its areas, and  its
+working groups.  Note that other groups may also distribute working doc-
+uments as Internet-Drafts.
+
+Internet-Drafts are draft documents valid for a maximum  of  six  months
+and  may  be  updated,  replaced, or obsoleted by other documents at any
+time.  It is inappropriate to use Internet-Drafts as reference  material
+or to cite them other than as work in progress.''
+
+To  learn  the  current  status  of any Internet-Draft, please check the
+``1id-abstracts.txt'' listing contained in  the  Internet-Drafts  Shadow
+Directories  on ds.internic.net (US East Coast), nic.nordu.net (Europe),
+ftp.isi.edu (US West Coast), or munnari.oz.au (Pacific Rim).
+
+The distribution of this memo is unlimited.  It is filed as <draft-ietf-
+radius-tunnel-acct-02.txt>,  and  expires  March  10, 1999.  Please send
+comments to the RADIUS  Working  Group  mailing  list  (ietf-radius@liv-
+ingston.com) or to the authors (glennz@microsoft.com and dmitton@baynet-
+works.com).
+
+
+2.  Abstract
+
+This document defines new RADIUS accounting Attributes  and  new  values
+for  the existing Acct-Status-Type Attribute [1] designed to support the
+provision of compulsory tunneling in dial-up networks.
+
+
+3.  Motivation
+
+Many applications of tunneling protocols such as PPTP and  L2TP  involve
+dial-up network access.  Some, such as the provision of secure access to
+corporate intranets via the Internet,  are  characterized  by  voluntary
+
+
+
+Zorn & Mitton                                                   [Page 1]
+
+INTERNET-DRAFT      RADIUS Accounting Tunnel Support      September 1998
+
+
+tunneling:  the  tunnel is created at the request of the user for a spe-
+cific purpose.  Other applications  involve  compulsory  tunneling:  the
+tunnel  is created without any action from the user and without allowing
+the user any choice in the matter.  Examples of applications that  might
+be  implemented  using  compulsory tunnels are Internet software upgrade
+servers, software registration servers and banking services.  These  are
+all services which, without compulsory tunneling, would probably be pro-
+vided using dedicated networks or  at  least  dedicated  network  access
+servers  (NAS),  since  they are characterized by the need to limit user
+access to specific hosts.  Given the existence of widespread support for
+compulsory tunneling, however, these types of services could be accessed
+via any Internet service provider (ISP).  Typically,  ISPs  providing  a
+service  want  to collect data regarding that service, for billing, net-
+work planning, etc.  The most popular way to collect usage data in dial-
+up  networks today is by means of RADIUS  Accounting.  The use of RADIUS
+Accounting allows dial-up usage data to be collected at a central  loca-
+tion,  rather  than  stored  on  each NAS.  It makes sense to use RADIUS
+Accounting to collect  usage  data  regarding  tunneling,  since  RADIUS
+Accounting  has  been  widely implemented and was designed to carry this
+type of information.  In order to provide this functionality, new RADIUS
+attributes are needed to aid in the collation of tunnel usage data; this
+document defines these attributes.  In addition, several new values  for
+the  Acct-Status-Type  attribute are proposed.  Specific recommendations
+for, and examples of, the application of this attribute for the L2TP and
+PPTP protocols can be found in draft-ietf-radius-tunnel-imp-XX.txt.
+
+
+4.  Specification of Requirements
+
+In  this  document,  the key words "MAY", "MUST, "MUST NOT", "optional",
+"recommended", "SHOULD", and "SHOULD NOT",  are  to  be  interpreted  as
+described in [2].
+
+
+5.  New Acct-Status-Type Values
+
+5.1.  Tunnel-Start
+
+   Value
+
+      9
+
+   Description
+
+      This  value MAY be used to mark the establishment of a tunnel with
+      another node.  If this value is  used,  the  following  attributes
+      SHOULD also be included in the Accounting-Request packet:
+
+
+
+
+Zorn & Mitton                                                   [Page 2]
+
+INTERNET-DRAFT      RADIUS Accounting Tunnel Support      September 1998
+
+
+         NAS-IP-Address (4)
+         Acct-Delay-Time (41)
+         Tunnel-Type (64)
+         Tunnel-Medium-Type (65)
+         Tunnel-Client-Endpoint (66)
+         Tunnel-Server-Endpoint (67)
+         Acct-Tunnel-Connection (68)
+
+
+5.2.  Tunnel-Stop
+
+   Value
+
+      10
+
+
+   Description
+
+      This  value  MAY be used to mark the destruction of a tunnel to or
+      from  another  node.   If  this  value  is  used,  the   following
+      attributes  SHOULD  also  be  included  in  the Accounting-Request
+      packet:
+
+         NAS-IP-Address (4)
+         Acct-Delay-Time (41)
+         Acct-Terminate-Cause (49)
+         Tunnel-Type (64)
+         Tunnel-Medium-Type (65)
+         Tunnel-Client-Endpoint (66)
+         Tunnel-Server-Endpoint (67)
+         Acct-Tunnel-Connection (68)
+
+
+5.3.  Tunnel-Reject
+
+   Value
+
+      11
+
+
+   Description
+
+      This value MAY be used to mark the rejection of the  establishment
+      of a tunnel with another node.  If this value is used, the follow-
+      ing attributes SHOULD also be included in  the  Accounting-Request
+      packet:
+
+         NAS-IP-Address (4)
+
+
+
+Zorn & Mitton                                                   [Page 3]
+
+INTERNET-DRAFT      RADIUS Accounting Tunnel Support      September 1998
+
+
+         Acct-Delay-Time (41)
+         Acct-Terminate-Cause (49)
+         Tunnel-Type (64)
+         Tunnel-Medium-Type (65)
+         Tunnel-Client-Endpoint (66)
+         Tunnel-Server-Endpoint (67)
+         Acct-Tunnel-Connection (68)
+
+
+5.4.  Tunnel-Link-Start
+
+   Value
+
+      12
+
+
+   Description
+
+      This  value MAY be used to mark the creation of a tunnel link.  If
+      this value is  used,  the  following  attributes  SHOULD  also  be
+      included in the Accounting-Request packet:
+
+      NAS-IP-Address (4)
+      NAS-Port (5)
+      Acct-Delay-Time (41)
+      Tunnel-Type (64)
+      Tunnel-Medium-Type (65)
+      Tunnel-Client-Endpoint (66)
+      Tunnel-Server-Endpoint (67)
+      Acct-Tunnel-Connection (68)
+
+
+5.5.  Tunnel-Link-Stop
+
+   Value
+
+      13
+
+
+   Description
+
+      This  value  MAY be used to mark the destruction of a tunnel link.
+      If this value is used, the following  attributes  SHOULD  also  be
+      included in the Accounting-Request packet:
+
+      NAS-IP-Address (4)
+      NAS-Port (5)
+      Acct-Delay-Time (41)
+
+
+
+Zorn & Mitton                                                   [Page 4]
+
+INTERNET-DRAFT      RADIUS Accounting Tunnel Support      September 1998
+
+
+      Acct-Input-Octets (42)
+      Acct-Output-Octets (43)
+      Acct-Session-Id (44)
+      Acct-Session-Time (46)
+      Acct-Input-Packets (47)
+      Acct-Output-Packets (48)
+      Acct-Terminate-Cause (49)
+      Acct-Multi-Session-Id (51)
+      NAS-Port-Type (61)
+      Tunnel-Type (64)
+      Tunnel-Medium-Type (65)
+      Tunnel-Client-Endpoint (66)
+      Tunnel-Server-Endpoint (67)
+      Acct-Tunnel-Connection (68)
+      Acct-Tunnel-Packets-Lost (??)
+
+
+5.6.  Tunnel-Link-Reject
+
+   Value
+
+      14
+
+
+   Description
+
+      This  value MAY be used to mark the rejection of the establishment
+      of a new link in an existing tunnel.  If this value is  used,  the
+      following  attributes  SHOULD  also be included in the Accounting-
+      Request packet:
+
+         NAS-IP-Address (4)
+         Acct-Delay-Time (41)
+         Acct-Terminate-Cause (49)
+         Tunnel-Type (64)
+         Tunnel-Medium-Type (65)
+         Tunnel-Client-Endpoint (66)
+         Tunnel-Server-Endpoint (67)
+         Acct-Tunnel-Connection (68)
+
+
+6.  Attributes
+
+6.1.  Acct-Tunnel-Connection
+
+   Description
+
+      This Attribute indicates the identifier  assigned  to  the  tunnel
+
+
+
+Zorn & Mitton                                                   [Page 5]
+
+INTERNET-DRAFT      RADIUS Accounting Tunnel Support      September 1998
+
+
+      session.   It  SHOULD  be  included  in Accounting-Request packets
+      which contain  an  Acct-Status-Type  attribute  having  the  value
+      Start, Stop or any of the values described above.  This attribute,
+      along with the Tunnel-Client-Endpoint  and  Tunnel-Server-Endpoint
+      attributes  [3],  may be used to provide a means to uniquely iden-
+      tify a tunnel session for auditing purposes.
+
+   A summary of the Acct-Tunnel-Connection  Attribute  format  is  shown
+   below.  The fields are transmitted from left to right.
+
+    0                   1                   2
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |      Type     |    Length     |    String ...
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Type
+
+      68 for Acct-Tunnel-Connection
+
+
+   Length
+
+      >= 3
+
+
+   String
+
+      The  format  of  the  identifier  represented  by the String field
+      depends upon the value of  the  Tunnel-Type  attribute  [3].   For
+      example,  to  fully  identify  an L2TP tunnel connection, the L2TP
+      Tunnel ID and Call ID might be encoded in this field.   The  exact
+      encoding of this field is implementation dependent.
+
+
+6.2.  Acct-Tunnel-Packets-Lost
+
+   Description
+
+      This  Attribute  indicates  the  number of packets lost on a given
+      link.  It SHOULD be included in Accounting-Request  packets  which
+      contain  an  Acct-Status-Type  attribute  having the value Tunnel-
+      Link-Stop.
+
+   A summary of the Acct-Tunnel-Packets-Lost Attribute format  is  shown
+   below.  The fields are transmitted from left to right.
+
+    0                   1                   2                   3
+
+
+
+Zorn & Mitton                                                   [Page 6]
+
+INTERNET-DRAFT      RADIUS Accounting Tunnel Support      September 1998
+
+
+    0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |      Type     |    Length     |               Lost
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+              Lost (cont)          |
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+   Type
+
+      ?? for Acct-Tunnel-Packets-Lost
+
+
+   Length
+
+      6
+
+
+   Lost
+
+      The  Lost field is 4 octets in length and represents the number of
+      packets lost on the link.
+
+
+7.  Table of Attributes
+
+The following table provides a guide to which attributes may be found in
+Accounting-Request  packets.   No  tunnel  attributes should be found in
+Accounting-Response packets.
+
+   Request        #       Attribute
+     0-1          64      Tunnel-Type
+     0-1          65      Tunnel-Medium-Type
+     0-1          66      Tunnel-Client-Endpoint
+     0-1          67      Tunnel-Server-Endpoint
+     0-1          68      Acct-Tunnel-Connection
+     0            69      Tunnel-Password
+     0-1          81      Tunnel-Private-Group-ID
+     0-1          82      Tunnel-Assignment-ID
+     0            83      Tunnel-Preference
+     0-1          ??      Acct-Tunnel-Packets-Lost
+
+The following table defines the meaning of the above table entries.
+   0     This attribute MUST NOT be present in packet.
+   0+    Zero or more instances of this attribute MAY be present in packet.
+   0-1   Zero or one instance of this attribute MAY be present in packet.
+
+
+
+
+
+
+Zorn & Mitton                                                   [Page 7]
+
+INTERNET-DRAFT      RADIUS Accounting Tunnel Support      September 1998
+
+
+8.  Security Considerations
+
+By "sniffing" RADIUS Accounting packets, it might  be  possible  for  an
+eavesdropper to perform a passive analysis of tunnel connections.
+
+
+9.  References
+
+[1]  Rigney, "RADIUS Accounting", RFC 2139, April 1997
+
+[2]  Bradner,  "Key  words  for use in RFCs to Indicate Requirement Lev-
+     els", RFC 2119, March 1997
+
+[3]  Zorn, G., Leifer, D., Rubens, A., Shriver, J.,  "RADIUS  Attributes
+     for  Tunnel Protocol Support", draft-ietf-radius-tunnel-auth-05.txt
+     (work in progress), April 1998
+
+
+10.  Acknowledgements
+
+Thanks   to   Bernard   Aboba   (aboba@internaut.com),   Aydin    Edguer
+(edguer@MorningStar.com)  and  Gurdeep Singh Pall (gurdeep@microsoft.com
+for salient input and review.
+
+
+11.  Chair's Address
+
+The RADIUS Working Group can be contacted via the current chair:
+
+   Carl Rigney
+   Livingston Enterprises
+   6920 Koll Center Parkway, Suite 220
+   Pleasanton, California  94566
+
+   Phone: +1 510 426 0770
+   E-Mail: cdr@livingston.com
+
+
+12.  Authors' Addresses
+
+Questions about this memo can also be directed to:
+
+   Glen Zorn
+   Microsoft Corporation
+   One Microsoft Way
+   Redmond, Washington 98052
+
+   Phone:  +1 425 703 1559
+
+
+
+Zorn & Mitton                                                   [Page 8]
+
+INTERNET-DRAFT      RADIUS Accounting Tunnel Support      September 1998
+
+
+   E-Mail: glennz@microsoft.com
+
+
+   Dave Mitton
+   Bay Networks, Inc.
+   8 Federal Street, BL8-05
+   Bilerica, MA 01821
+
+   Phone:  +1 978 916 4570
+   E-Mail: dmitton@baynetworks.com
+
+
+13.  Expiration Date
+
+This memo is filed as draft-ietf-radius-tunnel-acct-02.txt  and  expires
+on March 10, 1999.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Zorn & Mitton                                                   [Page 9]
+

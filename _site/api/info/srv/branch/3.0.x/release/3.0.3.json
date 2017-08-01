@@ -1,0 +1,333 @@
+{
+   "date" : "2014-05-12T15:22:09Z",
+   "defects" : [
+      {
+         "description" : "Fix xlat expression %{attribute[n]} so that it actually returns the n'th attribute instead of the first one"
+      },
+      {
+         "description" : "Don't parse string on RHS of update {} when using unary operators (!*).  The RHS should always be ignored"
+      },
+      {
+         "description" : "Check for more optional functions in json-c so we can Build with libjson0, which is the name of the json-c package on debian/ubuntu"
+      },
+      {
+         "description" : "Fix issue in radmin where the main dictionaries would not be loaded which, depending on the configuration, may have caused validation errors"
+      },
+      {
+         "description" : "Fix handling of \"%{reply:3GPP-*}\""
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_perl",
+               "url" : "/api/info/component/rlm_perl/"
+            }
+         ],
+         "description" : "Fix rlm_perl garbage attributes"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Fix oracle SQL queries, which amongst other things still used the old expansion format, which is no longer supported/parsed"
+      },
+      {
+         "description" : "Truncate long format strings and error markers instead of omitting them"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Fix multiple attribute parsing in rlm_rest JSON"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Don't crash in rlm_rest if connect_uri is commented out in the configuration"
+      },
+      {
+         "description" : "Don't double-escape strings to / from Perl.  You may need to double-check your Perl scripts if they use \"\\\" characters See mods-available/perl for documentation"
+      },
+      {
+         "description" : "Don't re-run \"authorize\" if a home server fails to respond"
+      },
+      {
+         "description" : "Don't append \"0x\" to hex output of octets types, for xlat expansions.  This is the same as v2, and makes it easier to concatenate multiple attributes of type \"octets\""
+      },
+      {
+         "description" : "FreeBSD fixes for execinfo linking"
+      },
+      {
+         "description" : "Make some of the module configurations more consistent"
+      },
+      {
+         "description" : "Fix corner cases where STDOUT wouldn't be closed in daemon mode"
+      },
+      {
+         "description" : "Re-enable \"update coa\" and originating CoA requests"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Prevent multiple threads writing to the sql query logs"
+      },
+      {
+         "description" : "Fix zombie period calculation.  Closes #579"
+      },
+      {
+         "description" : "Properly parent VPs for talloc, when moving them in map2request"
+      },
+      {
+         "description" : "Various fixes for talloc parent / child relationships"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_counter",
+               "url" : "/api/info/component/rlm_counter/"
+            }
+         ],
+         "description" : "Allow rlm_counter to support VSAs"
+      },
+      {
+         "description" : "Normalize return codes for many modules. \"do nothing\" is noop, not \"ok\""
+      },
+      {
+         "description" : "Run Post-Proxy-Type Fail.  Closes #576"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Fix DHCP destination port for replies to relays.  Closes #591"
+      },
+      {
+         "description" : "Do-Not-Respond policy works again  Closes #593"
+      },
+      {
+         "description" : "Proxy-To-Virtual-Server works again.  Closes #596"
+      },
+      {
+         "description" : "Build fixes for ancient systems.  Closes #607, #608, #609"
+      },
+      {
+         "description" : "%{Module-Return-Code} works again.  Closes #610"
+      },
+      {
+         "description" : "Don't increment statistics for Status-Server responses Closes #612"
+      },
+      {
+         "description" : "A duplicate request isn't a duplicate if the original one is marked \"done\".  This should lower retransmissions from clients"
+      },
+      {
+         "description" : "Fix multiple regular expression and glob memory leaks"
+      },
+      {
+         "description" : "Don't allocate any memory in fr_fault() as it can cause malloc to deadlock"
+      },
+      {
+         "description" : "Temporarily set dumpable flag before calling system in fr_fault() else the debugger may not be able to attach"
+      },
+      {
+         "description" : "Set nonblock on all TCP client sockets"
+      },
+      {
+         "description" : "Fix minor buffer overrun in mschapv2 where some attribute strings were not correctly \\0 terminated"
+      },
+      {
+         "description" : "Fix crash on authentication failure with MIT kerberos"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Fix code so that octal escape sequences aren't prematurely unescaped in rlm_sql, radclient, preprocess, and other places. This may require configuration changes, as these sequences will no longer need double escaping (\\\\) of the backslash"
+      },
+      {
+         "description" : "The connection pools no longer have one connection used twice in certain rare conditions"
+      },
+      {
+         "description" : "Use self pipes for internal signals.  The code was there, but was unused"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Don't crash if there are outstanding EAP sessions and were told to exit gracefully"
+      },
+      {
+         "description" : "Fix typo in dictionary.rfc4072"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.3.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.3.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.3.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.3.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Everything now builds with no warnings from the C compiler, clang static analyzer, or cppcheck"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "rlm_ldap now supports defining the LDAP attribute name via backticked expansion (i.e. shell command) in RADIUS <-> LDAP mappings"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "rlm_ldap now supports older style generic attributes"
+      },
+      {
+         "description" : "dynamic expansions (e.g. \"%{expr:1 + 2}\" are now parsed when the server starts.  Syntax errors in the strings are caught, and a descriptive error is printed"
+      },
+      {
+         "description" : "Static regular expressions (e.g. /a*b/) are now parsed when the server starts.  Syntax errors in the strings are caught, and a descriptive error is printed"
+      },
+      {
+         "description" : "dynamic expansions are cached after being parsed.  They are no longer re-parsed at run-time for every request"
+      },
+      {
+         "description" : "regular expressions are now parsed and cached when the server starts"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Added the %{rest:} expansion to rlm_rest, which will send a GET request to the URL passed as the format string Any body text will be written to the expansion buffer"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "rlm_rest now available as a debian package"
+      },
+      {
+         "description" : "When an 'if' condition statically evaluates to true/false, unlang does more static optimization.  For examples, see src/tests/keywords/if-skip"
+      },
+      {
+         "description" : "All modules are marked as safe for '-C', which lets the dynamic expansion checks work in more situations"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_rest",
+               "url" : "/api/info/component/rlm_rest/"
+            }
+         ],
+         "description" : "Added 'none' and 'custom' rlm_rest body types. 'custom' allows sending of arbitrary expanded text and content-type headers"
+      },
+      {
+         "description" : "Added \"config\" section to Perl.  See mods-available/perl"
+      },
+      {
+         "description" : "Added '%v' which expands to the server version - Patch from Alan Buxey"
+      },
+      {
+         "description" : "more mis-matched casts are caught in \"if\" conditions, and descriptive errors are printed"
+      },
+      {
+         "description" : "Support basic response validation in radclient. This allows administrators to write local test cases for their site-specific configurations"
+      },
+      {
+         "description" : "Removed radconf2xml and radmin \"show client config\" and \"show home_server config\""
+      },
+      {
+         "description" : "Forbid running with vulnerable versions of OpenSSL See \"allow_vulnerable_openssl\" in the \"security\" subsection of \"radiusd.conf\""
+      },
+      {
+         "description" : "Catch underlying \"heartbleed\" problem, so that nothing bad happens even when using a vulnerable version of OpenSSL"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_linelog",
+               "url" : "/api/info/component/rlm_linelog/"
+            }
+         ],
+         "description" : "Add locking API for sql_null, linelog, and detail modules, which should improve performance and work around issues on platforms with bad file locking"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Allow DHCP NAKs to be delayed, via setting reply:FreeRADIUS-Response-Delay = 1"
+      },
+      {
+         "description" : "Allow tag and array references anywhere attributes are allowed in \"unlang\""
+      },
+      {
+         "description" : "many enhancements to radsniff, including output to collectd, ipv6 support and packet loss statistics"
+      },
+      {
+         "description" : "Many dictionary updates (ZTE, Brocade, Motorola)"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_yubikey",
+               "url" : "/api/info/component/rlm_yubikey/"
+            }
+         ],
+         "description" : "rlm_yubikey now automatically splits passwords from OTP strings"
+      },
+      {
+         "description" : "The detail file reader is now threaded by default This should improve performance reading the files"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_3_0_3.tar.gz"
+      }
+   ],
+   "name" : "3.0.3",
+   "summary" : "The focus of this release is stability"
+}

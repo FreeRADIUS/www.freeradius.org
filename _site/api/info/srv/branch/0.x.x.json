@@ -1,0 +1,6 @@
+{
+   "description" : "Obsolete stable branch",
+   "name" : "0.x.x",
+   "priority" : 9999,
+   "status" : "obsolete"
+}

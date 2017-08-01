@@ -1,0 +1,310 @@
+{
+   "date" : "2015-07-08T11:41:25Z",
+   "defects" : [
+      {
+         "description" : "Be more careful about unused config item warnings when using -Xx"
+      },
+      {
+         "description" : "Move more defines to be auto-generated"
+      },
+      {
+         "description" : "Allow virtual servers in proxy fallback"
+      },
+      {
+         "description" : "Allow %{module:} to work"
+      },
+      {
+         "description" : "Don't crash in RadSec.  Closes #980"
+      },
+      {
+         "description" : "Return better errors when a unix group / user is not found"
+      },
+      {
+         "description" : "Re-enable detail module \"locking\" parameter"
+      },
+      {
+         "description" : "Don't crash when logging replies from Status-Server packets"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_couchbase",
+               "url" : "/api/info/component/rlm_couchbase/"
+            }
+         ],
+         "description" : "The couchbase module now uses \"update\" instead of \"map\", for consistent with the rest of the server.  See raddb/mods-available/couchbase"
+      },
+      {
+         "description" : "Don't require NT-Password for MS-CHAP password changes"
+      },
+      {
+         "description" : "Be a bit more careful about decrypting MS-CHAP-MPPE-Key attributes. Closes #1013.  There is no perfect fix, tho"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Fix security issues with EAP-PWD See http://freeradius.org/security.html#eap-pwd-2015"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Fix dynamic clients read from SQL in non-debug mode"
+      },
+      {
+         "description" : "MS-CHAP now allows retries (i.e. password change) when passwords are expired"
+      },
+      {
+         "description" : "Allow \"user=radiusd\" when the server is already user \"radiusd\""
+      },
+      {
+         "description" : "suid up/down works on non-Linux systems.  This means that the control socket should have the correct ownership"
+      },
+      {
+         "description" : "Fix issue which caused the server to sometimes have problems when a home server was marked zombie"
+      },
+      {
+         "description" : "Fix format.pl because Perl is now more picky"
+      },
+      {
+         "description" : "Fix proxy to Packet-Dst-IP-Address, so that it uses the correct destination port"
+      },
+      {
+         "description" : "Fix corner case with cursor functions and removal"
+      },
+      {
+         "description" : "OpenDirectory fixes and documentation"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_redis",
+               "url" : "/api/info/component/rlm_redis/"
+            }
+         ],
+         "description" : "Fix leaks in rlm_redis"
+      },
+      {
+         "description" : "RFC 6929 \"evs\" attributes are now encoded / decoded properly"
+      },
+      {
+         "description" : "Fix talloc pool leaks when receiving malformed or retransmitted Accounting/CoA requests"
+      },
+      {
+         "description" : "Printed attributes again use double quotes instead of single quotes"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "Set X509_V_FLAG_CRL_CHECK_ALL, and add \"check_all_crl\" to eap.conf.  Fixes oCert CVE-2015-4680"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_expr",
+               "url" : "/api/info/component/rlm_expr/"
+            }
+         ],
+         "description" : "rlm_expr now errors out correctly on malformed attribute references instead of triggering an assert"
+      },
+      {
+         "description" : "Make \"break\" work in \"foreach\" loops"
+      },
+      {
+         "description" : "Allow dynamic expansions to work again in the \"hints\" file"
+      },
+      {
+         "description" : "Correct minor typos in comments and examples from Alan Buxy"
+      },
+      {
+         "description" : "Re-urlencode the path portion of ldapi:// urls before passing it to ldap_initialise"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.9.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.9.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.9.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.9.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Make \"pool\" configurations more consistent, and update documentation for them"
+      },
+      {
+         "description" : "Move connection pool logic to \"most recently started\", instead of MRU.  This should help with pool stability"
+      },
+      {
+         "description" : "More VSAs for 3GPP2"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_perl",
+               "url" : "/api/info/component/rlm_perl/"
+            }
+         ],
+         "description" : "Added examples of multi-value attributes to rlm_perl"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "LDAP-Group and SQL-Group attributes are now dynamically allocated"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Only the \"sql\" module registers SQL-Group.  Other instances register \"instance-name-SQL-Group\", similarly to \"ldap\""
+      },
+      {
+         "description" : "Unknown attributes are now complained about more often when used in unlang statements.  e.g. if (Foo-Bar == 3) used to be a string to string comparison.  It is now a parse error"
+      },
+      {
+         "description" : "Rename RLM_COMPONENT_* to MOD_* in the code This makes many things easier"
+      },
+      {
+         "description" : "Move to C99 initializers for modules"
+      },
+      {
+         "description" : "Load modules in raddb/mods-enabled.  This allows attributes like \"LDAP-Group\" to be used in the \"files\" module, without explicit ordering or listing in \"instantiate\""
+      },
+      {
+         "description" : "Added 'bootstrap' section to modules.  Third-party modules will need to be updated"
+      },
+      {
+         "description" : "When adding clients from a DB, add them to a virtual server if that virtual server has a \"listen\" section.  Otherwise, add the clients to the global list"
+      },
+      {
+         "description" : "When reading dynamic clients from a file, don't expire them if the underlying file is unchanged"
+      },
+      {
+         "description" : "Allow the server to originate CoA requests from the post-auth stage"
+      },
+      {
+         "description" : "The server creates ${run_dir} and ${logdir} in daemon mode, if they do not already exist"
+      },
+      {
+         "description" : "Add dictionary for Wi-Fi Alliance Hotspot 2.0.  The server now supports all mandatory and optional attributes for this specification"
+      },
+      {
+         "description" : "HUP now re-loads the configuration only if the files have changed.  If all files are unchanged, HUP re-opens the log file, and does nothing else"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            },
+            {
+               "name" : "rlm_eap_tls",
+               "url" : "/api/info/component/rlm_eap_tls/"
+            }
+         ],
+         "description" : "Much better debug messages for EAP-TLS, including which attributes are cached, and when they are retrieved"
+      },
+      {
+         "description" : "Increase default max_requests to 16384.  Memory is cheap now"
+      },
+      {
+         "description" : "Added \"stats memory\" commands to radmin.  Debug build only"
+      },
+      {
+         "description" : "Aptilo controller dictionary updates"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "SQL modules now use Acct-Unique-Session-Id everywhere"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_redis",
+               "url" : "/api/info/component/rlm_redis/"
+            }
+         ],
+         "description" : "The redis modules are now stable"
+      },
+      {
+         "description" : "The LDAP module now supports SASL \"interactive bind\" method This allows Kerberos based administrator and user binds"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "DHCP code is now in libfreeradius-dhcp"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "More DHCP encoding / decoding unit tests"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_replicate",
+               "url" : "/api/info/component/rlm_replicate/"
+            }
+         ],
+         "description" : "rlm_replicate can now be listed in the \"accounting\" section"
+      },
+      {
+         "description" : "Better sqlite debugging output"
+      },
+      {
+         "description" : "Remove \"required\" option from many sql_ippool directives"
+      },
+      {
+         "description" : "Set default CA \"basic constraints\" to \"critical\".  Fixes #1073"
+      },
+      {
+         "description" : "Updates to help / man pages from Jorge Pereira"
+      },
+      {
+         "description" : "Added more tests"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_3_0_9.tar.gz"
+      }
+   ],
+   "name" : "3.0.9",
+   "summary" : "The focus of this release is stability"
+}

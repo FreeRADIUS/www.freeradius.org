@@ -1,0 +1,106 @@
+{
+   "date" : "2005-02-13T01:40:42Z",
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.0.2.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.0.2.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.0.2.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-1.0.2.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Novell eDirectoty support.  Patch from Novell"
+      },
+      {
+         "description" : "localweb & Trapeze dictionary updates"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_eap",
+               "url" : "/api/info/component/rlm_eap/"
+            }
+         ],
+         "description" : "EAP-SIM fixes"
+      },
+      {
+         "description" : "Make \"Strip-User-Name = No\" work"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_passwd",
+               "url" : "/api/info/component/rlm_passwd/"
+            }
+         ],
+         "description" : "Don't declare zero-length arrays in rlm_passwd"
+      },
+      {
+         "description" : "Bug fix to make udpfromto code work"
+      },
+      {
+         "description" : "radrelay shouldn't dump core if it can't read a VP from the detail file"
+      },
+      {
+         "description" : "Only initialize the random pool once"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "In rlm_sql, don't escape characters twice"
+      },
+      {
+         "description" : "Fix MD4 calculation on big-endian machines"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "In rlm_ldap, only claim Auth-Type if a plain text password is present"
+      },
+      {
+         "description" : "Treat Quintium VSAs like Cisco VSAs"
+      },
+      {
+         "description" : "Locking fixes in threading code"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_krb5",
+               "url" : "/api/info/component/rlm_krb5/"
+            }
+         ],
+         "description" : "rlm_krb5 includes /usr/include/et for Fedora Core"
+      },
+      {
+         "description" : "Fix post-auth REJECT stanza processing for rejections from external processes or home RADIUS servers"
+      },
+      {
+         "description" : "Fix building on gcc-4.0 by not trying to access static auth_port from other files"
+      },
+      {
+         "description" : "Fix building SNMP support on Solaris 9, which needs -lkstat"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_1_0_2.tar.gz"
+      }
+   ],
+   "name" : "1.0.2",
+   "summary" : "The focus of this release is stability"
+}

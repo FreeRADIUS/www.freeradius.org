@@ -1,0 +1,237 @@
+{
+   "date" : "2014-01-13T20:13:56Z",
+   "defects" : [
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Use correct field for ARP setting in DHCP"
+      },
+      {
+         "description" : "Fix crash on debug condition (#454)"
+      },
+      {
+         "description" : "Fix a number of minor issues caught by the clang analyzer"
+      },
+      {
+         "description" : "Set WARNING messages to yellow instead of normal text"
+      },
+      {
+         "description" : "Correct debug colorise logic.  Patch from Phil Mayers"
+      },
+      {
+         "description" : "Encode attributes of type \"ethernet\".  No one uses them, but it makes sense"
+      },
+      {
+         "description" : "Work around regex initialization issues"
+      },
+      {
+         "description" : "Fix build when linking against OpenSSL"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Print IDs as positive numbers, which helps for large DHCP XIDs"
+      },
+      {
+         "description" : "Fix issue with sql_ippool"
+      },
+      {
+         "description" : "sqlcounter now uses 64-bit counters, to deal with 4G overflow"
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Fix issues with DHCP subsystem"
+      },
+      {
+         "description" : "Don't build / install disabled modules, or their config files"
+      },
+      {
+         "description" : "Fix build for OSX Mavericks, which hid the header files in a magical place"
+      },
+      {
+         "description" : "Fix LEAP buffer issue.  You should still avoid LEAP"
+      },
+      {
+         "description" : "Mark \"unknown\" WiMAX attributes as being WiMAX"
+      },
+      {
+         "description" : "Fix typo in packet decoder for fragmented extended attrs"
+      },
+      {
+         "description" : "RPM spec fixes"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_perl",
+               "url" : "/api/info/component/rlm_perl/"
+            }
+         ],
+         "description" : "Fix rlm_perl build issues when not using threads"
+      },
+      {
+         "description" : "Enable %{Response-Packet-Type} again"
+      },
+      {
+         "description" : "Update configuration file parser to handle \"bool\" consistently"
+      },
+      {
+         "description" : "Update declarations of global boolean variables to use \"bool\" consistently. This fixes an issue where some modules were instantiated in \"config check\" mode and did not work correctly"
+      },
+      {
+         "description" : "Make more messages debug instead of info, to avoid polluting the logs with messages that can't be fixed"
+      },
+      {
+         "description" : "Set operator in internal unlang code to suppress spurious warning messages"
+      },
+      {
+         "description" : "Fix debian packaging"
+      },
+      {
+         "description" : "Added \"status\" to Debian init script"
+      },
+      {
+         "description" : "Fix \"update outer.request\" to update the outer request"
+      },
+      {
+         "description" : "Don't print TLS debugging messages when not in debug mode"
+      },
+      {
+         "description" : "Correctly manage counters for \"limit\" sections of TCP / TLS \"listen\" sockets"
+      },
+      {
+         "description" : "Fix libldap debug output"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_ldap",
+               "url" : "/api/info/component/rlm_ldap/"
+            }
+         ],
+         "description" : "Fix rlm_ldap tls functionality"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql_postgresql",
+               "url" : "/api/info/component/rlm_sql_postgresql/"
+            }
+         ],
+         "description" : "Initialise OpenSSL globals early to avoid issues with the PostgreSQL library"
+      },
+      {
+         "description" : "Fix typo in sqlcounter expansion code.  Fixes #463"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Overwrite previous instances of SQL-User-Name when adding it to the request"
+      },
+      {
+         "description" : "Work around bugs in both MIT and heimdal versions of krb5_copy_context(), which caused segfaults in multithreaded mode"
+      },
+      {
+         "description" : "Provide meaningful error messages if Heimdal krb5 is used"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_detail",
+               "url" : "/api/info/component/rlm_detail/"
+            }
+         ],
+         "description" : "Fix attribute supression in rlm_detail"
+      },
+      {
+         "description" : "Exit with error code if child fails to complete server initialisation after forking.  This allows init scripts to correctly report whether the server started ok"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.1.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.1.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.1.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-3.0.1.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "description" : "Add \"timeout\" to exec, and \"ntlm_auth_timeout\" to mschap So that run-away child processes are caught earlier"
+      },
+      {
+         "description" : "Allow TLS clients to use \"proto = tls\", in which case TLS is required.  The shared secret is then set to \"radsec\""
+      },
+      {
+         "description" : "More documentation in the tls virtual server"
+      },
+      {
+         "description" : "Add \"date\" module for date formatting See raddb/mods-available/date"
+      },
+      {
+         "description" : "Added unit test suite for internal server functionality"
+      },
+      {
+         "description" : "When loading \"update\" sections, check if the RHS is a literal value.  If so, syntax check it immediately"
+      },
+      {
+         "description" : "Update LDAP module documentation and functionality The generic attribute can now update lists"
+      },
+      {
+         "description" : "Updated dictionary.extreme"
+      },
+      {
+         "description" : "Update sqlippool to do clears as a separate transaction, and at most once per second.  This should help MySQL"
+      },
+      {
+         "description" : "Respect control:Response-Packet-Type for all types of requests"
+      },
+      {
+         "description" : "Add support for SSL encryption to the MySQL driver"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql_postgresql",
+               "url" : "/api/info/component/rlm_sql_postgresql/"
+            }
+         ],
+         "description" : "Allow arbitrary connection parameters to be used with the PostgreSQL driver"
+      },
+      {
+         "description" : "Changes to the OpenLDAP schema to fully expose functionality of the new LDAP module"
+      },
+      {
+         "description" : "Update debian packaging to include a freeradius-config package. This package may be provided as a site local package to avoid fighting with the preinstalled config files"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_3_0_1.tar.gz"
+      }
+   ],
+   "name" : "3.0.1",
+   "summary" : "The focus of this release is stability"
+}

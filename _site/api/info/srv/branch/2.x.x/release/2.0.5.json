@@ -1,0 +1,87 @@
+{
+   "date" : "2008-06-07T15:23:43Z",
+   "defects" : [
+      {
+         "description" : "Allow proxying to virtual servers for accounting packets, too"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql_postgresql",
+               "url" : "/api/info/component/rlm_sql_postgresql/"
+            }
+         ],
+         "description" : "Added \"num fields\" function to PostgreSQL client"
+      },
+      {
+         "description" : "Updated proxy fallback mechanism to validate fallback servers, and to process fallback requests in a child thread"
+      },
+      {
+         "component" : [
+            {
+               "name" : "rlm_realm",
+               "url" : "/api/info/component/rlm_realm/"
+            }
+         ],
+         "description" : "rlm_realm returns \"ok\" for LOCAL realms, not \"noop\""
+      },
+      {
+         "component" : [
+            {
+               "name" : "proto_dhcp",
+               "url" : "/api/info/component/proto_dhcp/"
+            }
+         ],
+         "description" : "Fixed some DHCP code handling.  The examples should now work"
+      }
+   ],
+   "download" : [
+      {
+         "name" : "tar.gz",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.5.tar.gz.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.5.tar.gz"
+      },
+      {
+         "name" : "tar.bz2",
+         "sig_url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.5.tar.bz2.sig",
+         "url" : "ftp://ftp.freeradius.org/pub/freeradius/old/freeradius-server-2.0.5.tar.bz2"
+      }
+   ],
+   "features" : [
+      {
+         "component" : [
+            {
+               "name" : "rlm_sql",
+               "url" : "/api/info/component/rlm_sql/"
+            }
+         ],
+         "description" : "Permit SQL authorize_reply_query to be empty"
+      },
+      {
+         "description" : "Allow setting response packet type in Post-Proxy-Type Fail handler"
+      },
+      {
+         "description" : "Added install-chown target to set correct permission and ownership make RADMIN=radmin RGROUP=radius install-chown"
+      },
+      {
+         "description" : "Support for LDAP-Group and other dynamic comparison attributes in unlang.  Developed from a patch by\tJason Alderfer"
+      },
+      {
+         "description" : "Added chroot support.  See radiusd.conf for comments"
+      },
+      {
+         "description" : "Allow clients of 0/0.  We do not recommend using this, though"
+      },
+      {
+         "description" : "Moved many module configurations into raddb/modules/*"
+      }
+   ],
+   "mirror" : [
+      {
+         "name" : "GitHub (tar.gz)",
+         "url" : "https://github.com/FreeRADIUS/freeradius-server/archive/release_2_0_5.tar.gz"
+      }
+   ],
+   "name" : "2.0.5",
+   "summary" : "The focus of this release is stability"
+}
