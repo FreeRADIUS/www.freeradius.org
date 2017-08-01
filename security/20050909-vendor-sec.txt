@@ -1,0 +1,56 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+
+Thomas Biege <thomas@suse.de> wrote:
+> Hello,
+> Alan T. DeKok <aland@freeradius.org> added some patches to the freeradius
+> CVS based on a report from us. There are only minor bugs like some file
+> descriptors may not be closed, a off-by-one, a possible LDAP injection,
+> and maybe some more things he'll like to add.
+>
+> Unfortunately he doesn't want to negotiate a coordinated release date.
+
+  This statement misrepresents our position, which we have previously
+articulated to Suse:
+
+  (1) We are prepared to coordinate a public statement about the
+      issues raised by Suse.
+
+  (2) We have analyzed the issues raised by Suse, and we believe that
+      the issues are minor, and not externally exploitable.
+
+  (3) We believe a coordinated release is not necessary for minor bug
+      fixes that have little or no customer impact.
+
+  Saying we don't "want" to negotiate a coordinated release date is
+inappropriate, and contradicts our previous statements to Suse.
+
+
+  As background, Suse informed us privately of the issues, and asked
+us to coordinate a release date.  We examined the issues they raised,
+and determined that they did not have the severity claimed by Suse.
+We then decided that a coordinated release date was not necessary, and
+informed Suse of this.
+
+  Further, we had substantial technical concerns with the report (66%
+false positive rate, among others), which we raised with Suse.  To
+this date, Suse has not responded in any way to our concerns.
+
+  We are disappointed that Suse has felt it necessary to misrepresent
+our position in a vendor forum.
+
+  If anyone is interested in our full response to Suse's report,
+please email me privately at <aland@freeradius.org>
+
+
+  Alan DeKok.
+  Project Leader,
+  The FreeRADIUS Server Project
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.2.1 (GNU/Linux)
+
+iQCVAwUBQx8qC6kul4vkAkl9AQFqVQP/VmbM5I2R+pqSTf7QW3oPkqbcLMDhB0jn
+nid2C7PlqC38ZM4QyMYDhXaO0rcFTnfVMFCRa5iV64kuevYFyxfEixZoOtH+9iOs
+D+a/3lh0iAPfBO65eh6MCijy3SL6v+X/Cn+E9Ca+ErtQ2T3bi/eG1ro7VxuVu+Yb
+FuFTo/1Lrn4=
+=u6Wz
+-----END PGP SIGNATURE-----
