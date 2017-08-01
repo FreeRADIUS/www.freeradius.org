@@ -59,8 +59,20 @@ subnav:
                         {% endfor %}
                         {% assign years = yearlist | split: "," | uniq %}
                         {% for year in years %}
-                        <li ng-class="{active: active == '#{{year}}'}"><a class="subnav_link" ng-click="toggle('#{{year}}')">{{year}}</a></li>
+                            {% if forloop.first %}
+                                {% assign olderDate = year | minus: 5 %}
+                            {% endif %}
+                            {% assign postDate = year | plus: 1 | minus : 1 %}
+{% comment %} plus and minus changes post.date from a string into an integer to compare to olderDate {% endcomment %}
+                            {% if postDate > olderDate %}
+                                <li ng-class="{active: active == '#{{year}}'}"><a class="subnav_link" ng-click="toggle('#{{year}}')">{{year}}</a></li>
+                            {% else %}
+                                {% assign olderDates = olderDates | append: '-' | append: postDate %}
+                            {% endif %}
                         {% endfor %}
+                        {% if olderDates %}
+                            <li ng-class="{active: active == '#{{olderDates}}'}"><a class="subnav_link" ng-click="toggle('#{{olderDates}}')">Older...</a></li>
+                        {% endif %}
                     </ul>
                 </nav>
                 <div class="article_list">
