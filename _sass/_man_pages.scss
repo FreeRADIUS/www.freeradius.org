@@ -1,0 +1,13 @@
+/**
+ * Man pages
+ */
+
+.man_page {
+    dt {
+        font-weight: bold;
+        margin-left: $smSpacing * 2;
+    }
+    dd {
+        margin-left: $smSpacing * 4;
+    }
+}

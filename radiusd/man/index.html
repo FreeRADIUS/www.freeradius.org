@@ -1,22 +1,37 @@
 ---
-layout: default
+layout: page
+title: FreeRADIUS 'man' pages
+subtitle: System documentation
+subpage: true
+permalink: /radiusd/man/
+navorder: 200
+hero: documentation
+
+subnav:
+ - text: Programs
+   link: '/radiusd/man/#programs'
+ - text: Configuration Files
+   link: '/radiusd/man/#files'
+ - text: Modules
+   link: '/radiusd/man/#modules'
 ---
+
 
 <div class="wrapper base_padding_v">
 
 <h1>FreeRADIUS <tt>man</tt> pages</h1>
 
-<a name="programs"><h2>Programs</h2></a>
+<a id="programs"><h2>Programs</h2></a>
 
-{% include_relative programs-inc.html %}
+{% include_relative _programs-inc.html %}
 
-<a name="files"><h2>Configuration Files</h2></a>
+<a id="files"><h2>Configuration Files</h2></a>
 
-{% include_relative config-inc.html %}
+{% include_relative _config-inc.html %}
 
-<a name="modules"><h2>Modules</h2></a>
+<a id="modules"><h2>Modules</h2></a>
 
-{% include_relative modules-inc.html %}
+{% include_relative _modules-inc.html %}
 
 </div>
 
