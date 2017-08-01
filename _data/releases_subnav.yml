@@ -1,12 +1,10 @@
 - text: Downloads
   link: '/releases/'
-- text: Binary Packages
-  link: '/releases/#binary_packages'
 - text: Source Control
   link: '/releases/#source_control'
 - text: Sub-projects
   link: '/sub_projects/'
 - text: Release notes
   link: '/release_notes/'
-- text: Older releases
-  link: '/older_releases/'
+- text: Security issues
+  link: '/security/'
