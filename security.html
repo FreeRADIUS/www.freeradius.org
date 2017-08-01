@@ -46,31 +46,31 @@ subnav:
         </div>
 
         <div id="notifications" ng-show="active == '#notifications'">
-            {% assign yearlist = "" %}
-            {% for post in site.categories.vul_notifications %}
-                {% if forloop.first != true %}
-                    {% assign yearlist = yearlist | append: "," %}
-                {% endif %}
-                {% assign year = post.date | date: "%Y" %}
-                {% assign yearlist = yearlist | append: year %}
-            {% endfor %}
-            {% assign years = yearlist | split: "," | uniq %}
+            {%- assign yearlist = "" -%}
+            {%- for post in site.categories.vul_notifications -%}
+                {%- if forloop.first != true -%}
+                    {%- assign yearlist = yearlist | append: "," -%}
+                {%- endif -%}
+                {%- assign year = post.date | date: "%Y" -%}
+                {%- assign yearlist = yearlist | append: year -%}
+            {%- endfor -%}
+            {%- assign years = yearlist | split: "," | uniq -%}
             <section class="articles" content-group ng-init="active = '#{{years[0]}}'">
                 <nav class="inline_nav base_padding_v">
                     <ul>
                         {% for year in years %}
-                            {% if forloop.first %}
-                                {% assign olderDate = year | minus: 5 %}
-                            {% endif %}
-                            {% assign postDate = year | plus: 1 | minus : 1 %}
-{% comment %} plus and minus changes post.date from a string into an integer to compare to olderDate {% endcomment %}
-                            {% if postDate > olderDate %}
+                            {%- if forloop.first -%}
+                                {%- assign olderDate = year | minus: 5 -%}
+                            {%- endif -%}
+                            {%- assign postDate = year | plus: 1 | minus : 1 -%}
+{%- comment -%}<!-- plus and minus changes post.date from a string into an integer to compare to olderDate -->{%- endcomment -%}
+                            {%- if postDate > olderDate -%}
                                 <li ng-class="{active: active == '#{{year}}'}"><a class="subnav_link" ng-click="toggle('#{{year}}')">{{year}}</a></li>
                             {% else %}
-                                {% assign olderDates = olderDates | append: '-' | append: postDate %}
-                            {% endif %}
-                        {% endfor %}
-                        {% if olderDates %}
+                                {%- assign olderDates = olderDates | append: '-' | append: postDate -%}
+                            {%- endif -%}
+                        {%- endfor -%}
+                        {%- if olderDates -%}
                             <li ng-class="{active: active == '#{{olderDates}}'}"><a class="subnav_link" ng-click="toggle('#{{olderDates}}')">Older...</a></li>
                         {% endif %}
                     </ul>
@@ -87,31 +87,31 @@ subnav:
         </div>
 
         <div id="dependencies" ng-show="active == '#dependencies'">
-            {% assign yearlist = "" %}
-            {% for post in site.categories.vul_in_deps %}
-                {% if forloop.first != true %}
-                    {% assign yearlist = yearlist | append: "," %}
-                {% endif %}
-                {% assign year = post.date | date: "%Y" %}
-                {% assign yearlist = yearlist | append: year %}
-            {% endfor %}
-            {% assign years = yearlist | split: "," | uniq %}
+            {%- assign yearlist = "" -%}
+            {%- for post in site.categories.vul_in_deps -%}
+                {%- if forloop.first != true -%}
+                    {%- assign yearlist = yearlist | append: "," -%}
+                {%- endif -%}
+                {%- assign year = post.date | date: "%Y" -%}
+                {%- assign yearlist = yearlist | append: year -%}
+            {%- endfor -%}
+            {%- assign years = yearlist | split: "," | uniq -%}
             <section class="articles" content-group ng-init="active = '#{{years[0]}}'">
                 <nav class="inline_nav base_padding_v">
                     <ul>
                         {% for year in years %}
-                            {% if forloop.first %}
-                                {% assign olderDate = year | minus: 5 %}
-                            {% endif %}
-                            {% assign postDate = year | plus: 1 | minus : 1 %}
-{% comment %} plus and minus changes post.date from a string into an integer to compare to olderDate {% endcomment %}
-                            {% if postDate > olderDate %}
+                            {%- if forloop.first -%}
+                                {%- assign olderDate = year | minus: 5 -%}
+                            {%- endif -%}
+                            {%- assign postDate = year | plus: 1 | minus : 1 -%}
+{%- comment -%}<!-- plus and minus changes post.date from a string into an integer to compare to olderDate -->{%- endcomment -%}
+                            {%- if postDate > olderDate -%}
                                 <li ng-class="{active: active == '#{{year}}'}"><a class="subnav_link" ng-click="toggle('#{{year}}')">{{year}}</a></li>
                             {% else %}
-                                {% assign olderDates = olderDates | append: '-' | append: postDate %}
-                            {% endif %}
-                        {% endfor %}
-                        {% if olderDates %}
+                                {%- assign olderDates = olderDates | append: '-' | append: postDate -%}
+                            {%- endif -%}
+                        {%- endfor -%}
+                        {%- if olderDates -%}
                             <li ng-class="{active: active == '#{{olderDates}}'}"><a class="subnav_link" ng-click="toggle('#{{olderDates}}')">Older...</a></li>
                         {% endif %}
                     </ul>
