@@ -1,10 +1,24 @@
 ---
-layout: default
+layout: page
+title: FreeRADIUS 'man' pages
+subtitle: Documentation from the server
+subpage: true
+navorder: 200
+hero: documentation
+
+subnav:
+ - text: Programs
+   link: '/radiusd/man/#programs'
+ - text: Configuration Files
+   link: '/radiusd/man/#files'
+ - text: Modules
+   link: '/radiusd/man/#modules'
 ---
 
-<div class="wrapper base_padding_v">
+
+<div class="man_page wrapper base_padding_v">
 <H1>RADTEST</H1>
-Section: FreeRADIUS Daemon (1)<BR>Updated: 5 April 2010<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 24 February 2001<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -19,26 +33,6 @@ radtest - send packets to a RADIUS server, show reply
 [<B>-d</B>
 
 <I>raddb_directory</I>]
-
-[<B>-P</B>
-
-<I>tcp/udp</I>]
-
-[<B>-t</B>
-
-<I>pap/chap/mschap/eap-md5</I>]
-
-[<B>-x</B>
-
-<I>]</I>
-
-[<B>-4</B>
-
-<I>]</I>
-
-[<B>-6</B>
-
-<I>]</I>
 
 <I>user password radius-server nas-port-number secret</I>
 
@@ -62,19 +56,6 @@ way to test a radius server.
 <DT>-d <I>raddb_directory</I><DD>
 The directory that contains the RADIUS dictionary files. Defaults to
 <I>/etc/raddb</I>.
-<P>
-<DT>-P&nbsp;<I>proto</I><DD>
-Use <I>proto</I> transport protocol (&quot;tcp&quot; or &quot;udp&quot;).
-Only available if FreeRADIUS is compiled with TCP transport support.
-<P>
-<DT>-x<DD>
-Enables debugging output for the RADIUS client.
-<P>
-<DT>-4<DD>
-Use NAS-IP-Address for the NAS address (default)
-<P>
-<DT>-6<DD>
-Use NAS-IPv6-Address for the NAS address (default)
 <P>
 <DT>user<DD>
 Username to send.
@@ -128,6 +109,6 @@ Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 13:20:53 GMT, July 31, 2017
+Time: 11:13:11 GMT, August 01, 2017
 </div>
 </HTML>

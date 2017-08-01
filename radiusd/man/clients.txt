@@ -1,0 +1,36 @@
+CLIENTS(5)		      File Formats Manual		    CLIENTS(5)
+
+
+
+NAME
+       clients - RADIUS clients file
+
+DESCRIPTION
+       The  clients  file resides in the radius database directory, by default
+       /etc/raddb. Its use is depreciated in favour of clients.conf.
+
+       Every line starting with a hash sign ('#') is treated  as  comment  and
+       ignored.
+
+       Each line of the file contains two white-space delimited fields.
+
+       client The RADIUS clients hostname.  This may be a plain hostname, or a
+	      dotted-quad IP address.
+
+       secret This is the so-called "shared secret" that  is  held  between  a
+	      RADIUS  server  and  client.  It is used to encrypt passwords in
+	      RADIUS packets, and also for authentication. You need to config-
+	      ure  the	same secret on the client (terminal server) as in this
+	      file.
+
+       The clients file is read by radiusd on startup only.
+
+FILES
+       /etc/raddb/clients
+
+SEE ALSO
+       radiusd(8), clients.conf(5) naslist(5)
+
+
+
+				 16 March 2001			    CLIENTS(5)

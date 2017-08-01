@@ -6,31 +6,57 @@ NAME
        rlm_unix - FreeRADIUS Module
 
 DESCRIPTION
-       The  rlm_unix  module reads crypt(3) passwords from the system password
-       file, and allows the server to use them for authentication.  The module
-       also  provides  FreeRADIUS  an  interface  into a radwtmp file (used by
-       "radlast") when added to the accounting section.
+       The  rlm_unix module allows authentication against the system password,
+       shadow, and group files.  It also provides FreeRADIUS an interface into
+       a  radwtmp  file  (used by "radlast") when added to the accounting sec-
+       tion.
 
-       The rlm_unix module does provides the functionality  for  "Auth-Type  =
-       System".   The  module  should be listed in the "authenticate" section.
-       Please see the default radiusd.conf shipped  with  the  server  for  an
-       example of the correct usage of this module.
-
-       As  of  FreeRADIUS  1.1.0,  the	module	no  longer  reads,  or	caches
-       /etc/passwd, /etc/shadow, or /etc/group.  If you wish  to  cache  those
-       files,  see  rlm_passwd.   Most,  if not all, configurations should not
-       need those files to be cached.
+       The rlm_unix module provides the functionality for  "Auth-Type  =  Sys-
+       tem",  rather  than  "Auth-Type = Unix".  The "System" name is used for
+       historical reasons.
 
        The main configuration items to be aware of are:
 
+       cache  This is a 'yes' or 'no' option.  If set to yes, FreeRADIUS  will
+	      read  the system files into memory, rather than perform a system
+	      call to lookup the information.  On *BSD systems, you should set
+	      this  value  to  no.  On other systems, if you have a very large
+	      passwd and shadow files, you can try setting this to yes,  which
+	      may increase the servers performance.  The default is no.
+
+       cache_reload
+	      This  is	the  number  of seconds to wait between refreshing the
+	      cached files from the system.   It  has  no  effect  unless  you
+	      enable caching.
+
+       passwd The  path  to  the system passwd file.  Usually /etc/passwd.  If
+	      commented out, or not set, the server will retrieve the informa-
+	      tion via systemcalls.
+
+       shadow The  path to the system shadow file.  Usually /etc/shadow.  This
+	      is not set by default.
+
+       group  The path to the system group file.  Usually /etc/group.  This is
+	      not set by default.
+
        radwtmp
-	      The path to the system wtmp file to  be  used  for  keeping  the
+	      The  path  to  the  system  wtmp file to be used for keeping the
 	      database of online users as read by the 'radlast' program.
+
+       usegroup
+	      This is a 'yes' or 'no' option.  If set to 'yes' this allows the
+	      Group attribute to be used as a check item.  Default is 'no'.
 
 CONFIGURATION
        modules {
 	 ...
 	 unix {
+	   cache = no
+	   cache_reload = 600
+	   #passwd = /etc/passwd
+	   #shadow = /etc/shadow
+	   #group = /etc/group
+	   usegroup = no
 	   radwtmp = ${logdir}/radwtmp
 	 }
 	 ...
@@ -43,11 +69,11 @@ FILES
        /etc/raddb/radiusd.conf,
 
 SEE ALSO
-       radiusd(8), radiusd.conf(5), rlm_passwd(5), radlast(1)
+       radiusd(8), radiusd.conf(5), radlast(1)
 
 AUTHORS
        Chris Parker, cparker@segv.org
 
 
 
-			       17 February 2005 		   rlm_unix(5)
+				5 February 2004 		   rlm_unix(5)

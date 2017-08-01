@@ -1,10 +1,24 @@
 ---
-layout: default
+layout: page
+title: FreeRADIUS 'man' pages
+subtitle: Documentation from the server
+subpage: true
+navorder: 200
+hero: documentation
+
+subnav:
+ - text: Programs
+   link: '/radiusd/man/#programs'
+ - text: Configuration Files
+   link: '/radiusd/man/#files'
+ - text: Modules
+   link: '/radiusd/man/#modules'
 ---
 
-<div class="wrapper base_padding_v">
+
+<div class="man_page wrapper base_padding_v">
 <H1>dictionary</H1>
-Section: File Formats (5)<BR>Updated: 24 Jul 2016<BR><A HREF="#index">Index</A>
+Section: File Formats (5)<BR>Updated: 04 Jan 2004<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -14,130 +28,65 @@ dictionary - RADIUS dictionary file
 <A NAME="lbAC">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
-The master RADIUS dictionary file resides in
-<I>/etc/raddb/dictionary</I>.  It references other <I>dictionary</I>
-files located in <I>/usr/local/share/freeradius/</I>.  Each dictionary
-file contains a list of RADIUS attributes and values, which the server
-uses to map between descriptive names and on-the-wire data.  The names
-have no meaning outside of the RADIUS server itself, and are never
-exchanged between server and clients.
+The <I>dictionary</I> file resides in the radius database directory,
+by default <I>/etc/raddb</I>. It contains a list of RADIUS attributes
+and values, which the server uses to map between descriptive names and
+on-the-wire data.  The names have no meaning outside of the RADIUS
+server itself, and are never exchanged between server and clients.
 <P>
-
-That is, editing the dictionaries will have NO EFFECT on anything
-other than the server that is reading those files.  Adding new
-attributes to the dictionaries will have NO EFFECT on RADIUS clients,
-and will not make RADIUS clients magically understand those
-attributes.  The dictionaries are solely for local administrator
-convenience, and are specific to each version of FreeRADIUS.
-<P>
-
-The dictionaries in <I>/usr/local/share</I> SHOULD NOT be edited unless
-you know exactly what you are doing.  Changing them will most likely
-break your RADIUS deployment.
-<P>
-
-If you need to add new attributes, please edit the
-<I>/etc/raddb/dictionary</I> file.  It's sole purpose is to contain
-site-local definitions that are added by the local administrator.
-<P>
-<A NAME="lbAD">&nbsp;</A>
-<H2>FORMAT</H2>
-
 Every line starting with a hash sign
 ('<B>#</B>')
 
 is treated as comment and ignored.
 <P>
 
-Each line of the file can contain one of the following strings:
+Each line of the file can contain one of the following strings
 <DL COMPACT>
-<DT><B>ATTRIBUTE name  oid  type [flags]</B>
+<DT><B>ATTRIBUTE name  number  type [vendor|options]</B>
 
 <DD>
-Define a RADIUS attribute name to number mapping.
+Define a RADIUS attribute name to number mapping.  The <I>name</I>
+field can be any non-space text, but is usually taken from
+<I>RFC2865</I>, and other related documents.  The <I>number</I> field is
+also taken from the relevant documents, for that name.  The <I>type</I>
+field can be one of <I>string</I>, <I>octets</I>, <I>ipaddr</I>,
+<I>integer</I>, <I>date</I>, <I>ifid</I>, <I>ipv6addr</I>,
+<I>ipv6prefix</I>, or <I>abinary</I>.  See the RFC's, or the main
+<I>dictionary</I> file for a description of the various types.
 <P>
-The <I>name</I> field is a printable field, taken from various
-specifications or vendor definitions.  It is most commonly used as a
-series of words, separated by hyphens.  e.g. &quot;User-Name&quot;.
-Vendor-specific attributes (VSAs) are prefixed by the vendor name,
-e.g. &quot;Cisco-AVPair&quot;.  The names should be globally unique, as they are
-used as a key to look up the properties of the attribute.
+The last (optional) field of an attribute definition can have either a
+vendor name, or options for that attribute.  When a vendor name is
+given, the attribute is defined to be a vendor specific attribute.
+Alternately, the options may be the a comma-separated list of the
+following options:
 <P>
-The <I>oid</I> field is taken from the relevant specification for that
-name.  In most cases, it is a decimal number, such as &quot;256&quot;.  For
-certain attributes, a &quot;dotted number&quot; notation is used, e.g. &quot;1.2&quot;.
-The &quot;dotted number&quot; notation is used only for certain attributes.
+<DT>
+<DD>
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>encrypt=[1-3]<BR>
+
+<DL COMPACT><DT><DD>
+Mark the attribute as being encrypted with one of three methods.  &quot;1&quot;
+means that the attribute is encrypted with the method as defined in
+<I>RFC2865</I> for the User-Password attribute.  &quot;2&quot; means that the
+password is encrypted with the method as defined in <I>RFC2868</I> for
+the Tunnel-Password attribute.  &quot;3&quot; means that the attribute is
+encrypted as per Ascend's definitions for the Ascend-Send-Secret attribute.
+</DL>
+
 <P>
-The <I>type</I> field can be one of the standard types:
-<P>
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UTF-8&nbsp;printable&nbsp;text&nbsp;(the&nbsp;RFCs&nbsp;call&nbsp;this&nbsp;&quot;text&quot;)
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;octets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opaque&nbsp;binary&nbsp;data&nbsp;(the&nbsp;RFCs&nbsp;call&nbsp;this&nbsp;&quot;string&quot;)
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ipaddr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv4&nbsp;address
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Seconds&nbsp;since&nbsp;January&nbsp;1,&nbsp;1970&nbsp;(32-bits)
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32-bit&nbsp;unsigned&nbsp;integer
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ipv6addr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6&nbsp;Address
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ipv6prefix&nbsp;&nbsp;&nbsp;IPV6&nbsp;prefix,&nbsp;with&nbsp;mask
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ifid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interface&nbsp;Id&nbsp;(hex:hex:hex:hex)
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integer64<TT>&nbsp;&nbsp;</TT>&nbsp;&nbsp;64-bit&nbsp;unsigned&nbsp;integer<BR>
-<P>
-The <I>type</I> field can also be one of the following non-standard types:
-<P>
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ether&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ethernet&nbsp;MAC&nbsp;address
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abinary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ascend&nbsp;binary&nbsp;filter&nbsp;format
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;byte&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8-bit&nbsp;unsigned&nbsp;integer
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;short&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16-bit&nbsp;unsigned&nbsp;integer
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;signed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;31-bit&nbsp;signed&nbsp;integer&nbsp;(packed&nbsp;into&nbsp;32-bit&nbsp;field)
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;struct&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fixed-size&nbsp;structures
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tlv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type-Length-Value&nbsp;(allows&nbsp;nested&nbsp;attributes)
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ipv4prefix&nbsp;&nbsp;&nbsp;IPv4&nbsp;Prefix&nbsp;as&nbsp;given&nbsp;in&nbsp;RFC&nbsp;6572.
-<P>
-The &quot;struct&quot; type is a compound type.  An attribute of data type
-&quot;struct&quot; can have multiple sub-attributes defined, just as with TLVs.
-Each sub-attribute has to be numbered sequentially, starting at 1.
-The numbers allow tracking of individual sub-fields, but have no other
-meaning.  Each sub-field of a &quot;struct&quot; type MUST be a fixed-width data
-type such as &quot;integer&quot;, &quot;ipaddr&quot;, etc.  Variable sized types such as
-&quot;string&quot;, &quot;octets&quot;, or &quot;tlv&quot; are not allowed.  Structs may not contain
-other structs.
-<P>
-The last (optional) field of an attribute definition are additional
-flags for that attribute, in a comma-separated list.  Previous
-versions of the server allowed these flags to include a vendor name.
-This behavior may still work, but it is deprecated, and is not
-recommended.
-<P>
-The options are:
-<P>
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;encrypt=#&nbsp;&nbsp;&nbsp;&nbsp;set&nbsp;encryption&nbsp;type&nbsp;1,&nbsp;2,&nbsp;or&nbsp;3.
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;has_tag&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;attribute&nbsp;can&nbsp;have&nbsp;an&nbsp;RFC&nbsp;2868&nbsp;style&nbsp;tag
-<P>
-The &quot;encrypt&quot; flag marks the attribute as being encrypted with one of
-three possible methods.  &quot;1&quot; means that the attribute is encrypted
-with the method as defined in <I>RFC2865</I> for the User-Password
-attribute.  &quot;2&quot; means that the password is encrypted with the method
-as defined in <I>RFC2868</I> for the Tunnel-Password attribute.  &quot;3&quot;
-means that the attribute is encrypted as per Ascend's definitions for
-the Ascend-Send-Secret attribute.
-<P>
-The &quot;has_tag&quot; flag marks the attribute as being permitted to have a
-tag, as defined in <I>RFC2868</I>.  The purpose of the tag is to allow
-grouping of attributes for tunneled users.  See <I>RFC2868</I> for
-more details.
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>has_tag<BR>
+
+<DL COMPACT><DT><DD>
+Mark the attribute as being permitted to have a tag, as defined in
+<I>RFC2868</I>.  The purpose of the tag is to allow grouping of
+attributes for tunnelled users.  See <I>RFC2868</I> for more details.
+</DL>
+
 <P>
 When the server receives an encoded attribute in a RADIUS packet, it
-looks up that attribute by number in the dictionary, and uses the
-definition found there for printing diagnostic and log messages.  When
-the server sees an attribute name in a configuration file, it looks up
-that attribute by name in the dictionary, and uses the definition
-found there.
-<P>
-<DT><B>FLAGS flag-name</B>
-
-<DD>
-Set attribute flags for all subsequent attributes.  Flags can be
-unset by prefixing them with the &quot;!&quot; character.
-<P>
-The only flag currently supported is &quot;internal&quot;.
+looks up that attribute by number in the dictionary, and uses the name
+found there for printing diagnostic and log messages.
 <P>
 <DT><B>VALUE attribute-name value-name number</B>
 
@@ -152,83 +101,43 @@ relevant documents, for that name.
 When the server receives an encoded value in a RADIUS packet, it looks
 up the value of that attribute by number in the dictionary, and uses
 the name found there for printing diagnostic and log messages.
-<DT><B>VENDOR vendor-name number [format=...]</B>
+<P>
+<DT><B>VENDOR vendor-name number</B>
 
 <DD>
 Define a Vendor Specific Attribute encapsulation for <I>vendor-name</I>
 to <I>number</I>.  For a list of vendor names and numbers, see
 <A HREF="http://www.iana.org/enterprise-numbers.txt.">http://www.iana.org/enterprise-numbers.txt.</A>
 <P>
-The &quot;format=t,l&quot; statement tells the server how many octets to use to
-encode/decode the vendor &quot;type&quot; and &quot;length&quot; fields in the attributes.
-The default is &quot;format=1,1&quot;, which does not have to be specified.  For
-USR VSA's, the format is &quot;format=4,0&quot;, for Lucent VSA's it's
-&quot;format=2,1&quot;, and for Starent VSA's it's &quot;format=2,2&quot;.
-<P>
-The supported values for the number of type octets (i.e. the first
-digit) are 1, 2, and 4.  The support values for the number of length
-octets (i.e. the second digit) are 0, 1, and 2.  Any combination of
-those values will work.
-<P>
-<DT><B>BEGIN-VENDOR vendor-name</B>
-
-<DD>
-Define the start of a block of Vendor-Specific attributes.  All of the
-following <I>ATTRIBUTE</I>  definitions are interpreted as being for the
-named vendor, until the block is closed by an &quot;END-VENDOR&quot; statement.
-<P>
-This practice is preferred to placing the vendor name at the end of an
-<I>ATTRIBUTE</I>  definition.
-<P>
-For VSAs in the RFC 6929 &quot;Extended vendor-specific&quot; space, a format
-can be specified following the &quot;vendor-name&quot;.  The format should be
-&quot;format=Extended-Vendor-Specific-1&quot;, through
-&quot;format=Extended-Vendor-Specific-6&quot;.  The matching &quot;END-VENDOR&quot; should
-just have the &quot;vendor-name&quot;, without the format string.
-<DT><B>END-VENDOR vendor-name</B>
-
-<DD>
-End a previously defined BEGIN-VENDOR block.  The &quot;vendor-name&quot; must match.
 <DT><B>$INCLUDE filename</B>
 
 <DD>
 Include dictionary entries from the file <I>filename</I>.  The
 <I>filename</I> is taken as relative to the location of the file which
 is asking for the inclusion.
-<DT><B>BEGIN-TLV name</B>
-
-<DD>
-This feature is supported for backwards compatibility with older
-dictionaries.  It should not be used.  The new &quot;oid&quot; form for defining
-the attribute number should be used instead.
-<DT><B>END-TLV name</B>
-
-<DD>
-This feature is supported for backwards compatibility with older
-dictionaries.  It should not be used.  The new &quot;oid&quot; form for defining
-the attribute number should be used instead.
+<P>
 </DL>
 <P>
 
-<A NAME="lbAE">&nbsp;</A>
+<A NAME="lbAD">&nbsp;</A>
 <H2>FILES</H2>
 
 <I>/etc/raddb/dictionary,</I>
 
 <I>/usr/share/freeradius/dictionary.*</I>
 
-<A NAME="lbAF">&nbsp;</A>
+<A NAME="lbAE">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
 <B><a href="radiusd.html">radiusd</A></B>(8),
+
+<B><a href="naslist.html">naslist</A></B>(5),
 
 <B>RFC2865,</B>
 
 <B>RFC2866,</B>
 
 <B>RFC2868</B>
-
-<B>RFC6929</B>
 
 <P>
 
@@ -237,14 +146,13 @@ the attribute number should be used instead.
 <DL>
 <DT><A HREF="#lbAB">NAME</A><DD>
 <DT><A HREF="#lbAC">DESCRIPTION</A><DD>
-<DT><A HREF="#lbAD">FORMAT</A><DD>
-<DT><A HREF="#lbAE">FILES</A><DD>
-<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAD">FILES</A><DD>
+<DT><A HREF="#lbAE">SEE ALSO</A><DD>
 </DL>
 <HR>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 13:20:53 GMT, July 31, 2017
+Time: 11:13:12 GMT, August 01, 2017
 </div>
 </HTML>

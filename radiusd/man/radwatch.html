@@ -17,40 +17,45 @@ subnav:
 
 
 <div class="man_page wrapper base_padding_v">
-<H1>RADLAST</H1>
-Section: FreeRADIUS Daemon (1)<BR>Updated: 22 February 2001<BR><A HREF="#index">Index</A>
+<H1>RADWATCH</H1>
+Section: FreeRADIUS Daemon (8)<BR>Updated: 24 February 2001<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
 <H2>NAME</H2>
 
-radlast - show &quot;last&quot; info from the radwtmp file
+radwatch - wrapper for radiusd
 <A NAME="lbAC">&nbsp;</A>
 <H2>SYNOPSIS</H2>
 
-<B>radlast</B>
+<B>radwatch</B>
 
 <I>[</I>options<I>]</I>
 
 <A NAME="lbAD">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
-The FreeRADIUS server can write an accounting log in the
-<I>wtmp</I> format of the local system.  <B>radlast</B> is a frontend
-for the systems <B>last</B> command - it just calls <B>last</B>
-with the <I>-f path_to_radwtmp_file</I> argument, and passes all
-options on the command line to the system <B>last</B> command.
+This is a wrapper for <I>radiusd</I>. It starts the radius server, then
+waits for it to terminate, which should never happen. If it does
+happen, <B>radwatch</B> sends mail to <I>root</I> informing her of
+the event, waits 10 seconds, then restarts the server.
+<P>
+
+This script <B>SHOULD NOT BE USED</B>!  It's only here for historical
+purposes, and WILL be deleted in a future version of the
+the server.
+<P>
+
+Please see '<I>doc/supervise-radiusd.txt</I>' for info on methods of
+supervising your radius installation.
 <A NAME="lbAE">&nbsp;</A>
 <H2>OPTIONS</H2>
 
-See the manpage of the system <B>last</B> command.
+Passed directly to the radius server - see the manpage of <B>radiusd</B>.
 <A NAME="lbAF">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<a href="radiusd.html">radiusd</A>(8),
-<a href="radiusd.conf.html">radiusd.conf</A>(5),
-<a href="wtmp.html">wtmp</A>(5),
-<a href="last.html">last</A>(1).
+<a href="radiusd.html">radiusd</A>(8).
 <A NAME="lbAG">&nbsp;</A>
 <H2>AUTHOR</H2>
 
@@ -71,6 +76,6 @@ Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:11 GMT, August 01, 2017
+Time: 11:13:12 GMT, August 01, 2017
 </div>
 </HTML>

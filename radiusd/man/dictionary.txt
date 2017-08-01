@@ -6,121 +6,50 @@ NAME
        dictionary - RADIUS dictionary file
 
 DESCRIPTION
-       The master RADIUS dictionary file resides in /etc/raddb/dictionary.  It
-       references other dictionary files located  in  /usr/local/share/freera-
-       dius/.	Each  dictionary file contains a list of RADIUS attributes and
-       values, which the server uses to map between descriptive names and  on-
-       the-wire  data.	The names have no meaning outside of the RADIUS server
-       itself, and are never exchanged between server and clients.
+       The  dictionary	file  resides  in  the	radius	database directory, by
+       default /etc/raddb. It contains a list of RADIUS attributes and values,
+       which  the server uses to map between descriptive names and on-the-wire
+       data.  The names have no meaning outside of the RADIUS  server  itself,
+       and are never exchanged between server and clients.
 
-       That is, editing the dictionaries will have NO EFFECT on anything other
-       than  the server that is reading those files.  Adding new attributes to
-       the dictionaries will have NO EFFECT on RADIUS clients,	and  will  not
-       make RADIUS clients magically understand those attributes.  The dictio-
-       naries are solely for local administrator convenience, and are specific
-       to each version of FreeRADIUS.
-
-       The  dictionaries  in  /usr/local/share SHOULD NOT be edited unless you
-       know exactly what you are doing.  Changing them will most likely  break
-       your RADIUS deployment.
-
-       If  you	need to add new attributes, please edit the /etc/raddb/dictio-
-       nary file.  It's sole purpose is to contain site-local definitions that
-       are added by the local administrator.
-
-
-FORMAT
        Every  line  starting  with a hash sign ('#') is treated as comment and
        ignored.
 
-       Each line of the file can contain one of the following strings:
+       Each line of the file can contain one of the following strings
 
-       ATTRIBUTE name oid type [flags]
-	    Define a RADIUS attribute name to number mapping.
+       ATTRIBUTE name number type [vendor|options]
+	    Define a RADIUS attribute name to number mapping.  The name  field
+	    can  be any non-space text, but is usually taken from RFC2865, and
+	    other related documents.  The number field is also taken from  the
+	    relevant  documents,  for that name.  The type field can be one of
+	    string, octets, ipaddr, integer, date, ifid, ipv6addr, ipv6prefix,
+	    or	abinary.   See	the  RFC's,  or the main dictionary file for a
+	    description of the various types.
 
-	    The name field is a printable field, taken from various specifica-
-	    tions or vendor definitions.  It is most commonly used as a series
-	    of words, separated by hyphens.   e.g.  "User-Name".   Vendor-spe-
-	    cific  attributes  (VSAs)  are  prefixed  by the vendor name, e.g.
-	    "Cisco-AVPair".  The names should be globally unique, as they  are
-	    used as a key to look up the properties of the attribute.
-
-	    The  oid  field  is taken from the relevant specification for that
-	    name.  In most cases, it is a decimal number, such as "256".   For
-	    certain  attributes,  a  "dotted  number"  notation  is used, e.g.
-	    "1.2".  The "dotted number" notation  is  used  only  for  certain
-	    attributes.
-
-	    The type field can be one of the standard types:
-
-		 string       UTF-8 printable text (the RFCs call this "text")
-		 octets       opaque binary data (the RFCs call this "string")
-		 ipaddr       IPv4 address
-		 date	      Seconds since January 1, 1970 (32-bits)
-		 integer      32-bit unsigned integer
-		 ipv6addr     IPv6 Address
-		 ipv6prefix   IPV6 prefix, with mask
-		 ifid	      Interface Id (hex:hex:hex:hex)
-		 integer64   64-bit unsigned integer
-
-	    The  type  field  can  also  be  one of the following non-standard
-	    types:
-
-		 ether	      Ethernet MAC address
-		 abinary      Ascend binary filter format
-		 byte	      8-bit unsigned integer
-		 short	      16-bit unsigned integer
-		 signed       31-bit signed integer (packed into 32-bit field)
-		 struct       fixed-size structures
-		 tlv	      Type-Length-Value (allows nested attributes)
-		 ipv4prefix   IPv4 Prefix as given in RFC 6572.
-
-	    The "struct" type is a compound type.  An attribute of  data  type
-	    "struct"  can  have  multiple sub-attributes defined, just as with
-	    TLVs.  Each sub-attribute has to be numbered sequentially,	start-
-	    ing  at  1.   The numbers allow tracking of individual sub-fields,
-	    but have no other meaning.	Each sub-field of a "struct" type MUST
-	    be	a  fixed-width	data  type  such  as "integer", "ipaddr", etc.
-	    Variable sized types such as "string", "octets", or "tlv" are  not
-	    allowed.  Structs may not contain other structs.
-
-	    The  last  (optional)  field  of an attribute definition are addi-
-	    tional flags for that attribute, in a comma-separated list.   Pre-
-	    vious versions of the server allowed these flags to include a ven-
-	    dor name.  This behavior may still work, but it is deprecated, and
-	    is not recommended.
-
-	    The options are:
-
-		 encrypt=#    set encryption type 1, 2, or 3.
-		 has_tag      The attribute can have an RFC 2868 style tag
-
-	    The "encrypt" flag marks the attribute as being encrypted with one
-	    of three possible  methods.   "1"  means  that  the  attribute  is
-	    encrypted with the method as defined in RFC2865 for the User-Pass-
-	    word attribute.  "2" means that the password is encrypted with the
-	    method  as	defined  in RFC2868 for the Tunnel-Password attribute.
-	    "3" means that the attribute is encrypted as per Ascend's  defini-
-	    tions for the Ascend-Send-Secret attribute.
-
-	    The  "has_tag" flag marks the attribute as being permitted to have
-	    a tag, as defined in RFC2868.  The purpose of the tag is to  allow
-	    grouping  of  attributes for tunneled users.  See RFC2868 for more
-	    details.
-
-	    When the server receives an encoded attribute in a RADIUS  packet,
-	    it	looks  up that attribute by number in the dictionary, and uses
-	    the definition found there for printing diagnostic	and  log  mes-
-	    sages.   When the server sees an attribute name in a configuration
-	    file, it looks up that attribute by name in  the  dictionary,  and
-	    uses the definition found there.
+	    The last (optional) field of  an  attribute  definition  can  have
+	    either  a vendor name, or options for that attribute.  When a ven-
+	    dor name is given, the attribute is defined to be  a  vendor  spe-
+	    cific attribute.  Alternately, the options may be the a comma-sep-
+	    arated list of the following options:
 
 
-       FLAGS flag-name
-	    Set  attribute  flags for all subsequent attributes.  Flags can be
-	    unset by prefixing them with the "!" character.
+	    encrypt=[1-3]
+	    Mark the attribute as being encrypted with one of  three  methods.
+	    "1"  means	that  the  attribute  is  encrypted with the method as
+	    defined in RFC2865 for the	User-Password  attribute.   "2"  means
+	    that  the  password  is  encrypted	with  the method as defined in
+	    RFC2868 for the Tunnel-Password attribute.	 "3"  means  that  the
+	    attribute is encrypted as per Ascend's definitions for the Ascend-
+	    Send-Secret attribute.
 
-	    The only flag currently supported is "internal".
+	    has_tag
+	    Mark the attribute as being permitted to have a tag, as defined in
+	    RFC2868.   The  purpose  of  the  tag  is  to  allow  grouping  of
+	    attributes for tunnelled users.  See RFC2868 for more details.
+
+       When the server receives an encoded attribute in a  RADIUS  packet,  it
+       looks  up that attribute by number in the dictionary, and uses the name
+       found there for printing diagnostic and log messages.
 
 
        VALUE attribute-name value-name number
@@ -136,64 +65,25 @@ FORMAT
 	    and uses the name found there for printing diagnostic and log mes-
 	    sages.
 
-       VENDOR vendor-name number [format=...]
+
+       VENDOR vendor-name number
 	    Define a Vendor Specific Attribute encapsulation  for  vendor-name
 	    to	 number.   For	a  list  of  vendor  names  and  numbers,  see
 	    http://www.iana.org/enterprise-numbers.txt.
 
-	    The "format=t,l" statement tells the server how many octets to use
-	    to	encode/decode  the  vendor  "type"  and "length" fields in the
-	    attributes.  The default is "format=1,1", which does not  have  to
-	    be	specified.   For  USR  VSA's,  the format is "format=4,0", for
-	    Lucent VSA's it's "format=2,1", and for Starent VSA's  it's  "for-
-	    mat=2,2".
-
-	    The supported values for the number of type octets (i.e. the first
-	    digit) are 1, 2, and 4.  The support  values  for  the  number  of
-	    length octets (i.e. the second digit) are 0, 1, and 2.  Any combi-
-	    nation of those values will work.
-
-
-       BEGIN-VENDOR vendor-name
-	    Define the start of a block of Vendor-Specific attributes.	All of
-	    the  following ATTRIBUTE  definitions are interpreted as being for
-	    the named vendor, until the block is  closed  by  an  "END-VENDOR"
-	    statement.
-
-	    This  practice  is preferred to placing the vendor name at the end
-	    of an ATTRIBUTE  definition.
-
-	    For VSAs in the RFC 6929 "Extended vendor-specific" space, a  for-
-	    mat  can  be  specified  following	the "vendor-name".  The format
-	    should  be	"format=Extended-Vendor-Specific-1",   through	 "for-
-	    mat=Extended-Vendor-Specific-6".  The matching "END-VENDOR" should
-	    just have the "vendor-name", without the format string.
-
-       END-VENDOR vendor-name
-	    End a previously defined BEGIN-VENDOR  block.   The  "vendor-name"
-	    must match.
 
        $INCLUDE filename
-	    Include  dictionary  entries from the file filename.  The filename
-	    is taken as relative to the location of the file which  is	asking
+	    Include dictionary entries from the file filename.	 The  filename
+	    is	taken  as relative to the location of the file which is asking
 	    for the inclusion.
 
-       BEGIN-TLV name
-	    This  feature  is supported for backwards compatibility with older
-	    dictionaries.  It should not be used.   The  new  "oid"  form  for
-	    defining the attribute number should be used instead.
-
-       END-TLV name
-	    This  feature  is supported for backwards compatibility with older
-	    dictionaries.  It should not be used.   The  new  "oid"  form  for
-	    defining the attribute number should be used instead.
 
 FILES
        /etc/raddb/dictionary, /usr/share/freeradius/dictionary.*
 
 SEE ALSO
-       radiusd(8), RFC2865, RFC2866, RFC2868 RFC6929
+       radiusd(8), naslist(5), RFC2865, RFC2866, RFC2868
 
 
 
-				  24 Jul 2016			 dictionary(5)
+				  04 Jan 2004			 dictionary(5)

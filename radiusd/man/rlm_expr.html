@@ -1,8 +1,22 @@
 ---
-layout: default
+layout: page
+title: FreeRADIUS 'man' pages
+subtitle: Documentation from the server
+subpage: true
+navorder: 200
+hero: documentation
+
+subnav:
+ - text: Programs
+   link: '/radiusd/man/#programs'
+ - text: Configuration Files
+   link: '/radiusd/man/#files'
+ - text: Modules
+   link: '/radiusd/man/#modules'
 ---
 
-<div class="wrapper base_padding_v">
+
+<div class="man_page wrapper base_padding_v">
 <H1>rlm_expr</H1>
 Section: FreeRADIUS Module (5)<BR>Updated: 5 February 2004<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
@@ -26,22 +40,17 @@ different bytes.  To see these attributes split into pieces, you can
 have an entry in the 'users' file like:
 <P>
 
-<DL COMPACT><DT><DD>
-<PRE>
-
 DEFAULT
 <BR>
-    Vendor-Interface = `&percnt;{expr: &percnt;{NAS-Port} / (256 * 256)}`,
-<BR>
-    Vendor-Card = `&percnt;{expr: (&percnt;{NAS-Port} / 256) &percnt;&percnt; 256}`,
-<BR>
-    Vendor-Port = `&percnt;{expr: &percnt;{NAS-Port} &percnt;&percnt; 256}`
+
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;Vendor-Interface&nbsp;=&nbsp;`&percnt;{expr:&nbsp;&percnt;{NAS-Port}&nbsp;/&nbsp;(256&nbsp;*&nbsp;256)}`,
 <BR>
 
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;Vendor-Card&nbsp;=&nbsp;`&percnt;{expr:&nbsp;(&percnt;{NAS-Port}&nbsp;/&nbsp;256)&nbsp;&percnt;&percnt;&nbsp;256}`,
+<BR>
 
-</PRE>
-
-</DL>
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;Vendor-Port&nbsp;=&nbsp;`&percnt;{expr:&nbsp;&percnt;{NAS-Port}&nbsp;&percnt;&percnt;&nbsp;256}`
+<BR>
 
 <P>
 
@@ -100,39 +109,39 @@ example.
 
 All of the calculations are performed as unsigned 32-bit integers.
 
-
-
-<P>
-
 <A NAME="lbAD">&nbsp;</A>
 <H2>CONFIGURATION</H2>
 
 
-<DL COMPACT><DT><DD>
-<PRE>
-
 modules {
-  ...
+<BR>&nbsp;&nbsp;...
 <BR>
-  expr {
+
+<BR>&nbsp;&nbsp;expr&nbsp;{
 <BR>
-  }
+
+<BR>&nbsp;&nbsp;}
 <BR>
-  ...
+
+<BR>&nbsp;&nbsp;...
 <BR>
+
 }
 <BR>
- ...
+
+<BR>&nbsp;...
 <BR>
+
 instantiate {
-  ...
+<BR>&nbsp;&nbsp;...
 <BR>
-  expr
-  ...
+
+<BR>&nbsp;&nbsp;expr
+<BR>&nbsp;&nbsp;...
 <BR>
+
 }
-</DL>
-</PRE><A NAME="lbAE">&nbsp;</A>
+<A NAME="lbAE">&nbsp;</A>
 <H2>SECTIONS</H2>
 
 <B>instantiate</B>
@@ -175,6 +184,6 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 13:20:54 GMT, July 31, 2017
+Time: 11:13:12 GMT, August 01, 2017
 </div>
 </HTML>

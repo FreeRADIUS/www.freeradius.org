@@ -17,31 +17,56 @@ subnav:
 
 
 <div class="man_page wrapper base_padding_v">
-<H1>rlm_chap</H1>
+<H1>rlm_attr_rewrite</H1>
 Section: FreeRADIUS Module (5)<BR>Updated: 3 February 2004<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
 <H2>NAME</H2>
 
-rlm_chap - FreeRADIUS Module
+rlm_attr_rewrite - FreeRADIUS Module
 <A NAME="lbAC">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
-The <I>rlm_chap</I> module provides CHAP functionality.
+The <I>rlm_attr_rewrite</I> module provides functionality to rewrite
+data in radius packets on the fly.  This can be useful in
+authorization and accounting functions.
 <P>
 
-This module validates a user with CHAP authentication.
-If called in Authorize, it will look for CHAP-Password
-attribute in the Acess-Request and adds an Auth-Type
-attribute set to CHAP if the Config-Items list unless 
-Auth-Type has already set.
-<P>
+The main configuration items to be aware of are:
+<DL COMPACT>
+<DT>attribute<DD>
+The name of the attribute that you want to be rewritten
+<DT>searchfor<DD>
+String to be replaced.
+<DT>searchin<DD>
+Where to look for the attribute.  Valid values are:
+<B>packet,</B>
 
-CHAP authentication requires access to the clear-text
-password for the user.  Standard Unix system authentication
-or passwords encrypted via crypt() are not compatible
-with CHAP.
+<B>reply,</B>
+
+<B>proxy,</B>
+
+<B>proxy_reply,</B>
+
+<B>config</B>
+
+<DT>replacewith<DD>
+String to replace &quot;searchfor&quot;.
+<DT>append<DD>
+Set to yes or no.  If set to yes then the replace string will be
+appended to the original string.
+<DT>ignore_case<DD>
+Set to yes or no.  Determines whether search will be case insensitive
+or case sensitive.
+<DT>new_attribute<DD>
+Set to yes or no.  If set to yes, then new attribute will be created
+with values from &quot;searchin&quot; and &quot;replacewith&quot;.  Other options will be
+ignored.
+<DT>max_matches<DD>
+Set the max number of attributes to match against.  This is useful if
+you need to rewrite the value in multiple Vendor Specific Attributes.
+</DL>
 <P>
 
 <A NAME="lbAD">&nbsp;</A>
@@ -49,7 +74,17 @@ with CHAP.
 
 <B>authorization,</B>
 
-<B>authentication</B>
+<B>authentication,</B>
+
+<B>postauthentication,</B>
+
+<B>preaccounting,</B>
+
+<B>accounting,</B>
+
+<B>preproxy,</B>
+
+<B>postproxy</B>
 
 <P>
 
@@ -88,6 +123,6 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:12 GMT, August 01, 2017
+Time: 11:13:11 GMT, August 01, 2017
 </div>
 </HTML>

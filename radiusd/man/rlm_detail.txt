@@ -15,7 +15,8 @@ DESCRIPTION
 
        The main configuration items to be aware of are:
 
-       file   The file name in which  to  store  the  radius  packet  records.
+       detailfile
+	      The file name in which  to  store  the  radius  packet  records.
 	      NOTE: this variable is run through dynamic string expansion, and
 	      can include FreeRADIUS variables to create a dynamic filename.
 
@@ -25,28 +26,32 @@ DESCRIPTION
 	    This accomplishes 'file rotation' automatically from
 	    within the server.
 
-       permissions
-	      The file permissions of the file.  If omitted,  the  default  is
-	      0600.
+       detailperm
+	      The file permissions of the detailfile.  If omitted, the default
+	      is 0600.
+
+       dirperm
+	      The  directory  permissions  of  the  directory where the detail
+	      files are created.  The default is 0755.
 
        locking
-	      This  option  is	set  to 'yes' or 'no'.	By default it is 'no'.
-	      Set this to yes to enable file locking, which is used  with  the
+	      This option is set to 'yes' or 'no'.  By	default  it  is  'no'.
+	      Set  this  to yes to enable file locking, which is used with the
 	      'radrelay' program.
 
 CONFIGURATION
        modules {
 	 ...
 	 detail {
-	   filename = %A/%{Client-IP-Address}/detail-%Y%m
-	   permissions = 0600
-	   dir_permissions = 0755
+	   detailfile = %A/%{Client-IP-Address}/detail-%Y%m
+	   detailperm = 0600
+	   dirperm = 0755
 	   locking = no
 	 }
 	 ...
        }
 	 ...
-       process Accounting-Request {
+       accounting {
 	...
 	detail
 	...
@@ -66,4 +71,4 @@ AUTHORS
 
 
 
-				 27 June 2013			 rlm_detail(5)
+				5 February 2004 		 rlm_detail(5)

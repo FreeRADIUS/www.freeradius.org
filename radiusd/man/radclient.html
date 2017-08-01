@@ -1,10 +1,24 @@
 ---
-layout: default
+layout: page
+title: FreeRADIUS 'man' pages
+subtitle: Documentation from the server
+subpage: true
+navorder: 200
+hero: documentation
+
+subnav:
+ - text: Programs
+   link: '/radiusd/man/#programs'
+ - text: Configuration Files
+   link: '/radiusd/man/#files'
+ - text: Modules
+   link: '/radiusd/man/#modules'
 ---
 
-<div class="wrapper base_padding_v">
+
+<div class="man_page wrapper base_padding_v">
 <H1>RADCLIENT</H1>
-Section: FreeRADIUS Daemon (1)<BR>Updated: 28 March 2014<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 22 June 2004<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -16,43 +30,21 @@ radclient - send packets to a RADIUS server, show reply
 
 <B>radclient</B>
 
-[<B>-4</B>]
+[<B>-d</B>
 
-[<B>-6</B>]
+<I>raddb_directory</I>]
 
 [<B>-c</B>
 
 <I>count</I>]
 
-[<B>-d</B>
-
-<I>raddb_directory</I>]
-
-[<B>-D</B>
-
-<I>dictionary_directory</I>]
-
 [<B>-f</B>
 
 <I>file</I>]
 
-[<B>-F</B>]
-
-[<B>-h</B>]
-
 [<B>-i</B>
 
 <I>id</I>]
-
-[<B>-n</B>
-
-<I>num_requests_per_second</I>]
-
-[<B>-p</B>
-
-<I>num_requests_in_parallel</I>]
-
-[<B>-q</B>]
 
 [<B>-r</B>
 
@@ -68,11 +60,9 @@ radclient - send packets to a RADIUS server, show reply
 
 <I>timeout</I>]
 
-[<B>-v</B>]
+[<B>-qvx</B>]
 
-[<B>-x</B>]
-
-<I>server {acct|auth|status|disconnect|auto} secret</I>
+<I>server {acct|auth|status|disconnect} secret</I>
 <A NAME="lbAD">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
@@ -88,83 +78,53 @@ these attribute/value pairs using the dictionary, and sends them
 to the remote server.
 <P>
 
-The <I>User-Password</I> and <I>CHAP-Password</I> attributes are
-automatically encrypted before the packet is sent to the server.
+The <I>User-Password</I> attribute is automatically encrypted by <I>radclient</I>.
 <P>
 <A NAME="lbAE">&nbsp;</A>
 <H2>OPTIONS</H2>
 
 <P>
 <DL COMPACT>
-<DT>-4<DD>
-Use IPv4 (default)
-<DT>-6<DD>
-Use IPv6
 <DT>-c&nbsp;<I>count</I><DD>
 Send each packet <I>count</I> times.
-<DT>-d&nbsp;<I>raddb_directory</I><DD>
-The directory that contains the user dictionary file. Defaults to
 <I>/etc/raddb</I>.
-<DT>-D&nbsp;<I>dictionary_directory</I><DD>
-The directory that contains the main dictionary file. Defaults to
-<I>/usr/share/freeradius</I>.
-<DT>-f&nbsp;<I>file[:file]</I><DD>
+<P>
+<DT>-d&nbsp;<I>raddb_directory</I><DD>
+The directory that contains the RADIUS dictionary files. Defaults to
+<I>/etc/raddb</I>.
+<P>
+<DT>-f&nbsp;<I>file</I><DD>
 File to read the attribute/value pairs from. If this is not specified,
-they are read from stdin.  This option can be specified multiple
-times, in which case packets are sent in order by file, and within
-each file, by first packet to last packet.  A blank line separates
-logical packets within a file.  If a pair of files separated by a
-colon is specified, the second file will be used to filter the
-responses to requests from the first. The number of requests and
-filters must be the same.  A summary of filter results will be displayed
-if -s is passed.
-<DT>-F<DD>
-Print the file name, packet number and reply code.
-<DT>-h<DD>
-Print usage help information.
+they are read from stdin.
+<P>
 <DT>-i&nbsp;<I>id</I><DD>
 Use <I>id</I> as the RADIUS request Id.
-<DT>-n&nbsp;<I>num_requests_per_second</I><DD>
-Try to send <I>num_requests_per_second</I>, evenly spaced.  This option
-allows you to slow down the rate at which radclient sends requests.
-When not using -n, the default is to send packets as quickly as
-possible, with no inter-packet delays.
 <P>
-Due to limitations in radclient, this option does not accurately send
-the requested number of packets per second.
-<DT>-p&nbsp;<I>num_requests_in_parallel</I><DD>
-Send <I>num_requests_in_parallel</I>, without waiting for a response
-for each one.  By default, radclient sends the first request it has
-read, waits for the response, and once the response is received, sends
-the second request in its list.  This option allows you to send many
-requests at simultaneously.  Once <I>num_requests_in_parallel</I> are
-sent, radclient waits for all of the responses to arrive (or for the
-requests to time out), before sending any more packets.
-<P>
-This option permits you to discover the maximum load accepted by a
-RADIUS server.
-<DT>-P&nbsp;<I>proto</I><DD>
-Use <I>proto</I> transport protocol (&quot;tcp&quot; or &quot;udp&quot;).
-Only available if FreeRADIUS is compiled with TCP transport support.
 <DT>-q<DD>
 Go to quiet mode, and do not print out anything.
+<P>
 <DT>-r&nbsp;<I>num_retries</I><DD>
 Try to send each packet <I>num_retries</I> times, before giving up on
 it.  The default is 10.
-<DT>-s<DD>
-Print out some summaries of packets sent and received.
+<P>
+<DT>-sPrint<DD>
+<P>
 <DT>-S&nbsp;<I>shared_secret_file</I><DD>
 Rather than reading the shared secret from the command-line (where it
 can be seen by others on the local system), read it instead from
 <I>shared_secret_file</I>.
+<P>
 <DT>-t&nbsp;<I>timeout</I><DD>
 Wait <I>timeout</I> seconds before deciding that the NAS has not
 responded to a request, and re-sending the packet.  The default
 timeout is 3.
+<P>
 <DT>-v<DD>
 Print out version information.
+<P>
 <DT>-x<DD>
-Print out debugging information.
+Print out extra debugging information.
+<P>
 <DT>server[:port]<DD>
 The hostname or IP address of the remote server. Optionally a UDP port
 can be specified. If no UDP port is specified, it is looked up in
@@ -173,36 +133,13 @@ accounting packets, and <B>radius</B> for all other requests. If a
 service is not found in <I>/etc/services</I>, 1813 and 1812 are used
 respectively.
 <P>
-The RADIUS attributes read by <I>radclient</I> can contain the special
-attribute <B>Packet-Dst-IP-Address</B>.  If this attribute exists, then
-that IP address is where the packet is sent, and the <B>server</B>
-specified on the command-line is ignored.
-<P>
-If the RADIUS attribute list always contains the
-<B>Packet-Dst-IP-Address</B> attribute, then the <B>server</B> parameter
-can be given as <B>-</B>.
-<P>
-The RADIUS attributes read by <I>radclient</I> can contain the special
-attribute <B>Packet-Dst-Port</B>.  If this attribute exists, then that
-UDP port is where the packet is sent, and the <B>:port</B> specified
-on the command-line is ignored.
-<P>
-<DT>acct&nbsp;|&nbsp;auth&nbsp;|&nbsp;status&nbsp;|&nbsp;disconnect&nbsp;|&nbsp;auto<DD>
+<DT>acct&nbsp;|&nbsp;auth<DD>
 Use <B>auth</B> to send an authentication packet (Access-Request),
 <B>acct</B> to send an accounting packet (Accounting-Request),
 <B>status</B> to send an status packet (Status-Server), or
 <B>disconnect</B> to send a disconnection request. Instead of these
 values, you can also use a decimal code here. For example, code 12 is
 also <B>Status-Server</B>.
-<P>
-The RADIUS attributes read by <I>radclient</I> can contain the special
-attribute <B>Packet-Type</B>.  If this attribute exists, then that type
-of packet is sent, and the <I>type</I> specified on the command-line
-is ignored.
-<P>
-If the RADIUS attribute list always contains the
-<B>Packet-Type</B> attribute, then the <B>type</B> parameter can be
-given as <B>auto</B>.
 <P>
 <DT>secret<DD>
 The shared secret for this client.  It needs to be defined on the
@@ -214,16 +151,18 @@ packets from.
 <H2>EXAMPLE</H2>
 
 <P>
-A sample session that queries the remote server for
-<I>Status-Server</I> (not all servers support this, but FreeRADIUS has
-configurable support for it).
+A sample session that queries the remote server for <I>Status-Server</I>
+(not all servers support this.  Cistron-radiusd does since version
+1.6.5):
 <DL COMPACT><DT><DD>
 <P>
 <PRE>
-$ echo &quot;Message-Authenticator = 0x00&quot; | radclient 192.0.2.42 status s3cr3t
-Sending request to server 192.0.2.42, port 1812.
-radrecv: Packet from host 192.0.2.42 code=2, id=140, length=54
+
+$ echo &quot;User-Name = fnord&quot; | radclient 192.168.1.42 12 s3cr3t
+Sending request to server 192.168.1.42, port 1812.
+radrecv: Packet from host 192.168.1.42 code=2, id=140, length=54
     Reply-Message = &quot;FreeRADIUS up 21 days, 02:05&quot;
+
 </PRE>
 
 <P>
@@ -234,6 +173,7 @@ radrecv: Packet from host 192.0.2.42 code=2, id=140, length=54
 <H2>SEE ALSO</H2>
 
 <a href="radiusd.html">radiusd</A>(8),
+<a href="radtest.html">radtest</A>(1).
 <A NAME="lbAH">&nbsp;</A>
 <H2>AUTHORS</H2>
 
@@ -256,6 +196,6 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 13:20:52 GMT, July 31, 2017
+Time: 11:13:11 GMT, August 01, 2017
 </div>
 </HTML>

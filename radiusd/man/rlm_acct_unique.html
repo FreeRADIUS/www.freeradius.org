@@ -1,0 +1,157 @@
+---
+layout: page
+title: FreeRADIUS 'man' pages
+subtitle: Documentation from the server
+subpage: true
+navorder: 200
+hero: documentation
+
+subnav:
+ - text: Programs
+   link: '/radiusd/man/#programs'
+ - text: Configuration Files
+   link: '/radiusd/man/#files'
+ - text: Modules
+   link: '/radiusd/man/#modules'
+---
+
+
+<div class="man_page wrapper base_padding_v">
+<H1>rlm_acct_unique</H1>
+Section: FreeRADIUS Module (5)<BR>Updated: 3 February 2004<BR><A HREF="#index">Index</A>
+<A HREF="/man/">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rlm_acct_unique - FreeRADIUS Module
+<A NAME="lbAC">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+The <I>rlm_acct_unique</I> module creates a unique accounting session
+Id.
+<P>
+
+Many NAS vendors have their equipment supply an Acct-Session-Id
+attribute which is not unique over reboots.  This makes accounting
+difficult, as there will be many independent sessions with the same
+Acct-Session-Id attribute.  This module uses the Acct-Session-Id
+attribute, along with other attributes in the request, to create a
+more unique session ID, called Acct-Unique-Session-Id.
+<P>
+
+The main configuration items to be aware of are:
+<DL COMPACT>
+<DT>key<DD>
+A list of the attributes used in calculating an MD5 hash which is used
+as the value for the unique session id.
+</DL>
+<A NAME="lbAD">&nbsp;</A>
+<H2>CONFIGURATION</H2>
+
+
+modules {
+<BR>&nbsp;&nbsp;...
+<BR>
+
+<BR>&nbsp;&nbsp;acct_unique&nbsp;{
+<BR>
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>key = &quot;User-Name, Acct-Session-Id, NAS-IP-Address, NAS-Port&quot;<BR>
+<BR>
+
+<BR>&nbsp;&nbsp;}
+<BR>
+
+<BR>&nbsp;&nbsp;...
+<BR>
+
+}
+<BR>
+
+<BR>&nbsp;...
+<BR>
+
+preacct {
+<BR>&nbsp;&nbsp;...
+<BR>
+
+<BR>&nbsp;&nbsp;acct_unique
+<BR>&nbsp;&nbsp;...
+<BR>
+
+}
+
+<P>
+
+After generating the MD5 hash, the module adds it to the accounting
+request packet received from the client.  It will look something like
+this in your detail file:
+<P>
+
+
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>Acct-Unique-Session-Id = &quot;c66ef57e480b9d26&quot;<BR>
+
+<P>
+
+NOTE:  Any attribute you specify that is not found in the 'dictionary' 
+file will cause the server to fail and exit with an error.
+<P>
+
+NOTE:  If you want the Acct-Unique-Session-Id of the Start and the
+Stop packet of a particular session to match, you must use values for
+the key that will stay the same for the Start and Stop.  The above 
+example is a good start.  Adding 'Acct-Session-Time', for example, would 
+cause a mismatch because that value is not the same on the Start and 
+Stop accounting packets.
+<P>
+
+<A NAME="lbAE">&nbsp;</A>
+<H2>SECTIONS</H2>
+
+<B>authorization,</B>
+
+<B>pre-accounting,</B>
+
+<B>accounting</B>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
+<H2>FILES</H2>
+
+<I>/etc/raddb/radiusd.conf</I>
+
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<B><a href="radiusd.html">radiusd</A></B>(8),
+
+<B><a href="radiusd.conf.html">radiusd.conf</A></B>(5)
+
+<A NAME="lbAH">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAE">SECTIONS</A><DD>
+<DT><A HREF="#lbAF">FILES</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHORS</A><DD>
+</DL>
+<HR>
+This document was created by
+man2html,
+using the manual pages.<BR>
+Time: 11:13:11 GMT, August 01, 2017
+</div>
+</HTML>

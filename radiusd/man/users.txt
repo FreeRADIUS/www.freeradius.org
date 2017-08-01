@@ -6,10 +6,10 @@ NAME
        users - user authorization file for the FreeRADIUS server
 
 DESCRIPTION
-       The  users files reside in the files module configuration directory, by
-       default /etc/raddb/mods-config/files/.  It contains a series of config-
-       uration	directives which are used by the files module to decide how to
-       authorize and authenticate each user request.
+       The  users  file  resides  in the RADIUS database directory, by default
+       /etc/raddb.  It contains a series of configuration directives which are
+       used  by  the  files module to decide how to authorize and authenticate
+       each user request.
 
        Every line starting with a hash sign ('#') is treated  as  comment  and
        ignored.
@@ -19,7 +19,7 @@ DESCRIPTION
        a  tab,	and  a (possibly empty) list of reply items.  Each item in the
        check or reply item list is an attribute of  the  form  name  =	value.
        Multiple  items	may  be placed on one line, in which case they must be
-       separated by commas.  The reply items may be  specified	over  multiple
+       seperated by commas.  The reply items may be  specified	over  multiple
        lines, in which case each line must end with a comma, and the last line
        of the reply items must not end with a comma.
 
@@ -33,7 +33,7 @@ DESCRIPTION
 
 
 CAVEATS
-       The special keyword DEFAULT matches any usernames.
+       The special username DEFAULT matches any usernames.
 
        The entries are processed in order, from the top of the users file,  on
        down.   If  an  entry  contains the special item Fall-Through = No as a
@@ -66,7 +66,7 @@ OPERATORS
        Attribute = Value
 	    Not allowed as a check item for RADIUS protocol attributes.  It is
 	    allowed for server configuration attributes (Auth-Type, etc),  and
-	    sets  the value of an attribute, only if there is no other item of
+	    sets  the value of on attribute, only if there is no other item of
 	    the same attribute.
 	    As a reply item, it means "add the item to	the  reply  list,  but
 	    only if there is no other item of the same attribute."
@@ -123,6 +123,20 @@ OPERATORS
 	    Not allowed as a reply item.
 
 
+       Attribute =~ Expression
+	    As a check item, it matches if the request contains  an  attribute
+	    which  matches  the  given	regular expression.  This operator may
+	    only be applied to string attributes.
+	    Not allowed as a reply item.
+
+
+       Attribute !~ Expression
+	    As a check item, it matches if the request contains  an  attribute
+	    which  does not match the given regular expression.  This operator
+	    may only be applied to string attributes.
+	    Not allowed as a reply item.
+
+
        Attribute =* Value
 	    As a check item, it matches if  the  request  contains  the  named
 	    attribute, no matter what the value is.
@@ -136,11 +150,11 @@ OPERATORS
 
 
 EXAMPLES
-       bob  Cleartext-Password := "hello"
+       bob  User-Password == "hello"
 
 	      Requests containing the User-Name attribute, with  value	"bob",
-	      will  be	authenticated using the "known good" password "hello".
-	      There are no reply items, so the reply will be empty.
+	      will  be	authenticated  using the password "bob".  There are no
+	      reply items, so the reply will be empty.
 
        DEFAULT	 Auth-Type = System
 	    Fall-Through = Yes
@@ -185,10 +199,10 @@ HINTS
 
 
 FILES
-       /etc/raddb/mods-config/files/
+       /etc/raddb/users
 
 SEE ALSO
-       radclient(1), radiusd(8), dictionary(5),
+       radclient(1), radiusd(8), dictionary(5), naslist(5)
 
 
 AUTHOR

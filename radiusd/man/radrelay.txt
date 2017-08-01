@@ -1,60 +1,78 @@
-RADRELAY(8)		       FreeRADIUS Daemon		   RADRELAY(8)
+RADRELAY(1)		       FreeRADIUS Daemon		   RADRELAY(1)
 
 
 
 NAME
-       radrelay -- Deprecated command.
+       radrelay -- replicate accounting data to another RADIUS server
+
+SYNOPSIS
+       radrelay  [-a  accounting_dir]  [-d radius_dir] [-f] [-i source_ip] [-n
+       shortname] [-r remote-server[:port]] [-s secret] [-S secret_file]  [-x]
+       detailfile
 
 DESCRIPTION
-       The  functions  of radrelay have been added to radiusd.	One benefit is
-       that one instance of radiusd can read multiple detail files, among oth-
-       ers.
+       Radrelay  reads	a  file in the detail file format, reconstructs radius
+       packets from it and sends them to a remote radius server. When  end-of-
+       file  is reached, the file is truncated.  Radrelay then waits for addi-
+       tional data to be written to the file, and starts over again.
 
-       The  rlm_sql_log  module  does  something similar, but for SQL queries.
-       See it's man page for details.
+OPTIONS
+       -a accounting_directory
+	      The base directory to use to read the detail file from.
 
-REPLICATION FOR BACKUPS
-       Many sites run multiple radius servers; at least one  primary  and  one
-       backup  server.	When the primary goes down, most NASes detect that and
-       switch to the backup server.
 
-       That will cause your accounting packets to go the the backup  server  -
-       and  some  NASes  don't	even switch back to the primary server when it
-       comes back up.
+       -d radius_directory
+	      The base radius (raddb) directory, where the config files live.
 
-       The result is that accounting records are missed, and/or  the  adminis-
-       trator must jump through hoops in order to combine the different detail
-       files from multiple servers. It also means that	the  session  database
-       ("radutmp", used for radwho and simultaneous use detection) gets out of
-       sync.
 
-       We solve this issue by "relaying" packets from one server  to  another,
-       so they both have the same set of accounting data.
+       -f     Do not fork and run in the background as a daemon.
 
-       See raddb/sites-available/buffered-sql for more information.
 
-BUFFERING FOR HIGH-LOAD SERVERS
-       If the RADIUS server suddenly receives a many accounting packets, there
-       may be insufficient CPU power to process them all in a  timely  manner.
-       This  problem  is especially noticeable when the accounting packets are
-       going to a back-end database.
+       -i source_ip
+	      The source IP address to use for sending radius packets.
 
-       Similarly, you may have one database that tracks "live"	sessions,  and
-       another	that tracks historical accounting data.  In that case, access-
-       ing the first database is fast, as it is small.	Accessing  the	second
-       database  many be slower, as it may contain multiple gigabytes of data.
-       In addition, writing to the first database in a timely manner is impor-
-       tant,  while data may be written to the second database with a few min-
-       utes delay, without any harm being done.
 
-       See raddb/sites-available/copy-to-home-server for more information.
+       -n shortname
+	      The radius configuration	files  (most  probably	clients.conf),
+	      will  be	searched  for a client section with 'shortname' set to
+	      the used argument.  Both the server secret and the remote-server
+	      address  are  obtained  in this way. Do not use the -r, -s or -S
+	      parameters in combination with -n.
+
+
+       -r remote-server
+	      The hostname or IP address of the remote	server.  Optionally  a
+	      UDP  port  can  be specified. If no UDP port is specified, it is
+	      looked up in /etc/services.  The	service  name  looked  for  is
+	      radacct  for  accounting	packets.  If a service is not found in
+	      /etc/services, 1813 is used. The -r parameter can't be  used  in
+	      combination with -n.
+
+
+       -s secret
+	      Remote server secret.
+
+
+       -S secret_file
+	      Read  remote  server  secret  from file, the file should contain
+	      nothing other then the plain-text secret.
+
+
+       -x     Enable debug mode, -x will activate radrelay internal debugging,
+	      -xx will also activate librad debugging.
+
+
+       detailfile
+	      The  detail  file  to  use,  this  will  be appended to the base
+	      accounting directory.
+
 
 SEE ALSO
-       radiusd(8), rlm_sql_log(5)
+       radiusd(8), doc/radrelay.
 
 AUTHOR
-       The FreeRADIUS Server Project
+       Miquel van Smoorenburg, miquels@cistron.nl.
 
 
 
-				23 October 2007 		   RADRELAY(8)
+				 09 June 2002			   RADRELAY(1)
