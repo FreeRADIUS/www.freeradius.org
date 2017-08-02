@@ -350,24 +350,22 @@
 
         var win = angular.element($window);
 
-        $scope.getBranches = function() {
+        $scope.getReleases = function() {
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://{{ site.url }}/api/info/branch/',
+                url: 'http://{{ site.url }}/api/info/branch/*/release/',
                 params: {
-                    expansion_depth: 4,
+                    expansion_depth: 2,
+                    order_by: "date:desc",
+                    paginate_start: 0,
+                    paginate_end: 5,
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
-                // sort most recent first and filter out
-                // development branches
-                $scope.branches = response.data.reverse().filter(function(branch) {
-                    if (branch.status != "development") {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                // remove development versions from the main display
+                $scope.releases = response.data.filter(function(rel) {
+                    return (rel.name && rel.name.includes("x")) ? false : true;
                 });
                 $scope.state = 'success';
 
@@ -499,21 +497,22 @@
             // return filtered && filtered[0].exploit == true;
         };
 
-        $scope.getBranchesByDate = function(date) {
+        $scope.getReleasesByDate = function(date) {
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://{{ site.url }}/api/info/branch/',
+                url: 'http://{{ site.url }}/api/info/branch/*/release/',
                 // url: '/modules.json',
                 params: {
+                    expansion_depth: 2,
+                    keyword_expansion_depth: 1,
                     by_keyword: 'regex:'+date,
-                    expansion_depth: 4,
                     keyword_field: 'date',
-                    keyword_expansion_depth: 3,
+                    order_by: "date:desc"
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
-                $scope.branches = response.data;
+                $scope.releases = response.data;
                 $scope.activeFilter = '';
                 $scope.state = 'success';
 
@@ -523,20 +522,21 @@
             });
         };
 
-        $scope.searchBranches = function(string){
+        $scope.searchReleases = function(string){
             $scope.state = 'loading';
             $scope.searchString = string;
             $http({
                 method: 'GET',
-                url: 'http://{{ site.url }}/api/info/branch/',
+                url: 'http://{{ site.url }}/api/info/branch/*/release/',
                 params: {
                     by_keyword: 'regex:'+string,
                     keyword_expansion_depth: 2,
-                    expansion_depth: 4,
+                    expansion_depth: 2,
+                    order_by: "date:desc",
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
-                $scope.branches = response.data;
+                $scope.releases = response.data;
                 $scope.activeFilter = '';
                 $scope.state = 'success';
 
@@ -556,11 +556,7 @@
                     expansion_depth: 1,
                 }
             }).then(function successCallback(response) {
-                $scope.branches = [];
-                var rnrelease = {
-                    release: [response.data]
-                };
-                $scope.branches.push(rnrelease);
+                $scope.releases = [ response.data ];
                 $scope.activeFilter = '';
                 $scope.state = 'success';
 
@@ -600,10 +596,10 @@
             //     $scope.getModules($location.search().cat);
             // }
             else if ($location.search().s) {
-                $scope.searchBranches($location.search().s);
+                $scope.searchReleases($location.search().s);
             }
             else {
-                $scope.getBranches();
+                $scope.getReleases();
             }
         };
 

@@ -20,7 +20,7 @@ subnav:
                 <div class="modules_search columns medium-8">
                     <input class="h5 search" type="text" placeholder="Search" ng-model="search" ng-model-options="{ debounce: 300 }" ng-value="searchString" ng-change="changeLocationSearch(search)">
 
-                    <select class="h5 bg_block-light text-dark" ng-model="searchDate" ng-change="getBranchesByDate(searchDate)" ng-init="searchdate = ''">
+                    <select class="h5 bg_block-light text-dark" ng-model="searchDate" ng-change="getReleasesByDate(searchDate)" ng-init="searchdate = ''">
                         <option value="">Filter by year</option>
                         <option value="2017">Released 2017</option>
                         <option value="2016">Released 2016</option>
@@ -38,8 +38,7 @@ subnav:
     <section class="modules_section base_padding_v">
         <div class="wrapper">
 
-            <div ng-repeat="branch in branches">
-                <div class="release_note base_padding_v" ng-repeat="release in branch.release" ng-cloak>
+                <div class="release_note base_padding_v" ng-repeat="release in releases" ng-cloak>
                     <div class="row">
                         <div class="columns medium-2"><h4 tab-trigger ng-click="toggle('#release' + release.name.split('.').join('-'), true)">{% raw %}{{release.date | date : 'yyyy.MM.dd'}}{% endraw %}</h4></div>
                         <div class="columns medium-5">
@@ -157,8 +156,6 @@ subnav:
 
                     </div>
                 </div>
-            </div>
-
 
         </div>
     </section>
