@@ -136,8 +136,33 @@ end
 
 local branch = uri:match("^" .. helper.config.base_url .. "/branch/([^/]+)/")
 
-local index = indexer.new({}, helper.config.base_url .. "/branch/" .. branch .. "/release", sane_args.expansion_depth)
-index:build(helper.config.srv_path .. "/branch/" .. branch .. "/release/")
+local index
+
+if branch == "*" then
+   ret, branches = helper.get_json_subrequest(helper.config.base_url .. "/branch/")
+   if ret ~= ngx.OK then
+      helper.fatal_error(ret, "Error retrieving branches")
+   end
+
+   allreleases = {}
+   for i, branch in ipairs(branches) do
+      ret, releases = helper.get_json_subrequest(branch.url .. "release/")
+      if ret ~= ngx.OK then
+         helper.fatal_error(ret, "Error retrieving branch releases " .. branch.url .. "release/")
+      end
+
+      for j, release in ipairs(releases) do
+        table.insert(allreleases, release)
+      end
+   end
+
+   index = indexer.new({}, helper.config.base_url .. "/branch/*/release", sane_args.expansion_depth)
+   index:set(allreleases)
+else
+   index = indexer.new({}, helper.config.base_url .. "/branch/" .. branch .. "/release", sane_args.expansion_depth)
+   index:build(helper.config.srv_path .. "/branch/" .. branch .. "/release/")
+end
+
 
 -- Filter by keyword
 ret = search and index:filter(search, sane_args.keyword_expansion_depth)
@@ -145,7 +170,7 @@ ret = search and index:filter(search, sane_args.keyword_expansion_depth)
 -- Sort by user specified field or by version
 ret = sane_args.order_by and index:sort(sane_args.order_by) or index:sort_with(version_sort)
 
--- Pagenate
+-- Paginate
 index:paginate(sane_args.paginate_start, sane_args.paginate_end)
 
 ngx.say(tostring(index));
