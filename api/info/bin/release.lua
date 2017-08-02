@@ -1,10 +1,19 @@
-local cjson    	      = require "cjson"
-local ngx            	= require "ngx"
+-- release.lua
+--
+-- called with URLs of the form
+--   /api/info/branch/<branch>/release/<release>/
+-- e.g.
+--   /api/info/branch/3.0.x/release/3.0.15/
+--
+-- reads /api/info/srv/branch/<branch>/release/<release>.json
+--
+local cjson             = require "cjson"
+local ngx               = require "ngx"
 
-local helper         	= require "lib.helper"
+local helper            = require "lib.helper"
 local validate          = require "lib.validate"
 
-local uri 			      = ngx.var.uri
+local uri               = ngx.var.uri
 
 local get_args          = ngx.req.get_uri_args()
 local sane_args

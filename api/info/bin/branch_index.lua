@@ -1,7 +1,14 @@
+-- branch_index.lua
+--
+-- called with URLs exactly matching
+--   /api/info/branch/
+--
+-- reads all branches in /api/info/srv/branch/*.json
+--
 local cjson             = require "cjson"
 local ngx               = require "ngx"
 
-local helper   	      = require "lib.helper"
+local helper            = require "lib.helper"
 local validate          = require "lib.validate"
 local indexer           = require "lib.indexer"
 

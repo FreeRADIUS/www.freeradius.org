@@ -1,3 +1,14 @@
+-- release_index.lua
+--
+-- called with URLs of the form
+--   /api/info/branch/<branch>/release/
+-- e.g.
+--   /api/info/branch/3.0.x/release/
+--
+-- reads /api/info/srv/branch/<branch>/release/<release>.json
+--
+-- sorts by version (descending) unless otherwise specified
+--
 local cjson             = require "cjson"
 local ngx               = require "ngx"
 
@@ -10,7 +21,7 @@ local uri               = ngx.var.uri
 local get_args          = ngx.req.get_uri_args()
 local sane_args
 
-local releases            = {}
+local releases          = {}
 local ret, err
 
 -- Process helper arguments
