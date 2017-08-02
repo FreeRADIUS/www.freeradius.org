@@ -38,17 +38,17 @@ subnav:
     <section class="modules_section base_padding_v">
         <div class="wrapper">
 
-            <div ng-repeat="release_note in release_notes">
-                <div class="release_note base_padding_v" ng-repeat="branch in release_note.release" ng-cloak>
+            <div ng-repeat="branch in branches">
+                <div class="release_note base_padding_v" ng-repeat="release in branch.release" ng-cloak>
                     <div class="row">
-                        <div class="columns medium-2"><h4 tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">{% raw %}{{branch.date | date : 'yyyy.MM.dd'}}{% endraw %}</h4></div>
+                        <div class="columns medium-2"><h4 tab-trigger ng-click="toggle('#release' + release.name.split('.').join('-'), true)">{% raw %}{{release.date | date : 'yyyy.MM.dd'}}{% endraw %}</h4></div>
                         <div class="columns medium-5">
-                            <h4 tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">Version {% raw %}{{branch.name}}{% endraw %} has been released. <img ng-if="isCritical(branch)" class="icon_xsmall" src="/img/alert-red.svg" alt=""></h4>
-                            <span>{% raw %}{{branch.summary}}{% endraw %}.</span>
+                            <h4 tab-trigger ng-click="toggle('#release' + release.name.split('.').join('-'), true)">Version {% raw %}{{release.name}}{% endraw %} has been released. <img ng-if="isCritical(release)" class="icon_xsmall" src="/img/alert-red.svg" alt=""></h4>
+                            <span>{% raw %}{{release.summary}}{% endraw %}.</span>
                         </div>
                         <div class="columns medium-4">
-                            <ul class="release_module_list h5" ng-init="things = getAffectedModulesByCategory(branch)">
-                                <li class="release_module_item" ng-repeat="(key, modules) in things" tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">
+                            <ul class="release_module_list h5" ng-init="things = getAffectedModulesByCategory(release)">
+                                <li class="release_module_item" ng-repeat="(key, modules) in things" tab-trigger ng-click="toggle('#release' + release.name.split('.').join('-'), true)">
 
                                     <span class="release_module_item_inner">
                                         <span class="icon_xsmall release_module_icon text_accent-blue"><img ng-src="/img/mod-{% raw %}{{key}}{% endraw %}.svg" alt=""></span> {% raw %}{{key}}{% endraw %} <span class="text-light">({% raw %}{{modules.length}}{% endraw %})</span>
@@ -60,30 +60,30 @@ subnav:
                                 </li>
                             </ul>
                         </div>
-                        <div class="columns medium-1" tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">
-                            <img ng-show="active == '#release' + branch.name.split('.').join('-')" src="../img/close.svg" class="icon_xsmall open-toggle">
-                            <img ng-hide="active == '#release' + branch.name.split('.').join('-')" src="../img/open.svg" class="icon_xsmall open-toggle">
+                        <div class="columns medium-1" tab-trigger ng-click="toggle('#release' + release.name.split('.').join('-'), true)">
+                            <img ng-show="active == '#release' + release.name.split('.').join('-')" src="../img/close.svg" class="icon_xsmall open-toggle">
+                            <img ng-hide="active == '#release' + release.name.split('.').join('-')" src="../img/open.svg" class="icon_xsmall open-toggle">
                         </div>
                     </div>
                     <div class="release_details"
-                        id="release{% raw %}{{branch.name.split('.').join('-')}}{% endraw %}"
+                        id="release{% raw %}{{release.name.split('.').join('-')}}{% endraw %}"
                         tab-content
                         transition="slide"
-                        ng-class="{branch_active: active == '#release' + branch.name.split('.').join('-')}">
-                        <p class="bg_block-light sm_padding text_accent-red emphasis" ng-if="isCritical(branch)"><img class="icon_small" src="/img/alert-red.svg" alt=""> This release addresses critical security issues</p>
+                        ng-class="{release_active: active == '#release' + release.name.split('.').join('-')}">
+                        <p class="bg_block-light sm_padding text_accent-red emphasis" ng-if="isCritical(release)"><img class="icon_small" src="/img/alert-red.svg" alt=""> This release addresses critical security issues</p>
 
-                        <div ng-if="branch.features">
+                        <div ng-if="release.features">
                             <h5>Feature Improvements</h5>
                             <ul class="release_features">
-                                <li ng-repeat="feature in branch.features">
+                                <li ng-repeat="feature in release.features">
                                     <span class="{% raw %}{{getComponents(feature).join(' ')}}{% endraw %}" ng-class="{highlight_point: compareArrays(getComponents(feature), affectedClasses)}">{% raw %}{{feature.description}}{% endraw %}.</span>
                                 </li>
                             </ul>
                         </div>
-                        <div ng-if="branch.defects">
+                        <div ng-if="release.defects">
                             <h5>Bug Fixes</h5>
                             <ul class="release_defects">
-                                <li ng-repeat="defect in branch.defects">
+                                <li ng-repeat="defect in release.defects">
                                     <span class="{% raw %}{{getComponents(defect).join(' ')}}{% endraw %}" ng-class="{highlight_point: compareArrays(getComponents(defect), affectedClasses)}">{% raw %}{{defect.description}}{% endraw %}.</span>
                                 </li>
                             </ul>
@@ -91,10 +91,10 @@ subnav:
                         <h5>Related Modules</h5>
 
                         <div class="row" content-group>
-                            <!-- <div class="module module-{% raw %}{{module.category}}{% endraw %}" ng-repeat="module in getAffectedModules(branch) track by $index"> -->
+                            <!-- <div class="module module-{% raw %}{{module.category}}{% endraw %}" ng-repeat="module in getAffectedModules(release) track by $index"> -->
                                 <div class="module module-{% raw %}{{module.category}}{% endraw %}"
                                     ng-class="{active: active == '#module-details-{% raw %}{{module.name}}{% endraw %}'}"
-                                    ng-repeat="module in getAffectedModules(branch)"
+                                    ng-repeat="module in getAffectedModules(release)"
                                     ng-init="dormant = true"
                                     mod
                                     ng-cloak>

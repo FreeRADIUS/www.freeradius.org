@@ -76,7 +76,7 @@
         opacity: 1;
         visibility: visible;
     }
-    .release_details:not(.branch_active) .module.active & {
+    .release_details:not(.release_active) .module.active & {
         opacity: 0;
     }
     .wrapper {

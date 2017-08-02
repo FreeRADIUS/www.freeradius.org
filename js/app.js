@@ -360,7 +360,7 @@
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
-                $scope.release_notes = response.data.reverse();
+                $scope.branches = response.data.reverse();
                 $scope.state = 'success';
 
             }, function errorCallback(response) {
@@ -505,7 +505,7 @@
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
-                $scope.release_notes = response.data;
+                $scope.branches = response.data;
                 $scope.activeFilter = '';
                 $scope.state = 'success';
 
@@ -528,7 +528,7 @@
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
-                $scope.release_notes = response.data;
+                $scope.branches = response.data;
                 $scope.activeFilter = '';
                 $scope.state = 'success';
 
@@ -547,11 +547,11 @@
                     expansion_depth: 1,
                 }
             }).then(function successCallback(response) {
-                $scope.release_notes = [];
+                $scope.branches = [];
                 var rnrelease = {
                     release: [response.data]
                 };
-                $scope.release_notes.push(rnrelease);
+                $scope.branches.push(rnrelease);
                 $scope.activeFilter = '';
                 $scope.state = 'success';
 
