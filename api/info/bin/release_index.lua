@@ -146,6 +146,6 @@ ret = search and index:filter(search, sane_args.keyword_expansion_depth)
 ret = sane_args.order_by and index:sort(sane_args.order_by) or index:sort_with(version_sort)
 
 -- Pagenate
-index:paginate(paginate_start, paginate_end)
+index:paginate(sane_args.paginate_start, sane_args.paginate_end)
 
 ngx.say(tostring(index));
