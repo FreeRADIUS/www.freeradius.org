@@ -360,7 +360,15 @@
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
-                $scope.branches = response.data.reverse();
+                // sort most recent first and filter out
+                // development branches
+                $scope.branches = response.data.reverse().filter(function(branch) {
+                    if (branch.status != "development") {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
                 $scope.state = 'success';
 
             }, function errorCallback(response) {
