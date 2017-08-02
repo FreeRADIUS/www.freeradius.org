@@ -357,12 +357,10 @@
                 url: 'http://{{ site.url }}/api/info/branch/',
                 params: {
                     expansion_depth: 4,
-                    order_by: 'name',
-                    order_by: 'category',
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
-                $scope.release_notes = response.data;
+                $scope.release_notes = response.data.reverse();
                 $scope.state = 'success';
 
             }, function errorCallback(response) {
