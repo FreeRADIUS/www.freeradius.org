@@ -67,7 +67,7 @@ GET /api/info/component/?by_category=unknown
 --- no_error_log
 [error]
 
-=== TEST 3: Component category and pagenate
+=== TEST 3: Component category and paginate
 Only pull back the first result for a category
 
 --- main_config
@@ -84,7 +84,7 @@ location ~ ^/api/info/component/[.0-9a-z_-]+/$ {
 	content_by_lua_file $document_root/api/info/bin/component.lua;
 }
 --- request
-GET /api/info/component/?by_category=authentication&pagenate_start=0&pagenate_end=0
+GET /api/info/component/?by_category=authentication&paginate_start=0&paginate_end=0
 --- response_body_json_eval
 [
    {

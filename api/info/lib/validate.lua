@@ -56,32 +56,32 @@ function _m.get_args(get_args)
       out.keyword_expansion_depth = 0
    end
 
-   if get_args.pagenate_start then
-      if type(get_args.pagenate_start) == 'table' then
-         return nil, 'exactly one instance of pagenate_start allowed'
+   if get_args.paginate_start then
+      if type(get_args.paginate_start) == 'table' then
+         return nil, 'exactly one instance of paginate_start allowed'
       end
 
-      out.pagenate_start = tonumber(get_args.pagenate_start)
-      if not out.pagenate_start or out.pagenate_start < 0 then
-         return nil, 'pagenate_start must be a positive integer'
+      out.paginate_start = tonumber(get_args.paginate_start)
+      if not out.paginate_start or out.paginate_start < 0 then
+         return nil, 'paginate_start must be a positive integer'
       end
-      out.pagenate_start = out.pagenate_start + 1
+      out.paginate_start = out.paginate_start + 1
 
-      get_args.pagenate_start = nil
+      get_args.paginate_start = nil
    end
 
-   if get_args.pagenate_end then
-      if type(get_args.pagenate_end) == 'table' then
-         return nil, 'exactly one instance of pagenate_start allowed'
+   if get_args.paginate_end then
+      if type(get_args.paginate_end) == 'table' then
+         return nil, 'exactly one instance of paginate_start allowed'
       end
 
-      out.pagenate_end = tonumber(get_args.pagenate_end)
-      if not out.pagenate_end or out.pagenate_end < 0 then
-         return nil, 'pagenate_end must be a positive integer'
+      out.paginate_end = tonumber(get_args.paginate_end)
+      if not out.paginate_end or out.paginate_end < 0 then
+         return nil, 'paginate_end must be a positive integer'
       end
-      out.pagenate_end = out.pagenate_end + 1
+      out.paginate_end = out.paginate_end + 1
 
-      get_args.pagenate_end = nil
+      get_args.paginate_end = nil
    end
 
    -- Validate order by

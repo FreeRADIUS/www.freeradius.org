@@ -48,7 +48,7 @@ end
 
 -- Add link to releases to allow expansion
 json.release = { url = helper.config.base_url .. "/branch/" .. branch .. "/release/" }
-ret, json.last_release = helper.get_json_subrequest(json.release.url .. "?pagenate_start=0&pagenate_end=0")
+ret, json.last_release = helper.get_json_subrequest(json.release.url .. "?paginate_start=0&paginate_end=0")
 if ret == ngx.HTTP_NOT_FOUND then
    json.last_release = nil
 elseif ret ~= ngx.OK then
