@@ -377,11 +377,11 @@
             });
         };
 
-        $scope.getAffectedModules = function(branch) {
+        $scope.getAffectedModules = function(release) {
             var modules;
 
             var features = [];
-            angular.forEach(branch.features, function(value, key) {
+            angular.forEach(release.features, function(value, key) {
                 this.push(value);
             }, features);
 
@@ -400,7 +400,7 @@
             }, featureComponents);
 
             var defects = [];
-            angular.forEach(branch.defects, function(value, key) {
+            angular.forEach(release.defects, function(value, key) {
                 this.push(value);
             }, defects);
 
@@ -461,8 +461,8 @@
             $scope.affectedClasses = false;
         }
 
-        $scope.getAffectedModulesByCategory = function(branch) {
-            var modules = $scope.getAffectedModules(branch);
+        $scope.getAffectedModulesByCategory = function(release) {
+            var modules = $scope.getAffectedModules(release);
             // console.log('modules ' , modules);
 
             var moduleCats = moduleCats || {};
@@ -476,8 +476,8 @@
             return moduleCats;
         };
 
-        $scope.isCritical = function(branch) {
-            var defects = branch.defects;
+        $scope.isCritical = function(release) {
+            var defects = release.defects;
             if (defects && defects != 'undefined') {
                 var filtered;
                 if (defects.length > 0) {
@@ -546,6 +546,7 @@
             });
 
         };
+
         $scope.getRelease = function(branch, release) {
             $scope.state = 'loading';
             $http({
@@ -605,6 +606,7 @@
                 $scope.getBranches();
             }
         };
+
         $scope.checkLocation();
 
     }]);
