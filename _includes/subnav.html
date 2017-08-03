@@ -1,18 +1,18 @@
 <div class="sub-nav">
-	<div class="wrapper">
+    <div class="wrapper">
         <nav class="inline_nav" sub-nav>
             <ul>
                 {% if include.subnav.data %}
-                    {% assign subnav = site.data[include.subnav.data] %}
-                {% else %}
-                    {% assign subnav = include.subnav %}
-                {% endif %}
-                {% for link in subnav %}
-        			<li class="{% if page.url == link.link %}active{% elsif forloop.first and page.subpage != true %}active{% endif %}">
-                        <a class="subnav_link" href="{{link.link}}">{{link.text}}</a>
-                    </li>
-        		{% endfor %}
+                {%- assign subnav = site.data[include.subnav.data] -%}
+                {%- else -%}
+                {%- assign subnav = include.subnav -%}
+                {%- endif -%}
+                {%- for link in subnav -%}
+                <li class="{% if page.url == link.link %}active{% elsif forloop.first and page.subpage != true %}active{% endif %}">
+                    <a class="subnav_link" href="{{link.link}}">{{link.text}}</a>
+                </li>
+                {% endfor %}
             </ul>
         </nav>
-	</div>
+    </div>
 </div>
