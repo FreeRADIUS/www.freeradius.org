@@ -506,7 +506,7 @@
                 params: {
                     expansion_depth: 2,
                     keyword_expansion_depth: 1,
-                    by_keyword: 'regex:'+date,
+                    by_keyword: 'lua:'+date,
                     keyword_field: 'date',
                     order_by: "date:desc"
                 }
@@ -529,8 +529,8 @@
                 method: 'GET',
                 url: 'http://{{ site.url }}/api/info/branch/*/release/',
                 params: {
-                    by_keyword: 'regex:'+string,
-                    keyword_expansion_depth: 2,
+                    by_keyword: 'lua:'+string,
+                    keyword_expansion_depth: 1,
                     expansion_depth: 2,
                     order_by: "date:desc",
                 }
