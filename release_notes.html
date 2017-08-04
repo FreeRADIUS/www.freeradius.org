@@ -136,7 +136,7 @@ subnav:
                                                     <div ng-repeat="available in module.available">
                                                         <div class="link">
                                                             <p class="h5 text_accent-grey">Availability</p>
-                                                            <span class="h6">{% raw %}{{available.start.name}}{% endraw %} - {% raw %}{{available.end.name}}{% endraw %}</span>
+                                                            <span class="h6"><a ng-href="/release_notes/?br={% raw %}{{available.branch.name}}{% endraw %}&re={% raw %}{{available.start.name}}{% endraw %}">{% raw %}{{available.start.name}}{% endraw %}</a> - <a ng-href="/release_notes/?br={% raw %}{{available.branch.name}}{% endraw %}&re={% raw %}{{available.end.name}}{% endraw %}">{% raw %}{{available.end.name}}{% endraw %}</a></span>
                                                         </div>
                                                     </div>
                                                 </div>
