@@ -18,7 +18,7 @@ subnav:
 
 <div class="man_page wrapper base_padding_v">
 <H1>RADWHO</H1>
-Section: FreeRADIUS Daemon (1)<BR>Updated: 23 February 2001<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 17 Feb 2013<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -30,27 +30,47 @@ radwho - show online users
 
 <B>radwho</B>
 
+[<B>-c</B>]
+
 [<B>-d</B>
 
 <I>raddb_directory</I>]
 
-[<B>-l</B>]
+[<B>-F</B>
 
-[<B>-h</B>]
-
-[<B>-f</B>]
-
-[<B>-n</B>]
-
-[<B>-s</B>]
+<I>radutmp_file</I>]
 
 [<B>-i</B>]
 
+[<B>-n</B>]
+
+[<B>-N</B>
+
+<I>nas_ip_address</I>]
+
 [<B>-p</B>]
 
-[<B>-c</B>]
+[<B>-P</B>
+
+<I>nas_port</I>]
 
 [<B>-r</B>]
+
+[<B>-R</B>]
+
+[<B>-s</B>]
+
+[<B>-S</B>]
+
+[<B>-u</B>
+
+<I>user</I>]
+
+[<B>-U</B>
+
+<I>user</I>]
+
+[<B>-Z</B>]
 
 <A NAME="lbAD">&nbsp;</A>
 <H2>DESCRIPTION</H2>
@@ -62,54 +82,79 @@ content of that session database.
 <H2>OPTIONS</H2>
 
 <DL COMPACT>
+<DT>-c<DD>
+Shows caller ID (if available) instead of the full name.
 <DT>-d&nbsp;<I>raddb_directory</I><DD>
 The directory that contains the RADIUS configuration files. Defaults to
 <I>/etc/raddb</I>.
-<DT>-l<DD>
-Show local shell users too. In this case, <B>radwho</B> reads the
-local &quot;session database&quot; aka the systems <I>utmp</I> file as well
-and shows the contents of that file before the contents of the
-radius &quot;session database&quot; aka the <I>radutmp</I> file, in the
-same format.
-<DT>-h<DD>
-Hide shell users. Doesn't show the entries for users that do not
-have a SLIP or PPP session.
-<DT>-f<DD>
-Behave as the 'fingerd' daemon - waits for one line of input, then
-prints the output with lines \r\n terminated.
+<DT>-F&nbsp;<I>radutmp_file</I><DD>
+The file that contains the radutmp file.  If this is specified, -d is
+not necessary.
+<DT>-i<DD>
+Shows the session ID instead of the full name.
 <DT>-n<DD>
 Normally radwho looks up the username in the systems password file,
 and shows the full username as well. The <B>-n</B> flags prevents this.
-<DT>-s<DD>
-Show full name.
-<DT>-i<DD>
-Shows the session ID instead of the full name.
+<DT>-N&nbsp;<I>nas_ip_address</I><DD>
+Show only those entries which match the given NAS IP address.
 <DT>-p<DD>
 Adds an extra column for the port type - I for ISDN, A for Analog.
-<DT>-c<DD>
-Shows caller ID (if available) instead of the full name.
+<DT>-P&nbsp;<I>nas_port</I><DD>
+Show only those entries which match the given NAS port.
 <DT>-r<DD>
 Outputs all data in <I>raw</I> format - no headers, no formatting,
-fields are comma-seperated.
+fields are comma-separated.
+<DT>-R<DD>
+Output all data in RADIUS attribute format.  All fields are printed.
+<DT>-s<DD>
+Show full name.
+<DT>-S<DD>
+Hide shell users. Doesn't show the entries for users that do not
+have a SLIP or PPP session.
+<DT>-u&nbsp;<I>user</I><DD>
+Show only those entries which match the given username (case insensitive).
+<DT>-U&nbsp;<I>user</I><DD>
+Show only those entries which match the given username (case sensitive).
+<DT>-Z<DD>
+When combined with <I>-R</I>, prints out the contents of an
+Accounting-Request packet which can be passed to <I>radclient</I>, in
+order to &quot;zap&quot; that users session from <I>radutmp</I>.
+</DL>
+<P>
+
+For example,
+<DL COMPACT><DT><DD>
+<P>
+<PRE>
+$ radwho -ZRN 10.0.0.1 | radclient -f - radius.example.net acct testing123
+</PRE>
+
 <P>
 </DL>
+
+will result in all an Accounting-Request packet being sent to the
+RADIUS server, which tells the server that the NAS rebooted.  i.e. It
+&quot;zaps&quot; all of the users on that NAS.
+<P>
+To &quot;zap&quot; one user, specify NAS, username, and NAS port:
+<DL COMPACT><DT><DD>
+<P>
+<PRE>
+$ radwho -ZRN 10.0.0.1 -u user -P 10 | radclient -f - radius.example.net acct testing123
+</PRE>
+
+<P>
+</DL>
+
+Other combinations are also possible.
+<P>
 <A NAME="lbAF">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<a href="radiusd.html">radiusd</A>(8).
-<A NAME="lbAG">&nbsp;</A>
-<H2>AUTHOR</H2>
-
-Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</A>.
-<P>
-<A NAME="lbAH">&nbsp;</A>
-<H2>SEE ALSO</H2>
-
 <a href="radiusd.html">radiusd</A>(8),
-<a href="radiusd.conf.html">radiusd.conf</A>(5),
-<a href="wtmp.html">wtmp</A>(5),
-<a href="last.html">last</A>(1).
-<A NAME="lbAI">&nbsp;</A>
+<a href="radclient.html">radclient</A>(1),
+<a href="radiusd.conf.html">radiusd.conf</A>(5).
+<A NAME="lbAG">&nbsp;</A>
 <H2>AUTHOR</H2>
 
 Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</A>.
@@ -124,13 +169,11 @@ Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</
 <DT><A HREF="#lbAE">OPTIONS</A><DD>
 <DT><A HREF="#lbAF">SEE ALSO</A><DD>
 <DT><A HREF="#lbAG">AUTHOR</A><DD>
-<DT><A HREF="#lbAH">SEE ALSO</A><DD>
-<DT><A HREF="#lbAI">AUTHOR</A><DD>
 </DL>
 <HR>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:11 GMT, August 01, 2017
+Time: 12:00:33 GMT, August 03, 2017
 </div>
 </HTML>

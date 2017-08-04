@@ -18,7 +18,7 @@ subnav:
 
 <div class="man_page wrapper base_padding_v">
 <H1>rlm_detail</H1>
-Section: FreeRADIUS Module (5)<BR>Updated: 5 February 2004<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Module (5)<BR>Updated: 27 June 2013<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -39,7 +39,7 @@ many 'detail' file parsers should work with FreeRADIUS.
 
 The main configuration items to be aware of are:
 <DL COMPACT>
-<DT>detailfile<DD>
+<DT>file<DD>
 The file name in which to store the radius packet records.  NOTE: this
 variable is run through dynamic string expansion, and can include
 FreeRADIUS variables to create a dynamic filename.
@@ -55,12 +55,9 @@ FreeRADIUS variables to create a dynamic filename.
 <P>
 
 <DL COMPACT>
-<DT>detailperm<DD>
-The file permissions of the detailfile.  
+<DT>permissions<DD>
+The file permissions of the file.  
 If omitted, the default is 0600.
-<DT>dirperm<DD>
-The directory permissions of the directory where the detail files are
-created.  The default is 0755.
 <DT>locking<DD>
 This option is set to 'yes' or 'no'.  By default it is 'no'.  Set this
 to yes to enable file locking, which is used with the 'radrelay'
@@ -72,44 +69,42 @@ program.
 <P>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 modules {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;detail&nbsp;{
+  detail {
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;detailfile&nbsp;=&nbsp;&percnt;A/&percnt;{Client-IP-Address}/detail-&percnt;Y&percnt;m
+    filename = &percnt;A/&percnt;{Client-IP-Address}/detail-&percnt;Y&percnt;m
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;detailperm&nbsp;=&nbsp;0600
+    permissions = 0600
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;dirperm&nbsp;=&nbsp;0755
+    dir_permissions = 0755
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;locking&nbsp;=&nbsp;no
+    locking = no
 <BR>
-
-<BR>&nbsp;&nbsp;}
+  }
 <BR>
-
-<BR>&nbsp;&nbsp;...&nbsp;
+  ... 
 <BR>
-
 }
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-accounting {
-<BR>&nbsp;...
+process Accounting-Request {
+ ...
 <BR>
-
-<BR>&nbsp;detail
-<BR>&nbsp;...
+ detail
+ ...
 <BR>
-
 }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -163,6 +158,6 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:12 GMT, August 01, 2017
+Time: 12:00:34 GMT, August 03, 2017
 </div>
 </HTML>

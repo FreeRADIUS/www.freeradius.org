@@ -35,7 +35,7 @@ authentication support.
 This module validates a user with MS-CHAP or MS-CHAPv2 
 authentication.
 If called in Authorize, it will look for MS-CHAP Challenge/Response
-attributes in the Acess-Request and adds an Auth-Type
+attributes in the Access-Request and adds an Auth-Type
 attribute set to MS-CHAP in the Config-Items list unless 
 Auth-Type has already set.
 <P>
@@ -81,56 +81,50 @@ to yes, enables a work-around for this error.  The default is 'no'.
 <H2>CONFIGURATION</H2>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 modules {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;mschap&nbsp;{
+  mschap {
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>authtype = MS-CHAP<BR>
+        authtype = MS-CHAP
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>use_mppe = yes<TT>&nbsp;&nbsp;</TT><BR>
+        use_mppe = yes  
 <BR>
-
-<BR>&nbsp;&nbsp;}
+  }
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
 <BR>
-
-<BR>&nbsp;...
+ ...
 <BR>
-
-authorize {
-<BR>&nbsp;&nbsp;...
+recv Access-Request {
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;mschap
+  mschap
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
-<BR>&nbsp;...
+ ...
 <BR>
-
-authenticate {
-<BR>&nbsp;&nbsp;...
+process Access-Request {
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;mschap
+  mschap
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -179,6 +173,6 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:12 GMT, August 01, 2017
+Time: 12:00:34 GMT, August 03, 2017
 </div>
 </HTML>

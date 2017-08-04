@@ -12,7 +12,6 @@ DESCRIPTION
        module has drivers to support the following SQL databases:
 
 	    db2
-	    iodbc
 	    mysql
 	    oracle
 	    postgresql
@@ -69,13 +68,11 @@ DESCRIPTION
 	      defined  as  sessions for which a Stop record was not received )
 	      will be cleared.
 
-       sqltrace
-
-       sqltracefile
-	      These two options are useful for	debugging  sql	problems.   If
-	      sqltrace	is set to yes, then all sql queries being executed are
-	      written to the file listed in sqltracefile.  This is disabled in
-	      normal operation.
+       logfile
+	      This option is useful for debugging sql problems.  If logfile is
+	      set  then all sql queries for the containing section are written
+	      to the file specified.  This is useful for  debugging  and  bulk
+	      inserts.
 
        num_sql_socks
 	      The number of sql connections to make to the database.
@@ -89,60 +86,61 @@ DESCRIPTION
 	      set  once,  so  that  you  can  use  %{SQL-User-Name} in the SQL
 	      queries, rather than the	nested	username  substitution.   This
 	      ensures that Username is parsed consistently for all SQL queries
-	      executed.
+	      executed.  (However, note that SQL-User-Name  is	not  set  when
+	      processing sql xlats.)
 
        default_user_profile
-	      This is the default profile name that will  be  applied  to  all
+	      This  is	the  default  profile name that will be applied to all
 	      users if set.  This is not set by default.
 
        query_on_not_found
-	      This  option  is	set to 'yes' or 'no'.  If set to yes, then the
-	      default user profile is returned if no specific match was  found
+	      This option is set to 'yes' or 'no'.  If set to  yes,  then  the
+	      default  user profile is returned if no specific match was found
 	      for the user.
 
        authorize_check_query
 
        authorize_reply_query
-	      These  queries are run during the authorization stage to extract
-	      the user authorization information from  the  ${authcheck_table}
+	      These queries are run during the authorization stage to  extract
+	      the  user  authorization information from the ${authcheck_table}
 	      and ${authreply_table}.
 
        authorize_group_check_query
 
        authorize_group_reply_query
-	      These  queries are run during the authorization stage to extract
+	      These queries are run during the authorization stage to  extract
 	      the group authorization information from the ${groupcheck_table}
 	      and ${groupreply_table}.
 
        accounting_onoff_query
-	      The  query to be run when receiving an Accounting On or Account-
+	      The query to be run when receiving an Accounting On or  Account-
 	      ing Off packet.
 
        accounting_update_query
 
        accounting_update_query_alt
-	      The query to be run when receiving an Accounting Update  packet.
+	      The  query to be run when receiving an Accounting Update packet.
 	      If the primary query fails, the alt query is run.
 
        accounting_start_query
 
        accounting_start_query_alt
-	      The  query  to be run when receiving an Accounting Start packet.
+	      The query to be run when receiving an Accounting	Start  packet.
 	      If the primary query fails, the alt query is run.
 
        accounting_stop_query
 
        accounting_stop_query_alt
-	      The query to be run when receiving an  Accounting  Stop  packet.
+	      The  query  to  be run when receiving an Accounting Stop packet.
 	      If the primary query fails, the alt query is run.
 
        simul_count_query
-	      The  query  to be run to return the number simultaneous sessions
+	      The query to be run to return the number	simultaneous  sessions
 	      for the purposes of limiting Simultaneous Use.
 
        simul_verify_query
-	      The query to return the detail  information  needed  to  confirm
-	      that  all  suspected  connected  sessions are valid, and are not
+	      The  query  to  return  the detail information needed to confirm
+	      that all suspected connected sessions are  valid,  and  are  not
 	      stale sessions.
 
        group_membership_query
@@ -152,7 +150,7 @@ DESCRIPTION
 	      The query to run during the post-authentication stage.
 
 CONFIGURATION
-       Due to the size of  the	configuration  for  this  module,  it  is  not
+       Due  to	the  size  of  the  configuration  for	this module, it is not
        included in this manual page.  Please review the supplied configuration
        files for example queries and configuration details.
 
@@ -160,8 +158,8 @@ SECTIONS
        authorization, accounting, checksimul, post-authentication
 
 FILES
-       /etc/raddb/radiusd.conf,     /etc/raddb/sql.conf,      /etc/raddb/orac-
-       lesql.conf, /etc/raddb/postfresql.conf, /etc/raddb/mssql.conf
+       /etc/raddb/radiusd.conf, 			  /etc/raddb/sql.conf,
+       /etc/raddb/sql/<DB>/dialup.conf, /etc/raddb/sql/<DB>/schema.sql,
 
 SEE ALSO
        radiusd(8), radiusd.conf(5),

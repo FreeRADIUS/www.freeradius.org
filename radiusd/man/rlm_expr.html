@@ -40,17 +40,22 @@ different bytes.  To see these attributes split into pieces, you can
 have an entry in the 'users' file like:
 <P>
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 DEFAULT
 <BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;Vendor-Interface&nbsp;=&nbsp;`&percnt;{expr:&nbsp;&percnt;{NAS-Port}&nbsp;/&nbsp;(256&nbsp;*&nbsp;256)}`,
+    Vendor-Interface = `&percnt;{expr: &percnt;{NAS-Port} / (256 * 256)}`,
+<BR>
+    Vendor-Card = `&percnt;{expr: (&percnt;{NAS-Port} / 256) &percnt;&percnt; 256}`,
+<BR>
+    Vendor-Port = `&percnt;{expr: &percnt;{NAS-Port} &percnt;&percnt; 256}`
 <BR>
 
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;Vendor-Card&nbsp;=&nbsp;`&percnt;{expr:&nbsp;(&percnt;{NAS-Port}&nbsp;/&nbsp;256)&nbsp;&percnt;&percnt;&nbsp;256}`,
-<BR>
 
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;Vendor-Port&nbsp;=&nbsp;`&percnt;{expr:&nbsp;&percnt;{NAS-Port}&nbsp;&percnt;&percnt;&nbsp;256}`
-<BR>
+</PRE>
+
+</DL>
 
 <P>
 
@@ -109,39 +114,39 @@ example.
 
 All of the calculations are performed as unsigned 32-bit integers.
 
+
+
+<P>
+
 <A NAME="lbAD">&nbsp;</A>
 <H2>CONFIGURATION</H2>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 modules {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;expr&nbsp;{
+  expr {
 <BR>
-
-<BR>&nbsp;&nbsp;}
+  }
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
 <BR>
-
-<BR>&nbsp;...
+ ...
 <BR>
-
 instantiate {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;expr
-<BR>&nbsp;&nbsp;...
+  expr
+  ...
 <BR>
-
 }
-<A NAME="lbAE">&nbsp;</A>
+</DL>
+</PRE><A NAME="lbAE">&nbsp;</A>
 <H2>SECTIONS</H2>
 
 <B>instantiate</B>
@@ -184,6 +189,6 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:12 GMT, August 01, 2017
+Time: 12:00:34 GMT, August 03, 2017
 </div>
 </HTML>

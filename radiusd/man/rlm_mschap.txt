@@ -11,7 +11,7 @@ DESCRIPTION
 
        This module validates a user with MS-CHAP or MS-CHAPv2  authentication.
        If  called  in  Authorize,  it will look for MS-CHAP Challenge/Response
-       attributes in the Acess-Request and adds an Auth-Type attribute set  to
+       attributes in the Access-Request and adds an Auth-Type attribute set to
        MS-CHAP in the Config-Items list unless Auth-Type has already set.
 
        The  module  can  authenticate the MS-CHAP session via plain-text pass-
@@ -62,13 +62,13 @@ CONFIGURATION
 	 ...
        }
 	...
-       authorize {
+       recv Access-Request {
 	 ...
 	 mschap
 	 ...
        }
 	...
-       authenticate {
+       process Access-Request {
 	 ...
 	 mschap
 	 ...

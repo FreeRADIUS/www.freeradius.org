@@ -6,8 +6,8 @@ NAME
        radzap - remove rogue entries from the active sessions database
 
 SYNOPSIS
-       radzap  [-d  raddb_directory]  [-r  radius_server] [-p accounting_port]
-       [-v] nas [port] [username]
+       radzap  [-d raddb_directory] [-h] [-N nas_ip_address] [-P nas_port] [-u
+       user] [-U user] [-x] server[:port] secret
 
 DESCRIPTION
        The FreeRadius server can be configured to maintain an  active  session
@@ -15,38 +15,56 @@ DESCRIPTION
        database. Sometimes that database can get out  of  sync,  and  then  it
        might contain rogue entries. radzap can clean up this database.
 
+       As  of FreeRADIUS 1.1.0, radzap is a simple shell-script wrapper around
+       radwho(1) and radclient(1).
+
+       The sessions are "zapped" by sending an Accounting-Request packet which
+       contains the information necessary for the server to delete the session
+       record.	radzap sends a packet to the server, rather  than  writing  to
+       radutmp	directly,  because  session  records may also be maintained in
+       SQL.
+
 OPTIONS
        -d raddb_directory
-	      The directory that contains the RADIUS configuration files.
+	      The directory that  contains  the  RADIUS  configuration	files.
+	      radzap  reads  radiusd.conf  to  determine  the  location of the
+	      radutmp file.
 
-       -r radius_server
-	      Host name or IP address of the RADIUS server.
+       -h     Print usage help information.
 
-       -p accounting_port
-	      The  port  to which accounting packets are sent.	See "/etc/ser-
-	      vices", port "radacct" for the default on your  system  (usually
-	      1646 or 1813).
+       -N nas_ip_address
+	      Zap the entries which match the given NAS IP address.
 
-       -v     Verbose. Shows you what it is doing.
+       -P nas_port
+	      Zap the entries which match the given NAS port.
 
-       nas    Hostname	or IP address of the NAS (Network Access Server, some-
-	      times called "terminal server")  of  the	session  you  want  to
-	      remove.
+       -u user
+	      Zap the entries which match the given  username  (case  insensi-
+	      tive).
 
-       port   Port  of	the  session  you want to remove. This is the NAS-Port
-	      radius attribute, it doesn't have anything to do with  UDP  port
-	      numbers.	Must be an integer. -1 means "any", and is the default
-	      if this option is not specified.
+       -U user
+	      Zap the entries which match the given username (case sensitive).
 
-       username
-	      Optional: the username of the session you want to remove.
+       -x     Enable debugging output.
+
+       server[:port]
+	      The  hostname  or  IP address of the remote server. Optionally a
+	      UDP port can be specified. If no UDP port is  specified,	it  is
+	      looked  up  in  /etc/services.  The  service  name looked for is
+	      radacct  for  accounting	packets,  and  radius  for  all  other
+	      requests.  If  a service is not found in /etc/services, 1813 and
+	      1812 are used respectively.
+
+       secret The shared secret for this client.  It needs to  be  defined  on
+	      the  radius  server side too, for the IP address you are sending
+	      the radius packets from.
 
 SEE ALSO
-       radwho(1), radiusd(8), radiusd.conf(5).
+       radwho(1), radclient(1), radiusd(8), radiusd.conf(5).
 
 AUTHOR
-       Miquel van Smoorenburg, miquels@cistron.nl., and others.
+       Alan DeKok <aland@ox.org>
 
 
 
-				  16 May 2002			     RADZAP(1)
+				 8 April 2005			     RADZAP(1)

@@ -6,20 +6,35 @@ NAME
        radtest - send packets to a RADIUS server, show reply
 
 SYNOPSIS
-       radtest	[-d raddb_directory] user password radius-server nas-port-num-
-       ber secret [ppphint] [nasname]
+       radtest	[-d raddb_directory] [-P tcp/udp] [-t pap/chap/mschap/eap-md5]
+       [-x ] [-4 ] [-6 ] user password	radius-server  nas-port-number	secret
+       [ppphint] [nasname]
 
 DESCRIPTION
        radtest	is  a  frontend  to  radclient(1).  It	generates  a  list  of
-       attribute/value	pairs  based  on the command line arguments, and feeds
-       these into radclient. It's a fast and convenient way to test  a	radius
+       attribute/value pairs based on the command line	arguments,  and  feeds
+       these  into  radclient. It's a fast and convenient way to test a radius
        server.
 
 
 OPTIONS
        -d raddb_directory
-	      The   directory  that  contains  the  RADIUS  dictionary	files.
+	      The  directory  that  contains  the  RADIUS  dictionary	files.
 	      Defaults to /etc/raddb.
+
+
+       -P proto
+	      Use  proto  transport protocol ("tcp" or "udp").	Only available
+	      if FreeRADIUS is compiled with TCP transport support.
+
+
+       -x     Enables debugging output for the RADIUS client.
+
+
+       -4     Use NAS-IP-Address for the NAS address (default)
+
+
+       -6     Use NAS-IPv6-Address for the NAS address (default)
 
 
        user   Username to send.
@@ -63,4 +78,4 @@ AUTHOR
 
 
 
-			       24 February 2001 		    RADTEST(1)
+				 5 April 2010			    RADTEST(1)

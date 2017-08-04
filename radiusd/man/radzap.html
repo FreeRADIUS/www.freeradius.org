@@ -18,7 +18,7 @@ subnav:
 
 <div class="man_page wrapper base_padding_v">
 <H1>RADZAP</H1>
-Section: FreeRadius Daemon (1)<BR>Updated: 16 May 2002<BR><A HREF="#index">Index</A>
+Section: FreeRadius Daemon (1)<BR>Updated: 8 April 2005<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -34,22 +34,27 @@ radzap - remove rogue entries from the active sessions database
 
 <I>raddb_directory</I>]
 
-[<B>-r</B>
+[<B>-h</B>]
 
-<I>radius_server</I>]
+[<B>-N</B>
 
-[<B>-p</B>
+<I>nas_ip_address</I>]
 
-<I>accounting_port</I>]
+[<B>-P</B>
 
-[<B>-v</B>]
+<I>nas_port</I>]
 
-<I>nas</I>
+[<B>-u</B>
 
-[<B>port</B>]
+<I>user</I>]
 
-[<B>username</B>]
+[<B>-U</B>
 
+<I>user</I>]
+
+[<B>-x</B>]
+
+<I>server[:port] secret</I>
 <A NAME="lbAD">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
@@ -58,40 +63,58 @@ database in a file called <I>radutmp</I>. Commands like <B><a href="radwho.html"
 use this database. Sometimes that database can get out of sync, and
 then it might contain rogue entries. <B>radzap</B> can clean up this
 database.
+<P>
+As of FreeRADIUS 1.1.0, <B>radzap</B> is a simple shell-script wrapper
+around <B><a href="radwho.html">radwho</A></B>(1) and <B><A HREF="../man1/radclient.html">radclient</A></B>(1).
+<P>
+The sessions are &quot;zapped&quot; by sending an Accounting-Request packet
+which contains the information necessary for the server to delete the
+session record.  <B>radzap</B> sends a packet to the server, rather
+than writing to <I>radutmp</I> directly, because session records may
+also be maintained in SQL.
 <A NAME="lbAE">&nbsp;</A>
 <H2>OPTIONS</H2>
 
 <DL COMPACT>
 <DT>-d&nbsp;<I>raddb_directory</I><DD>
 The directory that contains the RADIUS configuration files.
-<DT>-r&nbsp;<I>radius_server</I><DD>
-Host name or IP address of the RADIUS server.
-<DT>-p&nbsp;<I>accounting_port</I><DD>
-The port to which accounting packets are sent.  See &quot;/etc/services&quot;,
-port &quot;radacct&quot; for the default on your system (usually 1646 or 1813).
-<DT>-v<DD>
-Verbose. Shows you what it is doing.
-<DT>nas<DD>
-Hostname or IP address of the NAS (Network Access Server, sometimes
-called &quot;terminal server&quot;) of the session you want to remove.
-<DT>port<DD>
-Port of the session you want to remove. This is the NAS-Port
-radius attribute, it doesn't have anything to do with UDP port
-numbers. Must be an integer. <B>-1</B> means &quot;any&quot;, and is the
-default if this option is not specified.
-<DT>username<DD>
-Optional: the username of the session you want to remove.
+<B>radzap</B> reads <I>radiusd.conf</I> to determine the location of the
+<I>radutmp</I> file.
+<DT>-h<DD>
+Print usage help information.
+<DT>-N&nbsp;<I>nas_ip_address</I><DD>
+Zap the entries which match the given NAS IP address.
+<DT>-P&nbsp;<I>nas_port</I><DD>
+Zap the entries which match the given NAS port.
+<DT>-u&nbsp;<I>user</I><DD>
+Zap the entries which match the given username (case insensitive).
+<DT>-U&nbsp;<I>user</I><DD>
+Zap the entries which match the given username (case sensitive).
+<DT>-x<DD>
+Enable debugging output.
+<DT>server[:port]<DD>
+The hostname or IP address of the remote server. Optionally a UDP port
+can be specified. If no UDP port is specified, it is looked up in
+<I>/etc/services</I>. The service name looked for is <B>radacct</B> for
+accounting packets, and <B>radius</B> for all other requests. If a
+service is not found in <I>/etc/services</I>, 1813 and 1812 are used
+respectively.
+<DT>secret<DD>
+The shared secret for this client.  It needs to be defined on the
+radius server side too, for the IP address you are sending the radius
+packets from.
 </DL>
 <A NAME="lbAF">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
 <a href="radwho.html">radwho</A>(1),
+<a href="radclient.html">radclient</A>(1),
 <a href="radiusd.html">radiusd</A>(8),
 <a href="radiusd.conf.html">radiusd.conf</A>(5).
 <A NAME="lbAG">&nbsp;</A>
 <H2>AUTHOR</H2>
 
-Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</A>., and others.
+Alan DeKok &lt;<A HREF="mailto:aland@ox.org">aland@ox.org</A>&gt;
 <P>
 
 <HR>
@@ -108,6 +131,6 @@ Miquel van Smoorenburg, <A HREF="mailto:miquels@cistron.nl">miquels@cistron.nl</
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:11 GMT, August 01, 2017
+Time: 12:00:33 GMT, August 03, 2017
 </div>
 </HTML>

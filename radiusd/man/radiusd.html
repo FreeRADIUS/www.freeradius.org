@@ -18,7 +18,7 @@ subnav:
 
 <div class="man_page wrapper base_padding_v">
 <H1>RADIUSD</H1>
-Section: FreeRADIUS Daemon (8)<BR>Updated: 23 June 2004<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Daemon (8)<BR>Updated: 26 Apr 2012<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -30,17 +30,7 @@ radiusd - Authentication, Authorization and Accounting server
 
 <B>radiusd</B>
 
-[<B>-A</B>]
-
-[<B>-S</B>]
-
-[<B>-a</B>
-
-<I>accounting_directory</I>]
-
-[<B>-b</B>]
-
-[<B>-c</B>]
+[<B>-C</B>]
 
 [<B>-d</B>
 
@@ -48,23 +38,23 @@ radiusd - Authentication, Authorization and Accounting server
 
 [<B>-f</B>]
 
-[<B>-i</B>
-
-<I>ip-address</I>]
+[<B>-h</B>]
 
 [<B>-l</B>
 
-<I>log_directory</I>]
+<I>log_file</I>]
 
-[<B>-g</B>
+[<B>-m</B>]
 
-<I>facility</I>]
+[<B>-n</B>
 
-[<B>-p</B>
-
-<I>port</I>]
+<I>name</I>]
 
 [<B>-s</B>]
+
+[<B>-t</B>]
+
+[<B>-T</B>]
 
 [<B>-v</B>]
 
@@ -72,51 +62,164 @@ radiusd - Authentication, Authorization and Accounting server
 
 [<B>-X</B>]
 
-[<B>-y</B>]
-
-[<B>-z</B>]
-
 <A NAME="lbAD">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
-This is the FreeRADIUS implementation of the well known
-<B>radius</B>
-
-server program.  Even though this program is largely compatible with
-<I>Livingston's</I> radius version 2.0, it is <B>not</B> based on any
-part of that code.
-<P>
-
 FreeRADIUS is a high-performance and highly configurable RADIUS
-server.  As a result, it can be difficult to configure in systems with
-complex requirements.  Our suggestion is to proceed via the following
-steps:
+server.  It supports many database back-ends such as flat-text files,
+SQL, LDAP, Perl, Python, etc.  It also supports many authentication
+protocols such as PAP, CHAP, MS-CHAP(v2), HTTP Digest, and EAP
+(EAP-MD5, EAP-TLS, PEAP, EAP-TTLS, EAP-SIM, etc.).
+<P>
+It also has fullsupport for Cisco's VLAN Query Protocol (VMPS) and
+DHCP.
+<P>
+Please read the DEBUGGING section below.  It contains instructions
+for quickly configuring the server for your local system.
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+The following command-line options are accepted by the server:
+<DL COMPACT>
+<DT>-C<DD>
+Check the configuration and exit immediately.  If there is a problem
+reading the configuration, then the server will exit with a non-zero
+status code.  If the configuration appears to be acceptable, then the
+server will exit with a zero status code.
+<P>
+Note that there are limitations to this check.  Due to the
+complexities involved in <I>almost</I> starting a RADIUS server, these
+checks are necessarily incomplete.  The server can return a zero
+status code when run with -C, but may still exit with an error when
+run normally.
+<P>
+See the output of
+<B>radiusd -XC</B>
+
+for an informative list of which modules are checked for correct
+configuration, and which modules are skipped, and therefore not checked.
+<DT>-d <I>config directory</I><DD>
+Defaults to <I>/etc/raddb</I>. <B>Radiusd</B> looks here for its configuration
+files such as the <I>dictionary</I> and the <I>users</I> files.
+<DT>-f<DD>
+Do not fork, stay running as a foreground process.
+<DT>-h<DD>
+Print usage help information.
+<DT>-l <I>log_file</I><DD>
+Defaults to <I>${logdir}/radius.log</I>. <B>Radiusd</B> writes it's logging
+information to this file. If log_file is the string &quot;stdout&quot; logging will
+be written to stdout.
+<DT>-m<DD>
+On SIGINT or SIGQUIT exit cleanly instead of immediately.
+This is most useful for when running the server with &quot;valgrind&quot;.
+<DT>-n <I>name</I><DD>
+Read <I>raddb/name.conf</I> instead of <I>raddb/radiusd.conf</I>.
+<DT>-s<DD>
+Run in &quot;single server&quot; mode.  The server normally runs with multiple
+threads and/or processes, which can lower its response time to
+requests.  Some systems have issues with threading, however, so
+running in &quot;single server&quot; mode may help to address those issues.  In
+single server mode, the server will also not &quot;daemonize&quot;
+(auto-background) itself.
+<DT>-t<DD>
+Do not spawn threads.
+<DT>-T<DD>
+Always add timestamps to log messages.
+<DT>-v<DD>
+Print server version information and exit.
+<DT>-X<DD>
+Debugging mode.  Equivalent to &quot;-sfxx -l stdout&quot;.  When trying to
+understand how the server works, ALWAYS run it with &quot;radiusd -X&quot;.
+For production servers, use &quot;raddebug&quot;
+<DT>-x<DD>
+Finer-grained debug mode. In this mode the server will print details
+of every request on it's <B>stdout</B> output. You can specify this
+option multiple times (-x -x or -xx) to get more detailed output.
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>DEBUGGING</H2>
+
+The default configuration is set to work in the widest possible
+circumstances.  It requires minimal changes for your system.
+<P>
+However, your needs may be complex, and may require significant
+changes to the server configuration.  Making random changes is a
+guaranteed method of failure.  Instead, we STRONGLY RECOMMEND
+proceeding via the following steps:
 <P>
 
 1) Always run the server in debugging mode (
 <B>radiusd -X</B>
 
-).  We cannot emphasize this enough.  If you are not running the
-server in debugging mode, you <I>will not</I> be able to see what is
-doing, and you <I>will not</I> be able to correct any problems.
+) after making a configuration change.  We cannot emphasize this
+enough.  If you are not running the server in debugging mode, you
+<I>will not</I> be able to see what is doing, and you <I>will not</I> be
+able to correct any problems.
+<P>
+If you ask questions on the mailing list, the first response will be
+to tell you &quot;run the server in debugging mode&quot;.  Please, follow these
+instructions.
 <P>
 
-2) When editing the <I>radiusd.conf</I> file, change as little as
-possible, especially in the <I>authorize{}</I> section.  The ordering
-of the modules is critical for the server to be able to
-&quot;automatically&quot; figure out how to handle the request.  Changing the
-order of the modules ensures that the server will not work.
+2) Change as little as possible in the default configuration files.
+The server contains a decade of experience with protocols, databases,
+and different systems.  Its default configuration is designed to work
+almost everywhere, and to do almost everything you need.
 <P>
 
-3) When testing, start off by configuring a user and password in the
-<I>users</I> file.  So long as the server knows about a user, and has a
-clear-text password for that user, <B>almost all of the authentication
-methods will &quot;just work&quot;</B>.
+3) When you make a small change, testing it before changing anything
+else.  If the change works, save a copy of the configuration, and make
+another change.  If the change doesn't work, debug it, and try to
+understand why it doesn't work.
 <P>
 
-4) Gradually add more complex configurations to the server, while
-testing them as you go.  If you start off by configuring the server in
-a complex configuration, you will never be able to debug it.
+If you begin by making large changes to the server configuration, it
+will never work, and you will never be able to debug the problem.
+<P>
+
+4) If you need to add a connection to a database FOO (e.g. LDAP or
+SQL), then:
+<P>
+
+
+a) Edit raddb/modules/foo
+<BR>
+
+This file contains the default configuration for the module.  It
+contains comments describing what can be configured, and what those
+configuration entries mean.
+<BR>
+
+<BR>
+
+b) Edit raddb/sites-available/default
+<BR>
+
+This file contains the default policy for the server.  e.g. &quot;enable
+CHAP, MS-CHAP, and EAP authentication&quot;.  Look in this file for all
+references to your module &quot;foo&quot;.  Read the comments, and remove the
+leading hash '#' from the lines referencing the module.  This enables
+the module.
+<BR>
+
+<BR>
+
+c) Edit raddb/sites-available/inner-tunnel
+<BR>
+
+This file contains the default policy for the &quot;tunneled&quot; portion of
+certain EAP methods.  Perform the same kind of edits as above, for the
+&quot;default&quot; file..  If you are not using EAP (802.1X), then this step
+can be skipped.
+<BR>
+
+<BR>
+
+d) Start the server in debugging mode (
+<B>radiusd -X</B>
+
+), and start testing.
+
 <P>
 
 5) Ask questions on the mailing list
@@ -124,10 +227,15 @@ a complex configuration, you will never be able to debug it.
 include the output from debugging mode (
 <B>radiusd -X</B>
 
-).  This information will allow people to help you.  Without it, your
-message will get ignored.
+).  This information will allow people to help you.  If you do not
+include it, the first response to your message will be &quot;post the
+output of debug mode&quot;.
 <P>
-<A NAME="lbAE">&nbsp;</A>
+
+Ask questions earlier, rather than later.  If you cannot solve a
+problem in a day, ask a question on the mailing list.  Most questions
+have been seen before, and can be answered quickly.
+<A NAME="lbAG">&nbsp;</A>
 <H2>BACKGROUND</H2>
 
 <B>RADIUS</B> is a protocol spoken between an access server, typically
@@ -141,136 +249,9 @@ the case of a PPP connection.
 
 The access server also sends login and logout records to the <B>radius</B>
 server so accounting can be done. These records are kept for each terminal
-server seperately in a file called <B>detail</B>, and in the <I>wtmp</I>
+server separately in a file called <B>detail</B>, and in the <I>wtmp</I>
 compatible logfile <B>/var/log/radwtmp</B>.
-<P>
-<A NAME="lbAF">&nbsp;</A>
-<H2>OPTIONS</H2>
-
-<P>
-<DL COMPACT>
-<DT>-A<DD>
-Write a file <I>detail.auth</I> in addition to the standard <B>detail</B> file
-in the same directory. This file will contain all the authentication-request
-records. This can be useful for debugging, but not for normal operation.
-<P>
-This command line option is accepted only for backwards
-compatibility.  It no longer does anything.  See the configuration for
-the <I>detail</I> module in <I>radiusd.conf</I>.
-<P>
-<DT>-S<DD>
-Write the stripped usernames (without prefix or suffix) in the <B>detail</B>
-file instead of the raw record as received from the terminal server.
-<P>
-This command line option is deprecated.  See the <I>log_stripped_names</I>
-configuration item in the <I>radiusd.conf</I> file.
-<P>
-<DT>-a <I>accounting directory</I><DD>
-This defaults to <I>/var/log/radacct</I>. If that directory exists,
-<B>radiusd</B> will write an ascii accounting record into a detail file for
-every login/logout recorded. The location of the detail file is
-<I>acct_dir/</I><B>terminal_server</B><I>/detail</I>.
-<P>
-This command line option is deprecated.  See the <I>radacctdir</I>
-configuration item in the <I>radiusd.conf</I> file.
-<P>
-<DT>-l <I>logging directory</I><DD>
-This defaults to <I>/var/log</I>. <B>Radiusd</B> writes a logfile here
-called <I>radius.log</I>. It contains informational and error messages,
-and optionally a record of every login attempt (for aiding an ISP's
-helpdesk). The special arguments <I>stdout</I> and <I>stderr</I> cause
-the information to get written to the standard output, or standard
-error instead. The special argument <I>syslog</I> sends the information
-with <B><a href="syslog.html">syslog</A></B>(3).
-<P>
-This command line option is deprecated.  See the <I>log_dir</I>
-configuration item in the <I>radiusd.conf</I> file.
-<P>
-<DT>-g <I>facility</I><DD>
-Specifies the syslog facility to be used with <B>-l syslog</B>. Default is
-<I>daemon</I>. Another reasonable choice would be <I>authpriv</I>.
-<P>
-<DT>-d <I>config directory</I><DD>
-Defaults to <I>/etc/raddb</I>. <B>Radiusd</B> looks here for its configuration
-files such as the <I>dictionary</I> and the <I>users</I> files.
-<P>
-<DT>-i <I>ip-address</I><DD>
-Defines which IP addres to bind to for sending and receiving packets-
-useful for multi-homed hosts.
-<P>
-This command line option is deprecated.  See the <I>bind_address</I>
-configuration item in the <I>radiusd.conf</I> file.
-<P>
-<DT>-b<DD>
-If the <B>radius</B> server binary was compiled with <I>dbm</I> support,
-this flag tells it to actually <I>use</I> the database files instead of the
-flat <I>users</I> file.
-<P>
-This command line option is deprecated, and does not do anything.
-<P>
-<DT>-c<DD>
-This is still an <I>experimental</I> feature.
-Cache the password, group and shadow files in a hash-table in memory.
-This makes the radius process use a bit more memory, but username
-lookups in the password file are <I>much</I> faster.
-<DT><DD>
-After every change in the real password file (user added, password changed)
-you need to send a <B>SIGHUP</B> to the radius server to let it re-read
-its configuration and the password/group/shadow files !
-<P>
-This command line option is deprecated.  See the <I>cache</I>
-configuration item for the <I>unix</I> module in the <I>radiusd.conf</I>
-file.
-<P>
-<DT>-f<DD>
-Do not fork, stay running as a foreground process.
-<P>
-<DT>-p <I>port</I><DD>
-Normally radiusd listens on the ports specified in <I>/etc/services</I>
-(radius and radacct). With this option radiusd listens on the specified
-port for authentication requests and on the specified port +1 for
-accounting requests.
-<P>
-This command line option is deprecated.  See the <I>port</I>
-configuration item in the <I>radiusd.conf</I> file.
-<P>
-<DT>-s<DD>
-Run in &quot;single server&quot; mode.  The server normally runs with multiple
-threads and/or processes, which can lower its response time to
-requests.  Some systems have issues with threading, however, so
-running in &quot;single server&quot; mode may help to address those issues.  In
-single server mode, the server will also not &quot;daemonize&quot;
-(auto-background) itself.
-<P>
-<DT>-v<DD>
-Print server version information and exit.
-<P>
-<DT>-x<DD>
-Debug mode. In this mode the server will print details of every request
-on it's <B>stderr</B> output. Most useful in combination with <B>-s</B>.
-You can specify this option 2 times (-x -x or -xx) to get a bit more
-debugging output.
-<P>
-<DT>-X<DD>
-Extended debug mode.  Equivalent to -sfxx, but simpler to explain.
-<P>
-<DT>-y<DD>
-Write details about every authentication request in the
-<I>radius.log</I> file.
-<P>
-This command line option is deprecated.  See the <I>log_auth</I>
-configuration item in the <I>radiusd.conf</I> file.
-<P>
-<DT>-z<DD>
-Include the password in the <I>radius.log</I> file <B>even</B> for successful
-logins. <I>This is very insecure!</I>.
-<P>
-This command line option is deprecated.  See the
-<I>log_auth_badpass</I> and the <I>log_auth_goodpass</I> configuration
-items in the <I>radiusd.conf</I> file.
-<P>
-</DL>
-<A NAME="lbAG">&nbsp;</A>
+<A NAME="lbAH">&nbsp;</A>
 <H2>CONFIGURATION</H2>
 
 <B>Radiusd</B> uses a number of configuration files. Each file has it's
@@ -283,30 +264,6 @@ items.
 This file is usually static. It defines all the possible RADIUS attributes
 used in the other configuration files.  You don't have to modify it.
 It includes other dictionary files in the same directory.
-<DT>clients<DD>
-[ Deprecated ] Contains the IP address and a secret key for every
-client that wants to connect to the server.
-<DT>naslist<DD>
-Contains an entry for every NAS (Network Access Server) in the network. This
-is not the same as a client, especially if you have <B>radius</B> proxy server
-in your network. In that case, the proxy server is the client and it sends
-requests for different NASes.
-<DT><DD>
-It also contains a abbreviated name for each
-terminal server, used to create the directory name where the <B>detail</B>
-file is written, and used for the <B>/var/log/radwtmp</B> file. Finally
-it also defines what type of NAS (Cisco, Livingston, Portslave) the NAS is.
-<DT>hints<DD>
-Defines certain hints to the radius server based on the users's loginname
-or other attributes sent by the access server. It also provides for
-mapping user names (such as Pusername -&gt; username). This provides the
-functionality that the <I>Livingston 2.0</I> server has as &quot;Prefix&quot; and
-&quot;Suffix&quot; support in the <I>users</I> file, but is more general. Ofcourse
-the Livingston way of doing things is also supported, and you can even use
-both at the same time (within certain limits).
-<DT>huntgroups<DD>
-Defines the huntgroups that you have, and makes it possible to restrict
-access to certain huntgroups to certain (groups of) users.
 <DT>users<DD>
 Here the users are defined. On a typical setup, this file mainly contains
 DEFAULT entries to process the different types of logins, based on hints
@@ -314,12 +271,12 @@ from the hints file. Authentication is then based on the contents of
 the UNIX <I>/etc/passwd</I> file. However it is also possible to define all
 users, and their passwords, in this file.
 </DL>
-<A NAME="lbAH">&nbsp;</A>
+<A NAME="lbAI">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<a href="radiusd.conf.html">radiusd.conf</A>(5), <A HREF="../man5/users.html">users</A>(5), <A HREF="../man5/huntgroups.html">huntgroups</A>(5), <A HREF="../man5/hints.html">hints</A>(5),
-<a href="clients.html">clients</A>(5), <A HREF="../man5/dictionary.html">dictionary</A>(5).
-<A NAME="lbAI">&nbsp;</A>
+<a href="radiusd.conf.html">radiusd.conf</A>(5), <A HREF="../man5/users.html">users</A>(5)
+<a href="dictionary.html">dictionary</A>(5), <A HREF="../man8/raddebug.html">raddebug</A>(8)
+<A NAME="lbAJ">&nbsp;</A>
 <H2>AUTHOR</H2>
 
 The FreeRADIUS Server Project (<A HREF="http://www.freeradius.org)">http://www.freeradius.org)</A>
@@ -332,16 +289,17 @@ The FreeRADIUS Server Project (<A HREF="http://www.freeradius.org)">http://www.f
 <DT><A HREF="#lbAB">NAME</A><DD>
 <DT><A HREF="#lbAC">SYNOPSIS</A><DD>
 <DT><A HREF="#lbAD">DESCRIPTION</A><DD>
-<DT><A HREF="#lbAE">BACKGROUND</A><DD>
-<DT><A HREF="#lbAF">OPTIONS</A><DD>
-<DT><A HREF="#lbAG">CONFIGURATION</A><DD>
-<DT><A HREF="#lbAH">SEE ALSO</A><DD>
-<DT><A HREF="#lbAI">AUTHOR</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">DEBUGGING</A><DD>
+<DT><A HREF="#lbAG">BACKGROUND</A><DD>
+<DT><A HREF="#lbAH">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAI">SEE ALSO</A><DD>
+<DT><A HREF="#lbAJ">AUTHOR</A><DD>
 </DL>
 <HR>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:12 GMT, August 01, 2017
+Time: 12:00:34 GMT, August 03, 2017
 </div>
 </HTML>

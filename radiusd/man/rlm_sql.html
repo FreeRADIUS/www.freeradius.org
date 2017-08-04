@@ -35,29 +35,28 @@ The SQL module has drivers to support the following SQL databases:
 <P>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
+<BR>
+     db2
+<BR>
+     mysql
+<BR>
+     oracle
+<BR>
+     postgresql
+<BR>
+     sybase
+<BR>
+     unixodbc
 <BR>
 
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;db2
-<BR>
+</PRE>
 
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iodbc
-<BR>
+</DL>
 
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mysql
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oracle
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;postgresql
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sybase
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unixodbc
-<BR>
-
+<P>
 
 <P>
 
@@ -98,11 +97,10 @@ This option is set to 'yes' or 'no'.  If you are doing
 Simultaneous-Use checking, and this is set to yes, stale sessions (
 defined as sessions for which a Stop record was not received ) will be
 cleared.
-<DT>sqltrace<DD>
-<DT>sqltracefile<DD>
-These two options are useful for debugging sql problems.  If sqltrace
-is set to yes, then all sql queries being executed are written to the
-file listed in sqltracefile.  This is disabled in normal operation.
+<DT>logfile<DD>
+This option is useful for debugging sql problems.  If logfile is set
+then all sql queries for the containing section are written to the
+file specified.  This is useful for debugging and bulk inserts.
 <DT>num_sql_socks<DD>
 The number of sql connections to make to the database.
 <DT>connect_failure_retry_delay<DD>
@@ -112,7 +110,8 @@ failed database connection.
 This is the definition of the SQL-User-Name attribute.  This is set
 once, so that you can use &percnt;{SQL-User-Name} in the SQL queries, rather
 than the nested username substitution.  This ensures that Username is
-parsed consistently for all SQL queries executed.
+parsed consistently for all SQL queries executed.  (However, note that
+SQL-User-Name is not set when processing sql xlats.)
 <DT>default_user_profile<DD>
 This is the default profile name that will be applied to all users if
 set.  This is not set by default.
@@ -183,11 +182,10 @@ configuration files for example queries and configuration details.
 
 <I>/etc/raddb/sql.conf,</I>
 
-<I>/etc/raddb/oraclesql.conf,</I>
+<I>/etc/raddb/sql/&lt;DB&gt;/dialup.conf,</I>
 
-<I>/etc/raddb/postfresql.conf,</I>
+<I>/etc/raddb/sql/&lt;DB&gt;/schema.sql,</I>
 
-<I>/etc/raddb/mssql.conf</I>
 
 <P>
 
@@ -219,6 +217,6 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:12 GMT, August 01, 2017
+Time: 12:00:33 GMT, August 03, 2017
 </div>
 </HTML>
