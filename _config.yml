@@ -27,6 +27,7 @@ exclude:
   - "makefile"
   - "bs-config.js"
   - "Vagrantfile"
+  - "freeradius-server"
 
 sass:
   load_paths:
