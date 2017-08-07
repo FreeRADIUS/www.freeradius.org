@@ -3,31 +3,16 @@ layout: default
 ---
 <section class="home_hero bg_block-hero">
     <div class="wrapper">
-        <div class="row" content-group ng-init="active = '???'">
-            <div class="columns medium-4 text_centered">
-                <div class="bg_white block_shadow base_padding home_hero_block" ng-class="{active: active == '#hero-more-1'}">
-                    <img class="poke_out icon_large" src="/img/octo-grad.svg" alt="">
-                    <img class="fish-icon fish-left icon_large" src="/img/fish-left.svg" alt="">
-                    <img class="fish-icon fish-right icon_large" src="/img/fish-right.svg" alt="">
-                    <p class="h5">Education</p>
-                    <p class="h6">Fostering collaboration with Inter-institutional WiFi roaming.</p>
-                    <img ng-click="toggle('#hero-more-1', true)" class="icon_small" src="../img/more.svg" alt="">
 
-                    <div id="hero-more-1" class="home_hero_block_overlay block_shadow">
-                        <img class="icon_medium" src="/img/icon-telco.svg" alt="">
-                        <p class="h5">Education</p>
-                        <p>FreeRADIUS is commonly used in academic wireless networks, especially amongst the <a href="http://www.eduroam.org/">eduroam</a> community.</p>
-                        <img ng-click="toggle('#hero-more-1', true)" src="/img/less.svg" alt="" class="icon_small">
-                    </div>
-                </div>
-            </div>
+        <div class="row" content-group ng-init="active = '???'">
+
             <div class="columns medium-4 text_centered">
                 <div class="bg_white block_shadow base_padding home_hero_block" ng-class="{active: active == '#hero-more-2'}">
                     <img class="poke_out icon_large" src="../img/octo-network.svg" alt="">
                     <img class="fish-icon fish-left icon_large" src="/img/fish-left.svg" alt="">
                     <img class="fish-icon fish-right icon_large" src="/img/fish-right.svg" alt="">
-                    <p class="h5">Telco / ISP</p>
-                    <p class="h6">Authenticating the internet; centralising subscriber management, and billing.</p>
+                    <p class="h5">Internet Service Providers</p>
+                    <p class="h6">ISPs love our centralised subscriber management and billing. That's why FreeRADIUS authenticates 100 million Internet users <i>every day</i>.</p>
                     <img ng-click="toggle('#hero-more-2', true)" class="icon_small" src="/img/more.svg" alt="">
 
                     <div id="hero-more-2" class="home_hero_block_overlay block_shadow">
@@ -38,13 +23,14 @@ layout: default
                     </div>
                 </div>
             </div>
+
             <div class="columns medium-4 text_centered">
                 <div class="bg_white block_shadow base_padding home_hero_block" ng-class="{active: active == '#hero-more-3'}">
                     <img class="poke_out icon_large" src="../img/octo-signal.svg" alt="">
                     <img class="fish-icon fish-left icon_large" src="/img/fish-left.svg" alt="">
                     <img class="fish-icon fish-right icon_large" src="/img/fish-right.svg" alt="">
-                    <p class="h5">Enterprise</p>
-                    <p class="h6">Securing BYOD with smart network access policies, and agentless posture assessment.</p>
+                    <p class="h5">Enterprise Networks</p>
+                    <p class="h6">IT managers rely on FreeRADIUS smart access policies and agentless posture assessment to secure critical networks while enabling BYOD programs.</p>
                     <img ng-click="toggle('#hero-more-3', true)" class="icon_small" src="../img/more.svg" alt="">
 
                     <div id="hero-more-3" class="home_hero_block_overlay block_shadow">
@@ -55,10 +41,30 @@ layout: default
                     </div>
                 </div>
             </div>
+
+            <div class="columns medium-4 text_centered">
+                <div class="bg_white block_shadow base_padding home_hero_block" ng-class="{active: active == '#hero-more-1'}">
+                    <img class="poke_out icon_large" src="/img/octo-grad.svg" alt="">
+                    <img class="fish-icon fish-left icon_large" src="/img/fish-left.svg" alt="">
+                    <img class="fish-icon fish-right icon_large" src="/img/fish-right.svg" alt="">
+                    <p class="h5">Educational Institutions</p>
+                    <p class="h6">FreeRADIUS is widely used to secure campus wireless networks, while also allowing seamless inter-institutional WiFi roaming.</p>
+                    <img ng-click="toggle('#hero-more-1', true)" class="icon_small" src="../img/more.svg" alt="">
+
+                    <div id="hero-more-1" class="home_hero_block_overlay block_shadow">
+                        <img class="icon_medium" src="/img/icon-telco.svg" alt="">
+                        <p class="h5">Education</p>
+                        <p>FreeRADIUS is commonly used in academic wireless networks, especially amongst the <a href="http://www.eduroam.org/">eduroam</a> community.</p>
+                        <img ng-click="toggle('#hero-more-1', true)" src="/img/less.svg" alt="" class="icon_small">
+                    </div>
+                </div>
+            </div>
+
         </div>
+
         <div class="text_centered base_padding">
             <h1>Fast, feature-rich, modular, and scalable.</h1>
-            <h2 class="h3">Get started with the world’s most widely deployed RADIUS server:</h2>
+            <h2 class="h3">Get the latest FreeRADIUS software here. It's free:</h2>
             <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {% raw %}{{stableBranch.last_release.name}}{% endraw %}</a>
             <a href="/community/#contributing" class="button bg_accent-green h5">Join the community</a>
         </div>
@@ -95,7 +101,7 @@ layout: default
         <div class="row">
             <div class="columns medium-6">
                 <div class="inner">
-                    <h3 class="h4">Welcome to the FreeRADIUS project, an open source implementation of RADIUS, the IETF protocol for AAA (Authorisation, Authentication, and Accounting).</h3>
+                    <h3 class="h4">We are the FreeRADIUS project.  Since 1999, we have been building, maintaining, and expanding our open-source implementation of the RADIUS protocol.</h3>
                     <p>The FreeRADIUS project maintains the following components: a multi protocol policy server (radiusd) that implements RADIUS, DHCP, BFD, and ARP; a BSD licensed RADIUS client library; a RADIUS PAM library; and an Apache RADIUS module.</p>
                 </div>
             </div>
