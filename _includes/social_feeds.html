@@ -40,7 +40,7 @@
         <div class="social-block">
             <div class="social-entry" ng-repeat="gh in feeds.github">
                 <div class="label"><span class="icon upload"></span>{% raw %}{{gh.commit.author.date | date: 'longDate' }}{% endraw %}</div>
-                <h5><a class="undecorate" href="{% raw %}{{gh.parents[0].html_url}}{% endraw %}" target="_blank">freeradius-server</a></h5>
+                <h5><a class="undecorate" href="{% raw %}{{gh.html_url}}{% endraw %}" target="_blank">freeradius-server</a></h5>
                 <div ng-bind-html="trust(gh.commit.message)"></div>
             </div>
         </div>
