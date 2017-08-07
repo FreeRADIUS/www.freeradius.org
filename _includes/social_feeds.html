@@ -24,7 +24,7 @@
         <div class="social-block">
             <div class="social-entry" ng-repeat="so in feeds.stackoverflow">
                 <div class="label"><span class="icon comment"></span>{% raw %}{{so.last_activity_date*1000 | date: 'longDate' }}{% endraw %}</div>
-                <h5><a class="undecorate" href="{% raw %}{{so.link}}{% endraw %}" target="_blank" ng-bind-html="trust(so.title)"></a></h5>
+                <h5><a class="undecorate" href="https://stackoverflow.com/questions/{% raw %}{{so.question_id}}{% endraw %}" target="_blank" ng-bind-html="trust(so.title)"></a></h5>
                 <div ng-bind-html="trust(so.body)"></div>
             </div>
         </div>
