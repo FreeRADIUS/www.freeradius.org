@@ -1,3 +1,6 @@
 [submodule "_wwwdata"]
 	path = _wwwdata
 	url = git@git.networkradius.org:www.freeradius.org.data
+[submodule "freeradius-server"]
+	path = freeradius-server
+	url = git@github.com:FreeRADIUS/freeradius-server.git
