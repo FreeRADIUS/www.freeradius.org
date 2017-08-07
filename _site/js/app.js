@@ -349,20 +349,23 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
 
         var win = angular.element($window);
 
-        $scope.getBranches = function() {
+        $scope.getReleases = function() {
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://new.freeradius.org/api/info/branch/',
+                url: 'http://new.freeradius.org/api/info/branch/*/release/',
                 params: {
-                    expansion_depth: 4,
-                    order_by: 'category',
-                    pagenate_start: 1,
-                    pagenate_end: 5,
+                    expansion_depth: 2,
+                    order_by: "date:desc",
+                    paginate_start: 0,
+                    paginate_end: 5,
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
-                $scope.release_notes = response.data;
+                // remove development versions from the main display
+                $scope.releases = response.data.filter(function(rel) {
+                    return (rel.name && rel.name.includes("x")) ? false : true;
+                });
                 $scope.state = 'success';
 
             }, function errorCallback(response) {
@@ -371,11 +374,11 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             });
         };
 
-        $scope.getAffectedModules = function(branch) {
+        $scope.getAffectedModules = function(release) {
             var modules;
 
             var features = [];
-            angular.forEach(branch.features, function(value, key) {
+            angular.forEach(release.features, function(value, key) {
                 this.push(value);
             }, features);
 
@@ -394,7 +397,7 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             }, featureComponents);
 
             var defects = [];
-            angular.forEach(branch.defects, function(value, key) {
+            angular.forEach(release.defects, function(value, key) {
                 this.push(value);
             }, defects);
 
@@ -455,8 +458,8 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.affectedClasses = false;
         }
 
-        $scope.getAffectedModulesByCategory = function(branch) {
-            var modules = $scope.getAffectedModules(branch);
+        $scope.getAffectedModulesByCategory = function(release) {
+            var modules = $scope.getAffectedModules(release);
             // console.log('modules ' , modules);
 
             var moduleCats = moduleCats || {};
@@ -470,8 +473,8 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             return moduleCats;
         };
 
-        $scope.isCritical = function(branch) {
-            var defects = branch.defects;
+        $scope.isCritical = function(release) {
+            var defects = release.defects;
             if (defects && defects != 'undefined') {
                 var filtered;
                 if (defects.length > 0) {
@@ -493,21 +496,22 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             // return filtered && filtered[0].exploit == true;
         };
 
-        $scope.getBranchesByDate = function(date) {
+        $scope.getReleasesByDate = function(date) {
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://new.freeradius.org/api/info/branch/',
+                url: 'http://new.freeradius.org/api/info/branch/*/release/',
                 // url: '/modules.json',
                 params: {
-                    by_keyword: 'regex:'+date,
-                    expansion_depth: 4,
+                    expansion_depth: 2,
+                    keyword_expansion_depth: 1,
+                    by_keyword: 'lua:'+date,
                     keyword_field: 'date',
-                    keyword_expansion_depth: 3,
+                    order_by: "date:desc"
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
-                $scope.release_notes = response.data;
+                $scope.releases = response.data;
                 $scope.activeFilter = '';
                 $scope.state = 'success';
 
@@ -517,20 +521,21 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             });
         };
 
-        $scope.searchBranches = function(string){
+        $scope.searchReleases = function(string){
             $scope.state = 'loading';
             $scope.searchString = string;
             $http({
                 method: 'GET',
-                url: 'http://new.freeradius.org/api/info/branch/',
+                url: 'http://new.freeradius.org/api/info/branch/*/release/',
                 params: {
-                    by_keyword: 'regex:'+string,
-                    keyword_expansion_depth: 3,
-                    expansion_depth: 4,
+                    by_keyword: 'lua:'+string,
+                    keyword_expansion_depth: 1,
+                    expansion_depth: 2,
+                    order_by: "date:desc",
                 }
             }).then(function successCallback(response) {
                 // console.log('response ' , response.data);
-                $scope.release_notes = response.data;
+                $scope.releases = response.data;
                 $scope.activeFilter = '';
                 $scope.state = 'success';
 
@@ -540,6 +545,7 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             });
 
         };
+
         $scope.getRelease = function(branch, release) {
             $scope.state = 'loading';
             $http({
@@ -549,11 +555,7 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
                     expansion_depth: 1,
                 }
             }).then(function successCallback(response) {
-                $scope.release_notes = [];
-                var rnrelease = {
-                    release: [response.data]
-                };
-                $scope.release_notes.push(rnrelease);
+                $scope.releases = [ response.data ];
                 $scope.activeFilter = '';
                 $scope.state = 'success';
 
@@ -593,12 +595,13 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             //     $scope.getModules($location.search().cat);
             // }
             else if ($location.search().s) {
-                $scope.searchBranches($location.search().s);
+                $scope.searchReleases($location.search().s);
             }
             else {
-                $scope.getBranches();
+                $scope.getReleases();
             }
         };
+
         $scope.checkLocation();
 
     }]);

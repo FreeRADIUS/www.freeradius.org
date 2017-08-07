@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="freeradius">
-
-  <head>
+<html ng-app="freeradius"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,15 +33,11 @@
     <meta name="theme-color" content="#ffffff ">
 
 </head>
-
-
-  <body>
-
-    <div class="global-nav">
+<body><div class="global-nav">
   <div class="global_links pull_right">
     <div class="global_link global_link_label h5 text">Our sites:</div>
     <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
   </div>
 </div>
 
@@ -96,55 +90,36 @@
     </nav>
   </div>
 </header>
-
-
-    <div class="page-content">
+<div class="page-content">
 
         <article class="post">
   <header class="post-header">
     <div class="post-hero hero-releases">
       <div class="wrapper">
-      	<h1 class="post-title">Releases</h1>
-      	<p class="post-subtitle">Version downloads and complete release notes</p> 
+        <h1 class="post-title">Releases</h1>
+        <p class="post-subtitle">Version downloads and complete release notes</p>
       </div>
     </div>
-  </header>
-  
-  	<div class="sub-nav">
-	<div class="wrapper">
+  </header><div class="sub-nav">
+    <div class="wrapper">
         <nav class="inline_nav" sub-nav>
             <ul>
-                
-                
-        			<li class="">
-                        <a class="subnav_link" href="/releases/">Downloads</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/releases/#source_control">Source Control</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/sub_projects/">Sub-projects</a>
-                    </li>
-        		
-        			<li class="active">
-                        <a class="subnav_link" href="/release_notes/">Release notes</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/security/">Security issues</a>
-                    </li>
-        		
-            </ul>
+                <li class="">
+                    <a class="subnav_link" href="/releases/">Downloads</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/releases/#source_control">Source Control</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/sub_projects/">Sub-projects</a>
+                </li><li class="active">
+                    <a class="subnav_link" href="/release_notes/">Release notes</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/security/">Security issues</a>
+                </li></ul>
         </nav>
-	</div>
+    </div>
 </div>
-
-  
-
-  <div class="post-content">
-      <div ng-controller="ReleaseNotesPage">
+<div class="post-content">
+    <div ng-controller="ReleaseNotesPage">
     <header class="modules_header">
         <div class="wrapper base_padding_v">
             <div class="row">
@@ -154,7 +129,7 @@
                 <div class="modules_search columns medium-8">
                     <input class="h5 search" type="text" placeholder="Search" ng-model="search" ng-model-options="{ debounce: 300 }" ng-value="searchString" ng-change="changeLocationSearch(search)">
 
-                    <select class="h5 bg_block-light text-dark" ng-model="searchDate" ng-change="getBranchesByDate(searchDate)" ng-init="searchdate = ''">
+                    <select class="h5 bg_block-light text-dark" ng-model="searchDate" ng-change="getReleasesByDate(searchDate)" ng-init="searchdate = ''">
                         <option value="">Filter by year</option>
                         <option value="2017">Released 2017</option>
                         <option value="2016">Released 2016</option>
@@ -172,17 +147,16 @@
     <section class="modules_section base_padding_v">
         <div class="wrapper">
 
-            <div ng-repeat="release_note in release_notes">
-                <div class="release_note base_padding_v" ng-repeat="branch in release_note.release" ng-cloak>
+                <div class="release_note base_padding_v" ng-repeat="release in releases" ng-cloak>
                     <div class="row">
-                        <div class="columns medium-2"><h4 tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">{{branch.date | date : 'yyyy.MM.dd'}}</h4></div>
+                        <div class="columns medium-2"><h4 tab-trigger ng-click="toggle('#release' + release.name.split('.').join('-'), true)">{{release.date | date : 'yyyy.MM.dd'}}</h4></div>
                         <div class="columns medium-5">
-                            <h4 tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">Version {{branch.name}} has been released. <img ng-if="isCritical(branch)" class="icon_xsmall" src="/img/alert-red.svg" alt=""></h4>
-                            <span>{{branch.summary}}.</span>
+                            <h4 tab-trigger ng-click="toggle('#release' + release.name.split('.').join('-'), true)">Version {{release.name}} has been released. <img ng-if="isCritical(release)" class="icon_xsmall" src="/img/alert-red.svg" alt=""></h4>
+                            <span>{{release.summary}}.</span>
                         </div>
                         <div class="columns medium-4">
-                            <ul class="release_module_list h5" ng-init="things = getAffectedModulesByCategory(branch)">
-                                <li class="release_module_item" ng-repeat="(key, modules) in things" tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">
+                            <ul class="release_module_list h5" ng-init="things = getAffectedModulesByCategory(release)">
+                                <li class="release_module_item" ng-repeat="(key, modules) in things" tab-trigger ng-click="toggle('#release' + release.name.split('.').join('-'), true)">
 
                                     <span class="release_module_item_inner">
                                         <span class="icon_xsmall release_module_icon text_accent-blue"><img ng-src="/img/mod-{{key}}.svg" alt=""></span> {{key}} <span class="text-light">({{modules.length}})</span>
@@ -194,30 +168,30 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="columns medium-1" tab-trigger ng-click="toggle('#release' + branch.name.split('.').join('-'), true)">
-                            <img ng-show="active == '#release' + branch.name.split('.').join('-')" src="../img/close.svg" class="icon_xsmall open-toggle">
-                            <img ng-hide="active == '#release' + branch.name.split('.').join('-')" src="../img/open.svg" class="icon_xsmall open-toggle">
+                        <div class="columns medium-1" tab-trigger ng-click="toggle('#release' + release.name.split('.').join('-'), true)">
+                            <img ng-show="active == '#release' + release.name.split('.').join('-')" src="../img/close.svg" class="icon_xsmall open-toggle">
+                            <img ng-hide="active == '#release' + release.name.split('.').join('-')" src="../img/open.svg" class="icon_xsmall open-toggle">
                         </div>
                     </div>
                     <div class="release_details"
-                        id="release{{branch.name.split('.').join('-')}}"
+                        id="release{{release.name.split('.').join('-')}}"
                         tab-content
                         transition="slide"
-                        ng-class="{branch_active: active == '#release' + branch.name.split('.').join('-')}">
-                        <p class="bg_block-light sm_padding text_accent-red emphasis" ng-if="isCritical(branch)"><img class="icon_small" src="/img/alert-red.svg" alt=""> This release addresses critical security issues</p>
+                        ng-class="{release_active: active == '#release' + release.name.split('.').join('-')}">
+                        <p class="bg_block-light sm_padding text_accent-red emphasis" ng-if="isCritical(release)"><img class="icon_small" src="/img/alert-red.svg" alt=""> This release addresses critical security issues</p>
 
-                        <div ng-if="branch.features">
+                        <div ng-if="release.features">
                             <h5>Feature Improvements</h5>
                             <ul class="release_features">
-                                <li ng-repeat="feature in branch.features">
+                                <li ng-repeat="feature in release.features">
                                     <span class="{{getComponents(feature).join(' ')}}" ng-class="{highlight_point: compareArrays(getComponents(feature), affectedClasses)}">{{feature.description}}.</span>
                                 </li>
                             </ul>
                         </div>
-                        <div ng-if="branch.defects">
+                        <div ng-if="release.defects">
                             <h5>Bug Fixes</h5>
                             <ul class="release_defects">
-                                <li ng-repeat="defect in branch.defects">
+                                <li ng-repeat="defect in release.defects">
                                     <span class="{{getComponents(defect).join(' ')}}" ng-class="{highlight_point: compareArrays(getComponents(defect), affectedClasses)}">{{defect.description}}.</span>
                                 </li>
                             </ul>
@@ -225,10 +199,10 @@
                         <h5>Related Modules</h5>
 
                         <div class="row" content-group>
-                            <!-- <div class="module module-{{module.category}}" ng-repeat="module in getAffectedModules(branch) track by $index"> -->
+                            <!-- <div class="module module-{{module.category}}" ng-repeat="module in getAffectedModules(release) track by $index"> -->
                                 <div class="module module-{{module.category}}"
                                     ng-class="{active: active == '#module-details-{{module.name}}'}"
-                                    ng-repeat="module in getAffectedModules(branch)"
+                                    ng-repeat="module in getAffectedModules(release)"
                                     ng-init="dormant = true"
                                     mod
                                     ng-cloak>
@@ -271,7 +245,7 @@
                                                     <div ng-repeat="available in module.available">
                                                         <div class="link">
                                                             <p class="h5 text_accent-grey">Availability</p>
-                                                            <span class="h6">{{available.start.name}} - {{available.end.name}}</span>
+                                                            <span class="h6"><a ng-href="/release_notes/?br={{available.branch.name}}&re={{available.start.name}}">{{available.start.name}}</a> - <a ng-href="/release_notes/?br={{available.branch.name}}&re={{available.end.name}}">{{available.end.name}}</a></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -291,20 +265,17 @@
 
                     </div>
                 </div>
-            </div>
-
 
         </div>
     </section>
 </div>
+
   </div>
 
 </article>
 
 
-    </div>
-
-    <footer class="global_footer bg_block-dark lg_padding_v">
+    </div><footer class="global_footer bg_block-dark lg_padding_v">
 
     <div class="wrapper">
         <div class="row">
@@ -367,8 +338,6 @@
 <script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
 <script src="/js/angular.min.js"></script>
 <script src="/js/app.js"></script>
-
-
-  </body>
+</body>
 
 </html>

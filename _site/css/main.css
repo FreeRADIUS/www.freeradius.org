@@ -2634,7 +2634,7 @@ select {
     height: auto;
     opacity: 1;
     visibility: visible; }
-  .release_details:not(.branch_active) .module.active .module_details {
+  .release_details:not(.release_active) .module.active .module_details {
     opacity: 0; }
   .module_details .wrapper, .module_details .post-hero, .module_details .owl-nav {
     height: 100%; }

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="freeradius">
-
-  <head>
+<html ng-app="freeradius"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,15 +33,11 @@
     <meta name="theme-color" content="#ffffff ">
 
 </head>
-
-
-  <body>
-
-    <div class="global-nav">
+<body><div class="global-nav">
   <div class="global_links pull_right">
     <div class="global_link global_link_label h5 text">Our sites:</div>
     <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
   </div>
 </div>
 
@@ -96,49 +90,34 @@
     </nav>
   </div>
 </header>
-
-
-    <div class="page-content">
+<div class="page-content">
 
         <article class="post">
   <header class="post-header">
     <div class="post-hero hero-documentation">
       <div class="wrapper">
-      	<h1 class="post-title">FreeRADIUS 'man' pages</h1>
-      	<p class="post-subtitle">Documentation from the server</p> 
+        <h1 class="post-title">FreeRADIUS 'man' pages</h1>
+        <p class="post-subtitle">Documentation from the server</p>
       </div>
     </div>
-  </header>
-  
-  	<div class="sub-nav">
-	<div class="wrapper">
+  </header><div class="sub-nav">
+    <div class="wrapper">
         <nav class="inline_nav" sub-nav>
             <ul>
-                
-                
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
-                    </li>
-        		
-            </ul>
+                <li class="">
+                    <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
+                </li></ul>
         </nav>
-	</div>
+    </div>
 </div>
-
-  
-
-  <div class="post-content">
-      <div class="man_page wrapper base_padding_v">
+<div class="post-content">
+    <div class="man_page wrapper base_padding_v">
 <H1>radiusd.conf</H1>
-Section: FreeRADIUS configuration file (5)<BR>Updated: 23 Jan 2004<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS configuration file (5)<BR>Updated: 28 Jun 2013<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -150,115 +129,323 @@ radiusd.conf - configuration file for the FreeRADIUS server
 
 The <B>radiusd.conf</B> file resides in the radius database directory,
 by default <B>/etc/raddb</B>.  It defines the global configuration for
-the FreeRADIUS server.
-<P>
+the FreeRADIUS RADIUS server.
 <A NAME="lbAD">&nbsp;</A>
+<H2>CONTENTS</H2>
+
+There are a large number of configuration parameters for the server.
+Most are documented in the file itself as comments.  This page
+documents only the format of the file.  Please read the
+<B>radiusd.conf</B> file itself for more information.
+<P>
+The configuration file parser is independent of the server
+configuration.  This means that you can put almost anything into the
+configuration file.  So long as it is properly formatted, the server
+will start.
+<P>
+When the server parses the configuration file, it looks only for those
+configurations it understands.  Extra configuration items are ignored.
+This &quot;feature&quot; can be (ab)used in certain interesting ways.
+<A NAME="lbAE">&nbsp;</A>
 <H2>FILE FORMAT</H2>
 
-The file consists of attribute-value pairs, sections, and comments.
+The file format is line-based, like many other Unix configuration
+files.  Each entry in the file must be placed on a line by itself,
+although continuations are supported.
 <P>
-Attribute-value pairs are of the form <B>name = value</B>.
+The file consists of configuration items (variable = value pairs),
+sections, and comments.
+<DL COMPACT>
+<DT>Variables<DD>
+Variables can be set via:
 <P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+<BR>
+        name = value
+
+</PRE>
+
+</DL>
+
+<P>
+
+<P>
+Single and double-quoted strings are permitted:
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+<BR>
+        string1 = &quot;hello world&quot;
+<BR>
+        string2 = 'hello mom'
+
+</PRE>
+
+</DL>
+
+<P>
+
+<DT>Sections<DD>
 A section begins with a section name, followed on the same line by an
-open bracket <B>{</B>.  The section may contain other
-sections, or attribute-value pairs.  The section ends with a close
-bracket <B>}</B>, on a line by itself.
+open bracket '<B>{</B>'.  Section may contain other sections, comments, or
+variables.  Sections may be nested to any depth, limited
+only by available memory.  A section ends with a close bracket
+'<B>}</B>', on a line by itself.
 <P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+<BR>
+        section {
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
+
+<P>
+Sections can sometimes have a second name following the first one.
+The situations where this is legal depend on the context.  See the
+examples and comments in the <B>radiusd.conf</B> file for more
+information.
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+<BR>
+        section foo {
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
+
+<DT>Comments<DD>
 Any line beginning with a (<B>#</B>) is deemed to be a comment, and is
-ignored.  Lines containing only whitespace are also ignored.
-<P>
-The file is line-based.  That is, each newline-terminated line
-represents either a comment, a section name, or an attribute-value
-pair.  It is not possible to specify multiple items on the same line,
-and there are no continuation lines.
-<P>
-The value for a particular attribute may reference a previously
-defined attribute by name. The standard shell reference format
-<B>${name}</B> is used.  When the variable is in a section or
-subsection, it may be referenced as <B>${section.subsection.name}</B>.
-Forward references are not allowed.  Relative references are allowed,
-via pre-pending the name with one or more of '.'.
-<P>
-The individidual configuration directives are too numerous to list
-here, so this manual page only documents the file format.  Please read
-the sample configuration file distributed with the server for comments
-describing each of the allowed configuration directives.
-<P>
-<A NAME="lbAE">&nbsp;</A>
-<H2>EXAMPLES</H2>
-
+ignored.  Comments can appear after a variable or section definitions.
 <P>
 
+<DL COMPACT><DT><DD>
+<PRE>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>foo = bar<BR>
-<P>
-
-Sets variable <B>foo</B> to have text value <B>bar</B>.
-<P>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blogs = ${foo}<BR>
-<P>
-
-Sets variable <B>blogs</B> to the value of variable <B>foo</B> from the
-current section.  If there is no variable <B>foo</B> in the current
-section, then it looks for that variable in the body of the main
-configuration file, e.g. {Blogdir}
-<P>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>my_section {<BR>
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT><TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>baz = bud<BR>
+        # comment
 <BR>
+        foo = bar # set variable 'foo' to value 'bar'
+<BR>
+        section {       # start of section
+<BR>
+        ...
+<BR>
+        }               # end of section
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>}<BR>
+</PRE>
+
+</DL>
+
 <P>
 
-Defines a section named <B>my_section</B>, containing variable
-<B>baz</B>.
+<DT>Continuations<DD>
+Long lines can be broken up via continuations, using '\' as the last
+character of the line.  For example, the following entry:
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blogs = ${.foo}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+<BR>
+        foo = &quot;blah \
+<BR>
+        blah \
+<BR>
+        blah&quot;
+
+</PRE>
+
+</DL>
+
 <P>
 
-Sets variable <B>blogs</B> to the value of variable <B>foo</B>,
+<P>
+will set the value of the variable &quot;foo&quot; to &quot;blah blah blah&quot;.  Any CR
+or LF is not turned into a space, but all other whitespace is
+preserved in the final value.
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>REFERENCES</H2>
+
+The value of a variable can reference another variable.  These
+references are evaluated when the configuration file is loaded, which
+means that there is no run-time cost associated with them.  This
+feature is most useful for turning long, repeated pieces of text into
+short ones.
+<P>
+Variables are referenced by ${variable_name}, as in the following examples.
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        foo = bar       # set variable 'foo' to value 'bar'
+<BR>
+        who = ${foo}    # sets variable 'who' to value of variable 'foo'
+<BR>
+        my = &quot;${foo} a&quot; # sets variable 'my' to &quot;bar a&quot;
+
+</PRE>
+
+</DL>
+
+<P>
+
+<P>
+If the variable exists in a section or subsection, it can be
+referenced as ${section.subsection.variable}.  Forward references are
+not allowed.  Relative references are allowed, by pre-pending the name
+with one or more period.
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        blogs = ${.foo}
+
+
+</PRE>
+
+</DL>
+
+<P>
+
+Will set variable <B>blogs</B> to the value of variable <B>foo</B>,
 from the current section.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blogs = ${..foo}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        blogs = ${..foo}
+
+
+</PRE>
+
+</DL>
+
 <P>
 
-Sets variable <B>blogs</B> to the value of variable <B>foo</B>, from the
+Will set variable <B>blogs</B> to the value of variable <B>foo</B>, from the
 section which contains the current section.
 <P>
 
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>blogs = ${modules.detail.detailfile}<BR>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        blogs = ${modules.detail.filename}
+
+
+</PRE>
+
+</DL>
+
 <P>
 
-Sets variable <B>blogs</B> to the value of variable <B>detailfile</B>,
+Will set variable <B>blogs</B> to the value of variable <B>filename</B>,
 of the <B>detail</B> module, which is in the <B>modules</B> section of
 the configuration file.
 <P>
+Properties of anonymous parent sections may also be referenced, currently
+<B>name</B> and <B>instance</B> are supported.
 <P>
 
-<A NAME="lbAF">&nbsp;</A>
+<DL COMPACT><DT><DD>
+<PRE>
+
+        modules {
+                example foo {
+                        file = ${.:name}
+                }
+        }
+        
+
+</PRE>
+
+</DL>
+
+<P>
+
+Will set variable <B>file</B> to the name of the containing section (example).
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        modules {
+                example foo {
+                        file = ${.:instance}
+                }
+        }
+        
+
+</PRE>
+
+</DL>
+
+<P>
+
+Will set variable <B>file</B> to the instance name of the containing 
+section (foo).
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        modules {
+                example foo {
+                        file = ${..:name}
+                }
+        }
+        
+
+</PRE>
+
+</DL>
+
+<P>
+
+Will set variable <B>file</B> to the name of the parent of the containing
+section (modules).
+<A NAME="lbAG">&nbsp;</A>
 <H2>FILES</H2>
 
 /etc/raddb/radiusd.conf
-<A NAME="lbAG">&nbsp;</A>
+<A NAME="lbAH">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
-<B><a href="radiusd.html">radiusd</A></B>(8),
+<B><a href="radiusd.html">radiusd</A></B>(8)
 
-<B><a href="users.html">users</A></B>(5)
+<B><a href="unlang.html">unlang</A></B>(5)
 
-<B><a href="clients.html">clients</A></B>(5)
-
-<P>
-<A NAME="lbAH">&nbsp;</A>
+<A NAME="lbAI">&nbsp;</A>
 <H2>AUTHOR</H2>
 
-Alan DeKok &lt;<A HREF="mailto:aland@ox.org">aland@ox.org</A>&gt;
+Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt;
 <P>
 
 <HR>
@@ -266,17 +453,18 @@ Alan DeKok &lt;<A HREF="mailto:aland@ox.org">aland@ox.org</A>&gt;
 <DL>
 <DT><A HREF="#lbAB">NAME</A><DD>
 <DT><A HREF="#lbAC">DESCRIPTION</A><DD>
-<DT><A HREF="#lbAD">FILE FORMAT</A><DD>
-<DT><A HREF="#lbAE">EXAMPLES</A><DD>
-<DT><A HREF="#lbAF">FILES</A><DD>
-<DT><A HREF="#lbAG">SEE ALSO</A><DD>
-<DT><A HREF="#lbAH">AUTHOR</A><DD>
+<DT><A HREF="#lbAD">CONTENTS</A><DD>
+<DT><A HREF="#lbAE">FILE FORMAT</A><DD>
+<DT><A HREF="#lbAF">REFERENCES</A><DD>
+<DT><A HREF="#lbAG">FILES</A><DD>
+<DT><A HREF="#lbAH">SEE ALSO</A><DD>
+<DT><A HREF="#lbAI">AUTHOR</A><DD>
 </DL>
 <HR>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:12 GMT, August 01, 2017
+Time: 12:00:33 GMT, August 03, 2017
 </div>
 </HTML>
 
@@ -285,9 +473,7 @@ Time: 11:13:12 GMT, August 01, 2017
 </article>
 
 
-    </div>
-
-    <footer class="global_footer bg_block-dark lg_padding_v">
+    </div><footer class="global_footer bg_block-dark lg_padding_v">
 
     <div class="wrapper">
         <div class="row">
@@ -350,8 +536,6 @@ Time: 11:13:12 GMT, August 01, 2017
 <script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
 <script src="/js/angular.min.js"></script>
 <script src="/js/app.js"></script>
-
-
-  </body>
+</body>
 
 </html>

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="freeradius">
-
-  <head>
+<html ng-app="freeradius"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,15 +33,11 @@
     <meta name="theme-color" content="#ffffff ">
 
 </head>
-
-
-  <body>
-
-    <div class="global-nav">
+<body><div class="global-nav">
   <div class="global_links pull_right">
     <div class="global_link global_link_label h5 text">Our sites:</div>
     <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
   </div>
 </div>
 
@@ -96,49 +90,34 @@
     </nav>
   </div>
 </header>
-
-
-    <div class="page-content">
+<div class="page-content">
 
         <article class="post">
   <header class="post-header">
     <div class="post-hero hero-documentation">
       <div class="wrapper">
-      	<h1 class="post-title">FreeRADIUS 'man' pages</h1>
-      	<p class="post-subtitle">Documentation from the server</p> 
+        <h1 class="post-title">FreeRADIUS 'man' pages</h1>
+        <p class="post-subtitle">Documentation from the server</p>
       </div>
     </div>
-  </header>
-  
-  	<div class="sub-nav">
-	<div class="wrapper">
+  </header><div class="sub-nav">
+    <div class="wrapper">
         <nav class="inline_nav" sub-nav>
             <ul>
-                
-                
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
-                    </li>
-        		
-            </ul>
+                <li class="">
+                    <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
+                </li></ul>
         </nav>
-	</div>
+    </div>
 </div>
-
-  
-
-  <div class="post-content">
-      <div class="man_page wrapper base_padding_v">
+<div class="post-content">
+    <div class="man_page wrapper base_padding_v">
 <H1>rlm_passwd</H1>
-Section: FreeRADIUS Module (5)<BR>Updated: 14 April 2004<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Module (5)<BR>Updated: 20 January 2015<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -152,79 +131,127 @@ The <I>rlm_passwd</I> module provides authorization via files similar
 in format to /etc/passwd.
 <P>
 
-The lm_passwd module allows you to retrieve any account
-information from any files with passwd-like format (/etc/passwd,
-/etc/group, smbpasswd, .htpasswd, etc).  Every field of the file may
-be mapped to a RADIUS attribute, with one of the fields used as a
-key.
+This module allows you to retrieve any account information from any
+files with passwd-like format (/etc/passwd, /etc/group,
+smbpasswd, .htpasswd, etc). Every field of the file may be mapped to
+a RADIUS attribute, with one of the fields used as a key.
 <P>
 
-The module reads the file when it initializes, and caches the data
-in memory.  As a result, it does not support dynamic updates of the
-files (the server has to be HUP'd), but it is very fast, even for
-files with thousands of lines.
+The module reads the file when it initializes, and caches the data in
+memory.  This makes it very fast, even for files with thousands of
+lines. To re-read the file the module will need to be reloaded with
+<I><a href="radmin.html">radmin</A>(8)</I>, or the server will need to be sent a SIGHUP, as
+dynamic updates are not supported.
 <P>
+
+<A NAME="lbAD">&nbsp;</A>
+<H2>CONFIGURATION</H2>
 
 The configuration item(s):
 <DL COMPACT>
-<DT>filename<DD>
-The path to the file.
-<DT>delimiter<DD>
-The character to use as a delimiter between fields.  The default is
-&quot;:&quot;
-<DT>hashsize<DD>
-The size of the hashtable.  If 0, then the passwords are not cached
-and the passwd file is parsed for every request.  We do not recommend
-such a configuration.  A larger hashsize means less probability of
-collision and faster search in hashtable. Having a hashsize in the range
-of 30-100&percnt; of the number of passwd file records is reasonable.
-<DT>allowmultiplekeys<DD>
+<DT>allow_multiple_keys<DD>
 If set to 'yes', and more than one record in file matches the request,
 then the attributes from all records will be used. If set to 'no' (the
 default) the module will warn about duplicated records.
-<DT>ignorenislike<DD>
-If set to 'yes', then all records from the file beginning with the '+'
-sign will be ignored.  The default is 'no'.
-<DT>authtype<DD>
-If an entry matches, the Auth-Type for the request will be set to the
-one specified here.
+<DT>delimiter&nbsp;=&nbsp;:<DD>
+The character to use as a delimiter between fields.  The default is
+&quot;:&quot;
+<DT>filename<DD>
+The path to the file.
 <DT>format<DD>
 The format of the fields in the file, given as an example line from
 the file, with the content of the fields as the RADIUS attributes
-which the fields map to.  The fields are seperated by the ':' character.
+which the fields map to. The fields are separated by the ':' character
+in the configuration (no matter what is configured for the 'delimiter'
+option).
+<DT>hash_size<DD>
+The size of the hash table. A larger value means less probability of a
+collision so records will be found faster, at the expense of greater
+memory usage. Having a hash_size in the range of 30-100&percnt; of the number
+of passwd file records is reasonable.
+<DT>ignore_empty<DD>
+When set to &quot;yes&quot;, the default, empty fields in the input will be
+skipped and the RADIUS attribute will not be added.  By setting this
+value to &quot;no&quot;, all attributes in the format list will always be added,
+even if they have no value.
+<DT>ignore_nislike<DD>
+If set to 'yes', then all records from the file beginning with the '+'
+sign will be ignored.  The default is 'no'.
 </DL>
 <P>
 
-The key field is signified by being preceded with a '*' character,
-which indicates that the field has only one key, like the /etc/passwd
-file.  The key field may instead be preceded with '*,', which
-indicates that the field has multiple possible keys, like the
-/etc/group file.
+<A NAME="lbAE">&nbsp;</A>
+<H2>FORMAT</H2>
+
+The <I>format</I> option controls how lines are read from the file, and
+which fields are mapped to which RADIUS attributes.
 <P>
 
-The other fields signify RADIUS attributes which, by default, are
-added to the configuration items for a request. 
+The key field is the field being searched for within the file. It is
+normally signified by being preceded with a '*' character, which
+indicates that the field has only one key, like the /etc/passwd file.
+The key field may instead be preceded with '*,', which indicates that
+the field has multiple possible comma-separated keys, such as when
+searching the /etc/group file.
 <P>
 
-To add an attribute to the request (as though it was sent by the NAS),
-prefix the attribute name in the &quot;format&quot; string with the '~' character.
+The other fields signify RADIUS attributes. By default they will be
+added as a control attribute list.
 <P>
 
-To add an attribute to the reply (to be sent back to the NAS) prefix
-the attribute name in the &quot;format&quot; string with the '=' character.
+To add an attribute to the RADIUS request (as though it had been sent
+by the NAS), prefix the attribute name in the &quot;format&quot; string with the
+'~' character.
 <P>
-<A NAME="lbAD">&nbsp;</A>
+
+To add an attribute to the RADIUS reply (to be sent back to the NAS),
+prefix the attribute name in the &quot;format&quot; string with the '='
+character.
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
 <H2>EXAMPLES</H2>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
+format = &quot;*User-Name:Crypt-Password:&quot;
+
+</PRE>
+
+</DL>
+
+<P>
+
+<DL COMPACT>
+<DT><DD>
+For a file the looks similar to /etc/passwd. The first field,
+User-Name, is the key to look up in the file. When the record is
+found, a control attribute, 'Crypt-Password', will be added with the
+contents of the second field. (Note this will not work with shadow
+passwords.)
+</DL>
+<P>
+
+
+<DL COMPACT><DT><DD>
+<PRE>
+
 format = &quot;My-Group:::*,User-Name&quot;
+
+</PRE>
+
+</DL>
+
+<P>
 
 <DL COMPACT>
 <DT><DD>
 Parse a file similar to the /etc/group file.  An entry matches a
 request when the name in a User-Name attribute exists in the
-comma-seperated list of a line in the file.  When an entry matches, 
-a &quot;My-Group&quot; attribute will be created and added to the configuration
+comma-separated list of a line in the file.  When an entry matches, 
+a &quot;My-Group&quot; attribute will be created and added to the control
 items for the request.  The value of that attribute will be taken from
 the first field of the matching line in the file.
 <DT><DD>
@@ -233,46 +260,62 @@ in the line, in between the group name and list of user names.  Those
 fields do not map to any RADIUS attribute, and are therefore ignored.
 <DT><DD>
 For this example to work in practice, you will have to add the
-My-Group attribute to the dictionary file.  See the dictionary manual
-page for details on how this may be done.
+My-Group attribute to the dictionary file.  See <I><a href="dictionary.html">dictionary</A>(5)</I>
+for details on how this may be done.
 </DL>
 <P>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 format = &quot;~My-Group:::*,User-Name&quot;
+
+</PRE>
+
+</DL>
+
+<P>
 
 <DL COMPACT>
 <DT><DD>
 Similar to the previous entry, except the My-Group attribute is added
 to the request, as though it was sent by the NAS.
 </DL>
-<A NAME="lbAE">&nbsp;</A>
+<P>
+
+<A NAME="lbAG">&nbsp;</A>
 <H2>SECTIONS</H2>
 
 <B>authorize</B>
 
 <P>
 
-<A NAME="lbAF">&nbsp;</A>
+<A NAME="lbAH">&nbsp;</A>
 <H2>FILES</H2>
 
-<I>/etc/raddb/radiusd.conf</I>
+<I>/etc/raddb/mods-available/passwd</I>
 
 <P>
 
-<A NAME="lbAG">&nbsp;</A>
+<A NAME="lbAI">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
 <B><a href="radiusd.html">radiusd</A></B>(8),
 
-<B><a href="radiusd.conf.html">radiusd.conf</A></B>(5)
+<B><a href="radiusd.conf.html">radiusd.conf</A></B>(5),
+
+<B><a href="radmin.html">radmin</A></B>(8),
 
 <B><a href="dictionary.html">dictionary</A></B>(5),
 
-<A NAME="lbAH">&nbsp;</A>
+<B><a href="rlm_unix.html">rlm_unix</A></B>(5)
+
+<A NAME="lbAJ">&nbsp;</A>
 <H2>AUTHOR</H2>
 
-Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt;
+Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt;, Matthew Newton
+&lt;<A HREF="mailto:matthew@newtoncomputing.co.uk">matthew@newtoncomputing.co.uk</A>&gt;.
 <P>
 <P>
 
@@ -281,17 +324,19 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 <DL>
 <DT><A HREF="#lbAB">NAME</A><DD>
 <DT><A HREF="#lbAC">DESCRIPTION</A><DD>
-<DT><A HREF="#lbAD">EXAMPLES</A><DD>
-<DT><A HREF="#lbAE">SECTIONS</A><DD>
-<DT><A HREF="#lbAF">FILES</A><DD>
-<DT><A HREF="#lbAG">SEE ALSO</A><DD>
-<DT><A HREF="#lbAH">AUTHOR</A><DD>
+<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
+<DT><A HREF="#lbAE">FORMAT</A><DD>
+<DT><A HREF="#lbAF">EXAMPLES</A><DD>
+<DT><A HREF="#lbAG">SECTIONS</A><DD>
+<DT><A HREF="#lbAH">FILES</A><DD>
+<DT><A HREF="#lbAI">SEE ALSO</A><DD>
+<DT><A HREF="#lbAJ">AUTHOR</A><DD>
 </DL>
 <HR>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:12 GMT, August 01, 2017
+Time: 12:00:33 GMT, August 03, 2017
 </div>
 </HTML>
 
@@ -300,9 +345,7 @@ Time: 11:13:12 GMT, August 01, 2017
 </article>
 
 
-    </div>
-
-    <footer class="global_footer bg_block-dark lg_padding_v">
+    </div><footer class="global_footer bg_block-dark lg_padding_v">
 
     <div class="wrapper">
         <div class="row">
@@ -365,8 +408,6 @@ Time: 11:13:12 GMT, August 01, 2017
 <script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
 <script src="/js/angular.min.js"></script>
 <script src="/js/app.js"></script>
-
-
-  </body>
+</body>
 
 </html>

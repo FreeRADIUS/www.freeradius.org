@@ -1,3 +1,13 @@
+-- component_index.lua
+--
+-- called with URLs exactly matching
+--   /api/info/component/
+--
+-- reads /api/info/srv/component/*.json
+--
+-- filter by dependency (by_dependency_on), category (by_category)
+-- or not at all
+--
 local cjson             = require "cjson"
 local ngx               = require "ngx"
 
@@ -70,6 +80,7 @@ if sane_args.by_dependency_on then
    end
 
    index:set(json.dependents)
+
 --
 --    Filter by category
 --
@@ -91,6 +102,7 @@ elseif sane_args.by_category then
    end
 
    index:filter(category, 1)
+
 ---
 ---   Don't filter
 ---
@@ -105,6 +117,6 @@ ret = search and index:filter(search, sane_args.keyword_expansion_depth)
 ret = sane_args.order_by and index:sort(sane_args.order_by)
 
 -- Pagenate
-index:pagenate(sane_args.pagenate_start, sane_args.pagenate_end)
+index:paginate(sane_args.paginate_start, sane_args.paginate_end)
 
 ngx.say(tostring(index));

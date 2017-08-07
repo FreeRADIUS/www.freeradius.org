@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="freeradius">
-
-  <head>
+<html ng-app="freeradius"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,15 +33,11 @@
     <meta name="theme-color" content="#ffffff ">
 
 </head>
-
-
-  <body>
-
-    <div class="global-nav">
+<body><div class="global-nav">
   <div class="global_links pull_right">
     <div class="global_link global_link_label h5 text">Our sites:</div>
     <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
   </div>
 </div>
 
@@ -96,49 +90,34 @@
     </nav>
   </div>
 </header>
-
-
-    <div class="page-content">
+<div class="page-content">
 
         <article class="post">
   <header class="post-header">
     <div class="post-hero hero-documentation">
       <div class="wrapper">
-      	<h1 class="post-title">FreeRADIUS 'man' pages</h1>
-      	<p class="post-subtitle">Documentation from the server</p> 
+        <h1 class="post-title">FreeRADIUS 'man' pages</h1>
+        <p class="post-subtitle">Documentation from the server</p>
       </div>
     </div>
-  </header>
-  
-  	<div class="sub-nav">
-	<div class="wrapper">
+  </header><div class="sub-nav">
+    <div class="wrapper">
         <nav class="inline_nav" sub-nav>
             <ul>
-                
-                
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
-                    </li>
-        		
-            </ul>
+                <li class="">
+                    <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
+                </li></ul>
         </nav>
-	</div>
+    </div>
 </div>
-
-  
-
-  <div class="post-content">
-      <div class="man_page wrapper base_padding_v">
+<div class="post-content">
+    <div class="man_page wrapper base_padding_v">
 <H1>rlm_always</H1>
-Section: FreeRADIUS Module (5)<BR>Updated: 3 February 2004<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Module (5)<BR>Updated: 10 January 2015<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -149,90 +128,110 @@ rlm_always - FreeRADIUS Module
 <H2>DESCRIPTION</H2>
 
 The <I>rlm_always</I> module provides a simple way to &quot;always&quot; return a
-value during the processing of a configuration section.  The module
-does nothing other than return a configured value.
+value during the processing of a configuration section.
 <P>
 
+The main configuration item is <I>rcode</I>, which sets the return code that
+this instantiation of the module will return. The default, if none
+specified, is 'fail'.
 <P>
 
-The main configuration item to be aware of is:
-<DL COMPACT>
-<DT>rcode<DD>
-This module will always return with the rcode specified.  The
-default, if none specified is: fail (RLM_MODULE_FAIL).
-</DL>
-<P>
-
-The valid options are:
+The valid options for rcode are as follows:
+<DL COMPACT><DT><DD>
 <DL COMPACT>
 <DT>reject<DD>
-RLM_MODULE_REJECT
+reject the user;
 <DT>fail<DD>
-RLM_MODULE_FAIL
+a failure has occurred;
 <DT>ok<DD>
-RLM_MODULE_OK
+success;
 <DT>handled<DD>
-RLM_MODULE_HANDLED
+the request has been handled: processing should be stopped and the response
+sent;
 <DT>invalid<DD>
-RLM_MODULE_INVALID
+request is invalid;
 <DT>userlock<DD>
-RLM_MODULE_USERLOCK
+the user account has been locked out;
 <DT>notfound<DD>
-RLM_MODULE_NOTFOUND
+the user account cannot be found;
 <DT>noop<DD>
-RLM_MODULE_NOOP
+no-op: nothing has happened;
 <DT>updated<DD>
-RLM_MODULE_UPDATED
+the request has been updated.
 </DL>
+</DL>
+
 <A NAME="lbAD">&nbsp;</A>
 <H2>CONFIGURATION</H2>
 
+<P>
 
-modules {
-<BR>&nbsp;&nbsp;...
-<BR>
-
-<BR>&nbsp;&nbsp;always&nbsp;ok&nbsp;{
-<BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>rcode = ok<BR>
-<BR>
-
-<BR>&nbsp;&nbsp;}
-<BR>
-
-<BR>&nbsp;&nbsp;...
-<BR>
-
-}
-<BR>
-
-<BR>&nbsp;...
-<BR>
-
-authorize {
-<BR>&nbsp;&nbsp;...
-<BR>
-
-<BR>&nbsp;&nbsp;redundant&nbsp;{
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sql1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;try&nbsp;to&nbsp;find&nbsp;the&nbsp;user&nbsp;in&nbsp;sql1
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sql2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;try&nbsp;to&nbsp;find&nbsp;the&nbsp;user&nbsp;in&nbsp;sql2
-<BR>
-
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;if&nbsp;still&nbsp;not&nbsp;found,&nbsp;it's&nbsp;OK.
-<BR>
-
-<BR>&nbsp;&nbsp;}
-<BR>&nbsp;&nbsp;...
-<BR>
-
-}
-
+<DL COMPACT>
+<DT>rcode = &lt;code&gt;<DD>
+This module will always return with the code specified, as listed in the
+table above.  If unspecified, the default is 'fail'.
+<DT>simulcount = &lt;n&gt;<DD>
+If this module is used in the session{} section, the simulcount option
+simulates the user having 'n' current sessions. The default is to not
+override the number of sessions.
+<DT>mpp = &lt;yes|no&gt;<DD>
+If set to yes, and this module is used in the session{} section, this
+simulates the user having multilink sessions.  The default is 'no'.
+</DL>
 <P>
 
 <A NAME="lbAE">&nbsp;</A>
+<H2>EXAMPLE</H2>
+
+<P>
+
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+modules {
+  ...
+<BR>
+  # instantiate the &quot;always&quot; module with the name &quot;ok&quot;
+<BR>
+  always ok {
+<BR>
+        # return code for this instantiation is &quot;ok&quot;:
+<BR>
+        rcode = ok
+<BR>
+  }
+<BR>
+  ...
+<BR>
+}
+<BR>
+
+<BR>
+recv Access-Request {
+  ...
+<BR>
+  redundant {
+     sql1          # try to find the user in sql1
+<BR>
+     sql2          # try to find the user in sql2
+<BR>
+     # the default here would be to fail, but...
+<BR>
+     ok            # if still not found, it's OK.
+<BR>
+  }
+  ...
+<BR>
+}
+
+</PRE>
+
+</DL>
+
+<P>
+
+<A NAME="lbAF">&nbsp;</A>
 <H2>SECTIONS</H2>
 
 <B>authorization,</B>
@@ -251,24 +250,30 @@ authorize {
 
 <P>
 
-<A NAME="lbAF">&nbsp;</A>
+<A NAME="lbAG">&nbsp;</A>
 <H2>FILES</H2>
 
-<I>/etc/raddb/radiusd.conf</I>
+<I>/etc/raddb/mods-available/always</I>
 
 <P>
 
-<A NAME="lbAG">&nbsp;</A>
+<A NAME="lbAH">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
 <B><a href="radiusd.html">radiusd</A></B>(8),
 
-<B><a href="radiusd.conf.html">radiusd.conf</A></B>(5)
+<B><a href="radiusd.conf.html">radiusd.conf</A></B>(5),
 
-<A NAME="lbAH">&nbsp;</A>
+<B><a href="unlang.html">unlang</A></B>(5)
+
+<P>
+
+Further details of how module return codes operate can be found at &lt;<A HREF="http://wiki.freeradius.org/config/Fail-over">http://wiki.freeradius.org/config/Fail-over</A>&gt;.
+<A NAME="lbAI">&nbsp;</A>
 <H2>AUTHOR</H2>
 
-Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
+Chris Parker &lt;<A HREF="mailto:cparker@segv.org">cparker@segv.org</A>&gt;, Matthew Newton
+&lt;<A HREF="mailto:matthew@newtoncomputing.co.uk">matthew@newtoncomputing.co.uk</A>&gt;.
 <P>
 
 <HR>
@@ -277,16 +282,17 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 <DT><A HREF="#lbAB">NAME</A><DD>
 <DT><A HREF="#lbAC">DESCRIPTION</A><DD>
 <DT><A HREF="#lbAD">CONFIGURATION</A><DD>
-<DT><A HREF="#lbAE">SECTIONS</A><DD>
-<DT><A HREF="#lbAF">FILES</A><DD>
-<DT><A HREF="#lbAG">SEE ALSO</A><DD>
-<DT><A HREF="#lbAH">AUTHOR</A><DD>
+<DT><A HREF="#lbAE">EXAMPLE</A><DD>
+<DT><A HREF="#lbAF">SECTIONS</A><DD>
+<DT><A HREF="#lbAG">FILES</A><DD>
+<DT><A HREF="#lbAH">SEE ALSO</A><DD>
+<DT><A HREF="#lbAI">AUTHOR</A><DD>
 </DL>
 <HR>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:12 GMT, August 01, 2017
+Time: 12:00:33 GMT, August 03, 2017
 </div>
 </HTML>
 
@@ -295,9 +301,7 @@ Time: 11:13:12 GMT, August 01, 2017
 </article>
 
 
-    </div>
-
-    <footer class="global_footer bg_block-dark lg_padding_v">
+    </div><footer class="global_footer bg_block-dark lg_padding_v">
 
     <div class="wrapper">
         <div class="row">
@@ -360,8 +364,6 @@ Time: 11:13:12 GMT, August 01, 2017
 <script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
 <script src="/js/angular.min.js"></script>
 <script src="/js/app.js"></script>
-
-
-  </body>
+</body>
 
 </html>

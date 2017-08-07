@@ -1,7 +1,14 @@
+-- branch_index.lua
+--
+-- called with URLs exactly matching
+--   /api/info/branch/
+--
+-- reads all branches in /api/info/srv/branch/*.json
+--
 local cjson             = require "cjson"
 local ngx               = require "ngx"
 
-local helper   	      = require "lib.helper"
+local helper            = require "lib.helper"
 local validate          = require "lib.validate"
 local indexer           = require "lib.indexer"
 
@@ -44,6 +51,6 @@ ret = search and index:filter(search, sane_args.keyword_expansion_depth)
 ret = sane_args.order_by and index:sort(sane_args.order_by) or index:sort('name')
 
 -- Pagenate
-index:pagenate(pagenate_start, pagenate_end)
+index:paginate(sane_args.paginate_start, sane_args.paginate_end)
 
 ngx.say(tostring(index));

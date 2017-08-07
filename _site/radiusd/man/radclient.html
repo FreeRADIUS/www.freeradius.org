@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="freeradius">
-
-  <head>
+<html ng-app="freeradius"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,15 +33,11 @@
     <meta name="theme-color" content="#ffffff ">
 
 </head>
-
-
-  <body>
-
-    <div class="global-nav">
+<body><div class="global-nav">
   <div class="global_links pull_right">
     <div class="global_link global_link_label h5 text">Our sites:</div>
     <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
   </div>
 </div>
 
@@ -96,49 +90,34 @@
     </nav>
   </div>
 </header>
-
-
-    <div class="page-content">
+<div class="page-content">
 
         <article class="post">
   <header class="post-header">
     <div class="post-hero hero-documentation">
       <div class="wrapper">
-      	<h1 class="post-title">FreeRADIUS 'man' pages</h1>
-      	<p class="post-subtitle">Documentation from the server</p> 
+        <h1 class="post-title">FreeRADIUS 'man' pages</h1>
+        <p class="post-subtitle">Documentation from the server</p>
       </div>
     </div>
-  </header>
-  
-  	<div class="sub-nav">
-	<div class="wrapper">
+  </header><div class="sub-nav">
+    <div class="wrapper">
         <nav class="inline_nav" sub-nav>
             <ul>
-                
-                
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
-                    </li>
-        		
-            </ul>
+                <li class="">
+                    <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
+                </li></ul>
         </nav>
-	</div>
+    </div>
 </div>
-
-  
-
-  <div class="post-content">
-      <div class="man_page wrapper base_padding_v">
+<div class="post-content">
+    <div class="man_page wrapper base_padding_v">
 <H1>RADCLIENT</H1>
-Section: FreeRADIUS Daemon (1)<BR>Updated: 22 June 2004<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 28 March 2014<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -150,21 +129,43 @@ radclient - send packets to a RADIUS server, show reply
 
 <B>radclient</B>
 
-[<B>-d</B>
+[<B>-4</B>]
 
-<I>raddb_directory</I>]
+[<B>-6</B>]
 
 [<B>-c</B>
 
 <I>count</I>]
 
+[<B>-d</B>
+
+<I>raddb_directory</I>]
+
+[<B>-D</B>
+
+<I>dictionary_directory</I>]
+
 [<B>-f</B>
 
 <I>file</I>]
 
+[<B>-F</B>]
+
+[<B>-h</B>]
+
 [<B>-i</B>
 
 <I>id</I>]
+
+[<B>-n</B>
+
+<I>num_requests_per_second</I>]
+
+[<B>-p</B>
+
+<I>num_requests_in_parallel</I>]
+
+[<B>-q</B>]
 
 [<B>-r</B>
 
@@ -180,9 +181,11 @@ radclient - send packets to a RADIUS server, show reply
 
 <I>timeout</I>]
 
-[<B>-qvx</B>]
+[<B>-v</B>]
 
-<I>server {acct|auth|status|disconnect} secret</I>
+[<B>-x</B>]
+
+<I>server {acct|auth|status|disconnect|auto} secret</I>
 <A NAME="lbAD">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
@@ -198,53 +201,83 @@ these attribute/value pairs using the dictionary, and sends them
 to the remote server.
 <P>
 
-The <I>User-Password</I> attribute is automatically encrypted by <I>radclient</I>.
+The <I>User-Password</I> and <I>CHAP-Password</I> attributes are
+automatically encrypted before the packet is sent to the server.
 <P>
 <A NAME="lbAE">&nbsp;</A>
 <H2>OPTIONS</H2>
 
 <P>
 <DL COMPACT>
+<DT>-4<DD>
+Use IPv4 (default)
+<DT>-6<DD>
+Use IPv6
 <DT>-c&nbsp;<I>count</I><DD>
 Send each packet <I>count</I> times.
-<I>/etc/raddb</I>.
-<P>
 <DT>-d&nbsp;<I>raddb_directory</I><DD>
-The directory that contains the RADIUS dictionary files. Defaults to
+The directory that contains the user dictionary file. Defaults to
 <I>/etc/raddb</I>.
-<P>
-<DT>-f&nbsp;<I>file</I><DD>
+<DT>-D&nbsp;<I>dictionary_directory</I><DD>
+The directory that contains the main dictionary file. Defaults to
+<I>/usr/share/freeradius</I>.
+<DT>-f&nbsp;<I>file[:file]</I><DD>
 File to read the attribute/value pairs from. If this is not specified,
-they are read from stdin.
-<P>
+they are read from stdin.  This option can be specified multiple
+times, in which case packets are sent in order by file, and within
+each file, by first packet to last packet.  A blank line separates
+logical packets within a file.  If a pair of files separated by a
+colon is specified, the second file will be used to filter the
+responses to requests from the first. The number of requests and
+filters must be the same.  A summary of filter results will be displayed
+if -s is passed.
+<DT>-F<DD>
+Print the file name, packet number and reply code.
+<DT>-h<DD>
+Print usage help information.
 <DT>-i&nbsp;<I>id</I><DD>
 Use <I>id</I> as the RADIUS request Id.
+<DT>-n&nbsp;<I>num_requests_per_second</I><DD>
+Try to send <I>num_requests_per_second</I>, evenly spaced.  This option
+allows you to slow down the rate at which radclient sends requests.
+When not using -n, the default is to send packets as quickly as
+possible, with no inter-packet delays.
 <P>
+Due to limitations in radclient, this option does not accurately send
+the requested number of packets per second.
+<DT>-p&nbsp;<I>num_requests_in_parallel</I><DD>
+Send <I>num_requests_in_parallel</I>, without waiting for a response
+for each one.  By default, radclient sends the first request it has
+read, waits for the response, and once the response is received, sends
+the second request in its list.  This option allows you to send many
+requests at simultaneously.  Once <I>num_requests_in_parallel</I> are
+sent, radclient waits for all of the responses to arrive (or for the
+requests to time out), before sending any more packets.
+<P>
+This option permits you to discover the maximum load accepted by a
+RADIUS server.
+<DT>-P&nbsp;<I>proto</I><DD>
+Use <I>proto</I> transport protocol (&quot;tcp&quot; or &quot;udp&quot;).
+Only available if FreeRADIUS is compiled with TCP transport support.
 <DT>-q<DD>
 Go to quiet mode, and do not print out anything.
-<P>
 <DT>-r&nbsp;<I>num_retries</I><DD>
 Try to send each packet <I>num_retries</I> times, before giving up on
 it.  The default is 10.
-<P>
-<DT>-sPrint<DD>
-<P>
+<DT>-s<DD>
+Print out some summaries of packets sent and received.
 <DT>-S&nbsp;<I>shared_secret_file</I><DD>
 Rather than reading the shared secret from the command-line (where it
 can be seen by others on the local system), read it instead from
 <I>shared_secret_file</I>.
-<P>
 <DT>-t&nbsp;<I>timeout</I><DD>
 Wait <I>timeout</I> seconds before deciding that the NAS has not
 responded to a request, and re-sending the packet.  The default
 timeout is 3.
-<P>
 <DT>-v<DD>
 Print out version information.
-<P>
 <DT>-x<DD>
-Print out extra debugging information.
-<P>
+Print out debugging information.
 <DT>server[:port]<DD>
 The hostname or IP address of the remote server. Optionally a UDP port
 can be specified. If no UDP port is specified, it is looked up in
@@ -253,13 +286,36 @@ accounting packets, and <B>radius</B> for all other requests. If a
 service is not found in <I>/etc/services</I>, 1813 and 1812 are used
 respectively.
 <P>
-<DT>acct&nbsp;|&nbsp;auth<DD>
+The RADIUS attributes read by <I>radclient</I> can contain the special
+attribute <B>Packet-Dst-IP-Address</B>.  If this attribute exists, then
+that IP address is where the packet is sent, and the <B>server</B>
+specified on the command-line is ignored.
+<P>
+If the RADIUS attribute list always contains the
+<B>Packet-Dst-IP-Address</B> attribute, then the <B>server</B> parameter
+can be given as <B>-</B>.
+<P>
+The RADIUS attributes read by <I>radclient</I> can contain the special
+attribute <B>Packet-Dst-Port</B>.  If this attribute exists, then that
+UDP port is where the packet is sent, and the <B>:port</B> specified
+on the command-line is ignored.
+<P>
+<DT>acct&nbsp;|&nbsp;auth&nbsp;|&nbsp;status&nbsp;|&nbsp;disconnect&nbsp;|&nbsp;auto<DD>
 Use <B>auth</B> to send an authentication packet (Access-Request),
 <B>acct</B> to send an accounting packet (Accounting-Request),
 <B>status</B> to send an status packet (Status-Server), or
 <B>disconnect</B> to send a disconnection request. Instead of these
 values, you can also use a decimal code here. For example, code 12 is
 also <B>Status-Server</B>.
+<P>
+The RADIUS attributes read by <I>radclient</I> can contain the special
+attribute <B>Packet-Type</B>.  If this attribute exists, then that type
+of packet is sent, and the <I>type</I> specified on the command-line
+is ignored.
+<P>
+If the RADIUS attribute list always contains the
+<B>Packet-Type</B> attribute, then the <B>type</B> parameter can be
+given as <B>auto</B>.
 <P>
 <DT>secret<DD>
 The shared secret for this client.  It needs to be defined on the
@@ -271,18 +327,16 @@ packets from.
 <H2>EXAMPLE</H2>
 
 <P>
-A sample session that queries the remote server for <I>Status-Server</I>
-(not all servers support this.  Cistron-radiusd does since version
-1.6.5):
+A sample session that queries the remote server for
+<I>Status-Server</I> (not all servers support this, but FreeRADIUS has
+configurable support for it).
 <DL COMPACT><DT><DD>
 <P>
 <PRE>
-
-$ echo &quot;User-Name = fnord&quot; | radclient 192.168.1.42 12 s3cr3t
-Sending request to server 192.168.1.42, port 1812.
-radrecv: Packet from host 192.168.1.42 code=2, id=140, length=54
+$ echo &quot;Message-Authenticator = 0x00&quot; | radclient 192.0.2.42 status s3cr3t
+Sending request to server 192.0.2.42, port 1812.
+radrecv: Packet from host 192.0.2.42 code=2, id=140, length=54
     Reply-Message = &quot;FreeRADIUS up 21 days, 02:05&quot;
-
 </PRE>
 
 <P>
@@ -293,7 +347,6 @@ radrecv: Packet from host 192.168.1.42 code=2, id=140, length=54
 <H2>SEE ALSO</H2>
 
 <a href="radiusd.html">radiusd</A>(8),
-<a href="radtest.html">radtest</A>(1).
 <A NAME="lbAH">&nbsp;</A>
 <H2>AUTHORS</H2>
 
@@ -316,7 +369,7 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:11 GMT, August 01, 2017
+Time: 12:00:33 GMT, August 03, 2017
 </div>
 </HTML>
 
@@ -325,9 +378,7 @@ Time: 11:13:11 GMT, August 01, 2017
 </article>
 
 
-    </div>
-
-    <footer class="global_footer bg_block-dark lg_padding_v">
+    </div><footer class="global_footer bg_block-dark lg_padding_v">
 
     <div class="wrapper">
         <div class="row">
@@ -390,8 +441,6 @@ Time: 11:13:11 GMT, August 01, 2017
 <script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
 <script src="/js/angular.min.js"></script>
 <script src="/js/app.js"></script>
-
-
-  </body>
+</body>
 
 </html>

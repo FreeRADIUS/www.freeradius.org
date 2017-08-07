@@ -1,3 +1,12 @@
+-- component.lua
+--
+-- called with URLs of the form
+--   /api/info/component/<component>/
+-- e.g.
+--   /api/info/component/rlm_pap/
+--
+-- reads /api/info/srv/component/<component>.json
+--
 local cjson    	      = require "cjson"
 local ngx      	      = require "ngx"
 

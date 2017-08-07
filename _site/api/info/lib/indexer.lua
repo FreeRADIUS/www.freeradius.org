@@ -236,13 +236,13 @@ function _m:sort_with(func)
    table.sort(self.index, func)
 end
 
---[[Function: pagenate
+--[[Function: paginate
 Get a range of elements from a index and return them in a new index
 
 @param first element in the index
 @param last element in the index.
 --]]
-function _m:pagenate(first, last)
+function _m:paginate(first, last)
    local sliced = {}
    local i
 

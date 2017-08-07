@@ -6,60 +6,85 @@ NAME
        radwho - show online users
 
 SYNOPSIS
-       radwho  [-d  raddb_directory]  [-l]  [-h] [-f] [-n] [-s] [-i] [-p] [-c]
-       [-r]
+       radwho  [-c]  [-d  raddb_directory]  [-F  radutmp_file]	[-i]  [-n] [-N
+       nas_ip_address] [-p] [-P nas_port] [-r] [-R] [-s] [-S]  [-u  user]  [-U
+       user] [-Z]
 
 DESCRIPTION
-       The FreeRADIUS server can be configured to maintain an  active  session
-       database  in  a	file called radutmp. This utility shows the content of
+       The  FreeRADIUS	server can be configured to maintain an active session
+       database in a file called radutmp. This utility shows  the  content  of
        that session database.
 
 OPTIONS
+       -c     Shows caller ID (if available) instead of the full name.
+
        -d raddb_directory
-	      The directory that  contains  the  RADIUS  configuration	files.
+	      The  directory  that  contains  the  RADIUS configuration files.
 	      Defaults to /etc/raddb.
 
-       -l     Show local shell users too. In this case, radwho reads the local
-	      "session database" aka the systems utmp file as well  and  shows
-	      the  contents  of  that  file  before the contents of the radius
-	      "session database" aka the radutmp file, in the same format.
-
-       -h     Hide shell users. Doesn't show the entries for users that do not
-	      have a SLIP or PPP session.
-
-       -f     Behave  as  the  'fingerd' daemon - waits for one line of input,
-	      then prints the output with lines \r\n terminated.
-
-       -n     Normally radwho looks up the username in	the  systems  password
-	      file, and shows the full username as well. The -n flags prevents
-	      this.
-
-       -s     Show full name.
+       -F radutmp_file
+	      The file that contains the radutmp file.	If this is  specified,
+	      -d is not necessary.
 
        -i     Shows the session ID instead of the full name.
 
-       -p     Adds an extra column for the port type - I for ISDN, A for  Ana-
+       -n     Normally	radwho	looks  up the username in the systems password
+	      file, and shows the full username as well. The -n flags prevents
+	      this.
+
+       -N nas_ip_address
+	      Show only those entries which match the given NAS IP address.
+
+       -p     Adds  an extra column for the port type - I for ISDN, A for Ana-
 	      log.
 
-       -c     Shows caller ID (if available) instead of the full name.
+       -P nas_port
+	      Show only those entries which match the given NAS port.
 
-       -r     Outputs  all  data  in  raw  format - no headers, no formatting,
-	      fields are comma-seperated.
+       -r     Outputs all data in raw format  -  no  headers,  no  formatting,
+	      fields are comma-separated.
+
+       -R     Output  all  data  in  RADIUS  attribute format.	All fields are
+	      printed.
+
+       -s     Show full name.
+
+       -S     Hide shell users. Doesn't show the entries for users that do not
+	      have a SLIP or PPP session.
+
+       -u user
+	      Show  only  those  entries  which match the given username (case
+	      insensitive).
+
+       -U user
+	      Show only those entries which match  the	given  username  (case
+	      sensitive).
+
+       -Z     When combined with -R, prints out the contents of an Accounting-
+	      Request packet which can be passed to  radclient,  in  order  to
+	      "zap" that users session from radutmp.
+
+       For example,
+
+	      $ radwho -ZRN 10.0.0.1 | radclient -f - radius.example.net acct testing123
+
+       will  result  in  all  an  Accounting-Request  packet being sent to the
+       RADIUS server, which tells the server that the NAS rebooted.   i.e.  It
+       "zaps" all of the users on that NAS.
+
+       To "zap" one user, specify NAS, username, and NAS port:
+
+	      $ radwho -ZRN 10.0.0.1 -u user -P 10 | radclient -f - radius.example.net acct testing123
+
+       Other combinations are also possible.
 
 
 SEE ALSO
-       radiusd(8).
+       radiusd(8), radclient(1), radiusd.conf(5).
 
 AUTHOR
        Miquel van Smoorenburg, miquels@cistron.nl.
 
 
-SEE ALSO
-       radiusd(8), radiusd.conf(5), wtmp(5), last(1).
 
-AUTHOR
-       Miquel van Smoorenburg, miquels@cistron.nl.
-
-
-
-			       23 February 2001 		     RADWHO(1)
+				  17 Feb 2013			     RADWHO(1)

@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="freeradius">
-
-  <head>
+<html ng-app="freeradius"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,15 +33,11 @@
     <meta name="theme-color" content="#ffffff ">
 
 </head>
-
-
-  <body>
-
-    <div class="global-nav">
+<body><div class="global-nav">
   <div class="global_links pull_right">
     <div class="global_link global_link_label h5 text">Our sites:</div>
     <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
   </div>
 </div>
 
@@ -96,65 +90,68 @@
     </nav>
   </div>
 </header>
-
-
-    <div class="page-content">
+<div class="page-content">
 
         <section class="home_hero bg_block-hero">
     <div class="wrapper">
-        <div class="row" content-group ng-init="active = '???'">
-            <div class="columns medium-4 text_centered">
-                <div class="bg_white block_shadow base_padding home_hero_block" ng-class="{active: active == '#hero-more-1'}">
-                    <img class="poke_out icon_large" src="/img/octo-grad.svg" alt="">
-                    <img class="fish-icon fish-left icon_large" src="/img/fish-left.svg" alt="">
-                    <img class="fish-icon fish-right icon_large" src="/img/fish-right.svg" alt="">
-                    <p class="h5">Education</p>
-                    <p class="h6">Fostering collaboration with Inter-institutional WiFi roaming.</p>
-                    <img ng-click="toggle('#hero-more-1', true)" class="icon_small" src="../img/more.svg" alt="">
 
-                    <div id="hero-more-1" class="home_hero_block_overlay block_shadow">
-                        <img class="icon_medium" src="/img/icon-telco.svg" alt="">
-                        <p class="h5">Education</p>
-                        <p>FreeRADIUS is commonly used in academic wireless networks, especially amongst the <a href="http://www.eduroam.org/">eduroam</a> community.</p>
-                        <img ng-click="toggle('#hero-more-1', true)" src="/img/less.svg" alt="" class="icon_small">
-                    </div>
-                </div>
-            </div>
+        <div class="row" content-group ng-init="active = '???'">
+
             <div class="columns medium-4 text_centered">
                 <div class="bg_white block_shadow base_padding home_hero_block" ng-class="{active: active == '#hero-more-2'}">
                     <img class="poke_out icon_large" src="../img/octo-network.svg" alt="">
                     <img class="fish-icon fish-left icon_large" src="/img/fish-left.svg" alt="">
                     <img class="fish-icon fish-right icon_large" src="/img/fish-right.svg" alt="">
-                    <p class="h5">Telco / ISP</p>
-                    <p class="h6">Authenticating the internet; centralising subscriber management, and billing.</p>
+                    <p class="h5">Internet Service Providers</p>
+                    <p class="h6">Authenticating the Internet, providing centralised subscriber management and billing.</p>
                     <img ng-click="toggle('#hero-more-2', true)" class="icon_small" src="/img/more.svg" alt="">
-
                     <div id="hero-more-2" class="home_hero_block_overlay block_shadow">
                         <img class="icon_medium" src="/img/icon-telco.svg" alt="">
-                        <p class="h5">Telco / ISP</p>
-                        <p>FreeRADIUS authenticates users and tracks accounting data for millions of DSL connections and phones every day.</p>
+                        <p class="h5">Internet Service Providers</p>
+                        <p>FreeRADIUS authenticates users and tracks accounting data for millions of DSL connections and phones <i>every day</i>.</p>
                         <img ng-click="toggle('#hero-more-2', true)" src="/img/less.svg" alt="" class="icon_small">
                     </div>
                 </div>
             </div>
+
             <div class="columns medium-4 text_centered">
                 <div class="bg_white block_shadow base_padding home_hero_block" ng-class="{active: active == '#hero-more-3'}">
                     <img class="poke_out icon_large" src="../img/octo-signal.svg" alt="">
                     <img class="fish-icon fish-left icon_large" src="/img/fish-left.svg" alt="">
                     <img class="fish-icon fish-right icon_large" src="/img/fish-right.svg" alt="">
-                    <p class="h5">Enterprise</p>
-                    <p class="h6">Securing BYOD with smart network access policies, and agentless posture assessment.</p>
+                    <p class="h5">Enterprise Networks</p>
+                    <p class="h6">Securing critical networks and BYOD with smart network access policies, and agentless posture assessment.</p>
                     <img ng-click="toggle('#hero-more-3', true)" class="icon_small" src="../img/more.svg" alt="">
 
                     <div id="hero-more-3" class="home_hero_block_overlay block_shadow">
                         <img class="icon_medium" src="/img/icon-telco.svg" alt="">
-                        <p class="h5">Enterprise</p>
-                        <p>Both wired and wireless 802.1X solutions use RADIUS as the backend. From the smallest business to the largest enterprise, FreeRADIUS can be found everywhere!</p>
+                        <p class="h5">Enterprise Networks</p>
+                        <p>Both wired and wireless 802.1X solutions use RADIUS as the backend. From the smallest business to the largest enterprise, IT managers can be found relying on FreeRADIUS everywhere!</p>
                         <img ng-click="toggle('#hero-more-3', true)" src="/img/less.svg" alt="" class="icon_small">
                     </div>
                 </div>
             </div>
+
+            <div class="columns medium-4 text_centered">
+                <div class="bg_white block_shadow base_padding home_hero_block" ng-class="{active: active == '#hero-more-1'}">
+                    <img class="poke_out icon_large" src="/img/octo-grad.svg" alt="">
+                    <img class="fish-icon fish-left icon_large" src="/img/fish-left.svg" alt="">
+                    <img class="fish-icon fish-right icon_large" src="/img/fish-right.svg" alt="">
+                    <p class="h5">Educational Institutions</p>
+                    <p class="h6">Securing campus wireless networks, while also allowing seamless inter-institutional WiFi roaming.</p>
+                    <img ng-click="toggle('#hero-more-1', true)" class="icon_small" src="../img/more.svg" alt="">
+
+                    <div id="hero-more-1" class="home_hero_block_overlay block_shadow">
+                        <img class="icon_medium" src="/img/icon-telco.svg" alt="">
+                        <p class="h5">Educational Institutions</p>
+                        <p>FreeRADIUS is commonly used in academic wireless networks, especially amongst the <a href="http://www.eduroam.org/">eduroam</a> community.</p>
+                        <img ng-click="toggle('#hero-more-1', true)" src="/img/less.svg" alt="" class="icon_small">
+                    </div>
+                </div>
+            </div>
+
         </div>
+
         <div class="text_centered base_padding">
             <h1>Fast, feature-rich, modular, and scalable.</h1>
             <h2 class="h3">Get started with the world’s most widely deployed RADIUS server:</h2>
@@ -271,7 +268,7 @@
         <div class="social-block">
             <div class="social-entry" ng-repeat="so in feeds.stackoverflow">
                 <div class="label"><span class="icon comment"></span>{{so.last_activity_date*1000 | date: 'longDate' }}</div>
-                <h5><a class="undecorate" href="{{so.link}}" target="_blank" ng-bind-html="trust(so.title)"></a></h5>
+                <h5><a class="undecorate" href="https://stackoverflow.com/questions/{{so.question_id}}" target="_blank" ng-bind-html="trust(so.title)"></a></h5>
                 <div ng-bind-html="trust(so.body)"></div>
             </div>
         </div>
@@ -287,7 +284,7 @@
         <div class="social-block">
             <div class="social-entry" ng-repeat="gh in feeds.github">
                 <div class="label"><span class="icon upload"></span>{{gh.commit.author.date | date: 'longDate' }}</div>
-                <h5><a class="undecorate" href="{{gh.parents[0].html_url}}" target="_blank">freeradius-server</a></h5>
+                <h5><a class="undecorate" href="{{gh.html_url}}" target="_blank">freeradius-server</a></h5>
                 <div ng-bind-html="trust(gh.commit.message)"></div>
             </div>
         </div>
@@ -337,9 +334,8 @@
     </div>
 </section>
 
-    </div>
 
-    <footer class="global_footer bg_block-dark lg_padding_v">
+    </div><footer class="global_footer bg_block-dark lg_padding_v">
 
     <div class="wrapper">
         <div class="row">
@@ -402,8 +398,6 @@
 <script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
 <script src="/js/angular.min.js"></script>
 <script src="/js/app.js"></script>
-
-
-  </body>
+</body>
 
 </html>

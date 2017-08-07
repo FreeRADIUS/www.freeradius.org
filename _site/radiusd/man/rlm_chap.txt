@@ -9,7 +9,7 @@ DESCRIPTION
        The rlm_chap module provides CHAP functionality.
 
        This  module  validates	a user with CHAP authentication.  If called in
-       Authorize, it will look	for  CHAP-Password  attribute  in  the	Acess-
+       Authorize, it will look for  CHAP-Password  attribute  in  the  Access-
        Request and adds an Auth-Type attribute set to CHAP if the Config-Items
        list unless Auth-Type has already set.
 

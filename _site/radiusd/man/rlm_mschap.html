@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="freeradius">
-
-  <head>
+<html ng-app="freeradius"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,15 +33,11 @@
     <meta name="theme-color" content="#ffffff ">
 
 </head>
-
-
-  <body>
-
-    <div class="global-nav">
+<body><div class="global-nav">
   <div class="global_links pull_right">
     <div class="global_link global_link_label h5 text">Our sites:</div>
     <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
   </div>
 </div>
 
@@ -96,47 +90,32 @@
     </nav>
   </div>
 </header>
-
-
-    <div class="page-content">
+<div class="page-content">
 
         <article class="post">
   <header class="post-header">
     <div class="post-hero hero-documentation">
       <div class="wrapper">
-      	<h1 class="post-title">FreeRADIUS 'man' pages</h1>
-      	<p class="post-subtitle">Documentation from the server</p> 
+        <h1 class="post-title">FreeRADIUS 'man' pages</h1>
+        <p class="post-subtitle">Documentation from the server</p>
       </div>
     </div>
-  </header>
-  
-  	<div class="sub-nav">
-	<div class="wrapper">
+  </header><div class="sub-nav">
+    <div class="wrapper">
         <nav class="inline_nav" sub-nav>
             <ul>
-                
-                
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
-                    </li>
-        		
-            </ul>
+                <li class="">
+                    <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
+                </li></ul>
         </nav>
-	</div>
+    </div>
 </div>
-
-  
-
-  <div class="post-content">
-      <div class="man_page wrapper base_padding_v">
+<div class="post-content">
+    <div class="man_page wrapper base_padding_v">
 <H1>rlm_mschap</H1>
 Section: FreeRADIUS Module (5)<BR>Updated: 13 March 2004<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
@@ -155,7 +134,7 @@ authentication support.
 This module validates a user with MS-CHAP or MS-CHAPv2 
 authentication.
 If called in Authorize, it will look for MS-CHAP Challenge/Response
-attributes in the Acess-Request and adds an Auth-Type
+attributes in the Access-Request and adds an Auth-Type
 attribute set to MS-CHAP in the Config-Items list unless 
 Auth-Type has already set.
 <P>
@@ -201,56 +180,50 @@ to yes, enables a work-around for this error.  The default is 'no'.
 <H2>CONFIGURATION</H2>
 
 
+<DL COMPACT><DT><DD>
+<PRE>
+
 modules {
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;mschap&nbsp;{
+  mschap {
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>authtype = MS-CHAP<BR>
+        authtype = MS-CHAP
 <BR>
-
-<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>use_mppe = yes<TT>&nbsp;&nbsp;</TT><BR>
+        use_mppe = yes  
 <BR>
-
-<BR>&nbsp;&nbsp;}
+  }
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
 <BR>
-
-<BR>&nbsp;...
+ ...
 <BR>
-
-authorize {
-<BR>&nbsp;&nbsp;...
+recv Access-Request {
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;mschap
+  mschap
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
-<BR>&nbsp;...
+ ...
 <BR>
-
-authenticate {
-<BR>&nbsp;&nbsp;...
+process Access-Request {
+  ...
 <BR>
-
-<BR>&nbsp;&nbsp;mschap
+  mschap
 <BR>
-
-<BR>&nbsp;&nbsp;...
+  ...
 <BR>
-
 }
+
+</PRE>
+
+</DL>
+
+<P>
 
 <P>
 
@@ -299,7 +272,7 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:12 GMT, August 01, 2017
+Time: 12:00:34 GMT, August 03, 2017
 </div>
 </HTML>
 
@@ -308,9 +281,7 @@ Time: 11:13:12 GMT, August 01, 2017
 </article>
 
 
-    </div>
-
-    <footer class="global_footer bg_block-dark lg_padding_v">
+    </div><footer class="global_footer bg_block-dark lg_padding_v">
 
     <div class="wrapper">
         <div class="row">
@@ -373,8 +344,6 @@ Time: 11:13:12 GMT, August 01, 2017
 <script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
 <script src="/js/angular.min.js"></script>
 <script src="/js/app.js"></script>
-
-
-  </body>
+</body>
 
 </html>

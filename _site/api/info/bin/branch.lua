@@ -1,10 +1,24 @@
-local cjson    	      = require "cjson"
-local ngx      	      = require "ngx"
+-- branch.lua
+--
+-- called with URLs of the form
+--   /api/info/branch/<branch>/
+-- e.g.
+--   /api/info/branch/3.0.x/
+--
+-- reads /api/info/srv/branch/<branch>.json
+--
+-- adds release url with /api/info/branch/<branch>/release/
+--
+-- adds "last_release" with the latest release from the release url
+--   by recursively calling e.g. API /api/info/branch/3.0.x/release/
+--
+local cjson             = require "cjson"
+local ngx               = require "ngx"
 
-local helper   	      = require "lib.helper"
+local helper            = require "lib.helper"
 local validate          = require "lib.validate"
 
-local uri		         = ngx.var.uri
+local uri               = ngx.var.uri
 
 local get_args          = ngx.req.get_uri_args()
 local sane_args         = {}
@@ -34,7 +48,7 @@ end
 
 -- Add link to releases to allow expansion
 json.release = { url = helper.config.base_url .. "/branch/" .. branch .. "/release/" }
-ret, json.last_release = helper.get_json_subrequest(json.release.url .. "?pagenate_start=0&pagenate_end=0")
+ret, json.last_release = helper.get_json_subrequest(json.release.url .. "?paginate_start=0&paginate_end=0")
 if ret == ngx.HTTP_NOT_FOUND then
    json.last_release = nil
 elseif ret ~= ngx.OK then

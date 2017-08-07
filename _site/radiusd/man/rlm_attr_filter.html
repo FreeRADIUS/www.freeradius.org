@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="freeradius">
-
-  <head>
+<html ng-app="freeradius"><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,15 +33,11 @@
     <meta name="theme-color" content="#ffffff ">
 
 </head>
-
-
-  <body>
-
-    <div class="global-nav">
+<body><div class="global-nav">
   <div class="global_links pull_right">
     <div class="global_link global_link_label h5 text">Our sites:</div>
     <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://freeradius.org/"><div class=""><span class="text">Free</span>RADIUS</div></a>
+    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
   </div>
 </div>
 
@@ -96,49 +90,34 @@
     </nav>
   </div>
 </header>
-
-
-    <div class="page-content">
+<div class="page-content">
 
         <article class="post">
   <header class="post-header">
     <div class="post-hero hero-documentation">
       <div class="wrapper">
-      	<h1 class="post-title">FreeRADIUS 'man' pages</h1>
-      	<p class="post-subtitle">Documentation from the server</p> 
+        <h1 class="post-title">FreeRADIUS 'man' pages</h1>
+        <p class="post-subtitle">Documentation from the server</p>
       </div>
     </div>
-  </header>
-  
-  	<div class="sub-nav">
-	<div class="wrapper">
+  </header><div class="sub-nav">
+    <div class="wrapper">
         <nav class="inline_nav" sub-nav>
             <ul>
-                
-                
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
-                    </li>
-        		
-        			<li class="">
-                        <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
-                    </li>
-        		
-            </ul>
+                <li class="">
+                    <a class="subnav_link" href="/radiusd/man/#programs">Programs</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/radiusd/man/#files">Configuration Files</a>
+                </li><li class="">
+                    <a class="subnav_link" href="/radiusd/man/#modules">Modules</a>
+                </li></ul>
         </nav>
-	</div>
+    </div>
 </div>
-
-  
-
-  <div class="post-content">
-      <div class="man_page wrapper base_padding_v">
+<div class="post-content">
+    <div class="man_page wrapper base_padding_v">
 <H1>rlm_attr_filter</H1>
-Section: FreeRADIUS Module (5)<BR>Updated: 3 February 2004<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Module (5)<BR>Updated: 27 June 2013<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -149,18 +128,27 @@ rlm_attr_filter - FreeRADIUS Module
 <H2>DESCRIPTION</H2>
 
 The <I>rlm_attr_filter</I> module exists for filtering certain
-attributes and values in received ( or transmitted ) radius packets
-from ( or to ) remote proxy servers.  It gives the proxier ( us ) a
-flexible framework to filter the attributes we send to or receive
-from these remote proxies.  This makes sense, for example, in an
-out-sourced dialup situation to various policy decisions, such as
-restricting a client to certain ranges of Idle-Timeout or
-Session-Timeout.
+attributes and values in received ( or transmitted ) radius packets.
+It gives the server a flexible framework to filter the attributes we
+send to or receive from home servers or NASes.  This makes sense, for
+example, in an out-sourced dialup situation to various policy
+decisions, such as restricting a client to certain ranges of
+Idle-Timeout or Session-Timeout.
 <P>
 
-Filter rules are defined and applied on a per-realm basis, where the
-realm is anything that is defined and matched based on the
-configuration of the <I>rlm_realm</I> module.
+Filter rules are normally defined and applied on a per-realm basis,
+Filter rules can optionally be applied using another attribute, by
+editing the <I>key</I> configuration for this module.
+<P>
+
+In 2.0.1 and earlier versions, the &quot;accounting&quot; section filtered the
+Accounting-Request, even though it was documented as filtering the
+response.  This issue has been fixed in version 2.0.2 and later
+versions.  The &quot;preacct&quot; section may now be used to filter
+Accounting-Request packets.  The &quot;accounting&quot; section now filters
+Accounting-Response packets.  Administrators using &quot;attr_filter&quot; in
+the &quot;accounting&quot; section SHOULD move the reference to &quot;attr_filter&quot;
+from &quot;accounting&quot; to &quot;preacct&quot;.
 <P>
 
 The file that defines the attribute filtering rules follows a similar
@@ -168,11 +156,12 @@ syntax to the <I>users</I> file.  There are a few differences however:
 <P>
 
 
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;There&nbsp;are&nbsp;no&nbsp;check-items&nbsp;allowed&nbsp;other&nbsp;than&nbsp;the&nbsp;realm.
-<P>
+<DL COMPACT><DT><DD>
+<PRE>
 
-<BR>&nbsp;&nbsp;&nbsp;&nbsp;There&nbsp;can&nbsp;only&nbsp;be&nbsp;a&nbsp;single&nbsp;DEFAULT&nbsp;entry.
-<P>
+    There are no check-items allowed other than the name of the key.
+
+    There can only be a single DEFAULT entry.
 
 The rules for each entry are parsed to top to bottom, and an
 attribute must pass *all* the rules which affect it in order to
@@ -181,93 +170,92 @@ The operators and their purpose in defining the rules are as
 follows:
 <DL COMPACT>
 <DT><B>=   </B>
-
-<DD>
-THIS OPERATOR IS NOT ALLOWED.  If used, and warning message is
+<DD>THIS OPERATOR IS NOT ALLOWED.  If used, and warning message is
 printed and it is treated as ==
 <DT><B>:=  </B>
-
-<DD>
-Set, this attribute and value will always be placed in the
+<DD>Set, this attribute and value will always be placed in the
 output A/V Pairs.  If the attribute exists, it is overwritten.
 <DT><B>==  </B>
-
-<DD>
-Equal, value must match exactly.
+<DD>Equal, value must match exactly.
 <DT><B>=*  </B>
-
-<DD>
-Always Equal, allow all values for the specified attribute.
+<DD>Always Equal, allow all values for the specified attribute.
 <DT><B>!*  </B>
-
-<DD>
-Never Equal, disallow all values for the specified attribute.
+<DD>Never Equal, disallow all values for the specified attribute.
 ( This is redundant, as any A/V Pair not explicitly permitted
 will be dropped ).
 <DT><B>!=  </B>
-
-<DD>
-Not Equal, value must not match.
+<DD>Not Equal, value must not match.
 <DT><B>&gt;=  </B>
-
-<DD>
-Greater Than or Equal
+<DD>Greater Than or Equal
 <DT><B>&lt;=  </B>
-
-<DD>
-Less Than or Equal
+<DD>Less Than or Equal
 <DT><B>&gt;   </B>
-
-<DD>
-Greather Than
+<DD>Greater Than
 <DT><B>&lt;   </B>
-
-<DD>
-Less Than
+<DD>Less Than
 </DL>
-<P>
 
 If regular expressions are enabled the following operators are
 also possible.  ( Regular Expressions are included by default
 unless your system doesn't support them, which should be rare ).
 The value field uses standard regular expression syntax.
-<P>
 
 <DL COMPACT>
 <DT><B>=~  </B>
-
-<DD>
-Regular Expression Equal
+<DD>Regular Expression Equal
 <DT><B>!~  </B>
-
-<DD>
-Regular Expression Not Equal
+<DD>Regular Expression Not Equal
 </DL>
-<P>
 
-See the default <I>/etc/raddb/attrs</I> for working examples of
+See the default <I>/etc/raddb/mods-config/attr_filter/</I> for working examples of
 sample rule ordering and how to use the different operators.
 
+</PRE>
+
+</DL>
+
 <P>
 
-The main configuration item is:
+<P>
+
+The configuration items are:
 <DL COMPACT>
-<DT>attrsfile<DD>
+<DT>file<DD>
 This specifies the location of the file used to load the filter rules.
+This file is used to filter the accounting response, packet before it
+is proxied, proxy response from the home server, or our response to
+the NAS.
+<DT>key<DD>
+Usually &percnt;{Realm} (the default).  Can also be &percnt;{User-Name}, or other
+attribute that exists in the request.  Note that the module always
+keys off of attributes in the request, and NOT in any other packet.
+<DT>relaxed<DD>
+If set to 'yes', then attributes which do not match any filter rules
+explicitly, will also be allowed. This behaviour may be overridden 
+for an individual filter block using the Relax-Filter check item.
+The default for this configuration item is 'no'.
 </DL>
 <P>
 
 <A NAME="lbAD">&nbsp;</A>
 <H2>SECTIONS</H2>
 
-<B>authorization,</B>
-
-<B>accounting,</B>
-
-<B>preproxy,</B>
-
-<B>postproxy</B>
-
+<DL COMPACT>
+<DT>preacct<DD>
+Filters Accounting-Request packets.
+<DT>accounting<DD>
+Filters Accounting-Response packets.
+<DT>pre-proxy<DD>
+Filters Accounting-Request or Access-Request packets prior to proxying
+them.
+<DT>post-proxy<DD>
+Filters Accounting-Response, Access-Accept, Access-Reject, or
+Access-Challenge responses from a home server.
+<DT>authorize<DD>
+Filters Access-Request packets.
+<DT>post-auth<DD>
+Filters Access-Accept or Access-Reject packets.
+</DL>
 <P>
 
 <A NAME="lbAE">&nbsp;</A>
@@ -275,7 +263,7 @@ This specifies the location of the file used to load the filter rules.
 
 <I>/etc/raddb/radiusd.conf</I>
 
-<I>/etc/raddb/attrs</I>
+<I>/etc/raddb/mods-config/attr_filter/*</I>
 
 <P>
 
@@ -307,7 +295,7 @@ Chris Parker, <A HREF="mailto:cparker@segv.org">cparker@segv.org</A>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:12 GMT, August 01, 2017
+Time: 12:00:33 GMT, August 03, 2017
 </div>
 </HTML>
 
@@ -316,9 +304,7 @@ Time: 11:13:12 GMT, August 01, 2017
 </article>
 
 
-    </div>
-
-    <footer class="global_footer bg_block-dark lg_padding_v">
+    </div><footer class="global_footer bg_block-dark lg_padding_v">
 
     <div class="wrapper">
         <div class="row">
@@ -381,8 +367,6 @@ Time: 11:13:12 GMT, August 01, 2017
 <script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
 <script src="/js/angular.min.js"></script>
 <script src="/js/app.js"></script>
-
-
-  </body>
+</body>
 
 </html>

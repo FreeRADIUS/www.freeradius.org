@@ -1,3 +1,14 @@
+-- release_index.lua
+--
+-- called with URLs of the form
+--   /api/info/branch/<branch>/release/
+-- e.g.
+--   /api/info/branch/3.0.x/release/
+--
+-- reads /api/info/srv/branch/<branch>/release/<release>.json
+--
+-- sorts by version (descending) unless otherwise specified
+--
 local cjson             = require "cjson"
 local ngx               = require "ngx"
 
@@ -10,7 +21,7 @@ local uri               = ngx.var.uri
 local get_args          = ngx.req.get_uri_args()
 local sane_args
 
-local releases            = {}
+local releases          = {}
 local ret, err
 
 -- Process helper arguments
@@ -125,8 +136,33 @@ end
 
 local branch = uri:match("^" .. helper.config.base_url .. "/branch/([^/]+)/")
 
-local index = indexer.new({}, helper.config.base_url .. "/branch/" .. branch .. "/release", sane_args.expansion_depth)
-index:build(helper.config.srv_path .. "/branch/" .. branch .. "/release/")
+local index
+
+if branch == "*" then
+   ret, branches = helper.get_json_subrequest(helper.config.base_url .. "/branch/")
+   if ret ~= ngx.OK then
+      helper.fatal_error(ret, "Error retrieving branches")
+   end
+
+   allreleases = {}
+   for i, branch in ipairs(branches) do
+      ret, releases = helper.get_json_subrequest(branch.url .. "release/")
+      if ret ~= ngx.OK then
+         helper.fatal_error(ret, "Error retrieving branch releases " .. branch.url .. "release/")
+      end
+
+      for j, release in ipairs(releases) do
+        table.insert(allreleases, release)
+      end
+   end
+
+   index = indexer.new({}, helper.config.base_url .. "/branch/*/release", sane_args.expansion_depth)
+   index:set(allreleases)
+else
+   index = indexer.new({}, helper.config.base_url .. "/branch/" .. branch .. "/release", sane_args.expansion_depth)
+   index:build(helper.config.srv_path .. "/branch/" .. branch .. "/release/")
+end
+
 
 -- Filter by keyword
 ret = search and index:filter(search, sane_args.keyword_expansion_depth)
@@ -134,7 +170,7 @@ ret = search and index:filter(search, sane_args.keyword_expansion_depth)
 -- Sort by user specified field or by version
 ret = sane_args.order_by and index:sort(sane_args.order_by) or index:sort_with(version_sort)
 
--- Pagenate
-index:pagenate(pagenate_start, pagenate_end)
+-- Paginate
+index:paginate(sane_args.paginate_start, sane_args.paginate_end)
 
 ngx.say(tostring(index));
