@@ -83,13 +83,14 @@ my $RELBRANCHES = [
 
 
 
-if (scalar @ARGV != 2) {
-	print STDERR "Syntax: $0 <git repository> <output dir>\n";
+if (scalar @ARGV < 2 or scalar @ARGV > 3) {
+	print STDERR "Syntax: $0 <git repository> <output dir> [<module doc locations>]\n";
 	exit(1);
 }
 
 my $gitdir = $ARGV[0];
 my $outdir = $ARGV[1];
+my $modlocationfile = $ARGV[2];
 
 if (! -d "$gitdir/.git") {
 	die "Cannot find git repository '$gitdir'\n";
@@ -105,6 +106,13 @@ if (! -d $outdir) {
 
 
 my $repo = Git::Repository->new( work_tree => $gitdir );
+
+my $mod_docs;
+
+if (defined $modlocationfile) {
+	die "unable to read $modlocationfile\n" unless -r $modlocationfile;
+	$mod_docs = read_module_doc_location($modlocationfile);
+}
 
 
 # find all release_x_y_z tags and vN.x.x branches
@@ -209,7 +217,7 @@ $$components{proto_dhcp}{readme} = {
 # work out the data needed for the components' JSON files
 #
 foreach my $component (keys %$components) {
-	get_component_release_data($repo, $$components{$component});
+	get_component_release_data($repo, $$components{$component}, $mod_docs);
 }
 
 # write out a shedload of json files
@@ -219,6 +227,30 @@ build_web_json($RELBRANCHES, $versions, $components, $outdir);
 exit;
 
 
+
+#** @function read_module_doc_location ($filename)
+# @brief Read JSON file containing module documentation links
+#
+# @params $filename	JSON file
+#
+# @retval $moddocs	Hash of module name to URL
+#*
+
+sub read_module_doc_location
+{
+	my $filename = shift;
+	local $/;
+
+	return undef unless -r $filename;
+
+	open my $f, "<", $filename;
+	$/ = undef;
+	my $jsondata = <$f>;
+	close $f;
+
+	my $json = JSON->new();
+	return $json->decode($jsondata);
+}
 
 
 #** @function component_url ($component)
@@ -1116,18 +1148,19 @@ sub get_branch_release_data
 }
 
 
-#** @function get_component_release_data ($repo, $component)
+#** @function get_component_release_data ($repo, $component, $doclinks)
 # @brief Build data structure for each component
 #
 # Pulls together everything needed to create a component JSON file.
 #
 # @params $repo		Git::Repository reference
 # @params $%component	Hash reference of module/component data
+# @params $doclinks	Hash reference of module to URL of documentation
 #*
 
 sub get_component_release_data
 {
-	my ($repo, $component) = @_;
+	my ($repo, $component, $doclinks) = @_;
 
 	my %json;
 
@@ -1164,7 +1197,11 @@ sub get_component_release_data
 	# a link in the module README.md file, but for now just link to the generic
 	# page rather than specific module documentation.
 	#
-	$json{documentation_link} = "http://networkradius.com/doc/current/raddb/mods-available/home.html";
+	if (defined $$doclinks{$$component{name}}) {
+		$json{documentation_link} = $$doclinks{$$component{name}};
+	} else {
+		$json{documentation_link} = "http://networkradius.com/doc/current/raddb/mods-available/home.html";
+	}
 
 	$$component{output} = \%json;
 }
