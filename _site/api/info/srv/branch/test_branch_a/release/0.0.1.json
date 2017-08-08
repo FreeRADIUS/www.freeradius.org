@@ -1,0 +1,48 @@
+{
+	"name": "0.0.1",
+	"summary": "The focus of this release is testing",
+	"date": "2016-04-20T01:23:30Z",
+	"download": [
+		{
+			"name": "tar.gz",
+			"url": "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.gz",
+			"sig_url": "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.gz.sig"
+		},
+		{
+			"name": "tar.bz2",
+			"url": "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.bz2",
+			"sig_url": "ftp://ftp.freeradius.org/pub/freeradius/freeradius-server-3.0.11.tar.bz2.sig"
+		}
+	],
+	"features": [
+		{
+			"description": "Test feature",
+			"component": [
+				{
+					"name": "rlm_always",
+					"url": "/api/info/component/rlm_always/"
+				},
+				{
+					"name": "rlm_sql",
+					"url": "/api/info/component/rlm_sql/"
+				}
+			]
+		}
+	],
+	"defects": [
+		{
+			"description": "Test issue",
+			"exploit": false,
+			"component": [
+				{
+					"name": "rlm_rest",
+					"url": "/api/info/component/rlm_rest/"
+				},
+				{
+					"name": "rlm_cache",
+					"url": "/api/info/component/rlm_cache/"
+				}
+			]
+		}
+	]
+}

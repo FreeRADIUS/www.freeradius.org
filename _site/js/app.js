@@ -46,8 +46,8 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
     freeradius.factory('getStable', ['$http', function($http){
         return $http({
             method: 'GET',
-            url: 'http://freeradius.org/api/info/branch/',
-            // url: '/modules.json',
+            // url: 'http://freeradius.org/api/info/branch/',
+            url: '/api/info/branch/',
             params: {
                 by_keyword: 'stable',
                 keyword_expansion_depth: 1,
@@ -172,8 +172,8 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/component/',
-                // url: '/modules.json',
+                // url: 'http://freeradius.org/api/info/component/',
+                url: '/api/info/component/',
                 params: {
                     by_category: category,
                     expansion_depth: 1,
@@ -275,7 +275,8 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/component/'+module+'/',
+                // url: 'http://freeradius.org/api/info/component/'+module+'/',
+                url: '/api/info/component/'+module+'/',
                 params: {
                     expansion_depth: 1,
                 }
@@ -305,8 +306,8 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.searchString = string;
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/component/',
-                // url: '/modules.json',
+                // url: 'http://freeradius.org/api/info/component/',
+                url: '/api/info/component/',
                 params: {
                     by_keyword: 'regex:'+string,
                     keyword_expansion_depth: 1,
@@ -353,7 +354,8 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/branch/*/release/',
+                // url: 'http://freeradius.org/api/info/branch/*/release/',
+                url: '/api/info/branch/*/release/',
                 params: {
                     expansion_depth: 2,
                     order_by: "date:desc",
@@ -500,8 +502,8 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/branch/*/release/',
-                // url: '/modules.json',
+                // url: 'http://freeradius.org/api/info/branch/*/release/',
+                url: '/api/info/branch/*/release/',
                 params: {
                     expansion_depth: 2,
                     keyword_expansion_depth: 1,
@@ -526,7 +528,8 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.searchString = string;
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/branch/*/release/',
+                // url: 'http://freeradius.org/api/info/branch/*/release/',
+                url: '/api/info/branch/*/release/',
                 params: {
                     by_keyword: 'lua:'+string,
                     keyword_expansion_depth: 1,
@@ -550,7 +553,8 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/branch/'+branch+'/release/'+release+'/',
+                // url: 'http://freeradius.org/api/info/branch/'+branch+'/release/'+release+'/',
+                url: '/api/info/branch/'+branch+'/release/'+release+'/',
                 params: {
                     expansion_depth: 1,
                 }
@@ -615,8 +619,8 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://freeradius.org/api/info/branch/',
-                // url: '/modules.json',
+                // url: 'http://freeradius.org/api/info/branch/',
+                url: '/api/info/branch/',
                 params: {
                     expansion_depth: 3,
                     order_by: 'priority'
@@ -674,6 +678,7 @@ this._core.settings.autoplayHoverPause&&this._core.is("rotating")&&this.play()},
             $http({
                 method: 'GET',
                 // url: 'http://freeradius.org/api/components/',
+                // url: '/api/components/',
                 url: '/social.json',
                 // params: {
                 //     by_category: category
