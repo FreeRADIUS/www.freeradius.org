@@ -1183,12 +1183,27 @@ sub git_date
 {
 	my ($repo, $branch) = @_;
 
+# OK for git 2.6 onwards...
+#	my $cmd = $repo->command(show => "-s",
+#		"--format=%cd",
+#		"--date=format:%Y-%m-%dT%H:%M:%SZ",
+#		$branch);
+#	my $date = $cmd->stdout->getline();
+#	chomp $date;
+
+# ...otherwise,
 	my $cmd = $repo->command(show => "-s",
 		"--format=%cd",
-		"--date=format:%Y-%m-%dT%H:%M:%SZ",
+		"--date=iso",
 		$branch);
 	my $date = $cmd->stdout->getline();
 	chomp $date;
+
+	if ($date =~ /^(\d\d\d\d)-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d) (-?\d\d\d\d)$/)
+		$date = "$1-$2-$3T$4:$5:$6Z"; # this is close enough...
+	} else {
+		die "bad date format $date from branch $branch\n";
+	}
 
 	return $date;
 }
