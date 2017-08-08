@@ -44,6 +44,69 @@
   "stackoverflow": [
     {
       "tags": [
+        "freeradius"
+      ],
+      "equivalent_tag_search": [
+        "freeradius"
+      ],
+      "question_score": 0,
+      "is_accepted": false,
+      "has_accepted_answer": false,
+      "answer_count": 1,
+      "is_answered": false,
+      "question_id": 45567078,
+      "item_type": "question",
+      "score": 0,
+      "last_activity_date": 1502192057,
+      "creation_date": 1502191593,
+      "body": "I&#39;m trying to install FreeRadius 3.0.15. I&#39;m on Ubuntu 16.04. I downloaded FreeRadius 3.0.15 from the official downloads page.\n\nMy issue is that when I go into the file and try to run , the process terminates on \n\n\n\nWhat does it mean for the LDFLAGS to be inconsistent, and how can I fix this error? \n",
+      "excerpt": "I&#39;m trying to install <span class=\"highlight\">FreeRadius</span> 3.0.15. I&#39;m on Ubuntu 16.04. I downloaded <span class=\"highlight\">FreeRadius</span> 3.0.15 from the official downloads page.\n\nMy issue is that when I go into the file and try to run sudo &hellip; ",
+      "title": "FreeRadius fails to install at ./config"
+    },
+    {
+      "tags": [
+        "freeradius"
+      ],
+      "equivalent_tag_search": [
+        "freeradius"
+      ],
+      "question_score": 0,
+      "is_accepted": false,
+      "answer_id": 45567231,
+      "is_answered": false,
+      "question_id": 45567078,
+      "item_type": "answer",
+      "score": 0,
+      "last_activity_date": 1502192057,
+      "creation_date": 1502192057,
+      "body": "I was able to fix this error by reinstalling lcrypto with . However, I&#39;m now getting a new error: \n\n\n\nSo now I&#39;m going to try to figure that out.\n\nEDIT: figured out second error. Fixed with \n\nIn short, this was all just dependency issues.\n",
+      "excerpt": "I was able to fix this error by reinstalling lcrypto with sudo apt-get install libssl-dev. However, I&#39;m now getting a new error: \n\nconfigure: WARNING: FAILURE: rlm_rediswho requires: hiredis.h libhire &hellip; ",
+      "title": "FreeRadius fails to install at ./config"
+    },
+    {
+      "tags": [
+        "freeradius",
+        "hostapd"
+      ],
+      "equivalent_tag_search": [
+        "freeradius"
+      ],
+      "question_score": 0,
+      "is_accepted": false,
+      "has_accepted_answer": false,
+      "answer_count": 0,
+      "is_answered": false,
+      "question_id": 45556781,
+      "item_type": "question",
+      "score": 0,
+      "last_activity_date": 1502146158,
+      "creation_date": 1502146158,
+      "body": "I am trying to authenticate a client machine connected to my AP via\nLAN. I set up configuration files for HostAPaccordingly. If I run\nHostAP, FreeRadius authentication succeeds. However, after HostAP\nreceived success message from FreeRadius, doesn&#39;t proceed to\nAP-STA-CONNECTED STATE, like in the case of wireless authentication.\nFor LAN authentication, HostAP&#39;s final logs are:\n\n\n\nenx00e04c5394ce: RADIUS Received 167 bytes from RADIUS server\n\nenx00e04c5394ce: RADIUS Received RADIUS message\n\nenx00e04c5394ce: STA a0:ce:c8:12:e4:ae RADIUS: Received RADIUS packet\nmatched with a pending request, round trip time 0.00 sec\n\nRADIUS packet matching with station a0:ce:c8:12:e4:ae\n\nMS-MPPE-Send-Key - hexdump(len=32): [REMOVED]\n\nMS-MPPE-Recv-Key - hexdump(len=32): [REMOVED]\n\nenx00e04c5394ce: STA a0:ce:c8:12:e4:ae IEEE 802.1X: old identity\n&#39;teemu&#39; updated with User-Name from Access-Accept &#39;teemu&#39;\n\nenx00e04c5394ce: STA a0:ce:c8:12:e4:ae IEEE 802.1X: decapsulated EAP\npacket (code=3 id=110 len=4) from RADIUS server: EAP Success\n\nEAP: EAP entering state SUCCESS2\n\nIEEE 802.1X: a0:ce:c8:12:e4:ae BE_AUTH entering state SUCCESS\n\nenx00e04c5394ce: STA a0:ce:c8:12:e4:ae IEEE 802.1X: Sending EAP Packet\n(identifier 110)\n\nIEEE 802.1X: a0:ce:c8:12:e4:ae BE_AUTH entering state IDLE\n\n\n\nBut if I test wireless authentication, get the following additional\nlogs, all the way up to AP-STA-CONNECTED:\n\n\n\nWPA: e4:a7:a0:b7:f7:dc WPA_PTK entering state PTKCALCNEGOTIATING2\n\nWPA: e4:a7:a0:b7:f7:dc WPA_PTK entering state PTKINITNEGOTIATING\n\nwlp1s0: STA e4:a7:a0:b7:f7:dc WPA: sending 3/4 msg of 4-Way Handshake\n\nWPA: Send EAPOL(version=2 secure=1 mic=1 ack=1 install=1 pairwise=1\nkde_len=50 keyidx=1 encr=1)\n\nWPA: Replay Counter - hexdump(len=8): 00 00 00 00 00 00 00 02\nPlaintext EAPOL-Key Key Data - hexdump(len=64): [REMOVED]\n\nWPA: Use EAPOL-Key timeout of 100 ms (retry counter 1)\n\nwlp1s0: Event EAPOL_TX_STATUS (38) received\nIEEE 802.1X: e4:a7:a0:b7:f7:dc TX status - version=2 type=3 length=159 - ack=1\n\nWPA: EAPOL-Key TX status for STA e4:a7:a0:b7:f7:dc ack=1\n\nwlp1s0: Event EAPOL_RX (24) received\n\nIEEE 802.1X: 99 bytes from e4:a7:a0:b7:f7:dc\n   IEEE 802.1X: version=1 type=3 length=95\n\nWPA: Received EAPOL-Key from e4:a7:a0:b7:f7:dc key_info=0x30a type=2\n\nkey_data_length=0\n\nWPA: Received Key Nonce - hexdump(len=32): 00 00 00 00 00 00 00 00 00\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n\nWPA: Received Replay Counter - hexdump(len=8): 00 00 00 00 00 00 00 02\n\nwlp1s0: STA e4:a7:a0:b7:f7:dc WPA: received EAPOL-Key frame (4/4 Pairwise)\n\nWPA: e4:a7:a0:b7:f7:dc WPA_PTK entering state PTKINITDONE\n\nwpa_driver_nl80211_set_key: ifindex=2 (wlp1s0) alg=3\naddr=0x557b9b08c4b0 key_idx=0 set_tx=1 seq_len=0 key_len=16\n\nnl80211: KEY_DATA - hexdump(len=16): [REMOVED]\n   addr=e4:a7:a0:b7:f7:dc\n\nwlp1s0: STA e4:a7:a0:b7:f7:dc WPA: pairwise key handshake completed (RSN)\n\nIEEE 802.1X: e4:a7:a0:b7:f7:dc AUTH_PAE entering state AUTHENTICATED\n\nwlp1s0: AP-STA-CONNECTED e4:a7:a0:b7:f7:dc\n\n\n\nPlease note that WPA is executing above, while my LAN authentication\nHostAP doesn&#39;t execute WPA. Is HostAP not supposed to get to\nAP-STA-CONNECTED state when authenticating a client connected via LAN?\nI hope I could get some clue on this problem.. Thanks for anybody&#39;s\nhelp in advance.\n",
+      "excerpt": "I am trying to authenticate a client machine connected to my AP via\nLAN. I set up configuration files for HostAPaccordingly. If I run\nHostAP, <span class=\"highlight\">FreeRadius</span> authentication succeeds. However, after HostAP &hellip; \nreceived success message from <span class=\"highlight\">FreeRadius</span>, doesn&#39;t proceed to\nAP-STA-CONNECTED STATE, like in the case of wireless authentication.\nFor LAN authentication, HostAP&#39;s final logs are:\n\n\n\nenx00e04c5394ce &hellip; ",
+      "title": "Hostap not working for wired network"
+    },
+    {
+      "tags": [
         "mysql",
         "cloud",
         "freeradius"
@@ -198,72 +261,149 @@
       "body": "I have installed coova-chilli in ubuntu 16.04 with freeradius. The coova-chilli is installed successfully and is working fine for login in user from the login page. But my problem is that the coova-chilli do not redirect login page when search for a website like facebook, youtube, etc by a unauthenticated user until type the ip address manually in the browser. Please help me to get out from this problem.\n",
       "excerpt": "I have installed coova-chilli in ubuntu 16.04 with <span class=\"highlight\">freeradius</span>. The coova-chilli is installed successfully and is working fine for login in user from the login page. But my problem is that the coova &hellip; ",
       "title": "Coova-chilli not redirecting unauthenticated user to login page when searches a website until type the ip address manually"
-    },
-    {
-      "tags": [
-        "freeradius"
-      ],
-      "equivalent_tag_search": [
-        "freeradius"
-      ],
-      "question_score": 0,
-      "is_accepted": true,
-      "answer_id": 45404557,
-      "is_answered": false,
-      "question_id": 45385478,
-      "item_type": "answer",
-      "score": 0,
-      "last_activity_date": 1501447728,
-      "creation_date": 1501447728,
-      "body": "If you&#39;re building/installing on the same server you have multiple versions of OpenSSL installed.  When you built the server it found version 1.0.2, when the server runs however, it&#39;s linked against 1.0.1.  The server refuses to start because 1.0.2 and 1.0.1 are ABI incompatible and allowing the server to start may cause subtle errors in any code that called OpenSSL.\n\nAs a workaround you can use the LD_PRELOAD environmental variable to specify the path to OpenSSL 1.0.2.\n\nIf you&#39;re building/installing on two different systems you must ensure both systems have the same version of OpenSSL.\n",
-      "excerpt": "If you&#39;re building/installing on the same server you have multiple versions of OpenSSL installed.  When you built the server it found version 1.0.2, when the server runs however, it&#39;s linked against 1 &hellip; ",
-      "title": "Freeradius running debug mode libssl version mismatch"
-    },
-    {
-      "tags": [
-        "freeradius"
-      ],
-      "equivalent_tag_search": [
-        "freeradius"
-      ],
-      "question_score": 0,
-      "is_accepted": false,
-      "has_accepted_answer": true,
-      "answer_count": 1,
-      "is_answered": false,
-      "question_id": 45385478,
-      "item_type": "question",
-      "score": 0,
-      "last_activity_date": 1501447728,
-      "creation_date": 1501304569,
-      "body": "I&#39;m trying to build and install Freeradius version 3.0.8 using these instructions. But after starting Freeradius in debug mode using command  shows following error.\n\n\n\nI tried removing libssl-dev and reinstall, But no luck.\n\nAppreciate any help to resolve this version mismatch error. My os is Ubuntu 16.4\n",
-      "excerpt": "I&#39;m trying to build and install <span class=\"highlight\">Freeradius</span> version 3.0.8 using these instructions. But after starting <span class=\"highlight\">Freeradius</span> in debug mode using command radiusd -X shows following error.\n\nlibssl version mismatch &hellip; ",
-      "title": "Freeradius running debug mode libssl version mismatch"
-    },
-    {
-      "tags": [
-        "openwrt",
-        "freeradius"
-      ],
-      "equivalent_tag_search": [
-        "freeradius"
-      ],
-      "question_score": 0,
-      "is_accepted": false,
-      "has_accepted_answer": false,
-      "answer_count": 1,
-      "is_answered": true,
-      "question_id": 45293731,
-      "item_type": "question",
-      "score": 0,
-      "last_activity_date": 1500985109,
-      "creation_date": 1500955412,
-      "body": "I used  on  to get sim IMSI. Because I did have some sim value(rand, sres, kc),I changed the source code use fake value. It can be authenticated successfully. But in the process of 4-way handshake, it failed! It just have one handshake.\n\nI captured some package with wireshark, anyone can help me analysis the reason or have a better way to get imsi on ? \n\neap-sim authenticate process\n\n\n\nhandshake 1 of 4\n\n\n",
-      "excerpt": "I used <span class=\"highlight\">freeradius</span>-server on openWrt to get sim IMSI. Because I did have some sim value(rand, sres, kc),I changed the source code use fake value. It can be authenticated successfully &hellip; ",
-      "title": "4-way handshake failed with freeradius on openWrt?"
     }
   ],
   "github": [
+    {
+      "sha": "1ff47894c5292f6c6baf246ee299fae25e23c815",
+      "commit": {
+        "author": {
+          "name": "Alan T. DeKok",
+          "email": "aland@freeradius.org",
+          "date": "2017-08-08T08:29:12Z"
+        },
+        "committer": {
+          "name": "Alan T. DeKok",
+          "email": "aland@freeradius.org",
+          "date": "2017-08-08T08:29:12Z"
+        },
+        "message": "timer events are events, too",
+        "tree": {
+          "sha": "43636d993e1e9a76705d235ec26759abf92c326b",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/43636d993e1e9a76705d235ec26759abf92c326b"
+        },
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/1ff47894c5292f6c6baf246ee299fae25e23c815",
+        "comment_count": 0
+      },
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1ff47894c5292f6c6baf246ee299fae25e23c815",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/1ff47894c5292f6c6baf246ee299fae25e23c815",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1ff47894c5292f6c6baf246ee299fae25e23c815/comments",
+      "author": {
+        "login": "alandekok",
+        "id": 17612,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/alandekok",
+        "html_url": "https://github.com/alandekok",
+        "followers_url": "https://api.github.com/users/alandekok/followers",
+        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
+        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
+        "organizations_url": "https://api.github.com/users/alandekok/orgs",
+        "repos_url": "https://api.github.com/users/alandekok/repos",
+        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/alandekok/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "alandekok",
+        "id": 17612,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/alandekok",
+        "html_url": "https://github.com/alandekok",
+        "followers_url": "https://api.github.com/users/alandekok/followers",
+        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
+        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
+        "organizations_url": "https://api.github.com/users/alandekok/orgs",
+        "repos_url": "https://api.github.com/users/alandekok/repos",
+        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/alandekok/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "facd33a59e7c16e0475edec53e407d991539c979",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/facd33a59e7c16e0475edec53e407d991539c979",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/facd33a59e7c16e0475edec53e407d991539c979"
+        }
+      ]
+    },
+    {
+      "sha": "facd33a59e7c16e0475edec53e407d991539c979",
+      "commit": {
+        "author": {
+          "name": "Alan T. DeKok",
+          "email": "aland@freeradius.org",
+          "date": "2017-08-07T07:40:54Z"
+        },
+        "committer": {
+          "name": "Alan T. DeKok",
+          "email": "aland@freeradius.org",
+          "date": "2017-08-07T07:42:43Z"
+        },
+        "message": "update documentation",
+        "tree": {
+          "sha": "1d6615767cb156981fbdf1da16819a300dfeed86",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/1d6615767cb156981fbdf1da16819a300dfeed86"
+        },
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/facd33a59e7c16e0475edec53e407d991539c979",
+        "comment_count": 0
+      },
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/facd33a59e7c16e0475edec53e407d991539c979",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/facd33a59e7c16e0475edec53e407d991539c979",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/facd33a59e7c16e0475edec53e407d991539c979/comments",
+      "author": {
+        "login": "alandekok",
+        "id": 17612,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/alandekok",
+        "html_url": "https://github.com/alandekok",
+        "followers_url": "https://api.github.com/users/alandekok/followers",
+        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
+        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
+        "organizations_url": "https://api.github.com/users/alandekok/orgs",
+        "repos_url": "https://api.github.com/users/alandekok/repos",
+        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/alandekok/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "alandekok",
+        "id": 17612,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/alandekok",
+        "html_url": "https://github.com/alandekok",
+        "followers_url": "https://api.github.com/users/alandekok/followers",
+        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
+        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
+        "organizations_url": "https://api.github.com/users/alandekok/orgs",
+        "repos_url": "https://api.github.com/users/alandekok/repos",
+        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/alandekok/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "229ee38e46468ad124c0ad60c23951f4293b0fd8",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/229ee38e46468ad124c0ad60c23951f4293b0fd8",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/229ee38e46468ad124c0ad60c23951f4293b0fd8"
+        }
+      ]
+    },
     {
       "sha": "229ee38e46468ad124c0ad60c23951f4293b0fd8",
       "commit": {
@@ -821,146 +961,6 @@
           "sha": "214fcd7166aae8161510ad3e58d6907711185e17",
           "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/214fcd7166aae8161510ad3e58d6907711185e17",
           "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/214fcd7166aae8161510ad3e58d6907711185e17"
-        }
-      ]
-    },
-    {
-      "sha": "214fcd7166aae8161510ad3e58d6907711185e17",
-      "commit": {
-        "author": {
-          "name": "Alan T. DeKok",
-          "email": "aland@freeradius.org",
-          "date": "2017-08-06T15:27:12Z"
-        },
-        "committer": {
-          "name": "Alan T. DeKok",
-          "email": "aland@freeradius.org",
-          "date": "2017-08-06T15:27:12Z"
-        },
-        "message": "clean up duplicate / different debug messages",
-        "tree": {
-          "sha": "591b6ee1c6f9f617ff783a762a7d9ad6be0f34b4",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/591b6ee1c6f9f617ff783a762a7d9ad6be0f34b4"
-        },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/214fcd7166aae8161510ad3e58d6907711185e17",
-        "comment_count": 0
-      },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/214fcd7166aae8161510ad3e58d6907711185e17",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/214fcd7166aae8161510ad3e58d6907711185e17",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/214fcd7166aae8161510ad3e58d6907711185e17/comments",
-      "author": {
-        "login": "alandekok",
-        "id": 17612,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/alandekok",
-        "html_url": "https://github.com/alandekok",
-        "followers_url": "https://api.github.com/users/alandekok/followers",
-        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
-        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
-        "organizations_url": "https://api.github.com/users/alandekok/orgs",
-        "repos_url": "https://api.github.com/users/alandekok/repos",
-        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/alandekok/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "committer": {
-        "login": "alandekok",
-        "id": 17612,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/alandekok",
-        "html_url": "https://github.com/alandekok",
-        "followers_url": "https://api.github.com/users/alandekok/followers",
-        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
-        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
-        "organizations_url": "https://api.github.com/users/alandekok/orgs",
-        "repos_url": "https://api.github.com/users/alandekok/repos",
-        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/alandekok/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "parents": [
-        {
-          "sha": "2b1b84fdec5739ec0caebfe16e55855d2d7041a3",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/2b1b84fdec5739ec0caebfe16e55855d2d7041a3",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/2b1b84fdec5739ec0caebfe16e55855d2d7041a3"
-        }
-      ]
-    },
-    {
-      "sha": "2b1b84fdec5739ec0caebfe16e55855d2d7041a3",
-      "commit": {
-        "author": {
-          "name": "Alan T. DeKok",
-          "email": "aland@freeradius.org",
-          "date": "2017-08-06T14:56:41Z"
-        },
-        "committer": {
-          "name": "Alan T. DeKok",
-          "email": "aland@freeradius.org",
-          "date": "2017-08-06T14:56:41Z"
-        },
-        "message": "allow replies to Status-Server packets\n\nwith provisions for future pings...",
-        "tree": {
-          "sha": "675eefa84dc9d0c87787d578ddf2c61b48c891a5",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/675eefa84dc9d0c87787d578ddf2c61b48c891a5"
-        },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/2b1b84fdec5739ec0caebfe16e55855d2d7041a3",
-        "comment_count": 0
-      },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/2b1b84fdec5739ec0caebfe16e55855d2d7041a3",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/2b1b84fdec5739ec0caebfe16e55855d2d7041a3",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/2b1b84fdec5739ec0caebfe16e55855d2d7041a3/comments",
-      "author": {
-        "login": "alandekok",
-        "id": 17612,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/alandekok",
-        "html_url": "https://github.com/alandekok",
-        "followers_url": "https://api.github.com/users/alandekok/followers",
-        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
-        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
-        "organizations_url": "https://api.github.com/users/alandekok/orgs",
-        "repos_url": "https://api.github.com/users/alandekok/repos",
-        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/alandekok/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "committer": {
-        "login": "alandekok",
-        "id": 17612,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/alandekok",
-        "html_url": "https://github.com/alandekok",
-        "followers_url": "https://api.github.com/users/alandekok/followers",
-        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
-        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
-        "organizations_url": "https://api.github.com/users/alandekok/orgs",
-        "repos_url": "https://api.github.com/users/alandekok/repos",
-        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/alandekok/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "parents": [
-        {
-          "sha": "1e08167177997c133f772e82c84037d6ad17961e",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1e08167177997c133f772e82c84037d6ad17961e",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/1e08167177997c133f772e82c84037d6ad17961e"
         }
       ]
     }
