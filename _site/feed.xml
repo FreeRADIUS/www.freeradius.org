@@ -4,10 +4,10 @@
     <title>FreeRADIUS</title>
     <description>The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
 </description>
-    <link>new.freeradius.org/</link>
-    <atom:link href="new.freeradius.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 08 Aug 2017 11:56:15 +0000</pubDate>
-    <lastBuildDate>Tue, 08 Aug 2017 11:56:15 +0000</lastBuildDate>
+    <link>freeradius.org/</link>
+    <atom:link href="freeradius.org/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 08 Aug 2017 12:45:52 +0000</pubDate>
+    <lastBuildDate>Tue, 08 Aug 2017 12:45:52 +0000</lastBuildDate>
     <generator>Jekyll v3.5.1</generator>
     
       <item>
@@ -19,8 +19,8 @@ page.&lt;/p&gt;
 
 </description>
         <pubDate>Mon, 17 Jul 2017 00:00:00 +0000</pubDate>
-        <link>new.freeradius.org/vul_notifications/2017/07/17/multiple-issues-found-by-guido-vranken.html</link>
-        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2017/07/17/multiple-issues-found-by-guido-vranken.html</guid>
+        <link>freeradius.org/vul_notifications/2017/07/17/multiple-issues-found-by-guido-vranken.html</link>
+        <guid isPermaLink="true">freeradius.org/vul_notifications/2017/07/17/multiple-issues-found-by-guido-vranken.html</guid>
         
         <category>security</category>
         
@@ -65,8 +65,8 @@ in the wild.&lt;/p&gt;
 
 </description>
         <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
-        <link>new.freeradius.org/vul_notifications/2017/05/26/erroneous-session-resumption.html</link>
-        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2017/05/26/erroneous-session-resumption.html</guid>
+        <link>freeradius.org/vul_notifications/2017/05/26/erroneous-session-resumption.html</link>
+        <guid isPermaLink="true">freeradius.org/vul_notifications/2017/05/26/erroneous-session-resumption.html</guid>
         
         <category>security</category>
         
@@ -85,8 +85,8 @@ a7df94&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can read our write-up &lt;a href=&quot;/security/pvs-studio.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Tue, 16 May 2017 00:00:00 +0000</pubDate>
-        <link>new.freeradius.org/vul_notifications/2017/05/16/server-scanned-by-pvs-studio.html</link>
-        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2017/05/16/server-scanned-by-pvs-studio.html</guid>
+        <link>freeradius.org/vul_notifications/2017/05/16/server-scanned-by-pvs-studio.html</link>
+        <guid isPermaLink="true">freeradius.org/vul_notifications/2017/05/16/server-scanned-by-pvs-studio.html</guid>
         
         <category>security</category>
         
@@ -113,8 +113,8 @@ a7df94&lt;/a&gt;.&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 11 Feb 2016 15:13:52 +0000</pubDate>
-        <link>new.freeradius.org/jekyll/update/2016/02/11/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">new.freeradius.org/jekyll/update/2016/02/11/welcome-to-jekyll.html</guid>
+        <link>freeradius.org/jekyll/update/2016/02/11/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">freeradius.org/jekyll/update/2016/02/11/welcome-to-jekyll.html</guid>
         
         
         <category>jekyll</category>
@@ -148,8 +148,8 @@ the issue.&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 16 Sep 2015 00:00:00 +0000</pubDate>
-        <link>new.freeradius.org/vul_notifications/2015/09/16/tunnel-password-vulnerabilities.html</link>
-        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2015/09/16/tunnel-password-vulnerabilities.html</guid>
+        <link>freeradius.org/vul_notifications/2015/09/16/tunnel-password-vulnerabilities.html</link>
+        <guid isPermaLink="true">freeradius.org/vul_notifications/2015/09/16/tunnel-password-vulnerabilities.html</guid>
         
         <category>security</category>
         
@@ -208,8 +208,8 @@ unwilling to work with authors to publish accurate reports.&lt;/p&gt;
 
 </description>
         <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
-        <link>new.freeradius.org/vul_notifications/2015/06/22/revoked-intermediate-certificates-are-not-properly-validated.html</link>
-        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2015/06/22/revoked-intermediate-certificates-are-not-properly-validated.html</guid>
+        <link>freeradius.org/vul_notifications/2015/06/22/revoked-intermediate-certificates-are-not-properly-validated.html</link>
+        <guid isPermaLink="true">freeradius.org/vul_notifications/2015/06/22/revoked-intermediate-certificates-are-not-properly-validated.html</guid>
         
         <category>security</category>
         
@@ -247,8 +247,8 @@ one byte.&lt;/li&gt;
 
 </description>
         <pubDate>Sat, 04 Apr 2015 00:00:00 +0000</pubDate>
-        <link>new.freeradius.org/vul_notifications/2015/04/04/eap-pwd-vulnerabilities.html</link>
-        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2015/04/04/eap-pwd-vulnerabilities.html</guid>
+        <link>freeradius.org/vul_notifications/2015/04/04/eap-pwd-vulnerabilities.html</link>
+        <guid isPermaLink="true">freeradius.org/vul_notifications/2015/04/04/eap-pwd-vulnerabilities.html</guid>
         
         <category>security</category>
         
@@ -266,8 +266,8 @@ least 1.0.0 (and possibly earlier) require TLSv1.&lt;/p&gt;
 
 </description>
         <pubDate>Wed, 24 Sep 2014 00:00:00 +0000</pubDate>
-        <link>new.freeradius.org/vul_notifications/2014/09/24/sslv3-poodle.html</link>
-        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2014/09/24/sslv3-poodle.html</guid>
+        <link>freeradius.org/vul_notifications/2014/09/24/sslv3-poodle.html</link>
+        <guid isPermaLink="true">freeradius.org/vul_notifications/2014/09/24/sslv3-poodle.html</guid>
         
         <category>security</category>
         
@@ -288,8 +288,8 @@ server to execute shell scripts &lt;strong&gt;must&lt;/strong&gt; upgrade their 
 
 </description>
         <pubDate>Wed, 24 Sep 2014 00:00:00 +0000</pubDate>
-        <link>new.freeradius.org/vul_notifications/2014/09/24/bash-shellshock.html</link>
-        <guid isPermaLink="true">new.freeradius.org/vul_notifications/2014/09/24/bash-shellshock.html</guid>
+        <link>freeradius.org/vul_notifications/2014/09/24/bash-shellshock.html</link>
+        <guid isPermaLink="true">freeradius.org/vul_notifications/2014/09/24/bash-shellshock.html</guid>
         
         <category>security</category>
         
@@ -351,8 +351,8 @@ of radiusd.conf.&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 08 Apr 2014 00:00:00 +0000</pubDate>
-        <link>new.freeradius.org/vul_in_deps/2014/04/08/openssl-heartbleed.html</link>
-        <guid isPermaLink="true">new.freeradius.org/vul_in_deps/2014/04/08/openssl-heartbleed.html</guid>
+        <link>freeradius.org/vul_in_deps/2014/04/08/openssl-heartbleed.html</link>
+        <guid isPermaLink="true">freeradius.org/vul_in_deps/2014/04/08/openssl-heartbleed.html</guid>
         
         <category>security</category>
         

@@ -44,6 +44,28 @@
   "stackoverflow": [
     {
       "tags": [
+        "python",
+        "freeradius"
+      ],
+      "equivalent_tag_search": [
+        "freeradius"
+      ],
+      "question_score": 0,
+      "is_accepted": false,
+      "has_accepted_answer": false,
+      "answer_count": 0,
+      "is_answered": false,
+      "question_id": 45567844,
+      "item_type": "question",
+      "score": 0,
+      "last_activity_date": 1502193719,
+      "creation_date": 1502193719,
+      "body": "My  has a python module for authentication. And I want to find the location of  of the following code. \n\n\n\nIt doesn&#39;t print to  console. The operating system is Ubuntu and python version is 2.7. Appreciate any help\n",
+      "excerpt": "My <span class=\"highlight\">freeradius</span> has a python module for authentication. And I want to find the location of print str(e) of the following code. \n\ntry:\n    cursor.execute(query)\nexcept Exception, e:\n    print str(e &hellip; )\n    conn.rollback()\n\n\nIt doesn&#39;t print to <span class=\"highlight\">freeradius</span> console. The operating system is Ubuntu and python version is 2.7. Appreciate any help\n &hellip; ",
+      "title": "Where is the python log location for freeradius python module?"
+    },
+    {
+      "tags": [
         "freeradius"
       ],
       "equivalent_tag_search": [
@@ -235,31 +257,6 @@
       "creation_date": 1501448476,
       "body": "Probably you are trying to access HTTPS websites and coovachilli isn&#39;t configured to redirect TLS connections (note that would cause issues with bad certificates).\n\nTry some HTTP website like http://freeradius.org/.\n",
       "excerpt": "Probably you are trying to access HTTPS websites and coovachilli isn&#39;t configured to redirect TLS connections (note that would cause issues with bad certificates).\n\nTry some HTTP website like http://f &hellip; ",
-      "title": "Coova-chilli not redirecting unauthenticated user to login page when searches a website until type the ip address manually"
-    },
-    {
-      "tags": [
-        "apache",
-        "ubuntu",
-        "ssl",
-        "freeradius",
-        "coovachilli"
-      ],
-      "equivalent_tag_search": [
-        "freeradius"
-      ],
-      "question_score": 0,
-      "is_accepted": false,
-      "has_accepted_answer": false,
-      "answer_count": 1,
-      "is_answered": false,
-      "question_id": 45310619,
-      "item_type": "question",
-      "score": 0,
-      "last_activity_date": 1501448476,
-      "creation_date": 1501005793,
-      "body": "I have installed coova-chilli in ubuntu 16.04 with freeradius. The coova-chilli is installed successfully and is working fine for login in user from the login page. But my problem is that the coova-chilli do not redirect login page when search for a website like facebook, youtube, etc by a unauthenticated user until type the ip address manually in the browser. Please help me to get out from this problem.\n",
-      "excerpt": "I have installed coova-chilli in ubuntu 16.04 with <span class=\"highlight\">freeradius</span>. The coova-chilli is installed successfully and is working fine for login in user from the login page. But my problem is that the coova &hellip; ",
       "title": "Coova-chilli not redirecting unauthenticated user to login page when searches a website until type the ip address manually"
     }
   ],
