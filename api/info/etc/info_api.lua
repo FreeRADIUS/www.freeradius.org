@@ -6,7 +6,8 @@ if os.getenv('TEST_DATA') then
    config.under_test           = true
    config.srv_path             = os.getenv('TEST_DATA')
 else
-   config.srv_path             = ngx.var.document_root .. "/api/info/srv"
+   -- config.srv_path             = ngx.var.document_root .. "/api/info/srv"
+   config.srv_path             = ngx.var.document_root .. "/../_apidata"
 end
 
 config.base_url                = "/api/info"
