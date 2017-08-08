@@ -47,8 +47,8 @@
     freeradius.factory('getStable', ['$http', function($http){
         return $http({
             method: 'GET',
-            url: 'http://{{ site.url }}/api/info/branch/',
-            // url: '/modules.json',
+            // url: 'http://{{ site.url }}/api/info/branch/',
+            url: '/api/info/branch/',
             params: {
                 by_keyword: 'stable',
                 keyword_expansion_depth: 1,
@@ -173,8 +173,8 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://{{ site.url }}/api/info/component/',
-                // url: '/modules.json',
+                // url: 'http://{{ site.url }}/api/info/component/',
+                url: '/api/info/component/',
                 params: {
                     by_category: category,
                     expansion_depth: 1,
@@ -276,7 +276,8 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://{{ site.url }}/api/info/component/'+module+'/',
+                // url: 'http://{{ site.url }}/api/info/component/'+module+'/',
+                url: '/api/info/component/'+module+'/',
                 params: {
                     expansion_depth: 1,
                 }
@@ -306,8 +307,8 @@
             $scope.searchString = string;
             $http({
                 method: 'GET',
-                url: 'http://{{ site.url }}/api/info/component/',
-                // url: '/modules.json',
+                // url: 'http://{{ site.url }}/api/info/component/',
+                url: '/api/info/component/',
                 params: {
                     by_keyword: 'regex:'+string,
                     keyword_expansion_depth: 1,
@@ -354,7 +355,8 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://{{ site.url }}/api/info/branch/*/release/',
+                // url: 'http://{{ site.url }}/api/info/branch/*/release/',
+                url: '/api/info/branch/*/release/',
                 params: {
                     expansion_depth: 2,
                     order_by: "date:desc",
@@ -501,8 +503,8 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://{{ site.url }}/api/info/branch/*/release/',
-                // url: '/modules.json',
+                // url: 'http://{{ site.url }}/api/info/branch/*/release/',
+                url: '/api/info/branch/*/release/',
                 params: {
                     expansion_depth: 2,
                     keyword_expansion_depth: 1,
@@ -527,7 +529,8 @@
             $scope.searchString = string;
             $http({
                 method: 'GET',
-                url: 'http://{{ site.url }}/api/info/branch/*/release/',
+                // url: 'http://{{ site.url }}/api/info/branch/*/release/',
+                url: '/api/info/branch/*/release/',
                 params: {
                     by_keyword: 'lua:'+string,
                     keyword_expansion_depth: 1,
@@ -551,7 +554,8 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://{{ site.url }}/api/info/branch/'+branch+'/release/'+release+'/',
+                // url: 'http://{{ site.url }}/api/info/branch/'+branch+'/release/'+release+'/',
+                url: '/api/info/branch/'+branch+'/release/'+release+'/',
                 params: {
                     expansion_depth: 1,
                 }
@@ -616,8 +620,8 @@
             $scope.state = 'loading';
             $http({
                 method: 'GET',
-                url: 'http://{{ site.url }}/api/info/branch/',
-                // url: '/modules.json',
+                // url: 'http://{{ site.url }}/api/info/branch/',
+                url: '/api/info/branch/',
                 params: {
                     expansion_depth: 3,
                     order_by: 'priority'
@@ -675,6 +679,7 @@
             $http({
                 method: 'GET',
                 // url: 'http://{{ site.url }}/api/components/',
+                // url: '/api/components/',
                 url: '/social.json',
                 // params: {
                 //     by_category: category
