@@ -1,6 +1,10 @@
 {
   "twitter": [
     {
+      "created_at": "Tue Aug 08 17:48:02 +0000 2017",
+      "text": "New website (https://t.co/XzySu1Gykm) now live!  Please let us known your opinions.  Does anything need changing? Can you find things?"
+    },
+    {
       "created_at": "Fri Feb 03 14:57:59 +0000 2017",
       "text": "As promised.  https://t.co/Go0DbAxou7\n\nv4 now supports TACACS+ as an experimental protocol."
     },
@@ -35,16 +39,14 @@
     {
       "created_at": "Sun Oct 30 15:22:38 +0000 2016",
       "text": "Version 4 design notes on the Wiki.  https://t.co/LTP4oByNNw  Pictures and schematics uploaded next week."
-    },
-    {
-      "created_at": "Thu Oct 27 12:41:09 +0000 2016",
-      "text": "Designing version 4.  Implementing version 4 from the ground up.  No memory copies.  Minimal system calls.  Goal 100K to 1M packets/s"
     }
   ],
   "stackoverflow": [
     {
       "tags": [
-        "python",
+        "php",
+        "pear",
+        "freebsd",
         "freeradius"
       ],
       "equivalent_tag_search": [
@@ -52,20 +54,22 @@
       ],
       "question_score": 0,
       "is_accepted": false,
-      "has_accepted_answer": false,
-      "answer_count": 0,
+      "answer_id": 45814409,
       "is_answered": false,
-      "question_id": 45567844,
-      "item_type": "question",
+      "question_id": 45812374,
+      "item_type": "answer",
       "score": 0,
-      "last_activity_date": 1502193719,
-      "creation_date": 1502193719,
-      "body": "My  has a python module for authentication. And I want to find the location of  of the following code. \n\n\n\nIt doesn&#39;t print to  console. The operating system is Ubuntu and python version is 2.7. Appreciate any help\n",
-      "excerpt": "My <span class=\"highlight\">freeradius</span> has a python module for authentication. And I want to find the location of print str(e) of the following code. \n\ntry:\n    cursor.execute(query)\nexcept Exception, e:\n    print str(e &hellip; )\n    conn.rollback()\n\n\nIt doesn&#39;t print to <span class=\"highlight\">freeradius</span> console. The operating system is Ubuntu and python version is 2.7. Appreciate any help\n &hellip; ",
-      "title": "Where is the python log location for freeradius python module?"
+      "last_activity_date": 1503395600,
+      "creation_date": 1503395600,
+      "body": "If I am right DBA is not in the default  but what you can do is install from source and select the required extensions, for doing this do:\n\n\n\nThen:\n\n\n\nThat will install the DBA extension, more info about using ports can be found here: https://www.freebsd.org/doc/handbook/ports-using.html\n",
+      "excerpt": "If I am right DBA is not in the default pkg php56-extensions but what you can do is install from source and select the required extensions, for doing this do:\n\n# portsnap fetch extract\n\n\nThen:\n\n# cd / &hellip; ",
+      "title": "apt-get install php-db FreeBSD equivalent"
     },
     {
       "tags": [
+        "php",
+        "pear",
+        "freebsd",
         "freeradius"
       ],
       "equivalent_tag_search": [
@@ -76,17 +80,18 @@
       "has_accepted_answer": false,
       "answer_count": 1,
       "is_answered": false,
-      "question_id": 45567078,
+      "question_id": 45812374,
       "item_type": "question",
       "score": 0,
-      "last_activity_date": 1502192057,
-      "creation_date": 1502191593,
-      "body": "I&#39;m trying to install FreeRadius 3.0.15. I&#39;m on Ubuntu 16.04. I downloaded FreeRadius 3.0.15 from the official downloads page.\n\nMy issue is that when I go into the file and try to run , the process terminates on \n\n\n\nWhat does it mean for the LDFLAGS to be inconsistent, and how can I fix this error? \n",
-      "excerpt": "I&#39;m trying to install <span class=\"highlight\">FreeRadius</span> 3.0.15. I&#39;m on Ubuntu 16.04. I downloaded <span class=\"highlight\">FreeRadius</span> 3.0.15 from the official downloads page.\n\nMy issue is that when I go into the file and try to run sudo &hellip; ",
-      "title": "FreeRadius fails to install at ./config"
+      "last_activity_date": 1503395600,
+      "creation_date": 1503389799,
+      "body": "I am trying to get daloradius https://github.com/lirantal/daloradius to work in FreeBSD with php 5.6. When I try to login, I get this error:\n\nFatal error: Class &#39;DB&#39; not found in /.../library/opendb.php on line 86\n\nTried the following but didn&#39;t work:\n\n\n\nNow on my linux box, I got this error initially but when I ran the following it worked:\n\n\n\nIn FreeBSD this doesn&#39;t work. Can anyone tell me the equivalent of this to FreeBSD? Or has anyone been able to get daloRadius to work in FreeBSD? Thank you so much.\n\nPS I also tried pointing the include code to the absolute location of the DB.php (/usr/....../pear/DB.php) and it didn&#39;t work.\n",
+      "excerpt": "I am trying to get daloradius https://github.com/lirantal/daloradius to work in FreeBSD with php 5.6. When I try to login, I get this error:\n\nFatal error: Class &#39;DB&#39; not found in /.../library/opendb.p &hellip; ",
+      "title": "apt-get install php-db FreeBSD equivalent"
     },
     {
       "tags": [
+        "linux",
         "freeradius"
       ],
       "equivalent_tag_search": [
@@ -94,129 +99,115 @@
       ],
       "question_score": 0,
       "is_accepted": false,
-      "answer_id": 45567231,
+      "has_accepted_answer": false,
+      "answer_count": 0,
       "is_answered": false,
-      "question_id": 45567078,
-      "item_type": "answer",
+      "question_id": 45810615,
+      "item_type": "question",
       "score": 0,
-      "last_activity_date": 1502192057,
-      "creation_date": 1502192057,
-      "body": "I was able to fix this error by reinstalling lcrypto with . However, I&#39;m now getting a new error: \n\n\n\nSo now I&#39;m going to try to figure that out.\n\nEDIT: figured out second error. Fixed with \n\nIn short, this was all just dependency issues.\n",
-      "excerpt": "I was able to fix this error by reinstalling lcrypto with sudo apt-get install libssl-dev. However, I&#39;m now getting a new error: \n\nconfigure: WARNING: FAILURE: rlm_rediswho requires: hiredis.h libhire &hellip; ",
-      "title": "FreeRadius fails to install at ./config"
+      "last_activity_date": 1503387766,
+      "creation_date": 1503384279,
+      "body": "I have a radius server configured on RHEL 7.3 and I am trying to kill the Radius Daemon but every time I run: \n\n\n\nit gives me an error \n\n\n\nAlthough when I run: \n\n\n\nit gives me an output like: \n\n\n\nHow do I kill this daemon?\n",
+      "excerpt": "I have a radius server configured on RHEL 7.3 and I am trying to kill the Radius Daemon but every time I run: \n\nkillall -9 radiusd\n\n\nit gives me an error \n\nradiusd: no process found\n\n\nAlthough when I  &hellip; ",
+      "title": "Radius daemon kill"
     },
     {
       "tags": [
+        "dhcp",
+        "freeradius"
+      ],
+      "equivalent_tag_search": [
+        "freeradius"
+      ],
+      "question_score": 0,
+      "is_accepted": false,
+      "answer_id": 45780227,
+      "is_answered": false,
+      "question_id": 44190157,
+      "item_type": "answer",
+      "score": 0,
+      "last_activity_date": 1503218943,
+      "creation_date": 1503218943,
+      "body": "Just giving it a shot, as no one has answered so far: I guess the answer depends very much on what the client (AccessPoints etc.) accessing your freeradius server is expecting as attribute. I would start searching there, as I learned that the attributes the clients are expecting vary a lot from one model/brand to another. And not every brand/model supports all features.\n",
+      "excerpt": "Just giving it a shot, as no one has answered so far: I guess the answer depends very much on what the client (AccessPoints etc.) accessing your <span class=\"highlight\">freeradius</span> server is expecting as attribute. I would &hellip; ",
+      "title": "configure dhcp on freeradius mysql"
+    },
+    {
+      "tags": [
+        "dhcp",
+        "freeradius"
+      ],
+      "equivalent_tag_search": [
+        "freeradius"
+      ],
+      "question_score": 0,
+      "is_accepted": false,
+      "has_accepted_answer": false,
+      "answer_count": 1,
+      "is_answered": false,
+      "question_id": 44190157,
+      "item_type": "question",
+      "score": 0,
+      "last_activity_date": 1503218943,
+      "creation_date": 1495747886,
+      "body": "My freeradius server is configured to login by user&#39;s mac on mysql.        for any user my table is populated in this mode:\n\nRadcheck\n\n\n\nRadreply   \n\n\n\nEverything work well.\nBut now i need to include a dhcp server with wich assign static ip for users on database and a range of ip to external user.\nSearching online i read that it could be possibile to do by only freeradius, including dhcp dictionary. But i didn&#39;t find nothink that work.\nif someone have some good link to propose or some advice about the correct population of table they are well-liked.\nThanks.\nTnx to everyone\n",
+      "excerpt": "My <span class=\"highlight\">freeradius</span> server is configured to login by user&#39;s mac on mysql.        for any user my table is populated in this mode:\n\nRadcheck\n\n+----+-------------------+-----------+----+--------+  \n| id &hellip;  that it could be possibile to do by only <span class=\"highlight\">freeradius</span>, including dhcp dictionary. But i didn&#39;t find nothink that work.\nif someone have some good link to propose or some advice about the correct population of table they are well-liked.\nThanks.\nTnx to everyone\n &hellip; ",
+      "title": "configure dhcp on freeradius mysql"
+    },
+    {
+      "tags": [
+        "mysql",
+        "authentication",
+        "radius",
         "freeradius",
-        "hostapd"
+        "radius-protocol"
       ],
       "equivalent_tag_search": [
         "freeradius"
       ],
       "question_score": 0,
       "is_accepted": false,
-      "has_accepted_answer": false,
-      "answer_count": 0,
+      "answer_id": 45765169,
       "is_answered": false,
-      "question_id": 45556781,
-      "item_type": "question",
-      "score": 0,
-      "last_activity_date": 1502146158,
-      "creation_date": 1502146158,
-      "body": "I am trying to authenticate a client machine connected to my AP via\nLAN. I set up configuration files for HostAPaccordingly. If I run\nHostAP, FreeRadius authentication succeeds. However, after HostAP\nreceived success message from FreeRadius, doesn&#39;t proceed to\nAP-STA-CONNECTED STATE, like in the case of wireless authentication.\nFor LAN authentication, HostAP&#39;s final logs are:\n\n\n\nenx00e04c5394ce: RADIUS Received 167 bytes from RADIUS server\n\nenx00e04c5394ce: RADIUS Received RADIUS message\n\nenx00e04c5394ce: STA a0:ce:c8:12:e4:ae RADIUS: Received RADIUS packet\nmatched with a pending request, round trip time 0.00 sec\n\nRADIUS packet matching with station a0:ce:c8:12:e4:ae\n\nMS-MPPE-Send-Key - hexdump(len=32): [REMOVED]\n\nMS-MPPE-Recv-Key - hexdump(len=32): [REMOVED]\n\nenx00e04c5394ce: STA a0:ce:c8:12:e4:ae IEEE 802.1X: old identity\n&#39;teemu&#39; updated with User-Name from Access-Accept &#39;teemu&#39;\n\nenx00e04c5394ce: STA a0:ce:c8:12:e4:ae IEEE 802.1X: decapsulated EAP\npacket (code=3 id=110 len=4) from RADIUS server: EAP Success\n\nEAP: EAP entering state SUCCESS2\n\nIEEE 802.1X: a0:ce:c8:12:e4:ae BE_AUTH entering state SUCCESS\n\nenx00e04c5394ce: STA a0:ce:c8:12:e4:ae IEEE 802.1X: Sending EAP Packet\n(identifier 110)\n\nIEEE 802.1X: a0:ce:c8:12:e4:ae BE_AUTH entering state IDLE\n\n\n\nBut if I test wireless authentication, get the following additional\nlogs, all the way up to AP-STA-CONNECTED:\n\n\n\nWPA: e4:a7:a0:b7:f7:dc WPA_PTK entering state PTKCALCNEGOTIATING2\n\nWPA: e4:a7:a0:b7:f7:dc WPA_PTK entering state PTKINITNEGOTIATING\n\nwlp1s0: STA e4:a7:a0:b7:f7:dc WPA: sending 3/4 msg of 4-Way Handshake\n\nWPA: Send EAPOL(version=2 secure=1 mic=1 ack=1 install=1 pairwise=1\nkde_len=50 keyidx=1 encr=1)\n\nWPA: Replay Counter - hexdump(len=8): 00 00 00 00 00 00 00 02\nPlaintext EAPOL-Key Key Data - hexdump(len=64): [REMOVED]\n\nWPA: Use EAPOL-Key timeout of 100 ms (retry counter 1)\n\nwlp1s0: Event EAPOL_TX_STATUS (38) received\nIEEE 802.1X: e4:a7:a0:b7:f7:dc TX status - version=2 type=3 length=159 - ack=1\n\nWPA: EAPOL-Key TX status for STA e4:a7:a0:b7:f7:dc ack=1\n\nwlp1s0: Event EAPOL_RX (24) received\n\nIEEE 802.1X: 99 bytes from e4:a7:a0:b7:f7:dc\n   IEEE 802.1X: version=1 type=3 length=95\n\nWPA: Received EAPOL-Key from e4:a7:a0:b7:f7:dc key_info=0x30a type=2\n\nkey_data_length=0\n\nWPA: Received Key Nonce - hexdump(len=32): 00 00 00 00 00 00 00 00 00\n00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n\nWPA: Received Replay Counter - hexdump(len=8): 00 00 00 00 00 00 00 02\n\nwlp1s0: STA e4:a7:a0:b7:f7:dc WPA: received EAPOL-Key frame (4/4 Pairwise)\n\nWPA: e4:a7:a0:b7:f7:dc WPA_PTK entering state PTKINITDONE\n\nwpa_driver_nl80211_set_key: ifindex=2 (wlp1s0) alg=3\naddr=0x557b9b08c4b0 key_idx=0 set_tx=1 seq_len=0 key_len=16\n\nnl80211: KEY_DATA - hexdump(len=16): [REMOVED]\n   addr=e4:a7:a0:b7:f7:dc\n\nwlp1s0: STA e4:a7:a0:b7:f7:dc WPA: pairwise key handshake completed (RSN)\n\nIEEE 802.1X: e4:a7:a0:b7:f7:dc AUTH_PAE entering state AUTHENTICATED\n\nwlp1s0: AP-STA-CONNECTED e4:a7:a0:b7:f7:dc\n\n\n\nPlease note that WPA is executing above, while my LAN authentication\nHostAP doesn&#39;t execute WPA. Is HostAP not supposed to get to\nAP-STA-CONNECTED state when authenticating a client connected via LAN?\nI hope I could get some clue on this problem.. Thanks for anybody&#39;s\nhelp in advance.\n",
-      "excerpt": "I am trying to authenticate a client machine connected to my AP via\nLAN. I set up configuration files for HostAPaccordingly. If I run\nHostAP, <span class=\"highlight\">FreeRadius</span> authentication succeeds. However, after HostAP &hellip; \nreceived success message from <span class=\"highlight\">FreeRadius</span>, doesn&#39;t proceed to\nAP-STA-CONNECTED STATE, like in the case of wireless authentication.\nFor LAN authentication, HostAP&#39;s final logs are:\n\n\n\nenx00e04c5394ce &hellip; ",
-      "title": "Hostap not working for wired network"
-    },
-    {
-      "tags": [
-        "mysql",
-        "cloud",
-        "freeradius"
-      ],
-      "equivalent_tag_search": [
-        "freeradius"
-      ],
-      "question_score": 0,
-      "is_accepted": false,
-      "has_accepted_answer": false,
-      "answer_count": 0,
-      "is_answered": false,
-      "question_id": 45476706,
-      "item_type": "question",
-      "score": 0,
-      "last_activity_date": 1501742521,
-      "creation_date": 1501742521,
-      "body": "I wish to the following:\n\n| client|  --&gt; | cloud  from anywhere     | --&gt;| Freeradius auth.   |\n\nWhat is needed?\nie \nI will configure one free radius which can everyone around the world to have account in this system by cloud \nI have tow Idea I don&#39;t know which is the best \nfirst one: has every new customer have a database to save his clients in it \nSecond: there is one database to all customer and I can recognize customer&#39;s client by foreign key \nany Idea to do this?\n",
-      "excerpt": "I wish to the following:\n\n| client|  --&gt; | cloud  from anywhere     | --&gt;| <span class=\"highlight\">Freeradius</span> auth.   |\n\nWhat is needed?\nie \nI will configure one free radius which can everyone around the world to have &hellip; ",
-      "title": "using freeradius in cloud application"
-    },
-    {
-      "tags": [
-        "freeradius"
-      ],
-      "equivalent_tag_search": [
-        "freeradius"
-      ],
-      "question_score": 0,
-      "is_accepted": false,
-      "has_accepted_answer": false,
-      "answer_count": 0,
-      "is_answered": false,
-      "question_id": 45459724,
-      "item_type": "question",
-      "score": 0,
-      "last_activity_date": 1501673561,
-      "creation_date": 1501673561,
-      "body": "I&#39;m using  to test my freeradius configuration using the following command\n\n\n\nthe problem is with the field  When I see the above request from  console it shows timestamp as follows\n\nEvent-Timestamp = &quot;Oct 12 2016 01:01:01 +0530&quot;\n\nIt changes  to . How can I keep the timestamp as it is I&#39;m sending. Appreciate any help\n",
-      "excerpt": "I&#39;m using radclient to test my <span class=\"highlight\">freeradius</span> configuration using the following command\n\necho &quot;User-Name=B4-CE-F6-FA-D0-34,User-Password=B4-CE-F6-FA-D0-34,Framed-Protocol=PPP,Called-Station-Id=D4-68-4D &hellip; =&#39;Oct 12 2016 13:59:27 UTC&#39; When I see the above request from <span class=\"highlight\">freeradius</span> console it shows timestamp as follows\n\nEvent-Timestamp = &quot;Oct 12 2016 01:01:01 +0530&quot;\n\nIt changes UTC to +0530. How can I keep the timestamp as it is I&#39;m sending. Appreciate any help\n &hellip; ",
-      "title": "Radclient changes timestamp format"
-    },
-    {
-      "tags": [
-        "mysql",
-        "vpn",
-        "freeradius"
-      ],
-      "equivalent_tag_search": [
-        "freeradius"
-      ],
-      "question_score": -4,
-      "is_accepted": false,
-      "has_accepted_answer": false,
-      "answer_count": 0,
-      "is_answered": false,
-      "question_id": 45457280,
-      "item_type": "question",
-      "score": -4,
-      "last_activity_date": 1501667155,
-      "creation_date": 1501667155,
-      "body": "I am using Freeradius to authenticate VPN users. All users are kept in MySQL database, radcheck table and that part works fine. I want to limit number of parallel sessions users can have. I followed this example:\n\nhttp://trhura.blogspot.ie/2013/07/limiting-concurrentactive-users-in.html\n\nbut it is not working for me. Any suggestions what else needs to be done or how to do this ? Thanks in advance. \n",
-      "excerpt": "I am using <span class=\"highlight\">Freeradius</span> to authenticate VPN users. All users are kept in MySQL database, radcheck table and that part works fine. I want to limit number of parallel sessions users can have. I followed &hellip; ",
-      "title": "How to limit number of parallel sessions on Freeradius with MySQL"
-    },
-    {
-      "tags": [
-        "freeradius"
-      ],
-      "equivalent_tag_search": [
-        "freeradius"
-      ],
-      "question_score": 0,
-      "is_accepted": true,
-      "answer_id": 45375703,
-      "is_answered": false,
-      "question_id": 45371531,
+      "question_id": 45606910,
       "item_type": "answer",
       "score": 0,
-      "last_activity_date": 1501510623,
-      "creation_date": 1501251201,
-      "body": "rlm_python isn&#39;t always packaged depending on the distribution.\n\nBasic build instructions can be found here: http://wiki.freeradius.org/building/Home\n\nYou will also need to have installed the python-dev/python-devel package on your system.  If python still doesn&#39;t work you may need to specify the path to the python binary manually by passing it to configure e.g. .\n\nIf you just wan to verify the configure scripts have picked up python \n\nOn my system (macOS 10.11.6) the output when python is found is:\n\n\n\nOnce the configure script find the python binary, it&#39;ll generally all &quot;just work&quot;, as it can then get compilation and linking flags from python itself. \n",
-      "excerpt": "rlm_python isn&#39;t always packaged depending on the distribution.\n\nBasic build instructions can be found here: http://wiki.freeradius.org/building/Home\n\nYou will also need to have installed the python-d &hellip; ",
-      "title": "Failed to link to module &#39;rlm_python&#39;: rlm_python.so"
+      "last_activity_date": 1503091016,
+      "creation_date": 1503091016,
+      "body": "You shouldn&#39;t set  manually.  This attribute is there so that modules in the  section can communicate with the rest of the server, the type of authentication that should be run in the  section.\n\nIn order to set  based on attributes you should list the pap, eap etc... modules in turn in the authorize section, they&#39;ll check if the requisite attributes were in the request and determine the correct Auth-Type value.\n\nIf you want to make a policy to restrict certain users to certain types of authentication then set Auth-Type in the reply list (radgroupreply table), and check which Auth-Type has been set at the end of the authorize section.\n\n\n",
+      "excerpt": "You shouldn&#39;t set control:Auth-Type manually.  This attribute is there so that modules in the authorize section can communicate with the rest of the server, the type of authentication that should be r &hellip; ",
+      "title": "Use two Auth-Type PAP and EAP with FreeRadius"
     },
     {
       "tags": [
+        "mysql",
+        "authentication",
+        "radius",
+        "freeradius",
+        "radius-protocol"
+      ],
+      "equivalent_tag_search": [
         "freeradius"
+      ],
+      "question_score": 0,
+      "is_accepted": false,
+      "has_accepted_answer": false,
+      "answer_count": 1,
+      "is_answered": false,
+      "question_id": 45606910,
+      "item_type": "question",
+      "score": 0,
+      "last_activity_date": 1503091016,
+      "creation_date": 1502349405,
+      "body": "I&#39;ve freeradius server which uses MySQL to store the data.\n\nfollowing is my database \n\n\n\nWe have two different clients which uses two different Authentication types with free radius , One uses  and sends the Password in  attribute.\n\nand another client user  and sends the password in  and \n\nWhat i want is, when PAP fails to authenticate or when  attribute is not present it should use  as  and if  and  are not present in radius attribute it should reply with Access-reject or Authentication failure message.\n\nAny help will be appreciated\n",
+      "excerpt": "I&#39;ve <span class=\"highlight\">freeradius</span> server which uses MySQL to store the data.\n\nfollowing is my database \n\nradcheck table\n+-----+----------+--------------------+----+--------------+\n| id  | username | attribute &hellip; ",
+      "title": "Use two Auth-Type PAP and EAP with FreeRadius"
+    },
+    {
+      "tags": [
+        "radius",
+        "freeradius",
+        "radius-protocol"
       ],
       "equivalent_tag_search": [
         "freeradius"
@@ -225,66 +216,85 @@
       "is_accepted": false,
       "has_accepted_answer": true,
       "answer_count": 1,
-      "is_answered": false,
-      "question_id": 45371531,
+      "is_answered": true,
+      "question_id": 45673645,
       "item_type": "question",
       "score": 0,
-      "last_activity_date": 1501510623,
-      "creation_date": 1501238968,
-      "body": "I was trying to create a python authentication for freeradius 3.0.8. I followed this example. But when I&#39;m trying to start freeradius in debug mode using command  It shows following error.\n\n\n\nI looked /usr/local/lib/ folder and found that rlm_python module is not there. How can I add that module? My python module inside  is as follows. \n\n\n\nAppreciate any help. \n",
-      "excerpt": "I was trying to create a python authentication for <span class=\"highlight\">freeradius</span> 3.0.8. I followed this example. But when I&#39;m trying to start <span class=\"highlight\">freeradius</span> in debug mode using command radiusd -X It shows following error &hellip; ",
-      "title": "Failed to link to module &#39;rlm_python&#39;: rlm_python.so"
+      "last_activity_date": 1502875526,
+      "creation_date": 1502710541,
+      "body": "I&#39;m developing a product that need to integrate with RADIUS server as an authentication method.\nWhen configuring the RADIUS server (IP Address, Port, Shared Secret) I would like to do a &quot;test&quot; in order to check that the configuration is valid - The server is available and it is indeed a RADIUS server, Shared secret is OK.\n\nI did some research on how to do it, \nMy options are:\n\n\nSend Access-Request message with fictional user name and password to the RADIUS server\nSend Status-Server message to the RADIUS server\n\n\nRFC 5997 introduces the use of Status-Server Packets in the RADIUS protocol.\nThis packet extension enabling clients to query the status of a RADIUS server.\nThe Status-Server is marked as experimental and as Informational RFC rather than as a Standards-Track RFC\n\nMy questions are:\n\n\nWhich are the most common \\ in use RADIUS server vendors ? MS NPS, FreeRADIUS, Other?\nAre these vendors supporting Status-Server request - Do they implementing this packet type ?\nIf i will use Access-Request, I will receive &quot;Access-Reject&quot; with a failure message in &quot;Reply-Message&quot; attribute. Can i understand the reason for the refusal from that text message? Is there any list of error codes\\messages that are part of the Standard ?\n\n\nThanks a lot,\n\nYossi Zrahia\n",
+      "excerpt": " are:\n\n\nWhich are the most common \\ in use RADIUS server vendors ? MS NPS, <span class=\"highlight\">FreeRADIUS</span>, Other?\nAre these vendors supporting Status-Server request - Do they implementing this packet type ?\nIf i will use &hellip; ",
+      "title": "Test RADIUS configuration method"
     },
     {
       "tags": [
-        "apache",
-        "ubuntu",
-        "ssl",
+        "radius",
         "freeradius",
-        "coovachilli"
+        "radius-protocol"
+      ],
+      "equivalent_tag_search": [
+        "freeradius"
+      ],
+      "question_score": 0,
+      "is_accepted": true,
+      "answer_id": 45709119,
+      "is_answered": false,
+      "question_id": 45673645,
+      "item_type": "answer",
+      "score": 2,
+      "last_activity_date": 1502875526,
+      "creation_date": 1502873613,
+      "body": "Ad 1) Exact (or even estimate) numbers are hard to come by, but you should expect to encounter FreeRADIUS, Microsoft NPS, Radiator and maybe Cisco ACS/ISE.  \n\nAd 2) FreeRADIUS, Radiator support it. Microsoft NPS and Cisco ACS/ISE do not. If your &quot;test&quot; is used once (upon configuring) I would use option 1 with the Access-Request. If you wish to periodically check the availability and configuration of a RADIUS server, I would suggest implementing both options and allow for configuration of the check as part of the RADIUS configuration:\n\n\n    IP: 1.2.3.4\n    Port: 1812\n    Shared Secret: U7tr453cur3\n    Servercheck: [x] Status-Server\n                 [ ] Access-Request\n\n\nAd 3) From RFC2865, section 5.18 (Reply-Message):\n\n&quot;[...] This Attribute indicates text which MAY be displayed to the user. [...] When used in an Access-Reject, it is the failure message.  It MAY indicate a dialog message to prompt the user before another Access-Request attempt. [...] The Text field is one or more octets, and its contents are implementation dependent.  It is intended to be human readable, and MUST NOT affect operation of the protocol.  It is recommended that the message contain UTF-8 encoded 10646 [7] characters.&quot;\n\nThere apparently are no standard messages specified; however if IP, Port or Shared Secret are configured incorrectly you should not get a response at all, because RFC 2865 specifies:\n\n&quot;A request from a client for which the RADIUS server does not have a shared secret MUST be silently discarded.&quot;\n",
+      "excerpt": "Ad 1) Exact (or even estimate) numbers are hard to come by, but you should expect to encounter <span class=\"highlight\">FreeRADIUS</span>, Microsoft NPS, Radiator and maybe Cisco ACS/ISE.  \n\nAd 2) <span class=\"highlight\">FreeRADIUS</span>, Radiator support &hellip; ",
+      "title": "Test RADIUS configuration method"
+    },
+    {
+      "tags": [
+        "freeradius"
       ],
       "equivalent_tag_search": [
         "freeradius"
       ],
       "question_score": 0,
       "is_accepted": false,
-      "answer_id": 45404670,
+      "has_accepted_answer": false,
+      "answer_count": 0,
       "is_answered": false,
-      "question_id": 45310619,
-      "item_type": "answer",
+      "question_id": 45686831,
+      "item_type": "question",
       "score": 0,
-      "last_activity_date": 1501448476,
-      "creation_date": 1501448476,
-      "body": "Probably you are trying to access HTTPS websites and coovachilli isn&#39;t configured to redirect TLS connections (note that would cause issues with bad certificates).\n\nTry some HTTP website like http://freeradius.org/.\n",
-      "excerpt": "Probably you are trying to access HTTPS websites and coovachilli isn&#39;t configured to redirect TLS connections (note that would cause issues with bad certificates).\n\nTry some HTTP website like http://f &hellip; ",
-      "title": "Coova-chilli not redirecting unauthenticated user to login page when searches a website until type the ip address manually"
+      "last_activity_date": 1502774089,
+      "creation_date": 1502774089,
+      "body": "I am using freeradius on Ubuntu 12.4 32bit. I can see log entries of success/failed login attempts in RADPOSTAUTH table. currently I can see &#39;ACCESS-REJECT&#39; &amp; &#39;ACCESS-ACCEPT&#39; in REPLY column. \nHow can I customize it for more meaningful messages like \n&#39;Incorrect Password&#39; or \n&#39;Account Expired&#39; or \n&#39;Account Disabled&#39; or \n&#39;Quota Reached&#39;.\n\nFreeradius RadPostAuth Table Showing Success/Failed Login Attempts \n",
+      "excerpt": "I am using <span class=\"highlight\">freeradius</span> on Ubuntu 12.4 32bit. I can see log entries of success/failed login attempts in RADPOSTAUTH table. currently I can see &#39;ACCESS-REJECT&#39; &amp; &#39;ACCESS-ACCEPT&#39; in REPLY column. \nHow &hellip;  can I customize it for more meaningful messages like \n&#39;Incorrect Password&#39; or \n&#39;Account Expired&#39; or \n&#39;Account Disabled&#39; or \n&#39;Quota Reached&#39;.\n\n<span class=\"highlight\">Freeradius</span> RadPostAuth Table Showing Success/Failed Login Attempts \n &hellip; ",
+      "title": "freeradius customzied message for &#39;radpostauth reply&#39; table"
     }
   ],
   "github": [
     {
-      "sha": "1ff47894c5292f6c6baf246ee299fae25e23c815",
+      "sha": "a98dba17416acba9a958ae7fcea981060c104930",
       "commit": {
         "author": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-08T08:29:12Z"
+          "date": "2017-08-22T07:54:46Z"
         },
         "committer": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-08T08:29:12Z"
+          "date": "2017-08-22T07:54:46Z"
         },
-        "message": "timer events are events, too",
+        "message": "we may yield / resume many layers deep in a fork() chain",
         "tree": {
-          "sha": "43636d993e1e9a76705d235ec26759abf92c326b",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/43636d993e1e9a76705d235ec26759abf92c326b"
+          "sha": "a0bdddf5afcd74d51361158b0176b80a3141c361",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/a0bdddf5afcd74d51361158b0176b80a3141c361"
         },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/1ff47894c5292f6c6baf246ee299fae25e23c815",
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/a98dba17416acba9a958ae7fcea981060c104930",
         "comment_count": 0
       },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1ff47894c5292f6c6baf246ee299fae25e23c815",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/1ff47894c5292f6c6baf246ee299fae25e23c815",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1ff47894c5292f6c6baf246ee299fae25e23c815/comments",
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/a98dba17416acba9a958ae7fcea981060c104930",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/a98dba17416acba9a958ae7fcea981060c104930",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/a98dba17416acba9a958ae7fcea981060c104930/comments",
       "author": {
         "login": "alandekok",
         "id": 17612,
@@ -325,36 +335,36 @@
       },
       "parents": [
         {
-          "sha": "facd33a59e7c16e0475edec53e407d991539c979",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/facd33a59e7c16e0475edec53e407d991539c979",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/facd33a59e7c16e0475edec53e407d991539c979"
+          "sha": "682a06ac8d5f9b696c1fb2266e1525913ccda722",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/682a06ac8d5f9b696c1fb2266e1525913ccda722",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/682a06ac8d5f9b696c1fb2266e1525913ccda722"
         }
       ]
     },
     {
-      "sha": "facd33a59e7c16e0475edec53e407d991539c979",
+      "sha": "682a06ac8d5f9b696c1fb2266e1525913ccda722",
       "commit": {
         "author": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-07T07:40:54Z"
+          "date": "2017-08-21T15:04:38Z"
         },
         "committer": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-07T07:42:43Z"
+          "date": "2017-08-21T15:06:32Z"
         },
-        "message": "update documentation",
+        "message": "finish off unlang_fork()\n\nadd resume / signal for fork, and glue it all together",
         "tree": {
-          "sha": "1d6615767cb156981fbdf1da16819a300dfeed86",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/1d6615767cb156981fbdf1da16819a300dfeed86"
+          "sha": "50bf24fe01828de25c1768add5b9bde04cb45b78",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/50bf24fe01828de25c1768add5b9bde04cb45b78"
         },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/facd33a59e7c16e0475edec53e407d991539c979",
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/682a06ac8d5f9b696c1fb2266e1525913ccda722",
         "comment_count": 0
       },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/facd33a59e7c16e0475edec53e407d991539c979",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/facd33a59e7c16e0475edec53e407d991539c979",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/facd33a59e7c16e0475edec53e407d991539c979/comments",
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/682a06ac8d5f9b696c1fb2266e1525913ccda722",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/682a06ac8d5f9b696c1fb2266e1525913ccda722",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/682a06ac8d5f9b696c1fb2266e1525913ccda722/comments",
       "author": {
         "login": "alandekok",
         "id": 17612,
@@ -395,36 +405,36 @@
       },
       "parents": [
         {
-          "sha": "229ee38e46468ad124c0ad60c23951f4293b0fd8",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/229ee38e46468ad124c0ad60c23951f4293b0fd8",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/229ee38e46468ad124c0ad60c23951f4293b0fd8"
+          "sha": "32c8806196bb9aaed3af339c0e2c5e005e235bed",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/32c8806196bb9aaed3af339c0e2c5e005e235bed",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/32c8806196bb9aaed3af339c0e2c5e005e235bed"
         }
       ]
     },
     {
-      "sha": "229ee38e46468ad124c0ad60c23951f4293b0fd8",
+      "sha": "32c8806196bb9aaed3af339c0e2c5e005e235bed",
       "commit": {
         "author": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T16:27:47Z"
+          "date": "2017-08-21T15:03:09Z"
         },
         "committer": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T16:27:47Z"
+          "date": "2017-08-21T15:03:09Z"
         },
-        "message": "check for possible proxy loops",
+        "message": "fixes for call module vs fork",
         "tree": {
-          "sha": "a35df13d2f27521c6fda48799e10150c14f2837d",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/a35df13d2f27521c6fda48799e10150c14f2837d"
+          "sha": "8a549e360b7ec65b5159529096a667e8c28b0f64",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/8a549e360b7ec65b5159529096a667e8c28b0f64"
         },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/229ee38e46468ad124c0ad60c23951f4293b0fd8",
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/32c8806196bb9aaed3af339c0e2c5e005e235bed",
         "comment_count": 0
       },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/229ee38e46468ad124c0ad60c23951f4293b0fd8",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/229ee38e46468ad124c0ad60c23951f4293b0fd8",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/229ee38e46468ad124c0ad60c23951f4293b0fd8/comments",
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/32c8806196bb9aaed3af339c0e2c5e005e235bed",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/32c8806196bb9aaed3af339c0e2c5e005e235bed",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/32c8806196bb9aaed3af339c0e2c5e005e235bed/comments",
       "author": {
         "login": "alandekok",
         "id": 17612,
@@ -465,36 +475,36 @@
       },
       "parents": [
         {
-          "sha": "ff2daecbd1722d81325a5eb0d94f55be9760c283",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/ff2daecbd1722d81325a5eb0d94f55be9760c283",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/ff2daecbd1722d81325a5eb0d94f55be9760c283"
+          "sha": "442213d88e88044558786209fdfc5b278a05198e",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/442213d88e88044558786209fdfc5b278a05198e",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/442213d88e88044558786209fdfc5b278a05198e"
         }
       ]
     },
     {
-      "sha": "ff2daecbd1722d81325a5eb0d94f55be9760c283",
+      "sha": "442213d88e88044558786209fdfc5b278a05198e",
       "commit": {
         "author": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T16:26:36Z"
+          "date": "2017-08-21T15:02:18Z"
         },
         "committer": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T16:26:36Z"
+          "date": "2017-08-21T15:02:18Z"
         },
-        "message": "clean up debug messages",
+        "message": "resume the parent, not the child after fork()",
         "tree": {
-          "sha": "694b1167b45cf377641cb55d31884929b20c2570",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/694b1167b45cf377641cb55d31884929b20c2570"
+          "sha": "14159417f1b2f2c65e6d999cc3ca8052a64667fb",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/14159417f1b2f2c65e6d999cc3ca8052a64667fb"
         },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/ff2daecbd1722d81325a5eb0d94f55be9760c283",
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/442213d88e88044558786209fdfc5b278a05198e",
         "comment_count": 0
       },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/ff2daecbd1722d81325a5eb0d94f55be9760c283",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/ff2daecbd1722d81325a5eb0d94f55be9760c283",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/ff2daecbd1722d81325a5eb0d94f55be9760c283/comments",
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/442213d88e88044558786209fdfc5b278a05198e",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/442213d88e88044558786209fdfc5b278a05198e",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/442213d88e88044558786209fdfc5b278a05198e/comments",
       "author": {
         "login": "alandekok",
         "id": 17612,
@@ -535,36 +545,36 @@
       },
       "parents": [
         {
-          "sha": "503fc4f5e3cb6416e626117eb1180f598abf9bf2",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/503fc4f5e3cb6416e626117eb1180f598abf9bf2",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/503fc4f5e3cb6416e626117eb1180f598abf9bf2"
+          "sha": "0eda0ad601df6a678de275ac18ec26aff0085cea",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/0eda0ad601df6a678de275ac18ec26aff0085cea",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/0eda0ad601df6a678de275ac18ec26aff0085cea"
         }
       ]
     },
     {
-      "sha": "503fc4f5e3cb6416e626117eb1180f598abf9bf2",
+      "sha": "0eda0ad601df6a678de275ac18ec26aff0085cea",
       "commit": {
         "author": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T16:20:10Z"
+          "date": "2017-08-21T14:58:30Z"
         },
         "committer": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T16:20:10Z"
+          "date": "2017-08-21T14:58:30Z"
         },
-        "message": "move proxy_state random number to main module",
+        "message": "move assertions around\n\nand assert that the worker is always running the parent request",
         "tree": {
-          "sha": "dbf63c391fcb4a4de3421b9cc08e9c6828b718ca",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/dbf63c391fcb4a4de3421b9cc08e9c6828b718ca"
+          "sha": "b31388153d9c7f120e73fb21fa882cf6d4486e75",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/b31388153d9c7f120e73fb21fa882cf6d4486e75"
         },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/503fc4f5e3cb6416e626117eb1180f598abf9bf2",
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/0eda0ad601df6a678de275ac18ec26aff0085cea",
         "comment_count": 0
       },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/503fc4f5e3cb6416e626117eb1180f598abf9bf2",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/503fc4f5e3cb6416e626117eb1180f598abf9bf2",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/503fc4f5e3cb6416e626117eb1180f598abf9bf2/comments",
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/0eda0ad601df6a678de275ac18ec26aff0085cea",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/0eda0ad601df6a678de275ac18ec26aff0085cea",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/0eda0ad601df6a678de275ac18ec26aff0085cea/comments",
       "author": {
         "login": "alandekok",
         "id": 17612,
@@ -605,36 +615,36 @@
       },
       "parents": [
         {
-          "sha": "04323aa21045126bbe6fba2c4cfed2d126c70db7",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/04323aa21045126bbe6fba2c4cfed2d126c70db7",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/04323aa21045126bbe6fba2c4cfed2d126c70db7"
+          "sha": "b75689c9f5fb3abb02d03aca7cf88312f1a5f676",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/b75689c9f5fb3abb02d03aca7cf88312f1a5f676",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/b75689c9f5fb3abb02d03aca7cf88312f1a5f676"
         }
       ]
     },
     {
-      "sha": "04323aa21045126bbe6fba2c4cfed2d126c70db7",
+      "sha": "b75689c9f5fb3abb02d03aca7cf88312f1a5f676",
       "commit": {
         "author": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T16:16:25Z"
+          "date": "2017-08-21T11:18:48Z"
         },
         "committer": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T16:18:30Z"
+          "date": "2017-08-21T11:30:19Z"
         },
-        "message": "print out Proxy-State and Message-Authenticator when proxying",
+        "message": "create and use function to allocate unlang_resume_t",
         "tree": {
-          "sha": "ef1c48e56de0901e783da1a4c7e700042cb54dc5",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/ef1c48e56de0901e783da1a4c7e700042cb54dc5"
+          "sha": "0ab47eb49661b6c3d88082abcdb223900d2459bb",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/0ab47eb49661b6c3d88082abcdb223900d2459bb"
         },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/04323aa21045126bbe6fba2c4cfed2d126c70db7",
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/b75689c9f5fb3abb02d03aca7cf88312f1a5f676",
         "comment_count": 0
       },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/04323aa21045126bbe6fba2c4cfed2d126c70db7",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/04323aa21045126bbe6fba2c4cfed2d126c70db7",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/04323aa21045126bbe6fba2c4cfed2d126c70db7/comments",
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/b75689c9f5fb3abb02d03aca7cf88312f1a5f676",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/b75689c9f5fb3abb02d03aca7cf88312f1a5f676",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/b75689c9f5fb3abb02d03aca7cf88312f1a5f676/comments",
       "author": {
         "login": "alandekok",
         "id": 17612,
@@ -675,36 +685,36 @@
       },
       "parents": [
         {
-          "sha": "c45083e6222bf5f986d35d44c6eaee33c415d07c",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/c45083e6222bf5f986d35d44c6eaee33c415d07c",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/c45083e6222bf5f986d35d44c6eaee33c415d07c"
+          "sha": "c7ee7e4805ab0fc76af18601b8f83c798a0997ad",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/c7ee7e4805ab0fc76af18601b8f83c798a0997ad",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/c7ee7e4805ab0fc76af18601b8f83c798a0997ad"
         }
       ]
     },
     {
-      "sha": "c45083e6222bf5f986d35d44c6eaee33c415d07c",
+      "sha": "c7ee7e4805ab0fc76af18601b8f83c798a0997ad",
       "commit": {
         "author": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T15:49:50Z"
+          "date": "2017-08-21T11:10:06Z"
         },
         "committer": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T15:49:50Z"
+          "date": "2017-08-21T11:10:06Z"
         },
-        "message": "update notes on todo's",
+        "message": "it's now unlang_resume_t, to match the new names",
         "tree": {
-          "sha": "bcaff898d56db08e7012e16e39b3d9908fe109c6",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/bcaff898d56db08e7012e16e39b3d9908fe109c6"
+          "sha": "c9a9ccdc58a713700a9274197f0026cc476ba76e",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/c9a9ccdc58a713700a9274197f0026cc476ba76e"
         },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/c45083e6222bf5f986d35d44c6eaee33c415d07c",
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/c7ee7e4805ab0fc76af18601b8f83c798a0997ad",
         "comment_count": 0
       },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/c45083e6222bf5f986d35d44c6eaee33c415d07c",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/c45083e6222bf5f986d35d44c6eaee33c415d07c",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/c45083e6222bf5f986d35d44c6eaee33c415d07c/comments",
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/c7ee7e4805ab0fc76af18601b8f83c798a0997ad",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/c7ee7e4805ab0fc76af18601b8f83c798a0997ad",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/c7ee7e4805ab0fc76af18601b8f83c798a0997ad/comments",
       "author": {
         "login": "alandekok",
         "id": 17612,
@@ -745,36 +755,36 @@
       },
       "parents": [
         {
-          "sha": "7b6a94db6fdd1a21b7bc8b1de345e3e91a3b98d0",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/7b6a94db6fdd1a21b7bc8b1de345e3e91a3b98d0",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/7b6a94db6fdd1a21b7bc8b1de345e3e91a3b98d0"
+          "sha": "ecafd6fbfe2f9fb0200f993ccb3cbdf8c7e54a7e",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/ecafd6fbfe2f9fb0200f993ccb3cbdf8c7e54a7e",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/ecafd6fbfe2f9fb0200f993ccb3cbdf8c7e54a7e"
         }
       ]
     },
     {
-      "sha": "7b6a94db6fdd1a21b7bc8b1de345e3e91a3b98d0",
+      "sha": "ecafd6fbfe2f9fb0200f993ccb3cbdf8c7e54a7e",
       "commit": {
         "author": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T15:45:48Z"
+          "date": "2017-08-21T11:04:08Z"
         },
         "committer": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T15:48:26Z"
+          "date": "2017-08-21T11:04:08Z"
         },
-        "message": "print reply packet VPs, and add to request VPs",
+        "message": "rename module_resume to just resume",
         "tree": {
-          "sha": "a51575eaa5f6d1d86c45d0624f2871384d9cf18c",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/a51575eaa5f6d1d86c45d0624f2871384d9cf18c"
+          "sha": "03fb0cd7f71bbadace70af2eee295093c55f7f55",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/03fb0cd7f71bbadace70af2eee295093c55f7f55"
         },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/7b6a94db6fdd1a21b7bc8b1de345e3e91a3b98d0",
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/ecafd6fbfe2f9fb0200f993ccb3cbdf8c7e54a7e",
         "comment_count": 0
       },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/7b6a94db6fdd1a21b7bc8b1de345e3e91a3b98d0",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/7b6a94db6fdd1a21b7bc8b1de345e3e91a3b98d0",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/7b6a94db6fdd1a21b7bc8b1de345e3e91a3b98d0/comments",
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/ecafd6fbfe2f9fb0200f993ccb3cbdf8c7e54a7e",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/ecafd6fbfe2f9fb0200f993ccb3cbdf8c7e54a7e",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/ecafd6fbfe2f9fb0200f993ccb3cbdf8c7e54a7e/comments",
       "author": {
         "login": "alandekok",
         "id": 17612,
@@ -815,36 +825,36 @@
       },
       "parents": [
         {
-          "sha": "5e7f19ff1686bc4d784c039b01c1b44a5a064124",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/5e7f19ff1686bc4d784c039b01c1b44a5a064124",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/5e7f19ff1686bc4d784c039b01c1b44a5a064124"
+          "sha": "14ede34020b497dfe4591f0e240e6abef50c28af",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/14ede34020b497dfe4591f0e240e6abef50c28af",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/14ede34020b497dfe4591f0e240e6abef50c28af"
         }
       ]
     },
     {
-      "sha": "5e7f19ff1686bc4d784c039b01c1b44a5a064124",
+      "sha": "14ede34020b497dfe4591f0e240e6abef50c28af",
       "commit": {
         "author": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T15:42:29Z"
+          "date": "2017-08-21T11:00:28Z"
         },
         "committer": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T15:42:29Z"
+          "date": "2017-08-21T11:00:28Z"
         },
-        "message": "create and use Session-State-User-Name\n\nso that we can cache the User-Name in Session-State without\naffecting the User-Name in the reply.\n\nThe default \"send Access-Accept\" policy adds all of the session-state\nattributes to the reply.  Which in this case would mean User-Name...\nbut we don't want that.  i.e. we don't want our internal policies\nto pollute whatever the user wants to send back",
+        "message": "make UNANG_TYPE_MODULE_RESUME a little more flexible\n\nin preparation for allowing fork to yield and resume",
         "tree": {
-          "sha": "2a67e4fe93e26c2a9c914d0726862e2278a269aa",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/2a67e4fe93e26c2a9c914d0726862e2278a269aa"
+          "sha": "64fae844e60e5c0c9d6c56a27ed907eed2db9a75",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/64fae844e60e5c0c9d6c56a27ed907eed2db9a75"
         },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/5e7f19ff1686bc4d784c039b01c1b44a5a064124",
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/14ede34020b497dfe4591f0e240e6abef50c28af",
         "comment_count": 0
       },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/5e7f19ff1686bc4d784c039b01c1b44a5a064124",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/5e7f19ff1686bc4d784c039b01c1b44a5a064124",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/5e7f19ff1686bc4d784c039b01c1b44a5a064124/comments",
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/14ede34020b497dfe4591f0e240e6abef50c28af",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/14ede34020b497dfe4591f0e240e6abef50c28af",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/14ede34020b497dfe4591f0e240e6abef50c28af/comments",
       "author": {
         "login": "alandekok",
         "id": 17612,
@@ -885,36 +895,36 @@
       },
       "parents": [
         {
-          "sha": "4d850bf16f3a7e910ea85168304e13f767706cc6",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/4d850bf16f3a7e910ea85168304e13f767706cc6",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/4d850bf16f3a7e910ea85168304e13f767706cc6"
+          "sha": "18329a8a16f1e9d2c759d6562150aa32e8f97ee5",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/18329a8a16f1e9d2c759d6562150aa32e8f97ee5",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/18329a8a16f1e9d2c759d6562150aa32e8f97ee5"
         }
       ]
     },
     {
-      "sha": "4d850bf16f3a7e910ea85168304e13f767706cc6",
+      "sha": "18329a8a16f1e9d2c759d6562150aa32e8f97ee5",
       "commit": {
         "author": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T15:28:08Z"
+          "date": "2017-08-21T07:15:00Z"
         },
         "committer": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-08-06T15:28:08Z"
+          "date": "2017-08-21T07:15:00Z"
         },
-        "message": "add base fr_radius_decode()",
+        "message": "pass thread instance data, not thread structure",
         "tree": {
-          "sha": "e70425ec5a9b94a20008dd996aa274f8056797b9",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/e70425ec5a9b94a20008dd996aa274f8056797b9"
+          "sha": "2c5b98bb5575e49966e8c2e33b4ee9db88465a8f",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/2c5b98bb5575e49966e8c2e33b4ee9db88465a8f"
         },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/4d850bf16f3a7e910ea85168304e13f767706cc6",
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/18329a8a16f1e9d2c759d6562150aa32e8f97ee5",
         "comment_count": 0
       },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/4d850bf16f3a7e910ea85168304e13f767706cc6",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/4d850bf16f3a7e910ea85168304e13f767706cc6",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/4d850bf16f3a7e910ea85168304e13f767706cc6/comments",
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/18329a8a16f1e9d2c759d6562150aa32e8f97ee5",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/18329a8a16f1e9d2c759d6562150aa32e8f97ee5",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/18329a8a16f1e9d2c759d6562150aa32e8f97ee5/comments",
       "author": {
         "login": "alandekok",
         "id": 17612,
@@ -955,9 +965,9 @@
       },
       "parents": [
         {
-          "sha": "214fcd7166aae8161510ad3e58d6907711185e17",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/214fcd7166aae8161510ad3e58d6907711185e17",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/214fcd7166aae8161510ad3e58d6907711185e17"
+          "sha": "2bb7121be694f25b443105c72e6d52622b39749c",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/2bb7121be694f25b443105c72e6d52622b39749c",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/2bb7121be694f25b443105c72e6d52622b39749c"
         }
       ]
     }
