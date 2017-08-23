@@ -121,7 +121,7 @@ possible exploit.  Six (6) issues are only for DHCP, leaving 4 for RADIUS.</p>
 
 <p>
 <a href="#FR-GV-201">FR-GV-201 (v2,v3) Read / write overflow in make_secret()</a><br>
-<a href="#FR-GV-202">FR-GV-202 (v2) Write overflow in rad_coalesce()</a><br>
+<a href="#FR-GV-202">FR-GV-202 (v2) Read overflow in rad_coalesce()</a><br>
 <a href="#FR-GV-203">FR-GV-203 (v2) DHCP - Memory leak in decode_tlv()</a><br>
 <a href="#FR-GV-204">FR-GV-204 (v2) DHCP - Memory leak in fr_dhcp_decode()</a><br>
 <a href="#FR-GV-205">FR-GV-205 (v2) DHCP - Buffer over-read in fr_dhcp_decode_options()</a><br>
@@ -322,22 +322,27 @@ execution is possible.  A denial of service is possible.
 
 <hr />
 <a name="FR-GV-202"> </a>
-<h2>FR-GV-202 (v2) Write overflow in rad_coalesce</h2>
+<h2>FR-GV-202 (v2) Read overflow in rad_coalesce</h2>
 
 <p><b>Issue: </b> The <code>rad_coalesce()</code> function checks for
 WiMAX attributes which are too small, but it does not check for WiMAX
 attributes which are too large.  As a result, the server can be
-convinced to read past the end of an attribute, and to write past the
-end of memory allocated via <code>malloc()</code>.
+convinced to read past the end of an attribute, which may overflow the
+heap, leading to a crash.
 </p>
 
 <p>
-The data being copied is taken from the attributes following the
-malformed WiMAX attribute, and is under the control of the attacker.
-While the packet has to be a "well formed" RADIUS packet, that
-requirement limits only the two octets which immediately follow the
-malformed WiMAX attribute.  After that, there are up to 245 octets
-copied which are the complete control of the attacker.
+If the heap does not overflow, the only side-effect is the creation of
+a WiMAX attribute with "too much" data.  The extra data is copied from
+the memory which is past the end of the attribute.  That data is under
+control of an attacker, as with all other data in the forged packet.
+There do not appear to be any side-effects of using this bad data.
+</p>
+
+<p>
+<em>Earlier versions of this page suggested there was a write overflow
+vulnerability.  Additional investigation showed this to be wrong.
+</em>
 </p>
 
 <p>
@@ -369,7 +374,7 @@ to checking for attributes which are "too short".  Fixed in <a href="https://git
 </p>
 
 <p><b>CVE: </b> This issue has been assigned <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-10979">CVE-2017-10979</a>.  Remote code
-execution is possible.  A denial of service is possible.
+execution is not possible.  A denial of service is possible.
 </p>
 
 <!-- --------------------------------------------------------------------- -->
