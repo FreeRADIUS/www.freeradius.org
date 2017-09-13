@@ -9,7 +9,7 @@
 #
 all: _wwwdata/twitter.json
 	@$(MAKE) -C radiusd/man
-	@jekyll build
+	@TZ=GMT jekyll build
 	@rm -r _site/api/info/srv
 	@api/info/build/git-to-json.pl /srv/freeradius-server _site/api/info/srv
 
