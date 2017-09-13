@@ -7,11 +7,15 @@
 #  Build the static site.  The main web server publishes the _site
 #  directory, and not the jekyll source.
 #
-all:
+all: _wwwdata/twitter.json
 	@$(MAKE) -C radiusd/man
 	@jekyll build
 	@rm -r _site/api/info/srv
 	@api/info/build/git-to-json.pl /srv/freeradius-server _site/api/info/srv
+
+.PHONY: _wwwdata/twitter.json
+_wwwdata/twitter.json:
+	@[ -e $@ ] || git submodule init && git submodule update
 
 #
 #  Serve it from a local host.  This should not be the default.
