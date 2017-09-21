@@ -1,13 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# To get the required box image, you can do
+# To get the required box image and install required vagrant
+# plugins, do:
 #
-#    vagrant box add debian/stretch64 --provider libvirt
-#
-# that is, assuming the libvirt provider is being used. Otherwise
-# just miss off --provider libvirt from the command and it'll pull
-# and use the virtualbox version instead.
+#    vagrant box add debian/stretch64
+#    vagrant plugin install vagrant-vbguest
 #
 # To build the virtual machine do
 #
@@ -65,6 +63,8 @@ Vagrant.configure("2") do |config|
       config.cache.scope = :box
     end
 
+    frorg.vm.network "private_network", type: "dhcp"
+
     # For nginx
     #
     frorg.vm.network "forwarded_port", guest: 80, host: 80, host_ip: "127.0.0.1", guest_ip: "127.0.0.1"
@@ -75,17 +75,18 @@ Vagrant.configure("2") do |config|
 
     # Copy the infrastructure git repo in for reference only.
     #
+    frorg.vm.synced_folder ".", "/vagrant", type: "nfs"
     frorg.vm.synced_folder "../infrastructure", "/srv/infrastructure", type: "rsync"
     frorg.vm.synced_folder "../freeradius-server", "/srv/freeradius-server", type: "rsync"
 
     # Set memory available (though not tested in virtualbox yet)
     #
-    frorg.vm.provider :libvirt do |vm|
-      vm.memory = 1024
-    end
-
     frorg.vm.provider :virtualbox do |vb|
       vb.memory = 1024
+    end
+
+    frorg.vm.provider :libvirt do |vm|
+      vm.memory = 1024
     end
 
     # Sort out locales
