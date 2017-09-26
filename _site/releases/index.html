@@ -122,6 +122,11 @@
     <div class="wrapper base_padding_v" ng-controller="GetBranches">
     <div class="alert-box">FreeRADIUS is developed under the GNU General Public License, version 2 (GPLv2), and is free for download and use. Commercial support is available from <a href="http://www.networkradius.com/">NetworkRADIUS</a>.</div>
     <h3 class="section-title base_margin_b">Download Latest Versions</h3>
+
+   <p>
+	All releases are signed with the PGP key <a ng-if="dl.sig_url" ng-href="/pgp/packages@freeradius.org" class="h5 spaced-link">packages@freeradius.org</a>.  Older releases are signed with the PGP key <a ng-if="dl.sig_url" ng-href="/pgp/aland@freeradius.org" class="h5 spaced-link">aland@freeradius.org</a>.
+   </p>
+
     <div ng-repeat="branch in branches" ng-cloak>
         <div ng-if="branch.status != 'obsolete'">
             <div class="link block base_margin_b" ng-class="{'accent-blue': branch.status == 'stable', 'accent-grey': branch.status == 'end of life'}">
