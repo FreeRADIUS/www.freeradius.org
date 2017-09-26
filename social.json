@@ -1,6 +1,10 @@
 {
   "twitter": [
     {
+      "created_at": "Thu Sep 21 13:28:53 +0000 2017",
+      "text": "Which is what inspired https://t.co/lhkQ0mmMp8. Eduroam doesn't need to be complicated! https://t.co/hPySCFMPIs"
+    },
+    {
       "created_at": "Tue Sep 19 15:48:11 +0000 2017",
       "text": "Eduroam guide is now available on the WIki.  https://t.co/pBS6q5SgSu"
     },
@@ -35,13 +39,34 @@
     {
       "created_at": "Sat Dec 03 20:55:44 +0000 2016",
       "text": "v4 update.  Tested master / worker thread exchanging fake packets.  1M req/reply per second per thread.  The new network IO is scalable."
-    },
-    {
-      "created_at": "Fri Nov 04 23:02:33 +0000 2016",
-      "text": "Preliminary support for LuaJit via rlm_lua in v4.0.x.  Should be MUCH faster than other interpreted languages."
     }
   ],
   "stackoverflow": [
+    {
+      "tags": [
+        "ubuntu",
+        "ssl",
+        "openwrt",
+        "radius",
+        "freeradius"
+      ],
+      "equivalent_tag_search": [
+        "freeradius"
+      ],
+      "question_score": 0,
+      "is_accepted": false,
+      "has_accepted_answer": false,
+      "answer_count": 0,
+      "is_answered": false,
+      "question_id": 45976176,
+      "item_type": "question",
+      "score": 0,
+      "last_activity_date": 1506346809,
+      "creation_date": 1504166163,
+      "body": "I used this instruction to setup a radius Server on an openwrt router. It worked quite well having client and server certificates signed by the CA. But using an intermediate Certificate in between, authentication does not work because &quot;Unkown issuer CA&quot;. Of course I configured client and server to send the Intermediate Certificate (and they did as the wireshark output showed), but the verification failed anyway. So in short:\n\n\n\nDo you have any Idea how to get this working or how whether Ubuntu/Freeradius can&#39;t deal with ICAs here.\n",
+      "excerpt": " verification failed anyway. So in short:\n\nCA --&gt; S/C           | Works\nCA --&gt; ICA --&gt; S/C   | Nope\n\n\nDo you have any Idea how to get this working or how whether Ubuntu/<span class=\"highlight\">Freeradius</span> can&#39;t deal with ICAs here.\n &hellip; ",
+      "title": "Freeradius eap-tls certificate chain"
+    },
     {
       "tags": [
         "freeradius"
@@ -97,15 +122,16 @@
       ],
       "question_score": 1,
       "is_accepted": false,
-      "answer_id": 46308090,
-      "is_answered": false,
+      "has_accepted_answer": false,
+      "answer_count": 4,
+      "is_answered": true,
       "question_id": 45812374,
-      "item_type": "answer",
-      "score": 0,
+      "item_type": "question",
+      "score": 1,
       "last_activity_date": 1505850129,
-      "creation_date": 1505848109,
-      "body": "You are correct to use . But you have to use the correct package-names. The name of the php-dba package on FreeBSD today depends on the PHP-version you&#39;d like:\n\n\n\n\n\n\n\nFor the pear packages you listed, the package-names are  and  respectively. Both are built using PHP-5.6 by default, however, so, if you want to use the versions pre-built for you, you&#39;ll need to use PHP-5.6 (and ).\n\nBut it seems, you&#39;ve installed all of the relevant packages already -- and your problem is with a particular application (daloradus?). Thus, your question is neither about FreeBSD nor installing packages on same, and you should edit its title and tags to match.\n",
-      "excerpt": "You are correct to use pkg. But you have to use the correct package-names. The name of the php-dba package on FreeBSD today depends on the PHP-version you&#39;d like:\n\n\nphp56-dba\nphp70-dba\nphp71-dba\n\n\nFor &hellip; ",
+      "creation_date": 1503389799,
+      "body": "I am trying to get daloradius https://github.com/lirantal/daloradius to work in FreeBSD with php 5.6. When I try to login, I get this error:\n\nFatal error: Class &#39;DB&#39; not found in /.../library/opendb.php on line 86\n\nTried the following but didn&#39;t work:\n\n\n\nNow on my linux box, I got this error initially but when I ran the following it worked:\n\n\n\nIn FreeBSD this doesn&#39;t work. Can anyone tell me the equivalent of this to FreeBSD? Or has anyone been able to get daloRadius to work in FreeBSD? Thank you so much.\n\nPS I also tried pointing the include code to the absolute location of the DB.php (/usr/....../pear/DB.php) and it didn&#39;t work.\n",
+      "excerpt": "I am trying to get daloradius https://github.com/lirantal/daloradius to work in FreeBSD with php 5.6. When I try to login, I get this error:\n\nFatal error: Class &#39;DB&#39; not found in /.../library/opendb.p &hellip; ",
       "title": "apt-get install php-db FreeBSD equivalent"
     },
     {
@@ -120,16 +146,15 @@
       ],
       "question_score": 1,
       "is_accepted": false,
-      "has_accepted_answer": false,
-      "answer_count": 4,
-      "is_answered": true,
+      "answer_id": 46308090,
+      "is_answered": false,
       "question_id": 45812374,
-      "item_type": "question",
-      "score": 1,
+      "item_type": "answer",
+      "score": 0,
       "last_activity_date": 1505850129,
-      "creation_date": 1503389799,
-      "body": "I am trying to get daloradius https://github.com/lirantal/daloradius to work in FreeBSD with php 5.6. When I try to login, I get this error:\n\nFatal error: Class &#39;DB&#39; not found in /.../library/opendb.php on line 86\n\nTried the following but didn&#39;t work:\n\n\n\nNow on my linux box, I got this error initially but when I ran the following it worked:\n\n\n\nIn FreeBSD this doesn&#39;t work. Can anyone tell me the equivalent of this to FreeBSD? Or has anyone been able to get daloRadius to work in FreeBSD? Thank you so much.\n\nPS I also tried pointing the include code to the absolute location of the DB.php (/usr/....../pear/DB.php) and it didn&#39;t work.\n",
-      "excerpt": "I am trying to get daloradius https://github.com/lirantal/daloradius to work in FreeBSD with php 5.6. When I try to login, I get this error:\n\nFatal error: Class &#39;DB&#39; not found in /.../library/opendb.p &hellip; ",
+      "creation_date": 1505848109,
+      "body": "You are correct to use . But you have to use the correct package-names. The name of the php-dba package on FreeBSD today depends on the PHP-version you&#39;d like:\n\n\n\n\n\n\n\nFor the pear packages you listed, the package-names are  and  respectively. Both are built using PHP-5.6 by default, however, so, if you want to use the versions pre-built for you, you&#39;ll need to use PHP-5.6 (and ).\n\nBut it seems, you&#39;ve installed all of the relevant packages already -- and your problem is with a particular application (daloradus?). Thus, your question is neither about FreeBSD nor installing packages on same, and you should edit its title and tags to match.\n",
+      "excerpt": "You are correct to use pkg. But you have to use the correct package-names. The name of the php-dba package on FreeBSD today depends on the PHP-version you&#39;d like:\n\n\nphp56-dba\nphp70-dba\nphp71-dba\n\n\nFor &hellip; ",
       "title": "apt-get install php-db FreeBSD equivalent"
     },
     {
@@ -211,27 +236,6 @@
       ],
       "question_score": 1,
       "is_accepted": false,
-      "has_accepted_answer": false,
-      "answer_count": 2,
-      "is_answered": false,
-      "question_id": 45980150,
-      "item_type": "question",
-      "score": 1,
-      "last_activity_date": 1505831558,
-      "creation_date": 1504178088,
-      "body": "My  server is supposed to deny users access which have exceeded their usage limit, but the server accepts them, while the return message that users have exceeded their limit, is being set anyway.\n\nDebug log:\n\n\n\nIt appears that the usage limit is being checked correctly, but somehow the return is set to accept?\n\n\n\nThe configuration of the specific part in sites-enabled/default is this:\n\n\n\nI&#39;m running freeradius: FreeRADIUS Version 2.2.8 on Ubuntu 16.04 LTS\n\nAny ideas what may cause the problem ?\n",
-      "excerpt": "My <span class=\"highlight\">Freeradius</span> server is supposed to deny users access which have exceeded their usage limit, but the server accepts them, while the return message that users have exceeded their limit, is being set &hellip; &quot;\n    NAS-Identifier = &quot;ROUTER&quot;\n    NAS-IP-Address = 10.0.0.114\n# Executing section authorize from file /etc/<span class=\"highlight\">freeradius</span>/sites-enabled/default\n+group authorize {\n++[preprocess] = ok\n[chap] Setting &#39;Auth &hellip; ",
-      "title": "Freeradius server does not reject user"
-    },
-    {
-      "tags": [
-        "freeradius"
-      ],
-      "equivalent_tag_search": [
-        "freeradius"
-      ],
-      "question_score": 1,
-      "is_accepted": false,
       "answer_id": 46303172,
       "is_answered": false,
       "question_id": 45980150,
@@ -245,268 +249,51 @@
     },
     {
       "tags": [
-        "freeradius",
-        "google-authenticator",
-        "captiveportal"
+        "freeradius"
       ],
       "equivalent_tag_search": [
         "freeradius"
       ],
-      "question_score": 0,
+      "question_score": 1,
       "is_accepted": false,
-      "has_accepted_answer": true,
-      "answer_count": 1,
+      "has_accepted_answer": false,
+      "answer_count": 2,
       "is_answered": false,
-      "question_id": 46176625,
+      "question_id": 45980150,
       "item_type": "question",
-      "score": 0,
-      "last_activity_date": 1505830060,
-      "creation_date": 1505219969,
-      "body": "I have portal login page which is developed by PHP \nand there is in another side free radius server run into Ubuntu machine \nthe authentication occurred by MySQL database and every thing go fine \nwhen registered user trying to access the internet, he must insert username and password. after that this user will authenticate using a free radius server. \nnow I want users to be  able to log in using google apps where I can insert users there .\nI installed the google authenticator in ubuntu machine and it can generate QR code successfully ,\nbut how can I use it .\nin another word ,\nI have g suit account and domain where I can insert the users who can log in to my captive portal .\nhow can I do that and why I must use google authenticator because I don&#39;t know how can I using it in my system \nbecause google authenticator only generate QR code that means every body can log in to my portal and I don&#39;t want that \nI hope I explained my problem clearly \n",
-      "excerpt": "I have portal login page which is developed by PHP \nand there is in another side free radius server run into Ubuntu machine \nthe authentication occurred by MySQL database and every thing go fine \nwhen &hellip; ",
-      "title": "Captive portal login using google apps"
+      "score": 1,
+      "last_activity_date": 1505831558,
+      "creation_date": 1504178088,
+      "body": "My  server is supposed to deny users access which have exceeded their usage limit, but the server accepts them, while the return message that users have exceeded their limit, is being set anyway.\n\nDebug log:\n\n\n\nIt appears that the usage limit is being checked correctly, but somehow the return is set to accept?\n\n\n\nThe configuration of the specific part in sites-enabled/default is this:\n\n\n\nI&#39;m running freeradius: FreeRADIUS Version 2.2.8 on Ubuntu 16.04 LTS\n\nAny ideas what may cause the problem ?\n",
+      "excerpt": "My <span class=\"highlight\">Freeradius</span> server is supposed to deny users access which have exceeded their usage limit, but the server accepts them, while the return message that users have exceeded their limit, is being set &hellip; &quot;\n    NAS-Identifier = &quot;ROUTER&quot;\n    NAS-IP-Address = 10.0.0.114\n# Executing section authorize from file /etc/<span class=\"highlight\">freeradius</span>/sites-enabled/default\n+group authorize {\n++[preprocess] = ok\n[chap] Setting &#39;Auth &hellip; ",
+      "title": "Freeradius server does not reject user"
     }
   ],
   "github": [
     {
-      "sha": "2ca82ed4e2824e310c0627689b82b79cb65f5de2",
+      "sha": "e4b434086c9ff8af4b65e33bdcfbe9d724bbca8e",
       "commit": {
         "author": {
           "name": "Arran Cudbard-Bell",
           "email": "a.cudbardb@freeradius.org",
-          "date": "2017-09-20T03:07:47Z"
-        },
-        "committer": {
-          "name": "GitHub",
-          "email": "noreply@github.com",
-          "date": "2017-09-20T03:07:47Z"
-        },
-        "message": "Don't create empty stripped-user-domain attributes",
-        "tree": {
-          "sha": "8c1ec0439ae4200ba60dadd5ef9a56d5f3990175",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/8c1ec0439ae4200ba60dadd5ef9a56d5f3990175"
-        },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/2ca82ed4e2824e310c0627689b82b79cb65f5de2",
-        "comment_count": 0
-      },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/2ca82ed4e2824e310c0627689b82b79cb65f5de2",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/2ca82ed4e2824e310c0627689b82b79cb65f5de2",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/2ca82ed4e2824e310c0627689b82b79cb65f5de2/comments",
-      "author": {
-        "login": "arr2036",
-        "id": 791758,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/arr2036",
-        "html_url": "https://github.com/arr2036",
-        "followers_url": "https://api.github.com/users/arr2036/followers",
-        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
-        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
-        "organizations_url": "https://api.github.com/users/arr2036/orgs",
-        "repos_url": "https://api.github.com/users/arr2036/repos",
-        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/arr2036/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "committer": {
-        "login": "web-flow",
-        "id": 19864447,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/web-flow",
-        "html_url": "https://github.com/web-flow",
-        "followers_url": "https://api.github.com/users/web-flow/followers",
-        "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
-        "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
-        "organizations_url": "https://api.github.com/users/web-flow/orgs",
-        "repos_url": "https://api.github.com/users/web-flow/repos",
-        "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/web-flow/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "parents": [
-        {
-          "sha": "1c9a77359e8a4d26d615926cd06fced7bb719530",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1c9a77359e8a4d26d615926cd06fced7bb719530",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/1c9a77359e8a4d26d615926cd06fced7bb719530"
-        }
-      ]
-    },
-    {
-      "sha": "1c9a77359e8a4d26d615926cd06fced7bb719530",
-      "commit": {
-        "author": {
-          "name": "Arran Cudbard-Bell",
-          "email": "a.cudbardb@freeradius.org",
-          "date": "2017-09-19T11:06:24Z"
-        },
-        "committer": {
-          "name": "GitHub",
-          "email": "noreply@github.com",
-          "date": "2017-09-19T11:06:24Z"
-        },
-        "message": "Merge pull request #2075 from herwinw/rlm_perl_cleanup\n\nSmall cleanup in rlm_perl",
-        "tree": {
-          "sha": "ab587e1434b92ccc8e470fccf28f58a58209d72c",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/ab587e1434b92ccc8e470fccf28f58a58209d72c"
-        },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/1c9a77359e8a4d26d615926cd06fced7bb719530",
-        "comment_count": 0
-      },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1c9a77359e8a4d26d615926cd06fced7bb719530",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/1c9a77359e8a4d26d615926cd06fced7bb719530",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1c9a77359e8a4d26d615926cd06fced7bb719530/comments",
-      "author": {
-        "login": "arr2036",
-        "id": 791758,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/arr2036",
-        "html_url": "https://github.com/arr2036",
-        "followers_url": "https://api.github.com/users/arr2036/followers",
-        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
-        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
-        "organizations_url": "https://api.github.com/users/arr2036/orgs",
-        "repos_url": "https://api.github.com/users/arr2036/repos",
-        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/arr2036/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "committer": {
-        "login": "web-flow",
-        "id": 19864447,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/web-flow",
-        "html_url": "https://github.com/web-flow",
-        "followers_url": "https://api.github.com/users/web-flow/followers",
-        "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
-        "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
-        "organizations_url": "https://api.github.com/users/web-flow/orgs",
-        "repos_url": "https://api.github.com/users/web-flow/repos",
-        "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/web-flow/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "parents": [
-        {
-          "sha": "ab2c95bc7d36895ecce5f0e3d3e3398ad30a6fc5",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/ab2c95bc7d36895ecce5f0e3d3e3398ad30a6fc5",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/ab2c95bc7d36895ecce5f0e3d3e3398ad30a6fc5"
-        },
-        {
-          "sha": "83b463271fe88da76b141bddda873ab569e36b45",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/83b463271fe88da76b141bddda873ab569e36b45",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/83b463271fe88da76b141bddda873ab569e36b45"
-        }
-      ]
-    },
-    {
-      "sha": "83b463271fe88da76b141bddda873ab569e36b45",
-      "commit": {
-        "author": {
-          "name": "Herwin Weststrate",
-          "email": "herwin@quarantainenet.nl",
-          "date": "2017-09-19T11:04:02Z"
-        },
-        "committer": {
-          "name": "Herwin Weststrate",
-          "email": "herwin@quarantainenet.nl",
-          "date": "2017-09-19T11:04:02Z"
-        },
-        "message": "Small cleanup in rlm_perl",
-        "tree": {
-          "sha": "1278259dd6c547fb5d5c9dd9f38d095cae9a9755",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/1278259dd6c547fb5d5c9dd9f38d095cae9a9755"
-        },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/83b463271fe88da76b141bddda873ab569e36b45",
-        "comment_count": 0
-      },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/83b463271fe88da76b141bddda873ab569e36b45",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/83b463271fe88da76b141bddda873ab569e36b45",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/83b463271fe88da76b141bddda873ab569e36b45/comments",
-      "author": {
-        "login": "qnet-herwin",
-        "id": 2010013,
-        "avatar_url": "https://avatars0.githubusercontent.com/u/2010013?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/qnet-herwin",
-        "html_url": "https://github.com/qnet-herwin",
-        "followers_url": "https://api.github.com/users/qnet-herwin/followers",
-        "following_url": "https://api.github.com/users/qnet-herwin/following{/other_user}",
-        "gists_url": "https://api.github.com/users/qnet-herwin/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/qnet-herwin/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/qnet-herwin/subscriptions",
-        "organizations_url": "https://api.github.com/users/qnet-herwin/orgs",
-        "repos_url": "https://api.github.com/users/qnet-herwin/repos",
-        "events_url": "https://api.github.com/users/qnet-herwin/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/qnet-herwin/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "committer": {
-        "login": "qnet-herwin",
-        "id": 2010013,
-        "avatar_url": "https://avatars0.githubusercontent.com/u/2010013?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/qnet-herwin",
-        "html_url": "https://github.com/qnet-herwin",
-        "followers_url": "https://api.github.com/users/qnet-herwin/followers",
-        "following_url": "https://api.github.com/users/qnet-herwin/following{/other_user}",
-        "gists_url": "https://api.github.com/users/qnet-herwin/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/qnet-herwin/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/qnet-herwin/subscriptions",
-        "organizations_url": "https://api.github.com/users/qnet-herwin/orgs",
-        "repos_url": "https://api.github.com/users/qnet-herwin/repos",
-        "events_url": "https://api.github.com/users/qnet-herwin/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/qnet-herwin/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "parents": [
-        {
-          "sha": "f10a3204c0e5d871d2e10fba286a4248f743aed2",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/f10a3204c0e5d871d2e10fba286a4248f743aed2",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/f10a3204c0e5d871d2e10fba286a4248f743aed2"
-        }
-      ]
-    },
-    {
-      "sha": "ab2c95bc7d36895ecce5f0e3d3e3398ad30a6fc5",
-      "commit": {
-        "author": {
-          "name": "Arran Cudbard-Bell",
-          "email": "a.cudbardb@freeradius.org",
-          "date": "2017-09-19T05:51:41Z"
+          "date": "2017-09-26T11:05:44Z"
         },
         "committer": {
           "name": "Arran Cudbard-Bell",
           "email": "a.cudbardb@freeradius.org",
-          "date": "2017-09-19T05:52:35Z"
+          "date": "2017-09-26T11:05:44Z"
         },
-        "message": "Add ubuntu16, fix libnl install calls",
+        "message": "The accounting module is called radius_acct not radius_coa",
         "tree": {
-          "sha": "59ff1d60149d87e649bfd36a3d49ae7cbb242cce",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/59ff1d60149d87e649bfd36a3d49ae7cbb242cce"
+          "sha": "09b71d07b545c8562cc6326216af4c2637048879",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/09b71d07b545c8562cc6326216af4c2637048879"
         },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/ab2c95bc7d36895ecce5f0e3d3e3398ad30a6fc5",
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/e4b434086c9ff8af4b65e33bdcfbe9d724bbca8e",
         "comment_count": 0
       },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/ab2c95bc7d36895ecce5f0e3d3e3398ad30a6fc5",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/ab2c95bc7d36895ecce5f0e3d3e3398ad30a6fc5",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/ab2c95bc7d36895ecce5f0e3d3e3398ad30a6fc5/comments",
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/e4b434086c9ff8af4b65e33bdcfbe9d724bbca8e",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/e4b434086c9ff8af4b65e33bdcfbe9d724bbca8e",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/e4b434086c9ff8af4b65e33bdcfbe9d724bbca8e/comments",
       "author": {
         "login": "arr2036",
         "id": 791758,
@@ -547,36 +334,596 @@
       },
       "parents": [
         {
-          "sha": "f10a3204c0e5d871d2e10fba286a4248f743aed2",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/f10a3204c0e5d871d2e10fba286a4248f743aed2",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/f10a3204c0e5d871d2e10fba286a4248f743aed2"
+          "sha": "d8303d3c65b8592a71b15d4e2970eaaed1ffb727",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/d8303d3c65b8592a71b15d4e2970eaaed1ffb727",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/d8303d3c65b8592a71b15d4e2970eaaed1ffb727"
         }
       ]
     },
     {
-      "sha": "f10a3204c0e5d871d2e10fba286a4248f743aed2",
+      "sha": "d8303d3c65b8592a71b15d4e2970eaaed1ffb727",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T10:49:53Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T10:49:53Z"
+        },
+        "message": "Use cached enum value so we don't SEGV if type is \"auth\", \"acct\" etc..",
+        "tree": {
+          "sha": "38c7224b19e28e517a7126614e316d1de739506b",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/38c7224b19e28e517a7126614e316d1de739506b"
+        },
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/d8303d3c65b8592a71b15d4e2970eaaed1ffb727",
+        "comment_count": 0
+      },
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/d8303d3c65b8592a71b15d4e2970eaaed1ffb727",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/d8303d3c65b8592a71b15d4e2970eaaed1ffb727",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/d8303d3c65b8592a71b15d4e2970eaaed1ffb727/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "1e7e685469e1945582c9f9bdb280a1e1859f22f9",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1e7e685469e1945582c9f9bdb280a1e1859f22f9",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/1e7e685469e1945582c9f9bdb280a1e1859f22f9"
+        }
+      ]
+    },
+    {
+      "sha": "1e7e685469e1945582c9f9bdb280a1e1859f22f9",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T10:49:29Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T10:49:29Z"
+        },
+        "message": "Typo",
+        "tree": {
+          "sha": "a2d5555bbbd91071f952f230eef1bbbd44fc96bb",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/a2d5555bbbd91071f952f230eef1bbbd44fc96bb"
+        },
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/1e7e685469e1945582c9f9bdb280a1e1859f22f9",
+        "comment_count": 0
+      },
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1e7e685469e1945582c9f9bdb280a1e1859f22f9",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/1e7e685469e1945582c9f9bdb280a1e1859f22f9",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1e7e685469e1945582c9f9bdb280a1e1859f22f9/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "0d03b30a999e19d9537db6382acc3a5985ba3818",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/0d03b30a999e19d9537db6382acc3a5985ba3818",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/0d03b30a999e19d9537db6382acc3a5985ba3818"
+        }
+      ]
+    },
+    {
+      "sha": "0d03b30a999e19d9537db6382acc3a5985ba3818",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T10:02:31Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T10:02:31Z"
+        },
+        "message": "Require ldap_install_tls be exported from libldap",
+        "tree": {
+          "sha": "75f09cc7334cc981f883508c96bfdb9f5c29dd89",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/75f09cc7334cc981f883508c96bfdb9f5c29dd89"
+        },
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/0d03b30a999e19d9537db6382acc3a5985ba3818",
+        "comment_count": 0
+      },
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/0d03b30a999e19d9537db6382acc3a5985ba3818",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/0d03b30a999e19d9537db6382acc3a5985ba3818",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/0d03b30a999e19d9537db6382acc3a5985ba3818/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "fd35614a38d33e6c8563fded078388a764f90fe6",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/fd35614a38d33e6c8563fded078388a764f90fe6",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/fd35614a38d33e6c8563fded078388a764f90fe6"
+        }
+      ]
+    },
+    {
+      "sha": "fd35614a38d33e6c8563fded078388a764f90fe6",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T10:02:13Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T10:02:13Z"
+        },
+        "message": "Fix builds without LDAP_SASL_INTERACTIVE_BIND",
+        "tree": {
+          "sha": "58c4492eeead7a765901a574061bc84e4efc9726",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/58c4492eeead7a765901a574061bc84e4efc9726"
+        },
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/fd35614a38d33e6c8563fded078388a764f90fe6",
+        "comment_count": 0
+      },
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/fd35614a38d33e6c8563fded078388a764f90fe6",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/fd35614a38d33e6c8563fded078388a764f90fe6",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/fd35614a38d33e6c8563fded078388a764f90fe6/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "d74e298b351f0fcab730189813613cd72c9669a7",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/d74e298b351f0fcab730189813613cd72c9669a7",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/d74e298b351f0fcab730189813613cd72c9669a7"
+        }
+      ]
+    },
+    {
+      "sha": "d74e298b351f0fcab730189813613cd72c9669a7",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T06:42:00Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T06:42:00Z"
+        },
+        "message": "Ignore symlinked ethernet headers for now",
+        "tree": {
+          "sha": "cf45f97a91c98023615febdb6547215cfd634562",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/cf45f97a91c98023615febdb6547215cfd634562"
+        },
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/d74e298b351f0fcab730189813613cd72c9669a7",
+        "comment_count": 0
+      },
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/d74e298b351f0fcab730189813613cd72c9669a7",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/d74e298b351f0fcab730189813613cd72c9669a7",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/d74e298b351f0fcab730189813613cd72c9669a7/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "4ba173d7612a57d57166867e25e19a7e4d40b9ab",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/4ba173d7612a57d57166867e25e19a7e4d40b9ab",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/4ba173d7612a57d57166867e25e19a7e4d40b9ab"
+        }
+      ]
+    },
+    {
+      "sha": "4ba173d7612a57d57166867e25e19a7e4d40b9ab",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T06:41:16Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T06:41:16Z"
+        },
+        "message": "Regenerate config scripts",
+        "tree": {
+          "sha": "fd828c5a6082f8524c4e7628462d922e91d842ab",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/fd828c5a6082f8524c4e7628462d922e91d842ab"
+        },
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/4ba173d7612a57d57166867e25e19a7e4d40b9ab",
+        "comment_count": 0
+      },
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/4ba173d7612a57d57166867e25e19a7e4d40b9ab",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/4ba173d7612a57d57166867e25e19a7e4d40b9ab",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/4ba173d7612a57d57166867e25e19a7e4d40b9ab/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "a7cf762f51c946172714d3720cf4739d93c687f9",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/a7cf762f51c946172714d3720cf4739d93c687f9",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/a7cf762f51c946172714d3720cf4739d93c687f9"
+        }
+      ]
+    },
+    {
+      "sha": "a7cf762f51c946172714d3720cf4739d93c687f9",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T06:27:37Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T06:37:59Z"
+        },
+        "message": "Partially revert \"use '=' instead of '==' for portability\"\n\nIn C '=' is assignment...",
+        "tree": {
+          "sha": "6478826de2fb207d92a234e813eb3b609404e861",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/6478826de2fb207d92a234e813eb3b609404e861"
+        },
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/a7cf762f51c946172714d3720cf4739d93c687f9",
+        "comment_count": 0
+      },
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/a7cf762f51c946172714d3720cf4739d93c687f9",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/a7cf762f51c946172714d3720cf4739d93c687f9",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/a7cf762f51c946172714d3720cf4739d93c687f9/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "59478d07e3b788e5c49ec5ab7afcac89d3bcd6b8",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/59478d07e3b788e5c49ec5ab7afcac89d3bcd6b8",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/59478d07e3b788e5c49ec5ab7afcac89d3bcd6b8"
+        }
+      ]
+    },
+    {
+      "sha": "59478d07e3b788e5c49ec5ab7afcac89d3bcd6b8",
+      "commit": {
+        "author": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T06:29:47Z"
+        },
+        "committer": {
+          "name": "Arran Cudbard-Bell",
+          "email": "a.cudbardb@freeradius.org",
+          "date": "2017-09-26T06:37:50Z"
+        },
+        "message": "Partially revert \"use '=' instead of '==' for portability\"\n\nDon't change operator in awk expression",
+        "tree": {
+          "sha": "14fd5d8827779b32a9e5d63dcd22ab592f404ed4",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/14fd5d8827779b32a9e5d63dcd22ab592f404ed4"
+        },
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/59478d07e3b788e5c49ec5ab7afcac89d3bcd6b8",
+        "comment_count": 0
+      },
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/59478d07e3b788e5c49ec5ab7afcac89d3bcd6b8",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/59478d07e3b788e5c49ec5ab7afcac89d3bcd6b8",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/59478d07e3b788e5c49ec5ab7afcac89d3bcd6b8/comments",
+      "author": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "arr2036",
+        "id": 791758,
+        "avatar_url": "https://avatars3.githubusercontent.com/u/791758?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/arr2036",
+        "html_url": "https://github.com/arr2036",
+        "followers_url": "https://api.github.com/users/arr2036/followers",
+        "following_url": "https://api.github.com/users/arr2036/following{/other_user}",
+        "gists_url": "https://api.github.com/users/arr2036/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/arr2036/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/arr2036/subscriptions",
+        "organizations_url": "https://api.github.com/users/arr2036/orgs",
+        "repos_url": "https://api.github.com/users/arr2036/repos",
+        "events_url": "https://api.github.com/users/arr2036/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/arr2036/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "e99c214ece12854b7904e5744ad6da3dd8b8bac5",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/e99c214ece12854b7904e5744ad6da3dd8b8bac5",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/e99c214ece12854b7904e5744ad6da3dd8b8bac5"
+        }
+      ]
+    },
+    {
+      "sha": "e99c214ece12854b7904e5744ad6da3dd8b8bac5",
       "commit": {
         "author": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-09-18T20:45:02Z"
+          "date": "2017-09-25T16:54:50Z"
         },
         "committer": {
           "name": "Alan T. DeKok",
           "email": "aland@freeradius.org",
-          "date": "2017-09-18T20:45:02Z"
+          "date": "2017-09-25T16:54:50Z"
         },
-        "message": "open local sockets before initializing modules.  Fixes #1691",
+        "message": "need this, too",
         "tree": {
-          "sha": "89b0e3ca2bf766a83650489ac478bf101f2d7327",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/89b0e3ca2bf766a83650489ac478bf101f2d7327"
+          "sha": "3a61f6c39b99cfcc42c21b0e8e2c542347cec4d5",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/3a61f6c39b99cfcc42c21b0e8e2c542347cec4d5"
         },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/f10a3204c0e5d871d2e10fba286a4248f743aed2",
+        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/e99c214ece12854b7904e5744ad6da3dd8b8bac5",
         "comment_count": 0
       },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/f10a3204c0e5d871d2e10fba286a4248f743aed2",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/f10a3204c0e5d871d2e10fba286a4248f743aed2",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/f10a3204c0e5d871d2e10fba286a4248f743aed2/comments",
+      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/e99c214ece12854b7904e5744ad6da3dd8b8bac5",
+      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/e99c214ece12854b7904e5744ad6da3dd8b8bac5",
+      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/e99c214ece12854b7904e5744ad6da3dd8b8bac5/comments",
       "author": {
         "login": "alandekok",
         "id": 17612,
@@ -617,364 +964,9 @@
       },
       "parents": [
         {
-          "sha": "1fc3146d32765e0b40ac4f5c84f0f10de99c1ee9",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1fc3146d32765e0b40ac4f5c84f0f10de99c1ee9",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/1fc3146d32765e0b40ac4f5c84f0f10de99c1ee9"
-        }
-      ]
-    },
-    {
-      "sha": "1fc3146d32765e0b40ac4f5c84f0f10de99c1ee9",
-      "commit": {
-        "author": {
-          "name": "Herwin Weststrate",
-          "email": "herwin@quarantainenet.nl",
-          "date": "2017-09-18T06:52:42Z"
-        },
-        "committer": {
-          "name": "Alan T. DeKok",
-          "email": "aland@freeradius.org",
-          "date": "2017-09-18T20:35:43Z"
-        },
-        "message": "More graceful handling in rlm_perl on die in called method\n\nThis should fix #2067",
-        "tree": {
-          "sha": "5c1c51830b38af5da451908bef51c4f90092c598",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/5c1c51830b38af5da451908bef51c4f90092c598"
-        },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/1fc3146d32765e0b40ac4f5c84f0f10de99c1ee9",
-        "comment_count": 0
-      },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1fc3146d32765e0b40ac4f5c84f0f10de99c1ee9",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/1fc3146d32765e0b40ac4f5c84f0f10de99c1ee9",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1fc3146d32765e0b40ac4f5c84f0f10de99c1ee9/comments",
-      "author": {
-        "login": "qnet-herwin",
-        "id": 2010013,
-        "avatar_url": "https://avatars0.githubusercontent.com/u/2010013?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/qnet-herwin",
-        "html_url": "https://github.com/qnet-herwin",
-        "followers_url": "https://api.github.com/users/qnet-herwin/followers",
-        "following_url": "https://api.github.com/users/qnet-herwin/following{/other_user}",
-        "gists_url": "https://api.github.com/users/qnet-herwin/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/qnet-herwin/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/qnet-herwin/subscriptions",
-        "organizations_url": "https://api.github.com/users/qnet-herwin/orgs",
-        "repos_url": "https://api.github.com/users/qnet-herwin/repos",
-        "events_url": "https://api.github.com/users/qnet-herwin/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/qnet-herwin/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "committer": {
-        "login": "alandekok",
-        "id": 17612,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/alandekok",
-        "html_url": "https://github.com/alandekok",
-        "followers_url": "https://api.github.com/users/alandekok/followers",
-        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
-        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
-        "organizations_url": "https://api.github.com/users/alandekok/orgs",
-        "repos_url": "https://api.github.com/users/alandekok/repos",
-        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/alandekok/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "parents": [
-        {
-          "sha": "8929b60e082925a0656a2a09c4e295ba32e9cc43",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/8929b60e082925a0656a2a09c4e295ba32e9cc43",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/8929b60e082925a0656a2a09c4e295ba32e9cc43"
-        }
-      ]
-    },
-    {
-      "sha": "8929b60e082925a0656a2a09c4e295ba32e9cc43",
-      "commit": {
-        "author": {
-          "name": "Alan T. DeKok",
-          "email": "aland@freeradius.org",
-          "date": "2017-09-17T12:45:14Z"
-        },
-        "committer": {
-          "name": "Alan T. DeKok",
-          "email": "aland@freeradius.org",
-          "date": "2017-09-17T12:45:14Z"
-        },
-        "message": "remove \"stack\" as a separate argument\n\nit's always request->stack.\n\nThe original idea was to allow different interpreters for the\nsame request.  But practice shows that it's much better to just\nhave different requests instead.",
-        "tree": {
-          "sha": "7b2fc0c0ef7b9dd286c6e4cee69f86616988a796",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/7b2fc0c0ef7b9dd286c6e4cee69f86616988a796"
-        },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/8929b60e082925a0656a2a09c4e295ba32e9cc43",
-        "comment_count": 0
-      },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/8929b60e082925a0656a2a09c4e295ba32e9cc43",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/8929b60e082925a0656a2a09c4e295ba32e9cc43",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/8929b60e082925a0656a2a09c4e295ba32e9cc43/comments",
-      "author": {
-        "login": "alandekok",
-        "id": 17612,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/alandekok",
-        "html_url": "https://github.com/alandekok",
-        "followers_url": "https://api.github.com/users/alandekok/followers",
-        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
-        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
-        "organizations_url": "https://api.github.com/users/alandekok/orgs",
-        "repos_url": "https://api.github.com/users/alandekok/repos",
-        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/alandekok/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "committer": {
-        "login": "alandekok",
-        "id": 17612,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/alandekok",
-        "html_url": "https://github.com/alandekok",
-        "followers_url": "https://api.github.com/users/alandekok/followers",
-        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
-        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
-        "organizations_url": "https://api.github.com/users/alandekok/orgs",
-        "repos_url": "https://api.github.com/users/alandekok/repos",
-        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/alandekok/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "parents": [
-        {
-          "sha": "f8838ab935f9621d7b2a49f6fd7a298deae88fee",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/f8838ab935f9621d7b2a49f6fd7a298deae88fee",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/f8838ab935f9621d7b2a49f6fd7a298deae88fee"
-        }
-      ]
-    },
-    {
-      "sha": "f8838ab935f9621d7b2a49f6fd7a298deae88fee",
-      "commit": {
-        "author": {
-          "name": "Alan T. DeKok",
-          "email": "aland@freeradius.org",
-          "date": "2017-09-17T12:37:27Z"
-        },
-        "committer": {
-          "name": "Alan T. DeKok",
-          "email": "aland@freeradius.org",
-          "date": "2017-09-17T12:37:27Z"
-        },
-        "message": "notes on todo's",
-        "tree": {
-          "sha": "ad2668a55c0e2e76e7da646f4108b91acea1de56",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/ad2668a55c0e2e76e7da646f4108b91acea1de56"
-        },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/f8838ab935f9621d7b2a49f6fd7a298deae88fee",
-        "comment_count": 0
-      },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/f8838ab935f9621d7b2a49f6fd7a298deae88fee",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/f8838ab935f9621d7b2a49f6fd7a298deae88fee",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/f8838ab935f9621d7b2a49f6fd7a298deae88fee/comments",
-      "author": {
-        "login": "alandekok",
-        "id": 17612,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/alandekok",
-        "html_url": "https://github.com/alandekok",
-        "followers_url": "https://api.github.com/users/alandekok/followers",
-        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
-        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
-        "organizations_url": "https://api.github.com/users/alandekok/orgs",
-        "repos_url": "https://api.github.com/users/alandekok/repos",
-        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/alandekok/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "committer": {
-        "login": "alandekok",
-        "id": 17612,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/alandekok",
-        "html_url": "https://github.com/alandekok",
-        "followers_url": "https://api.github.com/users/alandekok/followers",
-        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
-        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
-        "organizations_url": "https://api.github.com/users/alandekok/orgs",
-        "repos_url": "https://api.github.com/users/alandekok/repos",
-        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/alandekok/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "parents": [
-        {
-          "sha": "a5dfc599792ff941ddfb3d79be59de99bf5faa91",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/a5dfc599792ff941ddfb3d79be59de99bf5faa91",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/a5dfc599792ff941ddfb3d79be59de99bf5faa91"
-        }
-      ]
-    },
-    {
-      "sha": "a5dfc599792ff941ddfb3d79be59de99bf5faa91",
-      "commit": {
-        "author": {
-          "name": "Alan DeKok",
-          "email": "aland@freeradius.org",
-          "date": "2017-09-15T19:31:19Z"
-        },
-        "committer": {
-          "name": "GitHub",
-          "email": "noreply@github.com",
-          "date": "2017-09-15T19:31:19Z"
-        },
-        "message": "Merge pull request #2071 from jimdigriz/v4.0.x-rhspec\n\nV4.0.x rhspec",
-        "tree": {
-          "sha": "e3d6db8b67a196462a1c1df653e8b2fdf9f2bfac",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/e3d6db8b67a196462a1c1df653e8b2fdf9f2bfac"
-        },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/a5dfc599792ff941ddfb3d79be59de99bf5faa91",
-        "comment_count": 0
-      },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/a5dfc599792ff941ddfb3d79be59de99bf5faa91",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/a5dfc599792ff941ddfb3d79be59de99bf5faa91",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/a5dfc599792ff941ddfb3d79be59de99bf5faa91/comments",
-      "author": {
-        "login": "alandekok",
-        "id": 17612,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/alandekok",
-        "html_url": "https://github.com/alandekok",
-        "followers_url": "https://api.github.com/users/alandekok/followers",
-        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
-        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
-        "organizations_url": "https://api.github.com/users/alandekok/orgs",
-        "repos_url": "https://api.github.com/users/alandekok/repos",
-        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/alandekok/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "committer": {
-        "login": "web-flow",
-        "id": 19864447,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/19864447?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/web-flow",
-        "html_url": "https://github.com/web-flow",
-        "followers_url": "https://api.github.com/users/web-flow/followers",
-        "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
-        "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
-        "organizations_url": "https://api.github.com/users/web-flow/orgs",
-        "repos_url": "https://api.github.com/users/web-flow/repos",
-        "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/web-flow/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "parents": [
-        {
-          "sha": "c267d3364c0b685ace7fa79a62c9fb88a7c2eca6",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/c267d3364c0b685ace7fa79a62c9fb88a7c2eca6",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/c267d3364c0b685ace7fa79a62c9fb88a7c2eca6"
-        },
-        {
-          "sha": "150a00a0fcce9d78e4540f66c11ed8d6a3cc4d3a",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/150a00a0fcce9d78e4540f66c11ed8d6a3cc4d3a",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/150a00a0fcce9d78e4540f66c11ed8d6a3cc4d3a"
-        }
-      ]
-    },
-    {
-      "sha": "c267d3364c0b685ace7fa79a62c9fb88a7c2eca6",
-      "commit": {
-        "author": {
-          "name": "Alan T. DeKok",
-          "email": "aland@freeradius.org",
-          "date": "2017-09-15T17:32:55Z"
-        },
-        "committer": {
-          "name": "Alan T. DeKok",
-          "email": "aland@freeradius.org",
-          "date": "2017-09-15T17:34:17Z"
-        },
-        "message": "enforce max request lifetime on the child request",
-        "tree": {
-          "sha": "a78a3aa6e4ae22aff27718c4c18990a412dc691c",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/trees/a78a3aa6e4ae22aff27718c4c18990a412dc691c"
-        },
-        "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/git/commits/c267d3364c0b685ace7fa79a62c9fb88a7c2eca6",
-        "comment_count": 0
-      },
-      "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/c267d3364c0b685ace7fa79a62c9fb88a7c2eca6",
-      "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/c267d3364c0b685ace7fa79a62c9fb88a7c2eca6",
-      "comments_url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/c267d3364c0b685ace7fa79a62c9fb88a7c2eca6/comments",
-      "author": {
-        "login": "alandekok",
-        "id": 17612,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/alandekok",
-        "html_url": "https://github.com/alandekok",
-        "followers_url": "https://api.github.com/users/alandekok/followers",
-        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
-        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
-        "organizations_url": "https://api.github.com/users/alandekok/orgs",
-        "repos_url": "https://api.github.com/users/alandekok/repos",
-        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/alandekok/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "committer": {
-        "login": "alandekok",
-        "id": 17612,
-        "avatar_url": "https://avatars3.githubusercontent.com/u/17612?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/alandekok",
-        "html_url": "https://github.com/alandekok",
-        "followers_url": "https://api.github.com/users/alandekok/followers",
-        "following_url": "https://api.github.com/users/alandekok/following{/other_user}",
-        "gists_url": "https://api.github.com/users/alandekok/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/alandekok/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/alandekok/subscriptions",
-        "organizations_url": "https://api.github.com/users/alandekok/orgs",
-        "repos_url": "https://api.github.com/users/alandekok/repos",
-        "events_url": "https://api.github.com/users/alandekok/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/alandekok/received_events",
-        "type": "User",
-        "site_admin": false
-      },
-      "parents": [
-        {
-          "sha": "1602922aedad745c3e49468699b42c262ff8eea0",
-          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/1602922aedad745c3e49468699b42c262ff8eea0",
-          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/1602922aedad745c3e49468699b42c262ff8eea0"
+          "sha": "447652a826b8f6c967c93f914cb4a4e63da9f2ce",
+          "url": "https://api.github.com/repos/FreeRADIUS/freeradius-server/commits/447652a826b8f6c967c93f914cb4a4e63da9f2ce",
+          "html_url": "https://github.com/FreeRADIUS/freeradius-server/commit/447652a826b8f6c967c93f914cb4a4e63da9f2ce"
         }
       ]
     }
