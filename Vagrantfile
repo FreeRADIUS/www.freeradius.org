@@ -67,11 +67,12 @@ Vagrant.configure("2") do |config|
 
     # For nginx
     #
-    frorg.vm.network "forwarded_port", guest: 80, host: 80, host_ip: "127.0.0.1", guest_ip: "127.0.0.1"
+    frorg.vm.network "forwarded_port", guest: 80, host: 80, host_ip: "127.0.0.1"
+    frorg.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
 
     # In case "jekyll serve" is used
     #
-    frorg.vm.network "forwarded_port", guest: 4000, host: 4000, host_ip: "127.0.0.1", guest_ip: "127.0.0.1"
+    frorg.vm.network "forwarded_port", guest: 4000, host: 4000, host_ip: "127.0.0.1"
 
     # Copy the infrastructure git repo in for reference only.
     #
