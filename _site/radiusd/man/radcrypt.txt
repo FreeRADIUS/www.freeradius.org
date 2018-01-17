@@ -12,16 +12,23 @@ SYNOPSIS
 
 DESCRIPTION
        radcrypt generates a hashed digest of a plaintext password, or can val-
-       idate if a password hash matches a  plaintext  password.  DES  and  MD5
-       hashes  are currently supported. When generating a password hash a ran-
-       dom salt is generated and applied.
+       idate if a password hash matches a plaintext password. When  generating
+       a  password  hash a random salt is generated and applied. radcrypt only
+       currently supports the older DES and MD5 hashes.
 
-       A hashed password can be validated by  specifying  -c  or  --check  and
-       passing	hashed_password  after plaintext_password on the command line.
-       In this case hashed_password will be  checked  to  see  if  it  matches
-       plaintext_password.  If	so  "Password OK" will be printed and the exit
-       status will be 1, otherwise "Password BAD" will	be  printed  and  exit
-       status  will  be  0  (Note  this is the opposite of a normal successful
+       Current best practice is to use certificate-based authentication rather
+       than  relying  on  passwords.  However,	other  external  tools such as
+       openssl can generate  high  quality  hashed  and  salted  passwords  if
+       needed, e.g. "echo -n 'password' | openssl dgst -sha512". Although more
+       modern hashes such as bcrypt, SSHA3, and SSHA2  are  not  supported  by
+       radcrypt, hashes are supported in the server by rlm_pap(5).
+
+       A  hashed  password  can  be  validated by specifying -c or --check and
+       passing hashed_password after plaintext_password on the	command  line.
+       In  this  case  hashed_password	will  be  checked to see if it matches
+       plaintext_password. If so "Password OK" will be printed	and  the  exit
+       status  will  be  1,  otherwise "Password BAD" will be printed and exit
+       status will be 0 (Note this is the  opposite  of  a  normal  successful
        shell status).
 
 
@@ -31,11 +38,11 @@ OPTIONS
 	      performing a password check.
 
        -m --md5
-	      Use  a  MD5  (Message  Digest  5) hash.  Ignored if performing a
+	      Use a MD5 (Message Digest 5)  hash.   Ignored  if  performing  a
 	      password check.
 
        -c --check
-	      Perform a validation check on a password hash to	verify	if  it
+	      Perform  a  validation  check on a password hash to verify if it
 	      matches the plantext password.
 
 

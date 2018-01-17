@@ -36,8 +36,8 @@ USAGE
 
        Header	    Attribute		Description
        ------	    ---------		-----------
-       {clear}	    Cleartext-Password	clear-text passwords
-       {cleartext}  Cleartext-Password	clear-text passwords
+       {clear}	    Cleartext-Password	Clear-text passwords
+       {cleartext}  Cleartext-Password	Clear-text passwords
        {crypt}	    Crypt-Password	Unix-style "crypt"ed passwords
        {md5}	    MD5-Password	MD5 hashed passwords
        {base64_md5} MD5-Password	MD5 hashed passwords
@@ -45,16 +45,27 @@ USAGE
        {sha}	    SHA-Password	SHA1 hashed passwords
 		    SHA1-Password	SHA1 hashed passwords
        {ssha}	    SSHA-Password	SHA1 hashed passwords, with a salt
-		    SSHA1-Password	SHA1 hashed passwords, with a salt
-       {ssh2}	    SHA2-Password	SHA2 hashed passwords
-       {ssh256}     SHA2-Password	SHA2 hashed passwords
-       {ssh512}     SHA2-Password	SHA2 hashed passwords
+       {sha2}	    SHA2-Password	SHA2 hashed passwords
+       {sha224}     SHA2-Password	SHA2 hashed passwords
+       {sha256}     SHA2-Password	SHA2 hashed passwords
+       {sha384}     SHA2-Password	SHA2 hashed passwords
+       {sha512}     SHA2-Password	SHA2 hashed passwords
+       {ssha224}    SSHA2-224-Password	SHA2 hashed passwords, with a salt
+       {ssha256}    SSHA2-256-Password	SHA2 hashed passwords, with a salt
+       {ssha384}    SSHA2-384-Password	SHA2 hashed passwords, with a salt
+       {ssha512}    SSHA2-512-Password	SHA2 hashed passwords, with a salt
+       {ssha3}	    SHA3-Password	SHA3 hashed passwords
+       {ssha3-224}  SHA3-224-Password	SHA3 hashed passwords, with a salt
+       {ssha3-256}  SHA3-256-Password	SHA3 hashed passwords, with a salt
+       {ssha3-384}  SHA3-384-Password	SHA3 hashed passwords, with a salt
+       {ssha3-512}  SHA3-512-Password	SHA3 hashed passwords, with a salt
        {nt}	    NT-Password 	Windows NT hashed passwords
        {nthash}     NT-Password 	Windows NT hashed passwords
+       {md4}	    NT-Password 	Windows NT hashed passwords
        {x-nthash}   NT-Password 	Windows NT hashed passwords
        {ns-mta-md5} NS-MTA-MD5-Password Netscape MTA MD5 hashed passwords
        {x- orcllmv} LM-Password 	Windows LANMAN hashed passwords
-       {X- orclntv} LM-Password 	Windows LANMAN hashed passwords
+       {X- orclntv} NT-Password 	Windows NT hashed passwords
 
        The module tries to be flexible when handling the various password for-
        mats.   It will automatically handle Base-64 encoded data, hex strings,

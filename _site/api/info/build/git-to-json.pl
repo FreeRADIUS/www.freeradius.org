@@ -336,7 +336,8 @@ sub get_component_readme
 
 	# read the blob from git
 	#
-	my $data = $repo->command("show" => $blob)->stdout;
+	my $gitcmd = $repo->command("show" => $blob);
+	my $data = $gitcmd->stdout;
 	return undef unless $data;
 
 	my $state = "header";
@@ -380,6 +381,8 @@ sub get_component_readme
 	if ($state eq "section" and $sectionname) {
 		$$readme{lc $sectionname} = $sectiondata;
 	}
+
+	$gitcmd->close;
 
 	return $readme;
 }
@@ -480,7 +483,8 @@ sub get_release_changelog
 
 	# read the blob from git
 	#
-	my $data = $repo->command("show" => "$commit:doc/ChangeLog")->stdout;
+	my $gitcmd = $repo->command("show" => "$commit:doc/ChangeLog");
+	my $data = $gitcmd->stdout;
 	return undef unless $data;
 
 	my $line = $data->getline(); # get the header line
@@ -539,6 +543,8 @@ sub get_release_changelog
 		die "$commit has unexpected Changelog line:\n$line\n";
 	}
 
+	$gitcmd->close;
+
 	return $changelog;
 }
 
@@ -558,11 +564,13 @@ sub get_release_changelog
 sub get_versions
 {
 	my $repo = shift;
+	my $gitcmd;
 
 	# get all tags
 	#
-	my @tags = map {chomp $_; $_}
-		$repo->command("tag" => '-l')->stdout->getlines();
+	$gitcmd = $repo->command("tag" => '-l');
+	my @tags = map {chomp $_; $_} $gitcmd->stdout->getlines();
+	$gitcmd->close;
 
 	# get version number of all tags and put into hash
 	#
@@ -572,8 +580,9 @@ sub get_versions
 
 	# find all branches, to see what's in development
 	#
-	my @branches = map {chomp $_; $_}
-		$repo->command("branch" => '-a')->stdout->getlines();
+	$gitcmd = $repo->command("branch" => '-a');
+	my @branches = map {chomp $_; $_} $gitcmd->stdout->getlines();
+	$gitcmd->close;
 
 	# if the branches are "public facing" ones then add them to the hash
 	#
@@ -688,7 +697,7 @@ sub get_release_components
 	# run git ls-tree to find all subdirectories of src/modules for a
 	# particular git tag, and get the data as an array of hashes
 	#
-	my $trees = $repo->command("ls-tree" => "-rt", "$reltag", "src/modules/")->stdout;
+	my $gitcmd = $repo->command("ls-tree" => "-rt", "$reltag", "src/modules/");
 	my @objects = grep {$$_{path} =~ /^src\/modules\// and
 				($$_{type} eq "tree" or $$_{path} =~ m+/README.md$+)}
 		map {my @x = split /\s+/; {
@@ -697,7 +706,8 @@ sub get_release_components
 			hash => $x[2],
 			path => $x[3],
 		}}
-		$trees->getlines();
+		$gitcmd->stdout->getlines();
+	$gitcmd->close;
 
 	# go through each git object and work out which modules exist
 	#
@@ -1229,11 +1239,12 @@ sub git_date
 #	chomp $date;
 
 # ...otherwise,
-	my $cmd = $repo->command(show => "-s",
+	my $gitcmd = $repo->command(show => "-s",
 		"--format=%cd",
 		"--date=iso",
 		$branch);
-	my $date = $cmd->stdout->getline();
+	my $date = $gitcmd->stdout->getline();
+	$gitcmd->close;
 	chomp $date;
 
 	if ($date =~ /^(\d\d\d\d-\d\d-\d\d) (\d\d:\d\d:\d\d) ([+-]\d\d\d\d)$/) {

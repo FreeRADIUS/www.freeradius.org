@@ -18,7 +18,7 @@ subnav:
 
 <div class="man_page wrapper base_padding_v">
 <H1>unlang</H1>
-Section: FreeRADIUS Processing un-language (5)<BR>Updated: 29 June 2017<BR><A HREF="#index">Index</A>
+Section: FreeRADIUS Processing un-language (5)<BR>Updated: 14 September 2017<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
@@ -37,9 +37,8 @@ Python modules rlm_perl, or rlm_python.
 The goal of the language is to allow simple policies to be written
 with minimal effort.  Those policies are then applied when a request
 is being processed.  Requests are processed through virtual servers
-(including the default one), in the sections titled &quot;authorize&quot;,
-&quot;authenticate&quot;, &quot;post-auth&quot;, &quot;preacct&quot;, &quot;accounting&quot;, &quot;pre-proxy&quot;,
-and &quot;post-proxy&quot;.
+(including the default one), in the sections titled &quot;recv
+Access-Request&quot;, &quot;send Access-Accept&quot;, &quot;authenticate pap&quot;, etc.
 <P>
 These policies cannot be used in any other part of the configuration
 files, such as module or client configuration.
@@ -57,31 +56,6 @@ organized into lists.  Processing of the language is line by line,
 from the start of the list to the end.  Actions are executed
 per-keyword.
 <DL COMPACT>
-<DT>module-name[.section-name]<DD>
-A reference to the named module.  When processing reaches this point,
-the pre-compiled module is called.  The module may succeed or fail,
-and will return a status to &quot;unlang&quot; if so.  This status can be tested
-in a condition.  See the &quot;Simple Conditions&quot; text in the CONDITIONS
-section, and MODULE RETURN CODES, below.
-If a section-name is provided, it will cause the module to execute 
-as if it were listed in the named section.
-<P>
-
-<DL COMPACT><DT><DD>
-<PRE>
-
-        chap  # call the CHAP module
-<BR>
-        sql   # call the SQL module
-<BR>
-        ...
-
-</PRE>
-
-</DL>
-
-<P>
-
 <DT>if<DD>
 <BR>
 
@@ -154,7 +128,7 @@ returned false, and if the specified condition evaluates to true.
 
 Allows for the setting of actions inside of a block.  The 'actions'
 block MUST be the last block in the section.  The enclosing block MUST
-be one of 'if', 'else', 'elsif', or 'case'.
+be one of 'group', 'if', 'else', 'elsif', or 'case'.
 <P>
 See MODULE RETURN CODES, below, for a description of the actions and
 their meanings.
@@ -213,6 +187,269 @@ recommended.
 </PRE>
 
 </DL>
+
+<P>
+
+<DT>load-balance<DD>
+This section contains a simple list of modules.  When the section is
+entered, one module is chosen to process the request.  All of the
+modules in the list should be the same type (e.g. ldap or sql).  All
+of the modules in the list should behave identically, otherwise the
+load-balance section may return different results for the same
+request.
+<P>
+Load-balance sections can contain only a list of modules, and cannot
+contain keywords that perform conditional operations (if, else, etc)
+or which update an attribute list.
+<P>
+Load-balance sections can optionally take a key.  The key is expanded
+at run time, hashed, and the hash used to select a module.  If no
+key is given, a module is chosen at random.
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        load-balance &amp;User-Name {
+<BR>
+                ldap1   # 50&percnt; of requests go here
+<BR>
+                ldap2   # 50&percnt; of requests go here
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
+
+<P>
+In general, we recommend using &quot;redundant-load-balance&quot; instead of
+&quot;load-balance&quot;.  The main use of the keyed load-balance sections is to
+perform sharding of data across multiple back-ends, without
+redundancy.  i.e. Requests will always go to one back-end, and if that
+back-end is not available, the &quot;load-balance&quot; section will return &quot;fail&quot;.
+<DT>module-name[.section-name]<DD>
+A reference to the named module.  When processing reaches this point,
+the pre-compiled module is called.  The module may succeed or fail,
+and will return a status to &quot;unlang&quot; if so.  This status can be tested
+in a condition.  See the &quot;Simple Conditions&quot; text in the CONDITIONS
+section, and MODULE RETURN CODES, below.
+If a section-name is provided, it will cause the module to execute 
+as if it were listed in the named section.
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        chap  # call the CHAP module
+<BR>
+        sql   # call the SQL module
+<BR>
+        ...
+
+</PRE>
+
+</DL>
+
+<P>
+
+<DT>parallel<DD>
+This section runs subsections in parallel.  Each subsection runs as a
+child request, which is a clone of the parent request.  Policies in
+the child can update the original parent request by using &quot;update
+parent.request&quot;, or &quot;update parent.reply&quot;.
+<P>
+The child requests are required because each subsection is run
+simultaneously.  If each subsection updated the original request at
+the same time, it would be impossible to separate the state of each
+subsection.
+<P>
+Empty child requests can be created by using &quot;parallel empty { ... }&quot;
+<P>
+The return code of the parallel section is the same as if each
+subsection was run sequentially.
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        parallel {
+<BR>
+                home_server_1
+<BR>
+                home_server_2
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
+
+<DT>redundant<DD>
+This section contains a simple list of modules.  The first module is
+called when the section is being processed.  If the first module
+succeeds in its operation, then the server stops processing the
+section, and returns to the parent section.
+<P>
+If, however, the module fails, then the next module in the list is
+tried, as described above.  The processing continues until one module
+succeeds, or until the list has been exhausted.
+<P>
+Redundant sections can contain only a list of modules, and cannot
+contain keywords that perform conditional operations (if, else, etc)
+or update an attribute list.
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        redundant {
+<BR>
+                sql1    # try this
+<BR>
+                sql2    # try this only if sql1 fails.
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
+
+<DT>redundant-load-balance<DD>
+This section contains a simple list of modules.  When the section is
+entered, one module is chosen to process the request.  If that module
+succeeds, then the server stops processing the section.  If, however,
+the module fails, then one of the remaining modules is chosen at
+random to process the request.  This process repeats until one module
+succeeds, or until the list has been exhausted.
+<P>
+All of the modules in the list should be the same type (e.g. ldap or
+sql).  All of the modules in the list should behave identically,
+otherwise the load-balance section may return different results for
+the same request.
+<P>
+Redundant-load-balance sections can contain only a list of modules, and cannot
+contain keywords that perform conditional operations (if, else, etc)
+or update an attribute list. Please see raddb/radiusd.conf 
+&quot;instantiate&quot; section for more configuration examples.
+<P>
+Redundant-load-balance sections can optionally take a key.  The key is expanded
+at run time, hashed, and the hash used to select a module.  If no
+key is given, a module is chosen at random.
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        redundant-load-balance {
+<BR>
+                ldap1   # 50&percnt;, unless ldap2 is down, then 100&percnt;
+<BR>
+                ldap2   # 50&percnt;, unless ldap1 is down, then 100&percnt;
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
+
+<P>
+<DT>return<DD>
+<BR>
+
+Returns from the current section, and stops all processing.  This
+keyword is mainly used to avoid layers of nested &quot;if&quot; and &quot;else&quot;
+statements.
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        recv Access-Request {
+<BR>
+                if (...) {
+<BR>
+                        ...
+<BR>
+                        return
+<BR>
+                }
+<BR>
+                ...  # this is never reached when the &quot;if&quot;
+<BR>
+                ...  # statement is executed
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
+
+<DT>subrequest<DD>
+<BR>
+
+The &quot;subrequest&quot; keyword creates an empty subrequest (i.e. child
+request).  Attributes in the child can be copied from the parent via
+an &quot;update&quot; block.
+<P>
+
+<DL COMPACT><DT><DD>
+<PRE>
+
+        subrequest {
+<BR>
+                update request {
+<BR>
+                        User-Name = parent.request:User-Name
+<BR>
+                        ...
+<BR>
+                }
+<BR>
+                ...
+<BR>
+        }
+
+</PRE>
+
+</DL>
+
+<P>
+
+The purpose of a &quot;subrequest&quot; section is to create a child request
+which can be edited and upated independently of the parent.
+<P>
+The return value of the subrequest is taken from the return value of
+the subsection being run.
+
+
+
+<P>
+
+<DT>detach<DD>
+<BR>
+
+The &quot;detach&quot; keyword causes a subrequest to be detached from its
+parent request.  The subrequest runs asynchronously to completion.
+The subrequest immediately returns &quot;noop&quot; to the parent request.
+<P>
+The &quot;detach&quot; keyword can only be used inside of a &quot;subrequest&quot; block.
+
+
 
 <P>
 
@@ -330,10 +567,9 @@ the current block.
 <P>
 
 <P>
-The &lt;list&gt; can be one of &quot;request&quot;, &quot;reply&quot;, &quot;proxy-request&quot;,
-&quot;proxy-reply&quot;, &quot;session-state&quot;, or &quot;control&quot;.  As
-of Version 3, the &lt;list&gt; can be omitted, in which case &quot;request&quot; is
-assumed.
+The &lt;list&gt; can be one of &quot;request&quot;, &quot;reply&quot;, &quot;session-state&quot;, or
+&quot;control&quot;.  As of Version 3, the &lt;list&gt; can be omitted, in which case
+&quot;request&quot; is assumed.
 <P>
 The &quot;control&quot; list is the list of attributes maintainted internally by
 the server that controls how the server processes the request.  Any
@@ -345,6 +581,9 @@ EAP-TTLS), the inner tunnel session can also reference
 &quot;outer.request&quot;, &quot;outer.reply&quot;, and &quot;outer.control&quot;.  Those references
 allow you to address the relevant list in the outer tunnel session.
 <P>
+The word &quot;parent&quot; may also be used as a synonym to &quot;outer&quot;.
+e.g. &quot;parent.request&quot;, etc.
+<P>
 The &quot;session-state&quot; list is primarily used for EAP.  Attributes put
 into the &quot;session-state&quot; list are saved for the next packet in the
 session.  They are automatically retrieved when the next packet is
@@ -353,151 +592,6 @@ received.
 The only contents permitted in an &quot;update&quot; section are attributes and
 values.  The contents of the &quot;update&quot; section are described in the
 ATTRIBUTE REFERENCE and ATTRIBUTE ASSIGNMENT sections below.
-<DT>redundant<DD>
-This section contains a simple list of modules.  The first module is
-called when the section is being processed.  If the first module
-succeeds in its operation, then the server stops processing the
-section, and returns to the parent section.
-<P>
-If, however, the module fails, then the next module in the list is
-tried, as described above.  The processing continues until one module
-succeeds, or until the list has been exhausted.
-<P>
-Redundant sections can contain only a list of modules, and cannot
-contain keywords that perform conditional operations (if, else, etc)
-or update an attribute list.
-<P>
-
-<DL COMPACT><DT><DD>
-<PRE>
-
-        redundant {
-<BR>
-                sql1    # try this
-<BR>
-                sql2    # try this only if sql1 fails.
-<BR>
-                ...
-<BR>
-        }
-
-</PRE>
-
-</DL>
-
-<P>
-
-<DT>load-balance<DD>
-This section contains a simple list of modules.  When the section is
-entered, one module is chosen to process the request.  All of the
-modules in the list should be the same type (e.g. ldap or sql).  All
-of the modules in the list should behave identically, otherwise the
-load-balance section may return different results for the same
-request.
-<P>
-Load-balance sections can contain only a list of modules, and cannot
-contain keywords that perform conditional operations (if, else, etc)
-or which update an attribute list.
-<P>
-Load-balance sections can optionally take a key.  The key is expanded
-at run time, hashed, and the hash used to select a module.  If no
-key is given, a module is chosen at random.
-<P>
-
-<DL COMPACT><DT><DD>
-<PRE>
-
-        load-balance &amp;User-Name {
-<BR>
-                ldap1   # 50&percnt; of requests go here
-<BR>
-                ldap2   # 50&percnt; of requests go here
-<BR>
-        }
-
-</PRE>
-
-</DL>
-
-<P>
-
-<P>
-In general, we recommend using &quot;redundant-load-balance&quot; instead of
-&quot;load-balance&quot;.
-<DT>redundant-load-balance<DD>
-This section contains a simple list of modules.  When the section is
-entered, one module is chosen to process the request.  If that module
-succeeds, then the server stops processing the section.  If, however,
-the module fails, then one of the remaining modules is chosen at
-random to process the request.  This process repeats until one module
-succeeds, or until the list has been exhausted.
-<P>
-All of the modules in the list should be the same type (e.g. ldap or
-sql).  All of the modules in the list should behave identically,
-otherwise the load-balance section may return different results for
-the same request.
-<P>
-Redundant-load-balance sections can contain only a list of modules, and cannot
-contain keywords that perform conditional operations (if, else, etc)
-or update an attribute list. Please see raddb/radiusd.conf 
-&quot;instantiate&quot; section for more configuration examples.
-<P>
-Redundant-load-balance sections can optionally take a key.  The key is expanded
-at run time, hashed, and the hash used to select a module.  If no
-key is given, a module is chosen at random.
-<P>
-
-<DL COMPACT><DT><DD>
-<PRE>
-
-        redundant-load-balance {
-<BR>
-                ldap1   # 50&percnt;, unless ldap2 is down, then 100&percnt;
-<BR>
-                ldap2   # 50&percnt;, unless ldap1 is down, then 100&percnt;
-<BR>
-        }
-
-</PRE>
-
-</DL>
-
-<P>
-
-<P>
-<DT>return<DD>
-<BR>
-
-Returns from the current top-level section, e.g. &quot;authorize&quot; or
-&quot;authenticate&quot;.  This keyword is mainly used to avoid layers of nested
-&quot;if&quot; and &quot;else&quot; statements.
-<P>
-
-<DL COMPACT><DT><DD>
-<PRE>
-
-        recv Access-Request {
-<BR>
-                if (...) {
-<BR>
-                        ...
-<BR>
-                        return
-<BR>
-                }
-<BR>
-                ...  # this is never reached when the &quot;if&quot;
-<BR>
-                ...  # statement is executed
-<BR>
-        }
-
-</PRE>
-
-</DL>
-
-<P>
-
 </DL>
 <A NAME="lbAE">&nbsp;</A>
 <H2>ATTRIBUTE REFERENCES</H2>
@@ -1275,6 +1369,6 @@ Alan DeKok &lt;<A HREF="mailto:aland@deployingradius.com">aland@deployingradius.
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 13:47:04 GMT, August 08, 2017
+Time: 17:42:29 GMT, January 17, 2018
 </div>
 </HTML>

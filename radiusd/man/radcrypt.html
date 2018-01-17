@@ -41,9 +41,16 @@ radcrypt - generate password hash for use with radius, or validates a password h
 <H2>DESCRIPTION</H2>
 
 <B>radcrypt</B> generates a hashed digest of a plaintext password, or can
-validate if a password hash matches a plaintext password. DES and MD5
-hashes are currently supported. When generating a password hash a random
-salt is generated and applied.
+validate if a password hash matches a plaintext password. When generating 
+a password hash a random salt is generated and applied. <B>radcrypt</B> only
+currently supports the older DES and MD5 hashes.
+<P>
+
+Current best practice is to use certificate-based authentication rather than 
+relying on passwords. However, other external tools such as openssl can generate
+high quality hashed and salted passwords if needed, e.g. &quot;echo -n 'password' | 
+openssl dgst -sha512&quot;. Although more modern hashes such as bcrypt, SSHA3, and SSHA2
+are not supported by radcrypt, hashes are supported in the server by <a href="rlm_pap.html">rlm_pap</A>(5).
 <P>
 
 A hashed password can be validated by specifying <I>-c</I> or <I>--check</I> and
@@ -104,6 +111,6 @@ Miquel van Smoorenburg &lt;<A HREF="mailto:miquels@cistron-office.nl">miquels@ci
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 13:47:04 GMT, August 08, 2017
+Time: 17:42:29 GMT, January 17, 2018
 </div>
 </HTML>

@@ -15,40 +15,26 @@ DESCRIPTION
        The goal of the language is to allow simple policies to be written with
        minimal effort.	Those policies are then  applied  when	a  request  is
        being  processed.   Requests  are  processed  through  virtual  servers
-       (including the  default	one),  in  the	sections  titled  "authorize",
-       "authenticate",	"post-auth", "preacct", "accounting", "pre-proxy", and
-       "post-proxy".
+       (including the default one),  in  the  sections	titled	"recv  Access-
+       Request", "send Access-Accept", "authenticate pap", etc.
 
-       These policies cannot be used in any other part	of  the  configuration
+       These  policies	cannot	be used in any other part of the configuration
        files, such as module or client configuration.
 
 KEYWORDS
-       The  keywords  for  the	language are a combination of pre-defined key-
-       words, and references to loadable module names.	We document  only  the
+       The keywords for the language are a  combination  of  pre-defined  key-
+       words,  and  references to loadable module names.  We document only the
        pre-defined keywords here.
 
        Subject to a few limitations described below, any keyword can appear in
-       any context.  The language consists of a series of  entries,  each  one
-       one  line.   Each  entry  begins with a keyword.  Entries are organized
+       any  context.   The  language consists of a series of entries, each one
+       one line.  Each entry begins with a  keyword.   Entries	are  organized
        into lists.  Processing of the language is line by line, from the start
        of the list to the end.	Actions are executed per-keyword.
 
-       module-name[.section-name]
-	      A  reference  to the named module.  When processing reaches this
-	      point, the pre-compiled module is called.  The module  may  suc-
-	      ceed  or fail, and will return a status to "unlang" if so.  This
-	      status can be tested in a condition.   See  the  "Simple	Condi-
-	      tions"  text in the CONDITIONS section, and MODULE RETURN CODES,
-	      below.  If a section-name is provided, it will cause the	module
-	      to execute as if it were listed in the named section.
-
-		   chap  # call the CHAP module
-		   sql	 # call the SQL module
-		   ...
-
        if
 	      Checks for a particular condition.  If true, the block after the
-	      condition is processed.  Otherwise, the block is	ignored.   See
+	      condition  is  processed.  Otherwise, the block is ignored.  See
 	      CONDITIONS, below, for documentation on the format of the condi-
 	      tions.
 
@@ -57,7 +43,7 @@ KEYWORDS
 		   }
 
        else
-	      Define a block to be executed only if the previous  "if"	condi-
+	      Define  a  block to be executed only if the previous "if" condi-
 	      tion returned false.
 
 		   else {
@@ -65,7 +51,7 @@ KEYWORDS
 		   }
 
        elsif
-	      Define  a  block to be executed only if the previous "if" condi-
+	      Define a block to be executed only if the previous  "if"	condi-
 	      tion returned false, and if the specified condition evaluates to
 	      true.
 
@@ -74,9 +60,10 @@ KEYWORDS
 		   }
 
        actions
-	      Allows  for  the	setting  of  actions  inside  of a block.  The
-	      'actions' block MUST be the last	block  in  the	section.   The
-	      enclosing block MUST be one of 'if', 'else', 'elsif', or 'case'.
+	      Allows for the setting  of  actions  inside  of  a  block.   The
+	      'actions'  block	MUST  be  the  last block in the section.  The
+	      enclosing block MUST be one of 'group', 'if',  'else',  'elsif',
+	      or 'case'.
 
 	      See MODULE RETURN CODES, below, for a description of the actions
 	      and their meanings.	if (&User-Name == 'bob') {
@@ -107,89 +94,69 @@ KEYWORDS
 			...
 		   }
 
-       switch
-	      A  "switch"  statement takes one argument, and contains a series
-	      of "case" statements.  When a "switch" statement is encountered,
-	      the  argument from the "switch" is evaluated in turn against the
-	      argument from each "case" statement.  The first "case" statement
-	      which  matches  is  executed.   All  other "case" statements are
-	      ignored.	A default "case" statement can be defined, by omitting
-	      its argument.
+       load-balance
+	      This  section  contains a simple list of modules.  When the sec-
+	      tion is entered, one module is chosen to	process  the  request.
+	      All  of  the  modules  in the list should be the same type (e.g.
+	      ldap or sql).  All of the modules  in  the  list	should	behave
+	      identically,  otherwise the load-balance section may return dif-
+	      ferent results for the same request.
 
-	      If the argument is a double quoted string (e.g. "%{exec:1 + 2}",
-	      it is expanded as described in the DATA  TYPES  section,	below.
-	      The  match  is  then  performed  on the string returned from the
-	      expansion.  If the argument  is  an  attribute  reference  (e.g.
-	      &User-Name),  then  the  match is performed on the value of that
-	      attribute.  Otherwise, the argument is taken  to	be  a  literal
-	      string, and and matching is done via simple comparison.
+	      Load-balance sections can contain only a list  of  modules,  and
+	      cannot contain keywords that perform conditional operations (if,
+	      else, etc) or which update an attribute list.
 
-	      No statement other than "case" can appear in a "switch" block.
+	      Load-balance sections can optionally take a  key.   The  key  is
+	      expanded at run time, hashed, and the hash used to select a mod-
+	      ule.  If no key is given, a module is chosen at random.
 
-		   switch <argument> {
-			...
+		   load-balance &User-Name {
+			ldap1	  # 50% of requests go here
+			ldap2	  # 50% of requests go here
 		   }
 
-       case
-	      Provides	a  place-holder which matches the argument of a parent
-	      "switch" statement.
+	      In general, we recommend using "redundant-load-balance"  instead
+	      of  "load-balance".  The main use of the keyed load-balance sec-
+	      tions is to perform sharding of data across multiple  back-ends,
+	      without  redundancy.   i.e. Requests will always go to one back-
+	      end, and if that back-end is not available,  the	"load-balance"
+	      section will return "fail".
 
-	      A "case" statement cannot appear outside of a "switch" block.
+       module-name[.section-name]
+	      A  reference  to the named module.  When processing reaches this
+	      point, the pre-compiled module is called.  The module  may  suc-
+	      ceed  or fail, and will return a status to "unlang" if so.  This
+	      status can be tested in a condition.   See  the  "Simple	Condi-
+	      tions"  text in the CONDITIONS section, and MODULE RETURN CODES,
+	      below.  If a section-name is provided, it will cause the	module
+	      to execute as if it were listed in the named section.
 
-	      If the argument is a double quoted string (e.g. "%{exec:1 + 2}",
-	      it  is  expanded	as described in the DATA TYPES section, below.
-	      The match is then performed on  the  string  returned  from  the
-	      expansion.   If  the  argument  is  an attribute reference (e.g.
-	      &User-Name), then the match is performed on the  value  of  that
-	      attribute.   Otherwise,  the  argument  is taken to be a literal
-	      string, and and matching is done via simple comparison.
+		   chap  # call the CHAP module
+		   sql	 # call the SQL module
+		   ...
 
-		   case <argument> {
+       parallel
+	      This section runs subsections in parallel.  Each subsection runs
+	      as a child request, which is a  clone  of  the  parent  request.
+	      Policies	in the child can update the original parent request by
+	      using "update parent.request", or "update parent.reply".
+
+	      The child requests are required because each subsection  is  run
+	      simultaneously.  If each subsection updated the original request
+	      at the same time, it would be impossible to separate  the  state
+	      of each subsection.
+
+	      Empty  child  requests can be created by using "parallel empty {
+	      ... }"
+
+	      The return code of the parallel section is the same as  if  each
+	      subsection was run sequentially.
+
+		   parallel {
+			home_server_1
+			home_server_2
 			...
 		   }
-
-	      A default entry can be defined  by  omitting  the  argument,  as
-	      given  below.   This entry will be used if no other "case" entry
-	      matches.	Only one default entry can exist in  a	"switch"  sec-
-	      tion.
-
-		   case {
-			...
-		   }
-
-       update
-	      Update  a  particular  attribute	list,  based on the attributes
-	      given in the current block.
-
-		   update <list> {
-			&Attribute-Reference = value
-			...
-		   }
-
-	      The <list> can be one of	"request",  "reply",  "proxy-request",
-	      "proxy-reply",  "session-state", or "control".  As of Version 3,
-	      the <list> can be omitted, in which case "request" is assumed.
-
-	      The "control" list is the list of attributes maintainted	inter-
-	      nally  by  the server that controls how the server processes the
-	      request.	Any attribute that does not go in a packet on the net-
-	      work will generally be placed in the "control" list.
-
-	      For EAP methods with tunneled authentication sessions (i.e. PEAP
-	      and EAP-TTLS), the  inner  tunnel  session  can  also  reference
-	      "outer.request", "outer.reply", and "outer.control".  Those ref-
-	      erences allow you to address the relevant list in the outer tun-
-	      nel session.
-
-	      The  "session-state" list is primarily used for EAP.  Attributes
-	      put into the "session-state" list are saved for the next	packet
-	      in  the session.	They are automatically retrieved when the next
-	      packet is received.
-
-	      The  only  contents  permitted  in  an  "update"	 section   are
-	      attributes and values.  The contents of the "update" section are
-	      described in the ATTRIBUTE REFERENCE  and  ATTRIBUTE  ASSIGNMENT
-	      sections below.
 
        redundant
 	      This  section contains a simple list of modules.	The first mod-
@@ -210,30 +177,6 @@ KEYWORDS
 			sql2 # try this only if sql1 fails.
 			...
 		   }
-
-       load-balance
-	      This section contains a simple list of modules.  When  the  sec-
-	      tion  is	entered,  one module is chosen to process the request.
-	      All of the modules in the list should be	the  same  type  (e.g.
-	      ldap  or	sql).	All  of  the modules in the list should behave
-	      identically, otherwise the load-balance section may return  dif-
-	      ferent results for the same request.
-
-	      Load-balance  sections  can  contain only a list of modules, and
-	      cannot contain keywords that perform conditional operations (if,
-	      else, etc) or which update an attribute list.
-
-	      Load-balance  sections  can  optionally  take a key.  The key is
-	      expanded at run time, hashed, and the hash used to select a mod-
-	      ule.  If no key is given, a module is chosen at random.
-
-		   load-balance &User-Name {
-			ldap1	  # 50% of requests go here
-			ldap2	  # 50% of requests go here
-		   }
-
-	      In  general, we recommend using "redundant-load-balance" instead
-	      of "load-balance".
 
        redundant-load-balance
 	      This section contains a simple list of modules.  When  the  sec-
@@ -266,9 +209,9 @@ KEYWORDS
 
 
        return
-	      Returns  from the current top-level section, e.g. "authorize" or
-	      "authenticate".  This keyword is mainly used to avoid layers  of
-	      nested "if" and "else" statements.
+	      Returns  from  the  current  section,  and stops all processing.
+	      This keyword is mainly used to avoid layers of nested  "if"  and
+	      "else" statements.
 
 		   recv Access-Request {
 			if (...) {
@@ -278,6 +221,120 @@ KEYWORDS
 			...  # this is never reached when the "if"
 			...  # statement is executed
 		   }
+
+       subrequest
+	      The "subrequest" keyword creates an empty subrequest (i.e. child
+	      request).  Attributes in the child can be copied from the parent
+	      via an "update" block.
+
+		   subrequest {
+			update request {
+			     User-Name = parent.request:User-Name
+			     ...
+			}
+			...
+		   }  The  purpose  of	a  "subrequest" section is to create a
+	      child request which can be edited and  upated  independently  of
+	      the parent.
+
+	      The  return  value  of  the  subrequest is taken from the return
+	      value of the subsection being run.
+
+       detach
+	      The "detach" keyword causes a subrequest to be detached from its
+	      parent  request.	 The subrequest runs asynchronously to comple-
+	      tion.  The subrequest immediately returns "noop" to  the	parent
+	      request.
+
+	      The  "detach"  keyword can only be used inside of a "subrequest"
+	      block.
+
+       switch
+	      A "switch" statement takes one argument, and contains  a	series
+	      of "case" statements.  When a "switch" statement is encountered,
+	      the argument from the "switch" is evaluated in turn against  the
+	      argument from each "case" statement.  The first "case" statement
+	      which matches is executed.   All	other  "case"  statements  are
+	      ignored.	A default "case" statement can be defined, by omitting
+	      its argument.
+
+	      If the argument is a double quoted string (e.g. "%{exec:1 + 2}",
+	      it  is  expanded	as described in the DATA TYPES section, below.
+	      The match is then performed on  the  string  returned  from  the
+	      expansion.   If  the  argument  is  an attribute reference (e.g.
+	      &User-Name), then the match is performed on the  value  of  that
+	      attribute.   Otherwise,  the  argument  is taken to be a literal
+	      string, and and matching is done via simple comparison.
+
+	      No statement other than "case" can appear in a "switch" block.
+
+		   switch <argument> {
+			...
+		   }
+
+       case
+	      Provides a place-holder which matches the argument of  a	parent
+	      "switch" statement.
+
+	      A "case" statement cannot appear outside of a "switch" block.
+
+	      If the argument is a double quoted string (e.g. "%{exec:1 + 2}",
+	      it is expanded as described in the DATA  TYPES  section,	below.
+	      The  match  is  then  performed  on the string returned from the
+	      expansion.  If the argument  is  an  attribute  reference  (e.g.
+	      &User-Name),  then  the  match is performed on the value of that
+	      attribute.  Otherwise, the argument is taken  to	be  a  literal
+	      string, and and matching is done via simple comparison.
+
+		   case <argument> {
+			...
+		   }
+
+	      A  default  entry  can  be  defined by omitting the argument, as
+	      given below.  This entry will be used if no other  "case"  entry
+	      matches.	 Only  one  default entry can exist in a "switch" sec-
+	      tion.
+
+		   case {
+			...
+		   }
+
+       update
+	      Update a particular attribute  list,  based  on  the  attributes
+	      given in the current block.
+
+		   update <list> {
+			&Attribute-Reference = value
+			...
+		   }
+
+	      The <list> can be one of "request", "reply", "session-state", or
+	      "control".  As of Version 3, the <list> can be omitted, in which
+	      case "request" is assumed.
+
+	      The  "control" list is the list of attributes maintainted inter-
+	      nally by the server that controls how the server	processes  the
+	      request.	Any attribute that does not go in a packet on the net-
+	      work will generally be placed in the "control" list.
+
+	      For EAP methods with tunneled authentication sessions (i.e. PEAP
+	      and  EAP-TTLS),  the  inner  tunnel  session  can also reference
+	      "outer.request", "outer.reply", and "outer.control".  Those ref-
+	      erences allow you to address the relevant list in the outer tun-
+	      nel session.
+
+	      The word "parent" may also be used  as  a  synonym  to  "outer".
+	      e.g. "parent.request", etc.
+
+	      The  "session-state" list is primarily used for EAP.  Attributes
+	      put into the "session-state" list are saved for the next	packet
+	      in  the session.	They are automatically retrieved when the next
+	      packet is received.
+
+	      The  only  contents  permitted  in  an  "update"	 section   are
+	      attributes and values.  The contents of the "update" section are
+	      described in the ATTRIBUTE REFERENCE  and  ATTRIBUTE  ASSIGNMENT
+	      sections below.
 
 ATTRIBUTE REFERENCES
        Attributes may be referenced via the following syntax:	   &Attribute-
@@ -801,4 +858,4 @@ AUTHOR
 
 
 
-				 29 June 2017			     unlang(5)
+			       14 September 2017		     unlang(5)

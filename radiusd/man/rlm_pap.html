@@ -75,9 +75,9 @@ Header       Attribute           Description
 <BR>
 ------       ---------           -----------
 <BR>
-{clear}      Cleartext-Password  clear-text passwords
+{clear}      Cleartext-Password  Clear-text passwords
 <BR>
-{cleartext}  Cleartext-Password  clear-text passwords
+{cleartext}  Cleartext-Password  Clear-text passwords
 <BR>
 {crypt}      Crypt-Password      Unix-style &quot;crypt&quot;ed passwords
 <BR>
@@ -93,17 +93,39 @@ Header       Attribute           Description
 <BR>
 {ssha}       SSHA-Password       SHA1 hashed passwords, with a salt
 <BR>
-             SSHA1-Password      SHA1 hashed passwords, with a salt
+{sha2}       SHA2-Password       SHA2 hashed passwords
 <BR>
-{ssh2}       SHA2-Password       SHA2 hashed passwords
+{sha224}     SHA2-Password       SHA2 hashed passwords
 <BR>
-{ssh256}     SHA2-Password       SHA2 hashed passwords
+{sha256}     SHA2-Password       SHA2 hashed passwords
 <BR>
-{ssh512}     SHA2-Password       SHA2 hashed passwords
+{sha384}     SHA2-Password       SHA2 hashed passwords
+<BR>
+{sha512}     SHA2-Password       SHA2 hashed passwords
+<BR>
+{ssha224}    SSHA2-224-Password  SHA2 hashed passwords, with a salt
+<BR>
+{ssha256}    SSHA2-256-Password  SHA2 hashed passwords, with a salt
+<BR>
+{ssha384}    SSHA2-384-Password  SHA2 hashed passwords, with a salt
+<BR>
+{ssha512}    SSHA2-512-Password  SHA2 hashed passwords, with a salt
+<BR>
+{ssha3}      SHA3-Password       SHA3 hashed passwords
+<BR>
+{ssha3-224}  SHA3-224-Password   SHA3 hashed passwords, with a salt
+<BR>
+{ssha3-256}  SHA3-256-Password   SHA3 hashed passwords, with a salt
+<BR>
+{ssha3-384}  SHA3-384-Password   SHA3 hashed passwords, with a salt
+<BR>
+{ssha3-512}  SHA3-512-Password   SHA3 hashed passwords, with a salt
 <BR>
 {nt}         NT-Password         Windows NT hashed passwords
 <BR>
 {nthash}     NT-Password         Windows NT hashed passwords
+<BR>
+{md4}        NT-Password         Windows NT hashed passwords
 <BR>
 {x-nthash}   NT-Password         Windows NT hashed passwords
 <BR>
@@ -111,7 +133,7 @@ Header       Attribute           Description
 <BR>
 {x- orcllmv} LM-Password         Windows LANMAN hashed passwords
 <BR>
-{X- orclntv} LM-Password         Windows LANMAN hashed passwords
+{X- orclntv} NT-Password         Windows NT hashed passwords
 
 </PRE>
 
@@ -195,6 +217,6 @@ Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 13:47:04 GMT, August 08, 2017
+Time: 17:42:29 GMT, January 17, 2018
 </div>
 </HTML>

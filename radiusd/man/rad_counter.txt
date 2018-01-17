@@ -1,0 +1,48 @@
+RAD_COUNTER(1)		       FreeRADIUS Daemon		RAD_COUNTER(1)
+
+
+
+NAME
+       rad_counter - Query and maintain FreeRADIUS rlm_counter DB file.
+
+       This tool is deprecated
+
+
+SYNOPSIS
+       rad_counter   [--file   counter_filename]  [--user  username]  [--match
+       <regex>] [--reset number] [--help] [--hours|--minutes|--seconds]
+
+
+DESCRIPTION
+       rad_counter  is	a  tool  that  can  query  and	 maintain   FreeRADIUS
+       rlm_counter DB files.
+
+OPTIONS
+       --file=
+	      Counter DB filename.
+
+       --user= username
+	      Information for specific user.
+
+       --match= <regex>
+	      Information for matching users.
+
+       --reset= number
+	      Reset  counter to <number>. If divisor is set use it, else <num-
+	      ber> means seconds.
+
+       --help Show the help screen.
+
+       --(hours | minutes | seconds)
+	      Specify information divisor.
+
+
+SEE ALSO
+       radiusd(8)
+
+AUTHORS
+       Alan DeKok <aland@freeradius.org>
+
+
+
+			       19 September 2016		RAD_COUNTER(1)

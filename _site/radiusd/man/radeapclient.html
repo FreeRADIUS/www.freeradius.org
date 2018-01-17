@@ -129,6 +129,14 @@ radeapclient - send EAP packets to a RADIUS server, calculate responses
 
 <B>radeapclient</B>
 
+[<B>-4</B>]
+
+[<B>-6</B>]
+
+[<B>-c</B>
+
+<I>count</I>]
+
 [<B>-d</B>
 
 <I>raddb_directory</I>]
@@ -137,11 +145,31 @@ radeapclient - send EAP packets to a RADIUS server, calculate responses
 
 <I>file</I>]
 
+[<B>-h</B>]
+
 [<B>-i</B>
 
 <I>source_ip</I>]
 
-[<B>-xy</B>]
+[<B>-q</B>]
+
+[<B>-s</B>]
+
+[<B>-r</B>
+
+<I>retries</I>]
+
+[<B>-S</B>
+
+<I>file</I>]
+
+[<B>-t</B>
+
+<I>timeout</I>]
+
+[<B>-v</B>]
+
+[<B>-x</B>]
 
 <I>server {acct|auth} secret</I>
 <A NAME="lbAD">&nbsp;</A>
@@ -150,7 +178,7 @@ radeapclient - send EAP packets to a RADIUS server, calculate responses
 <B>radeapclient</B> is a radius client program. It can send arbitrary radius
 packets to a radius server, then shows the reply. Radeapclient differs from
 radclient in that if there is an EAP-MD5 challenge, then it will be responded
-to. 
+to.
 <P>
 
 <B>radeapclient</B> is otherwise identical to <B>radclient</B>.
@@ -163,12 +191,46 @@ EAP Identity message.
 <P>
 
 The <I>EAP-MD5-Password</I> attribute, if present is used to respond to an
-MD5 challenge. 
+MD5 challenge.
 <P>
 
 No other EAP types are currently supported.
 <P>
 <A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<DL COMPACT>
+<DT>-4<DD>
+Use IPv4 (default)
+<DT>-6<DD>
+Use IPv6
+<DT>-c&nbsp;<I>count</I><DD>
+Send each packet <I>count</I> times.
+<DT>-d&nbsp;<I>raddb</I><DD>
+Set dictionary directory.
+<DT>-f&nbsp;<I>file</I><DD>
+Read packets from <I>file</I>, not stdin.
+<DT>-r&nbsp;<I>retries</I><DD>
+If timeout, retry sending the packet <I>retries</I> times.
+<DT>-t&nbsp;<I>timeout</I><DD>
+Wait <I>timeout</I> seconds before retrying (may be a floating point number).
+<DT>-h<DD>
+Print usage help information.
+<DT>-i&nbsp;<I>id</I><DD>
+Set request id to '<I>id</I>'.  Values may be 0..255
+<DT>-S&nbsp;<I>file</I><DD>
+Read secret from <I>file</I>, not command line.
+<DT>-q<DD>
+Quiet, do not print anything out.
+<DT>-s<DD>
+Print out summary information of auth results.
+<DT>-v<DD>
+Show program version information.
+<DT>-x<DD>
+Enable debugging mode.
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
 <H2>EXAMPLE</H2>
 
 <P>
@@ -185,7 +247,7 @@ challenge.
   echo 'EAP-Type-Identity = &quot;bob&quot;;
   echo 'Message-Authenticator = 0x00';
   echo 'NAS-Port = 0' ) &gt;req.txt
-  
+
 radeapclient -x localhost auth testing123 &lt;req.txt
 </PRE>
 
@@ -193,11 +255,11 @@ radeapclient -x localhost auth testing123 &lt;req.txt
 </DL>
 
 <P>
-<A NAME="lbAF">&nbsp;</A>
+<A NAME="lbAG">&nbsp;</A>
 <H2>SEE ALSO</H2>
 
 <a href="radclient.html">radclient</A>(1)
-<A NAME="lbAG">&nbsp;</A>
+<A NAME="lbAH">&nbsp;</A>
 <H2>AUTHOR</H2>
 
 Michael Richardson, &lt;<A HREF="mailto:mcr@sandelman.ottawa.on.ca">mcr@sandelman.ottawa.on.ca</A>&gt;
@@ -209,15 +271,16 @@ Michael Richardson, &lt;<A HREF="mailto:mcr@sandelman.ottawa.on.ca">mcr@sandelma
 <DT><A HREF="#lbAB">NAME</A><DD>
 <DT><A HREF="#lbAC">SYNOPSIS</A><DD>
 <DT><A HREF="#lbAD">DESCRIPTION</A><DD>
-<DT><A HREF="#lbAE">EXAMPLE</A><DD>
-<DT><A HREF="#lbAF">SEE ALSO</A><DD>
-<DT><A HREF="#lbAG">AUTHOR</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">EXAMPLE</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHOR</A><DD>
 </DL>
 <HR>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 11:13:11 GMT, August 01, 2017
+Time: 16:13:00 GMT, January 12, 2018
 </div>
 </HTML>
 

@@ -1,0 +1,109 @@
+---
+layout: page
+title: FreeRADIUS 'man' pages
+subtitle: Documentation from the server
+subpage: true
+navorder: 200
+hero: documentation
+
+subnav:
+ - text: Programs
+   link: '/radiusd/man/#programs'
+ - text: Configuration Files
+   link: '/radiusd/man/#files'
+ - text: Modules
+   link: '/radiusd/man/#modules'
+---
+
+
+<div class="man_page wrapper base_padding_v">
+<H1>RAD_COUNTER</H1>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 19 September 2016<BR><A HREF="#index">Index</A>
+<A HREF="/man/">Return to Main Contents</A><HR>
+
+<A NAME="lbAB">&nbsp;</A>
+<H2>NAME</H2>
+
+rad_counter - Query and maintain FreeRADIUS rlm_counter DB file.
+<P>
+This tool is deprecated
+<P>
+<A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>rad_counter</B>
+
+[<B>--file</B>
+
+<I>counter_filename</I>]
+
+[<B>--user</B>
+
+<I>username</I>]
+
+[<B>--match</B>
+
+<I>&lt;regex&gt;</I>]
+
+[<B>--reset</B>
+
+<I>number]</I>
+
+[<B>--help</B>]
+
+[<B>--hours</B>|<B>--minutes</B>|<B>--seconds</B>]
+
+<P>
+<A NAME="lbAD">&nbsp;</A>
+<H2>DESCRIPTION</H2>
+
+<B>rad_counter</B> is a tool that can query and maintain FreeRADIUS rlm_counter DB files.
+<P>
+
+<P>
+<A NAME="lbAE">&nbsp;</A>
+<H2>OPTIONS</H2>
+
+<P>
+<DL COMPACT>
+<DT>--file=<DD>
+Counter DB filename.
+<DT>--user=&nbsp;<I>username</I><DD>
+Information for specific user.
+<DT>--match=&nbsp;<I>&lt;regex&gt;</I><DD>
+Information for matching users.
+<DT>--reset=&nbsp;<I>number</I><DD>
+Reset counter to &lt;number&gt;. If divisor is set use it, else &lt;number&gt; means seconds.
+<DT>--help<DD>
+Show the help screen.
+<DT>--(hours&nbsp;|&nbsp;minutes&nbsp;|&nbsp;seconds)<DD>
+Specify information divisor.
+<P>
+</DL>
+<A NAME="lbAF">&nbsp;</A>
+<H2>SEE ALSO</H2>
+
+<a href="radiusd.html">radiusd</A>(8)
+<A NAME="lbAG">&nbsp;</A>
+<H2>AUTHORS</H2>
+
+Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt;
+<P>
+
+<HR>
+<A NAME="index">&nbsp;</A><H2>Index</H2>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">AUTHORS</A><DD>
+</DL>
+<HR>
+This document was created by
+man2html,
+using the manual pages.<BR>
+Time: 16:13:00 GMT, January 12, 2018
+</div>
+</HTML>

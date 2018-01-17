@@ -9,7 +9,7 @@
 ">
 
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="freeradius.org/radiusd/man/rlm_digest.html">
+    <link rel="canonical" href="freeradius.org/radiusd/man/rad_counter.html">
     <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.org/feed.xml">
 
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
@@ -116,144 +116,94 @@
 </div>
 <div class="post-content">
     <div class="man_page wrapper base_padding_v">
-<H1>rlm_digest</H1>
-Section: FreeRADIUS Module (5)<BR>Updated: 31 March 2005<BR><A HREF="#index">Index</A>
+<H1>RAD_COUNTER</H1>
+Section: FreeRADIUS Daemon (1)<BR>Updated: 19 September 2016<BR><A HREF="#index">Index</A>
 <A HREF="/man/">Return to Main Contents</A><HR>
 
 <A NAME="lbAB">&nbsp;</A>
 <H2>NAME</H2>
 
-rlm_digest - FreeRADIUS Module
+rad_counter - Query and maintain FreeRADIUS rlm_counter DB file.
+<P>
+This tool is deprecated
+<P>
 <A NAME="lbAC">&nbsp;</A>
+<H2>SYNOPSIS</H2>
+
+<B>rad_counter</B>
+
+[<B>--file</B>
+
+<I>counter_filename</I>]
+
+[<B>--user</B>
+
+<I>username</I>]
+
+[<B>--match</B>
+
+<I>&lt;regex&gt;</I>]
+
+[<B>--reset</B>
+
+<I>number]</I>
+
+[<B>--help</B>]
+
+[<B>--hours</B>|<B>--minutes</B>|<B>--seconds</B>]
+
+<P>
+<A NAME="lbAD">&nbsp;</A>
 <H2>DESCRIPTION</H2>
 
-The <I>rlm_digest</I> module authenticates RADIUS Access-Request
-packets that contain Cisco SIP digest authentication attributes.  The
-module should be listed in the <I>authorize</I> and <I>authenticate</I>
-sections of <I>radiusd.conf</I>.
-<A NAME="lbAD">&nbsp;</A>
-<H2>CONFIGURATION</H2>
+<B>rad_counter</B> is a tool that can query and maintain FreeRADIUS rlm_counter DB files.
+<P>
 
-The digest module requires no additional configuration items.  When it
-is being used to authenticate requests, however, it does require
-access to the clear-text password for the user.  Hashed passwords are
-not acceptable, and will not work.
+<P>
 <A NAME="lbAE">&nbsp;</A>
-<H2>EXAMPLES</H2>
+<H2>OPTIONS</H2>
 
-Add the following lines to the top of your 'raddb/users' file:
 <P>
-
-
-<DL COMPACT><DT><DD>
-<PRE>
-
-#---
-<BR>
-test    Auth-Type := Digest, User-Password = &quot;test&quot;
-<BR>
-        Reply-Message = &quot;Hello, test with digest&quot;
-<BR>
-#---
-
-</PRE>
-
+<DL COMPACT>
+<DT>--file=<DD>
+Counter DB filename.
+<DT>--user=&nbsp;<I>username</I><DD>
+Information for specific user.
+<DT>--match=&nbsp;<I>&lt;regex&gt;</I><DD>
+Information for matching users.
+<DT>--reset=&nbsp;<I>number</I><DD>
+Reset counter to &lt;number&gt;. If divisor is set use it, else &lt;number&gt; means seconds.
+<DT>--help<DD>
+Show the help screen.
+<DT>--(hours&nbsp;|&nbsp;minutes&nbsp;|&nbsp;seconds)<DD>
+Specify information divisor.
+<P>
 </DL>
-
-<P>
-
-<P>
-Once the server has been started (debugging mode is recommended),
-use '<I>radclient</I> to send the following packet to the server:
-<P>
-
-
-<DL COMPACT><DT><DD>
-<PRE>
-
-$  radclient -f digest localhost auth testing123
-
-</PRE>
-
-</DL>
-
-<P>
-
-<P>
-Where 'digest' is a file containing:
-<P>
-
-
-<DL COMPACT><DT><DD>
-<PRE>
-
-  User-Name = &quot;test&quot;,
-<BR>
-  Digest-Response = &quot;631d6d73147add2f9e437f59bbc3aeb7&quot;,
-<BR>
-  Digest-Realm = &quot;testrealm&quot;,
-<BR>
-  Digest-Nonce = &quot;1234abcd&quot;,
-<BR>
-  Digest-Method = &quot;INVITE&quot;,
-<BR>
-  Digest-URI = &quot;sip:<A HREF="mailto:5555551212@example.com">5555551212@example.com</A>&quot;,
-<BR>
-  Digest-Algorithm = &quot;MD5&quot;,
-<BR>
-  Digest-User-Name = &quot;test&quot;,
-<BR>
-  Message-Authenticator = &quot;&quot;
-
-</PRE>
-
-</DL>
-
-<P>
-
-<P>
-You should see the authentication succeed.
-<P>
 <A NAME="lbAF">&nbsp;</A>
-<H2>SECTIONS</H2>
+<H2>SEE ALSO</H2>
 
-<B>authorize,</B>
-
-<B>authenticate</B>
-
-<P>
-
+<a href="radiusd.html">radiusd</A>(8)
 <A NAME="lbAG">&nbsp;</A>
-<H2>FILES</H2>
+<H2>AUTHORS</H2>
 
-<I>/etc/raddb/radiusd.conf,</I>
-
-<I>draft-sterman-aaa-sip-00.txt</I>
-
-<P>
-
-<A NAME="lbAH">&nbsp;</A>
-<H2>AUTHOR</H2>
-
-Alan DeKok &lt;<A HREF="mailto:aland@ox.org">aland@ox.org</A>&gt;
+Alan DeKok &lt;<A HREF="mailto:aland@freeradius.org">aland@freeradius.org</A>&gt;
 <P>
 
 <HR>
 <A NAME="index">&nbsp;</A><H2>Index</H2>
 <DL>
 <DT><A HREF="#lbAB">NAME</A><DD>
-<DT><A HREF="#lbAC">DESCRIPTION</A><DD>
-<DT><A HREF="#lbAD">CONFIGURATION</A><DD>
-<DT><A HREF="#lbAE">EXAMPLES</A><DD>
-<DT><A HREF="#lbAF">SECTIONS</A><DD>
-<DT><A HREF="#lbAG">FILES</A><DD>
-<DT><A HREF="#lbAH">AUTHOR</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">AUTHORS</A><DD>
 </DL>
 <HR>
 This document was created by
 man2html,
 using the manual pages.<BR>
-Time: 16:13:01 GMT, January 12, 2018
+Time: 16:13:00 GMT, January 12, 2018
 </div>
 </HTML>
 

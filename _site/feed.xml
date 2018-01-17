@@ -6,9 +6,9 @@
 </description>
     <link>freeradius.org/</link>
     <atom:link href="freeradius.org/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 11 Nov 2017 13:29:31 +0000</pubDate>
-    <lastBuildDate>Sat, 11 Nov 2017 13:29:31 +0000</lastBuildDate>
-    <generator>Jekyll v3.5.2</generator>
+    <pubDate>Wed, 17 Jan 2018 18:51:05 +0000</pubDate>
+    <lastBuildDate>Wed, 17 Jan 2018 18:51:05 +0000</lastBuildDate>
+    <generator>Jekyll v3.7.0</generator>
     
       <item>
         <title>Multiple issues found by Guido Vranken</title>
@@ -185,11 +185,10 @@ requested that the public notice contain an accurate description of
 the issue and it’s impact. oCert again refused. After repeated
 messages, the response from Andrea Barisani of oCert was:&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The reporter disagrees with your assessment yet cannot share details
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The reporter disagrees with your assessment yet cannot share details
 about their setup, oCERT has no wishes to do technical support on
 their setup as we just care about the reported bug.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Which is missing the point. We never asked to do “technical support
 on their setup”. We asked for an accurate description of the issue
