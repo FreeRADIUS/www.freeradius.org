@@ -148,8 +148,9 @@
 
 <p>When the server has been installed on a new machine, the first step is to start it in debugging mode, as user <code class="highlighter-rouge">root</code>:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ radiusd -X
-</code></pre></div></div>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ radiusd -X
+</code></pre>
+</div>
 
 <p>This step demonstrates that the server is installed and configured properly. If the output says <code class="highlighter-rouge">Ready to process requests</code>, then all is well.</p>
 
@@ -159,20 +160,23 @@
 
 <p>Testing authentication is simple. Edit the users file (in v3 this has been moved to <code class="highlighter-rouge">raddb/mods-config/files/authorize</code>), and add the following line of text at the top of the file, before anything else:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>testing Cleartext-Password := "password"
-</code></pre></div></div>
+<div class="highlighter-rouge"><pre class="highlight"><code>testing Cleartext-Password := "password"
+</code></pre>
+</div>
 
 <p>Start the server in debugging mode (<code class="highlighter-rouge">radiusd -X</code>), and run <code class="highlighter-rouge">radtest</code> from another terminal window:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ radtest testing password 127.0.0.1 0 testing123
-</code></pre></div></div>
+<div class="highlighter-rouge"><pre class="highlight"><code>$ radtest testing password 127.0.0.1 0 testing123
+</code></pre>
+</div>
 
 <p>You <em>should</em> see the server respond with an Access-Accept. If it doesn’t, the debug log will show why. In version 2, you can paste the output into the debug form, and a colorized HTML version will be produced. In version 3, the output will be colorized. Look for red or yellow text, and read the relvant messages. They should describe exactly what went wrong, and how to fix the problem.</p>
 
 <p>If you do see an <code class="highlighter-rouge">Access-Accept</code>, then congratulations, the following authentication methods now work for the <code class="highlighter-rouge">testing</code> user:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PAP, CHAP, MS-CHAPv1, MS-CHAPv2, PEAP, EAP-TTLS, EAP-GTC, EAP-MD5.
-</code></pre></div></div>
+<div class="highlighter-rouge"><pre class="highlight"><code>PAP, CHAP, MS-CHAPv1, MS-CHAPv2, PEAP, EAP-TTLS, EAP-GTC, EAP-MD5.
+</code></pre>
+</div>
 
 <p>The next step is to add more users, and to configure databases. Those steps are outside of the scope of this short web page, but the general method to use is important, and is outlined in the next section.</p>
 
@@ -180,11 +184,12 @@
 
 <p>The above test runs <code class="highlighter-rouge">radtest</code> from localhost. It is useful to add a new client, which can be done by editing the <code class="highlighter-rouge">clients.conf</code> file. Add the following contets:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>client new {
+<div class="highlighter-rouge"><pre class="highlight"><code>client new {
 	ipaddr = 192.0.2.1
 	secret = testing123
 }
-</code></pre></div></div>
+</code></pre>
+</div>
 
 <p>You should change the IP address <code class="highlighter-rouge">192.0.2.1</code> to be the address of the client which will be sending Access-Request packets.</p>
 
@@ -249,7 +254,7 @@
                          <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
                         <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
                     </div>
-                    <p>&copy; 2017 The FreeRADIUS Server Project and Contributors</p>
+                    <p>&copy; 2018 The FreeRADIUS Server Project and Contributors</p>
                 </div>
             </div>
             <div class="columns medium-8">
