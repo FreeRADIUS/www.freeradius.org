@@ -1,99 +1,9 @@
-<!DOCTYPE html>
-<html ng-app="freeradius"><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+---
+layout: default
+---
 
-    <title>FreeRADIUS</title>
-    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
-">
-
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="freeradius.org/rfc/rfc4590.html">
-    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.org/feed.xml">
-
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
-    <meta name="msapplication-TileColor" content="#da532c ">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff ">
-
-</head>
-<body><div class="global-nav">
-  <div class="global_links pull_right">
-    <div class="global_link global_link_label h5 text">Our sites:</div>
-    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
-  </div>
-</div>
-
-<header class="site-header" global-header ng-class="{fixed: fixNav}">
-  <div class="site-header-wrapper">
-
-    <a class="site-title" href="/"><img src="/img/wordmark.svg"></a>
-    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
-      <svg viewBox="0 0 18 15">
-        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-      </svg>
-    </button>
-
-    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
-
-      <div class="get-release">
-      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
-      </div>
-
-      <ul class="site-nav-list">
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/releases/">Releases</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/documentation/">Documentation</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/modules/">Modules</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/community/">Community</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/about/">About</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/support/">Support</a>
-         </li>
-
-      </ul>
-
-    </nav>
-  </div>
-</header>
-<div class="page-content">
-
-        <div class="wrapper base_padding_v">
-<pre>
+<div class="wrapper base_padding_v">
+<PRE>
 
 
 
@@ -143,7 +53,7 @@ Table of Contents
 2. Detailed Description ............................................6
    2.1. RADIUS Client Behavior .....................................6
         2.1.1. Credential Selection ................................6
-        2.1.2. Constructing an Access-Request ......................6
+        2.1.2. Constructing an <A HREF="rfc2865.html#Access-Request">Access-Request</A> ......................6
         2.1.3. Constructing an Authentication-Info Header ..........7
         2.1.4. Failed Authentication ...............................8
         2.1.5. Obtaining Nonces ....................................9
@@ -160,26 +70,26 @@ RFC 4590              RADIUS Digest Authentication             July 2006
         2.2.2. Authentication .....................................10
         2.2.3. Constructing the Reply .............................11
 3. New RADIUS Attributes ..........................................12
-   3.1. Digest-Response attribute .................................12
-   3.2. Digest-Realm Attribute ....................................13
-   3.3. Digest-Nonce Attribute ....................................13
-   3.4. Digest-Response-Auth Attribute ............................14
-   3.5. Digest-Nextnonce Attribute ................................14
-   3.6. Digest-Method Attribute ...................................14
-   3.7. Digest-URI Attribute ......................................15
-   3.8. Digest-Qop Attribute ......................................15
-   3.9. Digest-Algorithm Attribute ................................16
-   3.10. Digest-Entity-Body-Hash Attribute ........................16
-   3.11. Digest-CNonce Attribute ..................................17
-   3.12. Digest-Nonce-Count Attribute .............................17
-   3.13. Digest-Username Attribute ................................17
-   3.14. Digest-Opaque Attribute ..................................18
-   3.15. Digest-Auth-Param Attribute ..............................18
-   3.16. Digest-AKA-Auts Attribute ................................19
-   3.17. Digest-Domain Attribute ..................................19
-   3.18. Digest-Stale Attribute ...................................20
+   3.1. <A HREF="rfc5090.html#Digest-Response">Digest-Response</A> attribute .................................12
+   3.2. <A HREF="#Digest-Realm">Digest-Realm</A> Attribute ....................................13
+   3.3. <A HREF="#Digest-Nonce">Digest-Nonce</A> Attribute ....................................13
+   3.4. <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A> Attribute ............................14
+   3.5. <A HREF="#Digest-Nextnonce">Digest-Nextnonce</A> Attribute ................................14
+   3.6. <A HREF="#Digest-Method">Digest-Method</A> Attribute ...................................14
+   3.7. <A HREF="#Digest-URI">Digest-URI</A> Attribute ......................................15
+   3.8. <A HREF="#Digest-Qop">Digest-Qop</A> Attribute ......................................15
+   3.9. <A HREF="#Digest-Algorithm">Digest-Algorithm</A> Attribute ................................16
+   3.10. <A HREF="#Digest-Entity-Body-Hash">Digest-Entity-Body-Hash</A> Attribute ........................16
+   3.11. <A HREF="#Digest-CNonce">Digest-CNonce</A> Attribute ..................................17
+   3.12. <A HREF="#Digest-Nonce-Count">Digest-Nonce-Count</A> Attribute .............................17
+   3.13. <A HREF="#Digest-Username">Digest-Username</A> Attribute ................................17
+   3.14. <A HREF="#Digest-Opaque">Digest-Opaque</A> Attribute ..................................18
+   3.15. <A HREF="#Digest-Auth-Param">Digest-Auth-Param</A> Attribute ..............................18
+   3.16. <A HREF="#Digest-AKA-Auts">Digest-AKA-Auts</A> Attribute ................................19
+   3.17. <A HREF="#Digest-Domain">Digest-Domain</A> Attribute ..................................19
+   3.18. <A HREF="#Digest-Stale">Digest-Stale</A> Attribute ...................................20
    3.19. Digest-HA1 Attribute .....................................20
-   3.20. SIP-AOR Attribute ........................................21
+   3.20. <A HREF="#SIP-AOR">SIP-AOR</A> Attribute ........................................21
 4. Diameter Compatibility .........................................21
 5. Table of Attributes ............................................22
 6. Examples .......................................................23
@@ -192,9 +102,9 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    10.1. Normative References .....................................29
    10.2. Informative References ...................................30
 
-1.  Introduction
+<H2>1.  Introduction</H2>
 
-1.1.  Terminology
+<H2>1.1.  Terminology</H2>
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
@@ -241,7 +151,7 @@ RFC 4590              RADIUS Digest Authentication             July 2006
          SIP User Agent Server, a logical entity that generates a
          response to a SIP (Session Initiation Protocol) request.
 
-1.2.  Motivation
+<H2>1.2.  Motivation</H2>
 
    The HTTP Digest Authentication mechanism, defined in [RFC2617], was
    subsequently adapted for use with SIP [RFC3261].  Due to the
@@ -275,7 +185,7 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    [RFC3310] is also supported.  A companion document [SIP-APP] defines
    support for Digest Authentication within Diameter.
 
-1.3.  Overview
+<H2>1.3.  Overview</H2>
 
    HTTP Digest is a challenge-response protocol used to authenticate a
    client's request to access some resource on a server.  Figure 1 shows
@@ -283,13 +193,13 @@ RFC 4590              RADIUS Digest Authentication             July 2006
 
                                  HTTP/SIP..
                   +------------+  (1)     +------------+
-                  |            |--------->|            |
+                  |            |---------&gt;|            |
                   | HTTP-style |  (2)     | HTTP-style |
-                  | client     |<---------| server     |
+                  | client     |&lt;---------| server     |
                   |            |  (3)     |            |
-                  |            |--------->|            |
+                  |            |---------&gt;|            |
                   |            |  (4)     |            |
-                  |            |<---------|            |
+                  |            |&lt;---------|            |
                   +------------+          +------------+
 
                  Figure 1: Digest operation without RADIUS
@@ -309,9 +219,9 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    Instead of maintaining a local user database, the server could use
    RADIUS to access a centralized user database.  However, RADIUS
    [RFC2865] does not include support for HTTP Digest Authentication.
-   The RADIUS client cannot use the User-Password attribute, since it
+   The RADIUS client cannot use the <A HREF="rfc2865.html#User-Password">User-Password</A> attribute, since it
    does not receive a password from the HTTP-style client.  The
-   CHAP-Challenge and CHAP-Password attributes described in [RFC1994]
+   <A HREF="rfc2865.html#CHAP-Challenge">CHAP-Challenge</A> and <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A> attributes described in [RFC1994]
    are also not suitable since the CHAP algorithm is not compatible with
    HTTP Digest.
 
@@ -341,23 +251,23 @@ RFC 4590              RADIUS Digest Authentication             July 2006
                         HTTP/SIP           RADIUS
 
                +-----+    (1)    +-----+           +-----+
-               |     |==========>|     |    (2)    |     |
-               |     |           |     |---------->|     |
+               |     |==========&gt;|     |    (2)    |     |
+               |     |           |     |----------&gt;|     |
                |     |           |     |    (3)    |     |
-               |     |    (4)    |     |<----------|     |
-               |     |<==========|     |           |     |
+               |     |    (4)    |     |&lt;----------|     |
+               |     |&lt;==========|     |           |     |
                |     |    (5)    |     |           |     |
-               |     |==========>|     |           |     |
+               |     |==========&gt;|     |           |     |
                |  A  |           |  B  |    (6)    |  C  |
-               |     |           |     |---------->|     |
+               |     |           |     |----------&gt;|     |
                |     |           |     |    (7)    |     |
-               |     |           |     |<----------|     |
+               |     |           |     |&lt;----------|     |
                |     |    (8)    |     |           |     |
-               |     |<==========|     |           |     |
+               |     |&lt;==========|     |           |     |
                +-----+           +-----+           +-----+
 
-               ====> HTTP/SIP
-               ----> RADIUS
+               ====&gt; HTTP/SIP
+               ----&gt; RADIUS
 
                     Figure 2: HTTP Digest over RADIUS
 
@@ -383,21 +293,21 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    The following messages are sent in this scenario:
 
    A sends B an HTTP/SIP request without an authorization header (step
-   1).  B sends an Access-Request packet with the newly defined
-   Digest-Method and Digest-URI attributes but without a Digest-Nonce
+   1).  B sends an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet with the newly defined
+   <A HREF="#Digest-Method">Digest-Method</A> and <A HREF="#Digest-URI">Digest-URI</A> attributes but without a <A HREF="#Digest-Nonce">Digest-Nonce</A>
    attribute to the RADIUS server, C (step 2).  C chooses a nonce and
-   responds with an Access-Challenge (step 3).  This Access-Challenge
+   responds with an <A HREF="rfc2865.html#<A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>"><A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A></A> (step 3).  This <A HREF="rfc2865.html#<A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>"><A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A></A>
    contains Digest attributes, from which B takes values to construct an
    HTTP/SIP "(Proxy) Authorization required" response.  B sends this
    response to A (step 4).  A resends its request with its credentials
-   (step 5).  B sends an Access-Request to C (step 6).  C checks the
-   credentials and replies with Access-Accept or Access-Reject (step 7).
+   (step 5).  B sends an <A HREF="rfc2865.html#Access-Request">Access-Request</A> to C (step 6).  C checks the
+   credentials and replies with <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> or <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> (step 7).
    Depending on C's result, B processes A's request or rejects it with a
    "(Proxy) Authorization required" response (step 8).
 
-2.  Detailed Description
+<H2>2.  Detailed Description</H2>
 
-2.1.  RADIUS Client Behavior
+<H2>2.1.  RADIUS Client Behavior</H2>
 
    The attributes described in this document are sent in cleartext.
    Therefore, were a RADIUS client to accept secure connections (HTTPS
@@ -405,7 +315,7 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    intentionally protected by HTTP-style clients being sent in the clear
    during RADIUS exchange.
 
-2.1.1.  Credential Selection
+<H2>2.1.1.  Credential Selection</H2>
 
    On reception of an HTTP-style request message, the RADIUS client
    checks whether it is authorized to authenticate the request.  Where
@@ -421,7 +331,7 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    client MUST choose the credential of the (Proxy-)Authorization header
    if the realm directive matches its locally configured realm.
 
-2.1.2.  Constructing an Access-Request
+<H2>2.1.2.  Constructing an Access-Request</H2>
 
    If a matching (Proxy-)Authorization header is present and contains
    HTTP Digest information, the RADIUS client checks the 'nonce'
@@ -437,13 +347,13 @@ RFC 4590              RADIUS Digest Authentication             July 2006
 
 
    If the RADIUS client recognizes the nonce, it takes the header
-   directives and puts them into a RADIUS Access-Request packet.  It
-   puts the 'response' directive into a Digest-Response attribute and
+   directives and puts them into a RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet.  It
+   puts the 'response' directive into a <A HREF="rfc5090.html#Digest-Response">Digest-Response</A> attribute and
    the realm, nonce, digest-uri, qop, algorithm, cnonce, nc, username,
-   and opaque directives into the respective Digest-Realm, Digest-Nonce,
-   Digest-URI, Digest-Qop, Digest-Algorithm, Digest-CNonce,
-   Digest-Nonce-Count, Digest-Username, and Digest-Opaque attributes.
-   The RADIUS client puts the request method into the Digest-Method
+   and opaque directives into the respective <A HREF="#Digest-Realm">Digest-Realm</A>, <A HREF="#Digest-Nonce">Digest-Nonce</A>,
+   <A HREF="#Digest-URI">Digest-URI</A>, <A HREF="#Digest-Qop">Digest-Qop</A>, <A HREF="#Digest-Algorithm">Digest-Algorithm</A>, <A HREF="#Digest-CNonce">Digest-CNonce</A>,
+   <A HREF="#Digest-Nonce-Count">Digest-Nonce-Count</A>, <A HREF="#Digest-Username">Digest-Username</A>, and <A HREF="#Digest-Opaque">Digest-Opaque</A> attributes.
+   The RADIUS client puts the request method into the <A HREF="#Digest-Method">Digest-Method</A>
    attribute.
 
    Due to syntactic requirements, HTTP-style protocols have to escape
@@ -455,30 +365,30 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    If the Quality of Protection (qop) directive's value is 'auth-int',
    the RADIUS client calculates H(entity-body) as described in
    [RFC2617], Section 3.2.1, and puts the result in a
-   Digest-Entity-Body-Hash attribute.
+   <A HREF="#Digest-Entity-Body-Hash">Digest-Entity-Body-Hash</A> attribute.
 
-   The RADIUS client adds a Message-Authenticator attribute, defined in
-   [RFC3579], and sends the Access-Request packet to the RADIUS server.
+   The RADIUS client adds a <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute, defined in
+   [RFC3579], and sends the <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet to the RADIUS server.
 
    The RADIUS server processes the packet and responds with an
-   Access-Accept or an Access-Reject.
+   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> or an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>.
 
-2.1.3.  Constructing an Authentication-Info Header
+<H2>2.1.3.  Constructing an Authentication-Info Header</H2>
 
-   After having received an Access-Accept from the RADIUS server, the
+   After having received an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> from the RADIUS server, the
    RADIUS client constructs an Authentication-Info header:
 
-   o  If the Access-Accept packet contains a Digest-Response-Auth
-      attribute, the RADIUS client checks the Digest-Qop attribute:
+   o  If the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet contains a <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A>
+      attribute, the RADIUS client checks the <A HREF="#Digest-Qop">Digest-Qop</A> attribute:
 
-      *  If the Digest-Qop attribute's value is 'auth' or not specified,
-         the RADIUS client puts the Digest-Response-Auth attribute's
+      *  If the <A HREF="#Digest-Qop">Digest-Qop</A> attribute's value is 'auth' or not specified,
+         the RADIUS client puts the <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A> attribute's
          content into the Authentication-Info header's 'rspauth'
          directive of the HTTP-style response.
 
-      *  If the Digest-Qop attribute's value is 'auth-int', the RADIUS
-         client ignores the Access-Accept packet and behaves as if it
-         had received an Access-Reject packet (Digest-Response-Auth
+      *  If the <A HREF="#Digest-Qop">Digest-Qop</A> attribute's value is 'auth-int', the RADIUS
+         client ignores the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet and behaves as if it
+         had received an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet (<A HREF="#Digest-Response-Auth">Digest-Response-Auth</A>
          can't be correct as the RADIUS server does not know the
          contents of the HTTP-style response's body).
 
@@ -492,7 +402,7 @@ Sterman, et al.             Standards Track                     [Page 7]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-   o  If the Access-Accept packet contains a Digest-HA1 attribute, the
+   o  If the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet contains a Digest-HA1 attribute, the
       RADIUS client checks the 'qop' and 'algorithm' directives in the
       Authorization header of the HTTP-style request it wants to
       authorize:
@@ -516,24 +426,24 @@ RFC 4590              RADIUS Digest Authentication             July 2006
 
          It creates the HTTP-style response message and calculates the
          hash of this message's body.  It uses the result and the
-         Digest-URI attribute's value of the corresponding
-         Access-Request packet to perform the H(A2) calculation.  It
-         takes the Digest-Nonce, Digest-Nonce-Count, Digest-CNonce, and
-         Digest-Qop values of the corresponding Access-Request and the
+         <A HREF="#Digest-URI">Digest-URI</A> attribute's value of the corresponding
+         <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet to perform the H(A2) calculation.  It
+         takes the <A HREF="#Digest-Nonce">Digest-Nonce</A>, <A HREF="#Digest-Nonce">Digest-Nonce</A>-Count, <A HREF="#Digest-CNonce">Digest-CNonce</A>, and
+         <A HREF="#Digest-Qop">Digest-Qop</A> values of the corresponding <A HREF="rfc2865.html#Access-Request">Access-Request</A> and the
          Digest-HA1 attribute's value to finish the computation of the
          'rspauth' value.
 
-   o  If the Access-Accept packet contains neither a
-      Digest-Response-Auth nor a Digest-HA1 attribute, the RADIUS client
+   o  If the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet contains neither a
+      <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A> nor a Digest-HA1 attribute, the RADIUS client
       will not create an Authentication-Info header for its HTTP-style
       response.
 
-   When the RADIUS server provides a Digest-Nextnonce attribute in the
-   Access-Accept packet, the RADIUS client puts the contents of this
+   When the RADIUS server provides a <A HREF="#Digest-Nextnonce">Digest-Nextnonce</A> attribute in the
+   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet, the RADIUS client puts the contents of this
    attribute into a 'nextnonce' directive.  Now it can send an
    HTTP-style response.
 
-2.1.4.  Failed Authentication
+<H2>2.1.4.  Failed Authentication</H2>
 
    If the RADIUS client did receive an HTTP-style request without a
    (Proxy-)Authorization header matching its locally configured realm
@@ -548,54 +458,54 @@ Sterman, et al.             Standards Track                     [Page 8]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-   If the RADIUS client receives an Access-Challenge packet in response
-   to an Access-Request containing a Digest-Nonce attribute, the RADIUS
-   server did not accept the nonce.  If a Digest-Stale attribute is
-   present in the Access-Challenge and has a value of 'true' (without
+   If the RADIUS client receives an <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet in response
+   to an <A HREF="rfc2865.html#Access-Request">Access-Request</A> containing a <A HREF="#Digest-Nonce">Digest-Nonce</A> attribute, the RADIUS
+   server did not accept the nonce.  If a <A HREF="#Digest-Stale">Digest-Stale</A> attribute is
+   present in the <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> and has a value of 'true' (without
    surrounding quotes), the RADIUS client sends an error response (401
    or 407) containing a WWW-/Proxy-Authenticate header with the
    directive 'stale' and the digest directives derived from the Digest-*
    attributes.
 
-   If the RADIUS client receives an Access-Reject from the RADIUS
+   If the RADIUS client receives an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> from the RADIUS
    server, it sends an error response to the HTTP-style request it has
    received.  If the RADIUS client does not receive a response, it
    retransmits or fails over to another RADIUS server as described in
    [RFC2865].
 
-2.1.5.  Obtaining Nonces
+<H2>2.1.5.  Obtaining Nonces</H2>
 
    The RADIUS client has two ways to obtain nonces: it has received one
-   in a Digest-Nextnonce attribute of a previously received
-   Access-Accept packet or it asks the RADIUS server for one.  To do the
-   latter, it sends an Access-Request containing a Digest-Method and a
-   Digest-URI attribute but without a Digest-Nonce attribute.  It adds a
-   Message-Authenticator (see [RFC3579]) attribute to the Access-Request
+   in a <A HREF="#Digest-Nextnonce">Digest-Nextnonce</A> attribute of a previously received
+   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet or it asks the RADIUS server for one.  To do the
+   latter, it sends an <A HREF="rfc2865.html#Access-Request">Access-Request</A> containing a <A HREF="#Digest-Method">Digest-Method</A> and a
+   <A HREF="#Digest-URI">Digest-URI</A> attribute but without a <A HREF="#Digest-Nonce">Digest-Nonce</A> attribute.  It adds a
+   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> (see [RFC3579]) attribute to the <A HREF="rfc2865.html#Access-Request">Access-Request</A>
    packet.  The RADIUS server chooses a nonce and responds with an
-   Access-Challenge containing a Digest-Nonce attribute.
+   <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> containing a <A HREF="#Digest-Nonce">Digest-Nonce</A> attribute.
 
    The RADIUS client constructs a (Proxy-)Authenticate header using the
-   received Digest-Nonce and Digest-Realm attributes to fill the nonce
-   and realm directives.  The RADIUS server can send Digest-Qop,
-   Digest-Algorithm, Digest-Domain, and Digest-Opaque attributes in the
-   Access-Challenge carrying the nonce.  If these attributes are
+   received <A HREF="#Digest-Nonce">Digest-Nonce</A> and <A HREF="#Digest-Realm">Digest-Realm</A> attributes to fill the nonce
+   and realm directives.  The RADIUS server can send <A HREF="#Digest-Qop">Digest-Qop</A>,
+   <A HREF="#Digest-Algorithm">Digest-Algorithm</A>, <A HREF="#Digest-Domain">Digest-Domain</A>, and <A HREF="#Digest-Opaque">Digest-Opaque</A> attributes in the
+   <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> carrying the nonce.  If these attributes are
    present, the client MUST use them.
 
-2.2.  RADIUS Server Behavior
+<H2>2.2.  RADIUS Server Behavior</H2>
 
-   If the RADIUS server receives an Access-Request packet with a
-   Digest-Method and a Digest-URI attribute but without a Digest-Nonce
-   attribute, it chooses a nonce.  It puts the nonce into a Digest-Nonce
-   attribute and sends it in an Access-Challenge packet to the RADIUS
-   client.  The RADIUS server MUST add Digest-Realm,
-   Message-Authenticator (see [RFC3579]), SHOULD add Digest-Algorithm
-   and one or more Digest-Qop, and MAY add Digest-Domain or
-   Digest-Opaque attributes to the Access-Challenge packet.
+   If the RADIUS server receives an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet with a
+   <A HREF="#Digest-Method">Digest-Method</A> and a <A HREF="#Digest-URI">Digest-URI</A> attribute but without a <A HREF="#Digest-Nonce">Digest-Nonce</A>
+   attribute, it chooses a nonce.  It puts the nonce into a <A HREF="#Digest-Nonce">Digest-Nonce</A>
+   attribute and sends it in an <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet to the RADIUS
+   client.  The RADIUS server MUST add <A HREF="#Digest-Realm">Digest-Realm</A>,
+   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> (see [RFC3579]), SHOULD add <A HREF="#Digest-Algorithm">Digest-Algorithm</A>
+   and one or more <A HREF="#Digest-Qop">Digest-Qop</A>, and MAY add <A HREF="#Digest-Domain">Digest-Domain</A> or
+   <A HREF="#Digest-Opaque">Digest-Opaque</A> attributes to the <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet.
 
-2.2.1.  General Attribute Checks
+<H2>2.2.1.  General Attribute Checks</H2>
 
-   If the RADIUS server receives an Access-Request packet containing a
-   Digest-Response attribute, it looks for the following attributes:
+   If the RADIUS server receives an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet containing a
+   <A HREF="rfc5090.html#Digest-Response">Digest-Response</A> attribute, it looks for the following attributes:
 
 
 
@@ -604,17 +514,17 @@ Sterman, et al.             Standards Track                     [Page 9]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-   Digest-Realm, Digest-Nonce, Digest-Method, Digest-URI, Digest-Qop,
-   Digest-Algorithm, and Digest-Username.  Depending on the content of
-   Digest-Algorithm and Digest-Qop, it looks for
-   Digest-Entity-Body-Hash, Digest-CNonce, and Digest-AKA-Auts, too.
-   See [RFC2617] and [RFC3310] for details.  If the Digest-Algorithm
+   <A HREF="#Digest-Realm">Digest-Realm</A>, <A HREF="#Digest-Nonce">Digest-Nonce</A>, <A HREF="#Digest-Method">Digest-Method</A>, <A HREF="#Digest-URI">Digest-URI</A>, <A HREF="#Digest-Qop">Digest-Qop</A>,
+   <A HREF="#Digest-Algorithm">Digest-Algorithm</A>, and <A HREF="#Digest-Username">Digest-Username</A>.  Depending on the content of
+   <A HREF="#Digest-Algorithm">Digest-Algorithm</A> and <A HREF="#Digest-Qop">Digest-Qop</A>, it looks for
+   <A HREF="#Digest-Entity-Body-Hash">Digest-Entity-Body-Hash</A>, <A HREF="#Digest-CNonce">Digest-CNonce</A>, and <A HREF="#Digest-AKA-Auts">Digest-AKA-Auts</A>, too.
+   See [RFC2617] and [RFC3310] for details.  If the <A HREF="#Digest-Algorithm">Digest-Algorithm</A>
    attribute is missing, 'MD5' is assumed.  If the RADIUS server has
-   issued a Digest-Opaque attribute along with the nonce, the
-   Access-Request MUST have a matching Digest-Opaque attribute.
+   issued a <A HREF="#Digest-Opaque">Digest-Opaque</A> attribute along with the nonce, the
+   <A HREF="rfc2865.html#Access-Request">Access-Request</A> MUST have a matching <A HREF="#Digest-Opaque">Digest-Opaque</A> attribute.
 
    If mandatory attributes are missing, it MUST respond with an
-   Access-Reject packet.
+   <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet.
 
    The RADIUS server removes '\' characters that escape quote and '\'
    characters from the text values it has received in the Digest-*
@@ -622,34 +532,34 @@ RFC 4590              RADIUS Digest Authentication             July 2006
 
    If the mandatory attributes are present, the RADIUS server MUST check
    if the RADIUS client is authorized to serve users of the realm
-   mentioned in the Digest-Realm attribute.  If the RADIUS client is not
-   authorized, the RADIUS server MUST send an Access-Reject.  The RADIUS
+   mentioned in the <A HREF="#Digest-Realm">Digest-Realm</A> attribute.  If the RADIUS client is not
+   authorized, the RADIUS server MUST send an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>.  The RADIUS
    server SHOULD log the event so as to notify the operator, and MAY
-   take additional action such as sending an Access-Reject in response
+   take additional action such as sending an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> in response
    to all future requests from this client, until this behavior is reset
    by management action.
 
-   The RADIUS server determines the age of the nonce in Digest-Nonce by
+   The RADIUS server determines the age of the nonce in <A HREF="#Digest-Nonce">Digest-Nonce</A> by
    using an embedded time-stamp or by looking it up in a local table.
    The RADIUS server MUST check the integrity of the nonce if it embeds
    the time-stamp in the nonce.  Section 2.2.2 describes how the server
    handles old nonces.
 
-2.2.2.  Authentication
+<H2>2.2.2.  Authentication</H2>
 
-   If the Access-Request message has passed the checks described above,
+   If the <A HREF="rfc2865.html#Access-Request">Access-Request</A> message has passed the checks described above,
    the RADIUS server calculates the digest response as described in
    [RFC2617].  To look up the password, the RADIUS server uses the
-   RADIUS User-Name attribute.  The RADIUS server MUST check if the user
-   identified by the User-Name attribute
+   RADIUS <A HREF="rfc2865.html#User-Name">User-Name</A> attribute.  The RADIUS server MUST check if the user
+   identified by the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute
 
    o  is authorized to access the protection space and
 
-   o  is authorized to use the URI included in the SIP-AOR attribute, if
+   o  is authorized to use the URI included in the <A HREF="#SIP-AOR">SIP-AOR</A> attribute, if
       this attribute is present.
 
    If any of those checks fails, the RADIUS server MUST send an
-   Access-Reject.
+   <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>.
 
 
 
@@ -660,52 +570,52 @@ Sterman, et al.             Standards Track                    [Page 10]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-   Correlation between User-Name and SIP-AOR AVP values is required just
-   to avoid that any user can register or misuse a SIP-AOR allocated to
+   Correlation between <A HREF="rfc2865.html#User-Name">User-Name</A> and <A HREF="#SIP-AOR">SIP-AOR</A> AVP values is required just
+   to avoid that any user can register or misuse a <A HREF="#SIP-AOR">SIP-AOR</A> allocated to
    a different user.
 
    All values required for the digest calculation are taken from the
    Digest attributes described in this document.  If the calculated
-   digest response equals the value received in the Digest-Response
+   digest response equals the value received in the <A HREF="rfc5090.html#Digest-Response">Digest-Response</A>
    attribute, the authentication was successful.
 
    If the response values match, but the RADIUS server considers the
-   nonce in the Digest-Nonce attribute as too old, it sends an
-   Access-Challenge packet containing a new nonce and a Digest-Stale
+   nonce in the <A HREF="#Digest-Nonce">Digest-Nonce</A> attribute as too old, it sends an
+   <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet containing a new nonce and a <A HREF="#Digest-Stale">Digest-Stale</A>
    attribute with a value of 'true' (without surrounding quotes).
 
    If the response values don't match, the RADIUS server responds with
-   an Access-Reject.
+   an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>.
 
-2.2.3.  Constructing the Reply
+<H2>2.2.3.  Constructing the Reply</H2>
 
    If the authentication was successful, the RADIUS server adds an
-   attribute to the Access-Accept packet that can be used by the RADIUS
+   attribute to the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet that can be used by the RADIUS
    client to construct an Authentication-Info header:
 
-   o  If the Digest-Qop attribute's value is 'auth' or unspecified, the
-      RADIUS server SHOULD put a Digest-Response-Auth attribute into the
-      Access-Accept packet.
+   o  If the <A HREF="#Digest-Qop">Digest-Qop</A> attribute's value is 'auth' or unspecified, the
+      RADIUS server SHOULD put a <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A> attribute into the
+      <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet.
 
-   o  If the Digest-Qop attribute's value is 'auth-int' and at least one
+   o  If the <A HREF="#Digest-Qop">Digest-Qop</A> attribute's value is 'auth-int' and at least one
       of the following conditions is true, the RADIUS server SHOULD put
-      a Digest-HA1 attribute into the Access-Accept packet:
+      a Digest-HA1 attribute into the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet:
 
-      *  The Digest-Algorithm attribute's value is 'MD5-sess' or
+      *  The <A HREF="#Digest-Algorithm">Digest-Algorithm</A> attribute's value is 'MD5-sess' or
          'AKAv1-MD5-sess'.
 
       *  IPsec is configured to protect traffic between the RADIUS
          client and RADIUS server with IPsec (see Section 8).
 
-   In all other cases, Digest-Response-Auth or Digest-HA1 MUST NOT be
+   In all other cases, <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A> or Digest-HA1 MUST NOT be
    sent.
 
-   RADIUS servers MAY construct a Digest-Nextnonce attribute and add it
-   to the Access-Accept packet.  This is useful to limit the lifetime of
+   RADIUS servers MAY construct a <A HREF="#Digest-Nextnonce">Digest-Nextnonce</A> attribute and add it
+   to the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet.  This is useful to limit the lifetime of
    a nonce and to save a round-trip in future requests (see nextnonce
    discussion in [RFC2617], section 3.2.3).  The RADIUS server adds a
-   Message-Authenticator attribute (see [RFC3579]) and sends the
-   Access-Accept packet to the RADIUS client.
+   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute (see [RFC3579]) and sends the
+   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet to the RADIUS client.
 
 
 
@@ -717,15 +627,15 @@ RFC 4590              RADIUS Digest Authentication             July 2006
 
 
    If the RADIUS server does not accept the nonce received in an
-   Access-Request packet but authentication was successful, the RADIUS
-   server MUST send an Access-Challenge packet containing a Digest-Stale
+   <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet but authentication was successful, the RADIUS
+   server MUST send an <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet containing a <A HREF="#Digest-Stale">Digest-Stale</A>
    attribute set to 'true' (without surrounding quotes).  The RADIUS
-   server MUST add Message-Authenticator (see [RFC3579]), Digest-Nonce,
-   Digest-Realm, SHOULD add Digest-Algorithm and one or more Digest-Qop
-   and MAY add Digest-Domain, Digest-Opaque attributes to the
-   Access-Challenge packet.
+   server MUST add <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> (see [RFC3579]), <A HREF="#Digest-Nonce">Digest-Nonce</A>,
+   <A HREF="#Digest-Realm">Digest-Realm</A>, SHOULD add <A HREF="#Digest-Algorithm">Digest-Algorithm</A> and one or more <A HREF="#Digest-Qop">Digest-Qop</A>
+   and MAY add <A HREF="#Digest-Domain">Digest-Domain</A>, <A HREF="#Digest-Opaque">Digest-Opaque</A> attributes to the
+   <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet.
 
-3.  New RADIUS Attributes
+<H2>3.  New RADIUS Attributes</H2>
 
    If not stated otherwise, the attributes have the following format:
 
@@ -745,23 +655,23 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    is represented as follows:
 
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   | Digest-Realm  |       23      | the \"example\" value |
+   | <A HREF="#Digest-Realm">Digest-Realm</A>  |       23      | the \"example\" value |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-3.1.  Digest-Response attribute
+<H2>3.1.  Digest-Response attribute</H2>
 
-   Description
-         If this attribute is present in an Access-Request message, a
+<B>   Description</B>
+         If this attribute is present in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> message, a
          RADIUS server implementing this specification MUST treat the
-         Access-Request as a request for Digest Authentication.  When a
+         <A HREF="rfc2865.html#Access-Request">Access-Request</A> as a request for Digest Authentication.  When a
          RADIUS client receives a (Proxy-)Authorization header, it puts
-         the request-digest value into a Digest-Response attribute.
+         the request-digest value into a <A HREF="rfc5090.html#Digest-Response">Digest-Response</A> attribute.
          This attribute (which enables the user to prove possession of
          the password) MUST only be used in Access-Requests.
-   Type
-         103 for Digest-Response.
-   Length
-         >= 3
+<B>   Type</B>
+         103 for <A HREF="rfc5090.html#Digest-Response">Digest-Response</A>.
+<B>   Length</B>
+         &gt;= 3
 
 
 
@@ -780,44 +690,44 @@ RFC 4590              RADIUS Digest Authentication             July 2006
          text field MUST be copied from request-digest of
          digest-response ([RFC2617]) without surrounding quotes.
 
-3.2.  Digest-Realm Attribute
+<H2>3.2.  Digest-Realm Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute describes a protection space component of the
          RADIUS server.  HTTP-style protocols differ in their definition
          of the protection space.  See [RFC2617], Section 1.2, for
-         details.  It MUST only be used in Access-Request and
-         Access-Challenge packets.
-   Type
-         104 for Digest-Realm
-   Length
-         >=3
+         details.  It MUST only be used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> and
+         <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets.
+<B>   Type</B>
+         104 for <A HREF="#Digest-Realm">Digest-Realm</A>
+<B>   Length</B>
+         &gt;=3
    Text
          In Access-Requests, the RADIUS client takes the value of the
          realm directive (realm-value according to [RFC2617]) without
          surrounding quotes from the HTTP-style request it wants to
-         authenticate.  In Access-Challenge packets, the RADIUS server
+         authenticate.  In <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets, the RADIUS server
          puts the expected realm value into this attribute.
 
-3.3.  Digest-Nonce Attribute
+<H2>3.3.  Digest-Nonce Attribute</H2>
 
-   Description
+<B>   Description</B>
 
          This attribute holds a nonce to be used in the HTTP Digest
-         calculation.  If the Access-Request had a Digest-Method and a
-         Digest-URI but no Digest-Nonce attribute, the RADIUS server
-         MUST put a Digest-Nonce attribute into its Access-Challenge
-         packet.  This attribute MUST only be used in Access-Request and
-         Access-Challenge packets.
-   Type
-         105 for Digest-Nonce
-   Length
-         >=3
+         calculation.  If the <A HREF="rfc2865.html#Access-Request">Access-Request</A> had a <A HREF="#Digest-Method">Digest-Method</A> and a
+         <A HREF="#Digest-URI">Digest-URI</A> but no <A HREF="#Digest-Nonce">Digest-Nonce</A> attribute, the RADIUS server
+         MUST put a <A HREF="#Digest-Nonce">Digest-Nonce</A> attribute into its <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>
+         packet.  This attribute MUST only be used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> and
+         <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets.
+<B>   Type</B>
+         105 for <A HREF="#Digest-Nonce">Digest-Nonce</A>
+<B>   Length</B>
+         &gt;=3
    Text
          In Access-Requests, the RADIUS client takes the value of the
          nonce directive (nonce-value in [RFC2617]) without surrounding
          quotes from the HTTP-style request it wants to authenticate.
-         In Access-Challenge packets, the attribute contains the nonce
+         In <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets, the attribute contains the nonce
          selected by the RADIUS server.
 
 
@@ -828,54 +738,54 @@ Sterman, et al.             Standards Track                    [Page 13]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-3.4.  Digest-Response-Auth Attribute
+<H2>3.4.  Digest-Response-Auth Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute enables the RADIUS server to prove possession of
-         the password.  If the previously received Digest-Qop attribute
+         the password.  If the previously received <A HREF="#Digest-Qop">Digest-Qop</A> attribute
          was 'auth-int' (without surrounding quotes), the RADIUS server
          MUST send a Digest-HA1 attribute instead of a
-         Digest-Response-Auth attribute.  The Digest-Response-Auth
-         attribute MUST only be used in Access-Accept packets.  The
+         <A HREF="#<A HREF="#Digest-Response-Auth">Digest-Response-Auth</A>"><A HREF="#Digest-Response-Auth">Digest-Response-Auth</A></A> attribute.  The <A HREF="#<A HREF="#Digest-Response-Auth">Digest-Response-Auth</A>"><A HREF="#Digest-Response-Auth">Digest-Response-Auth</A></A>
+         attribute MUST only be used in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.  The
          RADIUS client puts the attribute value without surrounding
          quotes into the rspauth directive of the Authentication-Info
          header.
-   Type
-         106 for Digest-Response-Auth.
-   Length
-         >= 3
+<B>   Type</B>
+         106 for <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A>.
+<B>   Length</B>
+         &gt;= 3
    Text
          The RADIUS server calculates a digest according to section
          3.2.3 of [RFC2617] and copies the result into this attribute.
          Digest algorithms other than the one defined in [RFC2617] MAY
          define digest lengths other than 32.
 
-3.5.  Digest-Nextnonce Attribute
+<H2>3.5.  Digest-Nextnonce Attribute</H2>
 
    This attribute holds a nonce to be used in the HTTP Digest
    calculation.
 
-   Description
+<B>   Description</B>
 
-         The RADIUS server MAY put a Digest-Nextnonce attribute into an
-         Access-Accept packet.  If this attribute is present, the RADIUS
+         The RADIUS server MAY put a <A HREF="#Digest-Nextnonce">Digest-Nextnonce</A> attribute into an
+         <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet.  If this attribute is present, the RADIUS
          client MUST put the contents of this attribute into the
          nextnonce directive of an Authentication-Info header in its
          HTTP-style response.  This attribute MUST only be used in
-         Access-Accept packets.
-   Type
-         107 for Digest-Nextnonce
-   Length
-         >=3
+         <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.
+<B>   Type</B>
+         107 for <A HREF="#Digest-Nextnonce">Digest-Nextnonce</A>
+<B>   Length</B>
+         &gt;=3
    Text
          It is recommended that this text be base64 or hexadecimal data.
 
-3.6.  Digest-Method Attribute
+<H2>3.6.  Digest-Method Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute holds the method value to be used in the HTTP
          Digest calculation.  This attribute MUST only be used in
-         Access-Request packets.
+         <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets.
 
 
 
@@ -884,25 +794,25 @@ Sterman, et al.             Standards Track                    [Page 14]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-   Type
-         108 for Digest-Method
-   Length
-         >=3
+<B>   Type</B>
+         108 for <A HREF="#Digest-Method">Digest-Method</A>
+<B>   Length</B>
+         &gt;=3
    Text
          In Access-Requests, the RADIUS client takes the value of the
          request method from the HTTP-style request it wants to
          authenticate.
 
-3.7.  Digest-URI Attribute
+<H2>3.7.  Digest-URI Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute is used to transport the contents of the
          digest-uri directive or the URI of the HTTP-style request.  It
-         MUST only be used in Access-Request packets.
-   Type
-         109 for Digest-URI
-   Length
-         >=3
+         MUST only be used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets.
+<B>   Type</B>
+         109 for <A HREF="#Digest-URI">Digest-URI</A>
+<B>   Length</B>
+         &gt;=3
    Text
          If the HTTP-style request has an Authorization header, the
          RADIUS client puts the value of the "uri" directive found in
@@ -913,22 +823,22 @@ RFC 4590              RADIUS Digest Authentication             July 2006
          request URI from the HTTP-style request it wants to
          authenticate.
 
-3.8.  Digest-Qop Attribute
+<H2>3.8.  Digest-Qop Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute holds the Quality of Protection parameter that
          influences the HTTP Digest calculation.  This attribute MUST
-         only be used in Access-Request and Access-Challenge packets.  A
-         RADIUS client SHOULD insert one of the Digest-Qop attributes it
-         has received in a previous Access-Challenge packet.  RADIUS
-         servers SHOULD insert at least one Digest-Qop attribute in an
-         Access-Challenge packet.  Digest-Qop is optional in order to
+         only be used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> and <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets.  A
+         RADIUS client SHOULD insert one of the <A HREF="#Digest-Qop">Digest-Qop</A> attributes it
+         has received in a previous <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet.  RADIUS
+         servers SHOULD insert at least one <A HREF="#Digest-Qop">Digest-Qop</A> attribute in an
+         <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet.  <A HREF="#Digest-Qop">Digest-Qop</A> is optional in order to
          preserve backward compatibility with a minimal implementation
          of [RFC2069].
-   Type
-         110 for Digest-Qop
-   Length
-         >=3
+<B>   Type</B>
+         110 for <A HREF="#Digest-Qop">Digest-Qop</A>
+<B>   Length</B>
+         &gt;=3
    Text
          In Access-Requests, the RADIUS client takes the value of the
          qop directive (qop-value as described in [RFC2617]) from the
@@ -941,32 +851,32 @@ RFC 4590              RADIUS Digest Authentication             July 2006
 
 
          HTTP-style request it wants to authenticate.  In
-         Access-Challenge packets, the RADIUS server puts a desired
+         <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets, the RADIUS server puts a desired
          qop-value into this attribute.  If the RADIUS server supports
          more than one "quality of protection" value, it puts each
-         qop-value into a separate Digest-Qop attribute.
+         qop-value into a separate <A HREF="#Digest-Qop">Digest-Qop</A> attribute.
 
-3.9.  Digest-Algorithm Attribute
+<H2>3.9.  Digest-Algorithm Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute holds the algorithm parameter that influences
          the HTTP Digest calculation.  It MUST only be used in
-         Access-Request and Access-Challenge packets.  If this attribute
+         <A HREF="rfc2865.html#Access-Request">Access-Request</A> and <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets.  If this attribute
          is missing, MD5 is assumed.
-   Type
-         111 for Digest-Algorithm
-   Length
-         >=3
+<B>   Type</B>
+         111 for <A HREF="#Digest-Algorithm">Digest-Algorithm</A>
+<B>   Length</B>
+         &gt;=3
    Text
          In Access-Requests, the RADIUS client takes the value of the
          algorithm directive (as described in [RFC2617], section 3.2.1)
          from the HTTP-style request it wants to authenticate.  In
-         Access-Challenge packets, the RADIUS server SHOULD put the
+         <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets, the RADIUS server SHOULD put the
          desired algorithm into this attribute.
 
-3.10.  Digest-Entity-Body-Hash Attribute
+<H2>3.10.  Digest-Entity-Body-Hash Attribute</H2>
 
-   Description
+<B>   Description</B>
          When using the qop-level 'auth-int', a hash of the HTTP-style
          message body's contents is required for digest calculation.
          Instead of sending the complete body of the message, only its
@@ -975,12 +885,12 @@ RFC 4590              RADIUS Digest Authentication             July 2006
 
          The clarifications described in section 22.4 of [RFC3261] about
          the hash of empty entity bodies apply to the
-         Digest-Entity-Body-Hash attribute.  This attribute MUST only be
-         sent in Access-Request packets.
-   Type
-         112 for Digest-Entity-Body-Hash
-   Length
-         >=3
+         <A HREF="#Digest-Entity-Body-Hash">Digest-Entity-Body-Hash</A> attribute.  This attribute MUST only be
+         sent in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets.
+<B>   Type</B>
+         112 for <A HREF="#Digest-Entity-Body-Hash">Digest-Entity-Body-Hash</A>
+<B>   Length</B>
+         &gt;=3
    Text
          The attribute holds the hexadecimal representation of
          H(entity-body).  This hash is required by certain
@@ -1001,48 +911,48 @@ RFC 4590              RADIUS Digest Authentication             July 2006
          document may define support for authentication mechanisms other
          than HTTP Digest.
 
-3.11.  Digest-CNonce Attribute
+<H2>3.11.  Digest-CNonce Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute holds the client nonce parameter that is used in
          the HTTP Digest calculation.  It MUST only be used in
-         Access-Request packets.
-   Type
-         113 for Digest-CNonce
-   Length
-         >=3
+         <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets.
+<B>   Type</B>
+         113 for <A HREF="#Digest-CNonce">Digest-CNonce</A>
+<B>   Length</B>
+         &gt;=3
    Text
          This attribute includes the value of the cnonce-value [RFC2617]
          without surrounding quotes, taken from the HTTP-style request.
 
-3.12.  Digest-Nonce-Count Attribute
+<H2>3.12.  Digest-Nonce-Count Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute includes the nonce count parameter that is used
          to detect replay attacks.  The attribute MUST only be used in
-         Access-Request packets.
+         <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets.
 
-   Type
-         114 for Digest-Nonce-Count
-   Length
+<B>   Type</B>
+         114 for <A HREF="#Digest-Nonce-Count">Digest-Nonce-Count</A>
+<B>   Length</B>
          10
    Text
          In Access-Requests, the RADIUS client takes the value of the nc
          directive (nc-value according to [RFC2617]) without surrounding
          quotes from the HTTP-style request it wants to authenticate.
 
-3.13.  Digest-Username Attribute
+<H2>3.13.  Digest-Username Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute holds the user name used in the HTTP Digest
          calculation.  The RADIUS server MUST use this attribute only
          for the purposes of calculating the digest.  In order to
          determine the appropriate user credentials, the RADIUS server
-         MUST use the User-Name (1) attribute, and MUST NOT use the
-         Digest-Username attribute.  This attribute MUST only be used in
-         Access-Request packets.
-   Type
-         115 for Digest-Username
+         MUST use the <A HREF="rfc2865.html#User-Name">User-Name</A> (1) attribute, and MUST NOT use the
+         <A HREF="#Digest-Username">Digest-Username</A> attribute.  This attribute MUST only be used in
+         <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets.
+<B>   Type</B>
+         115 for <A HREF="#Digest-Username">Digest-Username</A>
 
 
 
@@ -1052,53 +962,53 @@ Sterman, et al.             Standards Track                    [Page 17]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-   Length
-         >= 3
+<B>   Length</B>
+         &gt;= 3
    Text
          In Access-Requests, the RADIUS client takes the value of the
          username directive (username-value according to [RFC2617])
          without surrounding quotes from the HTTP-style request it wants
          to authenticate.
 
-3.14.  Digest-Opaque Attribute
+<H2>3.14.  Digest-Opaque Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute holds the opaque parameter that is passed to the
          HTTP-style client.  The HTTP-style client will pass this value
          back to the server (i.e., the RADIUS client) without
          modification.  This attribute MUST only be used in
-         Access-Request and Access-Challenge packets.
-   Type
-         116 for Digest-Opaque
-   Length
-         >=3
+         <A HREF="rfc2865.html#Access-Request">Access-Request</A> and <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets.
+<B>   Type</B>
+         116 for <A HREF="#Digest-Opaque">Digest-Opaque</A>
+<B>   Length</B>
+         &gt;=3
    Text
          In Access-Requests, the RADIUS client takes the value of the
          opaque directive (opaque-value according to [RFC2617]) without
          surrounding quotes from the HTTP-style request it wants to
          authenticate and puts it into this attribute.  In
-         Access-Challenge packets, the RADIUS server MAY include this
+         <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets, the RADIUS server MAY include this
          attribute.
 
-3.15.  Digest-Auth-Param Attribute
+<H2>3.15.  Digest-Auth-Param Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute is a placeholder for future extensions and
          corresponds to the "auth-param" parameter defined in section
-         3.2.1 of [RFC2617].  The Digest-Auth-Param is the mechanism
+         3.2.1 of [RFC2617].  The <A HREF="#Digest-Auth-Param">Digest-Auth-Param</A> is the mechanism
          whereby the RADIUS client and RADIUS server can exchange
          auth-param extension parameters contained within Digest headers
          that are not understood by the RADIUS client and for which
          there are no corresponding stand-alone attributes.
 
          Unlike the previously listed Digest-* attributes, the
-         Digest-Auth-Param contains not only the value but also the
+         <A HREF="#Digest-Auth-Param">Digest-Auth-Param</A> contains not only the value but also the
          parameter name, since the parameter name is unknown to the
          RADIUS client.  If the Digest header contains several unknown
          parameters, then the RADIUS implementation MUST repeat this
          attribute and each instance MUST contain one different unknown
          Digest parameter/value combination.  This attribute MUST ONLY
-         be used in Access-Request, Access-Challenge, or Access-Accept
+         be used in <A HREF="rfc2865.html#Access-Request">Access-Request</A>, <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>, or <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
          packets.
 
 
@@ -1108,46 +1018,46 @@ Sterman, et al.             Standards Track                    [Page 18]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-   Type
-         117 for Digest-Auth-Param
-   Length
-         >=3
+<B>   Type</B>
+         117 for <A HREF="#Digest-Auth-Param">Digest-Auth-Param</A>
+<B>   Length</B>
+         &gt;=3
    Text
          The text consists of the whole parameter, including its name
          and the equal sign ('=') and quotes.
 
-3.16.  Digest-AKA-Auts Attribute
+<H2>3.16.  Digest-AKA-Auts Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute holds the auts parameter that is used in the
          Digest AKA ([RFC3310]) calculation.  It is only used if the
          algorithm of the digest-response denotes a version of AKA
          Digest [RFC3310].  This attribute MUST only be used in
-         Access-Request packets.
-   Type
-         118 for Digest-AKA-Auts
-   Length
-         >=3
+         <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets.
+<B>   Type</B>
+         118 for <A HREF="#Digest-AKA-Auts">Digest-AKA-Auts</A>
+<B>   Length</B>
+         &gt;=3
    Text
          In Access-Requests, the RADIUS client takes the value of the
          auts directive (auts-param according to section 3.4 of
          [RFC3310]) without surrounding quotes from the HTTP-style
          request it wants to authenticate.
 
-3.17.  Digest-Domain Attribute
+<H2>3.17.  Digest-Domain Attribute</H2>
 
-   Description
+<B>   Description</B>
          When a RADIUS client has asked for a nonce, the RADIUS server
-         MAY send one or more Digest-Domain attributes in its
-         Access-Challenge packet.  The RADIUS client puts them into the
+         MAY send one or more <A HREF="#Digest-Domain">Digest-Domain</A> attributes in its
+         <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packet.  The RADIUS client puts them into the
          quoted, space-separated list of URIs of the 'domain' directive
-         of a WWW-Authenticate header.  Together with Digest-Realm, the
+         of a WWW-Authenticate header.  Together with <A HREF="#Digest-Realm">Digest-Realm</A>, the
          URIs in the list define the protection space (see [RFC2617],
          section 3.2.1) for some HTTP-style protocols.  This attribute
-         MUST only be used in Access-Challenge packets.
-   Type
-         119 for Digest-Domain
-   Length
+         MUST only be used in <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets.
+<B>   Type</B>
+         119 for <A HREF="#Digest-Domain">Digest-Domain</A>
+<B>   Length</B>
          3
    Text
          This attribute consists of a single URI that defines a
@@ -1164,9 +1074,9 @@ Sterman, et al.             Standards Track                    [Page 19]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-3.18.  Digest-Stale Attribute
+<H2>3.18.  Digest-Stale Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute is sent by a RADIUS server in order to notify
          the RADIUS client whether it has accepted a nonce.  If the
          nonce presented by the RADIUS client was stale, the value is
@@ -1174,43 +1084,43 @@ RFC 4590              RADIUS Digest Authentication             July 2006
          content of this attribute into a 'stale' directive of the
          WWW-Authenticate header in the HTTP-style response to the
          request it wants to authenticate.  The attribute MUST only be
-         used in Access-Challenge packets.
-   Type
-         120 for Digest-Stale
-   Length
+         used in <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> packets.
+<B>   Type</B>
+         120 for <A HREF="#Digest-Stale">Digest-Stale</A>
+<B>   Length</B>
          3
    Text
          The attribute has either the value 'true' or 'false' (both
          values without surrounding quotes).
 
-3.19.  Digest-HA1 Attribute
+<H2>3.19.  Digest-HA1 Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute is used to allow the generation of an
          Authentication-Info header, even if the HTTP-style response's
          body is required for the calculation of the rspauth value.  It
-         SHOULD be used in Access-Accept packets if the required quality
+         SHOULD be used in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets if the required quality
          of protection ('qop') is 'auth-int'.
 
          This attribute MUST NOT be sent if the qop parameter was not
          specified or has a value of 'auth' (in this case, use
-         Digest-Response-Auth instead).
+         <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A> instead).
 
          The Digest-HA1 attribute MUST only be sent by the RADIUS server
          or processed by the RADIUS client if at least one of the
          following conditions is true:
 
-         +  The Digest-Algorithm attribute's value is 'MD5-sess' or
+         +  The <A HREF="#Digest-Algorithm">Digest-Algorithm</A> attribute's value is 'MD5-sess' or
             'AKAv1-MD5-sess'.
 
          +  IPsec is configured to protect traffic between RADIUS client
             and RADIUS server with IPsec (see Section 8).
 
-         This attribute MUST only be used in Access-Accept packets.
-   Type
+         This attribute MUST only be used in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets.
+<B>   Type</B>
          121 for Digest-HA1
-   Length
-         >= 3
+<B>   Length</B>
+         &gt;= 3
 
 
 
@@ -1224,35 +1134,35 @@ RFC 4590              RADIUS Digest Authentication             July 2006
          This attribute contains the hexadecimal representation of H(A1)
          as described in [RFC2617], sections 3.1.3, 3.2.1, and 3.2.2.2.
 
-3.20.  SIP-AOR Attribute
+<H2>3.20.  SIP-AOR Attribute</H2>
 
-   Description
+<B>   Description</B>
          This attribute is used for the authorization of SIP messages.
-         The SIP-AOR attribute identifies the URI, the use of which must
+         The <A HREF="#SIP-AOR">SIP-AOR</A> attribute identifies the URI, the use of which must
          be authenticated and authorized.  The RADIUS server uses this
          attribute to authorize the processing of the SIP request.  The
-         SIP-AOR can be derived from, for example, the To header field
+         <A HREF="#SIP-AOR">SIP-AOR</A> can be derived from, for example, the To header field
          in a SIP REGISTER request (user under registration), or the
          From header field in other SIP requests.  However, the exact
          mapping of this attribute to SIP can change due to new
          developments in the protocol.  This attribute MUST only be used
          when the RADIUS client wants to authorize SIP users and MUST
-         only be used in Access-Request packets.
-   Type
-         122 for SIP-AOR
-   Length
-         >=3
+         only be used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets.
+<B>   Type</B>
+         122 for <A HREF="#SIP-AOR">SIP-AOR</A>
+<B>   Length</B>
+         &gt;=3
    Text
          The syntax of this attribute corresponds either to a SIP URI
          (with the format defined in [RFC3261] or a tel URI (with the
          format defined in [RFC3966]).
 
-         The SIP-AOR attribute holds the complete URI, including
+         The <A HREF="#SIP-AOR">SIP-AOR</A> attribute holds the complete URI, including
          parameters and other parts.  It is up to the RADIUS server what
          components of the URI are regarded in the authorization
          decision.
 
-4.  Diameter Compatibility
+<H2>4.  Diameter Compatibility</H2>
 
    This document defines support for Digest Authentication in RADIUS.  A
    companion document "Diameter Session Initiation Protocol (SIP)
@@ -1276,7 +1186,7 @@ Sterman, et al.             Standards Track                    [Page 21]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-5.  Table of Attributes
+<H2>5.  Table of Attributes</H2>
 
    The following table provides a guide to which attributes may be found
    in which kinds of packets, and in what quantity.
@@ -1284,42 +1194,42 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    +-----+--------+--------+-----------+-----+-------------------------+
    | Req | Accept | Reject | Challenge | #   | Attribute               |
    +-----+--------+--------+-----------+-----+-------------------------+
-   | 1   | 0      | 0      | 0         | 1   | User-Name               |
-   | 1   | 1      | 1      | 1         | 80  | Message-Authenticator   |
-   | 0-1 | 0      | 0      | 0         | 103 | Digest-Response         |
-   | 0-1 | 0      | 0      | 1         | 104 | Digest-Realm            |
-   | 0-1 | 0      | 0      | 1         | 105 | Digest-Nonce            |
-   | 0   | 0-1    | 0      | 0         | 106 | Digest-Response-Auth    |
+   | 1   | 0      | 0      | 0         | 1   | <A HREF="rfc2865.html#User-Name">User-Name</A>               |
+   | 1   | 1      | 1      | 1         | 80  | <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>   |
+   | 0-1 | 0      | 0      | 0         | 103 | <A HREF="rfc5090.html#Digest-Response">Digest-Response</A>         |
+   | 0-1 | 0      | 0      | 1         | 104 | <A HREF="#Digest-Realm">Digest-Realm</A>            |
+   | 0-1 | 0      | 0      | 1         | 105 | <A HREF="#Digest-Nonce">Digest-Nonce</A>            |
+   | 0   | 0-1    | 0      | 0         | 106 | <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A>    |
    |     |        |        |           |     | (see Note 1, 2)         |
-   | 0   | 0-1    | 0      | 0         | 107 | Digest-Nextnonce        |
-   | 0-1 | 0      | 0      | 0         | 108 | Digest-Method           |
-   | 0-1 | 0      | 0      | 0         | 109 | Digest-URI              |
-   | 0-1 | 0      | 0      | 0+        | 110 | Digest-Qop              |
-   | 0-1 | 0      | 0      | 0-1       | 111 | Digest-Algorithm (see   |
+   | 0   | 0-1    | 0      | 0         | 107 | <A HREF="#Digest-Nextnonce">Digest-Nextnonce</A>        |
+   | 0-1 | 0      | 0      | 0         | 108 | <A HREF="#Digest-Method">Digest-Method</A>           |
+   | 0-1 | 0      | 0      | 0         | 109 | <A HREF="#Digest-URI">Digest-URI</A>              |
+   | 0-1 | 0      | 0      | 0+        | 110 | <A HREF="#Digest-Qop">Digest-Qop</A>              |
+   | 0-1 | 0      | 0      | 0-1       | 111 | <A HREF="#Digest-Algorithm">Digest-Algorithm</A> (see   |
    |     |        |        |           |     | Note 3)                 |
-   | 0-1 | 0      | 0      | 0         | 112 | Digest-Entity-Body-Hash |
-   | 0-1 | 0      | 0      | 0         | 113 | Digest-CNonce           |
-   | 0-1 | 0      | 0      | 0         | 114 | Digest-Nonce-Count      |
-   | 0-1 | 0      | 0      | 0         | 115 | Digest-Username         |
-   | 0-1 | 0      | 0      | 0-1       | 116 | Digest-Opaque           |
-   | 0+  | 0+     | 0      | 0+        | 117 | Digest-Auth-Param       |
-   | 0-1 | 0      | 0      | 0         | 118 | Digest-AKA-Auts         |
-   | 0   | 0      | 0      | 0+        | 119 | Digest-Domain           |
-   | 0   | 0      | 0      | 0-1       | 120 | Digest-Stale            |
+   | 0-1 | 0      | 0      | 0         | 112 | <A HREF="#Digest-Entity-Body-Hash">Digest-Entity-Body-Hash</A> |
+   | 0-1 | 0      | 0      | 0         | 113 | <A HREF="#Digest-CNonce">Digest-CNonce</A>           |
+   | 0-1 | 0      | 0      | 0         | 114 | <A HREF="#Digest-Nonce-Count">Digest-Nonce-Count</A>      |
+   | 0-1 | 0      | 0      | 0         | 115 | <A HREF="#Digest-Username">Digest-Username</A>         |
+   | 0-1 | 0      | 0      | 0-1       | 116 | <A HREF="#Digest-Opaque">Digest-Opaque</A>           |
+   | 0+  | 0+     | 0      | 0+        | 117 | <A HREF="#Digest-Auth-Param">Digest-Auth-Param</A>       |
+   | 0-1 | 0      | 0      | 0         | 118 | <A HREF="#Digest-AKA-Auts">Digest-AKA-Auts</A>         |
+   | 0   | 0      | 0      | 0+        | 119 | <A HREF="#Digest-Domain">Digest-Domain</A>           |
+   | 0   | 0      | 0      | 0-1       | 120 | <A HREF="#Digest-Stale">Digest-Stale</A>            |
    | 0   | 0-1    | 0      | 0         | 121 | Digest-HA1 (see Note 1, |
    |     |        |        |           |     | 2)                      |
-   | 0-1 | 0      | 0      | 0         | 122 | SIP-AOR                 |
+   | 0-1 | 0      | 0      | 0         | 122 | <A HREF="#SIP-AOR">SIP-AOR</A>                 |
    +-----+--------+--------+-----------+-----+-------------------------+
 
                                   Table 1
 
-   [Note 1] Digest-HA1 MUST be used instead of Digest-Response-Auth if
-      Digest-Qop is 'auth-int'.
+   [Note 1] Digest-HA1 MUST be used instead of <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A> if
+      <A HREF="#Digest-Qop">Digest-Qop</A> is 'auth-int'.
 
-   [Note 2] Digest-Response-Auth MUST be used instead of Digest-HA1 if
-      Digest-Qop is 'auth'.
+   [Note 2] <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A> MUST be used instead of Digest-HA1 if
+      <A HREF="#Digest-Qop">Digest-Qop</A> is 'auth'.
 
-   [Note 3] If Digest-Algorithm is missing, 'MD5' is assumed.
+   [Note 3] If <A HREF="#Digest-Algorithm">Digest-Algorithm</A> is missing, 'MD5' is assumed.
 
 
 
@@ -1332,7 +1242,7 @@ Sterman, et al.             Standards Track                    [Page 22]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-6.  Examples
+<H2>6.  Examples</H2>
 
    This is an example selected from the traffic between a softphone (A),
    a Proxy Server (B), and an example.com RADIUS server (C).  The
@@ -1340,40 +1250,40 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    Telephone Network (PSTN) gateway is omitted for brevity.  The SIP
    messages are not shown completely.
 
-   A->B
+   A-&gt;B
 
       INVITE sip:97226491335@example.com SIP/2.0
-      From: <sip:12345678@example.com>
-      To: <sip:97226491335@example.com>
+      From: &lt;sip:12345678@example.com&gt;
+      To: &lt;sip:97226491335@example.com&gt;
 
-   B->A
+   B-&gt;A
 
       SIP/2.0 100 Trying
 
-   B->C
+   B-&gt;C
 
-      Code = 1 (Access-Request)
+      Code = 1 (<A HREF="rfc2865.html#Access-Request">Access-Request</A>)
       Attributes:
-      NAS-IP-Address = c0 0 2 26 (192.0.2.38)
-      NAS-Port-Type = 5 (Virtual)
-      User-Name = 12345678
-      Digest-Method = INVITE
-      Digest-URI = sip:97226491335@example.com
-      Message-Authenticator =
+      <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> = c0 0 2 26 (192.0.2.38)
+      <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> = 5 (Virtual)
+      <A HREF="rfc2865.html#User-Name">User-Name</A> = 12345678
+      <A HREF="#Digest-Method">Digest-Method</A> = INVITE
+      <A HREF="#Digest-URI">Digest-URI</A> = sip:97226491335@example.com
+      <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> =
        08 af 7e 01 b6 8d 74 c3 a4 3c 33 e1 56 2a 80 43
 
-   C->B
+   C-&gt;B
 
-      Code = 11 (Access-Challenge)
+      Code = 11 (<A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>)
       Attributes:
-      Digest-Nonce = 3bada1a0
-      Digest-Realm = example.com
-      Digest-Qop = auth
-      Digest-Algorithm = MD5
-      Message-Authenticator =
+      <A HREF="#Digest-Nonce">Digest-Nonce</A> = 3bada1a0
+      <A HREF="#Digest-Realm">Digest-Realm</A> = example.com
+      <A HREF="#Digest-Qop">Digest-Qop</A> = auth
+      <A HREF="#Digest-Algorithm">Digest-Algorithm</A> = MD5
+      <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> =
        f8 01 26 9f 70 5e ef 5d 24 ac f5 ca fb 27 da 40
 
-   B->A
+   B-&gt;A
 
       SIP/2.0 407 Proxy Authentication Required
       Proxy-Authenticate: Digest realm="example.com"
@@ -1388,11 +1298,11 @@ Sterman, et al.             Standards Track                    [Page 23]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-   A->B
+   A-&gt;B
 
       ACK sip:97226491335@example.com SIP/2.0
 
-   A->B
+   A-&gt;B
 
       INVITE sip:97226491335@example.com SIP/2.0
       Proxy-Authorization: Digest algorithm="md5",nonce="3bada1a0"
@@ -1400,38 +1310,38 @@ RFC 4590              RADIUS Digest Authentication             July 2006
            ,response="f3ce87e6984557cd0fecc26f3c5e97a4"
            ,uri="sip:97226491335@example.com",username="12345678"
            ,qop=auth,algorithm=MD5
-      From: <sip:12345678@example.com>
-      To: <sip:97226491335@example.com>
+      From: &lt;sip:12345678@example.com&gt;
+      To: &lt;sip:97226491335@example.com&gt;
 
-   B->C
+   B-&gt;C
 
-      Code = 1 (Access-Request)
+      Code = 1 (<A HREF="rfc2865.html#Access-Request">Access-Request</A>)
       Attributes:
-      NAS-IP-Address = c0 0 2 26 (192.0.2.38)
-      NAS-Port-Type = 5 (Virtual)
-      User-Name = 12345678
-      Digest-Response = f3ce87e6984557cd0fecc26f3c5e97a4
-      Digest-Realm = example.com
-      Digest-Nonce = 3bada1a0
-      Digest-Method = INVITE
-      Digest-URI = sip:97226491335@example.com
-      Digest-Qop = auth
-      Digest-Algorithm = md5
-      Digest-Username =  12345678
-      SIP-AOR =  sip:12345678@example.com
-      Message-Authenticator =
+      <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> = c0 0 2 26 (192.0.2.38)
+      <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> = 5 (Virtual)
+      <A HREF="rfc2865.html#User-Name">User-Name</A> = 12345678
+      <A HREF="rfc5090.html#Digest-Response">Digest-Response</A> = f3ce87e6984557cd0fecc26f3c5e97a4
+      <A HREF="#Digest-Realm">Digest-Realm</A> = example.com
+      <A HREF="#Digest-Nonce">Digest-Nonce</A> = 3bada1a0
+      <A HREF="#Digest-Method">Digest-Method</A> = INVITE
+      <A HREF="#Digest-URI">Digest-URI</A> = sip:97226491335@example.com
+      <A HREF="#Digest-Qop">Digest-Qop</A> = auth
+      <A HREF="#Digest-Algorithm">Digest-Algorithm</A> = md5
+      <A HREF="#Digest-Username">Digest-Username</A> =  12345678
+      <A HREF="#SIP-AOR">SIP-AOR</A> =  sip:12345678@example.com
+      <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> =
           ff 67 f4 13 8e b8 59 32 22 f9 37 0f 32 f8 e0 ff
 
-   C->B
+   C-&gt;B
 
-      Code = 2 (Access-Accept)
+      Code = 2 (<A HREF="rfc2865.html#Access-Accept">Access-Accept</A>)
       Attributes:
-      Digest-Response-Auth =
+      <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A> =
                       6303c41b0e2c3e524e413cafe8cce954
-      Message-Authenticator =
+      <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> =
           75 8d 44 49 66 1f 7b 47 9d 10 d0 2d 4a 2e aa f1
 
-   B->A
+   B-&gt;A
 
       SIP/2.0 180 Ringing
 
@@ -1444,44 +1354,44 @@ Sterman, et al.             Standards Track                    [Page 24]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-   B->A
+   B-&gt;A
 
       SIP/2.0 200 OK
 
-   A->B
+   A-&gt;B
 
       ACK sip:97226491335@example.com SIP/2.0
 
    A second example shows the traffic between a web browser (A), web
    server (B), and a RADIUS server (C).
 
-   A->B
+   A-&gt;B
 
       GET /index.html HTTP/1.1
 
-   B->C
+   B-&gt;C
 
-      Code = 1 (Access-Request)
+      Code = 1 (<A HREF="rfc2865.html#Access-Request">Access-Request</A>)
       Attributes:
-      NAS-IP-Address = c0 0 2 26 (192.0.2.38)
-      NAS-Port-Type = 5 (Virtual)
-      Digest-Method = GET
-      Digest-URI = /index.html
-      Message-Authenticator =
+      <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> = c0 0 2 26 (192.0.2.38)
+      <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> = 5 (Virtual)
+      <A HREF="#Digest-Method">Digest-Method</A> = GET
+      <A HREF="#Digest-URI">Digest-URI</A> = /index.html
+      <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> =
        34 a6 26 46 f3 81 f9 b4 97 c0 dd 9d 11 8f ca c7
 
-   C->B
+   C-&gt;B
 
-      Code = 11 (Access-Challenge)
+      Code = 11 (<A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>)
       Attributes:
-      Digest-Nonce = a3086ac8
-      Digest-Realm = example.com
-      Digest-Qop = auth
-      Digest-Algorithm = MD5
-      Message-Authenticator =
+      <A HREF="#Digest-Nonce">Digest-Nonce</A> = a3086ac8
+      <A HREF="#Digest-Realm">Digest-Realm</A> = example.com
+      <A HREF="#Digest-Qop">Digest-Qop</A> = auth
+      <A HREF="#Digest-Algorithm">Digest-Algorithm</A> = MD5
+      <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> =
        f8 01 26 9f 70 5e ef 5d 24 ac f5 ca fb 27 da 40
 
-   B->A
+   B-&gt;A
 
       HTTP/1.1 401 Authentication Required
       WWW-Authenticate: Digest realm="example.com",
@@ -1500,7 +1410,7 @@ Sterman, et al.             Standards Track                    [Page 25]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-   A->B
+   A-&gt;B
 
       GET /index.html HTTP/1.1
       Authorization: Digest algorithm=MD5,nonce="a3086ac8"
@@ -1509,39 +1419,39 @@ RFC 4590              RADIUS Digest Authentication             July 2006
            ,uri="/index.html",username="12345678"
            ,qop=auth,algorithm=MD5
 
-   B->C
+   B-&gt;C
 
-      Code = 1 (Access-Request)
+      Code = 1 (<A HREF="rfc2865.html#Access-Request">Access-Request</A>)
       Attributes:
-      NAS-IP-Address = c0 0 2 26 (192.0.2.38)
-      NAS-Port-Type = 5 (Virtual)
-      User-Name = 12345678
-      Digest-Response = f052b68058b2987aba493857ae1ab002
-      Digest-Realm = example.com
-      Digest-Nonce = a3086ac8
-      Digest-Method = GET
-      Digest-URI = /index.html
-      Digest-Username =  12345678
-      Digest-Qop = auth
-      Digest-Algorithm = MD5
-      Message-Authenticator =
+      <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> = c0 0 2 26 (192.0.2.38)
+      <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> = 5 (Virtual)
+      <A HREF="rfc2865.html#User-Name">User-Name</A> = 12345678
+      <A HREF="rfc5090.html#Digest-Response">Digest-Response</A> = f052b68058b2987aba493857ae1ab002
+      <A HREF="#Digest-Realm">Digest-Realm</A> = example.com
+      <A HREF="#Digest-Nonce">Digest-Nonce</A> = a3086ac8
+      <A HREF="#Digest-Method">Digest-Method</A> = GET
+      <A HREF="#Digest-URI">Digest-URI</A> = /index.html
+      <A HREF="#Digest-Username">Digest-Username</A> =  12345678
+      <A HREF="#Digest-Qop">Digest-Qop</A> = auth
+      <A HREF="#Digest-Algorithm">Digest-Algorithm</A> = MD5
+      <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> =
           06 e1 65 23 57 94 e6 de 87 5a e8 ce a2 7d 43 6b
 
-   C->B
+   C-&gt;B
 
-      Code = 2 (Access-Accept)
+      Code = 2 (<A HREF="rfc2865.html#Access-Accept">Access-Accept</A>)
       Attributes:
-      Digest-Response-Auth =
+      <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A> =
           e644aa513effbfe1caff67103ff6433c
-      Message-Authenticator =
+      <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> =
           7a 66 73 a3 52 44 dd ca 90 e2 f6 10 61 2d 81 d7
 
-   B->A
+   B-&gt;A
 
       HTTP/1.1 200 OK
       ...
 
-      <html>
+      &lt;html&gt;
       ...
 
 
@@ -1556,7 +1466,7 @@ Sterman, et al.             Standards Track                    [Page 26]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-7.  IANA Considerations
+<H2>7.  IANA Considerations</H2>
 
    This document serves as an IANA registration request for a number of
    values from the RADIUS attribute type number space.  The IANA has
@@ -1565,31 +1475,31 @@ RFC 4590              RADIUS Digest Authentication             July 2006
            +-------------------------+------------------------+
            | placeholder             | value assigned by IANA |
            +-------------------------+------------------------+
-           | Digest-Response         | 103                    |
-           | Digest-Realm            | 104                    |
-           | Digest-Nonce            | 105                    |
-           | Digest-Nextnonce        | 106                    |
-           | Digest-Response-Auth    | 107                    |
-           | Digest-Method           | 108                    |
-           | Digest-URI              | 109                    |
-           | Digest-Qop              | 110                    |
-           | Digest-Algorithm        | 111                    |
-           | Digest-Entity-Body-Hash | 112                    |
-           | Digest-CNonce           | 113                    |
-           | Digest-Nonce-Count      | 114                    |
-           | Digest-Username         | 115                    |
-           | Digest-Opaque           | 116                    |
-           | Digest-Auth-Param       | 117                    |
-           | Digest-AKA-Auts         | 118                    |
-           | Digest-Domain           | 119                    |
-           | Digest-Stale            | 120                    |
+           | <A HREF="rfc5090.html#Digest-Response">Digest-Response</A>         | 103                    |
+           | <A HREF="#Digest-Realm">Digest-Realm</A>            | 104                    |
+           | <A HREF="#Digest-Nonce">Digest-Nonce</A>            | 105                    |
+           | <A HREF="#Digest-Nextnonce">Digest-Nextnonce</A>        | 106                    |
+           | <A HREF="#Digest-Response-Auth">Digest-Response-Auth</A>    | 107                    |
+           | <A HREF="#Digest-Method">Digest-Method</A>           | 108                    |
+           | <A HREF="#Digest-URI">Digest-URI</A>              | 109                    |
+           | <A HREF="#Digest-Qop">Digest-Qop</A>              | 110                    |
+           | <A HREF="#Digest-Algorithm">Digest-Algorithm</A>        | 111                    |
+           | <A HREF="#Digest-Entity-Body-Hash">Digest-Entity-Body-Hash</A> | 112                    |
+           | <A HREF="#Digest-CNonce">Digest-CNonce</A>           | 113                    |
+           | <A HREF="#Digest-Nonce-Count">Digest-Nonce-Count</A>      | 114                    |
+           | <A HREF="#Digest-Username">Digest-Username</A>         | 115                    |
+           | <A HREF="#Digest-Opaque">Digest-Opaque</A>           | 116                    |
+           | <A HREF="#Digest-Auth-Param">Digest-Auth-Param</A>       | 117                    |
+           | <A HREF="#Digest-AKA-Auts">Digest-AKA-Auts</A>         | 118                    |
+           | <A HREF="#Digest-Domain">Digest-Domain</A>           | 119                    |
+           | <A HREF="#Digest-Stale">Digest-Stale</A>            | 120                    |
            | Digest-HA1              | 121                    |
-           | SIP-AOR                 | 122                    |
+           | <A HREF="#SIP-AOR">SIP-AOR</A>                 | 122                    |
            +-------------------------+------------------------+
 
                                   Table 2
 
-8.  Security Considerations
+<H2>8.  Security Considerations</H2>
 
    The RADIUS extensions described in this document enable RADIUS to
    transport the data that is required to perform a digest calculation.
@@ -1601,7 +1511,7 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    man-in-the-middle attacks even if the paths between A, B and B, C
    (Figure 2) have been secured with TLS or IPsec.
 
-   The RADIUS server MUST check the Digest-Realm attribute it has
+   The RADIUS server MUST check the <A HREF="#Digest-Realm">Digest-Realm</A> attribute it has
    received from a client.  If the RADIUS client is not authorized to
    serve HTTP-style clients of that realm, it might be compromised.
 
@@ -1612,7 +1522,7 @@ Sterman, et al.             Standards Track                    [Page 27]
 RFC 4590              RADIUS Digest Authentication             July 2006
 
 
-8.1.  Denial of Service
+<H2>8.1.  Denial of Service</H2>
 
    RADIUS clients implementing the extension described in this document
    may authenticate HTTP-style requests received over the Internet.  As
@@ -1629,18 +1539,18 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    of signature provided by the RADIUS client, as described in
    [RFC2617], section 3.2.1.
 
-8.2.  Confidentiality and Data Integrity
+<H2>8.2.  Confidentiality and Data Integrity</H2>
 
    The attributes described in this document are sent in cleartext.
-   RADIUS servers SHOULD include Digest-Qop and Digest-Algorithm
-   attributes in Access-Challenge messages.  A man in the middle can
+   RADIUS servers SHOULD include <A HREF="#Digest-Qop">Digest-Qop</A> and <A HREF="#Digest-Algorithm">Digest-Algorithm</A>
+   attributes in <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A> messages.  A man in the middle can
    modify or remove those attributes in a bidding down attack, causing
    the RADIUS client to use a weaker authentication scheme than
    intended.
 
-   The Message-Authenticator attribute, described in [RFC3579], section
-   3.2 MUST be included in Access-Request, Access-Challenge,
-   Access-Reject, and Access-Accept messages that contain attributes
+   The <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> attribute, described in [RFC3579], section
+   3.2 MUST be included in <A HREF="rfc2865.html#Access-Request">Access-Request</A>, <A HREF="rfc2865.html#Access-Challenge">Access-Challenge</A>,
+   <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>, and <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> messages that contain attributes
    described in this specification.
 
    The Digest-HA1 attribute contains no random components if the
@@ -1683,7 +1593,7 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    RADIUS over IPsec, if used, MUST conform to the requirements
    described in [RFC3579], section 4.2.
 
-9.  Acknowledgements
+<H2>9.  Acknowledgements</H2>
 
    We would like to acknowledge Kevin McDermott (Cisco Systems) for
    providing comments and experimental implementation.
@@ -1691,9 +1601,9 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    Many thanks to all reviewers, especially to Miguel Garcia, Jari
    Arkko, Avi Lior, and Jun Wang.
 
-10.  References
+<H2>10.  References</H2>
 
-10.1.  Normative References
+<H2>10.1.  Normative References</H2>
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
@@ -1727,7 +1637,7 @@ RFC 4590              RADIUS Digest Authentication             July 2006
    [RFC3966]  Schulzrinne, H., "The tel URI for Telephone Numbers", RFC
               3966, December 2004.
 
-10.2.  Informative References
+<H2>10.2.  Informative References</H2>
 
    [SIP-APP]  Garcia-Martin, M., "Diameter Session Initiation Protocol
               (SIP) Application", Work in Progress), April 2006.
@@ -1889,81 +1799,4 @@ Acknowledgement
 
 Sterman, et al.             Standards Track                    [Page 32]
 
-</pre>
-</div>
-
-
-    </div><footer class="global_footer bg_block-dark lg_padding_v">
-
-    <div class="wrapper">
-        <div class="row">
-            <div class="columns medium-4">
-                <div class="footer_main">
-                    <img class="footer_logo" width="150" src="/img/wordmark-white.svg" alt="">
-                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
-                    <div class="footer-social">
-                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
-                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
-                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
-                    </div>
-                    <p>&copy; 2018 The FreeRADIUS Server Project and Contributors</p>
-                </div>
-            </div>
-            <div class="columns medium-8">
-                <nav class="footer_nav h6 row small-up-2">
-                    <ul>
-                        <li><a href="/documentation/">Docs</a></li>
-                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
-                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
-                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
-                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
-                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/modules/">Modules</a></li>
-                        <li><a href="/modules/">Packages</a></li>
-                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/community/">Community</a></li>
-                        <li><a href="/support/">Mailing Lists</a></li>
-                        <li><a href="/community/#contributing">Contribute</a></li>
-                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/about/">About</a></li>
-                        <li><a href="/about/#project">The Project</a></li>
-                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
-                        <li><a href="/about/#security">Security</a></li>
-                        <li><a href="/about/#team">Team</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/support/">Support</a></li>
-                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
-                        <li><a href="/security/">Security Issues</a></li>
-                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
-                        <li><a href="/support/">Newsletters</a></li>
-                        <li><a href="/commercial_support/">Commercial</a></li>
-                        <li><a href="/support/">Support</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-</footer>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
-<script src="/js/angular.min.js"></script>
-<script src="/js/app.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-1186926-1', 'auto');
-  ga('send', 'pageview');
-</script>
-</body>
-
-</html>
+</PRE>

@@ -1,99 +1,9 @@
-<!DOCTYPE html>
-<html ng-app="freeradius"><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+---
+layout: default
+---
 
-    <title>FreeRADIUS</title>
-    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
-">
-
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="freeradius.org/rfc/rfc6929.html">
-    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.org/feed.xml">
-
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
-    <meta name="msapplication-TileColor" content="#da532c ">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff ">
-
-</head>
-<body><div class="global-nav">
-  <div class="global_links pull_right">
-    <div class="global_link global_link_label h5 text">Our sites:</div>
-    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
-  </div>
-</div>
-
-<header class="site-header" global-header ng-class="{fixed: fixNav}">
-  <div class="site-header-wrapper">
-
-    <a class="site-title" href="/"><img src="/img/wordmark.svg"></a>
-    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
-      <svg viewBox="0 0 18 15">
-        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-      </svg>
-    </button>
-
-    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
-
-      <div class="get-release">
-      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
-      </div>
-
-      <ul class="site-nav-list">
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/releases/">Releases</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/documentation/">Documentation</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/modules/">Modules</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/community/">Community</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/about/">About</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/support/">Support</a>
-         </li>
-
-      </ul>
-
-    </nav>
-  </div>
-</header>
-<div class="page-content">
-
-        <div class="wrapper base_padding_v">
-<pre>
+<div class="wrapper base_padding_v">
+<PRE>
 
 
 
@@ -151,7 +61,7 @@ Copyright Notice
 
 
 
-DeKok & Lior                 Standards Track                    [Page 1]
+DeKok &amp; Lior                 Standards Track                    [Page 1]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -171,7 +81,7 @@ Table of Contents
            2.3.1. TLV Nesting ........................................14
       2.4. EVS Data Type .............................................14
       2.5. Integer64 Data Type .......................................16
-      2.6. Vendor-Id Field ...........................................16
+      2.6. <A HREF="#Vendor-Id">Vendor-Id</A> Field ...........................................16
       2.7. Attribute Naming and Type Identifiers .....................17
            2.7.1. Attribute and TLV Naming ...........................17
            2.7.2. Attribute Type Identifiers .........................18
@@ -185,7 +95,7 @@ Table of Contents
       3.4. Extended-Type-4 ...........................................24
       3.5. Long-Extended-Type-1 ......................................25
       3.6. Long-Extended-Type-2 ......................................26
-   4. Vendor-Specific Attributes .....................................27
+   4. <A HREF="#Vendor-Specific">Vendor-Specific</A> Attributes .....................................27
       4.1. Extended-Vendor-Specific-1 ................................28
       4.2. Extended-Vendor-Specific-2 ................................29
       4.3. Extended-Vendor-Specific-3 ................................30
@@ -207,7 +117,7 @@ Table of Contents
 
 
 
-DeKok & Lior                 Standards Track                    [Page 2]
+DeKok &amp; Lior                 Standards Track                    [Page 2]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -248,7 +158,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    13. Acknowledgments ...............................................55
    Appendix A. Extended Attribute Generator Program ..................56
 
-1.  Introduction
+<H2>1.  Introduction</H2>
 
    Under current allocation pressure, we expect that the RADIUS
    Attribute Type space will be exhausted by 2014 or 2015.  We therefore
@@ -263,14 +173,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                    [Page 3]
+DeKok &amp; Lior                 Standards Track                    [Page 3]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
    need a standardized method of transporting large quantities of data.
    Finally, some vendors are close to allocating all of the Attributes
-   within their Vendor-Specific Attribute space.  It would be useful to
+   within their <A HREF="#Vendor-Specific">Vendor-Specific</A> Attribute space.  It would be useful to
    leverage changes to the base protocol for extending the Vendor-
    Specific Attribute space.
 
@@ -306,25 +216,25 @@ RFC 6929                    RADIUS Extensions                 April 2013
      creates a standard way to group a set of Attributes (Section 2.3).
 
    * Defining a new "Extended-Vendor-Specific" (EVS) data type.  This
-     data type allows an attribute to carry Vendor-Specific Attributes
+     data type allows an attribute to carry <A HREF="#Vendor-Specific">Vendor-Specific</A> Attributes
      (VSAs) inside of the new Attribute formats (Section 2.4).
 
    * Defining a new "integer64" data type.  This data type allows
      counters that track more than 2^32 octets of data (Section 2.5).
 
    * Allocating 6 attributes using the new EVS data type.  This
-     allocation extends the Vendor-Specific Attribute Type space by over
+     allocation extends the <A HREF="#Vendor-Specific">Vendor-Specific</A> Attribute Type space by over
      1500 values (Sections 4.1 through 4.6).
 
 
 
 
-DeKok & Lior                 Standards Track                    [Page 4]
+DeKok &amp; Lior                 Standards Track                    [Page 4]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-   * Defining the "Vendor-Id" for Vendor-Specific Attributes to
+   * Defining the "<A HREF="#Vendor-Id">Vendor-Id</A>" for <A HREF="#Vendor-Specific">Vendor-Specific</A> Attributes to
      encompass the entire 4 octets of the Vendor field.  [RFC2865]
      Section 5.26 defined it to be 3 octets, with the fourth octet being
      zero (Section 2.6).
@@ -340,17 +250,17 @@ RFC 6929                    RADIUS Extensions                 April 2013
    flexibility, space in the RADIUS message, compatibility with existing
    deployments, and difficulty of implementation.
 
-1.1.  Caveats and Limitations
+<H2>1.1.  Caveats and Limitations</H2>
 
    This section describes some caveats and limitations of the proposal.
 
-1.1.1.  Failure to Meet Certain Goals
+<H2>1.1.1.  Failure to Meet Certain Goals</H2>
 
    One goal that was not met by the above modifications is to have an
    incentive for standards to use the new space.  That incentive is
    being provided by the exhaustion of the standard space.
 
-1.1.2.  Implementation Recommendations
+<H2>1.1.2.  Implementation Recommendations</H2>
 
    It is RECOMMENDED that implementations support this specification.
    It is RECOMMENDED that new specifications use the formats defined in
@@ -375,12 +285,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                    [Page 5]
+DeKok &amp; Lior                 Standards Track                    [Page 5]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-1.2.  Terminology
+<H2>1.2.  Terminology</H2>
 
    This document uses the following terms:
 
@@ -431,12 +341,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                    [Page 6]
+DeKok &amp; Lior                 Standards Track                    [Page 6]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-1.3.  Requirements Language
+<H2>1.3.  Requirements Language</H2>
 
    In this document, several words are used to signify the requirements
    of the specification.  The key words "MUST", "MUST NOT", "REQUIRED",
@@ -444,7 +354,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    and "OPTIONAL" in this document are to be interpreted as described in
    [RFC2119].
 
-2.  Extensions to RADIUS
+<H2>2.  Extensions to RADIUS</H2>
 
    This section defines two new Attribute formats: "Extended Type" and
    "Long Extended Type".  It defines a new Type-Length-Value (TLV) data
@@ -487,12 +397,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                    [Page 7]
+DeKok &amp; Lior                 Standards Track                    [Page 7]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-2.1.  Extended Type
+<H2>2.1.  Extended Type</H2>
 
    This section defines a new Attribute format, called "Extended Type".
    A summary of the Attribute format is shown below.  The fields are
@@ -504,12 +414,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
     |     Type      |    Length     | Extended-Type |  Value ...
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
       This field is identical to the Type field of the Attribute format
       defined in [RFC2865] Section 5.
 
-   Length
+<B>   Length</B>
 
       The Length field is one octet and indicates the length of this
       Attribute, including the Type, Length, "Extended-Type", and
@@ -543,12 +453,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                    [Page 8]
+DeKok &amp; Lior                 Standards Track                    [Page 8]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-   Value
+<B>   Value</B>
 
       This field is similar to the "Value" field of the Attribute format
       defined in [RFC2865] Section 5.  The format of the data MUST be a
@@ -570,10 +480,10 @@ RFC 6929                    RADIUS Extensions                 April 2013
    practical value.  We therefore do not continue that practice here
    with the Extended-Type field.
 
-2.2.  Long Extended Type
+<H2>2.2.  Long Extended Type</H2>
 
    This section defines a new Attribute format, called "Long Extended
-   Type".  It leverages the "Extended Type" format in order to permit
+<B>   Type".  It leverages the "Extended Type" format in order to permit</B>
    the transport of attributes encapsulating more than 253 octets of
    data.  A summary of the Attribute format is shown below.  The fields
    are transmitted from left to right.
@@ -586,12 +496,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
    |     Value ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
       This field is identical to the Type field of the Attribute format
       defined in [RFC2865] Section 5.
 
-   Length
+<B>   Length</B>
 
       The Length field is one octet and indicates the length of this
       Attribute, including the Type, Length, Extended-Type, and "Value"
@@ -599,7 +509,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                    [Page 9]
+DeKok &amp; Lior                 Standards Track                    [Page 9]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -655,7 +565,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 10]
+DeKok &amp; Lior                 Standards Track                   [Page 10]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -664,7 +574,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       field.  Implementations therefore MUST NOT treat this field as
       invalid if it is non-zero.
 
-   Value
+<B>   Value</B>
 
       This field is similar to the "Value" field of the Attribute format
       defined in [RFC2865] Section 5.  It may contain a complete set of
@@ -711,7 +621,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 11]
+DeKok &amp; Lior                 Standards Track                   [Page 11]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -720,7 +630,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    them to accept packets, so long as the Attributes can be correctly
    decoded.
 
-2.3.  TLV Data Type
+<H2>2.3.  TLV Data Type</H2>
 
    We define a new data type in RADIUS, called "tlv".  The "tlv" data
    type is an encapsulation layer that permits the "Value" field of an
@@ -745,7 +655,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       are specified according to the policies and rules described in
       Section 10.  Values 254-255 are "Reserved" for use by future
       extensions to RADIUS.  The value 26 has no special meaning and
-      MUST NOT be treated as a Vendor-Specific Attribute.
+      MUST NOT be treated as a <A HREF="#Vendor-Specific">Vendor-Specific</A> Attribute.
 
       As with the Extended-Type field defined above, the TLV-Type is
       meaningful only within the context defined by "Type" fields of the
@@ -767,7 +677,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 12]
+DeKok &amp; Lior                 Standards Track                   [Page 12]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -806,11 +716,11 @@ RFC 6929                    RADIUS Extensions                 April 2013
       them inside of a TLV offers little additional value.
 
    This TLV definition is compatible with the suggested format of the
-   "String" field of the Vendor-Specific Attribute, as defined in
+   "String" field of the <A HREF="#Vendor-Specific">Vendor-Specific</A> Attribute, as defined in
    [RFC2865] Section 5.26, though that specification does not discuss
    nesting.
 
-   Vendors MAY use attributes of type "TLV" in any Vendor-Specific
+   Vendors MAY use attributes of type "TLV" in any <A HREF="#Vendor-Specific">Vendor-Specific</A>
    Attribute.  It is RECOMMENDED to use type "TLV" for VSAs, in
    preference to any other format.
 
@@ -823,7 +733,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 13]
+DeKok &amp; Lior                 Standards Track                   [Page 13]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -835,7 +745,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    "or".  Doing so would mean that a RADIUS client or server would make
    an arbitrary and non-deterministic choice among the values.
 
-2.3.1.  TLV Nesting
+<H2>2.3.1.  TLV Nesting</H2>
 
    TLVs may contain other TLVs.  When this occurs, the "container" TLV
    MUST be completely filled by the "contained" TLVs.  That is, the
@@ -855,23 +765,23 @@ RFC 6929                    RADIUS Extensions                 April 2013
    do not support deep nesting of TLVs, it is RECOMMENDED that the
    unsupported layers are treated as "invalid attributes".
 
-2.4.  EVS Data Type
+<H2>2.4.  EVS Data Type</H2>
 
    We define a new data type in RADIUS, called "evs", for "Extended-
-   Vendor-Specific".  The "evs" data type is an encapsulation layer that
-   permits the EVS-Value field of an Attribute to contain a Vendor-Id,
+   <A HREF="#Vendor-Specific">Vendor-Specific</A>".  The "evs" data type is an encapsulation layer that
+   permits the EVS-Value field of an Attribute to contain a <A HREF="#Vendor-Id">Vendor-Id</A>,
    followed by an EVS-Type, and then vendor-defined data.  This data can
    in turn contain valid RADIUS data types or any other data as
    determined by the vendor.
 
    This data type is intended for use in attributes that carry vendor-
-   specific information, as is done with the Vendor-Specific Attribute
+   specific information, as is done with the <A HREF="#Vendor-Specific">Vendor-Specific</A> Attribute
    (Attribute number 26).  It is RECOMMENDED that this data type be used
-   by a vendor only when the Vendor-Specific Attribute Type space has
+   by a vendor only when the <A HREF="#Vendor-Specific">Vendor-Specific</A> Attribute Type space has
    been fully allocated.
 
    Where [RFC2865] Section 5.26 makes a recommendation for the format of
-   the data following the Vendor-Id, we give a strict definition.
+   the data following the <A HREF="#Vendor-Id">Vendor-Id</A>, we give a strict definition.
    Experience has shown that many vendors have not followed the
    [RFC2865] recommendations, leading to interoperability issues.  We
    hope here to give vendors sufficient flexibility as to meet their
@@ -879,7 +789,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 14]
+DeKok &amp; Lior                 Standards Track                   [Page 14]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -895,14 +805,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                            Vendor-Id                          |
+   |                            <A HREF="#Vendor-Id">Vendor-Id</A>                          |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  EVS-Type      |  EVS-Value ....
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Vendor-Id
+   <A HREF="#Vendor-Id">Vendor-Id</A>
 
-      The 4 octets of the Vendor-Id field are the Network Management
+      The 4 octets of the <A HREF="#Vendor-Id">Vendor-Id</A> field are the Network Management
       Private Enterprise Code [PEN] of the vendor in network byte order.
 
    EVS-Type
@@ -935,26 +845,26 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 15]
+DeKok &amp; Lior                 Standards Track                   [Page 15]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
    Attribute header (2 octets), the "Extended Type" (1 octet), the
-   Vendor-Id (4 octets), and the EVS-Type (1 octet).  That is, for
+   <A HREF="#Vendor-Id">Vendor-Id</A> (4 octets), and the EVS-Type (1 octet).  That is, for
    "Extended Type" Attributes the length of the EVS-Value field is eight
    (8) less than the value of the Length field, and for "Long Extended
-   Type" Attributes the length of the EVS-Value field is nine (9) less
+<B>   Type" Attributes the length of the EVS-Value field is nine (9) less</B>
    than the value of the Length field.
 
-2.5.  Integer64 Data Type
+<H2>2.5.  Integer64 Data Type</H2>
 
    We define a new data type in RADIUS, called "integer64", which
    carries a 64-bit unsigned integer in network byte order.
 
    This data type is intended to be used in any situation where there is
    a need to have counters that can count past 2^32.  The expected use
-   of this data type is within Accounting-Request packets, but this data
+   of this data type is within <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets, but this data
    type SHOULD be used in any packet where 32-bit integers are expected
    to be insufficient.
 
@@ -979,9 +889,9 @@ RFC 6929                    RADIUS Extensions                 April 2013
    field MUST be set to eleven (11).  For "Long Extended Type"
    Attributes, the Length field MUST be set to twelve (12).
 
-2.6.  Vendor-Id Field
+<H2>2.6.  Vendor-Id Field</H2>
 
-   We define the Vendor-Id field of Vendor-Specific Attributes
+   We define the <A HREF="#Vendor-Id">Vendor-Id</A> field of <A HREF="#Vendor-Specific">Vendor-Specific</A> Attributes
    to encompass the entire 4 octets of the Vendor field.
    [RFC2865] Section 5.26 defined it to be 3 octets, with the fourth
    octet being zero.  This change has no immediate impact on RADIUS, as
@@ -991,20 +901,20 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 16]
+DeKok &amp; Lior                 Standards Track                   [Page 16]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
    However, it is best to make advance preparations for changes in the
    protocol.  As such, it is RECOMMENDED that all implementations
-   support four (4) octets for the Vendor-Id field, instead of
+   support four (4) octets for the <A HREF="#Vendor-Id">Vendor-Id</A> field, instead of
    three (3).
 
-2.7.  Attribute Naming and Type Identifiers
+<H2>2.7.  Attribute Naming and Type Identifiers</H2>
 
    Attributes have traditionally been identified by a unique name and
-   number.  For example, the Attribute "User-Name" has been allocated
+   number.  For example, the Attribute "<A HREF="rfc2865.html#User-Name">User-Name</A>" has been allocated
    number one (1).  This scheme needs to be extended in order to be able
    to refer to attributes of "Extended Type", and to TLVs.  It will also
    be used by IANA for allocating RADIUS Attribute Type values.
@@ -1015,10 +925,10 @@ RFC 6929                    RADIUS Extensions                 April 2013
    requirements on implementations, as implementations are free to
    reference RADIUS attributes via any method they choose.
 
-2.7.1.  Attribute and TLV Naming
+<H2>2.7.1.  Attribute and TLV Naming</H2>
 
    RADIUS specifications traditionally use names consisting of one or
-   more words, separated by hyphens, e.g., "User-Name".  However, these
+   more words, separated by hyphens, e.g., "<A HREF="rfc2865.html#User-Name">User-Name</A>".  However, these
    names are not allocated from a registry, and there is no restriction
    other than convention on their global uniqueness.
 
@@ -1047,12 +957,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 17]
+DeKok &amp; Lior                 Standards Track                   [Page 17]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-2.7.2.  Attribute Type Identifiers
+<H2>2.7.2.  Attribute Type Identifiers</H2>
 
    The RADIUS Attribute Type space defines a context for a particular
    "Extended-Type" field.  The "Extended-Type" field allows for 256
@@ -1066,7 +976,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    Similarly, an attribute within the Type space of 246, having
    Extended-Type of ten (10), is uniquely identified as "246.10".
 
-2.7.3.  TLV Identifiers
+<H2>2.7.3.  TLV Identifiers</H2>
 
    We can extend the Attribute reference scheme defined above for TLVs.
    This is done by leveraging the "dotted number" notation.  As above,
@@ -1085,7 +995,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    contains a TLV with TLV-Type number three (3), which in turn contains
    another TLV, with TLV-Type number four (4).
 
-2.7.4.  VSA Identifiers
+<H2>2.7.4.  VSA Identifiers</H2>
 
    There has historically been no method for numerically addressing
    VSAs.  The "dotted number" method defined here can also be leveraged
@@ -1094,8 +1004,8 @@ RFC 6929                    RADIUS Extensions                 April 2013
    provides a suggested practice but does not define a standard of any
    kind.
 
-   The Vendor-Specific Attribute has been assigned the Attribute
-   number 26.  It in turn carries a 32-bit Vendor-Id, and possibly
+   The <A HREF="#Vendor-Specific">Vendor-Specific</A> Attribute has been assigned the Attribute
+   number 26.  It in turn carries a 32-bit <A HREF="#Vendor-Id">Vendor-Id</A>, and possibly
    additional VSAs.  Where the VSAs follow the format recommended
    by [RFC2865] Section 5.26, a VSA can be identified as
    "26.Vendor-Id.Vendor-Type".
@@ -1103,23 +1013,23 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 18]
+DeKok &amp; Lior                 Standards Track                   [Page 18]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-   For example, Livingston has Vendor-Id 307 and has defined an
+   For example, Livingston has <A HREF="#Vendor-Id">Vendor-Id</A> 307 and has defined an
    attribute "IP-Pool" as number 6.  This VSA can be uniquely identified
    as 26.307.6, but it cannot be uniquely identified by name, as other
    vendors may have used the same name.
 
    Note that there are few restrictions on the size of the numerical
-   values in this notation.  The Vendor-Id is a 32-bit number, and the
-   VSA may have been assigned from a 16-bit Vendor-Specific Attribute
-   Type space.  Implementations SHOULD be capable of handling 32-bit
+   values in this notation.  The <A HREF="#Vendor-Id">Vendor-Id</A> is a 32-bit number, and the
+   VSA may have been assigned from a 16-bit <A HREF="#Vendor-Specific">Vendor-Specific</A> Attribute
+<B>   Type space.  Implementations SHOULD be capable of handling 32-bit</B>
    numbers at each level of the "dotted number" notation.
 
-   For example, the company USR has historically used Vendor-Id 429 and
+   For example, the company USR has historically used <A HREF="#Vendor-Id">Vendor-Id</A> 429 and
    has defined a "Version-Id" attribute as number 32768.  This VSA can
    be uniquely identified as 26.429.32768 but again cannot be uniquely
    identified by name.
@@ -1129,7 +1039,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    values are the numerical values assigned by the vendor to the
    different nested TLVs.
 
-2.8.  Invalid Attributes
+<H2>2.8.  Invalid Attributes</H2>
 
    The term "invalid attribute" is new to this specification.  It is
    defined to mean that the Length field of an Attribute permits the
@@ -1159,7 +1069,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 19]
+DeKok &amp; Lior                 Standards Track                   [Page 19]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -1215,12 +1125,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 20]
+DeKok &amp; Lior                 Standards Track                   [Page 20]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-3.  Attribute Definitions
+<H2>3.  Attribute Definitions</H2>
 
    We define four (4) attributes of "Extended Type", which are allocated
    from the "Reserved" Attribute Type codes of 241, 242, 243, and 244.
@@ -1239,14 +1149,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
    The rest of this section gives detailed definitions for each
    Attribute based on the above summary.
 
-3.1.  Extended-Type-1
+<A NAME="Extended-Type-1"><H2>3.1.  Extended-Type-1</H2></a>
 
-   Description
+<B>   Description</B>
 
       This attribute encapsulates attributes of the "Extended Type"
       format, in the RADIUS Attribute Type space of 241.{1-255}.
 
-   A summary of the Extended-Type-1 Attribute format is shown below.
+   A summary of the <B>Extended-Type-1</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1255,15 +1165,13 @@ RFC 6929                    RADIUS Extensions                 April 2013
    |     Type      |    Length     | Extended-Type |  Value ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
-      241 for Extended-Type-1.
+      241 for <B>Extended-Type-1</B>.
 
-   Length
+<B>   Length</B>
 
-      >= 4
-
-
+      &gt;= 4
 
 
 
@@ -1271,7 +1179,9 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 21]
+
+
+DeKok &amp; Lior                 Standards Track                   [Page 21]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -1284,7 +1194,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       Section 10.  Further definition of this field is given in
       Section 2.1, above.
 
-   Value
+<B>   Value</B>
 
       The "Value" field is one or more octets.
 
@@ -1292,14 +1202,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type" to determine the interpretation
       of the "Value" field.
 
-3.2.  Extended-Type-2
+<A NAME="Extended-Type-2"><H2>3.2.  Extended-Type-2</H2></a>
 
-   Description
+<B>   Description</B>
 
       This attribute encapsulates attributes of the "Extended Type"
       format, in the RADIUS Attribute Type space of 242.{1-255}.
 
-   A summary of the Extended-Type-2 Attribute format is shown below.
+   A summary of the <B>Extended-Type-2</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1308,13 +1218,13 @@ RFC 6929                    RADIUS Extensions                 April 2013
    |     Type      |    Length     | Extended-Type |  Value ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
-      242 for Extended-Type-2.
+      242 for <B>Extended-Type-2</B>.
 
-   Length
+<B>   Length</B>
 
-      >= 4
+      &gt;= 4
 
    Extended-Type
 
@@ -1327,12 +1237,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 22]
+DeKok &amp; Lior                 Standards Track                   [Page 22]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-   Value
+<B>   Value</B>
 
       The "Value" field is one or more octets.
 
@@ -1340,14 +1250,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type" to determine the interpretation
       of the "Value" field.
 
-3.3.  Extended-Type-3
+<A NAME="Extended-Type-3"><H2>3.3.  Extended-Type-3</H2></a>
 
-   Description
+<B>   Description</B>
 
       This attribute encapsulates attributes of the "Extended Type"
       format, in the RADIUS Attribute Type space of 243.{1-255}.
 
-   A summary of the Extended-Type-3 Attribute format is shown below.
+   A summary of the <B>Extended-Type-3</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1356,13 +1266,13 @@ RFC 6929                    RADIUS Extensions                 April 2013
    |     Type      |    Length     | Extended-Type |  Value ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
-      243 for Extended-Type-3.
+      243 for <B>Extended-Type-3</B>.
 
-   Length
+<B>   Length</B>
 
-      >= 4
+      &gt;= 4
 
    Extended-Type
 
@@ -1372,7 +1282,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       Section 10.  Further definition of this field is given in
       Section 2.1, above.
 
-   Value
+<B>   Value</B>
 
       The "Value" field is one or more octets.
 
@@ -1383,19 +1293,19 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 23]
+DeKok &amp; Lior                 Standards Track                   [Page 23]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-3.4.  Extended-Type-4
+<A NAME="Extended-Type-4"><H2>3.4.  Extended-Type-4</H2></a>
 
-   Description
+<B>   Description</B>
 
       This attribute encapsulates attributes of the "Extended Type"
       format, in the RADIUS Attribute Type space of 244.{1-255}.
 
-   A summary of the Extended-Type-4 Attribute format is shown below.
+   A summary of the <B>Extended-Type-4</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1404,13 +1314,13 @@ RFC 6929                    RADIUS Extensions                 April 2013
    |     Type      |    Length     | Extended-Type |  Value ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
-      244 for Extended-Type-4.
+      244 for <B>Extended-Type-4</B>.
 
-   Length
+<B>   Length</B>
 
-      >= 4
+      &gt;= 4
 
    Extended-Type
 
@@ -1420,7 +1330,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       Section 10.  Further definition of this field is given in
       Section 2.1, above.
 
-   Value
+<B>   Value</B>
 
       The "Value" field is one or more octets.
 
@@ -1439,19 +1349,19 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 24]
+DeKok &amp; Lior                 Standards Track                   [Page 24]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-3.5.  Long-Extended-Type-1
+<A NAME="Long-Extended-Type-1"><H2>3.5.  Long-Extended-Type-1</H2></a>
 
-   Description
+<B>   Description</B>
 
       This attribute encapsulates attributes of the "Long Extended Type"
       format, in the RADIUS Attribute Type space of 245.{1-255}.
 
-   A summary of the Long-Extended-Type-1 Attribute format is shown
+   A summary of the <B>Long-Extended-Type-1</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1462,13 +1372,13 @@ RFC 6929                    RADIUS Extensions                 April 2013
    |     Value ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
-      245 for Long-Extended-Type-1
+      245 for <B>Long-Extended-Type-1</B>
 
-   Length
+<B>   Length</B>
 
-      >= 5
+      &gt;= 5
 
    Extended-Type
 
@@ -1495,12 +1405,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 25]
+DeKok &amp; Lior                 Standards Track                   [Page 25]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-   Value
+<B>   Value</B>
 
       The "Value" field is one or more octets.
 
@@ -1508,14 +1418,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type" to determine the interpretation
       of the "Value" field.
 
-3.6.  Long-Extended-Type-2
+<A NAME="Long-Extended-Type-2"><H2>3.6.  Long-Extended-Type-2</H2></a>
 
-   Description
+<B>   Description</B>
 
       This attribute encapsulates attributes of the "Long Extended Type"
       format, in the RADIUS Attribute Type space of 246.{1-255}.
 
-   A summary of the Long-Extended-Type-2 Attribute format is shown
+   A summary of the <B>Long-Extended-Type-2</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1526,13 +1436,13 @@ RFC 6929                    RADIUS Extensions                 April 2013
    |     Value ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
-      246 for Long-Extended-Type-2
+      246 for <B>Long-Extended-Type-2</B>
 
-   Length
+<B>   Length</B>
 
-      >= 5
+      &gt;= 5
 
    Extended-Type
 
@@ -1551,7 +1461,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 26]
+DeKok &amp; Lior                 Standards Track                   [Page 26]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -1563,7 +1473,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       for sending in a packet.  The contents SHOULD be ignored on
       reception.
 
-   Value
+<B>   Value</B>
 
       The "Value" field is one or more octets.
 
@@ -1571,7 +1481,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type" to determine the interpretation
       of the "Value" field.
 
-4.  Vendor-Specific Attributes
+<H2>4.  Vendor-Specific Attributes</H2>
 
    We define six new attributes that can carry vendor-specific
    information.  We define four (4) attributes of the "Extended Type"
@@ -1607,42 +1517,42 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 27]
+DeKok &amp; Lior                 Standards Track                   [Page 27]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-4.1.  Extended-Vendor-Specific-1
+<A NAME="Extended-Vendor-Specific-1"><H2>4.1.  Extended-Vendor-Specific-1</H2></a>
 
-   Description
+<B>   Description</B>
 
       This attribute defines a RADIUS Type Code of 241.26, using the
       "evs" data type.
 
-   A summary of the Extended-Vendor-Specific-1 Attribute format is shown
+   A summary of the <B>Extended-Vendor-Specific-1</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |    Length     | Extended-Type |  Vendor-Id ...
+   |     Type      |    Length     | Extended-Type |  <A HREF="#Vendor-Id">Vendor-Id</A> ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      ... Vendor-Id  (cont)                        |  Vendor-Type  |
+      ... <A HREF="#Vendor-Id">Vendor-Id</A>  (cont)                        |  Vendor-Type  |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Value ....
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type.Extended-Type
+<B>   Type.Extended-Type</B>
 
-      241.26 for Extended-Vendor-Specific-1
+      241.26 for <B>Extended-Vendor-Specific-1</B>
 
-   Length
+<B>   Length</B>
 
-      >= 9
+      &gt;= 9
 
-   Vendor-Id
+   <A HREF="#Vendor-Id">Vendor-Id</A>
 
-      The 4 octets of the Vendor-Id field are the Network Management
+      The 4 octets of the <A HREF="#Vendor-Id">Vendor-Id</A> field are the Network Management
       Private Enterprise Code [PEN] of the vendor in network byte order.
 
    Vendor-Type
@@ -1650,7 +1560,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       The Vendor-Type field is one octet.  Values are assigned at the
       sole discretion of the vendor.
 
-   Value
+<B>   Value</B>
 
       The "Value" field is one or more octets.  The actual format of the
       information is site or application specific, and a robust
@@ -1663,7 +1573,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 28]
+DeKok &amp; Lior                 Standards Track                   [Page 28]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -1675,37 +1585,37 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type.Vendor-Id.Vendor-Type" to
       determine the interpretation of the "Value" field.
 
-4.2.  Extended-Vendor-Specific-2
+<A NAME="Extended-Vendor-Specific-2"><H2>4.2.  Extended-Vendor-Specific-2</H2></a>
 
-   Description
+<B>   Description</B>
 
       This attribute defines a RADIUS Type Code of 242.26, using the
       "evs" data type.
 
-   A summary of the Extended-Vendor-Specific-2 Attribute format is shown
+   A summary of the <B>Extended-Vendor-Specific-2</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |    Length     | Extended-Type |  Vendor-Id ...
+   |     Type      |    Length     | Extended-Type |  <A HREF="#Vendor-Id">Vendor-Id</A> ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      ... Vendor-Id  (cont)                        |  Vendor-Type  |
+      ... <A HREF="#Vendor-Id">Vendor-Id</A>  (cont)                        |  Vendor-Type  |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Value ....
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type.Extended-Type
+<B>   Type.Extended-Type</B>
 
-      242.26 for Extended-Vendor-Specific-2
+      242.26 for <B>Extended-Vendor-Specific-2</B>
 
-   Length
+<B>   Length</B>
 
-      >= 9
+      &gt;= 9
 
-   Vendor-Id
+   <A HREF="#Vendor-Id">Vendor-Id</A>
 
-      The 4 octets of the Vendor-Id field are the Network Management
+      The 4 octets of the <A HREF="#Vendor-Id">Vendor-Id</A> field are the Network Management
       Private Enterprise Code [PEN] of the vendor in network byte order.
 
    Vendor-Type
@@ -1719,12 +1629,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 29]
+DeKok &amp; Lior                 Standards Track                   [Page 29]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-   Value
+<B>   Value</B>
 
       The "Value" field is one or more octets.  The actual format of the
       information is site or application specific, and a robust
@@ -1740,42 +1650,42 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type.Vendor-Id.Vendor-Type" to
       determine the interpretation of the "Value" field.
 
-4.3.  Extended-Vendor-Specific-3
+<A NAME="Extended-Vendor-Specific-3"><H2>4.3.  Extended-Vendor-Specific-3</H2></a>
 
-   Description
+<B>   Description</B>
 
       This attribute defines a RADIUS Type Code of 243.26, using the
       "evs" data type.
 
-   A summary of the Extended-Vendor-Specific-3 Attribute format is shown
+   A summary of the <B>Extended-Vendor-Specific-3</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |    Length     | Extended-Type |  Vendor-Id ...
+   |     Type      |    Length     | Extended-Type |  <A HREF="#Vendor-Id">Vendor-Id</A> ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      ... Vendor-Id  (cont)                        |  Vendor-Type  |
+      ... <A HREF="#Vendor-Id">Vendor-Id</A>  (cont)                        |  Vendor-Type  |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Value ....
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type.Extended-Type
+<B>   Type.Extended-Type</B>
 
-      243.26 for Extended-Vendor-Specific-3
+      243.26 for <B>Extended-Vendor-Specific-3</B>
 
-   Length
+<B>   Length</B>
 
-      >= 9
+      &gt;= 9
 
-   Vendor-Id
+   <A HREF="#Vendor-Id">Vendor-Id</A>
 
-      The 4 octets of the Vendor-Id field are the Network Management
+      The 4 octets of the <A HREF="#Vendor-Id">Vendor-Id</A> field are the Network Management
       Private Enterprise Code [PEN] of the vendor in network byte order.
 
 
 
-DeKok & Lior                 Standards Track                   [Page 30]
+DeKok &amp; Lior                 Standards Track                   [Page 30]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -1785,7 +1695,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       The Vendor-Type field is one octet.  Values are assigned at the
       sole discretion of the vendor.
 
-   Value
+<B>   Value</B>
 
       The "Value" field is one or more octets.  The actual format of the
       information is site or application specific, and a robust
@@ -1801,44 +1711,44 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type.Vendor-Id.Vendor-Type" to
       determine the interpretation of the "Value" field.
 
-4.4.  Extended-Vendor-Specific-4
+<A NAME="Extended-Vendor-Specific-4"><H2>4.4.  Extended-Vendor-Specific-4</H2></a>
 
-   Description
+<B>   Description</B>
 
       This attribute defines a RADIUS Type Code of 244.26, using the
       "evs" data type.
 
-   A summary of the Extended-Vendor-Specific-4 Attribute format is shown
+   A summary of the <B>Extended-Vendor-Specific-4</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |     Type      |    Length     | Extended-Type |  Vendor-Id ...
+   |     Type      |    Length     | Extended-Type |  <A HREF="#Vendor-Id">Vendor-Id</A> ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-      ... Vendor-Id  (cont)                        |  Vendor-Type  |
+      ... <A HREF="#Vendor-Id">Vendor-Id</A>  (cont)                        |  Vendor-Type  |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Value ....
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type.Extended-Type
+<B>   Type.Extended-Type</B>
 
-      244.26 for Extended-Vendor-Specific-4
+      244.26 for <B>Extended-Vendor-Specific-4</B>
 
-   Length
+<B>   Length</B>
 
-      >= 9
+      &gt;= 9
 
 
 
-DeKok & Lior                 Standards Track                   [Page 31]
+DeKok &amp; Lior                 Standards Track                   [Page 31]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-   Vendor-Id
+   <A HREF="#Vendor-Id">Vendor-Id</A>
 
-      The 4 octets of the Vendor-Id field are the Network Management
+      The 4 octets of the <A HREF="#Vendor-Id">Vendor-Id</A> field are the Network Management
       Private Enterprise Code [PEN] of the vendor in network byte order.
 
    Vendor-Type
@@ -1846,7 +1756,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       The Vendor-Type field is one octet.  Values are assigned at the
       sole discretion of the vendor.
 
-   Value
+<B>   Value</B>
 
       The "Value" field is one or more octets.  The actual format of the
       information is site or application specific, and a robust
@@ -1862,14 +1772,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type.Vendor-Id.Vendor-Type" to
       determine the interpretation of the "Value" field.
 
-4.5.  Extended-Vendor-Specific-5
+<A NAME="Extended-Vendor-Specific-5"><H2>4.5.  Extended-Vendor-Specific-5</H2></a>
 
-   Description
+<B>   Description</B>
 
       This attribute defines a RADIUS Type Code of 245.26, using the
       "evs" data type.
 
-   A summary of the Extended-Vendor-Specific-5 Attribute format is shown
+   A summary of the <B>Extended-Vendor-Specific-5</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1877,7 +1787,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |     Type      |    Length     | Extended-Type |M|  Reserved   |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                            Vendor-Id                          |
+   |                            <A HREF="#Vendor-Id">Vendor-Id</A>                          |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Vendor-Type   |  Value ....
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -1887,22 +1797,22 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 32]
+DeKok &amp; Lior                 Standards Track                   [Page 32]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-   Type.Extended-Type
+<B>   Type.Extended-Type</B>
 
-      245.26 for Extended-Vendor-Specific-5
+      245.26 for <B>Extended-Vendor-Specific-5</B>
 
-   Length
+<B>   Length</B>
 
-      >= 10   (first fragment)
-      >= 5    (subsequent fragments)
+      &gt;= 10   (first fragment)
+      &gt;= 5    (subsequent fragments)
 
       When a VSA is fragmented across multiple Attributes, only the
-      first Attribute contains the Vendor-Id and Vendor-Type fields.
+      first Attribute contains the <A HREF="#Vendor-Id">Vendor-Id</A> and Vendor-Type fields.
       Subsequent Attributes contain fragments of the "Value" field only.
 
    M (More)
@@ -1918,9 +1828,9 @@ RFC 6929                    RADIUS Extensions                 April 2013
       for sending in a packet.  The contents SHOULD be ignored on
       reception.
 
-   Vendor-Id
+   <A HREF="#Vendor-Id">Vendor-Id</A>
 
-      The 4 octets of the Vendor-Id field are the Network Management
+      The 4 octets of the <A HREF="#Vendor-Id">Vendor-Id</A> field are the Network Management
       Private Enterprise Code [PEN] of the vendor in network byte order.
 
    Vendor-Type
@@ -1928,7 +1838,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       The Vendor-Type field is one octet.  Values are assigned at the
       sole discretion of the vendor.
 
-   Value
+<B>   Value</B>
 
       The "Value" field is one or more octets.  The actual format of the
       information is site or application specific, and a robust
@@ -1943,19 +1853,19 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 33]
+DeKok &amp; Lior                 Standards Track                   [Page 33]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-4.6.  Extended-Vendor-Specific-6
+<A NAME="Extended-Vendor-Specific-6"><H2>4.6.  Extended-Vendor-Specific-6</H2></a>
 
-   Description
+<B>   Description</B>
 
       This attribute defines a RADIUS Type Code of 246.26, using the
       "evs" data type.
 
-   A summary of the Extended-Vendor-Specific-6 Attribute format is shown
+   A summary of the <B>Extended-Vendor-Specific-6</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -1963,22 +1873,22 @@ RFC 6929                    RADIUS Extensions                 April 2013
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |     Type      |    Length     | Extended-Type |M|  Reserved   |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |                            Vendor-Id                          |
+   |                            <A HREF="#Vendor-Id">Vendor-Id</A>                          |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |  Vendor-Type   |  Value ....
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type.Extended-Type
+<B>   Type.Extended-Type</B>
 
-      246.26 for Extended-Vendor-Specific-6
+      246.26 for <B>Extended-Vendor-Specific-6</B>
 
-   Length
+<B>   Length</B>
 
-      >= 10   (first fragment)
-      >= 5    (subsequent fragments)
+      &gt;= 10   (first fragment)
+      &gt;= 5    (subsequent fragments)
 
       When a VSA is fragmented across multiple Attributes, only the
-      first Attribute contains the Vendor-Id and Vendor-Type fields.
+      first Attribute contains the <A HREF="#Vendor-Id">Vendor-Id</A> and Vendor-Type fields.
       Subsequent Attributes contain fragments of the "Value" field only.
 
    M (More)
@@ -1999,14 +1909,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 34]
+DeKok &amp; Lior                 Standards Track                   [Page 34]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-   Vendor-Id
+   <A HREF="#Vendor-Id">Vendor-Id</A>
 
-      The 4 octets of the Vendor-Id field are the Network Management
+      The 4 octets of the <A HREF="#Vendor-Id">Vendor-Id</A> field are the Network Management
       Private Enterprise Code [PEN] of the vendor in network byte order.
 
    Vendor-Type
@@ -2014,7 +1924,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
       The Vendor-Type field is one octet.  Values are assigned at the
       sole discretion of the vendor.
 
-   Value
+<B>   Value</B>
 
       The "Value" field is one or more octets.  The actual format of the
       information is site or application specific, and a robust
@@ -2027,13 +1937,13 @@ RFC 6929                    RADIUS Extensions                 April 2013
       identifier of "Type.Extended-Type.Vendor-Id.Vendor-Type" to
       determine the interpretation of the "Value" field.
 
-5.  Compatibility with Traditional RADIUS
+<H2>5.  Compatibility with Traditional RADIUS</H2>
 
    There are a number of potential compatibility issues with traditional
    RADIUS, as defined in [RFC6158] and earlier.  This section describes
    them.
 
-5.1.  Attribute Allocation
+<H2>5.1.  Attribute Allocation</H2>
 
    Some vendors have used Attribute Type codes from the "Reserved" space
    as part of vendor-defined dictionaries.  This practice is considered
@@ -2049,13 +1959,13 @@ RFC 6929                    RADIUS Extensions                 April 2013
    configurable flag that indicates which type of attributes are being
    sent from the client.  If the flag is set to "Non-Standard
    Attributes", the conflicting attributes can be interpreted as being
-   improperly defined Vendor-Specific Attributes.  If the flag is set to
+   improperly defined <A HREF="#Vendor-Specific">Vendor-Specific</A> Attributes.  If the flag is set to
 
 
 
 
 
-DeKok & Lior                 Standards Track                   [Page 35]
+DeKok &amp; Lior                 Standards Track                   [Page 35]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -2089,7 +1999,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    "disabled".  We RECOMMEND that administrators set this flag to
    "disabled" on all equipment that they manage.
 
-5.2.  Proxy Servers
+<H2>5.2.  Proxy Servers</H2>
 
    RADIUS proxy servers will need to forward Attributes having the new
    format, even if they do not implement support for the encoding and
@@ -2097,7 +2007,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    following text in [RFC2865] Section 2.3:
 
       The forwarding server MUST NOT change the order of any attributes
-      of the same type, including Proxy-State.
+      of the same type, including <A HREF="rfc2865.html#Proxy-State">Proxy-State</A>.
 
    This requirement solves some of the issues related to proxying of the
    new format, but not all.  The reason is that proxy servers are
@@ -2111,7 +2021,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 36]
+DeKok &amp; Lior                 Standards Track                   [Page 36]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -2147,7 +2057,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    This last change should enable wider usage of the Extended Attributes
    format.
 
-6.  Guidelines
+<H2>6.  Guidelines</H2>
 
    This specification proposes a number of changes to RADIUS and
    therefore requires a set of guidelines, as has been done in
@@ -2155,7 +2065,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    interaction with IANA, usage, and implementation of attributes using
    the new formats.
 
-6.1.  Updates to RFC 6158
+<H2>6.1.  Updates to RFC 6158</H2>
 
    This specification updates [RFC6158] by adding the data types "evs",
    "tlv", and "integer64"; defining them to be "basic" data types; and
@@ -2167,12 +2077,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 37]
+DeKok &amp; Lior                 Standards Track                   [Page 37]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-6.2.  Guidelines for Simple Data Types
+<H2>6.2.  Guidelines for Simple Data Types</H2>
 
    [RFC6158] Section A.2.1 says in part:
 
@@ -2204,7 +2114,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    three types listed above.  All other recommendations given in
    [RFC6158] for "basic" data types remain unchanged.
 
-6.3.  Guidelines for Complex Data Types
+<H2>6.3.  Guidelines for Complex Data Types</H2>
 
    [RFC6158] Section 2.1 says:
 
@@ -2223,7 +2133,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 38]
+DeKok &amp; Lior                 Standards Track                   [Page 38]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -2247,7 +2157,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    All other recommendations given in [RFC6158] for "complex" data types
    remain unchanged.
 
-6.4.  Design Guidelines for the New Types
+<H2>6.4.  Design Guidelines for the New Types</H2>
 
    This section gives design guidelines for specifications defining
    attributes using the new format.  The items listed below are not
@@ -2279,12 +2189,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 39]
+DeKok &amp; Lior                 Standards Track                   [Page 39]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-6.5.  TLV Guidelines
+<H2>6.5.  TLV Guidelines</H2>
 
    The following items give design guidelines for specifications using
    TLVs.
@@ -2310,7 +2220,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    All other recommendations given in [RFC6158] for attribute design
    guidelines apply to attributes using the TLV format.
 
-6.6.  Allocation Request Guidelines
+<H2>6.6.  Allocation Request Guidelines</H2>
 
    The following items give guidelines for allocation requests made in a
    RADIUS specification.
@@ -2335,7 +2245,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 40]
+DeKok &amp; Lior                 Standards Track                   [Page 40]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -2380,7 +2290,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    These guidelines should help specification authors and IANA
    communicate effectively and clearly.
 
-6.7.  Allocation Request Guidelines for TLVs
+<H2>6.7.  Allocation Request Guidelines for TLVs</H2>
 
    Specifications may allocate a new attribute of type TLV and at the
    same time allocate sub-Attributes within that TLV.  These
@@ -2391,7 +2301,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 41]
+DeKok &amp; Lior                 Standards Track                   [Page 41]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -2409,7 +2319,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    attribute, the specification could request allocation of three
    sub-TLVs, as MM.NN.TBD1, MM.NN.TBD2, and MM.NN.TBD3.
 
-6.8.  Implementation Guidelines
+<H2>6.8.  Implementation Guidelines</H2>
 
    * RADIUS client implementations SHOULD support this specification in
      order to permit the easy deployment of specifications using the
@@ -2421,9 +2331,9 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
    * RADIUS proxy servers MUST follow the specifications in Section 5.2.
 
-6.9.  Vendor Guidelines
+<H2>6.9.  Vendor Guidelines</H2>
 
-   * Vendors SHOULD use the existing Vendor-Specific Attribute Type
+   * Vendors SHOULD use the existing <A HREF="#Vendor-Specific">Vendor-Specific</A> Attribute Type
      space in preference to the new Extended-Vendor-Specific Attributes,
      as this specification may take time to become widely deployed.
 
@@ -2431,7 +2341,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
      are relatively small and are likely to quickly be used in new
      specifications.
 
-7.  Rationale for This Design
+<H2>7.  Rationale for This Design</H2>
 
    The path to extending the RADIUS protocol has been long and arduous.
    A number of proposals have been made and discarded by the RADEXT
@@ -2447,7 +2357,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 42]
+DeKok &amp; Lior                 Standards Track                   [Page 42]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -2458,7 +2368,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    format is awkward, and the 7 Reserved bits will likely never be used
    for anything.
 
-7.1.  Attribute Audit
+<H2>7.1.  Attribute Audit</H2>
 
    An audit of almost five thousand publicly available attributes [ATTR]
    (2010) shows the statistics summarized below.  The Attributes include
@@ -2503,7 +2413,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 43]
+DeKok &amp; Lior                 Standards Track                   [Page 43]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -2511,13 +2421,13 @@ RFC 6929                    RADIUS Extensions                 April 2013
    Manual inspection of the dictionaries shows that approximately 20 (or
    0.5%) attributes have the ability to transport more than 253 octets
    of data.  These attributes are divided between VSAs and a small
-   number of standard Attributes such as EAP-Message.
+   number of standard Attributes such as <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>.
 
    The results of this audit and analysis are reflected in the design of
    the extended attributes.  The extended format has minimal overhead,
    permits TLVs, and has support for "long" attributes.
 
-8.  Diameter Considerations
+<H2>8.  Diameter Considerations</H2>
 
    The Attribute formats defined in this specification need to be
    transported in Diameter.  While Diameter supports attributes longer
@@ -2535,7 +2445,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    In short, this document mandates no changes for existing RADIUS-to-
    Diameter or Diameter-to-RADIUS gateways.
 
-9.  Examples
+<H2>9.  Examples</H2>
 
    A few examples are presented here in order to illustrate the encoding
    of the new Attribute formats.  These examples are not intended to be
@@ -2559,7 +2469,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 44]
+DeKok &amp; Lior                 Standards Track                   [Page 44]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -2596,13 +2506,13 @@ RFC 6929                    RADIUS Extensions                 April 2013
    for RADIUS data types; it can be used to encode attributes with
    invalid data fields; and there is no requirement for consistency from
    one example to the next.  For example, it can be used to encode a
-   User-Name attribute that contains non-UTF8 data or a
-   Framed-IP-Address that contains 253 octets of ASCII data.  As a
+   <A HREF="rfc2865.html#User-Name">User-Name</A> attribute that contains non-UTF8 data or a
+   <A HREF="rfc2865.html#Framed-IP-Address">Framed-IP-Address</A> that contains 253 octets of ASCII data.  As a
    result, it MUST NOT be used to create RADIUS attributes for transport
    in a RADIUS message.
 
    However, the program correctly encodes the RADIUS attribute fields of
-   "Type", "Length", "Extended-Type", "More", "Reserved", "Vendor-Id",
+   "Type", "Length", "Extended-Type", "More", "Reserved", "<A HREF="#Vendor-Id">Vendor-Id</A>",
    "Vendor-Type", and "Vendor-Length".  It encodes RADIUS attribute data
    types "evs" and "tlv".  It can therefore be used to encode example
    attributes from inputs that are human readable.
@@ -2615,7 +2525,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 45]
+DeKok &amp; Lior                 Standards Track                   [Page 45]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -2623,67 +2533,67 @@ RFC 6929                    RADIUS Extensions                 April 2013
    The examples given below are strictly for demonstration purposes only
    and do not provide a standard of any kind.
 
-9.1.  Extended Type
+<H2>9.1.  Extended Type</H2>
 
    The following is a series of examples of the "Extended Type" format.
 
    Attribute encapsulating textual data:
 
      241.1 "bob"
-       -> f1 06 01 62 6f 62
+       -&gt; f1 06 01 62 6f 62
 
    Attribute encapsulating a TLV with TLV-Type of one (1):
 
      241.2 { 1 23 45 }
-       -> f1 07 02 01 04 23 45
+       -&gt; f1 07 02 01 04 23 45
 
    Attribute encapsulating two TLVs, one after the other:
 
      241.2 { 1 23 45 } { 2 67 89 }
-       -> f1 0b 02 01 04 23 45 02 04 67 89
+       -&gt; f1 0b 02 01 04 23 45 02 04 67 89
 
    Attribute encapsulating two TLVs, where the second TLV is itself
    encapsulating a TLV:
 
      241.2 { 1 23 45 } { 3 { 1 ab cd } }
-       -> f1 0d 02 01 04 23 45 03 06 01 04 ab cd
+       -&gt; f1 0d 02 01 04 23 45 03 06 01 04 ab cd
 
    Attribute encapsulating two TLVs, where the second TLV is itself
    encapsulating two TLVs:
 
      241.2 { 1 23 45 } { 3 { 1 ab cd } { 2 "foo" } }
-       -> f1 12 02 01 04 23 45 03 0b 01 04 ab cd 02 05 66 6f 6f
+       -&gt; f1 12 02 01 04 23 45 03 0b 01 04 ab cd 02 05 66 6f 6f
 
    Attribute encapsulating a TLV, which in turn encapsulates a TLV, to a
    depth of 5 nestings:
 
      241.1 { 1 { 2 { 3 { 4 { 5 cd ef } } } } }
-       -> f1 0f 01 01 0c 02 0a 03 08 04 06 05 04 cd ef
+       -&gt; f1 0f 01 01 0c 02 0a 03 08 04 06 05 04 cd ef
 
    Attribute encapsulating an Extended-Vendor-Specific Attribute, with
-   Vendor-Id of 1 and Vendor-Type of 4, which in turn encapsulates
+   <A HREF="#Vendor-Id">Vendor-Id</A> of 1 and Vendor-Type of 4, which in turn encapsulates
    textual data:
 
      241.26.1.4 "test"
-       -> f1 0c 1a 00 00 00 01 04 74 65 73 74
+       -&gt; f1 0c 1a 00 00 00 01 04 74 65 73 74
 
 
 
 
 
-DeKok & Lior                 Standards Track                   [Page 46]
+DeKok &amp; Lior                 Standards Track                   [Page 46]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
    Attribute encapsulating an Extended-Vendor-Specific Attribute, with
-   Vendor-Id of 1 and Vendor-Type of 5, which in turn encapsulates a TLV
+   <A HREF="#Vendor-Id">Vendor-Id</A> of 1 and Vendor-Type of 5, which in turn encapsulates a TLV
    with TLV-Type of 3, which encapsulates textual data:
 
      241.26.1.5 { 3 "test" }
-       -> f1 0e 1a 00 00 00 01 05 03 06 74 65 73 74
+       -&gt; f1 0e 1a 00 00 00 01 05 03 06 74 65 73 74
 
-9.2.  Long Extended Type
+<H2>9.2.  Long Extended Type</H2>
 
    The following is a series of examples of the "Long Extended Type"
    format.
@@ -2691,35 +2601,35 @@ RFC 6929                    RADIUS Extensions                 April 2013
    Attribute encapsulating textual data:
 
      245.1 "bob"
-       -> f5 07 01 00 62 6f 62
+       -&gt; f5 07 01 00 62 6f 62
 
    Attribute encapsulating a TLV with TLV-Type of one (1):
 
      245.2 { 1 23 45 }
-       -> f5 08 02 00 01 04 23 45
+       -&gt; f5 08 02 00 01 04 23 45
 
    Attribute encapsulating two TLVs, one after the other:
 
      245.2 { 1 23 45 } { 2 67 89 }
-       -> f5 0c 02 00 01 04 23 45 02 04 67 89
+       -&gt; f5 0c 02 00 01 04 23 45 02 04 67 89
 
    Attribute encapsulating two TLVs, where the second TLV is itself
    encapsulating a TLV:
 
      245.2 { 1 23 45 } { 3 { 1 ab cd } }
-       -> f5 0e 02 00 01 04 23 45 03 06 01 04 ab cd
+       -&gt; f5 0e 02 00 01 04 23 45 03 06 01 04 ab cd
 
    Attribute encapsulating two TLVs, where the second TLV is itself
    encapsulating two TLVs:
 
      245.2 { 1 23 45 } { 3 { 1 ab cd } { 2 "foo" } }
-       -> f5 13 02 00 01 04 23 45 03 0b 01 04 ab cd 02 05 66 6f 6f
+       -&gt; f5 13 02 00 01 04 23 45 03 0b 01 04 ab cd 02 05 66 6f 6f
 
    Attribute encapsulating a TLV, which in turn encapsulates a TLV, to a
    depth of 5 nestings:
 
      245.1 { 1 { 2 { 3 { 4 { 5 cd ef } } } } }
-       -> f5 10 01 00 01 0c 02 0a 03 08 04 06 05 04 cd ef
+       -&gt; f5 10 01 00 01 0c 02 0a 03 08 04 06 05 04 cd ef
 
 
 
@@ -2727,24 +2637,24 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 47]
+DeKok &amp; Lior                 Standards Track                   [Page 47]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
    Attribute encapsulating an Extended-Vendor-Specific Attribute, with
-   Vendor-Id of 1 and Vendor-Type of 4, which in turn encapsulates
+   <A HREF="#Vendor-Id">Vendor-Id</A> of 1 and Vendor-Type of 4, which in turn encapsulates
    textual data:
 
      245.26.1.4 "test"
-       -> f5 0d 1a 00 00 00 00 01 04 74 65 73 74
+       -&gt; f5 0d 1a 00 00 00 00 01 04 74 65 73 74
 
    Attribute encapsulating an Extended-Vendor-Specific Attribute, with
-   Vendor-Id of 1 and Vendor-Type of 5, which in turn encapsulates a TLV
+   <A HREF="#Vendor-Id">Vendor-Id</A> of 1 and Vendor-Type of 5, which in turn encapsulates a TLV
    with TLV-Type of 3, which encapsulates textual data:
 
      245.26.1.5 { 3 "test" }
-       -> f5 0f 1a 00 00 00 00 01 05 03 06 74 65 73 74
+       -&gt; f5 0f 1a 00 00 00 00 01 05 03 06 74 65 73 74
 
    Attribute encapsulating more than 251 octets of data.  The "Data"
    portions are indented for readability:
@@ -2759,7 +2669,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
            bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
            bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbcccccccccccccccccccc
            ccccccccccc"
-       -> f5 ff 04 80 aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa
+       -&gt; f5 ff 04 80 aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa
           aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa
           aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa
           aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa
@@ -2783,21 +2693,21 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 48]
+DeKok &amp; Lior                 Standards Track                   [Page 48]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
    Below is an example of an attribute encapsulating an Extended-Vendor-
-   Specific Attribute, with Vendor-Id of 1 and Vendor-Type of 6, which
+   Specific Attribute, with <A HREF="#Vendor-Id">Vendor-Id</A> of 1 and Vendor-Type of 6, which
    in turn encapsulates more than 251 octets of data.
 
    As the VSA encapsulates more than 251 octets of data, it is split
    into two RADIUS attributes.  The first attribute has the More field
-   set, and it carries the Vendor-Id and Vendor-Type.  The second
+   set, and it carries the <A HREF="#Vendor-Id">Vendor-Id</A> and Vendor-Type.  The second
    attribute has the More field clear and carries the rest of the data
    portion of the VSA.  Note that the second attribute does not include
-   the Vendor-Id ad Vendor-Type fields.
+   the <A HREF="#Vendor-Id">Vendor-Id</A> ad Vendor-Type fields.
 
    The "Data" portions are indented for readability:
 
@@ -2811,7 +2721,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
            bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
            bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccccc
            ccccccccccccccccc"
-       -> f5 ff 1a 80 00 00 00 01 06 aa aa aa aa aa aa aa aa aa aa aa
+       -&gt; f5 ff 1a 80 00 00 00 01 06 aa aa aa aa aa aa aa aa aa aa aa
           aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa
           aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa
           aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa aa
@@ -2839,12 +2749,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 49]
+DeKok &amp; Lior                 Standards Track                   [Page 49]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-10.  IANA Considerations
+<H2>10.  IANA Considerations</H2>
 
    This document updates [RFC3575] in that it adds new IANA
    considerations for RADIUS attributes.  These considerations modify
@@ -2857,7 +2767,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    extended from a simple 8-bit array to a tree-like structure, up to a
    maximum depth of 125 nodes.  Detailed instructions are given below.
 
-10.1.  Attribute Allocations
+<H2>10.1.  Attribute Allocations</H2>
 
    IANA has moved the following Attribute Type values from "Reserved" to
    "Allocated" with the corresponding names:
@@ -2872,12 +2782,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
    These values serve as an encapsulation layer for the new RADIUS
    Attribute Type tree.
 
-10.2.  RADIUS Attribute Type Tree
+<H2>10.2.  RADIUS Attribute Type Tree</H2>
 
    Each of the Attribute Type values allocated above extends the "RADIUS
    Attribute Types" to an N-ary tree, via a "dotted number" notation.
    Allocation of an Attribute Type value "TYPE" using the new "Extended
-   Type" format results in allocation of 255 new Attribute Type values
+<B>   Type" format results in allocation of 255 new Attribute Type values</B>
    of format "TYPE.1" through "TYPE.255".  Value twenty-six (26) is
    assigned as "Extended-Vendor-Specific-*".  Values "TYPE.241" through
    "TYPE.255" are marked "Reserved".  All other values are "Unassigned".
@@ -2895,7 +2805,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 50]
+DeKok &amp; Lior                 Standards Track                   [Page 50]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -2951,12 +2861,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 51]
+DeKok &amp; Lior                 Standards Track                   [Page 51]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-10.3.  Allocation Instructions
+<H2>10.3.  Allocation Instructions</H2>
 
    This section defines what actions IANA needs to take when allocating
    new attributes.  Different actions are required when allocating
@@ -2965,27 +2875,27 @@ RFC 6929                    RADIUS Extensions                 April 2013
    allocations, attributes of data type TLV, attributes within a TLV,
    and attributes of other data types.
 
-10.3.1.  Requested Allocation from the Standard Space
+<H2>10.3.1.  Requested Allocation from the Standard Space</H2>
 
    Specifications can request allocation of an Attribute from within the
    standard space (e.g., Attribute Type Codes 1 through 255), subject to
    the considerations of [RFC3575] and this document.
 
-10.3.2.  Requested Allocation from the Short Extended Space
+<H2>10.3.2.  Requested Allocation from the Short Extended Space</H2>
 
    Specifications can request allocation of an Attribute that requires
    the format "Extended Type", by specifying the short extended space.
    In that case, IANA should assign the lowest Unassigned number from
    the Attribute Type space with the relevant format.
 
-10.3.3.  Requested Allocation from the Long Extended Space
+<H2>10.3.3.  Requested Allocation from the Long Extended Space</H2>
 
    Specifications can request allocation of an Attribute that requires
    the format "Long Extended Type", by specifying the extended space
    (long).  In that case, IANA should assign the lowest Unassigned
    number from the Attribute Type space with the relevant format.
 
-10.3.4.  Allocation Preferences
+<H2>10.3.4.  Allocation Preferences</H2>
 
    Specifications that make no request for allocation from a specific
    type space should have Attributes allocated using the following
@@ -3007,7 +2917,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 52]
+DeKok &amp; Lior                 Standards Track                   [Page 52]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3022,7 +2932,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    Specifications can simultaneously allocate attributes from both the
    standard space and the extended space.
 
-10.3.5.  Extending the Type Space via the TLV Data Type
+<H2>10.3.5.  Extending the Type Space via the TLV Data Type</H2>
 
    When specifications request allocation of an attribute of data type
    TLV, that allocation extends the Attribute Type tree by one more
@@ -3046,7 +2956,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    specification when the specification requests allocation of nested
    TLVs, as discussed below.
 
-10.3.6.  Allocation within a TLV
+<H2>10.3.6.  Allocation within a TLV</H2>
 
    Specifications can request allocation of Attribute Type values within
    an Attribute of data type TLV.  The encapsulating TLV can be
@@ -3054,7 +2964,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
    allocated.
 
    Specifications need to request allocation within a specific Attribute
-   Type value (e.g., "TYPE.TLV.*").  Allocations are performed from the
+<B>   Type value (e.g., "TYPE.TLV.*").  Allocations are performed from the</B>
    smallest Unassigned value, proceeding to the largest Unassigned
    value.
 
@@ -3063,7 +2973,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 53]
+DeKok &amp; Lior                 Standards Track                   [Page 53]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3072,14 +2982,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
    Attribute Type tree is extended by one level, as given in the
    previous section.  Allocations can then be made within that level.
 
-10.3.7.  Allocation of Other Data Types
+<H2>10.3.7.  Allocation of Other Data Types</H2>
 
    Attribute Type value allocations are otherwise allocated from the
    smallest Unassigned value, proceeding to the largest Unassigned
    value, e.g., starting from 241.1, proceeding through 241.255, then to
    242.1, through 242.255, etc.
 
-11.  Security Considerations
+<H2>11.  Security Considerations</H2>
 
    This document defines new formats for data carried inside of RADIUS
    but otherwise makes no changes to the security of the RADIUS
@@ -3099,9 +3009,9 @@ RFC 6929                    RADIUS Extensions                 April 2013
    attackers.  We RECOMMEND that access to RADIUS servers be kept to a
    minimum.
 
-12.  References
+<H2>12.  References</H2>
 
-12.1.  Normative References
+<H2>12.1.  Normative References</H2>
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
@@ -3119,7 +3029,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 54]
+DeKok &amp; Lior                 Standards Track                   [Page 54]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3132,9 +3042,9 @@ RFC 6929                    RADIUS Extensions                 April 2013
               BCP 158, RFC 6158, March 2011.
 
    [PEN]      IANA, "PRIVATE ENTERPRISE NUMBERS",
-              <http://www.iana.org/assignments/enterprise-numbers>.
+              &lt;http://www.iana.org/assignments/enterprise-numbers&gt;.
 
-12.2.  Informative References
+<H2>12.2.  Informative References</H2>
 
    [RFC1321]  Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321,
               April 1992.
@@ -3155,10 +3065,10 @@ RFC 6929                    RADIUS Extensions                 April 2013
               RFC 6151, March 2011.
 
    [ATTR]     "alandekok/freeradius-server", available from GitHub, data
-              retrieved September 2010, <http://github.com/alandekok/
-              freeradius-server/tree/master/share/>.
+              retrieved September 2010, &lt;http://github.com/alandekok/
+              freeradius-server/tree/master/share/&gt;.
 
-13.  Acknowledgments
+<H2>13.  Acknowledgments</H2>
 
    This document is the result of long discussions in the IETF RADEXT
    working group.  The authors would like to thank all of the
@@ -3175,7 +3085,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 55]
+DeKok &amp; Lior                 Standards Track                   [Page 55]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3231,7 +3141,7 @@ Appendix A.  Extended Attribute Generator Program
 
 
 
-DeKok & Lior                 Standards Track                   [Page 56]
+DeKok &amp; Lior                 Standards Track                   [Page 56]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3240,14 +3150,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
     * OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
     * SUCH DAMAGE.
     *
-    *  Author:  Alan DeKok <aland@networkradius.com>
+    *  Author:  Alan DeKok &lt;aland@networkradius.com&gt;
     */
-   #include <stdlib.h>
-   #include <stdio.h>
-   #include <stdint.h>
-   #include <string.h>
-   #include <errno.h>
-   #include <ctype.h>
+   #include &lt;stdlib.h&gt;
+   #include &lt;stdio.h&gt;
+   #include &lt;stdint.h&gt;
+   #include &lt;string.h&gt;
+   #include &lt;errno.h&gt;
+   #include &lt;ctype.h&gt;
 
    static int encode_tlv(char *buffer, uint8_t *output, size_t outlen);
 
@@ -3261,7 +3171,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
         p = buffer + 1;
 
-        while (*p && (outlen > 0)) {
+        while (*p &amp;&amp; (outlen &gt; 0)) {
              if (*p == '"') {
                   return length;
              }
@@ -3287,7 +3197,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 57]
+DeKok &amp; Lior                 Standards Track                   [Page 57]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3343,7 +3253,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 58]
+DeKok &amp; Lior                 Standards Track                   [Page 58]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3383,7 +3293,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
                        break;
                   }
 
-                  sublen = encode_data_tlv(p, &q, output, outlen);
+                  sublen = encode_data_tlv(p, &amp;q, output, outlen);
                   if (sublen == 0) return 0;
 
                   length += sublen;
@@ -3399,7 +3309,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 59]
+DeKok &amp; Lior                 Standards Track                   [Page 59]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3425,7 +3335,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
                   return 0;
              }
 
-             *output = ((c1 - hextab) << 4) + (c2 - hextab);
+             *output = ((c1 - hextab) &lt;&lt; 4) + (c2 - hextab);
              output++;
              length++;
              p += 2;
@@ -3455,7 +3365,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 60]
+DeKok &amp; Lior                 Standards Track                   [Page 60]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3476,7 +3386,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
              return 0;
         }
 
-        if ((attr <= 0) || (attr > 256)) {
+        if ((attr &lt;= 0) || (attr &gt; 256)) {
              fprintf(stderr, "Attribute number is out of valid "
                   "range\n");
              return 0;
@@ -3511,12 +3421,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 61]
+DeKok &amp; Lior                 Standards Track                   [Page 61]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-        if ((vendor <= 0) || (vendor > (1 << 24))) {
+        if ((vendor &lt;= 0) || (vendor &gt; (1 &lt;&lt; 24))) {
              fprintf(stderr, "Vendor number is out of valid range\n");
              return 0;
         }
@@ -3536,7 +3446,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
         int length;
         char *p;
 
-        attr = decode_attr(buffer, &p);
+        attr = decode_attr(buffer, &amp;p);
         if (attr == 0) return 0;
 
         output[0] = attr;
@@ -3551,7 +3461,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
         }
 
         if (length == 0) return 0;
-        if (length > (255 - 2)) {
+        if (length &gt; (255 - 2)) {
              fprintf(stderr, "TLV data is too long\n");
              return 0;
         }
@@ -3567,7 +3477,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 62]
+DeKok &amp; Lior                 Standards Track                   [Page 62]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3579,17 +3489,17 @@ RFC 6929                    RADIUS Extensions                 April 2013
         int length;
         char *p;
 
-        vendor = decode_vendor(buffer, &p);
+        vendor = decode_vendor(buffer, &amp;p);
         if (vendor == 0) return 0;
 
         output[0] = 0;
-        output[1] = (vendor >> 16) & 0xff;
-        output[2] = (vendor >> 8) & 0xff;
-        output[3] = vendor & 0xff;
+        output[1] = (vendor &gt;&gt; 16) &amp; 0xff;
+        output[2] = (vendor &gt;&gt; 8) &amp; 0xff;
+        output[3] = vendor &amp; 0xff;
 
         length = encode_tlv(p, output + 4, outlen - 4);
         if (length == 0) return 0;
-        if (length > (255 - 6)) {
+        if (length &gt; (255 - 6)) {
              fprintf(stderr, "VSA data is too long\n");
              return 0;
         }
@@ -3604,16 +3514,16 @@ RFC 6929                    RADIUS Extensions                 April 2013
         int length;
         char *p;
 
-        vendor = decode_vendor(buffer, &p);
+        vendor = decode_vendor(buffer, &amp;p);
         if (vendor == 0) return 0;
 
-        attr = decode_attr(p, &p);
+        attr = decode_attr(p, &amp;p);
         if (attr == 0) return 0;
 
         output[0] = 0;
-        output[1] = (vendor >> 16) & 0xff;
-        output[2] = (vendor >> 8) & 0xff;
-        output[3] = vendor & 0xff;
+        output[1] = (vendor &gt;&gt; 16) &amp; 0xff;
+        output[2] = (vendor &gt;&gt; 8) &amp; 0xff;
+        output[3] = vendor &amp; 0xff;
         output[4] = attr;
 
         length = encode_data(p, output + 5, outlen - 5);
@@ -3623,7 +3533,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 63]
+DeKok &amp; Lior                 Standards Track                   [Page 63]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3638,7 +3548,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
         int length;
         char *p;
 
-        attr = decode_attr(buffer, &p);
+        attr = decode_attr(buffer, &amp;p);
         if (attr == 0) return 0;
 
         output[0] = attr;
@@ -3649,7 +3559,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
              length = encode_data(p, output + 1, outlen - 1);
         }
         if (length == 0) return 0;
-        if (length > (255 - 3)) {
+        if (length &gt; (255 - 3)) {
              fprintf(stderr, "Extended Attr data is too long\n");
 
              return 0;
@@ -3665,7 +3575,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
         int length, total;
         char *p;
 
-        attr = decode_attr(buffer, &p);
+        attr = decode_attr(buffer, &amp;p);
         if (attr == 0) return 0;
 
         /* output[0] is the extended attribute */
@@ -3679,7 +3589,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 64]
+DeKok &amp; Lior                 Standards Track                   [Page 64]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3699,7 +3609,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
         while (1) {
              int sublen = 255 - output[1];
 
-             if (length <= sublen) {
+             if (length &lt;= sublen) {
                   output[1] += length;
                   total += output[1];
                   break;
@@ -3728,14 +3638,14 @@ RFC 6929                    RADIUS Extensions                 April 2013
         int length, sublen;
         char *p;
 
-        attr = decode_attr(buffer, &p);
+        attr = decode_attr(buffer, &amp;p);
         if (attr == 0) return 0;
 
 
 
 
 
-DeKok & Lior                 Standards Track                   [Page 65]
+DeKok &amp; Lior                 Standards Track                   [Page 65]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3747,7 +3657,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
         if (attr == 26) {
              sublen = encode_vsa(p, output + 2, outlen - 2);
 
-        } else if ((*p == ' ') || ((attr < 241) || (attr > 246))) {
+        } else if ((*p == ' ') || ((attr &lt; 241) || (attr &gt; 246))) {
              sublen = encode_data(p, output + 2, outlen - 2);
 
         } else {
@@ -3757,7 +3667,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
                   return 0;
              }
 
-             if (attr < 245) {
+             if (attr &lt; 245) {
                   sublen = encode_extended(p + 1,
                                   output + 2, outlen - 2);
              } else {
@@ -3770,7 +3680,7 @@ RFC 6929                    RADIUS Extensions                 April 2013
         }
         if (sublen == 0) return 0;
 
-        if (sublen > (255 -2)) {
+        if (sublen &gt; (255 -2)) {
              fprintf(stderr, "RFC Data is too long\n");
              return 0;
         }
@@ -3791,12 +3701,12 @@ RFC 6929                    RADIUS Extensions                 April 2013
 
 
 
-DeKok & Lior                 Standards Track                   [Page 66]
+DeKok &amp; Lior                 Standards Track                   [Page 66]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
 
-        if ((argc < 2) || (strcmp(argv[1], "-") == 0)) {
+        if ((argc &lt; 2) || (strcmp(argv[1], "-") == 0)) {
              fp = stdin;
         } else {
              fp = fopen(argv[1], "r");
@@ -3839,15 +3749,15 @@ RFC 6929                    RADIUS Extensions                 April 2013
                   exit(1);
              }
 
-             printf("%s -> ", buffer);
-             for (i = 0; i < outlen; i++) {
+             printf("%s -&gt; ", buffer);
+             for (i = 0; i &lt; outlen; i++) {
                   printf("%02x ", output[i]);
              }
 
 
 
 
-DeKok & Lior                 Standards Track                   [Page 67]
+DeKok &amp; Lior                 Standards Track                   [Page 67]
 
 RFC 6929                    RADIUS Extensions                 April 2013
 
@@ -3903,83 +3813,6 @@ Authors' Addresses
 
 
 
-DeKok & Lior                 Standards Track                   [Page 68]
+DeKok &amp; Lior                 Standards Track                   [Page 68]
 
-</pre>
-</div>
-
-
-    </div><footer class="global_footer bg_block-dark lg_padding_v">
-
-    <div class="wrapper">
-        <div class="row">
-            <div class="columns medium-4">
-                <div class="footer_main">
-                    <img class="footer_logo" width="150" src="/img/wordmark-white.svg" alt="">
-                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
-                    <div class="footer-social">
-                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
-                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
-                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
-                    </div>
-                    <p>&copy; 2018 The FreeRADIUS Server Project and Contributors</p>
-                </div>
-            </div>
-            <div class="columns medium-8">
-                <nav class="footer_nav h6 row small-up-2">
-                    <ul>
-                        <li><a href="/documentation/">Docs</a></li>
-                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
-                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
-                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
-                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
-                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/modules/">Modules</a></li>
-                        <li><a href="/modules/">Packages</a></li>
-                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/community/">Community</a></li>
-                        <li><a href="/support/">Mailing Lists</a></li>
-                        <li><a href="/community/#contributing">Contribute</a></li>
-                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/about/">About</a></li>
-                        <li><a href="/about/#project">The Project</a></li>
-                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
-                        <li><a href="/about/#security">Security</a></li>
-                        <li><a href="/about/#team">Team</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/support/">Support</a></li>
-                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
-                        <li><a href="/security/">Security Issues</a></li>
-                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
-                        <li><a href="/support/">Newsletters</a></li>
-                        <li><a href="/commercial_support/">Commercial</a></li>
-                        <li><a href="/support/">Support</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-</footer>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
-<script src="/js/angular.min.js"></script>
-<script src="/js/app.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-1186926-1', 'auto');
-  ga('send', 'pageview');
-</script>
-</body>
-
-</html>
+</PRE>

@@ -1,99 +1,9 @@
-<!DOCTYPE html>
-<html ng-app="freeradius"><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+---
+layout: default
+---
 
-    <title>FreeRADIUS</title>
-    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
-">
-
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="freeradius.org/rfc/rfc6930.html">
-    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.org/feed.xml">
-
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
-    <meta name="msapplication-TileColor" content="#da532c ">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff ">
-
-</head>
-<body><div class="global-nav">
-  <div class="global_links pull_right">
-    <div class="global_link global_link_label h5 text">Our sites:</div>
-    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
-  </div>
-</div>
-
-<header class="site-header" global-header ng-class="{fixed: fixNav}">
-  <div class="site-header-wrapper">
-
-    <a class="site-title" href="/"><img src="/img/wordmark.svg"></a>
-    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
-      <svg viewBox="0 0 18 15">
-        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-      </svg>
-    </button>
-
-    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
-
-      <div class="get-release">
-      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
-      </div>
-
-      <ul class="site-nav-list">
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/releases/">Releases</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/documentation/">Documentation</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/modules/">Modules</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/community/">Community</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/about/">About</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/support/">Support</a>
-         </li>
-
-      </ul>
-
-    </nav>
-  </div>
-</header>
-<div class="page-content">
-
-        <div class="wrapper base_padding_v">
-<pre>
+<div class="wrapper base_padding_v">
+<PRE>
 
 
 
@@ -212,7 +122,7 @@ Guo, et al.                  Standards Track                    [Page 2]
 RFC 6930                     RADIUS for 6rd                   April 2013
 
 
-1.  Introduction
+<H2>1.  Introduction</H2>
 
    Recently, providers have started to deploy IPv6 and to consider
    transition to IPv6.  The IPv6 Rapid Deployment (6rd) [RFC5969]
@@ -238,7 +148,7 @@ RFC 6930                     RADIUS for 6rd                   April 2013
    new RADIUS attributes are needed to propagate the information from
    AAA servers to BNGs.
 
-2.  Terminology
+<H2>2.  Terminology</H2>
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
@@ -268,19 +178,19 @@ Guo, et al.                  Standards Track                    [Page 3]
 RFC 6930                     RADIUS for 6rd                   April 2013
 
 
-3.  IPv6 6rd Configuration with RADIUS
+<H2>3.  IPv6 6rd Configuration with RADIUS</H2>
 
    Figure 1 illustrates how DHCP and the RADIUS protocol cooperate to
    provide 6rd CE with 6rd configuration information.
 
       6rd CE                       BNG                       AAA Server
          |                          |                             |
-         |-------DHCPDISCOVER------>|                             |
+         |-------DHCPDISCOVER------&gt;|                             |
          |(Parameter Request w/ 6rd option)                       |
-         |                          |--Access-Request(6rd Attr)-->|
+         |                          |--Access-Request(6rd Attr)--&gt;|
          |                          |                             |
-         |                          |<--Access-Accept(6rd Attr)---|
-         |<-------DHCPOFFER---------|                             |
+         |                          |&lt;--Access-Accept(6rd Attr)---|
+         |&lt;-------DHCPOFFER---------|                             |
          |      (6rd option)        |                             |
          |                          |                             |
                    DHCP                         RADIUS
@@ -294,20 +204,20 @@ RFC 6930                     RADIUS for 6rd                   April 2013
    the BNG receives the DHCPDISCOVER, it SHOULD initiate a RADIUS
    Access- Request message to the RADIUS server. In that message,
 
-   -  the User-Name attribute (1) SHOULD be filled by the 6rd CE MAC
+   -  the <A HREF="rfc2865.html#User-Name">User-Name</A> attribute (1) SHOULD be filled by the 6rd CE MAC
       address, and
 
-   -  the User-Password attribute (2) SHOULD be filled by the shared 6rd
+   -  the <A HREF="rfc2865.html#User-Password">User-Password</A> attribute (2) SHOULD be filled by the shared 6rd
       password that has been preconfigured on the DHCP server.
 
    The BNG requests authentication, as defined in [RFC2865], with the
    IPv6-6rd-Configuration attribute (Section 4.1) in the desired
    attribute list.  If the authentication request is approved by the AAA
-   server, an Access-Accept message MUST be acknowledged with the
+   server, an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message MUST be acknowledged with the
    IPv6-6rd-Configuration attribute.  Then, the BNG SHOULD respond to
    the 6rd CE with a DHCPOFFER message, which contains a DHCP 6rd
    option.  The recommended format of the MAC address is as defined in
-   Calling-Station-Id ([RFC3580], Section 3.20) without the SSID
+   <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A> ([RFC3580], Section 3.20) without the SSID
    (Service Set Identifier) portion.
 
    Figure 2 describes another scenario -- later re-authorization -- in
@@ -326,13 +236,13 @@ RFC 6930                     RADIUS for 6rd                   April 2013
 
       6rd CE                       BNG                       AAA Server
          |                          |                             |
-         |--------DHCPREQUEST------>|                             |
+         |--------DHCPREQUEST------&gt;|                             |
          |(Parameter Request w/ 6rd option)                       |
-         |                          |--Access-Request(6rd Attr)-->|
+         |                          |--Access-Request(6rd Attr)--&gt;|
          |                          |                             |
-         |                          |<--Access-Accept(6rd Attr)---|
+         |                          |&lt;--Access-Accept(6rd Attr)---|
          |                          |                             |
-         |<---------DHCPACK---------|                             |
+         |&lt;---------DHCPACK---------|                             |
          |      (6rd option)        |                             |
          |                          |                             |
                    DHCP                         RADIUS
@@ -340,29 +250,29 @@ RFC 6930                     RADIUS for 6rd                   April 2013
              Figure 2: The Cooperation between DHCP and RADIUS
                  When Decoupled from RADIUS Authentication
 
-   In this scenario, the Access-Request packet SHOULD contain a Service-
-   Type attribute (6) with the value Authorize Only (17); thus,
-   according to [RFC5080], the Access-Request packet MUST contain a
-   State attribute that it obtains from the previous authentication
+   In this scenario, the <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet SHOULD contain a Service-
+<B>   Type attribute (6) with the value Authorize Only (17); thus,</B>
+   according to [RFC5080], the <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet MUST contain a
+   <A HREF="rfc2865.html#State">State</A> attribute that it obtains from the previous authentication
    process.
 
-   In both above-mentioned scenarios, Message-Authenticator (type 80)
-   [RFC2865] SHOULD be used to protect both Access-Request and Access-
+   In both above-mentioned scenarios, <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> (type 80)
+   [RFC2865] SHOULD be used to protect both <A HREF="rfc2865.html#Access-Request">Access-Request</A> and Access-
    Accept messages.
 
    After receiving the IPv6-6rd-Configuration attribute in the initial
-   Access-Accept, the BNG SHOULD store the received 6rd configuration
+   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, the BNG SHOULD store the received 6rd configuration
    parameters locally.  When the 6rd CE sends a DHCP Request message to
    request an extension of the lifetime for the assigned address, the
-   BNG does not have to initiate a new Access-Request towards the AAA
+   BNG does not have to initiate a new <A HREF="rfc2865.html#Access-Request">Access-Request</A> towards the AAA
    server to request the 6rd configuration parameters.  The BNG could
    retrieve the previously stored 6rd configuration parameters and use
    them in its reply.
 
    If the BNG does not receive the IPv6-6rd-Configuration attribute in
-   the Access-Accept, it MAY fall back to a preconfigured default 6rd
+   the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, it MAY fall back to a preconfigured default 6rd
    configuration, if any.  If the BNG does not have any preconfigured
-   default 6rd configuration or if the BNG receives an Access-Reject,
+   default 6rd configuration or if the BNG receives an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>,
    the tunnel cannot be established.
 
    As specified in [RFC2131], Section 4.4.5 ("Reacquisition and
@@ -381,17 +291,17 @@ RFC 6930                     RADIUS for 6rd                   April 2013
 
 
    In this situation, the secondary BNG receiving the new DHCP message
-   MUST initiate a new Access-Request towards the AAA server.  The
+   MUST initiate a new <A HREF="rfc2865.html#Access-Request">Access-Request</A> towards the AAA server.  The
    secondary BNG MAY include the IPv6-6rd-Configuration attribute in its
-   Access-Request.
+   <A HREF="rfc2865.html#Access-Request">Access-Request</A>.
 
-4.  Attributes
+<H2>4.  Attributes</H2>
 
    This section defines the IPv6-6rd-Configuration attribute that is
    used in both above-mentioned scenarios.  The attribute design follows
    [RFC6158] and refers to [RFC6929].
 
-4.1.  IPv6-6rd-Configuration Attribute
+<H2>4.1.  IPv6-6rd-Configuration Attribute</H2>
 
    The specification requires that multiple IPv4 addresses are
    associated with one IPv6 prefix.  Given that RADIUS currently has no
@@ -512,7 +422,7 @@ RFC 6930                     RADIUS for 6rd                   April 2013
    be placed together.
 
    The IPv6-6rd-Configuration attribute is normally used in Access-
-   Accept messages.  It MAY be used in Access-Request packets as a hint
+   Accept messages.  It MAY be used in <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets as a hint
    to the RADIUS server; for example, if the BNG is preconfigured with a
    default 6rd configuration, these parameters MAY be inserted in the
    attribute.  The RADIUS server MAY ignore the hint sent by the BNG,
@@ -523,14 +433,14 @@ RFC 6930                     RADIUS for 6rd                   April 2013
    AAA server.
 
    If the BNG does not receive the IPv6-6rd-Configuration attribute in
-   the Access-Accept, it MAY fallback to a preconfigured default 6rd
+   the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>, it MAY fallback to a preconfigured default 6rd
    configuration, if any.  If the BNG does not have any preconfigured
    default 6rd configuration, the 6rd tunnel cannot be established.
 
    If the BNG is pre-provisioned with a default 6rd configuration and
-   the 6rd configuration received in Access-Accept is different from the
+   the 6rd configuration received in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> is different from the
    configured default, then the 6rd configuration received in the
-   Access-Accept message MUST be used for the session.
+   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message MUST be used for the session.
 
    If the BNG cannot support the received 6rd configuration for any
    reason, the tunnel SHOULD NOT be established.
@@ -548,7 +458,7 @@ Guo, et al.                  Standards Track                    [Page 8]
 RFC 6930                     RADIUS for 6rd                   April 2013
 
 
-4.2.  Table of Attributes
+<H2>4.2.  Table of Attributes</H2>
 
    The following table adds to the one in [RFC2865], Section 5.44,
    providing a guide to the quantity of IPv6-6rd-Configuration
@@ -558,10 +468,10 @@ RFC 6930                     RADIUS for 6rd                   April 2013
                                     Request
     0-1     0-1     0      0         0-1      173  IPv6-6rd-
                                                    Configuration
-    0-1     0-1     0      0         0-1      1    User-Name
-    0-1     0       0      0         0-1      2    User-Password
-    0-1     0-1     0      0         0-1      6    Service-Type
-    0-1     0-1     0-1    0-1       0-1      80   Message-Authenticator
+    0-1     0-1     0      0         0-1      1    <A HREF="rfc2865.html#User-Name">User-Name</A>
+    0-1     0       0      0         0-1      2    <A HREF="rfc2865.html#User-Password">User-Password</A>
+    0-1     0-1     0      0         0-1      6    <A HREF="rfc2865.html#Service-Type">Service-Type</A>
+    0-1     0-1     0-1    0-1       0-1      80   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>
 
    The following key defines the meanings of the above table entries.
 
@@ -573,14 +483,14 @@ RFC 6930                     RADIUS for 6rd                   April 2013
    1     Exactly one instance of this attribute MUST be present in
          packet.
 
-5.  Diameter Considerations
+<H2>5.  Diameter Considerations</H2>
 
    This attribute is usable within either RADIUS or Diameter [RFC6733].
    Since the attribute defined in this document has been allocated from
    the standard RADIUS type space, no special handling is required by
    Diameter entities.
 
-6.  Security Considerations
+<H2>6.  Security Considerations</H2>
 
    In 6rd scenarios, both CE and BNG are within a provider network,
    which can be considered as a closed network and a lower-threat
@@ -618,7 +528,7 @@ RFC 6930                     RADIUS for 6rd                   April 2013
    Security considerations for the Diameter protocol are discussed in
    [RFC6733].
 
-7.  IANA Considerations
+<H2>7.  IANA Considerations</H2>
 
    Per this document, IANA has assigned one new RADIUS Attribute Type in
    the "Radius Types" registry (currently located at
@@ -627,7 +537,7 @@ RFC 6930                     RADIUS for 6rd                   April 2013
 
       IPv6-6rd-Configuration (173)
 
-8.  Acknowledgments
+<H2>8.  Acknowledgments</H2>
 
    The authors would like to thank Alan DeKok, Yong Cui, Leaf Yeh, Sean
    Turner, Joseph Salowey, Glen Zorn, Dave Nelson, Bernard Aboba, Benoit
@@ -635,9 +545,9 @@ RFC 6930                     RADIUS for 6rd                   April 2013
    other members of the SOFTWIRE WG, RADEXT WG, AAA Doctors, and
    Security Directorate for valuable comments.
 
-9.  References
+<H2>9.  References</H2>
 
-9.1.  Normative References
+<H2>9.1.  Normative References</H2>
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
@@ -680,7 +590,7 @@ RFC 6930                     RADIUS for 6rd                   April 2013
    [RFC6733]  Fajardo, V., Ed., Arkko, J., Loughney, J., and G. Zorn,
               Ed., "Diameter Base Protocol", RFC 6733, October 2012.
 
-9.2.  Informative References
+<H2>9.2.  Informative References</H2>
 
    [RFC2607]  Aboba, B. and J. Vollbrecht, "Proxy Chaining and Policy
               Implementation in Roaming", RFC 2607, June 1999.
@@ -769,81 +679,4 @@ Authors' Addresses
 
 Guo, et al.                  Standards Track                   [Page 12]
 
-</pre>
-</div>
-
-
-    </div><footer class="global_footer bg_block-dark lg_padding_v">
-
-    <div class="wrapper">
-        <div class="row">
-            <div class="columns medium-4">
-                <div class="footer_main">
-                    <img class="footer_logo" width="150" src="/img/wordmark-white.svg" alt="">
-                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
-                    <div class="footer-social">
-                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
-                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
-                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
-                    </div>
-                    <p>&copy; 2018 The FreeRADIUS Server Project and Contributors</p>
-                </div>
-            </div>
-            <div class="columns medium-8">
-                <nav class="footer_nav h6 row small-up-2">
-                    <ul>
-                        <li><a href="/documentation/">Docs</a></li>
-                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
-                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
-                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
-                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
-                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/modules/">Modules</a></li>
-                        <li><a href="/modules/">Packages</a></li>
-                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/community/">Community</a></li>
-                        <li><a href="/support/">Mailing Lists</a></li>
-                        <li><a href="/community/#contributing">Contribute</a></li>
-                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/about/">About</a></li>
-                        <li><a href="/about/#project">The Project</a></li>
-                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
-                        <li><a href="/about/#security">Security</a></li>
-                        <li><a href="/about/#team">Team</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/support/">Support</a></li>
-                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
-                        <li><a href="/security/">Security Issues</a></li>
-                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
-                        <li><a href="/support/">Newsletters</a></li>
-                        <li><a href="/commercial_support/">Commercial</a></li>
-                        <li><a href="/support/">Support</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-</footer>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
-<script src="/js/angular.min.js"></script>
-<script src="/js/app.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-1186926-1', 'auto');
-  ga('send', 'pageview');
-</script>
-</body>
-
-</html>
+</PRE>

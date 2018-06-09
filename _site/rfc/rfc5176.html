@@ -1,99 +1,9 @@
-<!DOCTYPE html>
-<html ng-app="freeradius"><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+---
+layout: default
+---
 
-    <title>FreeRADIUS</title>
-    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
-">
-
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="freeradius.org/rfc/rfc5176.html">
-    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.org/feed.xml">
-
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
-    <meta name="msapplication-TileColor" content="#da532c ">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff ">
-
-</head>
-<body><div class="global-nav">
-  <div class="global_links pull_right">
-    <div class="global_link global_link_label h5 text">Our sites:</div>
-    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
-  </div>
-</div>
-
-<header class="site-header" global-header ng-class="{fixed: fixNav}">
-  <div class="site-header-wrapper">
-
-    <a class="site-title" href="/"><img src="/img/wordmark.svg"></a>
-    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
-      <svg viewBox="0 0 18 15">
-        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-      </svg>
-    </button>
-
-    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
-
-      <div class="get-release">
-      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
-      </div>
-
-      <ul class="site-nav-list">
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/releases/">Releases</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/documentation/">Documentation</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/modules/">Modules</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/community/">Community</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/about/">About</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/support/">Support</a>
-         </li>
-
-      </ul>
-
-    </nav>
-  </div>
-</header>
-<div class="page-content">
-
-        <div class="wrapper base_padding_v">
-<pre>
+<div class="wrapper base_padding_v">
+<PRE>
 
 
 
@@ -164,14 +74,14 @@ Table of Contents
       1.3. Terminology ................................................4
    2. Overview ........................................................4
       2.1. Disconnect Messages (DMs) ..................................5
-      2.2. Change-of-Authorization (CoA) Messages .....................5
+      2.2. <A HREF="#Change-of-Authorization">Change-of-Authorization</A> (CoA) Messages .....................5
       2.3. Packet Format ..............................................6
    3. Attributes .....................................................10
-      3.1. Proxy State ...............................................12
+      3.1. Proxy <A HREF="rfc2865.html#State">State</A> ...............................................12
       3.2. Authorize Only ............................................13
-      3.3. State .....................................................14
-      3.4. Message-Authenticator .....................................15
-      3.5. Error-Cause ...............................................16
+      3.3. <A HREF="rfc2865.html#State">State</A> .....................................................14
+      3.4. <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A> .....................................15
+      3.5. <A HREF="#Error-Cause">Error-Cause</A> ...............................................16
       3.6. Table of Attributes .......................................20
    4. Diameter Considerations ........................................24
    5. IANA Considerations ............................................26
@@ -186,7 +96,7 @@ Table of Contents
    9. Acknowledgments ................................................30
    Appendix A ........................................................31
 
-1.  Introduction
+<H2>1.  Introduction</H2>
 
    The RADIUS protocol, defined in [RFC2865], does not support
    unsolicited messages sent from the RADIUS server to the Network
@@ -203,7 +113,7 @@ Table of Contents
    To overcome these limitations, several vendors have implemented
    additional RADIUS commands in order to enable unsolicited messages to
    be sent to the NAS.  These extended commands provide support for
-   Disconnect and Change-of-Authorization (CoA) packets.  Disconnect
+   Disconnect and <A HREF="#Change-of-Authorization">Change-of-Authorization</A> (CoA) packets.  Disconnect
 
 
 
@@ -216,14 +126,14 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    CoA packets modify session authorization attributes such as data
    filters.
 
-1.1.  Applicability
+<H2>1.1.  Applicability</H2>
 
    This protocol is being recommended for publication as an
    Informational RFC rather than as a standards-track RFC because of
    problems that cannot be fixed without creating incompatibilities with
    deployed implementations.  This includes security vulnerabilities, as
    well as semantic ambiguities resulting from the design of the
-   Change-of-Authorization (CoA) commands.  While fixes are recommended,
+   <A HREF="#Change-of-Authorization">Change-of-Authorization</A> (CoA) commands.  While fixes are recommended,
    they cannot be made mandatory since this would be incompatible with
    existing implementations.
 
@@ -240,7 +150,7 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    details.
 
    Existing implementations lack replay protection.  In order to support
-   replay detection, it is recommended that an Event-Timestamp Attribute
+   replay detection, it is recommended that an <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A> Attribute
    be added to all packets in situations where IPsec replay protection
    is not employed.  See Section 6.3 for details.
 
@@ -254,7 +164,7 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
    The problem does not exist within the Diameter protocol [RFC3588], in
    which server-initiated authorization change is initiated using a
-   Re-Auth-Request (RAR) command identifying the session via User-Name
+   Re-Auth-Request (RAR) command identifying the session via <A HREF="rfc2865.html#User-Name">User-Name</A>
    and Session-Id Attribute Value Pairs (AVPs) and containing a
    Re-Auth-Request-Type AVP with value "AUTHORIZE_ONLY".  This results
    in initiation of a standard Request/Response sequence where
@@ -268,13 +178,13 @@ Chiba, et al.                Informational                      [Page 3]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-1.2.  Requirements Language
+<H2>1.2.  Requirements Language</H2>
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    document are to be interpreted as described in [RFC2119].
 
-1.3.  Terminology
+<H2>1.3.  Terminology</H2>
 
    This document frequently uses the following terms:
 
@@ -310,10 +220,10 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
         silently discarded packet, and SHOULD record the event in a
         statistics counter.
 
-2.  Overview
+<H2>2.  Overview</H2>
 
    This section describes the most commonly implemented features of
-   Disconnect and Change-of-Authorization (CoA) packets.
+   Disconnect and <A HREF="#Change-of-Authorization">Change-of-Authorization</A> (CoA) packets.
 
 
 
@@ -324,7 +234,7 @@ Chiba, et al.                Informational                      [Page 4]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-2.1.  Disconnect Messages (DMs)
+<H2>2.1.  Disconnect Messages (DMs)</H2>
 
    A Disconnect-Request packet is sent by the Dynamic Authorization
    Client in order to terminate user session(s) on a NAS and discard all
@@ -335,10 +245,10 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
    +----------+                          +----------+
    |          |   Disconnect-Request     |          |
-   |          |   <--------------------  |          |
+   |          |   &lt;--------------------  |          |
    |    NAS   |                          |    DAC   |
    |          |   Disconnect-ACK/NAK     |          |
-   |          |   ---------------------> |          |
+   |          |   ---------------------&gt; |          |
    +----------+                          +----------+
 
    The NAS responds to a Disconnect-Request packet sent by a Dynamic
@@ -346,10 +256,10 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    context is discarded and the user session(s) are no longer connected,
    or a Disconnect-NAK, if the NAS was unable to disconnect one or more
    sessions and discard all associated session context.  A Disconnect-
-   ACK MAY contain the Acct-Terminate-Cause (49) Attribute [RFC2866]
+   ACK MAY contain the <A HREF="rfc2866.html#Acct-Terminate-Cause">Acct-Terminate-Cause</A> (49) Attribute [RFC2866]
    with the value set to 6 for Admin-Reset.
 
-2.2.  Change-of-Authorization (CoA) Messages
+<H2>2.2.  Change-of-Authorization (CoA) Messages</H2>
 
    CoA-Request packets contain information for dynamically changing
    session authorizations.  Typically, this is used to change data
@@ -360,11 +270,11 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
    The following attributes MAY be sent in a CoA-Request:
 
-   Filter-ID (11) -        Indicates the name of a data filter list
+   <A HREF="rfc3580.html#Filter-ID">Filter-ID</A> (11) -        Indicates the name of a data filter list
                            to be applied for the session(s) that the
                            identification attributes map to.
 
-   NAS-Filter-Rule (92) -  Provides a filter list to be applied for
+   <A HREF="rfc4849.html#NAS-Filter-Rule">NAS-Filter-Rule</A> (92) -  Provides a filter list to be applied for
                            the session(s) that the identification
                            attributes map to [RFC4849].
 
@@ -382,21 +292,21 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
    +----------+                          +----------+
    |          |      CoA-Request         |          |
-   |          |  <--------------------   |          |
+   |          |  &lt;--------------------   |          |
    |   NAS    |                          |    DAC   |
    |          |     CoA-ACK/NAK          |          |
-   |          |   ---------------------> |          |
+   |          |   ---------------------&gt; |          |
    +----------+                          +----------+
 
    The NAS responds to a CoA-Request sent by a Dynamic Authorization
    Client with a CoA-ACK if the NAS is able to successfully change the
    authorizations for the user session(s), or a CoA-NAK if the CoA-
    Request is unsuccessful.  A NAS MUST respond to a CoA-Request
-   including a Service-Type Attribute with an unsupported value with a
-   CoA-NAK; an Error-Cause Attribute with value "Unsupported Service"
+   including a <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with an unsupported value with a
+   CoA-NAK; an <A HREF="#Error-Cause">Error-Cause</A> Attribute with value "Unsupported Service"
    SHOULD be included.
 
-2.3.  Packet Format
+<H2>2.3.  Packet Format</H2>
 
    For either Disconnect-Request or CoA-Request packets UDP port 3799 is
    used as the destination port.  For responses, the source and
@@ -407,10 +317,10 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    transmitted from left to right.
 
    The packet format consists of the following fields: Code, Identifier,
-   Length, Authenticator, and Attributes in Type-Length-Value (TLV)
+<B>   Length, Authenticator, and Attributes in Type-Length-Value (TLV)</B>
    format.  All fields hold the same meaning as those described in
    RADIUS [RFC2865].  The Authenticator field MUST be calculated in the
-   same way as is specified for an Accounting-Request in [RFC2866].
+   same way as is specified for an <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> in [RFC2866].
 
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -492,7 +402,7 @@ Chiba, et al.                Informational                      [Page 7]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-   Length
+<B>   Length</B>
 
       The Length field is two octets.  It indicates the length of the
       packet including the Code, Identifier, Length, Authenticator, and
@@ -514,12 +424,12 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
          In Request packets, the Authenticator value is a 16-octet MD5
          [RFC1321] checksum, called the Request Authenticator.  The
          Request Authenticator is calculated the same way as for an
-         Accounting-Request, specified in [RFC2866].
+         <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A>, specified in [RFC2866].
 
          Note that the Request Authenticator of a CoA-Request or
          Disconnect-Request cannot be computed the same way as the
-         Request Authenticator of a RADIUS Access-Request, because there
-         is no User-Password Attribute in a CoA-Request or Disconnect-
+         Request Authenticator of a RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A>, because there
+         is no <A HREF="rfc2865.html#User-Password">User-Password</A> Attribute in a CoA-Request or Disconnect-
          Request.
 
       Response Authenticator
@@ -559,14 +469,14 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
       specified in a CoA-Request cannot be carried out, the NAS MUST
       send a CoA-NAK.  A NAS MUST respond to a CoA-Request containing
       one or more unsupported attributes or Attribute values with a
-      CoA-NAK; an Error-Cause Attribute with value 401 (Unsupported
+      CoA-NAK; an <A HREF="#Error-Cause">Error-Cause</A> Attribute with value 401 (Unsupported
       Attribute) or 407 (Invalid Attribute Value) MAY be included.  A
       NAS MUST respond to a Disconnect-Request containing one or more
       unsupported attributes or Attribute values with a Disconnect-NAK;
-      an Error-Cause Attribute with value 401 (Unsupported Attribute) or
+      an <A HREF="#Error-Cause">Error-Cause</A> Attribute with value 401 (Unsupported Attribute) or
       407 (Invalid Attribute Value) MAY be included.
 
-      State changes resulting from a CoA-Request MUST be atomic: if the
+      <A HREF="rfc2865.html#State">State</A> changes resulting from a CoA-Request MUST be atomic: if the
       CoA-Request is successful for all matching sessions, the NAS MUST
       send a CoA-ACK in reply, and all requested authorization changes
       MUST be made.  If the CoA-Request is unsuccessful for any matching
@@ -578,7 +488,7 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
       if any of the matching sessions cannot be successfully terminated.
       A NAS that does not support dynamic authorization changes applying
       to multiple sessions MUST send a CoA-NAK or Disconnect-NAK in
-      reply; an Error-Cause Attribute with value 508 (Multiple Session
+      reply; an <A HREF="#Error-Cause">Error-Cause</A> Attribute with value 508 (Multiple Session
       Selection Unsupported) SHOULD be included.
 
       Within this specification, attributes can be used for
@@ -604,11 +514,11 @@ Chiba, et al.                Informational                      [Page 9]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-      allowable within Access-Accept packets (such as those defined
+      allowable within <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets (such as those defined
       within [RFC2865], [RFC2868], [RFC2869], [RFC3162], [RFC3579],
       [RFC4372], [RFC4675], [RFC4818], and [RFC4849]).
 
-3.  Attributes
+<H2>3.  Attributes</H2>
 
    In Disconnect-Request and CoA-Request packets, certain attributes are
    used to uniquely identify the NAS as well as user session(s) on the
@@ -627,29 +537,29 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
      Attribute              #   Reference  Description
      ---------             ---  ---------  -----------
-     NAS-IP-Address         4   [RFC2865]  The IPv4 address of the NAS.
-     NAS-Identifier        32   [RFC2865]  String identifying the NAS.
+     <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A>         4   [RFC2865]  The IPv4 address of the NAS.
+     <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A>        32   [RFC2865]  String identifying the NAS.
      NAS-IPv6-Address      95   [RFC3162]  The IPv6 address of the NAS.
 
      Session identification attributes
 
      Attribute              #   Reference  Description
      ---------             ---  ---------  -----------
-     User-Name              1   [RFC2865]  The name of the user
+     <A HREF="rfc2865.html#User-Name">User-Name</A>              1   [RFC2865]  The name of the user
                                            associated with one or
                                            more sessions.
-     NAS-Port               5   [RFC2865]  The port on which a
+     <A HREF="rfc2865.html#NAS-Port">NAS-Port</A>               5   [RFC2865]  The port on which a
                                            session is terminated.
-     Framed-IP-Address      8   [RFC2865]  The IPv4 address associated
+     <A HREF="rfc2865.html#Framed-IP-Address">Framed-IP-Address</A>      8   [RFC2865]  The IPv4 address associated
                                            with a session.
-     Vendor-Specific       26   [RFC2865]  One or more vendor-specific
+     <A HREF="rfc6929.html#Vendor-Specific">Vendor-Specific</A>       26   [RFC2865]  One or more vendor-specific
                                            identification attributes.
-     Called-Station-Id     30   [RFC2865]  The link address to which
+     <A HREF="rfc2865.html#Called-Station-Id">Called-Station-Id</A>     30   [RFC2865]  The link address to which
                                            a session is connected.
-     Calling-Station-Id    31   [RFC2865]  The link address from which
+     <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A>    31   [RFC2865]  The link address from which
                                            one or more sessions are
                                            connected.
-     Acct-Session-Id       44   [RFC2866]  The identifier uniquely
+     <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A>       44   [RFC2866]  The identifier uniquely
                                            identifying a session
                                            on the NAS.
 
@@ -660,54 +570,54 @@ Chiba, et al.                Informational                     [Page 10]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-     Acct-Multi-Session-Id 50   [RFC2866]  The identifier uniquely
+     <A HREF="rfc2866.html#Acct-Multi-Session-Id">Acct-Multi-Session-Id</A> 50   [RFC2866]  The identifier uniquely
                                            identifying related sessions.
-     NAS-Port-Id           87   [RFC2869]  String identifying the port
+     <A HREF="rfc2869.html#NAS-Port-Id">NAS-Port-Id</A>           87   [RFC2869]  String identifying the port
                                            where a session is.
      Chargeable-User-      89   [RFC4372]  The CUI associated with one
      Identity                              or more sessions.  Needed
                                            where a privacy Network
                                            Access Identifier (NAI) is
                                            used, since in this case the
-                                           User-Name (e.g., "anonymous")
+                                           <A HREF="rfc2865.html#User-Name">User-Name</A> (e.g., "anonymous")
                                            may not identify sessions
                                            belonging to a given user.
-     Framed-Interface-Id   96   [RFC3162]  The IPv6 Interface Identifier
+     <A HREF="rfc3162.html#Framed-Interface-Id">Framed-Interface-Id</A>   96   [RFC3162]  The IPv6 Interface Identifier
                                            associated with a session,
                                            always sent with
                                            Framed-IPv6-Prefix.
      Framed-IPv6-Prefix    97   [RFC3162]  The IPv6 prefix associated
                                            with a session, always sent
-                                           with Framed-Interface-Id.
+                                           with <A HREF="rfc3162.html#Framed-Interface-Id">Framed-Interface-Id</A>.
 
    To address security concerns described in Section 6.1, either the
-   User-Name or Chargeable-User-Identity attribute SHOULD be present in
+   <A HREF="rfc2865.html#User-Name">User-Name</A> or <A HREF="rfc6572.html#Chargeable-User-Identity">Chargeable-User-Identity</A> attribute SHOULD be present in
    Disconnect-Request and CoA-Request packets.
 
    Where a Diameter client utilizes the same Session-Id for both
-   authorization and accounting, inclusion of an Acct-Session-Id
+   authorization and accounting, inclusion of an <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A>
    Attribute in a Disconnect-Request or CoA-Request can assist with
    Diameter/RADIUS translation, since Diameter RAR and ASR commands
-   include a Session-Id AVP.  An Acct-Session-Id Attribute SHOULD be
+   include a Session-Id AVP.  An <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> Attribute SHOULD be
    included in Disconnect-Request and CoA-Request packets.
 
-   A NAS implementing this specification SHOULD send an Acct-Session-Id
-   or Acct-Multi-Session-Id Attribute within an Access-Request.  Where
-   an Acct-Session-Id or Acct-Multi-Session-Id Attribute is not included
-   within an Access-Request, the Dynamic Authorization Client will not
-   know the Acct-Session-Id or Acct-Multi-Session-Id of the session it
+   A NAS implementing this specification SHOULD send an <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A>
+   or <A HREF="rfc2866.html#Acct-Multi-Session-Id">Acct-Multi-Session-Id</A> Attribute within an <A HREF="rfc2865.html#Access-Request">Access-Request</A>.  Where
+   an <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> or <A HREF="rfc2866.html#Acct-Multi-Session-Id">Acct-Multi-Session-Id</A> Attribute is not included
+   within an <A HREF="rfc2865.html#Access-Request">Access-Request</A>, the Dynamic Authorization Client will not
+   know the <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> or <A HREF="rfc2866.html#Acct-Multi-Session-Id">Acct-Multi-Session-Id</A> of the session it
    is attempting to target, unless it also has access to the accounting
    data for that session.
 
-   Where an Acct-Session-Id or Acct-Multi-Session-Id Attribute is not
+   Where an <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> or <A HREF="rfc2866.html#Acct-Multi-Session-Id">Acct-Multi-Session-Id</A> Attribute is not
    present in a CoA-Request or Disconnect-Request, it is possible that
-   the User-Name or Chargeable-User-Identity attributes will not be
+   the <A HREF="rfc2865.html#User-Name">User-Name</A> or <A HREF="rfc6572.html#Chargeable-User-Identity">Chargeable-User-Identity</A> attributes will not be
    sufficient to uniquely identify a single session (e.g., if the same
    user has multiple sessions on the NAS, or if the privacy NAI is
    used).  In this case, if it is desired to identify a single session,
    session identification MAY be performed by using one or more of the
-   Framed-IP-Address, Framed-IPv6-Prefix/Framed-Interface-Id, Called-
-   Station-Id, Calling-Station-Id, NAS-Port, and NAS-Port-Id attributes.
+   <A HREF="rfc2865.html#Framed-IP-Address">Framed-IP-Address</A>, Framed-IPv6-Prefix/Framed-Interface-Id, Called-
+   Station-Id, <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A>, <A HREF="rfc2865.html#NAS-Port">NAS-Port</A>, and <A HREF="rfc2865.html#NAS-Port">NAS-Port</A>-Id attributes.
 
 
 
@@ -717,25 +627,25 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
    To assist RADIUS proxies in routing Request packets to their
-   destination, one or more of the NAS-IP-Address or NAS-IPv6-Address
+   destination, one or more of the <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> or NAS-IPv6-Address
    attributes SHOULD be present in CoA-Request and Disconnect-Request
-   packets; the NAS-Identifier Attribute MAY be present.  Impersonation
+   packets; the <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A> Attribute MAY be present.  Impersonation
    issues with NAS Identification attributes are discussed in [RFC3579],
    Section 4.3.7.
 
    A Disconnect-Request MUST contain only NAS and session identification
    attributes.  If other attributes are included in a Disconnect-
-   Request, implementations MUST send a Disconnect-NAK; an Error-Cause
+   Request, implementations MUST send a Disconnect-NAK; an <A HREF="#Error-Cause">Error-Cause</A>
    Attribute with value "Unsupported Attribute" MAY be included.
 
    The DAC may require access to data from RADIUS authentication or
    accounting packets.  It uses this data to compose compliant CoA-
    Request or Disconnect-Request packets.  For example, as described in
-   Section 3.3, a CoA-Request packet containing a Service-Type Attribute
-   with a value of "Authorize Only" is required to contain a State
+   Section 3.3, a CoA-Request packet containing a <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute
+   with a value of "Authorize Only" is required to contain a <A HREF="rfc2865.html#State">State</A>
    Attribute.  The NAS will subsequently transmit this attribute to the
-   RADIUS server in an Access-Request.  In order for the DAC to include
-   a State Attribute that the RADIUS server will subsequently accept,
+   RADIUS server in an <A HREF="rfc2865.html#Access-Request">Access-Request</A>.  In order for the DAC to include
+   a <A HREF="rfc2865.html#State">State</A> Attribute that the RADIUS server will subsequently accept,
    some coordination between the two parties may be required.
 
    This coordination can be achieved in multiple ways.  The DAC may be
@@ -751,16 +661,16 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
    A RADIUS server receiving a CoA-Request or Disconnect-Request packet
    from the DAC MAY then add or update attributes (such as adding NAS or
-   session identification attributes or appending a State Attribute),
+   session identification attributes or appending a <A HREF="rfc2865.html#State">State</A> Attribute),
    prior to forwarding the packet.  Having CoA/Disconnect-Requests
    forwarded by a RADIUS server can also enable upstream RADIUS proxies
    to perform a Reverse Path Forwarding (RPF) check (see Section 6.1).
 
-3.1.  Proxy State
+<H2>3.1.  Proxy State</H2>
 
-   If there are any Proxy-State attributes in a Disconnect-Request or
+   If there are any <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> attributes in a Disconnect-Request or
    CoA-Request received from the Dynamic Authorization Client, the
-   Dynamic Authorization Server MUST include those Proxy-State
+   Dynamic Authorization Server MUST include those <A HREF="rfc2865.html#Proxy-State">Proxy-State</A>
    attributes in its response to the Dynamic Authorization Client.
 
 
@@ -772,53 +682,53 @@ Chiba, et al.                Informational                     [Page 12]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-   A forwarding proxy or NAS MUST NOT modify existing Proxy-State,
-   State, or Class attributes present in the packet.  The forwarding
-   proxy or NAS MUST treat any Proxy-State attributes already in the
+   A forwarding proxy or NAS MUST NOT modify existing <A HREF="rfc2865.html#Proxy-State">Proxy-State</A>,
+   <A HREF="rfc2865.html#State">State</A>, or <A HREF="rfc2865.html#Class">Class</A> attributes present in the packet.  The forwarding
+   proxy or NAS MUST treat any <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> attributes already in the
    packet as opaque data.  Its operation MUST NOT depend on the content
-   of Proxy-State attributes added by previous proxies.  The forwarding
-   proxy MUST NOT modify any other Proxy-State attributes that were in
+   of <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> attributes added by previous proxies.  The forwarding
+   proxy MUST NOT modify any other <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> attributes that were in
    the packet; it may choose not to forward them, but it MUST NOT change
-   their contents.  If the forwarding proxy omits the Proxy-State
+   their contents.  If the forwarding proxy omits the <A HREF="rfc2865.html#Proxy-State">Proxy-State</A>
    attributes in the request, it MUST attach them to the response before
    sending it.
 
    When the proxy forwards a Disconnect-Request or CoA-Request, it MAY
-   add a Proxy-State Attribute, but it MUST NOT add more than one.  If a
-   Proxy-State Attribute is added to a packet when forwarding the
-   packet, the Proxy-State Attribute MUST be added after any existing
-   Proxy-State attributes.  The forwarding proxy MUST NOT change the
-   order of any attributes of the same type, including Proxy-State.
+   add a <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> Attribute, but it MUST NOT add more than one.  If a
+   <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> Attribute is added to a packet when forwarding the
+   packet, the <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> Attribute MUST be added after any existing
+   <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> attributes.  The forwarding proxy MUST NOT change the
+   order of any attributes of the same type, including <A HREF="rfc2865.html#Proxy-State">Proxy-State</A>.
    Other attributes can be placed before, after, or even between the
-   Proxy-State attributes.
+   <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> attributes.
 
    When the proxy receives a response to a CoA-Request or Disconnect-
-   Request, it MUST remove its own Proxy-State Attribute (the last
-   Proxy-State in the packet) before forwarding the response.  Since
+   Request, it MUST remove its own <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> Attribute (the last
+   <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> in the packet) before forwarding the response.  Since
    Disconnect and CoA responses are authenticated on the entire packet
-   contents, the stripping of the Proxy-State Attribute invalidates the
+   contents, the stripping of the <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> Attribute invalidates the
    integrity check, so the proxy MUST recompute it.
 
-3.2.  Authorize Only
+<H2>3.2.  Authorize Only</H2>
 
    To simplify translation between RADIUS and Diameter, Dynamic
-   Authorization Clients can include a Service-Type Attribute with value
+   Authorization Clients can include a <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with value
    "Authorize Only" within a CoA-Request; see Section 4 for details on
    Diameter considerations.  Support for a CoA-Request including a
-   Service-Type Attribute with value "Authorize Only" is OPTIONAL on the
-   NAS and Dynamic Authorization Client.  A Service-Type Attribute MUST
+   <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with value "Authorize Only" is OPTIONAL on the
+   NAS and Dynamic Authorization Client.  A <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute MUST
    NOT be included within a Disconnect-Request.
 
-   A NAS MUST respond to a CoA-Request including a Service-Type
+   A NAS MUST respond to a CoA-Request including a <A HREF="rfc2865.html#Service-Type">Service-Type</A>
    Attribute with value "Authorize Only" with a CoA-NAK; a CoA-ACK MUST
-   NOT be sent.  If the NAS does not support a Service-Type value of
-   "Authorize Only", then it MUST respond with a CoA-NAK; an Error-Cause
+   NOT be sent.  If the NAS does not support a <A HREF="rfc2865.html#Service-Type">Service-Type</A> value of
+   "Authorize Only", then it MUST respond with a CoA-NAK; an <A HREF="#Error-Cause">Error-Cause</A>
    Attribute with a value of 405 (Unsupported Service) SHOULD be
    included.
 
-   A CoA-Request containing a Service-Type Attribute with value
+   A CoA-Request containing a <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with value
    "Authorize Only" MUST in addition contain only NAS or session
-   identification attributes, as well as a State Attribute.  If other
+   identification attributes, as well as a <A HREF="rfc2865.html#State">State</A> Attribute.  If other
 
 
 
@@ -829,53 +739,53 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
    attributes are included in such a CoA-Request, a CoA-NAK MUST be
-   sent; an Error-Cause Attribute with value 401 (Unsupported Attribute)
+   sent; an <A HREF="#Error-Cause">Error-Cause</A> Attribute with value 401 (Unsupported Attribute)
    SHOULD be included.
 
-   If a CoA-Request packet including a Service-Type value of "Authorize
+   If a CoA-Request packet including a <A HREF="rfc2865.html#Service-Type">Service-Type</A> value of "Authorize
    Only" is successfully processed, the NAS MUST respond with a CoA-NAK
-   containing a Service-Type Attribute with value "Authorize Only", and
-   an Error-Cause Attribute with value 507 (Request Initiated).  The NAS
-   then MUST send an Access-Request to the RADIUS server including a
-   Service-Type Attribute with value "Authorize Only", along with a
-   State Attribute.  This Access-Request SHOULD contain the NAS
+   containing a <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with value "Authorize Only", and
+   an <A HREF="#Error-Cause">Error-Cause</A> Attribute with value 507 (Request Initiated).  The NAS
+   then MUST send an <A HREF="rfc2865.html#Access-Request">Access-Request</A> to the RADIUS server including a
+   <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with value "Authorize Only", along with a
+   <A HREF="rfc2865.html#State">State</A> Attribute.  This <A HREF="rfc2865.html#Access-Request">Access-Request</A> SHOULD contain the NAS
    identification attributes from the CoA-Request, as well as the
    session identification attributes from the CoA-Request permitted in
-   an Access-Request; it also MAY contain other attributes permitted in
-   an Access-Request.
+   an <A HREF="rfc2865.html#Access-Request">Access-Request</A>; it also MAY contain other attributes permitted in
+   an <A HREF="rfc2865.html#Access-Request">Access-Request</A>.
 
-   As noted in [RFC2869], Section 5.19, a Message-Authenticator
-   attribute SHOULD be included in an Access-Request that does not
-   contain a User-Password, CHAP-Password, ARAP-Password, or EAP-Message
-   Attribute.  The RADIUS server then will respond to the Access-Request
-   with an Access-Accept to (re-)authorize the session or an Access-
+   As noted in [RFC2869], Section 5.19, a <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>
+   attribute SHOULD be included in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> that does not
+   contain a <A HREF="rfc2865.html#User-Password">User-Password</A>, <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A>, <A HREF="rfc2869.html#ARAP-Password">ARAP-Password</A>, or <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>
+   Attribute.  The RADIUS server then will respond to the <A HREF="rfc2865.html#Access-Request">Access-Request</A>
+   with an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> to (re-)authorize the session or an Access-
    Reject to refuse to (re-)authorize it.
 
-3.3.  State
+<A NAME="State"><H2>3.3.  State</H2></a>
 
-   The State Attribute is available to be sent by the Dynamic
+   The <B>State</B> Attribute is available to be sent by the Dynamic
    Authorization Client to the NAS in a CoA-Request packet and MUST be
    sent unmodified from the NAS to the Dynamic Authorization Client in a
    subsequent ACK or NAK packet.
 
    [RFC2865], Section 5.44 states:
 
-      An Access-Request MUST contain either a User-Password or a
-      CHAP-Password or State.  An Access-Request MUST NOT contain both a
-      User-Password and a CHAP-Password.  If future extensions allow
+      An <A HREF="rfc2865.html#Access-Request">Access-Request</A> MUST contain either a <A HREF="rfc2865.html#User-Password">User-Password</A> or a
+      <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A> or <B>State</B>.  An <A HREF="rfc2865.html#Access-Request">Access-Request</A> MUST NOT contain both a
+      <A HREF="rfc2865.html#User-Password">User-Password</A> and a <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A>.  If future extensions allow
       other kinds of authentication information to be conveyed, the
-      attribute for that can be used in an Access-Request instead of
-      User-Password or CHAP-Password.
+      attribute for that can be used in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> instead of
+      <A HREF="rfc2865.html#User-Password">User-Password</A> or <A HREF="rfc2865.html#CHAP-Password">CHAP-Password</A>.
 
    In order to satisfy the requirements of [RFC2865], Section 5.44, an
-   Access-Request with Service-Type Attribute with value "Authorize
-   Only" MUST contain a State Attribute.
+   <A HREF="rfc2865.html#Access-Request">Access-Request</A> with <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with value "Authorize
+   Only" MUST contain a <B>State</B> Attribute.
 
-   In order to provide a State Attribute to the NAS, a Dynamic
-   Authorization Client sending a CoA-Request with a Service-Type
-   Attribute with a value of "Authorize Only" MUST include a State
-   Attribute, and the NAS MUST send the State Attribute unmodified to
-   the RADIUS server in the resulting Access-Request, if any.  A NAS
+   In order to provide a <B>State</B> Attribute to the NAS, a Dynamic
+   Authorization Client sending a CoA-Request with a <A HREF="rfc2865.html#Service-Type">Service-Type</A>
+   Attribute with a value of "Authorize Only" MUST include a <B>State</B>
+   Attribute, and the NAS MUST send the <B>State</B> Attribute unmodified to
+   the RADIUS server in the resulting <A HREF="rfc2865.html#Access-Request">Access-Request</A>, if any.  A NAS
 
 
 
@@ -884,47 +794,47 @@ Chiba, et al.                Informational                     [Page 14]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-   receiving a CoA-Request containing a Service-Type Attribute with a
-   value of "Authorize Only" but lacking a State Attribute MUST send a
-   CoA-NAK and SHOULD include an Error-Cause Attribute with a value of
+   receiving a CoA-Request containing a <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with a
+   value of "Authorize Only" but lacking a <B>State</B> Attribute MUST send a
+   CoA-NAK and SHOULD include an <A HREF="#Error-Cause">Error-Cause</A> Attribute with a value of
    402 (Missing Attribute).
 
-   The State Attribute is also available to be sent by the Dynamic
+   The <B>State</B> Attribute is also available to be sent by the Dynamic
    Authorization Client to the NAS in a CoA-Request that also includes a
-   Termination-Action Attribute with the value of RADIUS-Request.  If
-   the NAS performs the Termination-Action by sending a new Access-
+   <A HREF="rfc2865.html#Termination-Action">Termination-Action</A> Attribute with the value of RADIUS-Request.  If
+   the NAS performs the <A HREF="rfc2865.html#Termination-Action">Termination-Action</A> by sending a new Access-
    Request upon termination of the current session, it MUST include the
-   State Attribute unchanged in that Access-Request.  In either usage,
+   <B>State</B> Attribute unchanged in that <A HREF="rfc2865.html#Access-Request">Access-Request</A>.  In either usage,
    the Dynamic Authorization Server MUST NOT interpret the Attribute
-   locally.  A CoA-Request packet MUST have only zero or one State
-   Attribute.  Usage of the State Attribute is implementation dependent.
+   locally.  A CoA-Request packet MUST have only zero or one <B>State</B>
+   Attribute.  Usage of the <B>State</B> Attribute is implementation dependent.
 
-3.4.  Message-Authenticator
+<A NAME="Message-Authenticator"><H2>3.4.  Message-Authenticator</H2></a>
 
-   The Message-Authenticator Attribute MAY be used to authenticate and
+   The <B>Message-Authenticator</B> Attribute MAY be used to authenticate and
    integrity-protect CoA-Request, CoA-ACK, CoA-NAK, Disconnect-Request,
    Disconnect-ACK, and Disconnect-NAK packets in order to prevent
    spoofing.
 
    A Dynamic Authorization Server receiving a CoA-Request or
-   Disconnect-Request with a Message-Authenticator Attribute present
-   MUST calculate the correct value of the Message-Authenticator and
+   Disconnect-Request with a <B>Message-Authenticator</B> Attribute present
+   MUST calculate the correct value of the <B>Message-Authenticator</B> and
    silently discard the packet if it does not match the value sent.  A
    Dynamic Authorization Client receiving a CoA/Disconnect-ACK or
-   CoA/Disconnect-NAK with a Message-Authenticator Attribute present
-   MUST calculate the correct value of the Message-Authenticator and
+   CoA/Disconnect-NAK with a <B>Message-Authenticator</B> Attribute present
+   MUST calculate the correct value of the <B>Message-Authenticator</B> and
    silently discard the packet if it does not match the value sent.
 
-   When a Message-Authenticator Attribute is included within a CoA-
+   When a <B>Message-Authenticator</B> Attribute is included within a CoA-
    Request or Disconnect-Request, it is calculated as follows:
 
-      Message-Authenticator = HMAC-MD5 (Type, Identifier, Length,
+      <B>Message-Authenticator</B> = HMAC-MD5 (Type, Identifier, Length,
       Request Authenticator, Attributes)
 
       When the HMAC-MD5 message integrity check is calculated the
-      Request Authenticator field and Message-Authenticator Attribute
+      Request Authenticator field and <B>Message-Authenticator</B> Attribute
       MUST each be considered to be sixteen octets of zero.  The
-      Message-Authenticator Attribute is calculated and inserted in the
+      <B>Message-Authenticator</B> Attribute is calculated and inserted in the
       packet before the Request Authenticator is calculated.
 
 
@@ -940,31 +850,31 @@ Chiba, et al.                Informational                     [Page 15]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-      When a Message-Authenticator Attribute is included within a CoA-
+      When a <B>Message-Authenticator</B> Attribute is included within a CoA-
       ACK, CoA-NAK, Disconnect-ACK, or Disconnect-NAK, it is calculated
       as follows:
 
-         Message-Authenticator = HMAC-MD5 (Type, Identifier, Length,
+         <B>Message-Authenticator</B> = HMAC-MD5 (Type, Identifier, Length,
          Request Authenticator, Attributes)
 
       When the HMAC-MD5 message integrity check is calculated, the
-      Message-Authenticator Attribute MUST be considered to be sixteen
+      <B>Message-Authenticator</B> Attribute MUST be considered to be sixteen
       octets of zero.  The Request Authenticator is taken from the
-      corresponding CoA/Disconnect-Request.  The Message-Authenticator
+      corresponding CoA/Disconnect-Request.  The <B>Message-Authenticator</B>
       is calculated and inserted in the packet before the Response
       Authenticator is calculated.
 
-3.5.  Error-Cause
+<A NAME="Error-Cause"><H2>3.5.  Error-Cause</H2></a>
 
-   Description
+<B>   Description</B>
 
       It is possible that a Dynamic Authorization Server cannot honor
       Disconnect-Request or CoA-Request packets for some reason.  The
-      Error-Cause Attribute provides more detail on the cause of the
+      <B>Error-Cause</B> Attribute provides more detail on the cause of the
       problem.  It MAY be included within CoA-NAK and Disconnect-NAK
       packets.
 
-      A summary of the Error-Cause Attribute format is shown below.  The
+      A summary of the <B>Error-Cause</B> Attribute format is shown below.  The
       fields are transmitted from left to right.
 
        0                   1                   2                   3
@@ -975,15 +885,15 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
                  Value (cont)         |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
-      101 for Error-Cause
+      101 for <B>Error-Cause</B>
 
-   Length
+<B>   Length</B>
 
       6
 
-   Value
+<B>   Value</B>
 
       The Value field is four octets, containing an integer specifying
       the cause of the error.  Values 0-199 and 300-399 are reserved.
@@ -1004,7 +914,7 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
       Disconnect-ACK packets.  Values 500-599 represent fatal errors
       occurring on a Dynamic Authorization Server, so that they MAY be
       sent within CoA-NAK and Disconnect-NAK packets, and MUST NOT be
-      sent within CoA-ACK or Disconnect-ACK packets.  Error-Cause values
+      sent within CoA-ACK or Disconnect-ACK packets.  <B>Error-Cause</B> values
       SHOULD be logged by the Dynamic Authorization Client.  Error-Code
       values (expressed in decimal) include:
 
@@ -1038,7 +948,7 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
       be sent by implementations of this specification.
 
       "Unsupported Attribute" is a fatal error sent if a Request
-      contains an attribute (such as a Vendor-Specific or EAP-Message
+      contains an attribute (such as a <A HREF="rfc6929.html#Vendor-Specific">Vendor-Specific</A> or <A HREF="rfc2869.html#EAP-Message">EAP-Message</A>
       Attribute) that is not supported.
 
       "Missing Attribute" is a fatal error sent if critical attributes
@@ -1058,9 +968,9 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
       "Invalid Request" is a fatal error sent if some other aspect of
       the Request is invalid, such as if one or more attributes (such as
-      EAP-Message Attribute(s)) are not formatted properly.
+      <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> Attribute(s)) are not formatted properly.
 
-      "Unsupported Service" is a fatal error sent if a Service-Type
+      "Unsupported Service" is a fatal error sent if a <A HREF="rfc2865.html#Service-Type">Service-Type</A>
       Attribute included with the Request is sent with an invalid or
       unsupported value.  This error cannot be sent in response to a
       Disconnect-Request.
@@ -1113,10 +1023,10 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
       NAS resources (memory, non-volatile storage, etc.).
 
       "Request Initiated" is a fatal error sent by a NAS in response to
-      a CoA-Request including a Service-Type Attribute with a value of
+      a CoA-Request including a <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with a value of
       "Authorize Only".  It indicates that the CoA-Request has not been
       honored, but that the NAS is sending one or more RADIUS Access-
-      Requests including a Service-Type Attribute with value "Authorize
+      Requests including a <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with value "Authorize
       Only" to the RADIUS server.
 
       "Multiple Session Selection Unsupported" is a fatal error sent by
@@ -1164,39 +1074,39 @@ Chiba, et al.                Informational                     [Page 19]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-3.6.  Table of Attributes
+<H2>3.6.  Table of Attributes</H2>
 
    The following table provides a guide to which attributes may be found
    in which packets, and in what quantity.
 
-   Change-of-Authorization Messages
+   <A HREF="#Change-of-Authorization">Change-of-Authorization</A> Messages
 
    Request   ACK      NAK   #   Attribute
-   0-1       0        0     1   User-Name (Note 1)
-   0-1       0        0     4   NAS-IP-Address (Note 1)
-   0-1       0        0     5   NAS-Port (Note 1)
-   0-1       0        0-1   6   Service-Type
-   0-1       0        0     7   Framed-Protocol (Note 3)
-   0-1       0        0     8   Framed-IP-Address (Notes 1, 6)
-   0-1       0        0     9   Framed-IP-Netmask (Note 3)
-   0-1       0        0    10   Framed-Routing (Note 3)
-   0+        0        0    11   Filter-ID (Note 3)
-   0-1       0        0    12   Framed-MTU (Note 3)
-   0+        0        0    13   Framed-Compression (Note 3)
-   0+        0        0    14   Login-IP-Host (Note 3)
-   0-1       0        0    15   Login-Service (Note 3)
-   0-1       0        0    16   Login-TCP-Port (Note 3)
-   0+        0        0    18   Reply-Message (Note 2)
-   0-1       0        0    19   Callback-Number (Note 3)
-   0-1       0        0    20   Callback-Id (Note 3)
-   0+        0        0    22   Framed-Route (Note 3)
-   0-1       0        0    23   Framed-IPX-Network (Note 3)
-   0-1       0-1      0-1  24   State
-   0+        0        0    25   Class (Note 3)
-   0+        0        0    26   Vendor-Specific (Note 7)
-   0-1       0        0    27   Session-Timeout (Note 3)
-   0-1       0        0    28   Idle-Timeout (Note 3)
-   0-1       0        0    29   Termination-Action (Note 3)
+   0-1       0        0     1   <A HREF="rfc2865.html#User-Name">User-Name</A> (Note 1)
+   0-1       0        0     4   <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> (Note 1)
+   0-1       0        0     5   <A HREF="rfc2865.html#NAS-Port">NAS-Port</A> (Note 1)
+   0-1       0        0-1   6   <A HREF="rfc2865.html#Service-Type">Service-Type</A>
+   0-1       0        0     7   <A HREF="rfc2865.html#Framed-Protocol">Framed-Protocol</A> (Note 3)
+   0-1       0        0     8   <A HREF="rfc2865.html#Framed-IP-Address">Framed-IP-Address</A> (Notes 1, 6)
+   0-1       0        0     9   <A HREF="rfc2865.html#Framed-IP-Netmask">Framed-IP-Netmask</A> (Note 3)
+   0-1       0        0    10   <A HREF="rfc2865.html#Framed-Routing">Framed-Routing</A> (Note 3)
+   0+        0        0    11   <A HREF="rfc3580.html#Filter-ID">Filter-ID</A> (Note 3)
+   0-1       0        0    12   <A HREF="rfc2865.html#Framed-MTU">Framed-MTU</A> (Note 3)
+   0+        0        0    13   <A HREF="rfc2865.html#Framed-Compression">Framed-Compression</A> (Note 3)
+   0+        0        0    14   <A HREF="rfc2865.html#Login-IP-Host">Login-IP-Host</A> (Note 3)
+   0-1       0        0    15   <A HREF="rfc2865.html#Login-Service">Login-Service</A> (Note 3)
+   0-1       0        0    16   <A HREF="rfc2865.html#Login-TCP-Port">Login-TCP-Port</A> (Note 3)
+   0+        0        0    18   <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> (Note 2)
+   0-1       0        0    19   <A HREF="rfc2865.html#Callback-Number">Callback-Number</A> (Note 3)
+   0-1       0        0    20   <A HREF="rfc2865.html#Callback-Id">Callback-Id</A> (Note 3)
+   0+        0        0    22   <A HREF="rfc2865.html#Framed-Route">Framed-Route</A> (Note 3)
+   0-1       0        0    23   <A HREF="rfc2865.html#Framed-IPX-Network">Framed-IPX-Network</A> (Note 3)
+   0-1       0-1      0-1  24   <A HREF="rfc2865.html#State">State</A>
+   0+        0        0    25   <A HREF="rfc2865.html#Class">Class</A> (Note 3)
+   0+        0        0    26   <A HREF="rfc6929.html#Vendor-Specific">Vendor-Specific</A> (Note 7)
+   0-1       0        0    27   <A HREF="rfc2865.html#Session-Timeout">Session-Timeout</A> (Note 3)
+   0-1       0        0    28   <A HREF="rfc2865.html#Idle-Timeout">Idle-Timeout</A> (Note 3)
+   0-1       0        0    29   <A HREF="rfc2865.html#Termination-Action">Termination-Action</A> (Note 3)
    Request   ACK      NAK   #   Attribute
 
 
@@ -1221,49 +1131,49 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
    Request   ACK      NAK   #   Attribute
-   0-1       0        0    30   Called-Station-Id (Note 1)
-   0-1       0        0    31   Calling-Station-Id (Note 1)
-   0-1       0        0    32   NAS-Identifier (Note 1)
-   0+        0+       0+   33   Proxy-State
-   0-1       0        0    34   Login-LAT-Service (Note 3)
-   0-1       0        0    35   Login-LAT-Node (Note 3)
-   0-1       0        0    36   Login-LAT-Group (Note 3)
-   0-1       0        0    37   Framed-AppleTalk-Link (Note 3)
-   0+        0        0    38   Framed-AppleTalk-Network (Note 3)
-   0-1       0        0    39   Framed-AppleTalk-Zone (Note 3)
-   0-1       0        0    44   Acct-Session-Id (Note 1)
-   0-1       0        0    50   Acct-Multi-Session-Id (Note 1)
-   0-1       0-1      0-1  55   Event-Timestamp
+   0-1       0        0    30   <A HREF="rfc2865.html#Called-Station-Id">Called-Station-Id</A> (Note 1)
+   0-1       0        0    31   <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A> (Note 1)
+   0-1       0        0    32   <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A> (Note 1)
+   0+        0+       0+   33   <A HREF="rfc2865.html#Proxy-State">Proxy-State</A>
+   0-1       0        0    34   <A HREF="rfc2865.html#Login-LAT-Service">Login-LAT-Service</A> (Note 3)
+   0-1       0        0    35   <A HREF="rfc2865.html#Login-LAT-Node">Login-LAT-Node</A> (Note 3)
+   0-1       0        0    36   <A HREF="rfc2865.html#Login-LAT-Group">Login-LAT-Group</A> (Note 3)
+   0-1       0        0    37   <A HREF="rfc2865.html#Framed-AppleTalk-Link">Framed-AppleTalk-Link</A> (Note 3)
+   0+        0        0    38   <A HREF="rfc2865.html#Framed-AppleTalk-Network">Framed-AppleTalk-Network</A> (Note 3)
+   0-1       0        0    39   <A HREF="rfc2865.html#Framed-AppleTalk-Zone">Framed-AppleTalk-Zone</A> (Note 3)
+   0-1       0        0    44   <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> (Note 1)
+   0-1       0        0    50   <A HREF="rfc2866.html#Acct-Multi-Session-Id">Acct-Multi-Session-Id</A> (Note 1)
+   0-1       0-1      0-1  55   <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A>
    0+        0        0    56   Egress-VLANID (Note 3)
    0-1       0        0    57   Ingress-Filters (Note 3)
    0+        0        0    58   Egress-VLAN-Name (Note 3)
    0-1       0        0    59   User-Priority-Table (Note 3)
-   0-1       0        0    61   NAS-Port-Type (Note 3)
-   0-1       0        0    62   Port-Limit (Note 3)
-   0-1       0        0    63   Login-LAT-Port (Note 3)
-   0+        0        0    64   Tunnel-Type (Note 5)
-   0+        0        0    65   Tunnel-Medium-Type (Note 5)
-   0+        0        0    66   Tunnel-Client-Endpoint (Note 5)
-   0+        0        0    67   Tunnel-Server-Endpoint (Note 5)
-   0+        0        0    69   Tunnel-Password (Note 5)
-   0-1       0        0    71   ARAP-Features (Note 3)
-   0-1       0        0    72   ARAP-Zone-Access (Note 3)
-   0+        0        0    78   Configuration-Token (Note 3)
-   0+        0-1      0    79   EAP-Message (Note 2)
-   0-1       0-1      0-1  80   Message-Authenticator
-   0+        0        0    81   Tunnel-Private-Group-ID (Note 5)
-   0+        0        0    82   Tunnel-Assignment-ID (Note 5)
-   0+        0        0    83   Tunnel-Preference (Note 5)
-   0-1       0        0    85   Acct-Interim-Interval (Note 3)
-   0-1       0        0    87   NAS-Port-Id (Note 1)
-   0-1       0        0    88   Framed-Pool (Note 3)
-   0-1       0        0    89   Chargeable-User-Identity (Note 1)
-   0+        0        0    90   Tunnel-Client-Auth-ID (Note 5)
-   0+        0        0    91   Tunnel-Server-Auth-ID (Note 5)
-   0-1       0        0    92   NAS-Filter-Rule (Note 3)
+   0-1       0        0    61   <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> (Note 3)
+   0-1       0        0    62   <A HREF="rfc2865.html#Port-Limit">Port-Limit</A> (Note 3)
+   0-1       0        0    63   <A HREF="rfc2865.html#Login-LAT-Port">Login-LAT-Port</A> (Note 3)
+   0+        0        0    64   <A HREF="rfc2868.html#Tunnel-Type">Tunnel-Type</A> (Note 5)
+   0+        0        0    65   <A HREF="rfc2868.html#Tunnel-Medium-Type">Tunnel-Medium-Type</A> (Note 5)
+   0+        0        0    66   <A HREF="rfc2868.html#Tunnel-Client-Endpoint">Tunnel-Client-Endpoint</A> (Note 5)
+   0+        0        0    67   <A HREF="rfc2868.html#Tunnel-Server-Endpoint">Tunnel-Server-Endpoint</A> (Note 5)
+   0+        0        0    69   <A HREF="rfc2868.html#Tunnel-Password">Tunnel-Password</A> (Note 5)
+   0-1       0        0    71   <A HREF="rfc2869.html#ARAP-Features">ARAP-Features</A> (Note 3)
+   0-1       0        0    72   <A HREF="rfc2869.html#ARAP-Zone-Access">ARAP-Zone-Access</A> (Note 3)
+   0+        0        0    78   <A HREF="rfc2869.html#Configuration-Token">Configuration-Token</A> (Note 3)
+   0+        0-1      0    79   <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> (Note 2)
+   0-1       0-1      0-1  80   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>
+   0+        0        0    81   <A HREF="rfc2868.html#Tunnel-Private-Group-ID">Tunnel-Private-Group-ID</A> (Note 5)
+   0+        0        0    82   <A HREF="rfc2868.html#Tunnel-Assignment-ID">Tunnel-Assignment-ID</A> (Note 5)
+   0+        0        0    83   <A HREF="rfc2868.html#Tunnel-Preference">Tunnel-Preference</A> (Note 5)
+   0-1       0        0    85   <A HREF="rfc2869.html#Acct-Interim-Interval">Acct-Interim-Interval</A> (Note 3)
+   0-1       0        0    87   <A HREF="rfc2869.html#NAS-Port-Id">NAS-Port-Id</A> (Note 1)
+   0-1       0        0    88   <A HREF="rfc2869.html#Framed-Pool">Framed-Pool</A> (Note 3)
+   0-1       0        0    89   <A HREF="rfc6572.html#Chargeable-User-Identity">Chargeable-User-Identity</A> (Note 1)
+   0+        0        0    90   <A HREF="rfc2868.html#Tunnel-Client-Auth-ID">Tunnel-Client-Auth-ID</A> (Note 5)
+   0+        0        0    91   <A HREF="rfc2868.html#Tunnel-Server-Auth-ID">Tunnel-Server-Auth-ID</A> (Note 5)
+   0-1       0        0    92   <A HREF="rfc4849.html#NAS-Filter-Rule">NAS-Filter-Rule</A> (Note 3)
    0         0        0    94   Originating-Line-Info
    0-1       0        0    95   NAS-IPv6-Address (Note 1)
-   0-1       0        0    96   Framed-Interface-Id (Notes 1, 6)
+   0-1       0        0    96   <A HREF="rfc3162.html#Framed-Interface-Id">Framed-Interface-Id</A> (Notes 1, 6)
    0+        0        0    97   Framed-IPv6-Prefix (Notes 1, 6)
    0+        0        0    98   Login-IPv6-Host (Note 3)
    0+        0        0    99   Framed-IPv6-Route (Note 3)
@@ -1278,39 +1188,39 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
    Request   ACK      NAK   #   Attribute
    0-1       0        0   100   Framed-IPv6-Pool (Note 3)
-   0         0        0+  101   Error-Cause
+   0         0        0+  101   <A HREF="#Error-Cause">Error-Cause</A>
    0+        0        0   123   Delegated-IPv6-Prefix (Note 3)
    Request   ACK      NAK   #   Attribute
 
    Disconnect Messages
 
    Request   ACK      NAK   #   Attribute
-   0-1       0        0     1   User-Name (Note 1)
-   0-1       0        0     4   NAS-IP-Address (Note 1)
-   0-1       0        0     5   NAS-Port (Note 1)
-   0         0        0     6   Service-Type
-   0         0        0     8   Framed-IP-Address (Note 1)
-   0+        0        0    18   Reply-Message (Note 2)
-   0         0        0    24   State
-   0+        0        0    25   Class (Note 4)
-   0+        0        0    26   Vendor-Specific (Note 7)
-   0-1       0        0    30   Called-Station-Id (Note 1)
-   0-1       0        0    31   Calling-Station-Id (Note 1)
-   0-1       0        0    32   NAS-Identifier (Note 1)
-   0+        0+       0+   33   Proxy-State
-   0-1       0        0    44   Acct-Session-Id (Note 1)
-   0-1       0-1      0    49   Acct-Terminate-Cause
-   0-1       0        0    50   Acct-Multi-Session-Id (Note 1)
-   0-1       0-1      0-1  55   Event-Timestamp
-   0         0        0    61   NAS-Port-Type
-   0+        0-1      0    79   EAP-Message (Note 2)
-   0-1       0-1      0-1  80   Message-Authenticator
-   0-1       0        0    87   NAS-Port-Id (Note 1)
-   0-1       0        0    89   Chargeable-User-Identity (Note 1)
+   0-1       0        0     1   <A HREF="rfc2865.html#User-Name">User-Name</A> (Note 1)
+   0-1       0        0     4   <A HREF="rfc2865.html#NAS-IP-Address">NAS-IP-Address</A> (Note 1)
+   0-1       0        0     5   <A HREF="rfc2865.html#NAS-Port">NAS-Port</A> (Note 1)
+   0         0        0     6   <A HREF="rfc2865.html#Service-Type">Service-Type</A>
+   0         0        0     8   <A HREF="rfc2865.html#Framed-IP-Address">Framed-IP-Address</A> (Note 1)
+   0+        0        0    18   <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> (Note 2)
+   0         0        0    24   <A HREF="rfc2865.html#State">State</A>
+   0+        0        0    25   <A HREF="rfc2865.html#Class">Class</A> (Note 4)
+   0+        0        0    26   <A HREF="rfc6929.html#Vendor-Specific">Vendor-Specific</A> (Note 7)
+   0-1       0        0    30   <A HREF="rfc2865.html#Called-Station-Id">Called-Station-Id</A> (Note 1)
+   0-1       0        0    31   <A HREF="rfc2865.html#Calling-Station-Id">Calling-Station-Id</A> (Note 1)
+   0-1       0        0    32   <A HREF="rfc2865.html#NAS-Identifier">NAS-Identifier</A> (Note 1)
+   0+        0+       0+   33   <A HREF="rfc2865.html#Proxy-State">Proxy-State</A>
+   0-1       0        0    44   <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> (Note 1)
+   0-1       0-1      0    49   <A HREF="rfc2866.html#Acct-Terminate-Cause">Acct-Terminate-Cause</A>
+   0-1       0        0    50   <A HREF="rfc2866.html#Acct-Multi-Session-Id">Acct-Multi-Session-Id</A> (Note 1)
+   0-1       0-1      0-1  55   <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A>
+   0         0        0    61   <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A>
+   0+        0-1      0    79   <A HREF="rfc2869.html#EAP-Message">EAP-Message</A> (Note 2)
+   0-1       0-1      0-1  80   <A HREF="rfc2869.html#Message-Authenticator">Message-Authenticator</A>
+   0-1       0        0    87   <A HREF="rfc2869.html#NAS-Port-Id">NAS-Port-Id</A> (Note 1)
+   0-1       0        0    89   <A HREF="rfc6572.html#Chargeable-User-Identity">Chargeable-User-Identity</A> (Note 1)
    0-1       0        0    95   NAS-IPv6-Address (Note 1)
-   0         0        0    96   Framed-Interface-Id (Note 1)
+   0         0        0    96   <A HREF="rfc3162.html#Framed-Interface-Id">Framed-Interface-Id</A> (Note 1)
    0         0        0    97   Framed-IPv6-Prefix (Note 1)
-   0         0        0+  101   Error-Cause
+   0         0        0+  101   <A HREF="#Error-Cause">Error-Cause</A>
    Request   ACK      NAK   #   Attribute
 
    The following defines the meaning of the above table entries:
@@ -1338,7 +1248,7 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    purposes other than identification (e.g., within CoA-Request packets
    to request authorization changes).
 
-   (Note 2) The Reply-Message Attribute is used to present a displayable
+   (Note 2) The <A HREF="rfc2865.html#Reply-Message">Reply-Message</A> Attribute is used to present a displayable
    message to the user.  The message is only displayed as a result of a
    successful Disconnect-Request or CoA-Request (where a Disconnect-ACK
    or CoA-ACK is subsequently sent).  Where Extension Authentication
@@ -1354,28 +1264,28 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    CoA-Request replace all existing values of the same attribute(s).
 
    (Note 4) When included within a successful Disconnect-Request (where
-   a Disconnect-ACK is subsequently sent), the Class Attribute SHOULD be
+   a Disconnect-ACK is subsequently sent), the <A HREF="rfc2865.html#Class">Class</A> Attribute SHOULD be
    sent unmodified by the NAS to the RADIUS accounting server in the
    Accounting Stop packet.  If the Disconnect-Request is unsuccessful,
-   then the Class Attribute is not processed.
+   then the <A HREF="rfc2865.html#Class">Class</A> Attribute is not processed.
 
    (Note 5) When included within a CoA-Request, these attributes
    represent an authorization change request.  Where tunnel attributes
    are included within a successful CoA-Request, all existing tunnel
    attributes are removed and replaced by the new attribute(s).
 
-   (Note 6) Since the Framed-IP-Address, Framed-IPv6-Prefix, and
-   Framed-Interface-Id attributes are used for session identification,
+   (Note 6) Since the <A HREF="rfc2865.html#Framed-IP-Address">Framed-IP-Address</A>, Framed-IPv6-Prefix, and
+   <A HREF="rfc3162.html#Framed-Interface-Id">Framed-Interface-Id</A> attributes are used for session identification,
    renumbering cannot be accomplished by including values of these
    attributes within a CoA-Request.  Instead, a CoA-Request including a
-   Service-Type Attribute with a value of "Authorize Only" is sent; new
-   values can be supplied in an Access-Accept sent in response to the
-   ensuing Access-Request.  Note that renumbering will not be possible
+   <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with a value of "Authorize Only" is sent; new
+   values can be supplied in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> sent in response to the
+   ensuing <A HREF="rfc2865.html#Access-Request">Access-Request</A>.  Note that renumbering will not be possible
    in all situations.  For example, in order to change an IP address,
    IPCP or IPv6CP re-negotiation could be required, which is not
    supported by all PPP implementations.
 
-   (Note 7) Within Disconnect-Request packets, Vendor-Specific
+   (Note 7) Within Disconnect-Request packets, <A HREF="rfc6929.html#Vendor-Specific">Vendor-Specific</A>
    Attributes (VSAs) MAY be used for session identification.  Within
    CoA-Request packets, VSAs MAY be used for either session
    identification or authorization change.  However, the same Attribute
@@ -1388,7 +1298,7 @@ Chiba, et al.                Informational                     [Page 23]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-4.  Diameter Considerations
+<H2>4.  Diameter Considerations</H2>
 
    Due to differences in handling change-of-authorization requests in
    RADIUS and Diameter, it may be difficult or impossible for a
@@ -1405,29 +1315,29 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    ONLY".  Then the Diameter/RADIUS gateway will respond to the ensuing
    access request with a response including the authorization attributes
    gleaned from the CoA-Request.  To enable translation, the CoA-Request
-   SHOULD include a Acct-Session-Id Attribute.  If the Diameter client
+   SHOULD include a <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> Attribute.  If the Diameter client
    uses the same Session-Id for both authorization and accounting, then
    the Diameter/RADIUS gateway can copy the contents of the Acct-
    Session-Id Attribute into the Session-Id AVP;  otherwise, it will
-   need to map the Acct-Session-Id value to an equivalent Session-Id for
+   need to map the <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> value to an equivalent Session-Id for
    use within a RAR command.
 
-   Where an Acct-Session-Id Attribute is not present in a CoA-Request or
+   Where an <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> Attribute is not present in a CoA-Request or
    Disconnect-Request, a Diameter/RADIUS gateway will either need to
-   determine the appropriate Acct-Session-Id or, if it cannot do so, it
+   determine the appropriate <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> or, if it cannot do so, it
    can send a CoA-NAK or Disconnect-NAK in reply, possibly including an
-   Error-Cause Attribute with a value of 508 (Multiple Session Selection
+   <A HREF="#Error-Cause">Error-Cause</A> Attribute with a value of 508 (Multiple Session Selection
    Unsupported).
 
    To simplify translation between RADIUS and Diameter, Dynamic
-   Authorization Clients can include a Service-Type Attribute with value
+   Authorization Clients can include a <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with value
    "Authorize Only" within a CoA-Request, as described in Section 3.2.
    A Diameter/RADIUS gateway receiving a CoA-Request containing a
-   Service-Type Attribute with a value "Authorize Only" translates this
+   <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with a value "Authorize Only" translates this
    to a RAR with Re-Auth-Request-Type AVP with value "AUTHORIZE ONLY".
-   The received RAA is then translated to a CoA-NAK with a Service-Type
+   The received RAA is then translated to a CoA-NAK with a <A HREF="rfc2865.html#Service-Type">Service-Type</A>
    Attribute with value "Authorize Only".  If the Result-Code AVP in the
-   RAA has a value in the success category, then an Error-Cause
+   RAA has a value in the success category, then an <A HREF="#Error-Cause">Error-Cause</A>
    Attribute with value "Request Initiated" is included in the CoA-NAK.
    If the Result-Code AVP in the RAA has a value indicating a Protocol
    Error or a Transient or Permanent Failure, then an alternate Error-
@@ -1435,7 +1345,7 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
    Within Diameter, a server can request that a session be aborted by
    sending an Abort-Session-Request (ASR), identifying the session to be
-   terminated using Session-ID and User-Name AVPs.  The ASR command is
+   terminated using Session-ID and <A HREF="rfc2865.html#User-Name">User-Name</A> AVPs.  The ASR command is
 
 
 
@@ -1444,19 +1354,19 @@ Chiba, et al.                Informational                     [Page 24]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-   translated to a Disconnect-Request containing Acct-Session-Id and
-   User-Name attributes.  If the Diameter client utilizes the same
+   translated to a Disconnect-Request containing <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> and
+   <A HREF="rfc2865.html#User-Name">User-Name</A> attributes.  If the Diameter client utilizes the same
    Session-Id in both authorization and accounting, then the value of
-   the Session-ID AVP may be placed in the Acct-Session-Id Attribute;
+   the Session-ID AVP may be placed in the <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> Attribute;
    otherwise the value of the Session-ID AVP will need to be mapped to
-   an appropriate Acct-Session-Id Attribute.  To enable translation of a
-   Disconnect-Request to an ASR, an Acct-Session-Id Attribute SHOULD be
+   an appropriate <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> Attribute.  To enable translation of a
+   Disconnect-Request to an ASR, an <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> Attribute SHOULD be
    present.
 
    If the Diameter client utilizes the same Session-Id in both
-   authorization and accounting, then the value of the Acct-Session-Id
+   authorization and accounting, then the value of the <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A>
    Attribute may be placed into the Session-ID AVP within the ASR;
-   otherwise the value of the Acct-Session-Id Attribute will need to be
+   otherwise the value of the <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> Attribute will need to be
    mapped to an appropriate Session-ID AVP.
 
    An Abort-Session-Answer (ASA) command is sent in response to an ASR
@@ -1464,11 +1374,11 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    Diameter/RADIUS gateway receiving a Disconnect-ACK translates this to
    an ASA command with a Result-Code AVP of "DIAMETER_SUCCESS".  A
    Disconnect-NAK received from the NAS is translated to an ASA command
-   with a Result-Code AVP that depends on the value of the Error-Cause
-   Attribute.  Suggested translations between Error-Cause Attribute
+   with a Result-Code AVP that depends on the value of the <A HREF="#Error-Cause">Error-Cause</A>
+   Attribute.  Suggested translations between <A HREF="#Error-Cause">Error-Cause</A> Attribute
    values and Result-Code AVP values are included below:
 
-    #    Error-Cause Attribute Value   Result-Code AVP
+    #    <A HREF="#Error-Cause">Error-Cause</A> Attribute Value   Result-Code AVP
    ---   ---------------------------  ------------------------
    201   Residual Session Context     DIAMETER_SUCCESS
          Removed
@@ -1502,18 +1412,18 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
    Since both the ASR/ASA and Disconnect-Request/Disconnect-
    NAK/Disconnect-ACK exchanges involve just a request and response,
-   inclusion of an "Authorize Only" Service-Type within a Disconnect-
+   inclusion of an "Authorize Only" <A HREF="rfc2865.html#Service-Type">Service-Type</A> within a Disconnect-
    Request is not needed to assist in Diameter/RADIUS translation, and
    may make translation more difficult.  As a result, as noted in
-   Section 3.2, the Service-Type Attribute MUST NOT be used within a
+   Section 3.2, the <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute MUST NOT be used within a
    Disconnect-Request.
 
-5.  IANA Considerations
+<H2>5.  IANA Considerations</H2>
 
    This document uses the RADIUS [RFC2865] namespace; see
-   <http://www.iana.org/assignments/radius-types>.  In addition to the
+   &lt;http://www.iana.org/assignments/radius-types&gt;.  In addition to the
    allocations already made in [RFC3575] and [RFC3576], this
-   specification allocates additional values of the Error-Cause
+   specification allocates additional values of the <A HREF="#Error-Cause">Error-Cause</A>
    Attribute (101):
 
     #    Value
@@ -1521,9 +1431,9 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    407   Invalid Attribute Value
    508   Multiple Session Selection Unsupported
 
-6.  Security Considerations
+<H2>6.  Security Considerations</H2>
 
-6.1.  Authorization Issues
+<H2>6.1.  Authorization Issues</H2>
 
    Where a NAS is shared by multiple providers, it is undesirable for
    one provider to be able to send Disconnect-Requests or CoA-Requests
@@ -1544,7 +1454,7 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    To perform the RPF check, the Dynamic Authorization Server uses the
    session identification attributes included in Disconnect-Request or
    CoA-Request packets, in order to determine the RADIUS server(s) to
-   which an equivalent Access-Request could be routed.  If the source
+   which an equivalent <A HREF="rfc2865.html#Access-Request">Access-Request</A> could be routed.  If the source
    address of the Disconnect-Request or CoA-Request is within this set,
    then the CoA-Request or Disconnect-Request is forwarded; otherwise it
    MUST be silently discarded.
@@ -1558,7 +1468,7 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
    Typically, the Dynamic Authorization Server will extract the realm
    from the Network Access Identifier [RFC4282] included within the
-   User-Name or Chargeable-User-Identity Attribute, and determine the
+   <A HREF="rfc2865.html#User-Name">User-Name</A> or <A HREF="rfc6572.html#Chargeable-User-Identity">Chargeable-User-Identity</A> Attribute, and determine the
    corresponding RADIUS servers in the realm routing tables.  If the
    Dynamic Authorization Server maintains long-term session state, it
    MAY perform the authorization check based on the session
@@ -1577,7 +1487,7 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    secret, the Dynamic Authorization Server SHOULD configure a different
    shared secret for each Dynamic Authorization Client.
 
-6.2.  IPsec Usage Guidelines
+<H2>6.2.  IPsec Usage Guidelines</H2>
 
    In addition to security vulnerabilities unique to Disconnect or CoA
    packets, the protocol exchanges described in this document are
@@ -1612,27 +1522,27 @@ Chiba, et al.                Informational                     [Page 27]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-6.3.  Replay Protection
+<H2>6.3.  Replay Protection</H2>
 
-   Where IPsec replay protection is not used, an Event-Timestamp (55)
+   Where IPsec replay protection is not used, an <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A> (55)
    [RFC2869] Attribute SHOULD be included within CoA-Request and
    Disconnect-Request packets, and MAY be included within CoA-ACK, CoA-
    NAK, Disconnect-ACK, and Disconnect-NAK packets.
 
-   When the Event-Timestamp Attribute is present, both the Dynamic
+   When the <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A> Attribute is present, both the Dynamic
    Authorization Server and the Dynamic Authorization Client MUST check
-   that the Event-Timestamp Attribute is current within an acceptable
-   time window.  If the Event-Timestamp Attribute is not current, then
+   that the <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A> Attribute is current within an acceptable
+   time window.  If the <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A> Attribute is not current, then
    the packet MUST be silently discarded.  This implies the need for
    loose time synchronization within the network, which can be achieved
    by a variety of means, including Simple Network Time Protocol (SNTP),
    as described in [RFC4330].  Implementations SHOULD be configurable to
    discard CoA-Request or Disconnect-Request packets not containing an
-   Event-Timestamp Attribute.
+   <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A> Attribute.
 
-   If the Event-Timestamp Attribute is included, it represents the time
+   If the <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A> Attribute is included, it represents the time
    at which the original packet was sent, and therefore it SHOULD NOT be
-   updated when the packet is retransmitted.  If the Event-Timestamp
+   updated when the packet is retransmitted.  If the <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A>
    Attribute is not updated, this implies that the Identifier is not
    changed in retransmitted packets.  As a result, the ability to detect
    replay within the time window is dependent on support for duplicate
@@ -1641,7 +1551,7 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    implementing this specification.
 
    The time window used for duplicate detection MUST be the same as the
-   window used to detect a stale Event-Timestamp Attribute.  Since the
+   window used to detect a stale <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A> Attribute.  Since the
    RADIUS Identifier cannot be repeated within the selected time window,
    no more than 256 Requests can be accepted within the time window.  As
    a result, the chosen time window will depend on the expected maximum
@@ -1649,9 +1559,9 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    be avoided.  A default time window of 300 seconds should be adequate
    in many circumstances.
 
-7.  Example Traces
+<H2>7.  Example Traces</H2>
 
-   Disconnect Request with User-Name:
+   Disconnect Request with <A HREF="rfc2865.html#User-Name">User-Name</A>:
 
        0: xxxx xxxx xxxx xxxx xxxx 2801 001c 1b23    .B.....$.-(....#
       16: 624c 3543 ceba 55f1 be55 a714 ca5e 0108    bL5C..U..U...^..
@@ -1674,15 +1584,15 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
       16: 8e53 55b6 bd02 a0cb ace6 4e38 77bd 2c0a    .SU.......N8w.,.
       32: 3930 3233 3435 3637                        90234567
 
-   Disconnect Request with Framed-IP-Address:
+   Disconnect Request with <A HREF="rfc2865.html#Framed-IP-Address">Framed-IP-Address</A>:
 
        0: xxxx xxxx xxxx xxxx xxxx 2801 001a 0bda    .B....."2.(.....
       16: 33fe 765b 05f0 fd9c c32a 2f6b 5182 0806    3.v[.....*/kQ...
       32: 0a00 0203
 
-8.  References
+<H2>8.  References</H2>
 
-8.1.  Normative References
+<H2>8.1.  Normative References</H2>
 
    [RFC1321]   Rivest, R., "The MD5 Message-Digest Algorithm", RFC 1321,
                April 1992.
@@ -1724,7 +1634,7 @@ Chiba, et al.                Informational                     [Page 29]
 RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
 
 
-8.2.  Informative References
+<H2>8.2.  Informative References</H2>
 
    [MD5Attack] Dobbertin, H., "The Status of MD5 After a Recent Attack",
                CryptoBytes Vol.2 No.2, Summer 1996.
@@ -1761,7 +1671,7 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
    [RFC4849]   Congdon, P., Sanchez, M. and B. Aboba, "RADIUS Filter
                Rule Attribute", RFC 4849, April 2007.
 
-9.  Acknowledgments
+<H2>9.  Acknowledgments</H2>
 
    This protocol was first developed and distributed by Ascend
    Communications.  Example code was distributed in their free server
@@ -1799,33 +1709,33 @@ Appendix A.  Changes from RFC 3576
    o  Clarified expected behavior when session identification attributes
       match more than one session (Sections 2.3, 3, 3.5, 4).
 
-   o  Added Chargeable-User-Identity as a session identification
-      attribute.  Removed NAS-Port-Type as a session identification
+   o  Added <A HREF="rfc6572.html#Chargeable-User-Identity">Chargeable-User-Identity</A> as a session identification
+      attribute.  Removed <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> as a session identification
       attribute (Section 3).
 
-   o  Added recommendation that an Acct-Session-Id or Acct-Multi-
-      Session-Id Attribute be included in an Access-Request (Section 3).
+   o  Added recommendation that an <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> or Acct-Multi-
+      Session-Id Attribute be included in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> (Section 3).
 
    o  Added discussion of scenarios in which the "Dynamic Authorization
       Client" and RADIUS server are not co-located (Section 3).
 
-   o  Added details relating to handling of the Proxy-State Attribute
+   o  Added details relating to handling of the <A HREF="rfc2865.html#Proxy-State">Proxy-State</A> Attribute
       (Section 3.1).
 
-   o  Added clarification that support for a Service-Type Attribute with
+   o  Added clarification that support for a <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with
       value "Authorize Only" is optional on both the NAS and Dynamic
-      Authorization Client (Section 3.2).  Use of the Service-Type
+      Authorization Client (Section 3.2).  Use of the <A HREF="rfc2865.html#Service-Type">Service-Type</A>
       Attribute within a Disconnect-Request is prohibited (Sections 3.2,
       3.6).
 
-   o  Added requirement for inclusion of the State Attribute in CoA-
-      Request packets including a Service-Type Attribute with a value of
+   o  Added requirement for inclusion of the <A HREF="rfc2865.html#State">State</A> Attribute in CoA-
+      Request packets including a <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute with a value of
       "Authorize Only" (Section 3.3).
 
    o  Added clarification on the calculation of the Message-
       Authenticator Attribute (Section 3.4).
 
-   o  Additional Error-Cause Attribute values are allocated for Invalid
+   o  Additional <A HREF="#Error-Cause">Error-Cause</A> Attribute values are allocated for Invalid
       Attribute Value (407) and Multiple Session Selection
       Identification (508) (Sections 3.5, 4).
 
@@ -1840,19 +1750,19 @@ RFC 5176       Dynamic Authorization Extensions to RADIUS   January 2008
       Delegated-IPv6-Prefix, Egress-VLANID, Ingress-Filters, Egress-
       VLAN-Name, and User-Priority attributes (Section 3.6).
 
-   o  Added the Chargeable-User-Identity Attribute to both the CoA-
+   o  Added the <A HREF="rfc6572.html#Chargeable-User-Identity">Chargeable-User-Identity</A> Attribute to both the CoA-
       Request and Disconnect-Request Attribute table (Section 3.6).
 
-   o  Use of Vendor-Specific Attributes (VSAs) for session
+   o  Use of <A HREF="rfc6929.html#Vendor-Specific">Vendor-Specific</A> Attributes (VSAs) for session
       identification and authorization change has been clarified
       (Section 3.6).
 
    o  Added Note 6 on the use of the CoA-Request for renumbering, and
-      Note 7 on the use of Vendor-Specific attributes (Section 3.6).
+      Note 7 on the use of <A HREF="rfc6929.html#Vendor-Specific">Vendor-Specific</A> attributes (Section 3.6).
 
    o  Added Diameter Considerations (Section 4).
 
-   o  Event-Timestamp Attribute should not be recalculated on
+   o  <A HREF="rfc2869.html#Event-Timestamp">Event-Timestamp</A> Attribute should not be recalculated on
       retransmission.  The implications for replay and duplicate
       detection are discussed (Section 6.3).
 
@@ -2001,81 +1911,4 @@ Intellectual Property
 
 Chiba, et al.                Informational                     [Page 34]
 
-</pre>
-</div>
-
-
-    </div><footer class="global_footer bg_block-dark lg_padding_v">
-
-    <div class="wrapper">
-        <div class="row">
-            <div class="columns medium-4">
-                <div class="footer_main">
-                    <img class="footer_logo" width="150" src="/img/wordmark-white.svg" alt="">
-                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
-                    <div class="footer-social">
-                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
-                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
-                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
-                    </div>
-                    <p>&copy; 2018 The FreeRADIUS Server Project and Contributors</p>
-                </div>
-            </div>
-            <div class="columns medium-8">
-                <nav class="footer_nav h6 row small-up-2">
-                    <ul>
-                        <li><a href="/documentation/">Docs</a></li>
-                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
-                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
-                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
-                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
-                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/modules/">Modules</a></li>
-                        <li><a href="/modules/">Packages</a></li>
-                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/community/">Community</a></li>
-                        <li><a href="/support/">Mailing Lists</a></li>
-                        <li><a href="/community/#contributing">Contribute</a></li>
-                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/about/">About</a></li>
-                        <li><a href="/about/#project">The Project</a></li>
-                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
-                        <li><a href="/about/#security">Security</a></li>
-                        <li><a href="/about/#team">Team</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/support/">Support</a></li>
-                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
-                        <li><a href="/security/">Security Issues</a></li>
-                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
-                        <li><a href="/support/">Newsletters</a></li>
-                        <li><a href="/commercial_support/">Commercial</a></li>
-                        <li><a href="/support/">Support</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-</footer>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
-<script src="/js/angular.min.js"></script>
-<script src="/js/app.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-1186926-1', 'auto');
-  ga('send', 'pageview');
-</script>
-</body>
-
-</html>
+</PRE>

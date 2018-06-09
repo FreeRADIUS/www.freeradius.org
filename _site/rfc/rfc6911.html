@@ -1,99 +1,9 @@
-<!DOCTYPE html>
-<html ng-app="freeradius"><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+---
+layout: default
+---
 
-    <title>FreeRADIUS</title>
-    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
-">
-
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="freeradius.org/rfc/rfc6911.html">
-    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.org/feed.xml">
-
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
-    <meta name="msapplication-TileColor" content="#da532c ">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff ">
-
-</head>
-<body><div class="global-nav">
-  <div class="global_links pull_right">
-    <div class="global_link global_link_label h5 text">Our sites:</div>
-    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
-  </div>
-</div>
-
-<header class="site-header" global-header ng-class="{fixed: fixNav}">
-  <div class="site-header-wrapper">
-
-    <a class="site-title" href="/"><img src="/img/wordmark.svg"></a>
-    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
-      <svg viewBox="0 0 18 15">
-        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-      </svg>
-    </button>
-
-    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
-
-      <div class="get-release">
-      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
-      </div>
-
-      <ul class="site-nav-list">
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/releases/">Releases</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/documentation/">Documentation</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/modules/">Modules</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/community/">Community</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/about/">About</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/support/">Support</a>
-         </li>
-
-      </ul>
-
-    </nav>
-  </div>
-</header>
-<div class="page-content">
-
-        <div class="wrapper base_padding_v">
-<pre>
+<div class="wrapper base_padding_v">
+<PRE>
 
 
 
@@ -212,7 +122,7 @@ Dec, et al.                  Standards Track                    [Page 2]
 RFC 6911                   RADIUS IPv6 Access                 April 2013
 
 
-1.  Introduction
+<H2>1.  Introduction</H2>
 
    This document specifies additional RADIUS Attributes used to support
    configuration of DHCPv6 and/or ICMPv6 Router Advertisement (RA)
@@ -235,13 +145,13 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    o  The assignment of a named stateful address pool for use with
       DHCPv6 stateful address assignment [RFC3315].
 
-1.1.  Requirements Language
+<H2>1.1.  Requirements Language</H2>
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
    document are to be interpreted as described in RFC 2119 [RFC2119].
 
-2.  Deployment Scenarios
+<H2>2.  Deployment Scenarios</H2>
 
    The extensions in this document are intended to be applicable across
    a wide variety of network access scenarios in which RADIUS is
@@ -299,7 +209,7 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    The following subsections discuss how these Attributes are used in
    more detail.
 
-2.1.  IPv6 Address Assignment
+<H2>2.1.  IPv6 Address Assignment</H2>
 
    DHCPv6 [RFC3315] provides a mechanism to assign one or more non-
    temporary IPv6 addresses to hosts.  To provide a DHCPv6 server
@@ -308,7 +218,7 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    (Section 3.1).
 
    While [RFC3162] permits the specification of an IPv6 address via the
-   combination of the Framed-Interface-Id and Framed-IPv6-Prefix
+   combination of the <A HREF="rfc3162.html#Framed-Interface-Id">Framed-Interface-Id</A> and Framed-IPv6-Prefix
    Attributes, this separation is more natural for use with PPP's IPv6
    Control Protocol than it is for use with DHCPv6, and the use of a
    single IPv6 address Attribute makes for easier processing of
@@ -328,14 +238,14 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    stateless address autoconfiguration (SLAAC) [RFC4862], it is possible
    that the NAS will require both stateful and stateless configuration
    information.  Therefore, it is possible for the Framed-IPv6-Address,
-   Framed-IPv6-Prefix, and Framed-Interface-Id Attributes [RFC3162] to
+   Framed-IPv6-Prefix, and <A HREF="rfc3162.html#Framed-Interface-Id">Framed-Interface-Id</A> Attributes [RFC3162] to
    be included within the same packet.  To avoid ambiguity in this case,
    the Framed-IPv6-Address Attribute is intended for authorization and
    accounting of DHCPv6-assigned addresses, and the Framed-IPv6-Prefix
-   and Framed-Interface-Id Attributes are used for authorization and
+   and <A HREF="rfc3162.html#Framed-Interface-Id">Framed-Interface-Id</A> Attributes are used for authorization and
    accounting of addresses assigned via SLAAC.
 
-2.2.  DNS Servers
+<H2>2.2.  DNS Servers</H2>
 
    DHCPv6 provides an option for configuring a host with the IPv6
    address of a DNS server.  The IPv6 address of a DNS server can also
@@ -344,7 +254,7 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    the IPv6 address of one or more DNS servers, this document specifies
    the DNS-Server-IPv6-Address Attribute (Section 3.2).
 
-2.3.  IPv6 Route Information
+<H2>2.3.  IPv6 Route Information</H2>
 
    The IPv6 Route Information Option [RFC4191], is intended to be used
    to inform a host connected to the NAS that a specific route is
@@ -365,7 +275,7 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    configure more specific routes.  While the Framed-IPv6-Route
    Attribute ([RFC3162], Section 2.5) causes the route to be configured
    on the NAS and potentially to be announced via an IP routing
-   protocol, depending on the value of Framed-Routing, it does not
+   protocol, depending on the value of <A HREF="rfc2865.html#Framed-Routing">Framed-Routing</A>, it does not
    result in the route being announced in an RA.
 
 
@@ -380,7 +290,7 @@ Dec, et al.                  Standards Track                    [Page 5]
 RFC 6911                   RADIUS IPv6 Access                 April 2013
 
 
-2.4.  Delegated IPv6 Prefix Pool
+<H2>2.4.  Delegated IPv6 Prefix Pool</H2>
 
    DHCPv6 Prefix Delegation (DHCPv6-PD) [RFC3633] involves a delegating
    router selecting a prefix and delegating it on a temporary basis to a
@@ -400,7 +310,7 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    Framed-IPv6-Pool Attribute should be used for authorization and
    accounting of prefix pools used in SLAAC.
 
-2.5.  Stateful IPv6 Address Pool
+<H2>2.5.  Stateful IPv6 Address Pool</H2>
 
    DHCPv6 [RFC3315] provides a mechanism to assign one or more non-
    temporary IPv6 addresses to hosts.  Section 3.1 introduces the
@@ -413,17 +323,17 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    RADIUS server to convey a pool name to be used for such stateful
    DHCPv6-based addressing and for any subsequent accounting.
 
-3.  Attributes
+<H2>3.  Attributes</H2>
 
    The fields shown in the diagrams below are transmitted from left to
    right.
 
-3.1.  Framed-IPv6-Address
+<A NAME="Framed-IPv6-Address"><H2>3.1.  Framed-IPv6-Address</H2></a>
 
-   The Framed-IPv6-Address Attribute indicates an IPv6 address that is
+   The <B>Framed-IPv6-Address</B> Attribute indicates an IPv6 address that is
    assigned to the NAS-facing interface of the RG/host.  It MAY be used
-   in Access-Accept packets and MAY appear multiple times.  It MAY be
-   used in an Access-Request packet as a hint by the NAS to the RADIUS
+   in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets and MAY appear multiple times.  It MAY be
+   used in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet as a hint by the NAS to the RADIUS
    server that it would prefer this IPv6 address, but the RADIUS server
    is not required to honor the hint.  Because it is assumed that the
 
@@ -443,7 +353,7 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    This Attribute can be used by a DHCPv6 process on the NAS to assign a
    unique IPv6 address to the RG/host.
 
-   A summary of the Framed-IPv6-Address Attribute format is shown below.
+   A summary of the <B>Framed-IPv6-Address</B> Attribute format is shown below.
    The format of the Address field is identical to that of the
    corresponding field in the NAS-IPv6-Address Attribute [RFC3162].
 
@@ -461,11 +371,11 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
             Address (cont)         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
-      168 for Framed-IPv6-Address
+      168 for <B>Framed-IPv6-Address</B>
 
-   Length
+<B>   Length</B>
 
       18
 
@@ -492,24 +402,24 @@ Dec, et al.                  Standards Track                    [Page 7]
 RFC 6911                   RADIUS IPv6 Access                 April 2013
 
 
-3.2.  DNS-Server-IPv6-Address
+<A NAME="DNS-Server-IPv6-Address"><H2>3.2.  DNS-Server-IPv6-Address</H2></a>
 
-   The DNS-Server-IPv6-Address Attribute contains the IPv6 address of a
+   The <B>DNS-Server-IPv6-Address</B> Attribute contains the IPv6 address of a
    DNS server.  This Attribute MAY be included multiple times in Access-
    Accept packets when the intention is for a NAS to announce more than
    one DNS server address to an RG/host.  The Attribute MAY be used in
-   an Access-Request packet as a hint by the NAS to the RADIUS server
+   an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet as a hint by the NAS to the RADIUS server
    regarding the DNS IPv6 address, but the RADIUS server is not required
    to honor the hint.
 
    The content of this Attribute can be copied to an instance of the
    DHCPv6 DNS Recursive Name Server Option [RFC3646] or to an IPv6
    Router Advertisement Recursive DNS Server Option [RFC6106].  If more
-   than one DNS-Server-IPv6-Address Attribute is present in the Access-
+   than one <B>DNS-Server-IPv6-Address</B> Attribute is present in the Access-
    Accept packet, the addresses from the Attributes SHOULD be copied in
    the same order as received.
 
-   A summary of the DNS-Server-IPv6-Address Attribute format is given
+   A summary of the <B>DNS-Server-IPv6-Address</B> Attribute format is given
    below.  The format of the Address field is the same as that of the
    corresponding field in the NAS-IPv6-Address Attribute [RFC3162].
 
@@ -527,11 +437,11 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
             Address (cont)         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
-      169 for DNS-Server-IPv6-Address
+      169 for <B>DNS-Server-IPv6-Address</B>
 
-   Length
+<B>   Length</B>
 
       18
 
@@ -548,16 +458,16 @@ Dec, et al.                  Standards Track                    [Page 8]
 RFC 6911                   RADIUS IPv6 Access                 April 2013
 
 
-3.3.  Route-IPv6-Information
+<A NAME="Route-IPv6-Information"><H2>3.3.  Route-IPv6-Information</H2></a>
 
-   The Route-IPv6-Information Attribute specifies a prefix (and
+   The <B>Route-IPv6-Information</B> Attribute specifies a prefix (and
    corresponding route) for the user on the NAS, which is to be
    announced using the Route Information Option defined in "Default
    Router Preferences and More Specific Routes" [RFC4191], Section 2.3.
-   It is used in the Access-Accept packet and can appear multiple times.
-   It MAY be used in an Access-Request packet as a hint by the NAS to
+   It is used in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet and can appear multiple times.
+   It MAY be used in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet as a hint by the NAS to
    the RADIUS server, but the RADIUS server is not required to honor the
-   hint.  The Route-IPv6-Information Attribute format is depicted below.
+   hint.  The <B>Route-IPv6-Information</B> Attribute format is depicted below.
    The format of the prefix is as per [RFC3162].
 
        0                   1                   2                   3
@@ -571,11 +481,11 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
       |                                                               |
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
-      170 for Route-IPv6-Information
+      170 for <B>Route-IPv6-Information</B>
 
-   Length
+<B>   Length</B>
 
       Length, in bytes.  At least 4 and no larger than 20; typically, 12
       or less.
@@ -604,16 +514,16 @@ Dec, et al.                  Standards Track                    [Page 9]
 RFC 6911                   RADIUS IPv6 Access                 April 2013
 
 
-3.4.  Delegated-IPv6-Prefix-Pool
+<A NAME="Delegated-IPv6-Prefix-Pool"><H2>3.4.  Delegated-IPv6-Prefix-Pool</H2></a>
 
-   The Delegated-IPv6-Prefix-Pool Attribute contains the name of an
+   The <B>Delegated-IPv6-Prefix-Pool</B> Attribute contains the name of an
    assigned pool that SHOULD be used to select an IPv6 delegated prefix
    for the user on the NAS.  If a NAS does not support prefix pools, the
-   NAS MUST ignore this Attribute.  It MAY be used in an Access-Request
+   NAS MUST ignore this Attribute.  It MAY be used in an <A HREF="rfc2865.html#Access-Request">Access-Request</A>
    packet as a hint by the NAS to the RADIUS server regarding the pool,
    but the RADIUS server is not required to honor the hint.
 
-   A summary of the Delegated-IPv6-Prefix-Pool Attribute format is shown
+   A summary of the <B>Delegated-IPv6-Prefix-Pool</B> Attribute format is shown
    below.
 
        0                   1                   2
@@ -622,11 +532,11 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
       |     Type      |    Length     |     String...
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
-      171 for Delegated-IPv6-Prefix-Pool
+      171 for <B>Delegated-IPv6-Prefix-Pool</B>
 
-   Length
+<B>   Length</B>
 
       Length, in bytes.  At least 3.
 
@@ -660,9 +570,9 @@ Dec, et al.                  Standards Track                   [Page 10]
 RFC 6911                   RADIUS IPv6 Access                 April 2013
 
 
-3.5.  Stateful-IPv6-Address-Pool
+<A NAME="Stateful-IPv6-Address-Pool"><H2>3.5.  Stateful-IPv6-Address-Pool</H2></a>
 
-   The Stateful-IPv6-Address-Pool Attribute contains the name of an
+   The <B>Stateful-IPv6-Address-Pool</B> Attribute contains the name of an
    assigned pool that SHOULD be used to select an IPv6 address for the
    user on the NAS.  If a NAS does not support address pools, the NAS
    MUST ignore this Attribute.  A summary of the Stateful-IPv6-Address-
@@ -676,11 +586,11 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
       |     Type      |    Length     |     String...
       +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
+<B>   Type</B>
 
-      172 for Stateful-IPv6-Address-Pool
+      172 for <B>Stateful-IPv6-Address-Pool</B>
 
-   Length
+<B>   Length</B>
 
       Length, in bytes.  At least 3.
 
@@ -694,7 +604,7 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    binary data that is external to the RADIUS protocol, e.g., the name
    of a pool of addresses configured on the NAS.
 
-3.6.  Table of Attributes
+<H2>3.6.  Table of Attributes</H2>
 
    The following table provides a guide to which Attributes may be found
    in which kinds of packets, and in what quantity.  The optional
@@ -724,13 +634,13 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    0+      0+     0      0         0+   171   Delegated-IPv6-Prefix-Pool
    0+      0+     0      0         0+   172   Stateful-IPv6-Address-Pool
 
-4.  Diameter Considerations
+<H2>4.  Diameter Considerations</H2>
 
    Given that the Attributes defined in this document are allocated from
    the standard RADIUS type space (see Section 6), no special handling
    is required by Diameter entities.
 
-5.  Security Considerations
+<H2>5.  Security Considerations</H2>
 
    This document specifies additional IPv6 RADIUS Attributes useful in
    residential broadband network deployments.  In such networks, the
@@ -741,7 +651,7 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    communication optionally secured by IPsec or Transport Layer Security
    (TLS) [RFC6614].
 
-6.  IANA Considerations
+<H2>6.  IANA Considerations</H2>
 
    IANA has assigned five new RADIUS Attribute types in the "Radius
    Attribute Types" registry (currently located at
@@ -772,7 +682,7 @@ Dec, et al.                  Standards Track                   [Page 12]
 RFC 6911                   RADIUS IPv6 Access                 April 2013
 
 
-7.  Acknowledgments
+<H2>7.  Acknowledgments</H2>
 
    The authors would like to thank Bernard Aboba, Benoit Claise, Peter
    Deacon, Alan DeKok, Ralph Droms, Brian Haberman, Alfred Hines,
@@ -780,9 +690,9 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    Smith, and Leaf Yeh for their help and comments in reviewing this
    document.
 
-8.  References
+<H2>8.  References</H2>
 
-8.1.  Normative References
+<H2>8.1.  Normative References</H2>
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
@@ -790,7 +700,7 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
    [RFC4862]  Thomson, S., Narten, T., and T. Jinmei, "IPv6 Stateless
               Address Autoconfiguration", RFC 4862, September 2007.
 
-8.2.  Informative References
+<H2>8.2.  Informative References</H2>
 
    [RFC3162]  Aboba, B., Zorn, G., and D. Mitton, "RADIUS and IPv6", RFC
               3162, August 2001.
@@ -833,8 +743,8 @@ RFC 6911                   RADIUS IPv6 Access                 April 2013
               RFC 6614, May 2012.
 
    [SECI]     Hill, J., "An Analysis of the RADIUS Authentication
-              Protocol", November 2001, <http://regul.uni-mb.si/~meolic/
-              ptk-seminarske/radius.pdf>.
+              Protocol", November 2001, &lt;http://regul.uni-mb.si/~meolic/
+              ptk-seminarske/radius.pdf&gt;.
 
 
 
@@ -937,81 +847,4 @@ Authors' Addresses
 
 Dec, et al.                  Standards Track                   [Page 15]
 
-</pre>
-</div>
-
-
-    </div><footer class="global_footer bg_block-dark lg_padding_v">
-
-    <div class="wrapper">
-        <div class="row">
-            <div class="columns medium-4">
-                <div class="footer_main">
-                    <img class="footer_logo" width="150" src="/img/wordmark-white.svg" alt="">
-                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
-                    <div class="footer-social">
-                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
-                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
-                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
-                    </div>
-                    <p>&copy; 2018 The FreeRADIUS Server Project and Contributors</p>
-                </div>
-            </div>
-            <div class="columns medium-8">
-                <nav class="footer_nav h6 row small-up-2">
-                    <ul>
-                        <li><a href="/documentation/">Docs</a></li>
-                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
-                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
-                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
-                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
-                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/modules/">Modules</a></li>
-                        <li><a href="/modules/">Packages</a></li>
-                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/community/">Community</a></li>
-                        <li><a href="/support/">Mailing Lists</a></li>
-                        <li><a href="/community/#contributing">Contribute</a></li>
-                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/about/">About</a></li>
-                        <li><a href="/about/#project">The Project</a></li>
-                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
-                        <li><a href="/about/#security">Security</a></li>
-                        <li><a href="/about/#team">Team</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/support/">Support</a></li>
-                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
-                        <li><a href="/security/">Security Issues</a></li>
-                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
-                        <li><a href="/support/">Newsletters</a></li>
-                        <li><a href="/commercial_support/">Commercial</a></li>
-                        <li><a href="/support/">Support</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-</footer>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
-<script src="/js/angular.min.js"></script>
-<script src="/js/app.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-1186926-1', 'auto');
-  ga('send', 'pageview');
-</script>
-</body>
-
-</html>
+</PRE>

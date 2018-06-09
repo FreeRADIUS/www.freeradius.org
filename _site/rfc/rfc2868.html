@@ -1,99 +1,9 @@
-<!DOCTYPE html>
-<html ng-app="freeradius"><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+---
+layout: default
+---
 
-    <title>FreeRADIUS</title>
-    <meta name="description" content="The world's leading RADIUS server. The project includes a GPL AAA server, BSD licensed client and PAM and Apache modules. Full support is available from NetworkRADIUS.
-">
-
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="freeradius.org/rfc/rfc2868.html">
-    <link rel="alternate" type="application/rss+xml" title="FreeRADIUS" href="freeradius.org/feed.xml">
-
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon-194x194.png" sizes="194x194">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5 ">
-    <meta name="msapplication-TileColor" content="#da532c ">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <meta name="theme-color" content="#ffffff ">
-
-</head>
-<body><div class="global-nav">
-  <div class="global_links pull_right">
-    <div class="global_link global_link_label h5 text">Our sites:</div>
-    <a class="global_link h5" href="http://networkradius.com/"><div class=""><span class="text">Network</span>RADIUS</div></a>
-    <a class="global_link h5 active" href="http://wiki.freeradius.org/"><div class=""><span class="text">Free</span>RADIUS <span class="text">Wiki</span></div></a>
-  </div>
-</div>
-
-<header class="site-header" global-header ng-class="{fixed: fixNav}">
-  <div class="site-header-wrapper">
-
-    <a class="site-title" href="/"><img src="/img/wordmark.svg"></a>
-    <button class="menu-icon" tab-trigger ng-click="toggle('#site-nav', true)">
-      <svg viewBox="0 0 18 15">
-        <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-        <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-        <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-      </svg>
-    </button>
-
-    <nav class="site-nav" id="site-nav" tab-content ng-class="{active : active == '#site-nav'}">
-
-      <div class="get-release">
-      <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-blue h5">Download {{stableBranch.last_release.name}}</a>
-      </div>
-
-      <ul class="site-nav-list">
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/releases/">Releases</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/documentation/">Documentation</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/modules/">Modules</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/community/">Community</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/about/">About</a>
-         </li>
-
-         <li class="site-nav-item">
-            <a class="page-link h5" href="/support/">Support</a>
-         </li>
-
-      </ul>
-
-    </nav>
-  </div>
-</header>
-<div class="page-content">
-
-        <div class="wrapper base_padding_v">
-<pre>
+<div class="wrapper base_padding_v">
+<PRE>
 
 
 
@@ -131,7 +41,7 @@ Abstract
    This document defines a set of RADIUS attributes designed to support
    the provision of compulsory tunneling in dial-up networks.
 
-1.  Motivation
+<H2>1.  Motivation</H2>
 
    Many applications of tunneling protocols such as L2TP involve dial-up
    network access.  Some, such as the provision of access to corporate
@@ -156,13 +66,13 @@ Zorn, et al.                 Informational                      [Page 1]
 RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
 
-2.  Specification of Requirements
+<H2>2.  Specification of Requirements</H2>
 
    In this document, the key words "MAY", "MUST, "MUST NOT", "optional",
    "recommended", "SHOULD", and "SHOULD NOT", are to be interpreted as
    described in [14].
 
-3.  Attributes
+<H2>3.  Attributes</H2>
 
    Multiple instances of each of the attributes defined below may be
    included in a single RADIUS packet.  In this case, the attributes to
@@ -173,37 +83,37 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
    If the RADIUS server returns attributes describing multiple tunnels
    then the tunnels SHOULD be interpreted by the tunnel initiator as
    alternatives and the server SHOULD include an instance of the
-   Tunnel-Preference Attribute in the set of Attributes pertaining to
+   <A HREF="#Tunnel-Preference">Tunnel-Preference</A> Attribute in the set of Attributes pertaining to
    each alternative tunnel.  Similarly, if the RADIUS client includes
-   multiple sets of tunnel Attributes in an Access-Request packet, all
+   multiple sets of tunnel Attributes in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet, all
    the Attributes pertaining to a given tunnel SHOULD contain the same
    value in their respective Tag fields and each set SHOULD include an
-   appropriately valued instance of the Tunnel-Preference Attribute.
+   appropriately valued instance of the <A HREF="#Tunnel-Preference">Tunnel-Preference</A> Attribute.
 
-3.1.  Tunnel-Type
+<A NAME="Tunnel-Type"><H2>3.1.  Tunnel-Type</H2></a>
 
-   Description
+<B>   Description</B>
 
       This Attribute indicates the tunneling protocol(s) to be used (in
       the case of a tunnel initiator) or the the tunneling protocol in
       use (in the case of a tunnel terminator).  It MAY be included in
-      Access-Request, Access-Accept and Accounting-Request packets.  If
-      the Tunnel-Type Attribute is present in an Access-Request packet
+      <A HREF="rfc2865.html#Access-Request">Access-Request</A>, <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> and <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets.  If
+      the <B>Tunnel-Type</B> Attribute is present in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet
       sent from a tunnel initiator, it SHOULD be taken as a hint to the
       RADIUS server as to the tunnelling protocols supported by the
       tunnel end-point; the RADIUS server MAY ignore the hint, however.
       A tunnel initiator is not required to implement any of these
-      tunnel types; if a tunnel initiator receives an Access-Accept
-      packet which contains only unknown or unsupported Tunnel-Types,
-      the tunnel initiator MUST behave as though an Access-Reject had
+      tunnel types; if a tunnel initiator receives an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
+      packet which contains only unknown or unsupported <B>Tunnel-Type</B>s,
+      the tunnel initiator MUST behave as though an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> had
       been received instead.
 
-      If the Tunnel-Type Attribute is present in an Access-Request
+      If the <B>Tunnel-Type</B> Attribute is present in an <A HREF="rfc2865.html#Access-Request">Access-Request</A>
       packet sent from a tunnel terminator, it SHOULD be taken to
       signify the tunnelling protocol in use.  In this case, if the
       RADIUS server determines that the use of the communicated protocol
-      is not authorized, it MAY return an Access-Reject packet.  If a
-      tunnel terminator receives an Access-Accept packet which contains
+      is not authorized, it MAY return an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> packet.  If a
+      tunnel terminator receives an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet which contains
 
 
 
@@ -212,11 +122,11 @@ Zorn, et al.                 Informational                      [Page 2]
 RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
 
-      one or more Tunnel-Type Attributes, none of which represent the
+      one or more <B>Tunnel-Type</B> Attributes, none of which represent the
       tunneling protocol in use, the tunnel terminator SHOULD behave as
-      though an Access-Reject had been received instead.
+      though an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> had been received instead.
 
-   A summary of the Tunnel-Type Attribute format is shown below.  The
+   A summary of the <B>Tunnel-Type</B> Attribute format is shown below.  The
    fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -227,10 +137,10 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
                Value (cont)        |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
-      64 for Tunnel-Type
+<B>   Type</B>
+      64 for <B>Tunnel-Type</B>
 
-   Length
+<B>   Length</B>
       Always 6.
 
    Tag
@@ -239,7 +149,7 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
       same tunnel.  Valid values for this field are 0x01 through 0x1F,
       inclusive.  If the Tag field is unused, it MUST be zero (0x00).
 
-   Value
+<B>   Value</B>
       The Value field is three octets and contains one of the following
       values, indicating the type of tunnel to be started.
 
@@ -268,19 +178,19 @@ Zorn, et al.                 Informational                      [Page 3]
 RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
 
-3.2.  Tunnel-Medium-Type
+<A NAME="Tunnel-Medium-Type"><H2>3.2.  Tunnel-Medium-Type</H2></a>
 
-   Description
+<B>   Description</B>
 
-      The Tunnel-Medium-Type Attribute indicates which transport medium
+      The <B>Tunnel-Medium-Type</B> Attribute indicates which transport medium
       to use when creating a tunnel for those protocols (such as L2TP)
       that can operate over multiple transports.  It MAY be included in
-      both Access-Request and Access-Accept packets; if it is present in
-      an Access-Request packet, it SHOULD be taken as a hint to the
+      both <A HREF="rfc2865.html#Access-Request">Access-Request</A> and <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets; if it is present in
+      an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet, it SHOULD be taken as a hint to the
       RADIUS server as to the tunnel media supported by the tunnel end-
       point.  The RADIUS server MAY ignore the hint, however.
 
-   A summary of the Tunnel-Medium-Type Attribute format is given below.
+   A summary of the <B>Tunnel-Medium-Type</B> Attribute format is given below.
    The fields are transmitted left to right.
 
     0                   1                   2                   3
@@ -291,10 +201,10 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
               Value (cont)         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
-      65 for Tunnel-Medium-Type
+<B>   Type</B>
+      65 for <B>Tunnel-Medium-Type</B>
 
-   Length
+<B>   Length</B>
       6
 
    Tag
@@ -303,7 +213,7 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
       same tunnel.  Valid values for this field are 0x01 through 0x1F,
       inclusive.  If the Tag field is unused, it MUST be zero (0x00).
 
-   Value
+<B>   Value</B>
       The Value field is three octets and contains one of the values
       listed under "Address Family Numbers" in [14].  For the sake of
       convenience, a relevant excerpt of this list is reproduced below.
@@ -332,25 +242,25 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
    14     Banyan Vines
    15     E.164 with NSAP format subaddress
 
-3.3.  Tunnel-Client-Endpoint
+<A NAME="Tunnel-Client-Endpoint"><H2>3.3.  Tunnel-Client-Endpoint</H2></a>
 
-   Description
+<B>   Description</B>
 
       This Attribute contains the address of the initiator end of the
-      tunnel.  It MAY be included in both Access-Request and Access-
+      tunnel.  It MAY be included in both <A HREF="rfc2865.html#Access-Request">Access-Request</A> and Access-
       Accept packets to indicate the address from which a new tunnel is
-      to be initiated.  If the Tunnel-Client-Endpoint Attribute is
-      included in an Access-Request packet, the RADIUS server should
+      to be initiated.  If the <B>Tunnel-Client-Endpoint</B> Attribute is
+      included in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet, the RADIUS server should
       take the value as a hint; the server is not obligated to honor the
       hint, however.  This Attribute SHOULD be included in Accounting-
-      Request packets which contain Acct-Status-Type attributes with
+      Request packets which contain <A HREF="rfc2866.html#Acct-Status-Type">Acct-Status-Type</A> attributes with
       values of either Start or Stop, in which case it indicates the
       address from which the tunnel was initiated.  This Attribute,
-      along with the Tunnel-Server-Endpoint and Acct-Tunnel-Connection-
+      along with the <A HREF="#Tunnel-Server-Endpoint">Tunnel-Server-Endpoint</A> and Acct-Tunnel-Connection-
       ID attributes, may be used to provide a globally unique means to
       identify a tunnel for accounting and auditing purposes.
 
-   A summary of the Tunnel-Client-Endpoint Attribute format is shown
+   A summary of the <B>Tunnel-Client-Endpoint</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -359,11 +269,11 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
    |     Type      |    Length     |       Tag     |    String ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
-      66 for Tunnel-Client-Endpoint.
+<B>   Type</B>
+      66 for <B>Tunnel-Client-Endpoint</B>.
 
-   Length
-      >= 3
+<B>   Length</B>
+      &gt;= 3
 
 
 
@@ -391,37 +301,37 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
    String
       The format of the address represented by the String field depends
-      upon the value of the Tunnel-Medium-Type attribute.
+      upon the value of the <A HREF="#Tunnel-Medium-Type">Tunnel-Medium-Type</A> attribute.
 
-      If Tunnel-Medium-Type is IPv4 (1), then this string is either the
+      If <A HREF="#Tunnel-Medium-Type">Tunnel-Medium-Type</A> is IPv4 (1), then this string is either the
       fully qualified domain name (FQDN) of the tunnel client machine,
       or it is a "dotted-decimal" IP address.  Conformant
       implementations MUST support the dotted-decimal format and SHOULD
       support the FQDN format for IP addresses.
 
-      If Tunnel-Medium-Type is IPv6 (2), then this string is either the
+      If <A HREF="#Tunnel-Medium-Type">Tunnel-Medium-Type</A> is IPv6 (2), then this string is either the
       FQDN of the tunnel client machine, or it is a text representation
       of the address in either the preferred or alternate form [17].
       Conformant implementations MUST support the preferred form and
       SHOULD support both the alternate text form and the FQDN format
       for IPv6 addresses.
 
-      If Tunnel-Medium-Type is neither IPv4 nor IPv6, this string is a
+      If <A HREF="#Tunnel-Medium-Type">Tunnel-Medium-Type</A> is neither IPv4 nor IPv6, this string is a
       tag referring to configuration data local to the RADIUS client
       that describes the interface and medium-specific address to use.
 
-3.4.  Tunnel-Server-Endpoint
+<A NAME="Tunnel-Server-Endpoint"><H2>3.4.  Tunnel-Server-Endpoint</H2></a>
 
-   Description
+<B>   Description</B>
 
       This Attribute indicates the address of the server end of the
-      tunnel.  The Tunnel-Server-Endpoint Attribute MAY be included (as
-      a hint to the RADIUS server) in the Access-Request packet and MUST
-      be included in the Access-Accept packet if the initiation of a
-      tunnel is desired.  It SHOULD be included in Accounting-Request
-      packets which contain Acct-Status-Type attributes with values of
+      tunnel.  The <B>Tunnel-Server-Endpoint</B> Attribute MAY be included (as
+      a hint to the RADIUS server) in the <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet and MUST
+      be included in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet if the initiation of a
+      tunnel is desired.  It SHOULD be included in <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A>
+      packets which contain <A HREF="rfc2866.html#Acct-Status-Type">Acct-Status-Type</A> attributes with values of
       either Start or Stop and which pertain to a tunneled session.
-      This Attribute, along with the Tunnel-Client-Endpoint and Acct-
+      This Attribute, along with the <A HREF="#Tunnel-Client-Endpoint">Tunnel-Client-Endpoint</A> and Acct-
       Tunnel-Connection-ID Attributes [11], may be used to provide a
       globally unique means to identify a tunnel for accounting and
       auditing purposes.
@@ -436,7 +346,7 @@ Zorn, et al.                 Informational                      [Page 6]
 RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
 
-   A summary of the Tunnel-Server-Endpoint Attribute format is shown
+   A summary of the <B>Tunnel-Server-Endpoint</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -445,11 +355,11 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
    |     Type      |    Length     |     Tag       |   String ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
-      67 for Tunnel-Server-Endpoint.
+<B>   Type</B>
+      67 for <B>Tunnel-Server-Endpoint</B>.
 
-   Length
-      >= 3
+<B>   Length</B>
+      &gt;= 3
 
    Tag
       The Tag field is one octet in length and is intended to provide a
@@ -462,22 +372,22 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
    String
       The format of the address represented by the String field depends
-      upon the value of the Tunnel-Medium-Type attribute.
+      upon the value of the <A HREF="#Tunnel-Medium-Type">Tunnel-Medium-Type</A> attribute.
 
-      If Tunnel-Medium-Type is IPv4 (1), then this string is either the
+      If <A HREF="#Tunnel-Medium-Type">Tunnel-Medium-Type</A> is IPv4 (1), then this string is either the
       fully qualified domain name (FQDN) of the tunnel client machine,
       or it is a "dotted-decimal" IP address.  Conformant
       implementations MUST support the dotted-decimal format and SHOULD
       support the FQDN format for IP addresses.
 
-      If Tunnel-Medium-Type is IPv6 (2), then this string is either the
+      If <A HREF="#Tunnel-Medium-Type">Tunnel-Medium-Type</A> is IPv6 (2), then this string is either the
       FQDN of the tunnel client machine, or it is a text representation
       of the address in either the preferred or alternate form [17].
       Conformant implementations MUST support the preferred form and
       SHOULD support both the alternate text form and the FQDN format
       for IPv6 addresses.
 
-      If Tunnel-Medium-Type is not IPv4 or IPv6, this string is a tag
+      If <A HREF="#Tunnel-Medium-Type">Tunnel-Medium-Type</A> is not IPv4 or IPv6, this string is a tag
       referring to configuration data local to the RADIUS client that
       describes the interface and medium-specific address to use.
 
@@ -492,15 +402,15 @@ Zorn, et al.                 Informational                      [Page 7]
 RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
 
-3.5.  Tunnel-Password
+<A NAME="Tunnel-Password"><H2>3.5.  Tunnel-Password</H2></a>
 
-   Description
+<B>   Description</B>
 
       This Attribute may contain a password to be used to authenticate
-      to a remote server.  It may only be included in an Access-Accept
+      to a remote server.  It may only be included in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
       packet.
 
-   A summary of the Tunnel-Password Attribute format is shown below.
+   A summary of the <B>Tunnel-Password</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -511,11 +421,11 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
       Salt (cont)  |   String ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
-      69 for Tunnel-Password
+<B>   Type</B>
+      69 for <B>Tunnel-Password</B>
 
-   Length
-      >= 5
+<B>   Length</B>
+      &gt;= 5
 
    Tag
       The Tag field is one octet in length and is intended to provide a
@@ -529,10 +439,10 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
    Salt
       The Salt field is two octets in length and is used to ensure the
       uniqueness of the encryption key used to encrypt each instance of
-      the Tunnel-Password attribute occurring in a given Access-Accept
+      the <B>Tunnel-Password</B> attribute occurring in a given <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
       packet.  The most significant bit (leftmost) of the Salt field
       MUST be set (1).  The contents of each Salt field in a given
-      Access-Accept packet MUST be unique.
+      <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet MUST be unique.
 
    String
       The plaintext String field consists of three logical sub-fields:
@@ -562,7 +472,7 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
          octets (0x00) be used for padding.  Call this plaintext P.
 
          Call the shared secret S, the pseudo-random 128-bit Request
-         Authenticator (from the corresponding Access-Request packet) R,
+         Authenticator (from the corresponding <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet) R,
          and the contents of the Salt field A.  Break P into 16 octet
          chunks p(1), p(2)...p(i), where i = len(P)/16.  Call the
          ciphertext blocks c(1), c(2)...c(i) and the final ciphertext C.
@@ -582,15 +492,15 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
       On receipt, the process is reversed to yield the plaintext String.
 
-3.6.  Tunnel-Private-Group-ID
+<A NAME="Tunnel-Private-Group-ID"><H2>3.6.  Tunnel-Private-Group-ID</H2></a>
 
-   Description
+<B>   Description</B>
 
       This Attribute indicates the group ID for a particular tunneled
-      session.  The Tunnel-Private-Group-ID Attribute MAY be included in
-      the Access-Request packet if the tunnel initiator can pre-
+      session.  The <B>Tunnel-Private-Group-ID</B> Attribute MAY be included in
+      the <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet if the tunnel initiator can pre-
       determine the group resulting from a particular connection and
-      SHOULD be included in the Access-Accept packet if this tunnel
+      SHOULD be included in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet if this tunnel
       session is to be treated as belonging to a particular private
       group.  Private groups may be used to associate a tunneled session
       with a particular group of users.  For example, it may be used to
@@ -604,11 +514,11 @@ Zorn, et al.                 Informational                      [Page 9]
 RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
 
-      particular interface.  It SHOULD be included in Accounting-Request
-      packets which contain Acct-Status-Type attributes with values of
+      particular interface.  It SHOULD be included in <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A>
+      packets which contain <A HREF="rfc2866.html#Acct-Status-Type">Acct-Status-Type</A> attributes with values of
       either Start or Stop and which pertain to a tunneled session.
 
-   A summary of the Tunnel-Private-Group-ID Attribute format is shown
+   A summary of the <B>Tunnel-Private-Group-ID</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -617,11 +527,11 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
    |      Type     |    Length     |     Tag       |   String ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
-      81 for Tunnel-Private-Group-ID.
+<B>   Type</B>
+      81 for <B>Tunnel-Private-Group-ID</B>.
 
-   Length
-      >= 3
+<B>   Length</B>
+      &gt;= 3
 
    Tag
       The Tag field is one octet in length and is intended to provide a
@@ -636,9 +546,9 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
       This field must be present.  The group is represented by the
       String field.  There is no restriction on the format of group IDs.
 
-3.7.  Tunnel-Assignment-ID
+<A NAME="Tunnel-Assignment-ID"><H2>3.7.  Tunnel-Assignment-ID</H2></a>
 
-   Description
+<B>   Description</B>
 
       This Attribute is used to indicate to the tunnel initiator the
       particular tunnel to which a session is to be assigned.  Some
@@ -664,7 +574,7 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
       characteristics to particular tunnels.  For example, different
       tunnels may be assigned different QOS parameters.  Such tunnels
       may be used to carry either individual or multiple sessions.  The
-      Tunnel-Assignment-ID attribute thus allows the RADIUS server to
+      <B>Tunnel-Assignment-ID</B> attribute thus allows the RADIUS server to
       indicate that a particular session is to be assigned to a tunnel
       that provides an appropriate level of service.  It is expected
       that any QOS-related RADIUS tunneling attributes defined in the
@@ -673,21 +583,21 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
       meantime, any semantic given to a particular ID string is a matter
       left to local configuration in the tunnel initiator.
 
-      The Tunnel-Assignment-ID attribute is of significance only to
+      The <B>Tunnel-Assignment-ID</B> attribute is of significance only to
       RADIUS and the tunnel initiator.  The ID it specifies is intended
       to be of only local use to RADIUS and the tunnel initiator.  The
       ID assigned by the tunnel initiator is not conveyed to the tunnel
       peer.
 
-      This attribute MAY be included in the Access-Accept.  The tunnel
+      This attribute MAY be included in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>.  The tunnel
       initiator receiving this attribute MAY choose to ignore it and
       assign the session to an arbitrary multiplexed or non-multiplexed
       tunnel between the desired endpoints.  This attribute SHOULD also
-      be included in Accounting-Request packets which contain Acct-
+      be included in <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets which contain Acct-
       Status-Type attributes with values of either Start or Stop and
       which pertain to a tunneled session.
 
-      If a tunnel initiator supports the Tunnel-Assignment-ID Attribute,
+      If a tunnel initiator supports the <B>Tunnel-Assignment-ID</B> Attribute,
       then it should assign a session to a tunnel in the following
       manner:
 
@@ -704,8 +614,8 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
          to an unnamed tunnel.  If an unnamed tunnel does not yet exist
          between the specified endpoints then it is established and used
          for this and subsequent sessions established without the
-         Tunnel-Assignment-ID attribute.  A tunnel initiator MUST NOT
-         assign a session for which a Tunnel-Assignment-ID Attribute was
+         <B>Tunnel-Assignment-ID</B> attribute.  A tunnel initiator MUST NOT
+         assign a session for which a <B>Tunnel-Assignment-ID</B> Attribute was
          not specified to a named tunnel (i.e. one that was initiated by
          a session specifying this attribute).
 
@@ -719,7 +629,7 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
       Note that the same ID may be used to name different tunnels if
       such tunnels are between different endpoints.
 
-   A summary of the Tunnel-Assignment-ID Attribute format is shown
+   A summary of the <B>Tunnel-Assignment-ID</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -728,11 +638,11 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
    |      Type     |    Length     |      Tag      |   String ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
-      82 for Tunnel-Assignment-ID.
+<B>   Type</B>
+      82 for <B>Tunnel-Assignment-ID</B>.
 
-   Length
-      >= 3
+<B>   Length</B>
+      &gt;= 3
 
    Tag
       The Tag field is one octet in length and is intended to provide a
@@ -747,23 +657,23 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
       This field must be present.  The tunnel ID is represented by the
       String field.  There is no restriction on the format of the ID.
 
-3.8.  Tunnel-Preference
+<A NAME="Tunnel-Preference"><H2>3.8.  Tunnel-Preference</H2></a>
 
-   Description
+<B>   Description</B>
 
       If more than one set of tunneling attributes is returned by the
       RADIUS server to the tunnel initiator, this Attribute SHOULD be
       included in each set to indicate the relative preference assigned
       to each tunnel.  For example, suppose that Attributes describing
-      two tunnels are returned by the server, one with a Tunnel-Type of
-      PPTP and the other with a Tunnel-Type of L2TP.  If the tunnel
+      two tunnels are returned by the server, one with a <A HREF="#Tunnel-Type">Tunnel-Type</A> of
+      PPTP and the other with a <A HREF="#Tunnel-Type">Tunnel-Type</A> of L2TP.  If the tunnel
       initiator supports only one of the Tunnel-Types returned, it will
       initiate a tunnel of that type.  If, however, it supports both
-      tunnel protocols, it SHOULD use the value of the Tunnel-Preference
+      tunnel protocols, it SHOULD use the value of the <B>Tunnel-Preference</B>
       Attribute to decide which tunnel should be started.  The tunnel
       having the numerically lowest value in the Value field of this
       Attribute SHOULD be given the highest preference.  The values
-      assigned to two or more instances of the Tunnel-Preference
+      assigned to two or more instances of the <B>Tunnel-Preference</B>
 
 
 
@@ -772,13 +682,13 @@ Zorn, et al.                 Informational                     [Page 12]
 RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
 
-      Attribute within a given Access-Accept packet MAY be identical.
+      Attribute within a given <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet MAY be identical.
       In this case, the tunnel initiator SHOULD use locally configured
       metrics to decide which set of attributes to use.  This Attribute
-      MAY be included (as a hint to the server) in Access-Request
+      MAY be included (as a hint to the server) in <A HREF="rfc2865.html#Access-Request">Access-Request</A>
       packets, but the RADIUS server is not required to honor this hint.
 
-   A summary of the Tunnel-Preference Attribute format is shown below.
+   A summary of the <B>Tunnel-Preference</B> Attribute format is shown below.
    The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -789,10 +699,10 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
               Value (cont)         |
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
-      83 for Tunnel-Preference
+<B>   Type</B>
+      83 for <B>Tunnel-Preference</B>
 
-   Length
+<B>   Length</B>
       Always 6.
 
    Tag
@@ -801,23 +711,23 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
       same tunnel.  Valid values for this field are 0x01 through 0x1F,
       inclusive.  If the Tag field is unused, it MUST be zero (0x00).
 
-   Value
+<B>   Value</B>
       The Value field is three octets in length and indicates the
       preference to be given to the tunnel to which it refers; higher
       preference is given to lower values, with 0x000000 being most
       preferred and 0xFFFFFF least preferred.
 
-3.9.  Tunnel-Client-Auth-ID
+<A NAME="Tunnel-Client-Auth-ID"><H2>3.9.  Tunnel-Client-Auth-ID</H2></a>
 
-   Description
+<B>   Description</B>
 
       This Attribute specifies the name used by the tunnel initiator
       during the authentication phase of tunnel establishment.  The
-      Tunnel-Client-Auth-ID Attribute MAY be included (as a hint to the
-      RADIUS server) in the Access-Request packet, and MUST be included
-      in the Access-Accept packet if an authentication name other than
+      <B>Tunnel-Client-Auth-ID</B> Attribute MAY be included (as a hint to the
+      RADIUS server) in the <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet, and MUST be included
+      in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet if an authentication name other than
       the default is desired.  This Attribute SHOULD be included in
-      Accounting-Request packets which contain Acct-Status-Type
+      <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets which contain <A HREF="rfc2866.html#Acct-Status-Type">Acct-Status-Type</A>
       attributes with values of either Start or Stop and which pertain
       to a tunneled session.
 
@@ -828,7 +738,7 @@ Zorn, et al.                 Informational                     [Page 13]
 RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
 
-   A summary of the Tunnel-Client-Auth-ID Attribute format is shown
+   A summary of the <B>Tunnel-Client-Auth-ID</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
     0                   1                   2                   3
@@ -837,11 +747,11 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
    |      Type     |    Length     |      Tag      |   String ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
-      90 for Tunnel-Client-Auth-ID.
+<B>   Type</B>
+      90 for <B>Tunnel-Client-Auth-ID</B>.
 
-   Length
-      >= 3
+<B>   Length</B>
+      &gt;= 3
 
    Tag
       The Tag field is one octet in length and is intended to provide a
@@ -857,21 +767,21 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
       authentication name of the tunnel initiator.  The authentication
       name SHOULD be represented in the UTF-8 charset.
 
-3.10.  Tunnel-Server-Auth-ID
+<A NAME="Tunnel-Server-Auth-ID"><H2>3.10.  Tunnel-Server-Auth-ID</H2></a>
 
-   Description
+<B>   Description</B>
 
       This Attribute specifies the name used by the tunnel terminator
       during the authentication phase of tunnel establishment.  The
-      Tunnel-Client-Auth-ID Attribute MAY be included (as a hint to the
-      RADIUS server) in the Access-Request packet, and MUST be included
-      in the Access-Accept packet if an authentication name other than
+      <A HREF="#Tunnel-Client-Auth-ID">Tunnel-Client-Auth-ID</A> Attribute MAY be included (as a hint to the
+      RADIUS server) in the <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet, and MUST be included
+      in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet if an authentication name other than
       the default is desired.  This Attribute SHOULD be included in
-      Accounting-Request packets which contain Acct-Status-Type
+      <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> packets which contain <A HREF="rfc2866.html#Acct-Status-Type">Acct-Status-Type</A>
       attributes with values of either Start or Stop and which pertain
       to a tunneled session.
 
-   A summary of the Tunnel-Server-Auth-ID Attribute format is shown
+   A summary of the <B>Tunnel-Server-Auth-ID</B> Attribute format is shown
    below.  The fields are transmitted from left to right.
 
 
@@ -890,11 +800,11 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
    |      Type     |    Length     |      Tag      |   String ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-   Type
-      91 for Tunnel-Server-Auth-ID.
+<B>   Type</B>
+      91 for <B>Tunnel-Server-Auth-ID</B>.
 
-   Length
-      >= 3
+<B>   Length</B>
+      &gt;= 3
 
    Tag
       The Tag field is one octet in length and is intended to provide a
@@ -910,22 +820,22 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
       authentication name of the tunnel terminator.  The authentication
       name SHOULD be represented in the UTF-8 charset.
 
-4.  Table of Attributes
+<H2>4.  Table of Attributes</H2>
 
    The following table provides a guide to which of the above attributes
    may be found in which kinds of packets, and in what quantity.
 
 Request Accept Reject Challenge Acct-Request #  Attribute
-0+      0+     0      0         0-1          64 Tunnel-Type
-0+      0+     0      0         0-1          65 Tunnel-Medium-Type
-0+      0+     0      0         0-1          66 Tunnel-Client-Endpoint
-0+      0+     0      0         0-1          67 Tunnel-Server-Endpoint
-0       0+     0      0         0            69 Tunnel-Password
-0+      0+     0      0         0-1          81 Tunnel-Private-Group-ID
-0       0+     0      0         0-1          82 Tunnel-Assignment-ID
-0+      0+     0      0         0            83 Tunnel-Preference
-0+      0+     0      0         0-1          90 Tunnel-Client-Auth-ID
-0+      0+     0      0         0-1          91 Tunnel-Server-Auth-ID
+0+      0+     0      0         0-1          64 <A HREF="#Tunnel-Type">Tunnel-Type</A>
+0+      0+     0      0         0-1          65 <A HREF="#Tunnel-Medium-Type">Tunnel-Medium-Type</A>
+0+      0+     0      0         0-1          66 <A HREF="#Tunnel-Client-Endpoint">Tunnel-Client-Endpoint</A>
+0+      0+     0      0         0-1          67 <A HREF="#Tunnel-Server-Endpoint">Tunnel-Server-Endpoint</A>
+0       0+     0      0         0            69 <A HREF="#Tunnel-Password">Tunnel-Password</A>
+0+      0+     0      0         0-1          81 <A HREF="#Tunnel-Private-Group-ID">Tunnel-Private-Group-ID</A>
+0       0+     0      0         0-1          82 <A HREF="#Tunnel-Assignment-ID">Tunnel-Assignment-ID</A>
+0+      0+     0      0         0            83 <A HREF="#Tunnel-Preference">Tunnel-Preference</A>
+0+      0+     0      0         0-1          90 <A HREF="#Tunnel-Client-Auth-ID">Tunnel-Client-Auth-ID</A>
+0+      0+     0      0         0-1          91 <A HREF="#Tunnel-Server-Auth-ID">Tunnel-Server-Auth-ID</A>
 
    The following table defines the meaning of the above table entries.
 
@@ -940,19 +850,19 @@ Zorn, et al.                 Informational                     [Page 15]
 RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
 
-5.  Security Considerations
+<H2>5.  Security Considerations</H2>
 
-   The Tunnel-Password Attribute may contain information which should
+   The <A HREF="#Tunnel-Password">Tunnel-Password</A> Attribute may contain information which should
    only be known to a tunnel endpoint.  However, the method used to hide
    the value of the attribute is such that intervening RADIUS proxies
    will have knowledge of the contents.  For this reason, the Tunnel-
-   Password Attribute SHOULD NOT be included in Access-Accept packets
+   Password Attribute SHOULD NOT be included in <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packets
    which may pass through (relatively) untrusted RADIUS proxies.  In
-   addition, the Tunnel-Password Attribute SHOULD NOT be returned to an
-   unauthenticated client; if the corresponding Access-Request packet
+   addition, the <A HREF="#Tunnel-Password">Tunnel-Password</A> Attribute SHOULD NOT be returned to an
+   unauthenticated client; if the corresponding <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet
    did not contain a verified instance of the Signature Attribute [15],
-   the Access-Accept packet SHOULD NOT contain an instance of the
-   Tunnel-Password Attribute.
+   the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet SHOULD NOT contain an instance of the
+   <A HREF="#Tunnel-Password">Tunnel-Password</A> Attribute.
 
    Tunnel protocols offer various levels of security, from none (e.g.,
    PPTP) to strong (e.g., IPSec).  Note, however, that in the compulsory
@@ -962,7 +872,7 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
    encryption and/or integrity protection of tunneled traffic MUST NOT
    be considered as a replacement for end-to-end security.
 
-6.  IANA Considerations
+<H2>6.  IANA Considerations</H2>
 
    This document defines a number of "magic" numbers to be maintained by
    the IANA.  This section explains the criteria to be used by the IANA
@@ -970,19 +880,19 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
    subsections describe the assignment policy for the namespaces defined
    elsewhere in this document.
 
-6.1.  Tunnel-Type Attribute Values
+<H2>6.1.  Tunnel-Type Attribute Values</H2>
 
-   Values 1-12 of the Tunnel-Type Attribute are defined in Section 5.1;
+<B>   Values 1-12 of the Tunnel-Type Attribute are defined in Section 5.1;</B>
    the remaining values are available for assignment by the IANA with
    IETF Consensus [16].
 
-6.2.  Tunnel-Medium-Type Attribute Values
+<H2>6.2.  Tunnel-Medium-Type Attribute Values</H2>
 
-   Values 1-15 of the Tunnel-Medium-Type Attribute are defined in
+<B>   Values 1-15 of the Tunnel-Medium-Type Attribute are defined in</B>
    Section 5.2; the remaining values are available for assignment by the
    IANA with IETF Consensus [16].
 
-7.  References
+<H2>7.  References</H2>
 
    [1]  Hamzeh, K., Pall, G., Verthein, W., Taarud, J., Little, W. and
         G. Zorn, "Point-to-Point Tunneling Protocol (PPTP)", RFC 2637,
@@ -1052,15 +962,15 @@ Zorn, et al.                 Informational                     [Page 17]
 RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
 
-8.  Acknowledgements
+<H2>8.  Acknowledgements</H2>
 
    Thanks to Dave Mitton for pointing out a nasty circular dependency in
-   the original Tunnel-Password attribute definition and (in no
+   the original <A HREF="#Tunnel-Password">Tunnel-Password</A> attribute definition and (in no
    particular order) to Kory Hamzeh, Bertrand Buclin, Andy Valencia,
    Bill Westfield, Kris Michielsen, Gurdeep Singh Pall, Ran Atkinson,
    Aydin Edguer, and Bernard Aboba for useful input and review.
 
-9.  Chair's Address
+<H2>9.  Chair's Address</H2>
 
    The RADIUS Working Group can be contacted via the current chair:
 
@@ -1072,7 +982,7 @@ RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
    Phone: +1 510 426 0770
    EMail: cdr@livingston.com
 
-10.  Authors' Addresses
+<H2>10.  Authors' Addresses</H2>
 
    Questions about this memo can also be directed to:
 
@@ -1164,7 +1074,7 @@ Zorn, et al.                 Informational                     [Page 19]
 RFC 2868        RADIUS Tunnel Authentication Attributes        June 2000
 
 
-11.  Full Copyright Statement
+<H2>11.  Full Copyright Statement</H2>
 
    Copyright (C) The Internet Society (2000).  All Rights Reserved.
 
@@ -1217,81 +1127,4 @@ Acknowledgement
 
 Zorn, et al.                 Informational                     [Page 20]
 
-</pre>
-</div>
-
-
-    </div><footer class="global_footer bg_block-dark lg_padding_v">
-
-    <div class="wrapper">
-        <div class="row">
-            <div class="columns medium-4">
-                <div class="footer_main">
-                    <img class="footer_logo" width="150" src="/img/wordmark-white.svg" alt="">
-                    <a ng-cloak ng-href="/releases/" stable-download class="button bg_accent-green h5">Download {{stableBranch.last_release.name}}</a>
-                    <div class="footer-social">
-                        <a href="https://github.com/FreeRADIUS"><img class="icon_small" src="/img/github-white.svg" alt=""></a>
-                         <a href="https://twitter.com/freeradius"><img class="icon_small" src="/img/twitter-white.svg" alt=""></a>
-                        <a href="http://stackoverflow.com/tags/freeradius/info"><img class="icon_small" src="/img/stackoverflow-white.svg" alt=""></a>
-                    </div>
-                    <p>&copy; 2018 The FreeRADIUS Server Project and Contributors</p>
-                </div>
-            </div>
-            <div class="columns medium-8">
-                <nav class="footer_nav h6 row small-up-2">
-                    <ul>
-                        <li><a href="/documentation/">Docs</a></li>
-                        <li><a href="http://wiki.freeradius.org/Home">Wiki</a></li>
-                        <li><a href="http://freeradius.org/radiusd/man/">Manual Pages</a></li>
-                        <li><a href="http://deployingradius.com/">Useful How-To's</a></li>
-                        <li><a href="http://networkradius.com/doc.html">Full Server Docs</a></li>
-                        <li><a href="http://doc.freeradius.org/">Api Docs</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/modules/">Modules</a></li>
-                        <li><a href="/modules/">Packages</a></li>
-                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Report A Bug</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/community/">Community</a></li>
-                        <li><a href="/support/">Mailing Lists</a></li>
-                        <li><a href="/community/#contributing">Contribute</a></li>
-                        <li><a href="/community/#developer_docs">Developer Docs</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/about/">About</a></li>
-                        <li><a href="/about/#project">The Project</a></li>
-                        <li><a href="/about/#usage_statistics">Why We're No. 1</a></li>
-                        <li><a href="/about/#security">Security</a></li>
-                        <li><a href="/about/#team">Team</a></li>
-                    </ul>
-                    <ul>
-                        <li><a href="/support/">Support</a></li>
-                        <li><a href="https://github.com/FreeRADIUS/freeradius-server/issues/new">Issue Tracker</a></li>
-                        <li><a href="/security/">Security Issues</a></li>
-                        <li><a href="http://stackoverflow.com/questions/tagged/freeradius">FAQs</a></li>
-                        <li><a href="/support/">Newsletters</a></li>
-                        <li><a href="/commercial_support/">Commercial</a></li>
-                        <li><a href="/support/">Support</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-
-</footer>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/js/jquery-1.12.1.min.js"><\/script>')</script>
-<script src="/js/angular.min.js"></script>
-<script src="/js/app.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-1186926-1', 'auto');
-  ga('send', 'pageview');
-</script>
-</body>
-
-</html>
+</PRE>
