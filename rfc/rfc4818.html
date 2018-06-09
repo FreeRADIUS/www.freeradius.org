@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="wrapper base_padding_v">
-<pre>
+<PRE>
 
 
 
@@ -61,12 +61,12 @@ Abstract
 
 
 
-Salowey & Droms             Standards Track                     [Page 1]
+Salowey &amp; Droms             Standards Track                     [Page 1]
 
 RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
 
 
-1.  Introduction
+<H2>1.  Introduction</H2>
 
    This document defines the Delegated-IPv6-Prefix attribute as a RADIUS
    [1] attribute that carries an IPv6 prefix to be delegated to the
@@ -81,12 +81,12 @@ RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
 
    Requesting Router   Delegating Router                   RADIUS Server
          |                     |                                 |
-         |-Solicit------------>|                                 |
-         |                     |-Request------------------------>|
-         |                     |<--Accept(Delegated-IPv6-Prefix)-|
-         |<--Advertise(Prefix)-|                                 |
-         |-Request(Prefix)---->|                                 |
-         |<--Reply(Prefix)-----|                                 |
+         |-Solicit------------&gt;|                                 |
+         |                     |-Request------------------------&gt;|
+         |                     |&lt;--Accept(Delegated-IPv6-Prefix)-|
+         |&lt;--Advertise(Prefix)-|                                 |
+         |-Request(Prefix)----&gt;|                                 |
+         |&lt;--Reply(Prefix)-----|                                 |
          |                     |                                 |
                 DHCP PD                      RADIUS
 
@@ -96,7 +96,7 @@ RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
    therefore Framed-IPv6-Prefix and Delegated-IPv6-Prefix attributes may
    be included in the same RADIUS packet.
 
-2.  Terminology
+<H2>2.  Terminology</H2>
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
@@ -117,12 +117,12 @@ RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
 
 
 
-Salowey & Droms             Standards Track                     [Page 2]
+Salowey &amp; Droms             Standards Track                     [Page 2]
 
 RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
 
 
-3.  Attribute Format
+<H2>3.  Attribute Format</H2>
 
    The format of the Delegated-IPv6-Prefix is:
 
@@ -165,15 +165,15 @@ RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
    the prefix bits and can be shorter than 16 bytes.  Any bits in the
    prefix field that are not part of the prefix MUST be zero.
 
-   The Delegated-IPv6-Prefix MAY appear in an Access-Accept packet, and
-   can appear multiple times.  It MAY appear in an Access-Request packet
+   The Delegated-IPv6-Prefix MAY appear in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet, and
+   can appear multiple times.  It MAY appear in an <A HREF="rfc2865.html#Access-Request">Access-Request</A> packet
    as a hint by the NAS to the server that it would prefer these
    prefix(es), but the server is not required to honor the hint.
 
 
 
 
-Salowey & Droms             Standards Track                     [Page 3]
+Salowey &amp; Droms             Standards Track                     [Page 3]
 
 RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
 
@@ -184,7 +184,7 @@ RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
    The Delegated-IPv6-Prefix MUST NOT appear in any other RADIUS
    packets.
 
-4.  Table of Attributes
+<H2>4.  Table of Attributes</H2>
 
    The following table provides a guide to which attributes may be found
    in which kinds of packets, and in what quantity.
@@ -203,7 +203,7 @@ RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
       1   Exactly one instance of this attribute MUST be present.
       1+  One or more of these attributes MUST be present.
 
-5.  Diameter Considerations
+<H2>5.  Diameter Considerations</H2>
 
    When used in Diameter, the attribute defined in this specification
    can be used as a Diameter AVP from the Code space 1-255, i.e., RADIUS
@@ -220,23 +220,23 @@ RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
    and RFC 4005 [6], Section 9.
 
    The text in this specification describing the applicability of the
-   Delegated-IPv6-Prefix attribute for RADIUS Access-Request applies in
+   Delegated-IPv6-Prefix attribute for RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> applies in
    Diameter to AA-Request [6] or Diameter-EAP-Request [7].
 
    The text in this specification describing the applicability of the
-   Delegated-IPv6-Prefix attribute for RADIUS Access-Accept applies in
+   Delegated-IPv6-Prefix attribute for RADIUS <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> applies in
    Diameter to AA-Answer or Diameter-EAP-Answer that indicates success.
 
 
 
-Salowey & Droms             Standards Track                     [Page 4]
+Salowey &amp; Droms             Standards Track                     [Page 4]
 
 RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
 
 
    The text in this specification describing the applicability of the
-   Delegated-IPv6-Prefix attribute for RADIUS Accounting-Request applies
-   to Diameter Accounting-Request [6] as well.
+   Delegated-IPv6-Prefix attribute for RADIUS <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> applies
+   to Diameter <A HREF="rfc2866.html#Accounting-Request">Accounting-Request</A> [6] as well.
 
    The AVP flag rules [5] for the Delegated-IPv6-Prefix attribute are:
 
@@ -250,12 +250,12 @@ RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
        Prefix                         |    |     |    |     |    |
      ---------------------------------|----+-----+----+-----|----|
 
-6.  IANA Considerations
+<H2>6.  IANA Considerations</H2>
 
    IANA assigned a Type value, 123, for this attribute from the RADIUS
    Attribute Types registry.
 
-7.  Security Considerations
+<H2>7.  Security Considerations</H2>
 
    Known security vulnerabilities of the RADIUS protocol are discussed
    in RFC 2607 [8], RFC 2865 [1], and RFC 2869 [9].  Use of IPsec [10]
@@ -265,9 +265,9 @@ RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
    Security considerations for the Diameter protocol are discussed in
    RFC 3588 [5].
 
-8.  References
+<H2>8.  References</H2>
 
-8.1.  Normative References
+<H2>8.1.  Normative References</H2>
 
    [1]  Rigney, C., Willens, S., Rubens, A., and W. Simpson, "Remote
         Authentication Dial In User Service (RADIUS)", RFC 2865, June
@@ -285,12 +285,12 @@ RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
 
 
 
-Salowey & Droms             Standards Track                     [Page 5]
+Salowey &amp; Droms             Standards Track                     [Page 5]
 
 RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
 
 
-9.2.  Informative References
+<H2>9.2.  Informative References</H2>
 
    [4]  Aboba, B., Zorn, G., and D. Mitton, "RADIUS and IPv6", RFC 3162,
         August 2001.
@@ -341,7 +341,7 @@ Authors' Addresses
 
 
 
-Salowey & Droms             Standards Track                     [Page 6]
+Salowey &amp; Droms             Standards Track                     [Page 6]
 
 RFC 4818            Delegated-IPv6-Prefix Attribute           April 2007
 
@@ -397,7 +397,6 @@ Acknowledgement
 
 
 
-Salowey & Droms             Standards Track                     [Page 7]
+Salowey &amp; Droms             Standards Track                     [Page 7]
 
-</pre>
-</div>
+</PRE>

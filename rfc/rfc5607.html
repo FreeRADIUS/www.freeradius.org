@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="wrapper base_padding_v">
-<pre>
+<PRE>
 
 
 
@@ -61,7 +61,7 @@ Copyright Notice
 
 
 
-Nelson & Weber              Standards Track                     [Page 1]
+Nelson &amp; Weber              Standards Track                     [Page 1]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
@@ -77,12 +77,12 @@ Table of Contents
    3.  Overview . . . . . . . . . . . . . . . . . . . . . . . . . . .  4
    4.  Domain of Applicability  . . . . . . . . . . . . . . . . . . .  5
    5.  New Values for Existing RADIUS Attributes  . . . . . . . . . .  6
-     5.1.  Service-Type . . . . . . . . . . . . . . . . . . . . . . .6
+     5.1.  <A HREF="rfc2865.html#Service-Type">Service-Type</A> . . . . . . . . . . . . . . . . . . . . . . .6
    6.  New RADIUS Attributes  . . . . . . . . . . . . . . . . . . . .  6
-     6.1.  Framed-Management-Protocol . . . . . . . . . . . . . . . .  6
-     6.2.  Management-Transport-Protection  . . . . . . . . . . . . . 9
-     6.3.  Management-Policy-Id . . . . . . . . . . . . . . . . . . . 11
-     6.4.  Management-Privilege-Level . . . . . . . . . . . . . . . . 13
+     6.1.  <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A> . . . . . . . . . . . . . . . .  6
+     6.2.  <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A>  . . . . . . . . . . . . . 9
+     6.3.  <A HREF="#Management-Policy-Id">Management-Policy-Id</A> . . . . . . . . . . . . . . . . . . . 11
+     6.4.  <A HREF="#Management-Privilege-Level">Management-Privilege-Level</A> . . . . . . . . . . . . . . . . 13
    7.  Use with Dynamic Authorization . . . . . . . . . . . . . . . . 15
    8.  Examples of Attribute Groupings  . . . . . . . . . . . . . . . 15
    9.  Diameter Translation Considerations  . . . . . . . . . . . . . 17
@@ -117,15 +117,15 @@ Table of Contents
 
 
 
-Nelson & Weber              Standards Track                     [Page 2]
+Nelson &amp; Weber              Standards Track                     [Page 2]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
-1.  Introduction
+<H2>1.  Introduction</H2>
 
    RFC 2865 [RFC2865] defines the NAS-Prompt (7) and Administrative (6)
-   values of the Service-Type (6) Attribute.  Both of these values
+   values of the <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) Attribute.  Both of these values
    provide access to the interactive, text-based Command Line Interface
    (CLI) of the NAS, and were originally developed to control access to
    the physical console port of the NAS, most often a serial port.
@@ -134,9 +134,9 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    implementations for many years, using protocols such as Telnet,
    Rlogin, and the remote terminal service of the Secure SHell (SSH).
    In order to distinguish local, physical, console access from remote
-   access, the NAS-Port-Type (61) Attribute is generally included in
-   Access-Request and Access-Accept messages, along with the Service-
-   Type (6) Attribute, to indicate the form of access.  A NAS-Port-Type
+   access, the <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> (61) Attribute is generally included in
+   <A HREF="rfc2865.html#Access-Request">Access-Request</A> and <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> messages, along with the Service-
+<B>   Type (6) Attribute, to indicate the form of access.  A NAS-Port-Type</B>
    (61) Attribute with a value of Async (0) is used to signify a local
    serial port connection, while a value of Virtual (5) is used to
    signify a remote connection, via a remote terminal protocol.  This
@@ -144,7 +144,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    terminal protocols (e.g., Telnet, Rlogin, SSH, etc.).
 
    Today, it is common for network devices to support more than the two
-   privilege levels for management access provided by the Service-Type
+   privilege levels for management access provided by the <A HREF="rfc2865.html#Service-Type">Service-Type</A>
    (6) Attribute with values of NAS-Prompt (7) (non-privileged) and
    Administrative (6) (privileged).  Also, other management mechanisms
    may be used, such as Web-based management, the Simple Network
@@ -173,12 +173,12 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                     [Page 3]
+Nelson &amp; Weber              Standards Track                     [Page 3]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
-2.  Terminology
+<H2>2.  Terminology</H2>
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
@@ -202,34 +202,34 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    "noPriv".  There is no analog to auth or noAuth in this document.  In
    this document, we are assuming that authentication always occurs when
    it is required, i.e., as a prerequisite to provisioning of access via
-   an Access-Accept packet.
+   an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet.
 
-3.  Overview
+<H2>3.  Overview</H2>
 
    To support the authorization and provisioning of Framed Management
    access to managed entities, this document introduces a new value for
-   the Service-Type (6) Attribute [RFC2865] and one new attribute.  The
-   new value for the Service-Type (6) Attribute is Framed-Management
+   the <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) Attribute [RFC2865] and one new attribute.  The
+   new value for the <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) Attribute is Framed-Management
    (18), used for remote device management via a Framed Management
-   protocol.  The new attribute is Framed-Management-Protocol (133), the
+   protocol.  The new attribute is <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A> (133), the
    value of which specifies a particular protocol for use in the remote
    management session.
 
    Two new attributes are introduced in this document in support of
    granular management access rights or command privilege levels.  The
-   Management-Policy-Id (135) Attribute provides a text string
+   <A HREF="#Management-Policy-Id">Management-Policy-Id</A> (135) Attribute provides a text string
    specifying a policy name of local scope, that is assumed to have been
    pre-provisioned on the NAS.  This use of an attribute to specify use
-   of a pre-provisioned policy is similar to the Filter-Id (11)
+   of a pre-provisioned policy is similar to the <A HREF="rfc2865.html#Filter-Id">Filter-Id</A> (11)
    Attribute defined in [RFC2865] Section 5.11.
 
-   The local application of the Management-Policy-Id (135) Attribute
+   The local application of the <A HREF="#Management-Policy-Id">Management-Policy-Id</A> (135) Attribute
    within the managed entity may take the form of (a) one of an
    enumeration of command privilege levels, (b) a mapping into an SNMP
 
 
 
-Nelson & Weber              Standards Track                     [Page 4]
+Nelson &amp; Weber              Standards Track                     [Page 4]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
@@ -239,19 +239,19 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    rules that is mutually understood by the managed entity and the
    remote management application.  Examples are given in Section 8.
 
-   The Management-Privilege-Level (136) Attribute contains an integer-
+   The <A HREF="#Management-Privilege-Level">Management-Privilege-Level</A> (136) Attribute contains an integer-
    valued management privilege level indication.  This attribute serves
    to modify or augment the management permissions provided by the NAS-
-   Prompt (7) value of the Service-Type (6) Attribute, and thus applies
+   Prompt (7) value of the <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) Attribute, and thus applies
    to CLI management.
 
    To enable management security requirements to be specified, the
-   Management-Transport-Protection (134) Attribute is introduced.  The
+   <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A> (134) Attribute is introduced.  The
    value of this attribute indicates the minimum level of secure
    transport protocol protection required for the provisioning of NAS-
    Prompt (7), Administrative (6), or Framed-Management (18) service.
 
-4.  Domain of Applicability
+<H2>4.  Domain of Applicability</H2>
 
    Most of the RADIUS attributes defined in this document have broad
    applicability for provisioning local and remote management access to
@@ -285,7 +285,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                     [Page 5]
+Nelson &amp; Weber              Standards Track                     [Page 5]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
@@ -307,12 +307,12 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    RECOMMENDED.  In some cases, Password may be the only compatible
    RADIUS authentication method available.
 
-5.  New Values for Existing RADIUS Attributes
+<H2>5.  New Values for Existing RADIUS Attributes</H2>
 
-5.1.  Service-Type
+<A NAME="Service-Type"><H2>5.1.  Service-Type</H2></a>
 
-   The Service-Type (6) Attribute is defined in Section 5.6 of RFC 2865
-   [RFC2865].  This document defines a new value of the Service-Type
+   The <B>Service-Type</B> (6) Attribute is defined in Section 5.6 of RFC 2865
+   [RFC2865].  This document defines a new value of the <B>Service-Type</B>
    Attribute, as follows:
 
       18   Framed-Management
@@ -322,52 +322,52 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
       Framed-Management   A Framed Management protocol session should
                           be started on the NAS.
 
-6.  New RADIUS Attributes
+<H2>6.  New RADIUS Attributes</H2>
 
    This document defines four new RADIUS attributes related to
    management authorization.
 
-6.1.  Framed-Management-Protocol
+<A NAME="Framed-Management-Protocol"><H2>6.1.  Framed-Management-Protocol</H2></a>
 
-   The Framed-Management-Protocol (133) Attribute indicates the
+   The <B>Framed-Management-Protocol</B> (133) Attribute indicates the
    application-layer management protocol to be used for Framed
-   Management access.  It MAY be used in both Access-Request and Access-
+   Management access.  It MAY be used in both <A HREF="rfc2865.html#Access-Request">Access-Request</A> and Access-
    Accept packets.  This attribute is used in conjunction with a
-   Service-Type (6) Attribute with the value of Framed-Management (18).
+   <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) Attribute with the value of Framed-Management (18).
 
    It is RECOMMENDED that the NAS include an appropriately valued
-   Framed-Management-Protocol (133) Attribute in an Access-Request
+   <B>Framed-Management-Protocol</B> (133) Attribute in an <A HREF="rfc2865.html#Access-Request">Access-Request</A>
    packet, indicating the type of management access being requested.  It
 
 
 
-Nelson & Weber              Standards Track                     [Page 6]
+Nelson &amp; Weber              Standards Track                     [Page 6]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
-   is further RECOMMENDED that the NAS include a Service-Type (6)
+   is further RECOMMENDED that the NAS include a <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6)
    Attribute with the value Framed-Management (18) in the same Access-
    Request packet.  The RADIUS server MAY use these attributes as a hint
    in making its authorization decision.
 
-   The RADIUS server MAY include a Framed-Management-Protocol (133)
-   Attribute in an Access-Accept packet that also includes a Service-
-   Type (6) Attribute with a value of Framed-Management (18), when the
+   The RADIUS server MAY include a <B>Framed-Management-Protocol</B> (133)
+   Attribute in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet that also includes a Service-
+<B>   Type (6) Attribute with a value of Framed-Management (18), when the</B>
    RADIUS server chooses to enforce a management access policy for the
    authenticated user that dictates one form of management access in
    preference to others.
 
-   When a NAS receives a Framed-Management-Protocol (133) Attribute in
-   an Access-Accept packet, it MUST deliver that specified form of
+   When a NAS receives a <B>Framed-Management-Protocol</B> (133) Attribute in
+   an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet, it MUST deliver that specified form of
    management access or disconnect the session.  If the NAS does not
    support the provisioned management application-layer protocol, or the
    management access protocol requested by the user does not match that
-   of the Framed-Management-Protocol (133) Attribute in the Access-
-   Accept packet, the NAS MUST treat the Access-Accept packet as if it
-   had been an Access-Reject.
+   of the <B>Framed-Management-Protocol</B> (133) Attribute in the Access-
+   Accept packet, the NAS MUST treat the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet as if it
+   had been an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>.
 
-   A summary of the Framed-Management-Protocol (133) Attribute format is
+   A summary of the <B>Framed-Management-Protocol</B> (133) Attribute format is
    shown below.  The fields are transmitted from left to right.
 
        0                   1                   2                   3
@@ -380,7 +380,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
       Type
 
-         133 for Framed-Management-Protocol.
+         133 for <B>Framed-Management-Protocol</B>.
 
       Length
 
@@ -397,7 +397,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                     [Page 7]
+Nelson &amp; Weber              Standards Track                     [Page 7]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
@@ -453,7 +453,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                     [Page 8]
+Nelson &amp; Weber              Standards Track                     [Page 8]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
@@ -472,9 +472,9 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
       Additional information on the "scp" program may typically be found
       in the online documentation ("man" pages) of Unix systems.
 
-6.2.  Management-Transport-Protection
+<A NAME="Management-Transport-Protection"><H2>6.2.  Management-Transport-Protection</H2></a>
 
-   The Management-Transport-Protection (134) Attribute specifies the
+   The <B>Management-Transport-Protection</B> (134) Attribute specifies the
    minimum level of protection that is required for a protected
    transport used with the Framed or non-Framed Management access
    session.  The protected transport used by the NAS MAY provide a
@@ -486,7 +486,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    of protected transport, or tunnel.  It may also mean that an explicit
    secure mode of operation is required, when the Framed Management
    protocol contains an intrinsic secure mode of operation.  The
-   Management-Transport-Protection (134) Attribute does not apply to CLI
+   <B>Management-Transport-Protection</B> (134) Attribute does not apply to CLI
    access via a local serial port, or other non-remote connection.
 
    When a secure form of Framed Management access is specified, it means
@@ -501,7 +501,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    protocol.  The definitions of management application to transport
    bindings are defined in the relevant documents that specify those
    management application protocols.  The same "No Protection" semantics
-   are conveyed by omitting this attribute from an Access-Accept packet.
+   are conveyed by omitting this attribute from an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet.
 
    Specific protected transport protocols, cipher suites, key agreement
    methods, or authentication methods are not specified by this
@@ -509,35 +509,35 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                     [Page 9]
+Nelson &amp; Weber              Standards Track                     [Page 9]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
    It is RECOMMENDED that the NAS include an appropriately valued
-   Management-Transport-Protection (134) Attribute in an Access-Request
+   <B>Management-Transport-Protection</B> (134) Attribute in an <A HREF="rfc2865.html#Access-Request">Access-Request</A>
    packet, indicating the level of transport protection for the
    management access being requested, when that information is available
    to the RADIUS client.  The RADIUS server MAY use this attribute as a
    hint in making its authorization decision.
 
-   The RADIUS server MAY include a Management-Transport-Protection (134)
-   Attribute in an Access-Accept packet that also includes a Service-
-   Type (6) Attribute with a value of Framed-Management (18), when the
+   The RADIUS server MAY include a <B>Management-Transport-Protection</B> (134)
+   Attribute in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet that also includes a Service-
+<B>   Type (6) Attribute with a value of Framed-Management (18), when the</B>
    RADIUS server chooses to enforce a management access security policy
    for the authenticated user that dictates a minimum level of transport
    security.
 
-   When a NAS receives a Management-Transport-Protection (134) Attribute
-   in an Access-Accept packet, it MUST deliver the management access
+   When a NAS receives a <B>Management-Transport-Protection</B> (134) Attribute
+   in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet, it MUST deliver the management access
    over a transport with equal or better protection characteristics or
    disconnect the session.  If the NAS does not support protected
    management transport protocols, or the level of protection available
-   does not match that of the Management-Transport-Protection (134)
-   Attribute in the Access-Accept packet, the NAS MUST treat the
-   response packet as if it had been an Access-Reject.
+   does not match that of the <B>Management-Transport-Protection</B> (134)
+   Attribute in the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet, the NAS MUST treat the
+   response packet as if it had been an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>.
 
-   A summary of the Management-Transport-Protection (134) Attribute
+   A summary of the <B>Management-Transport-Protection</B> (134) Attribute
    format is shown below.  The fields are transmitted from left to
    right.
 
@@ -551,7 +551,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
       Type
 
-         134 for Management-Transport-Protection.
+         134 for <B>Management-Transport-Protection</B>.
 
       Length
 
@@ -565,7 +565,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                    [Page 10]
+Nelson &amp; Weber              Standards Track                    [Page 10]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
@@ -602,11 +602,11 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    this document.  Many such mechanisms have standardized methods of
    configuration and key management.
 
-6.3.  Management-Policy-Id
+<A NAME="Management-Policy-Id"><H2>6.3.  Management-Policy-Id</H2></a>
 
-   The Management-Policy-Id (135) Attribute indicates the name of the
+   The <B>Management-Policy-Id</B> (135) Attribute indicates the name of the
    management access policy for this user.  Zero or one Management-
-   Policy-Id (135) Attributes MAY be sent in an Access-Accept packet.
+   Policy-Id (135) Attributes MAY be sent in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet.
    Identifying a policy by name allows the policy to be used on
    different NASes without regard to implementation details.
 
@@ -621,36 +621,36 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                    [Page 11]
+Nelson &amp; Weber              Standards Track                    [Page 11]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
    The management access policy named in this attribute, received in an
-   Access-Accept packet, MUST be applied to the session authorized by
-   the Access-Accept.  If the NAS supports this attribute, but the
+   <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet, MUST be applied to the session authorized by
+   the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>.  If the NAS supports this attribute, but the
    policy name is unknown, or if the RADIUS client is able to determine
    that the policy rules are incorrectly formatted, the NAS MUST treat
-   the Access-Accept packet as if it had been an Access-Reject.
+   the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet as if it had been an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>.
 
    No precedence relationship is defined for multiple occurrences of the
-   Management-Policy-Id (135) Attribute.  NAS behavior in such cases is
+   <B>Management-Policy-Id</B> (135) Attribute.  NAS behavior in such cases is
    undefined.  Therefore, two or more occurrences of this attribute
-   SHOULD NOT be included in an Access-Accept or CoA-Request (Change-of-
+   SHOULD NOT be included in an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> or CoA-Request (Change-of-
    Authorization).  In the absence of further specification defining
    some sort of precedence relationship, it is not possible to guarantee
    multi-vendor interoperability when using multiple instances of this
-   attribute in a single Access-Accept or CoA-Request packet.
+   attribute in a single <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> or CoA-Request packet.
 
-   The content of the Management-Policy-Id (135) Attribute is expected
+   The content of the <B>Management-Policy-Id</B> (135) Attribute is expected
    to be the name of a management access policy of local significance to
    the NAS, within a namespace of significance to the NAS.  In this
-   regard, the behavior is similar to that for the Filter-Id (11)
+   regard, the behavior is similar to that for the <A HREF="rfc2865.html#Filter-Id">Filter-Id</A> (11)
    Attribute.  The policy names and rules are committed to the local
    configuration data-store of the NAS, and are provisioned by means
    beyond the scope of this document, such as via SNMP, NETCONF, or CLI.
 
-   The namespace used in the Management-Policy-Id (135) Attribute is
+   The namespace used in the <B>Management-Policy-Id</B> (135) Attribute is
    simple and monolithic.  There is no explicit or implicit structure or
    hierarchy.  For example, in the text string "example.com", the "."
    (period or dot) is just another character.  It is expected that text
@@ -662,7 +662,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    multi-vendor interoperability and SHOULD NOT be utilized.  If a
    simple, unstructured policy name is not sufficient, it is RECOMMENDED
    that a Vendor Specific (26) Attribute be used instead, rather than
-   overloading the semantics of Management-Policy-Id.
+   overloading the semantics of <B>Management-Policy-Id</B>.
 
 
 
@@ -677,12 +677,12 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                    [Page 12]
+Nelson &amp; Weber              Standards Track                    [Page 12]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
-   A summary of the Management-Policy-Id (135) Attribute format is shown
+   A summary of the <B>Management-Policy-Id</B> (135) Attribute format is shown
    below.  The fields are transmitted from left to right.
 
        0                   1                   2
@@ -693,11 +693,11 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
       Type
 
-         135 for Management-Policy-Id.
+         135 for <B>Management-Policy-Id</B>.
 
       Length
 
-         >= 3
+         &gt;= 3
 
       Text
 
@@ -708,14 +708,14 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
          policies.  It is RECOMMENDED that the message contain UTF-8
          encoded 10646 [RFC3629] characters.
 
-6.4.  Management-Privilege-Level
+<A NAME="Management-Privilege-Level"><H2>6.4.  Management-Privilege-Level</H2></a>
 
-   The Management-Privilege-Level (136) Attribute indicates the integer-
+   The <B>Management-Privilege-Level</B> (136) Attribute indicates the integer-
    valued privilege level to be assigned for management access for the
    authenticated user.  Many NASes provide the notion of differentiated
    management privilege levels denoted by an integer value.  The
    specific access rights conferred by each value are implementation
-   dependent.  It MAY be used in both Access-Request and Access-Accept
+   dependent.  It MAY be used in both <A HREF="rfc2865.html#Access-Request">Access-Request</A> and <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
    packets.
 
    The mapping of integer values for this attribute to specific
@@ -726,19 +726,19 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    that this recommendation always holds.
 
    The management access level indicated in this attribute, received in
-   an Access-Accept packet, MUST be applied to the session authorized by
-   the Access-Accept.  If the NAS supports this attribute, but the
-   privilege level is unknown, the NAS MUST treat the Access-Accept
-   packet as if it had been an Access-Reject.
+   an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> packet, MUST be applied to the session authorized by
+   the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>.  If the NAS supports this attribute, but the
+   privilege level is unknown, the NAS MUST treat the <A HREF="rfc2865.html#Access-Accept">Access-Accept</A>
+   packet as if it had been an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A>.
 
 
 
-Nelson & Weber              Standards Track                    [Page 13]
+Nelson &amp; Weber              Standards Track                    [Page 13]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
-   A summary of the Management-Privilege-Level (136) Attribute format is
+   A summary of the <B>Management-Privilege-Level</B> (136) Attribute format is
    show below.  The fields are transmitted from left to right.
 
 
@@ -752,7 +752,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
        Type
 
-          136 for Management-Privilege-Level.
+          136 for <B>Management-Privilege-Level</B>.
 
        Length
 
@@ -764,20 +764,20 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
           privilege level.
 
 
-   It is RECOMMENDED to limit use of the Management-Privilege-Level
-   (136) Attribute to sessions where the Service-Type (6) Attribute has
+   It is RECOMMENDED to limit use of the <B>Management-Privilege-Level</B>
+   (136) Attribute to sessions where the <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) Attribute has
    a value of NAS-Prompt (7) (not Administrative).  Typically, NASes
    treat NAS-Prompt as the minimal privilege CLI service and
    Administrative as full privilege.  Using the Management-Privilege-
-   Level (136) Attribute with a Service-Type (6) Attribute having a
+   Level (136) Attribute with a <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) Attribute having a
    value of NAS-Prompt (7) will have the effect of increasing the
    minimum privilege level.  Conversely, it is NOT RECOMMENDED to use
-   this attribute with a Service-Type (6) Attribute with a value of
+   this attribute with a <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) Attribute with a value of
    Administrative (6), which may require decreasing the maximum
    privilege level.
 
-   It is NOT RECOMMENDED to use the Management-Privilege-Level (136)
-   Attribute in combination with a Management-Policy-Id (135) Attribute
+   It is NOT RECOMMENDED to use the <B>Management-Privilege-Level</B> (136)
+   Attribute in combination with a <A HREF="#Management-Policy-Id">Management-Policy-Id</A> (135) Attribute
    or for management access methods other than interactive CLI.  The
    behavior resulting from such an overlay of management access control
    provisioning is not defined by this document, and in the absence of
@@ -789,12 +789,12 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                    [Page 14]
+Nelson &amp; Weber              Standards Track                    [Page 14]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
-7.  Use with Dynamic Authorization
+<H2>7.  Use with Dynamic Authorization</H2>
 
    It is entirely OPTIONAL for the NAS management authorization
    attributes specified in this document to be used in conjunction with
@@ -804,13 +804,13 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
    Some guidance on how to identify existing management sessions on a
    NAS for the purposes of Dynamic Authorization is useful.  The primary
-   session identifiers SHOULD be User-Name (1) and Service-Type (6).  To
+   session identifiers SHOULD be <A HREF="rfc2865.html#User-Name">User-Name</A> (1) and <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6).  To
    accommodate instances when that information alone does not uniquely
    identify a session, a NAS supporting Dynamic Authorization SHOULD
    maintain one or more internal session identifiers that can be
    represented as RADIUS attributes.  Examples of such attributes
-   include Acct-Session-Id (44), Acct-Multi-Session-Id (50), NAS-Port
-   (5), or NAS-Port-Id (87).  In the case of a remote management
+   include <A HREF="rfc2866.html#Acct-Session-Id">Acct-Session-Id</A> (44), <A HREF="rfc2866.html#Acct-Multi-Session-Id">Acct-Multi-Session-Id</A> (50), <A HREF="rfc2865.html#NAS-Port">NAS-Port</A>
+   (5), or <A HREF="rfc2869.html#NAS-Port-Id">NAS-Port-Id</A> (87).  In the case of a remote management
    session, common identifier values might include things such as the
    remote IP address and remote TCP port number, or the file descriptor
    value for use with the open socket.  Any such identifier is obviously
@@ -820,88 +820,88 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    In order for the session identification attributes to be available to
    the Dynamic Authorization Client, a NAS supporting Dynamic
    Authorization for management sessions SHOULD include those session
-   identification attributes in the Access-Request message for each such
+   identification attributes in the <A HREF="rfc2865.html#Access-Request">Access-Request</A> message for each such
    session.  Additional discussion of session identification attribute
    usage may be found in Section 3 of [RFC5176].
 
-8.  Examples of Attribute Groupings
+<H2>8.  Examples of Attribute Groupings</H2>
 
    1.  Unprotected CLI access, via the local console, to the "super-
        user" access level:
 
-       *  Service-Type (6) = Administrative (6)
+       *  <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) = Administrative (6)
 
-       *  NAS-Port-Type (61) = Async (0)
+       *  <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> (61) = Async (0)
 
-       *  Management-Transport-Protection (134) = No-Protection (1)
+       *  <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A> (134) = No-Protection (1)
 
    2.  Unprotected CLI access, via a remote console, to the "super-user"
        access level:
 
-       *  Service-Type (6) = Administrative (6)
+       *  <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) = Administrative (6)
 
-       *  NAS-Port-Type (61) = Virtual (5)
-
-
+       *  <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> (61) = Virtual (5)
 
 
-Nelson & Weber              Standards Track                    [Page 15]
+
+
+Nelson &amp; Weber              Standards Track                    [Page 15]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
-       *  Management-Transport-Protection (134) = No-Protection (1)
+       *  <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A> (134) = No-Protection (1)
 
    3.  CLI access, via a fully protected secure remote terminal service
        to the non-privileged user access level:
 
-       *  Service-Type (6) = NAS-Prompt (7)
+       *  <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) = NAS-Prompt (7)
 
-       *  NAS-Port-Type (61) = Virtual (5)
+       *  <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> (61) = Virtual (5)
 
-       *  Management-Transport-Protection (134) = Integrity-
+       *  <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A> (134) = Integrity-
           Confidentiality-Protection (3)
 
    4.  CLI access, via a fully protected secure remote terminal service,
        to a custom management access level, defined by a policy:
 
-       *  Service-Type (6) = NAS-Prompt (7)
+       *  <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) = NAS-Prompt (7)
 
-       *  NAS-Port-Type (61) = Virtual (5)
+       *  <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> (61) = Virtual (5)
 
-       *  Management-Transport-Protection (134) = Integrity-
+       *  <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A> (134) = Integrity-
           Confidentiality-Protection (3)
 
-       *  Management-Policy-Id (135) = "Network Administrator"
+       *  <A HREF="#Management-Policy-Id">Management-Policy-Id</A> (135) = "Network Administrator"
 
    5.  CLI access, via a fully protected secure remote terminal service,
        with a management privilege level of 15:
 
-       *  Service-Type (6) = NAS-Prompt (7)
+       *  <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) = NAS-Prompt (7)
 
-       *  NAS-Port-Type (61) = Virtual (5)
+       *  <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> (61) = Virtual (5)
 
-       *  Management-Transport-Protection (134) = Integrity-
+       *  <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A> (134) = Integrity-
           Confidentiality-Protection (3)
 
-       *  Management-Privilege-Level (136) = 15
+       *  <A HREF="#Management-Privilege-Level">Management-Privilege-Level</A> (136) = 15
 
    6.  SNMP access, using an Access Control Model specifier, such as a
        custom VACM View, defined by a policy:
 
-       *  Service-Type (6) = Framed-Management (18)
+       *  <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) = Framed-Management (18)
 
-       *  NAS-Port-Type (61) = Virtual (5)
+       *  <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> (61) = Virtual (5)
 
-       *  Framed-Management-Protocol (133) = SNMP (1)
+       *  <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A> (133) = SNMP (1)
 
-       *  Management-Policy-Id (135) = "SNMP Network Administrator View"
-
-
+       *  <A HREF="#Management-Policy-Id">Management-Policy-Id</A> (135) = "SNMP Network Administrator View"
 
 
 
-Nelson & Weber              Standards Track                    [Page 16]
+
+
+Nelson &amp; Weber              Standards Track                    [Page 16]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
@@ -912,38 +912,38 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
    7.  SNMP fully protected access:
 
-       *  Service-Type (6) = Framed-Management (18)
+       *  <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) = Framed-Management (18)
 
-       *  NAS-Port-Type (61) = Virtual (5)
+       *  <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> (61) = Virtual (5)
 
-       *  Framed-Management-Protocol (133) = SNMP (1)
+       *  <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A> (133) = SNMP (1)
 
-       *  Management-Transport-Protection (134) = Integrity-
+       *  <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A> (134) = Integrity-
           Confidentiality-Protection (3)
 
    8.  Web (HTTP/HTML) access:
 
-       *  Service-Type (6) = Framed-Management (18)
+       *  <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) = Framed-Management (18)
 
-       *  NAS-Port-Type (61) = Virtual (5)
+       *  <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> (61) = Virtual (5)
 
-       *  Framed-Management-Protocol (133) = Web-based (2)
+       *  <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A> (133) = Web-based (2)
 
    9.  Secure web access, using a custom management access level,
        defined by a policy:
 
-       *  Service-Type (6) = Framed-Management (18)
+       *  <A HREF="rfc2865.html#Service-Type">Service-Type</A> (6) = Framed-Management (18)
 
-       *  NAS-Port-Type (61) = Virtual (5)
+       *  <A HREF="rfc2865.html#NAS-Port-Type">NAS-Port-Type</A> (61) = Virtual (5)
 
-       *  Framed-Management-Protocol (133) = Web-based (2)
+       *  <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A> (133) = Web-based (2)
 
-       *  Management-Transport-Protection (134) = Integrity-
+       *  <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A> (134) = Integrity-
           Confidentiality-Protection (3)
 
-       *  Management-Policy-Id (135) = "Read-only web access"
+       *  <A HREF="#Management-Policy-Id">Management-Policy-Id</A> (135) = "Read-only web access"
 
-9.  Diameter Translation Considerations
+<H2>9.  Diameter Translation Considerations</H2>
 
    When used in Diameter, the attributes defined in this specification
    can be used as Diameter attribute-value pairs (AVPs) from the Code
@@ -957,7 +957,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                    [Page 17]
+Nelson &amp; Weber              Standards Track                    [Page 17]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
@@ -968,15 +968,15 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
                                     |    |     SHOULD MUST|    |
    Attribute Name        Value Type |MUST| MAY | NOT|  NOT|Encr|
    ---------------------------------|----+-----+----+-----|----|
-   Service-Type                     |    |     |    |     |    |
+   <A HREF="rfc2865.html#Service-Type">Service-Type</A>                     |    |     |    |     |    |
                          Enumerated | M  |  P  |    |  V  | Y  |
-   Framed-Management-Protocol       |    |     |    |     |    |
+   <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A>       |    |     |    |     |    |
                          Enumerated | M  |  P  |    |  V  | Y  |
-   Management-Transport-Protection  |    |     |    |     |    |
+   <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A>  |    |     |    |     |    |
                          Enumerated | M  |  P  |    |  V  | Y  |
-   Management-Policy-Id             |    |     |    |     |    |
+   <A HREF="#Management-Policy-Id">Management-Policy-Id</A>             |    |     |    |     |    |
                          UTF8String | M  |  P  |    |  V  | Y  |
-   Management-Privilege-Level       |    |     |    |     |    |
+   <A HREF="#Management-Privilege-Level">Management-Privilege-Level</A>       |    |     |    |     |    |
                          Integer    | M  |  P  |    |  V  | Y  |
    ---------------------------------|----+-----+----+-----|----|
 
@@ -987,13 +987,13 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    [RFC4005], Section 9.
 
    What this specification says about the applicability of the
-   attributes for RADIUS Access-Request packets applies in Diameter to
+   attributes for RADIUS <A HREF="rfc2865.html#Access-Request">Access-Request</A> packets applies in Diameter to
    AA-Request [RFC4005].
 
-   What is said about Access-Accept applies in Diameter to AA-Answer
+   What is said about <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> applies in Diameter to AA-Answer
    messages that indicate success.
 
-10.  Table of Attributes
+<H2>10.  Table of Attributes</H2>
 
    The following table provides a guide to which attributes may be found
    in which kinds of packets, and in what quantity.
@@ -1001,10 +1001,10 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    Access Messages
    Request Accept Reject Challenge  #     Attribute
    ---------------------------------------------------------------------
-   0-1     0-1      0        0     133   Framed-Management-Protocol
-   0-1     0-1      0        0     134   Management-Transport-Protection
-   0       0-1      0        0     135   Management-Policy-Id
-   0       0-1      0        0     136   Management-Privilege-Level
+   0-1     0-1      0        0     133   <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A>
+   0-1     0-1      0        0     134   <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A>
+   0       0-1      0        0     135   <A HREF="#Management-Policy-Id">Management-Policy-Id</A>
+   0       0-1      0        0     136   <A HREF="#Management-Privilege-Level">Management-Privilege-Level</A>
 
 
 
@@ -1013,7 +1013,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                    [Page 18]
+Nelson &amp; Weber              Standards Track                    [Page 18]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
@@ -1021,29 +1021,29 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    Accounting Messages
    Request Response   #     Attribute
    ---------------------------------------------------------------------
-   0-1     0         133   Framed-Management-Protocol
-   0-1     0         134   Management-Transport-Protection
-   0-1     0         135   Management-Policy-Id
-   0-1     0         136   Management-Privilege-Level
+   0-1     0         133   <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A>
+   0-1     0         134   <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A>
+   0-1     0         135   <A HREF="#Management-Policy-Id">Management-Policy-Id</A>
+   0-1     0         136   <A HREF="#Management-Privilege-Level">Management-Privilege-Level</A>
 
 
 
-   Change-of-Authorization Messages
+   <A HREF="rfc5176.html#Change-of-Authorization">Change-of-Authorization</A> Messages
    Request  ACK   NAK   #     Attribute
    --------------------------------------------------------------------
-   0       0     0     133   Framed-Management-Protocol
-   0       0     0     134   Management-Transport-Protection
-   0-1     0     0     135   Management-Policy-Id (Note 1)
-   0-1     0     0     136   Management-Privilege-Level (Note 1)
+   0       0     0     133   <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A>
+   0       0     0     134   <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A>
+   0-1     0     0     135   <A HREF="#Management-Policy-Id">Management-Policy-Id</A> (Note 1)
+   0-1     0     0     136   <A HREF="#Management-Privilege-Level">Management-Privilege-Level</A> (Note 1)
 
 
    Disconnect Messages
    Request  ACK   NAK   #     Attribute
    ---------------------------------------------------------------------
-   0        0     0     133   Framed-Management-Protocol
-   0        0     0     134   Management-Transport-Protection
-   0        0     0     135   Management-Policy-Id
-   0        0     0     136   Management-Privilege-Level
+   0        0     0     133   <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A>
+   0        0     0     134   <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A>
+   0        0     0     135   <A HREF="#Management-Policy-Id">Management-Policy-Id</A>
+   0        0     0     136   <A HREF="#Management-Privilege-Level">Management-Privilege-Level</A>
 
    (Note 1) When included within a CoA-Request, these attributes
      represent an authorization change request.  When one of these
@@ -1061,38 +1061,38 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
        1    Exactly one instance of this attribute MUST be present in
             a packet.
 
-11.  IANA Considerations
+<H2>11.  IANA Considerations</H2>
 
    The following numbers have been assigned in the RADIUS Attribute
-   Types registry.
+<B>   Types registry.</B>
 
 
 
 
-Nelson & Weber              Standards Track                    [Page 19]
+Nelson &amp; Weber              Standards Track                    [Page 19]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
-   o  New enumerated value for the existing Service-Type Attribute:
+   o  New enumerated value for the existing <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute:
 
       *  Framed-Management (18)
 
    o  New RADIUS Attribute Types:
 
-      *  Framed-Management-Protocol (133)
+      *  <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A> (133)
 
-      *  Management-Transport-Protection (134)
+      *  <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A> (134)
 
-      *  Management-Policy-Id (135)
+      *  <A HREF="#Management-Policy-Id">Management-Policy-Id</A> (135)
 
-      *  Management-Privilege-Level (136)
+      *  <A HREF="#Management-Privilege-Level">Management-Privilege-Level</A> (136)
 
    The enumerated values of the newly assigned RADIUS Attribute Types as
    defined in this document were assigned at the same time as the new
    Attribute Types.
 
-   For the Framed-Management-Protocol Attribute:
+   For the <A HREF="#Framed-Management-Protocol">Framed-Management-Protocol</A> Attribute:
 
          1      SNMP
          2      Web-based
@@ -1103,7 +1103,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
          7      RCP
          8      SCP
 
-   For the Management-Transport-Protection Attribute:
+   For the <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A> Attribute:
 
          1      No-Protection
          2      Integrity-Protection
@@ -1114,9 +1114,9 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    [RFC3575], subject to the additional requirement of a published
    specification.
 
-12.  Security Considerations
+<H2>12.  Security Considerations</H2>
 
-12.1.  General Considerations
+<H2>12.1.  General Considerations</H2>
 
    This specification describes the use of RADIUS and Diameter for
    purposes of authentication, authorization, and accounting for
@@ -1125,7 +1125,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                    [Page 20]
+Nelson &amp; Weber              Standards Track                    [Page 20]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
@@ -1147,7 +1147,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
    A legacy NAS may not recognize the attributes in this document that
    supplement the provisioning of CLI management access.  If the value
-   of the Service-Type Attribute is NAS-Prompt or Administrative, the
+   of the <A HREF="rfc2865.html#Service-Type">Service-Type</A> Attribute is NAS-Prompt or Administrative, the
    legacy NAS may silently discard such attributes, while permitting the
    user to access the CLI management interface(s) of the NAS.  This can
    lead to users improperly receiving authorized management access to
@@ -1158,15 +1158,15 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
    It is possible that certain NAS implementations may not be able to
    determine the protection properties of the underlying transport
-   protocol as specified by the Management-Transport-Protection
+   protocol as specified by the <A HREF="#Management-Transport-Protection">Management-Transport-Protection</A>
    Attribute.  This may be a limitation of the standard application
    programming interface of the underlying transport implementation or
    of the integration of the transport into the NAS implementation.  In
    either event, NASes conforming to this specification, which cannot
    determine the protection state of the remote management connection,
-   MUST treat an Access-Accept message containing a Management-
+   MUST treat an <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> message containing a Management-
    Transport-Protection Attribute containing a value other than No-
-   Protection (1) as if it were an Access-Reject message, unless
+   Protection (1) as if it were an <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> message, unless
    specifically overridden by local policy configuration.
 
    Use of the No-Protection (1) option for the Management-Transport-
@@ -1181,18 +1181,18 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                    [Page 21]
+Nelson &amp; Weber              Standards Track                    [Page 21]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
-12.2.  RADIUS Proxy Operation Considerations
+<H2>12.2.  RADIUS Proxy Operation Considerations</H2>
 
    The device management access authorization attributes presented in
    this document present certain considerations when used in RADIUS
    proxy environments.  These considerations are not different from
    those that exist in RFC 2865 [RFC2865] with respect to the Service-
-   Type Attribute values of Administrative and NAS-Prompt.
+<B>   Type Attribute values of Administrative and NAS-Prompt.</B>
 
    Most RADIUS proxy environments are also multi-party environments.  In
    multi-party proxy environments it is important to distinguish which
@@ -1215,9 +1215,9 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    first-hop RADIUS proxy server, operated by the owner of the NAS, to
    filter out any RADIUS attributes that provision management access
    rights that originate from "up-stream" proxy servers not operated by
-   the NAS owner.  Access-Accept messages that provision such locally
+   the NAS owner.  <A HREF="rfc2865.html#Access-Accept">Access-Accept</A> messages that provision such locally
    unauthorized management access MAY be treated as if they were an
-   Access-Reject by the first-hop proxy server.
+   <A HREF="rfc2865.html#Access-Reject">Access-Reject</A> by the first-hop proxy server.
 
    An additional exposure present in proxy deployments is that sensitive
    user credentials, e.g., passwords, are likely to be available in
@@ -1237,20 +1237,20 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                    [Page 22]
+Nelson &amp; Weber              Standards Track                    [Page 22]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
-13.  Acknowledgments
+<H2>13.  Acknowledgments</H2>
 
    Many thanks to all reviewers, including Bernard Aboba, Alan DeKok,
    David Harrington, Mauricio Sanchez, Juergen Schoenwaelder, Hannes
    Tschofenig, Barney Wolff, and Glen Zorn.
 
-14.  References
+<H2>14.  References</H2>
 
-14.1.  Normative References
+<H2>14.1.  Normative References</H2>
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119, March 1997.
@@ -1262,7 +1262,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
    [RFC3629]  Yergeau, F., "UTF-8, a transformation format of ISO
               10646", STD 63, RFC 3629, November 2003.
 
-14.2.  Informative References
+<H2>14.2.  Informative References</H2>
 
    [HTML]     Raggett, D., Le Hors, A., and I. Jacobs, "The HTML 4.01
               Specification, W3C", December 1999.
@@ -1293,7 +1293,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                    [Page 23]
+Nelson &amp; Weber              Standards Track                    [Page 23]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
@@ -1349,7 +1349,7 @@ RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
 
 
-Nelson & Weber              Standards Track                    [Page 24]
+Nelson &amp; Weber              Standards Track                    [Page 24]
 
 RFC 5607          RADIUS NAS-Management Authorization          July 2009
 
@@ -1405,7 +1405,6 @@ Authors' Addresses
 
 
 
-Nelson & Weber              Standards Track                    [Page 25]
+Nelson &amp; Weber              Standards Track                    [Page 25]
 
-</pre>
-</div>
+</PRE>
