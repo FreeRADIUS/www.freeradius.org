@@ -30,16 +30,12 @@ foreach $file (@ARGV) {
     #  Print out the HTML header
     #
     print OUTPUT <<EOF;
-<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
-<HTML>
-<head>
-   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Perl">
-   <title>$ref.html</title>
-</head>
-<body>
-<PRE>
+---
+layout: default
+---
 
+<div class="wrapper base_padding_v">
+<PRE>
 EOF
 
     #  loop over the input file
@@ -114,7 +110,6 @@ EOF
     }
 
     print OUTPUT "</PRE>\n";
-    print OUTPUT "</BODY>\n";
     close OUTPUT;
     close FILE;
 }
@@ -128,14 +123,11 @@ open OUTPUT, ">attributes.html" || die "Error creating attributes.html: $!\n";
 #  Print out the HTML header
 #
 print OUTPUT <<EOF;
-<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
-<HTML>
-<head>
-   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-   <meta name="GENERATOR" content="Perl">
-   <title>$ref.html</title>
-</head>
-<body>
+---
+layout: default
+---
+
+<div class="wrapper base_padding_v">
 
 <H2>RADIUS Attribute List</H2>
 EOF
@@ -155,5 +147,5 @@ foreach $key (sort keys %refs) {
 
 print OUTPUT "</UL>\n";
 
-print OUTPUT "</BODY>\n";
+print OUTPUT "</div>\n";
 close OUTPUT;
