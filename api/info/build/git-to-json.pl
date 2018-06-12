@@ -45,17 +45,17 @@ my $RELBRANCHES = [
 			"2.0.0" => "new features",
 		},
 	},
-	{
-		# development means just download this actual branch HEAD
-		type => "development",
-		branch => "4.0.x",
-		description => "Development branch",
-		status => "development",
-		priority => 3,
-		focus => {
-			"4.0.x" => "development",
-		},
-	},
+#	{
+#		# development means just download this actual branch HEAD
+#		type => "development",
+#		branch => "4.0.x",
+#		description => "Development branch",
+#		status => "development",
+#		priority => 3,
+#		focus => {
+#			"4.0.x" => "development",
+#		},
+#	},
 
 	{
 		# obsolete releases are filtered out by the js
@@ -1347,4 +1347,3 @@ sub build_web_json
 #print "yes\n" if version_is_in_branch("3.0.15", "3.0.x");
 #print "yes\n" if version_is_in_branch("3.0.15", "3.x.x");
 #print "yes\n" if not version_is_in_branch("3.0.15", "3.1.x");
-
